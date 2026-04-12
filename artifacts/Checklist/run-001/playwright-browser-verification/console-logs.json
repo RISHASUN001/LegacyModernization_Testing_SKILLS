@@ -1,0 +1,5 @@
+[
+  "ERROR TypeError: Cannot read properties of undefined (reading trim) at checklist.js:214",
+  "WARN Validation banner container not found in DOM",
+  "ERROR Failed to execute save button click action"
+]

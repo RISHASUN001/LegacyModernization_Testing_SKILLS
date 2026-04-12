@@ -1,0 +1,42 @@
+{
+  "runId": "run-002",
+  "moduleName": "Checklist",
+  "legacySourceRoot": "C:/edcs2000/src",
+  "convertedSourceRoot": "C:/edcs2000/src_conversion4",
+  "baseUrl": "http://localhost:5276",
+  "brsPath": "C:/docs/checklist_brs.docx",
+  "moduleHints": {
+    "relatedFolders": [
+      "src/jsp/checklist",
+      "src/com/seagate/edcs/checklist"
+    ],
+    "knownUrls": [
+      "/checklist/loadChecklist.do",
+      "/checklist/saveChecklist.do"
+    ],
+    "keywords": [
+      "checklist",
+      "ATC",
+      "sensor",
+      "work order",
+      "validation"
+    ]
+  },
+  "selectedSkills": [
+    "module-discovery",
+    "legacy-logic-extraction",
+    "module-documentation",
+    "clean-architecture-assessment",
+    "test-plan-generation",
+    "unit-test-execution",
+    "integration-test-execution",
+    "e2e-test-execution",
+    "api-test-execution",
+    "edge-case-testing",
+    "playwright-browser-verification",
+    "failure-diagnosis",
+    "lessons-learned",
+    "iteration-comparison",
+    "parity-verification"
+  ]
+}

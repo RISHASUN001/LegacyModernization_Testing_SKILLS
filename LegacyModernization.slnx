@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/LegacyModernization.Application/LegacyModernization.Application.csproj" />
+    <Project Path="src/LegacyModernization.Core/LegacyModernization.Core.csproj" />
+    <Project Path="src/LegacyModernization.Dashboard.Web/LegacyModernization.Dashboard.Web.csproj" />
+    <Project Path="src/LegacyModernization.Infrastructure/LegacyModernization.Infrastructure.csproj" />
+  </Folder>
+</Solution>

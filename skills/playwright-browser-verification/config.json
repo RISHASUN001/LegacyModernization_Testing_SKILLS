@@ -1,0 +1,34 @@
+{
+  "name": "playwright-browser-verification",
+  "stage": "execution",
+  "category": "testing",
+  "purpose": "Run browser and devtools-inspired verification with screenshots, console/network/runtime evidence.",
+  "scriptEntry": "run.ps1",
+  "requiredInputs": [
+    "moduleName",
+    "baseUrl"
+  ],
+  "optionalInputs": [
+    "browser",
+    "headless"
+  ],
+  "outputFiles": [
+    "result.json",
+    "log.txt",
+    "console-logs.json",
+    "network-failures.json",
+    "dom-state.json",
+    "runtime-issues.json",
+    "performance-observations.json",
+    "screenshots/*"
+  ],
+  "artifactFolders": [
+    "artifacts/{module}/{runId}/playwright-browser-verification/"
+  ],
+  "dependencies": [
+    "test-plan-generation",
+    "api-test-execution"
+  ],
+  "summaryOutputType": "test-category-result",
+  "resultContractVersion": "2.0"
+}

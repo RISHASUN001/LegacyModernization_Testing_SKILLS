@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Legacy Modernization Ops</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+@{
+    var action = ViewContext.RouteData.Values["action"]?.ToString() ?? string.Empty;
+}
+<div class="dashboard-shell">
+    <aside class="dashboard-sidebar">
+        <a class="brand-block" asp-controller="Dashboard" asp-action="Index">
+            <span class="brand-logo">LM</span>
+            <span>
+                <strong class="brand-title">Legacy Modernization</strong>
+                <small class="brand-subtitle">7-Stage Ops Console</small>
+            </span>
+        </a>
+
+        <nav class="dashboard-nav">
+            <a class="dashboard-tab @(action == "Index" ? "active" : "")" asp-controller="Dashboard" asp-action="Index"><i class="bi bi-grid-1x2-fill"></i> Home</a>
+            <a class="dashboard-tab @(action == "SkillLibrary" ? "active" : "")" asp-controller="Dashboard" asp-action="SkillLibrary"><i class="bi bi-journal-code"></i> Skill Library</a>
+            <a class="dashboard-tab @(action == "RunInputBuilder" ? "active" : "")" asp-controller="Dashboard" asp-action="RunInputBuilder"><i class="bi bi-sliders2"></i> Run Input Builder</a>
+            <a class="dashboard-tab @(action == "ModuleRuns" ? "active" : "")" asp-controller="Dashboard" asp-action="ModuleRuns"><i class="bi bi-diagram-3"></i> Module Runs</a>
+            <a class="dashboard-tab @(action == "Findings" ? "active" : "")" asp-controller="Dashboard" asp-action="Findings"><i class="bi bi-search"></i> Findings</a>
+        </nav>
+    </aside>
+
+    <div class="dashboard-main">
+        <header class="dashboard-topbar">
+            <h1>@(ViewData["Title"] ?? "Dashboard")</h1>
+            <span class="dashboard-tag">Option A: External Skills Execution</span>
+        </header>
+
+        <main class="dashboard-content">
+            @RenderBody()
+        </main>
+    </div>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

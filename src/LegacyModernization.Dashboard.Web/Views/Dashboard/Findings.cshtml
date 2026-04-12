@@ -1,0 +1,73 @@
+@model FindingsPageDto
+@{
+    ViewData["Title"] = "Findings";
+}
+
+<h2 class="mb-2">Findings & Recommendations</h2>
+
+<form method="get" class="panel-card p-3 mb-3">
+    <div class="row g-2 align-items-end">
+        <div class="col-md-5">
+            <label class="form-label">Module</label>
+            <input class="form-control" name="module" value="@Model.ModuleName" />
+        </div>
+        <div class="col-md-5">
+            <label class="form-label">Run ID</label>
+            <input class="form-control" name="runId" value="@Model.RunId" />
+        </div>
+        <div class="col-md-2">
+            <button class="btn btn-primary w-100" type="submit">Filter</button>
+        </div>
+    </div>
+</form>
+
+<div class="row g-3">
+    <div class="col-lg-8">
+        <div class="panel-card p-3 h-100">
+            <h3 class="h6">Findings</h3>
+            <table class="table table-sm align-middle mb-0">
+                <thead>
+                    <tr>
+                        <th>Module/Run</th>
+                        <th>Stage</th>
+                        <th>Type</th>
+                        <th>Likely Cause</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var finding in Model.Findings)
+                {
+                    <tr>
+                        <td>@finding.ModuleName / @finding.RunId</td>
+                        <td>@finding.Stage</td>
+                        <td>
+                            <div><strong>@finding.FindingType</strong></div>
+                            <div class="small text-muted">@finding.Message</div>
+                        </td>
+                        <td>@finding.LikelyCause</td>
+                        <td>
+                            <span class="status-pill @finding.Status.ToLowerInvariant()">@finding.Status</span>
+                            @if (!string.IsNullOrWhiteSpace(finding.ResolvedInRunId))
+                            {
+                                <div class="small text-muted">Resolved in @finding.ResolvedInRunId</div>
+                            }
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="panel-card p-3 h-100">
+            <h3 class="h6">Recommendations</h3>
+            <ul>
+                @foreach (var rec in Model.Recommendations)
+                {
+                    <li><strong>@rec.Priority</strong> - @rec.Message <div class="small text-muted">@rec.Stage / @rec.SkillName</div></li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,90 @@
+@model HomePageDto
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="d-flex justify-content-between align-items-start mb-4">
+    <div>
+        <h2 class="mb-1">Skill-Pack Driven Legacy Modernization</h2>
+        <p class="text-muted mb-0">7-stage pipeline view for externally executed Continue.dev/Claude skill runs.</p>
+    </div>
+    <a asp-action="RunInputBuilder" class="btn btn-primary"><i class="bi bi-file-earmark-code"></i> Build Run Input</a>
+</div>
+
+<div class="row g-3 mb-4">
+    <div class="col-md-4">
+        <div class="kpi-card p-3 h-100">
+            <div class="text-muted text-uppercase small">Total Runs</div>
+            <div class="display-6 fw-bold">@Model.TotalRuns</div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="kpi-card p-3 h-100">
+            <div class="text-muted text-uppercase small">Passed Runs</div>
+            <div class="display-6 fw-bold text-success">@Model.PassedRuns</div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="kpi-card p-3 h-100">
+            <div class="text-muted text-uppercase small">Failed Runs</div>
+            <div class="display-6 fw-bold text-danger">@Model.FailedRuns</div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4">
+    <div class="col-xl-5">
+        <div class="panel-card p-3 h-100">
+            <h3 class="h6 mb-3">Modules</h3>
+            <table class="table table-sm align-middle mb-0">
+                <thead>
+                <tr>
+                    <th>Module</th>
+                    <th>Runs</th>
+                    <th>Latest</th>
+                    <th>Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var module in Model.Modules)
+                {
+                    <tr>
+                        <td><a asp-action="ModuleRuns" asp-route-module="@module.Name">@module.Name</a></td>
+                        <td>@module.TotalRuns</td>
+                        <td><code>@module.LastRunId</code></td>
+                        <td><span class="status-pill @module.LastStatus.ToLowerInvariant()">@module.LastStatus</span></td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-xl-7">
+        <div class="panel-card p-3 h-100">
+            <h3 class="h6 mb-3">Latest Runs</h3>
+            <table class="table table-sm align-middle mb-0">
+                <thead>
+                <tr>
+                    <th>Module</th>
+                    <th>Run ID</th>
+                    <th>Status</th>
+                    <th>Pipeline</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var run in Model.LatestRuns)
+                {
+                    <tr>
+                        <td>@run.ModuleName</td>
+                        <td><code>@run.RunId</code></td>
+                        <td><span class="status-pill @run.Status.ToLowerInvariant()">@run.Status</span></td>
+                        <td>
+                            <a class="btn btn-sm btn-outline-primary" asp-action="Pipeline" asp-route-moduleName="@run.ModuleName" asp-route-runId="@run.RunId">Open 7-Stage View</a>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+{
+  "name": "clean-architecture-assessment",
+  "stage": "architecture-review",
+  "category": "architecture",
+  "purpose": "Assess converted C# module against clean architecture boundaries and target structure guidance.",
+  "scriptEntry": "run.py",
+  "requiredInputs": [
+    "moduleName",
+    "convertedSourceRoot"
+  ],
+  "optionalInputs": [
+    "moduleHints.relatedFolders"
+  ],
+  "outputFiles": [
+    "result.json",
+    "architecture-review.json"
+  ],
+  "artifactFolders": [
+    "artifacts/{module}/{runId}/clean-architecture-assessment/"
+  ],
+  "dependencies": [
+    "module-documentation"
+  ],
+  "summaryOutputType": "architecture-review",
+  "resultContractVersion": "2.0"
+}

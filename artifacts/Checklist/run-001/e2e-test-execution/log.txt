@@ -1,0 +1,1 @@
+dotnet test Checklist.E2E -> Passed:5 Failed:4 Warning:1

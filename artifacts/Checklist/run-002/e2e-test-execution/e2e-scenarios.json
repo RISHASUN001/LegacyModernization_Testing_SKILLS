@@ -1,0 +1,8 @@
+{
+  "executedScenarios": [
+    "Draft save then submit",
+    "Session timeout recovery",
+    "Duplicate submit safety",
+    "Concurrent conflict resolution"
+  ]
+}

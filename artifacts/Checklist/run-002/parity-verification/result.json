@@ -1,0 +1,44 @@
+{
+  "skillName": "parity-verification",
+  "stage": "findings",
+  "moduleName": "Checklist",
+  "runId": "run-002",
+  "status": "passed",
+  "startedAt": "2026-04-12T10:28:00Z",
+  "endedAt": "2026-04-12T10:29:00Z",
+  "summary": "Parity verification improved significantly with only minor behavioral differences remaining.",
+  "metrics": {
+    "total": 28,
+    "passed": 25,
+    "failed": 3,
+    "warnings": 1,
+    "newTestsAdded": 3,
+    "parityScore": 91
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/parity-verification/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/parity-verification/parity-diff.json"
+  ],
+  "findings": [
+    {
+      "type": "ParityGap",
+      "scenario": "Timeout + submit parity",
+      "message": "Major parity gaps resolved; minor warning ordering issue remains.",
+      "likelyCause": "Residual warning order difference in one branch.",
+      "evidence": "Parity score improved to 91 with two minor deltas.",
+      "severity": "medium",
+      "status": "resolved",
+      "confidence": 0.84,
+      "resolvedInRunId": "run-002",
+      "resolutionNotes": "Timeout and submit contracts now aligned with legacy baseline."
+    }
+  ],
+  "recommendations": [
+    {
+      "message": "Resolve final warning-order and conflict-message text parity deltas.",
+      "priority": "medium",
+      "evidence": "3 parity checks still failing."
+    }
+  ],
+  "resultContractVersion": "2.0"
+}

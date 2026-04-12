@@ -1,0 +1,28 @@
+{
+  "name": "e2e-test-execution",
+  "stage": "execution",
+  "category": "testing",
+  "purpose": "Execute end-to-end scenarios validating complete workflow continuity from UI to persistence.",
+  "scriptEntry": "run.ps1",
+  "requiredInputs": [
+    "moduleName",
+    "baseUrl"
+  ],
+  "optionalInputs": [
+    "environmentProfile"
+  ],
+  "outputFiles": [
+    "result.json",
+    "log.txt",
+    "e2e-scenarios.json"
+  ],
+  "artifactFolders": [
+    "artifacts/{module}/{runId}/e2e-test-execution/"
+  ],
+  "dependencies": [
+    "test-plan-generation",
+    "api-test-execution"
+  ],
+  "summaryOutputType": "test-category-result",
+  "resultContractVersion": "2.0"
+}

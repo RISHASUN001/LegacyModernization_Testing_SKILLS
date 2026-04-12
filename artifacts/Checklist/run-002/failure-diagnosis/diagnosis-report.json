@@ -1,0 +1,12 @@
+{
+  "clusters": [
+    {
+      "name": "Conflict lock timing",
+      "likelyCause": "Non-deterministic lock propagation",
+      "affectedSkills": [
+        "e2e-test-execution",
+        "playwright-browser-verification"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "skillName": "edge-case-testing",
+  "stage": "execution",
+  "moduleName": "Checklist",
+  "runId": "run-001",
+  "status": "failed",
+  "startedAt": "2026-04-12T10:18:00Z",
+  "endedAt": "2026-04-12T10:19:00Z",
+  "summary": "Edge-case testing found race and stale-session defects.",
+  "metrics": {
+    "total": 12,
+    "passed": 7,
+    "failed": 5,
+    "warnings": 1,
+    "newTestsAdded": 4,
+    "scenarios": [
+      {
+        "name": "Duplicate submit race",
+        "status": "failed",
+        "notes": "Duplicate audit rows"
+      },
+      {
+        "name": "Stale session edit",
+        "status": "failed",
+        "notes": "Unexpected 500 response"
+      }
+    ]
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-001/edge-case-testing/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-001/edge-case-testing/edge-case-matrix.json"
+  ],
+  "findings": [
+    {
+      "type": "DuplicateSubmitRace",
+      "scenario": "Duplicate submit race",
+      "message": "Concurrent submit creates duplicate audit records.",
+      "likelyCause": "No idempotency token check in save flow.",
+      "evidence": "Edge-case matrix duplicate submit scenario failed twice.",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.86,
+      "affectedFiles": [
+        "src_conversion4/Modules/Checklist/Application/ChecklistCommandHandler.cs"
+      ]
+    }
+  ],
+  "recommendations": [
+    {
+      "message": "Implement idempotency key logic for submit command path.",
+      "priority": "high",
+      "evidence": "Duplicate rows observed in edge-case run."
+    }
+  ],
+  "resultContractVersion": "2.0"
+}

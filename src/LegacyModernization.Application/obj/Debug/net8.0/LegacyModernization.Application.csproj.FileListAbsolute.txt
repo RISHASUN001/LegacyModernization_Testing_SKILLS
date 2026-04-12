@@ -1,0 +1,15 @@
+/Users/risha/Documents/Buildathon/src/LegacyModernization.Application/bin/Debug/net8.0/LegacyModernization.Application.deps.json
+/Users/risha/Documents/Buildathon/src/LegacyModernization.Application/bin/Debug/net8.0/LegacyModernization.Application.dll
+/Users/risha/Documents/Buildathon/src/LegacyModernization.Application/bin/Debug/net8.0/LegacyModernization.Application.pdb
+/Users/risha/Documents/Buildathon/src/LegacyModernization.Application/bin/Debug/net8.0/LegacyModernization.Core.dll
+/Users/risha/Documents/Buildathon/src/LegacyModernization.Application/bin/Debug/net8.0/LegacyModernization.Core.pdb
+/Users/risha/Documents/Buildathon/src/LegacyModernization.Application/obj/Debug/net8.0/LegacyModernization.Application.csproj.AssemblyReference.cache
+/Users/risha/Documents/Buildathon/src/LegacyModernization.Application/obj/Debug/net8.0/LegacyModernization.Application.GeneratedMSBuildEditorConfig.editorconfig
+/Users/risha/Documents/Buildathon/src/LegacyModernization.Application/obj/Debug/net8.0/LegacyModernization.Application.AssemblyInfoInputs.cache
+/Users/risha/Documents/Buildathon/src/LegacyModernization.Application/obj/Debug/net8.0/LegacyModernization.Application.AssemblyInfo.cs
+/Users/risha/Documents/Buildathon/src/LegacyModernization.Application/obj/Debug/net8.0/LegacyModernization.Application.csproj.CoreCompileInputs.cache
+/Users/risha/Documents/Buildathon/src/LegacyModernization.Application/obj/Debug/net8.0/LegacyMo.9B6D6020.Up2Date
+/Users/risha/Documents/Buildathon/src/LegacyModernization.Application/obj/Debug/net8.0/LegacyModernization.Application.dll
+/Users/risha/Documents/Buildathon/src/LegacyModernization.Application/obj/Debug/net8.0/refint/LegacyModernization.Application.dll
+/Users/risha/Documents/Buildathon/src/LegacyModernization.Application/obj/Debug/net8.0/LegacyModernization.Application.pdb
+/Users/risha/Documents/Buildathon/src/LegacyModernization.Application/obj/Debug/net8.0/ref/LegacyModernization.Application.dll

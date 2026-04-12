@@ -1,0 +1,39 @@
+@model IterationComparisonPageDto
+@{
+    ViewData["Title"] = "Iteration Comparison";
+}
+
+<h2 class="mb-1">Iteration Comparison: @Model.ModuleName</h2>
+<p class="text-muted">Previous run vs current run progression across test and finding outcomes.</p>
+
+<div class="panel-card p-3">
+    <table class="table table-striped align-middle mb-0">
+        <thead>
+            <tr>
+                <th>Run</th>
+                <th>Previous</th>
+                <th>Tests Added</th>
+                <th>Tests Fixed</th>
+                <th>Failures Reduced</th>
+                <th>New Findings</th>
+                <th>Resolved Findings</th>
+                <th>Trend</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model.Iterations)
+        {
+            <tr>
+                <td><code>@item.RunId</code></td>
+                <td><code>@item.PreviousRunId</code></td>
+                <td>@item.TestsAdded</td>
+                <td>@item.TestsFixed</td>
+                <td>@item.FailuresReduced</td>
+                <td>@item.NewFindingsIntroduced</td>
+                <td>@item.ResolvedFindings</td>
+                <td><span class="status-pill @item.ProgressionTrend.ToLowerInvariant()">@item.ProgressionTrend</span></td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

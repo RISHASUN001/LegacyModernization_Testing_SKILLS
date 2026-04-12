@@ -1,0 +1,9 @@
+{
+  "previousRunId": "run-001",
+  "testsAdded": 12,
+  "testsFixed": 26,
+  "failuresReduced": 29,
+  "newFindingsIntroduced": 2,
+  "resolvedFindings": 7,
+  "progressionTrend": "improving"
+}

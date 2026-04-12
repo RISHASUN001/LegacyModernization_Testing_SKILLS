@@ -1,0 +1,29 @@
+{
+  "modulePurpose": "Checklist governs draft, validation, and signoff lifecycle for operational readiness.",
+  "importantFlows": [
+    "Load checklist by work order",
+    "Auto-load latest draft",
+    "Edit checklist rows by role",
+    "Save draft checklist",
+    "Submit checklist for verification",
+    "Handle concurrent edit conflict"
+  ],
+  "rules": [
+    "Closed work orders are read-only",
+    "ATC fields require verifier id",
+    "Sensor failures block final submit",
+    "Duplicate submit is idempotent"
+  ],
+  "dependencies": [
+    "WorkOrder module",
+    "Sensor service",
+    "Approval service",
+    "Oracle package PKG_CHECKLIST"
+  ],
+  "mustPreserve": [
+    "Legacy timeout redirect behavior",
+    "ATC rule ordering",
+    "Supervisor override branch",
+    "Conflict warning message contract"
+  ]
+}

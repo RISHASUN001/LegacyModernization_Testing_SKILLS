@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../build/LegacyModernization.Dashboard.Web.props" />
+</Project>

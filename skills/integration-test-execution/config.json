@@ -1,0 +1,27 @@
+{
+  "name": "integration-test-execution",
+  "stage": "execution",
+  "category": "testing",
+  "purpose": "Execute integration tests for data mapping and cross-layer orchestration validation.",
+  "scriptEntry": "run.ps1",
+  "requiredInputs": [
+    "moduleName",
+    "convertedSourceRoot"
+  ],
+  "optionalInputs": [
+    "connectionStringOverride"
+  ],
+  "outputFiles": [
+    "result.json",
+    "log.txt"
+  ],
+  "artifactFolders": [
+    "artifacts/{module}/{runId}/integration-test-execution/"
+  ],
+  "dependencies": [
+    "test-plan-generation",
+    "unit-test-execution"
+  ],
+  "summaryOutputType": "test-category-result",
+  "resultContractVersion": "2.0"
+}

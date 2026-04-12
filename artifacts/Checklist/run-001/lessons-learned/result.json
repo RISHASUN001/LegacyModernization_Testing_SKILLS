@@ -1,0 +1,27 @@
+{
+  "skillName": "lessons-learned",
+  "stage": "findings",
+  "moduleName": "Checklist",
+  "runId": "run-001",
+  "status": "passed",
+  "startedAt": "2026-04-12T10:24:00Z",
+  "endedAt": "2026-04-12T10:25:00Z",
+  "summary": "Lessons captured with action-oriented guidance for next run.",
+  "metrics": {
+    "lessons": 4,
+    "actionItems": 4
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-001/lessons-learned/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-001/lessons-learned/lessons.json"
+  ],
+  "findings": [],
+  "recommendations": [
+    {
+      "message": "Track each resolved finding with explicit runId and evidence pointer.",
+      "priority": "medium",
+      "evidence": "Iteration explainability depends on traceability."
+    }
+  ],
+  "resultContractVersion": "2.0"
+}

@@ -1,0 +1,40 @@
+{
+  "cleanArchitectureIssues": [
+    {
+      "title": "Web layer references infrastructure directly",
+      "severity": "high",
+      "evidence": "Controller -> Oracle repo dependency"
+    },
+    {
+      "title": "Application layer contains SQL literals",
+      "severity": "medium",
+      "evidence": "Query strings in service class"
+    }
+  ],
+  "namespaceFolderIssues": [
+    {
+      "title": "DTOs live under Web namespace",
+      "severity": "medium",
+      "evidence": "DTO path under Controllers folder"
+    }
+  ],
+  "diIssues": [
+    {
+      "title": "Missing scoped registration for checklist validators",
+      "severity": "high",
+      "evidence": "Service collection lacks AddScoped<ChecklistValidator>"
+    }
+  ],
+  "couplingIssues": [
+    {
+      "title": "Checklist service orchestrates persistence and HTTP concerns",
+      "severity": "medium",
+      "evidence": "Service receives HttpContext and repository"
+    }
+  ],
+  "recommendedStructure": [
+    "Modules/Checklist/Application for use cases and contracts",
+    "Modules/Checklist/Infrastructure for Oracle/Dapper repositories",
+    "Modules/Checklist/Web for controllers and view models only"
+  ]
+}

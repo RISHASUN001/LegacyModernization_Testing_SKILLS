@@ -1,0 +1,20 @@
+{
+  "scenarios": [
+    {
+      "name": "Duplicate submit race",
+      "status": "passed"
+    },
+    {
+      "name": "Stale session edit",
+      "status": "failed"
+    },
+    {
+      "name": "Empty payload submit",
+      "status": "passed"
+    },
+    {
+      "name": "Slow sensor retry",
+      "status": "passed"
+    }
+  ]
+}

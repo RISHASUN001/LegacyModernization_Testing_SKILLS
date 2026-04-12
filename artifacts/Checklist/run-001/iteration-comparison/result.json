@@ -1,0 +1,31 @@
+{
+  "skillName": "iteration-comparison",
+  "stage": "iteration-comparison",
+  "moduleName": "Checklist",
+  "runId": "run-001",
+  "status": "passed",
+  "startedAt": "2026-04-12T10:26:00Z",
+  "endedAt": "2026-04-12T10:27:00Z",
+  "summary": "Baseline run has no prior iteration for comparison.",
+  "metrics": {
+    "testsAdded": 0,
+    "testsFixed": 0,
+    "failuresReduced": 0,
+    "newFindingsIntroduced": 0,
+    "resolvedFindings": 0,
+    "previousRunId": ""
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-001/iteration-comparison/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-001/iteration-comparison/iteration-delta.json"
+  ],
+  "findings": [],
+  "recommendations": [
+    {
+      "message": "Use run-001 as baseline and compare against run-002 onward.",
+      "priority": "low",
+      "evidence": "No previous run available."
+    }
+  ],
+  "resultContractVersion": "2.0"
+}

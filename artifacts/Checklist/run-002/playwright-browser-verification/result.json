@@ -1,0 +1,84 @@
+{
+  "skillName": "playwright-browser-verification",
+  "stage": "execution",
+  "moduleName": "Checklist",
+  "runId": "run-002",
+  "status": "passed",
+  "startedAt": "2026-04-12T10:20:00Z",
+  "endedAt": "2026-04-12T10:21:00Z",
+  "summary": "Playwright verification improved with richer runtime evidence and fewer failures.",
+  "metrics": {
+    "total": 10,
+    "passed": 9,
+    "failed": 1,
+    "warnings": 1,
+    "newTestsAdded": 2,
+    "scenarios": [
+      {
+        "name": "Checklist load",
+        "status": "passed",
+        "notes": "Stable render."
+      },
+      {
+        "name": "Save draft action",
+        "status": "passed",
+        "notes": "Selector updated."
+      },
+      {
+        "name": "Submit validation banner",
+        "status": "passed",
+        "notes": "Banner now visible."
+      },
+      {
+        "name": "Concurrent tab conflict warning",
+        "status": "failed",
+        "notes": "Flaky conflict warning sequence."
+      }
+    ]
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/playwright-browser-verification/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/playwright-browser-verification/log.txt",
+    "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/playwright-browser-verification/console-logs.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/playwright-browser-verification/network-failures.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/playwright-browser-verification/dom-state.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/playwright-browser-verification/runtime-issues.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/playwright-browser-verification/performance-observations.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/playwright-browser-verification/screenshots/success-validation-banner.png",
+    "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/playwright-browser-verification/screenshots/flaky-concurrent-conflict.png"
+  ],
+  "findings": [
+    {
+      "type": "PlaywrightSelectorDrift",
+      "scenario": "Save draft action",
+      "message": "Selector drift issue resolved using data-test selectors.",
+      "likelyCause": "Test selectors aligned with rendered DOM.",
+      "evidence": "Save scenario passes in run-002.",
+      "severity": "medium",
+      "status": "resolved",
+      "confidence": 0.83,
+      "resolvedInRunId": "run-002",
+      "resolutionNotes": "Updated selectors in playwright spec."
+    },
+    {
+      "type": "JsRuntimeError",
+      "scenario": "Submit validation banner",
+      "message": "Runtime null-binding issue resolved with form guard.",
+      "likelyCause": "Null-check added before trim()",
+      "evidence": "No TypeError in console for submit path.",
+      "severity": "high",
+      "status": "resolved",
+      "confidence": 0.8,
+      "resolvedInRunId": "run-002",
+      "resolutionNotes": "Added null guards in checklist binding script."
+    }
+  ],
+  "recommendations": [
+    {
+      "message": "Stabilize concurrent tab conflict warning scenario by deterministic wait and lock handling.",
+      "priority": "medium",
+      "evidence": "1 remaining playwright failure in conflict branch."
+    }
+  ],
+  "resultContractVersion": "2.0"
+}

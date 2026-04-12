@@ -1,0 +1,27 @@
+{
+  "skillName": "module-documentation",
+  "stage": "logic-understanding",
+  "moduleName": "Checklist",
+  "runId": "run-001",
+  "status": "passed",
+  "startedAt": "2026-04-12T10:04:00Z",
+  "endedAt": "2026-04-12T10:05:00Z",
+  "summary": "Module documentation published for checklist legacy parity baseline.",
+  "metrics": {
+    "sections": 6,
+    "flowsDocumented": 5
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-001/module-documentation/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-001/module-documentation/module-analysis.json"
+  ],
+  "findings": [],
+  "recommendations": [
+    {
+      "message": "Review documentation with QA and SME before finalizing test plan.",
+      "priority": "medium",
+      "evidence": "Rule list drives test categories."
+    }
+  ],
+  "resultContractVersion": "2.0"
+}

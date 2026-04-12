@@ -1,0 +1,1 @@
+dotnet test Checklist.IntegrationTests -> Passed:17 Failed:5

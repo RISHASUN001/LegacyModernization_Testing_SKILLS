@@ -1,0 +1,7 @@
+{
+  "parityScore": 91,
+  "gaps": [
+    "ATC warning ordering differs in one edge branch",
+    "Conflict message text differs slightly"
+  ]
+}

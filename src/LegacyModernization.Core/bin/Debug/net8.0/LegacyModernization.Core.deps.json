@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "LegacyModernization.Core/1.0.0": {
+        "runtime": {
+          "LegacyModernization.Core.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "LegacyModernization.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

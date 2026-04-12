@@ -1,0 +1,56 @@
+{
+  "skillName": "integration-test-execution",
+  "stage": "execution",
+  "moduleName": "Checklist",
+  "runId": "run-001",
+  "status": "failed",
+  "startedAt": "2026-04-12T10:12:00Z",
+  "endedAt": "2026-04-12T10:13:00Z",
+  "summary": "Integration tests found data mapping defects.",
+  "metrics": {
+    "total": 22,
+    "passed": 17,
+    "failed": 5,
+    "warnings": 0,
+    "newTestsAdded": 3,
+    "scenarios": [
+      {
+        "name": "Oracle alias to DTO mapping",
+        "status": "failed",
+        "notes": "RESOURCE_ID mismatch"
+      },
+      {
+        "name": "Checklist save audit write",
+        "status": "passed",
+        "notes": "Write flow works"
+      }
+    ]
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-001/integration-test-execution/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-001/integration-test-execution/log.txt"
+  ],
+  "findings": [
+    {
+      "type": "DapperMappingMismatch",
+      "scenario": "Oracle alias to DTO mapping",
+      "message": "RESOURCE_ID alias mismatch causes null DTO fields.",
+      "likelyCause": "Alias differs from DTO property names.",
+      "evidence": "ChecklistRepository_Load_MapsOracleAliases failed.",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.88,
+      "affectedFiles": [
+        "src_conversion4/Modules/Checklist/Infrastructure/ChecklistRepository.cs"
+      ]
+    }
+  ],
+  "recommendations": [
+    {
+      "message": "Use explicit aliases matching DTO members and null-safe conversion.",
+      "priority": "high",
+      "evidence": "5 integration failures related to mapping."
+    }
+  ],
+  "resultContractVersion": "2.0"
+}

@@ -1,0 +1,1 @@
+newman run checklist-api.json -> Passed:20 Failed:1

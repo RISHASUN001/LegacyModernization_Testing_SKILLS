@@ -1,0 +1,27 @@
+{
+  "name": "test-plan-generation",
+  "stage": "test-plan",
+  "category": "quality",
+  "purpose": "Generate structured test plan including existing coverage, gaps, and category purpose.",
+  "scriptEntry": "run.py",
+  "requiredInputs": [
+    "moduleName",
+    "convertedSourceRoot"
+  ],
+  "optionalInputs": [
+    "moduleHints.keywords"
+  ],
+  "outputFiles": [
+    "result.json",
+    "test-plan.json"
+  ],
+  "artifactFolders": [
+    "artifacts/{module}/{runId}/test-plan-generation/"
+  ],
+  "dependencies": [
+    "module-documentation",
+    "clean-architecture-assessment"
+  ],
+  "summaryOutputType": "test-plan",
+  "resultContractVersion": "2.0"
+}

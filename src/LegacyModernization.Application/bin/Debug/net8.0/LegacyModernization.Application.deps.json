@@ -1,0 +1,39 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "LegacyModernization.Application/1.0.0": {
+        "dependencies": {
+          "LegacyModernization.Core": "1.0.0"
+        },
+        "runtime": {
+          "LegacyModernization.Application.dll": {}
+        }
+      },
+      "LegacyModernization.Core/1.0.0": {
+        "runtime": {
+          "LegacyModernization.Core.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "LegacyModernization.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "LegacyModernization.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

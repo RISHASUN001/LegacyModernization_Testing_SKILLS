@@ -1,0 +1,30 @@
+{
+  "modulePurpose": "Checklist module orchestrates draft, validation, and approval workflows for operational safety.",
+  "importantFlows": [
+    "Open checklist",
+    "Auto-load latest draft",
+    "Edit items",
+    "Save draft",
+    "Submit",
+    "Review history",
+    "Resolve concurrent edit conflict"
+  ],
+  "rules": [
+    "ATC verifier required",
+    "Sensor fail blocks submit",
+    "Read-only on closed work order",
+    "Duplicate submit idempotency"
+  ],
+  "dependencies": [
+    "Checklist JS validation",
+    "Oracle package",
+    "WorkOrder service",
+    "Conflict lock API"
+  ],
+  "mustPreserve": [
+    "Validation message order",
+    "Timeout redirect",
+    "Legacy URL compatibility",
+    "Conflict response contract"
+  ]
+}

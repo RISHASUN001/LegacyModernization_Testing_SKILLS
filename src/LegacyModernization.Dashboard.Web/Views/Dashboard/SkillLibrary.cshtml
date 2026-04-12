@@ -1,0 +1,36 @@
+@model SkillLibraryPageDto
+@{
+    ViewData["Title"] = "Skill Library";
+}
+
+<h2 class="mb-1">Skill Library</h2>
+<p class="text-muted">Skills are executed externally in Continue.dev/Claude and persist artifacts for dashboard ingestion.</p>
+
+<div class="row g-3">
+@foreach (var skill in Model.Skills)
+{
+    <div class="col-12">
+        <div class="panel-card p-3">
+            <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2">
+                <div>
+                    <h3 class="h5 mb-1">@skill.Name</h3>
+                    <span class="stage-pill">@skill.Stage</span>
+                    <span class="small text-muted ms-2">@skill.Category</span>
+                </div>
+                <div class="small text-muted">
+                    <div>Script: <code>@skill.ScriptEntry</code></div>
+                    <div>Contract: <code>@skill.ResultContractVersion</code></div>
+                </div>
+            </div>
+            <p class="mb-2">@skill.Purpose</p>
+            <div class="row g-2 small mb-2">
+                <div class="col-md-6"><strong>Required Inputs:</strong> @string.Join(", ", skill.RequiredInputs)</div>
+                <div class="col-md-6"><strong>Optional Inputs:</strong> @string.Join(", ", skill.OptionalInputs)</div>
+                <div class="col-md-6"><strong>Output Files:</strong> @string.Join(", ", skill.OutputFiles)</div>
+                <div class="col-md-6"><strong>Dependencies:</strong> @string.Join(", ", skill.Dependencies)</div>
+            </div>
+            <pre class="skill-markdown">@skill.SkillMarkdown</pre>
+        </div>
+    </div>
+}
+</div>

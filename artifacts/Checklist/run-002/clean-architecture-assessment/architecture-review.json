@@ -1,0 +1,34 @@
+{
+  "cleanArchitectureIssues": [
+    {
+      "title": "No critical boundary breach detected",
+      "severity": "low",
+      "evidence": "Dependency direction validated"
+    }
+  ],
+  "namespaceFolderIssues": [
+    {
+      "title": "One DTO namespace still uses migration prefix",
+      "severity": "low",
+      "evidence": "ChecklistResponseDto namespace mismatch"
+    }
+  ],
+  "diIssues": [
+    {
+      "title": "Validator and use case services registered correctly",
+      "severity": "low",
+      "evidence": "Service collection updated"
+    }
+  ],
+  "couplingIssues": [
+    {
+      "title": "Minor coupling around telemetry helper remains",
+      "severity": "low",
+      "evidence": "Shared logger utility still static"
+    }
+  ],
+  "recommendedStructure": [
+    "Finalize Contracts namespace under Application",
+    "Keep Infrastructure registration centralized in composition root"
+  ]
+}

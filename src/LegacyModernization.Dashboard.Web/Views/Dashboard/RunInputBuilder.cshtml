@@ -1,0 +1,110 @@
+@model RunInputBuilderFormModel
+@{
+    ViewData["Title"] = "Run Input Builder";
+}
+
+<h2 class="mb-1">Run Input Builder</h2>
+<p class="text-muted">Generate `module-run-input.json` for external Continue.dev/Claude skill execution. Skills run in IDE, then persisted results are loaded by this dashboard.</p>
+
+@if (!string.IsNullOrWhiteSpace(Model.Message))
+{
+    <div class="alert alert-success">@Model.Message</div>
+}
+
+<form method="post" class="panel-card p-3 mb-3">
+    @Html.AntiForgeryToken()
+    <div class="row g-3">
+        <div class="col-md-4">
+            <label class="form-label">Run ID</label>
+            <input class="form-control" name="RunId" value="@Model.Page.Draft.RunId" />
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Module Name</label>
+            <input class="form-control" name="ModuleName" value="@Model.Page.Draft.ModuleName" />
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Base URL</label>
+            <input class="form-control" name="BaseUrl" value="@Model.Page.Draft.BaseUrl" />
+        </div>
+
+        <div class="col-md-6">
+            <label class="form-label">Legacy Source Root</label>
+            <input class="form-control" name="LegacySourceRoot" value="@Model.Page.Draft.LegacySourceRoot" />
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Converted Source Root</label>
+            <input class="form-control" name="ConvertedSourceRoot" value="@Model.Page.Draft.ConvertedSourceRoot" />
+        </div>
+
+        <div class="col-md-12">
+            <label class="form-label">BRS Path (optional)</label>
+            <input class="form-control" name="BrsPath" value="@Model.Page.Draft.BrsPath" />
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label">Related Folders</label>
+            <textarea class="form-control" rows="5" name="RelatedFoldersText">@Model.Page.Draft.RelatedFoldersText</textarea>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Known URLs</label>
+            <textarea class="form-control" rows="5" name="KnownUrlsText">@Model.Page.Draft.KnownUrlsText</textarea>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Keywords</label>
+            <textarea class="form-control" rows="5" name="KeywordsText">@Model.Page.Draft.KeywordsText</textarea>
+        </div>
+
+        <div class="col-12">
+            <label class="form-label">Skills to Run</label>
+            <div class="row row-cols-1 row-cols-md-3 g-2">
+                @foreach (var skill in Model.Page.AvailableSkills)
+                {
+                    <div class="col">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="SelectedSkills" value="@skill" @((Model.Page.Draft.SelectedSkills ?? []).Contains(skill) ? "checked" : string.Empty) />
+                            <label class="form-check-label">@skill</label>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-3 d-flex flex-wrap gap-2">
+        <button class="btn btn-primary" type="submit" name="submitAction" value="preview">Refresh Preview</button>
+        <button class="btn btn-outline-success" type="submit" name="submitAction" value="save">Save JSON</button>
+        <button class="btn btn-outline-secondary" type="button" id="copyJsonBtn">Copy JSON</button>
+        <button class="btn btn-outline-secondary" type="button" id="downloadJsonBtn">Export JSON</button>
+    </div>
+</form>
+
+<div class="panel-card p-3">
+    <h3 class="h6">Generated JSON</h3>
+    <pre class="json-preview" id="jsonPreview">@Model.Page.GeneratedJson</pre>
+</div>
+
+@section Scripts {
+<script>
+(() => {
+    const preview = document.getElementById('jsonPreview');
+    const copy = document.getElementById('copyJsonBtn');
+    const download = document.getElementById('downloadJsonBtn');
+
+    copy?.addEventListener('click', async () => {
+        await navigator.clipboard.writeText(preview.textContent || '');
+        copy.textContent = 'Copied';
+        setTimeout(() => copy.textContent = 'Copy JSON', 1000);
+    });
+
+    download?.addEventListener('click', () => {
+        const blob = new Blob([preview.textContent || ''], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'module-run-input.json';
+        link.click();
+        URL.revokeObjectURL(url);
+    });
+})();
+</script>
+}

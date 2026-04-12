@@ -1,0 +1,27 @@
+{
+  "name": "edge-case-testing",
+  "stage": "execution",
+  "category": "testing",
+  "purpose": "Execute rare-condition test scenarios for resilience and correctness under non-happy paths.",
+  "scriptEntry": "run.py",
+  "requiredInputs": [
+    "moduleName",
+    "baseUrl"
+  ],
+  "optionalInputs": [
+    "moduleHints.keywords"
+  ],
+  "outputFiles": [
+    "result.json",
+    "edge-case-matrix.json"
+  ],
+  "artifactFolders": [
+    "artifacts/{module}/{runId}/edge-case-testing/"
+  ],
+  "dependencies": [
+    "test-plan-generation",
+    "api-test-execution"
+  ],
+  "summaryOutputType": "test-category-result",
+  "resultContractVersion": "2.0"
+}

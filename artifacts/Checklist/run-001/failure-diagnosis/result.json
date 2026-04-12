@@ -1,0 +1,39 @@
+{
+  "skillName": "failure-diagnosis",
+  "stage": "findings",
+  "moduleName": "Checklist",
+  "runId": "run-001",
+  "status": "passed",
+  "startedAt": "2026-04-12T10:22:00Z",
+  "endedAt": "2026-04-12T10:23:00Z",
+  "summary": "Failure diagnosis grouped key defects into 6 actionable clusters.",
+  "metrics": {
+    "clusters": 6,
+    "highImpact": 4,
+    "quickWins": 2
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-001/failure-diagnosis/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-001/failure-diagnosis/diagnosis-report.json"
+  ],
+  "findings": [
+    {
+      "type": "ClusteredFailurePattern",
+      "scenario": "Data mapping and timeout cluster",
+      "message": "Integration, e2e, and API failures share alias and timeout root causes.",
+      "likelyCause": "Mapping and middleware gaps from migration.",
+      "evidence": "Cross-skill correlation in diagnosis-report cluster #1/#2.",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.79
+    }
+  ],
+  "recommendations": [
+    {
+      "message": "Fix high-impact mapping and timeout clusters before rerunning full pipeline.",
+      "priority": "high",
+      "evidence": "These clusters drive most fail counts."
+    }
+  ],
+  "resultContractVersion": "2.0"
+}

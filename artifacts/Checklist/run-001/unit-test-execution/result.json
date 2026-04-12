@@ -1,0 +1,56 @@
+{
+  "skillName": "unit-test-execution",
+  "stage": "execution",
+  "moduleName": "Checklist",
+  "runId": "run-001",
+  "status": "failed",
+  "startedAt": "2026-04-12T10:10:00Z",
+  "endedAt": "2026-04-12T10:11:00Z",
+  "summary": "Unit tests executed with validation-related failures.",
+  "metrics": {
+    "total": 78,
+    "passed": 62,
+    "failed": 16,
+    "warnings": 1,
+    "newTestsAdded": 12,
+    "scenarios": [
+      {
+        "name": "ATC verifier required rule",
+        "status": "failed",
+        "notes": "Missing validator check."
+      },
+      {
+        "name": "Closed work order read-only guard",
+        "status": "passed",
+        "notes": "Guard enforced."
+      }
+    ]
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-001/unit-test-execution/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-001/unit-test-execution/log.txt"
+  ],
+  "findings": [
+    {
+      "type": "ValidationRuleRegression",
+      "scenario": "ATC verifier required rule",
+      "message": "Validator does not enforce ATC verifier requirement.",
+      "likelyCause": "Rule omitted during migration.",
+      "evidence": "ChecklistValidator_RejectsMissingATCVerifier failed.",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.93,
+      "affectedFiles": [
+        "src_conversion4/Modules/Checklist/Application/ChecklistValidator.cs"
+      ]
+    }
+  ],
+  "recommendations": [
+    {
+      "message": "Re-apply ATC required rule in validator and add explicit unit regression test.",
+      "priority": "high",
+      "evidence": "16 unit failures centered around validator path."
+    }
+  ],
+  "resultContractVersion": "2.0"
+}

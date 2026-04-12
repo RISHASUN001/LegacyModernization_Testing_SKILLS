@@ -1,0 +1,26 @@
+{
+  "name": "api-test-execution",
+  "stage": "execution",
+  "category": "testing",
+  "purpose": "Execute API contract and behavior tests against converted endpoints.",
+  "scriptEntry": "run.ps1",
+  "requiredInputs": [
+    "moduleName",
+    "baseUrl"
+  ],
+  "optionalInputs": [
+    "authToken"
+  ],
+  "outputFiles": [
+    "result.json",
+    "log.txt"
+  ],
+  "artifactFolders": [
+    "artifacts/{module}/{runId}/api-test-execution/"
+  ],
+  "dependencies": [
+    "test-plan-generation"
+  ],
+  "summaryOutputType": "test-category-result",
+  "resultContractVersion": "2.0"
+}

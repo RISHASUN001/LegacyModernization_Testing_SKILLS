@@ -1,0 +1,26 @@
+{
+  "name": "module-discovery",
+  "stage": "discovery",
+  "category": "analysis",
+  "purpose": "Discover related Java/JSP/JS/config files, URLs, and database touchpoints for a selected module.",
+  "scriptEntry": "run.py",
+  "requiredInputs": [
+    "moduleName",
+    "legacySourceRoot",
+    "moduleHints.relatedFolders"
+  ],
+  "optionalInputs": [
+    "moduleHints.keywords",
+    "moduleHints.knownUrls"
+  ],
+  "outputFiles": [
+    "result.json",
+    "discovery-map.json"
+  ],
+  "artifactFolders": [
+    "artifacts/{module}/{runId}/module-discovery/"
+  ],
+  "dependencies": [],
+  "summaryOutputType": "discovery-summary",
+  "resultContractVersion": "2.0"
+}

@@ -1,0 +1,31 @@
+{
+  "skillName": "iteration-comparison",
+  "stage": "iteration-comparison",
+  "moduleName": "Checklist",
+  "runId": "run-002",
+  "status": "passed",
+  "startedAt": "2026-04-12T10:26:00Z",
+  "endedAt": "2026-04-12T10:27:00Z",
+  "summary": "Iteration comparison shows clear improvement over previous run.",
+  "metrics": {
+    "testsAdded": 12,
+    "testsFixed": 26,
+    "failuresReduced": 29,
+    "newFindingsIntroduced": 2,
+    "resolvedFindings": 7,
+    "previousRunId": "run-001"
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/iteration-comparison/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/iteration-comparison/iteration-delta.json"
+  ],
+  "findings": [],
+  "recommendations": [
+    {
+      "message": "Address remaining new findings in conflict-race scenarios in next run.",
+      "priority": "medium",
+      "evidence": "Trend improving but 2 new low/medium findings introduced."
+    }
+  ],
+  "resultContractVersion": "2.0"
+}

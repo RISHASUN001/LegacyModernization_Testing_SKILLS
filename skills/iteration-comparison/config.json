@@ -1,0 +1,27 @@
+{
+  "name": "iteration-comparison",
+  "stage": "iteration-comparison",
+  "category": "comparison",
+  "purpose": "Summarize previous vs current run deltas: tests added/fixed, failures reduced, new/resolved findings.",
+  "scriptEntry": "run.py",
+  "requiredInputs": [
+    "moduleName",
+    "runId"
+  ],
+  "optionalInputs": [
+    "previousRunId"
+  ],
+  "outputFiles": [
+    "result.json",
+    "iteration-delta.json"
+  ],
+  "artifactFolders": [
+    "artifacts/{module}/{runId}/iteration-comparison/"
+  ],
+  "dependencies": [
+    "failure-diagnosis",
+    "lessons-learned"
+  ],
+  "summaryOutputType": "iteration-delta",
+  "resultContractVersion": "2.0"
+}

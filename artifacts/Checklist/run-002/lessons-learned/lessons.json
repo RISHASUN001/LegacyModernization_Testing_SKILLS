@@ -1,0 +1,7 @@
+{
+  "items": [
+    "Resolved findings should include resolvedInRunId and evidence.",
+    "Devtools evidence (console/network/runtime) accelerates browser bug triage.",
+    "Ordering fixes by failure cluster impact reduces rerun churn."
+  ]
+}

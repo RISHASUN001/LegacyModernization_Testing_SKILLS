@@ -1,0 +1,319 @@
+@model RunPipelinePageDto
+@{
+    ViewData["Title"] = "7-Stage Pipeline";
+}
+
+<div class="d-flex flex-wrap align-items-start justify-content-between gap-3 mb-3">
+    <div>
+        <h2 class="mb-1">@Model.ModuleName / @Model.RunId</h2>
+        <div class="text-muted">@Model.StartedAt → @Model.EndedAt</div>
+        <div class="small mt-1">@Model.Summary</div>
+    </div>
+    <div class="d-flex gap-2 align-items-center">
+        <span class="status-pill @Model.Status.ToLowerInvariant()">@Model.Status</span>
+        <a class="btn btn-outline-primary btn-sm" asp-action="IterationComparison" asp-route-moduleName="@Model.ModuleName">All Iterations</a>
+    </div>
+</div>
+
+<div class="panel-card p-3 mb-4">
+    <div class="d-flex flex-wrap gap-2">
+        @foreach (var stage in Model.StageStatuses)
+        {
+            <a class="btn btn-sm btn-outline-secondary" href="#stage-@stage.StageId">
+                @stage.StageTitle
+                <span class="ms-1 status-pill @stage.Status.ToLowerInvariant()">@stage.Status</span>
+            </a>
+        }
+    </div>
+</div>
+
+<section id="stage-discovery" class="stage-section panel-card p-3 mb-3">
+    <div class="stage-heading">
+        <h3 class="h5 mb-0">1. Discovery</h3>
+        <span class="stage-pill">related Java/JSP/JS/config/URL/DB touchpoints</span>
+    </div>
+    <div class="row g-3">
+        <div class="col-lg-4">
+            <h4 class="h6">Java Files</h4>
+            <ul>@foreach (var x in Model.Discovery.JavaFiles) { <li><code>@x</code></li> }</ul>
+        </div>
+        <div class="col-lg-4">
+            <h4 class="h6">JSP Files</h4>
+            <ul>@foreach (var x in Model.Discovery.JspFiles) { <li><code>@x</code></li> }</ul>
+        </div>
+        <div class="col-lg-4">
+            <h4 class="h6">JS Files</h4>
+            <ul>@foreach (var x in Model.Discovery.JsFiles) { <li><code>@x</code></li> }</ul>
+        </div>
+        <div class="col-lg-4">
+            <h4 class="h6">Config Files</h4>
+            <ul>@foreach (var x in Model.Discovery.ConfigFiles) { <li><code>@x</code></li> }</ul>
+        </div>
+        <div class="col-lg-4">
+            <h4 class="h6">URLs</h4>
+            <ul>@foreach (var x in Model.Discovery.Urls) { <li><code>@x</code></li> }</ul>
+        </div>
+        <div class="col-lg-4">
+            <h4 class="h6">DB Touchpoints</h4>
+            <ul>@foreach (var x in Model.Discovery.DbTouchpoints) { <li>@x</li> }</ul>
+        </div>
+    </div>
+    <div class="small text-muted mt-2">Source: <code>@Model.Discovery.SourceArtifactPath</code></div>
+</section>
+
+<section id="stage-logic-understanding" class="stage-section panel-card p-3 mb-3">
+    <div class="stage-heading">
+        <h3 class="h5 mb-0">2. Logic Understanding</h3>
+        <span class="stage-pill">purpose / flows / rules / preserve list</span>
+    </div>
+    <p><strong>Module Purpose:</strong> @Model.LogicUnderstanding.ModulePurpose</p>
+    <div class="row g-3">
+        <div class="col-lg-6">
+            <h4 class="h6">Important Flows</h4>
+            <ul>@foreach (var x in Model.LogicUnderstanding.ImportantFlows) { <li>@x</li> }</ul>
+        </div>
+        <div class="col-lg-6">
+            <h4 class="h6">Rules</h4>
+            <ul>@foreach (var x in Model.LogicUnderstanding.Rules) { <li>@x</li> }</ul>
+        </div>
+        <div class="col-lg-6">
+            <h4 class="h6">Dependencies</h4>
+            <ul>@foreach (var x in Model.LogicUnderstanding.Dependencies) { <li>@x</li> }</ul>
+        </div>
+        <div class="col-lg-6">
+            <h4 class="h6">Must Preserve</h4>
+            <ul>@foreach (var x in Model.LogicUnderstanding.MustPreserve) { <li>@x</li> }</ul>
+        </div>
+    </div>
+</section>
+
+<section id="stage-architecture-review" class="stage-section panel-card p-3 mb-3">
+    <div class="stage-heading">
+        <h3 class="h5 mb-0">3. Architecture Review</h3>
+        <span class="stage-pill">clean architecture + DI + coupling</span>
+    </div>
+    <div class="row g-3">
+        <div class="col-lg-6">
+            <h4 class="h6">Clean Architecture Issues</h4>
+            <ul>
+                @foreach (var issue in Model.ArchitectureReview.CleanArchitectureIssues)
+                {
+                    <li><strong>@issue.Severity</strong> - @issue.Title <div class="small text-muted">@issue.Evidence</div></li>
+                }
+            </ul>
+        </div>
+        <div class="col-lg-6">
+            <h4 class="h6">Namespace / Folder Issues</h4>
+            <ul>
+                @foreach (var issue in Model.ArchitectureReview.NamespaceFolderIssues)
+                {
+                    <li><strong>@issue.Severity</strong> - @issue.Title <div class="small text-muted">@issue.Evidence</div></li>
+                }
+            </ul>
+        </div>
+        <div class="col-lg-6">
+            <h4 class="h6">DI Issues</h4>
+            <ul>
+                @foreach (var issue in Model.ArchitectureReview.DiIssues)
+                {
+                    <li><strong>@issue.Severity</strong> - @issue.Title <div class="small text-muted">@issue.Evidence</div></li>
+                }
+            </ul>
+        </div>
+        <div class="col-lg-6">
+            <h4 class="h6">Coupling Issues</h4>
+            <ul>
+                @foreach (var issue in Model.ArchitectureReview.CouplingIssues)
+                {
+                    <li><strong>@issue.Severity</strong> - @issue.Title <div class="small text-muted">@issue.Evidence</div></li>
+                }
+            </ul>
+        </div>
+    </div>
+    <h4 class="h6 mt-2">Recommended Structure</h4>
+    <ul>@foreach (var x in Model.ArchitectureReview.RecommendedStructure) { <li>@x</li> }</ul>
+</section>
+
+<section id="stage-test-plan" class="stage-section panel-card p-3 mb-3">
+    <div class="stage-heading">
+        <h3 class="h5 mb-0">4. Test Plan</h3>
+        <span class="stage-pill">existing + suggested + coverage + category purpose</span>
+    </div>
+    <p><strong>Coverage Summary:</strong> @Model.TestPlan.CoverageSummary</p>
+    <div class="row g-3">
+        <div class="col-lg-6">
+            <h4 class="h6">Existing Tests Found</h4>
+            <ul>@foreach (var x in Model.TestPlan.ExistingTestsFound) { <li>@x</li> }</ul>
+        </div>
+        <div class="col-lg-6">
+            <h4 class="h6">New Tests Suggested</h4>
+            <ul>@foreach (var x in Model.TestPlan.NewTestsSuggested) { <li>@x</li> }</ul>
+        </div>
+    </div>
+    <h4 class="h6 mt-2">Test Categories and Purpose</h4>
+    <table class="table table-sm">
+        <thead><tr><th>Category</th><th>Purpose</th></tr></thead>
+        <tbody>
+        @foreach (var c in Model.TestPlan.TestCategories)
+        {
+            <tr><td>@c.Category</td><td>@c.Purpose</td></tr>
+        }
+        </tbody>
+    </table>
+</section>
+
+<section id="stage-execution" class="stage-section panel-card p-3 mb-3">
+    <div class="stage-heading">
+        <h3 class="h5 mb-0">5. Execution</h3>
+        <span class="stage-pill">unit / integration / e2e / api / edge / playwright</span>
+    </div>
+
+    <div class="table-responsive mb-3">
+        <table class="table table-sm align-middle">
+            <thead>
+            <tr>
+                <th>Category</th>
+                <th>Purpose</th>
+                <th>Total</th>
+                <th>Passed</th>
+                <th>Failed</th>
+                <th>Warnings</th>
+                <th>New Tests</th>
+                <th>Source Skill</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var c in Model.Execution.TestCategories)
+            {
+                <tr>
+                    <td>@c.Category</td>
+                    <td>@c.Purpose</td>
+                    <td>@c.TotalCount</td>
+                    <td class="text-success">@c.Passed</td>
+                    <td class="text-danger">@c.Failed</td>
+                    <td class="text-warning">@c.Warnings</td>
+                    <td>@c.NewTestsAdded</td>
+                    <td><code>@c.SourceSkill</code></td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+
+    @foreach (var c in Model.Execution.TestCategories)
+    {
+        <div class="border rounded p-2 mb-2">
+            <strong>@c.Category Scenarios</strong>
+            <ul class="mb-2">@foreach (var s in c.ScenariosCovered) { <li>@s</li> }</ul>
+            <div class="small"><strong>Logs:</strong> @string.Join(" | ", c.Logs)</div>
+            <div class="small"><strong>Artifacts:</strong> @string.Join(" | ", c.Artifacts)</div>
+        </div>
+    }
+
+    <h4 class="h6 mt-3">Playwright / Browser Verification Evidence</h4>
+    <div class="mb-2">
+        <span class="status-pill @Model.Execution.Playwright.Status.ToLowerInvariant()">@Model.Execution.Playwright.Status</span>
+        <span class="ms-2">@Model.Execution.Playwright.Summary</span>
+    </div>
+
+    <div class="row g-3">
+        <div class="col-lg-6">
+            <h5 class="h6">Scenarios</h5>
+            <ul>
+                @foreach (var s in Model.Execution.Playwright.Scenarios)
+                {
+                    <li><strong>@s.Status</strong> - @s.Name <div class="small text-muted">@s.Notes</div></li>
+                }
+            </ul>
+        </div>
+        <div class="col-lg-6">
+            <h5 class="h6">Console Errors</h5>
+            <ul>@foreach (var x in Model.Execution.Playwright.ConsoleErrors) { <li>@x</li> }</ul>
+            <h5 class="h6">Console Warnings</h5>
+            <ul>@foreach (var x in Model.Execution.Playwright.ConsoleWarnings) { <li>@x</li> }</ul>
+        </div>
+        <div class="col-lg-6">
+            <h5 class="h6">Network Failures</h5>
+            <ul>@foreach (var x in Model.Execution.Playwright.NetworkFailures) { <li>@x</li> }</ul>
+            <h5 class="h6">DOM / State Checks</h5>
+            <ul>@foreach (var x in Model.Execution.Playwright.DomStateChecks) { <li>@x</li> }</ul>
+        </div>
+        <div class="col-lg-6">
+            <h5 class="h6">Runtime Issues</h5>
+            <ul>@foreach (var x in Model.Execution.Playwright.RuntimeIssues) { <li>@x</li> }</ul>
+            <h5 class="h6">Performance Observations</h5>
+            <ul>@foreach (var x in Model.Execution.Playwright.PerformanceObservations) { <li>@x</li> }</ul>
+        </div>
+    </div>
+
+    <h5 class="h6 mt-2">Screenshots</h5>
+    <ul>@foreach (var x in Model.Execution.Playwright.Screenshots) { <li><code>@x</code></li> }</ul>
+</section>
+
+<section id="stage-findings" class="stage-section panel-card p-3 mb-3">
+    <div class="stage-heading">
+        <h3 class="h5 mb-0">6. Findings</h3>
+        <span class="stage-pill">failed scenarios / likely causes / recommendations</span>
+    </div>
+
+    <div class="table-responsive mb-3">
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th>Stage</th>
+                    <th>Type</th>
+                    <th>Scenario</th>
+                    <th>Likely Cause</th>
+                    <th>Evidence</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var f in Model.Findings.Findings)
+            {
+                <tr>
+                    <td>@f.Stage</td>
+                    <td>@f.FindingType</td>
+                    <td>@f.Scenario</td>
+                    <td>@f.LikelyCause</td>
+                    <td>@f.Evidence</td>
+                    <td>
+                        <span class="status-pill @f.Status.ToLowerInvariant()">@f.Status</span>
+                        @if (!string.IsNullOrWhiteSpace(f.ResolvedInRunId))
+                        {
+                            <div class="small text-muted">resolved in @f.ResolvedInRunId</div>
+                        }
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+
+    <h4 class="h6">Recommendations</h4>
+    <ul>
+    @foreach (var r in Model.Findings.Recommendations)
+    {
+        <li><strong>@r.Priority</strong> - @r.Message <span class="text-muted">(@r.Stage / @r.SkillName)</span></li>
+    }
+    </ul>
+</section>
+
+<section id="stage-iteration-comparison" class="stage-section panel-card p-3 mb-4">
+    <div class="stage-heading">
+        <h3 class="h5 mb-0">7. Iteration Comparison</h3>
+        <span class="stage-pill">previous vs current progression</span>
+    </div>
+
+    <div class="row g-3">
+        <div class="col-md-4"><div class="border rounded p-2"><small class="text-muted">Previous Run</small><div class="fw-semibold">@Model.IterationComparison.PreviousRunId</div></div></div>
+        <div class="col-md-4"><div class="border rounded p-2"><small class="text-muted">Tests Added</small><div class="fw-semibold">@Model.IterationComparison.TestsAdded</div></div></div>
+        <div class="col-md-4"><div class="border rounded p-2"><small class="text-muted">Tests Fixed</small><div class="fw-semibold">@Model.IterationComparison.TestsFixed</div></div></div>
+        <div class="col-md-4"><div class="border rounded p-2"><small class="text-muted">Failures Reduced</small><div class="fw-semibold">@Model.IterationComparison.FailuresReduced</div></div></div>
+        <div class="col-md-4"><div class="border rounded p-2"><small class="text-muted">New Findings Introduced</small><div class="fw-semibold">@Model.IterationComparison.NewFindingsIntroduced</div></div></div>
+        <div class="col-md-4"><div class="border rounded p-2"><small class="text-muted">Resolved Findings</small><div class="fw-semibold">@Model.IterationComparison.ResolvedFindings</div></div></div>
+    </div>
+    <div class="mt-2">
+        <strong>Trend:</strong> <span class="status-pill @Model.IterationComparison.ProgressionTrend.ToLowerInvariant()">@Model.IterationComparison.ProgressionTrend</span>
+    </div>
+</section>

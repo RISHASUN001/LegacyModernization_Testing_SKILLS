@@ -1,0 +1,4 @@
+[
+  "Validation banner missing after invalid submit",
+  "Save button rendered with data-test=save-checklist (not #btnSave)"
+]

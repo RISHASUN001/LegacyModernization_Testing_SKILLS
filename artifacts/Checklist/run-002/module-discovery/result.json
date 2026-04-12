@@ -1,0 +1,33 @@
+{
+  "skillName": "module-discovery",
+  "stage": "discovery",
+  "moduleName": "Checklist",
+  "runId": "run-002",
+  "status": "passed",
+  "startedAt": "2026-04-12T18:52:07.110384Z",
+  "endedAt": "2026-04-12T18:52:07.111098Z",
+  "summary": "Discovery completed with high confidence and expanded URL/DB mapping.",
+  "metrics": {
+    "totalAssets": 79,
+    "javaFiles": 34,
+    "jspFiles": 13,
+    "jsFiles": 11,
+    "configFiles": 8,
+    "urls": 8,
+    "dbTouchpoints": 5,
+    "confidence": 92
+  },
+  "artifacts": [
+    "artifacts/Checklist/run-002/module-discovery/result.json",
+    "artifacts/Checklist/run-002/module-discovery/discovery-map.json"
+  ],
+  "findings": [],
+  "recommendations": [
+    {
+      "message": "Persist discovery map as baseline for future iteration diffs.",
+      "priority": "low",
+      "evidence": "Stable asset map achieved."
+    }
+  ],
+  "resultContractVersion": "2.0"
+}

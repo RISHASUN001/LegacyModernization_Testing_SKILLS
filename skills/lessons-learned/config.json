@@ -1,0 +1,27 @@
+{
+  "name": "lessons-learned",
+  "stage": "findings",
+  "category": "knowledge",
+  "purpose": "Capture lessons, resolved issue context, and repeatable fixes from each modernization run.",
+  "scriptEntry": "run.py",
+  "requiredInputs": [
+    "moduleName",
+    "runId"
+  ],
+  "optionalInputs": [
+    "failureDiagnosisReport"
+  ],
+  "outputFiles": [
+    "result.json",
+    "lessons.json"
+  ],
+  "artifactFolders": [
+    "artifacts/{module}/{runId}/lessons-learned/"
+  ],
+  "dependencies": [
+    "failure-diagnosis",
+    "parity-verification"
+  ],
+  "summaryOutputType": "lessons-summary",
+  "resultContractVersion": "2.0"
+}

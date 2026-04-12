@@ -1,0 +1,26 @@
+{
+  "name": "module-documentation",
+  "stage": "logic-understanding",
+  "category": "documentation",
+  "purpose": "Create module documentation artifact used by dashboard Logic Understanding stage.",
+  "scriptEntry": "run.py",
+  "requiredInputs": [
+    "moduleName",
+    "runId"
+  ],
+  "optionalInputs": [
+    "brsPath"
+  ],
+  "outputFiles": [
+    "result.json",
+    "module-analysis.json"
+  ],
+  "artifactFolders": [
+    "artifacts/{module}/{runId}/module-documentation/"
+  ],
+  "dependencies": [
+    "legacy-logic-extraction"
+  ],
+  "summaryOutputType": "module-document",
+  "resultContractVersion": "2.0"
+}

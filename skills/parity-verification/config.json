@@ -1,0 +1,29 @@
+{
+  "name": "parity-verification",
+  "stage": "findings",
+  "category": "parity",
+  "purpose": "Verify converted module behavior parity against legacy baselines and identify gaps.",
+  "scriptEntry": "run.py",
+  "requiredInputs": [
+    "moduleName",
+    "legacySourceRoot",
+    "convertedSourceRoot"
+  ],
+  "optionalInputs": [
+    "moduleDocumentationArtifact"
+  ],
+  "outputFiles": [
+    "result.json",
+    "parity-diff.json"
+  ],
+  "artifactFolders": [
+    "artifacts/{module}/{runId}/parity-verification/"
+  ],
+  "dependencies": [
+    "legacy-logic-extraction",
+    "api-test-execution",
+    "e2e-test-execution"
+  ],
+  "summaryOutputType": "parity-summary",
+  "resultContractVersion": "2.0"
+}

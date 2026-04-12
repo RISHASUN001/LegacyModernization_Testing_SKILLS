@@ -1,0 +1,55 @@
+{
+  "skillName": "api-test-execution",
+  "stage": "execution",
+  "moduleName": "Checklist",
+  "runId": "run-002",
+  "status": "passed",
+  "startedAt": "2026-04-12T10:16:00Z",
+  "endedAt": "2026-04-12T10:17:00Z",
+  "summary": "API tests largely pass after route compatibility updates.",
+  "metrics": {
+    "total": 21,
+    "passed": 20,
+    "failed": 1,
+    "warnings": 0,
+    "newTestsAdded": 2,
+    "scenarios": [
+      {
+        "name": "Legacy save route compatibility",
+        "status": "passed",
+        "notes": "Route alias added."
+      },
+      {
+        "name": "Validation response schema",
+        "status": "passed",
+        "notes": "Schema aligned."
+      }
+    ]
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/api-test-execution/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/api-test-execution/log.txt"
+  ],
+  "findings": [
+    {
+      "type": "RouteParityMismatch",
+      "scenario": "Legacy save route compatibility",
+      "message": "Route compatibility issue resolved.",
+      "likelyCause": "Added alias routes for legacy .do endpoints.",
+      "evidence": "Legacy route tests now pass.",
+      "severity": "high",
+      "status": "resolved",
+      "confidence": 0.87,
+      "resolvedInRunId": "run-002",
+      "resolutionNotes": "Configured compatibility route mapping."
+    }
+  ],
+  "recommendations": [
+    {
+      "message": "Fix remaining optional query default behavior in one API edge path.",
+      "priority": "medium",
+      "evidence": "1 API failure left."
+    }
+  ],
+  "resultContractVersion": "2.0"
+}
