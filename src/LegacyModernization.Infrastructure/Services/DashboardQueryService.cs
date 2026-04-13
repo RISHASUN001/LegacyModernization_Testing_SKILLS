@@ -1,7 +1,10 @@
+using System.Data;
 using System.Text.Json;
 using System.Text.Json.Nodes;
+using Dapper;
 using LegacyModernization.Application.Contracts;
 using LegacyModernization.Application.DTOs;
+using LegacyModernization.Infrastructure.Abstractions;
 using LegacyModernization.Infrastructure.Options;
 using Microsoft.Extensions.Options;
 
@@ -31,18 +34,20 @@ public sealed class DashboardQueryService : IDashboardQueryService
         ["iteration-comparison"] = "Iteration Comparison"
     };
 
-    private readonly SqliteCli _sqlite;
+    private readonly ISqliteConnectionFactory _connectionFactory;
     private readonly PlatformPathsOptions _paths;
 
-    public DashboardQueryService(SqliteCli sqlite, IOptions<PlatformPathsOptions> options)
+    public DashboardQueryService(ISqliteConnectionFactory connectionFactory, IOptions<PlatformPathsOptions> options)
     {
-        _sqlite = sqlite;
+        _connectionFactory = connectionFactory;
         _paths = options.Value;
     }
 
     public async Task<HomePageDto> GetHomePageAsync(CancellationToken cancellationToken = default)
     {
-        var moduleRows = await QueryRowsAsync(@"
+        await using var connection = await _connectionFactory.CreateOpenConnectionAsync(cancellationToken);
+
+        var moduleRows = await QueryRowsAsync(connection, @"
 SELECT
     m.name,
     COUNT(r.id) AS total_runs,
@@ -52,21 +57,21 @@ SELECT
 FROM modules m
 LEFT JOIN runs r ON r.module_id = m.id
 GROUP BY m.id
-ORDER BY m.name;", cancellationToken);
+ORDER BY m.name;", null, cancellationToken);
 
-        var latestRuns = await QueryRowsAsync(@"
+        var latestRuns = await QueryRowsAsync(connection, @"
 SELECT m.name AS module_name, r.run_id, r.status, r.started_at, r.ended_at, r.summary
 FROM runs r
 INNER JOIN modules m ON m.id = r.module_id
 ORDER BY r.started_at DESC
-LIMIT 20;", cancellationToken);
+LIMIT 20;", null, cancellationToken);
 
-        var statsRows = await QueryRowsAsync(@"
+        var statsRows = await QueryRowsAsync(connection, @"
 SELECT
     COUNT(*) AS total_runs,
     SUM(CASE WHEN LOWER(status)='passed' THEN 1 ELSE 0 END) AS passed_runs,
     SUM(CASE WHEN LOWER(status)='failed' THEN 1 ELSE 0 END) AS failed_runs
-FROM runs;", cancellationToken);
+FROM runs;", null, cancellationToken);
 
         var stats = statsRows.FirstOrDefault();
 
@@ -97,7 +102,9 @@ FROM runs;", cancellationToken);
 
     public async Task<SkillLibraryPageDto> GetSkillLibraryAsync(CancellationToken cancellationToken = default)
     {
-        var rows = await QueryRowsAsync(@"
+        await using var connection = await _connectionFactory.CreateOpenConnectionAsync(cancellationToken);
+
+        var rows = await QueryRowsAsync(connection, @"
 SELECT name, stage, category, purpose, script_entry, summary_output_type, result_contract_version,
 required_inputs_json, optional_inputs_json, output_files_json, artifact_folders_json, dependencies_json, skill_markdown
 FROM skills
@@ -110,7 +117,7 @@ ORDER BY CASE stage
     WHEN 'findings' THEN 6
     WHEN 'iteration-comparison' THEN 7
     ELSE 99
-END, name;", cancellationToken);
+END, name;", null, cancellationToken);
 
         return new SkillLibraryPageDto
         {
@@ -135,12 +142,11 @@ END, name;", cancellationToken);
 
     public async Task<RunInputBuilderPageDto> GetRunInputBuilderAsync(CancellationToken cancellationToken = default)
     {
-        var skills = await QueryRowsAsync("SELECT name FROM skills ORDER BY name;", cancellationToken);
+        await using var connection = await _connectionFactory.CreateOpenConnectionAsync(cancellationToken);
+
+        var skills = await QueryRowsAsync(connection, "SELECT name FROM skills ORDER BY name;", null, cancellationToken);
         var skillNames = skills.Select(static s => s.GetString("name")).Where(static s => !string.IsNullOrWhiteSpace(s)).ToList();
-        var draft = new RunInputDraftDto
-        {
-            SelectedSkills = skillNames
-        };
+        var draft = new RunInputDraftDto { SelectedSkills = skillNames };
 
         return new RunInputBuilderPageDto
         {
@@ -163,16 +169,31 @@ END, name;", cancellationToken);
 
     public async Task<ModuleRunsPageDto> GetModuleRunsAsync(string? moduleName, CancellationToken cancellationToken = default)
     {
-        var filterSql = string.IsNullOrWhiteSpace(moduleName)
-            ? string.Empty
-            : $"WHERE m.name='{SqliteCli.Escape(moduleName)}'";
+        await using var connection = await _connectionFactory.CreateOpenConnectionAsync(cancellationToken);
 
-        var runs = await QueryRowsAsync($@"
+        string sql;
+        object? parameters;
+        if (string.IsNullOrWhiteSpace(moduleName))
+        {
+            sql = @"
 SELECT m.name AS module_name, r.run_id, r.status, r.started_at, r.ended_at, r.summary
 FROM runs r
 INNER JOIN modules m ON m.id = r.module_id
-{filterSql}
-ORDER BY r.started_at DESC;", cancellationToken);
+ORDER BY r.started_at DESC;";
+            parameters = null;
+        }
+        else
+        {
+            sql = @"
+SELECT m.name AS module_name, r.run_id, r.status, r.started_at, r.ended_at, r.summary
+FROM runs r
+INNER JOIN modules m ON m.id = r.module_id
+WHERE m.name=@ModuleName
+ORDER BY r.started_at DESC;";
+            parameters = new { ModuleName = moduleName };
+        }
+
+        var runs = await QueryRowsAsync(connection, sql, parameters, cancellationToken);
 
         return new ModuleRunsPageDto
         {
@@ -191,7 +212,9 @@ ORDER BY r.started_at DESC;", cancellationToken);
 
     public async Task<RunPipelinePageDto?> GetRunPipelineAsync(string moduleName, string runId, CancellationToken cancellationToken = default)
     {
-        var runRow = await GetRunRowAsync(moduleName, runId, cancellationToken);
+        await using var connection = await _connectionFactory.CreateOpenConnectionAsync(cancellationToken);
+
+        var runRow = await GetRunRowAsync(connection, moduleName, runId, cancellationToken);
         if (runRow is null)
         {
             return null;
@@ -200,19 +223,19 @@ ORDER BY r.started_at DESC;", cancellationToken);
         var runFk = runRow.GetLong("id");
         var artifactRoot = runRow.GetString("artifact_root");
 
-        var stageRows = await QueryRowsAsync($@"
+        var stageRows = await QueryRowsAsync(connection, @"
 SELECT stage,
        COUNT(1) AS skill_count,
        SUM(CASE WHEN LOWER(status)='failed' THEN 1 ELSE 0 END) AS failed_skills
 FROM skill_executions
-WHERE run_fk={runFk}
-GROUP BY stage;", cancellationToken);
+WHERE run_fk=@RunFk
+GROUP BY stage;", new { RunFk = runFk }, cancellationToken);
 
         var stageLookup = stageRows.ToDictionary(static r => r.GetString("stage"), static r => r, StringComparer.OrdinalIgnoreCase);
 
         var stageStatuses = StageOrder.Select(stage =>
         {
-            var found = stageLookup.GetValueOrDefault(stage);
+            stageLookup.TryGetValue(stage, out var found);
             var failed = found?.GetInt("failed_skills") ?? 0;
             var count = found?.GetInt("skill_count") ?? 0;
             var status = count == 0 ? "unknown" : failed > 0 ? "failed" : "passed";
@@ -230,9 +253,9 @@ GROUP BY stage;", cancellationToken);
         var logic = await BuildLogicStageAsync(artifactRoot, cancellationToken);
         var architecture = await BuildArchitectureStageAsync(artifactRoot, cancellationToken);
         var testPlan = await BuildTestPlanStageAsync(artifactRoot, cancellationToken);
-        var execution = await BuildExecutionStageAsync(runFk, artifactRoot, cancellationToken);
-        var findings = await BuildFindingsStageAsync(runFk, moduleName, runId, cancellationToken);
-        var iteration = await BuildIterationSummaryAsync(moduleName, runId, artifactRoot, cancellationToken);
+        var execution = await BuildExecutionStageAsync(connection, runFk, artifactRoot, cancellationToken);
+        var findings = await BuildFindingsStageAsync(connection, runFk, moduleName, runId, cancellationToken);
+        var iteration = await BuildIterationSummaryAsync(connection, moduleName, runId, artifactRoot, cancellationToken);
 
         return new RunPipelinePageDto
         {
@@ -255,20 +278,26 @@ GROUP BY stage;", cancellationToken);
 
     public async Task<FindingsPageDto> GetFindingsAsync(string? moduleName, string? runId, CancellationToken cancellationToken = default)
     {
+        await using var connection = await _connectionFactory.CreateOpenConnectionAsync(cancellationToken);
+
         var whereClauses = new List<string>();
+        var parameters = new DynamicParameters();
+
         if (!string.IsNullOrWhiteSpace(moduleName))
         {
-            whereClauses.Add($"m.name='{SqliteCli.Escape(moduleName)}'");
+            whereClauses.Add("m.name=@ModuleName");
+            parameters.Add("ModuleName", moduleName);
         }
 
         if (!string.IsNullOrWhiteSpace(runId))
         {
-            whereClauses.Add($"r.run_id='{SqliteCli.Escape(runId)}'");
+            whereClauses.Add("r.run_id=@RunId");
+            parameters.Add("RunId", runId);
         }
 
         var whereSql = whereClauses.Count > 0 ? $"WHERE {string.Join(" AND ", whereClauses)}" : string.Empty;
 
-        var findingRows = await QueryRowsAsync($@"
+        var findingRows = await QueryRowsAsync(connection, $@"
 SELECT m.name AS module_name, r.run_id, f.stage, f.skill_name, f.scenario, f.issue_type, f.message,
        f.likely_cause, f.evidence, f.severity, f.status, f.confidence, f.resolved_in_run_id,
        f.resolution_notes, f.affected_files_json
@@ -276,15 +305,15 @@ FROM finding_records f
 INNER JOIN runs r ON r.id = f.run_fk
 INNER JOIN modules m ON m.id = r.module_id
 {whereSql}
-ORDER BY r.run_id DESC, f.id DESC;", cancellationToken);
+ORDER BY r.run_id DESC, f.id DESC;", parameters, cancellationToken);
 
-        var recommendationRows = await QueryRowsAsync($@"
+        var recommendationRows = await QueryRowsAsync(connection, $@"
 SELECT m.name AS module_name, r.run_id, rec.stage, rec.skill_name, rec.message, rec.priority, rec.evidence
 FROM recommendation_records rec
 INNER JOIN runs r ON r.id = rec.run_fk
 INNER JOIN modules m ON m.id = r.module_id
 {whereSql}
-ORDER BY r.run_id DESC, rec.id DESC;", cancellationToken);
+ORDER BY r.run_id DESC, rec.id DESC;", parameters, cancellationToken);
 
         return new FindingsPageDto
         {
@@ -323,13 +352,15 @@ ORDER BY r.run_id DESC, rec.id DESC;", cancellationToken);
 
     public async Task<IterationComparisonPageDto?> GetIterationComparisonAsync(string moduleName, CancellationToken cancellationToken = default)
     {
-        var rows = await QueryRowsAsync($@"
+        await using var connection = await _connectionFactory.CreateOpenConnectionAsync(cancellationToken);
+
+        var rows = await QueryRowsAsync(connection, @"
 SELECT d.run_id, d.previous_run_id, d.tests_added, d.tests_fixed, d.failures_reduced,
        d.new_findings_introduced, d.resolved_findings, d.progression_trend
 FROM iteration_deltas d
 INNER JOIN modules m ON m.id = d.module_id
-WHERE m.name='{SqliteCli.Escape(moduleName)}'
-ORDER BY d.run_id;", cancellationToken);
+WHERE m.name=@ModuleName
+ORDER BY d.run_id;", new { ModuleName = moduleName }, cancellationToken);
 
         if (rows.Count == 0)
         {
@@ -481,13 +512,13 @@ ORDER BY d.run_id;", cancellationToken);
         };
     }
 
-    private async Task<ExecutionStageDto> BuildExecutionStageAsync(long runFk, string artifactRoot, CancellationToken cancellationToken)
+    private async Task<ExecutionStageDto> BuildExecutionStageAsync(IDbConnection connection, long runFk, string artifactRoot, CancellationToken cancellationToken)
     {
-        var rows = await QueryRowsAsync($@"
+        var rows = await QueryRowsAsync(connection, @"
 SELECT category, purpose, scenarios_json, total, passed, failed, warnings, new_tests_added,
        logs_json, artifacts_json, source_skill, stage
 FROM test_category_results
-WHERE run_fk={runFk}
+WHERE run_fk=@RunFk
 ORDER BY CASE category
     WHEN 'Unit' THEN 1
     WHEN 'Integration' THEN 2
@@ -496,7 +527,7 @@ ORDER BY CASE category
     WHEN 'Edge Case' THEN 5
     WHEN 'Playwright / Browser Verification' THEN 6
     ELSE 99
-END;", cancellationToken);
+END;", new { RunFk = runFk }, cancellationToken);
 
         var categories = rows.Select(static row => new TestCategoryExecutionDto
         {
@@ -513,7 +544,7 @@ END;", cancellationToken);
             Artifacts = ParseStringArray(row.GetString("artifacts_json"))
         }).ToList();
 
-        var playwright = await BuildPlaywrightEvidenceAsync(runFk, artifactRoot, cancellationToken);
+        var playwright = await BuildPlaywrightEvidenceAsync(connection, runFk, artifactRoot, cancellationToken);
 
         return new ExecutionStageDto
         {
@@ -522,13 +553,13 @@ END;", cancellationToken);
         };
     }
 
-    private async Task<PlaywrightEvidenceDto> BuildPlaywrightEvidenceAsync(long runFk, string artifactRoot, CancellationToken cancellationToken)
+    private async Task<PlaywrightEvidenceDto> BuildPlaywrightEvidenceAsync(IDbConnection connection, long runFk, string artifactRoot, CancellationToken cancellationToken)
     {
-        var row = (await QueryRowsAsync($@"
+        var row = (await QueryRowsAsync(connection, @"
 SELECT status, summary, metrics_json, artifacts_json
 FROM skill_executions
-WHERE run_fk={runFk} AND skill_name='playwright-browser-verification'
-LIMIT 1;", cancellationToken)).FirstOrDefault();
+WHERE run_fk=@RunFk AND skill_name='playwright-browser-verification'
+LIMIT 1;", new { RunFk = runFk }, cancellationToken)).FirstOrDefault();
 
         if (row is null)
         {
@@ -556,7 +587,6 @@ LIMIT 1;", cancellationToken)).FirstOrDefault();
         var domPath = Path.Combine(artifactRoot, "playwright-browser-verification", "dom-state.json");
         var runtimePath = Path.Combine(artifactRoot, "playwright-browser-verification", "runtime-issues.json");
         var perfPath = Path.Combine(artifactRoot, "playwright-browser-verification", "performance-observations.json");
-
         var screenshotRoot = Path.Combine(artifactRoot, "playwright-browser-verification", "screenshots");
 
         var consoleEntries = await ReadStringArrayFileAsync(consolePath, cancellationToken);
@@ -581,20 +611,20 @@ LIMIT 1;", cancellationToken)).FirstOrDefault();
         };
     }
 
-    private async Task<FindingsStageDto> BuildFindingsStageAsync(long runFk, string moduleName, string runId, CancellationToken cancellationToken)
+    private async Task<FindingsStageDto> BuildFindingsStageAsync(IDbConnection connection, long runFk, string moduleName, string runId, CancellationToken cancellationToken)
     {
-        var findings = await QueryRowsAsync($@"
+        var findings = await QueryRowsAsync(connection, @"
 SELECT stage, skill_name, scenario, issue_type, message, likely_cause, evidence, severity, status,
        confidence, resolved_in_run_id, resolution_notes, affected_files_json
 FROM finding_records
-WHERE run_fk={runFk}
-ORDER BY id DESC;", cancellationToken);
+WHERE run_fk=@RunFk
+ORDER BY id DESC;", new { RunFk = runFk }, cancellationToken);
 
-        var recommendations = await QueryRowsAsync($@"
+        var recommendations = await QueryRowsAsync(connection, @"
 SELECT stage, skill_name, message, priority, evidence
 FROM recommendation_records
-WHERE run_fk={runFk}
-ORDER BY id DESC;", cancellationToken);
+WHERE run_fk=@RunFk
+ORDER BY id DESC;", new { RunFk = runFk }, cancellationToken);
 
         return new FindingsStageDto
         {
@@ -629,18 +659,17 @@ ORDER BY id DESC;", cancellationToken);
         };
     }
 
-    private async Task<IterationComparisonSummaryDto> BuildIterationSummaryAsync(string moduleName, string runId, string artifactRoot, CancellationToken cancellationToken)
+    private async Task<IterationComparisonSummaryDto> BuildIterationSummaryAsync(IDbConnection connection, string moduleName, string runId, string artifactRoot, CancellationToken cancellationToken)
     {
-        var rows = await QueryRowsAsync($@"
+        var rows = await QueryRowsAsync(connection, @"
 SELECT d.previous_run_id, d.tests_added, d.tests_fixed, d.failures_reduced,
        d.new_findings_introduced, d.resolved_findings, d.progression_trend
 FROM iteration_deltas d
 INNER JOIN modules m ON m.id = d.module_id
-WHERE m.name='{SqliteCli.Escape(moduleName)}' AND d.run_id='{SqliteCli.Escape(runId)}'
-LIMIT 1;", cancellationToken);
+WHERE m.name=@ModuleName AND d.run_id=@RunId
+LIMIT 1;", new { ModuleName = moduleName, RunId = runId }, cancellationToken);
 
         var sourcePath = Path.Combine(artifactRoot, "iteration-comparison", "iteration-delta.json");
-
         var row = rows.FirstOrDefault();
         if (row is null)
         {
@@ -660,14 +689,15 @@ LIMIT 1;", cancellationToken);
         };
     }
 
-    private async Task<JsonObject?> GetRunRowAsync(string moduleName, string runId, CancellationToken cancellationToken)
+    private async Task<JsonObject?> GetRunRowAsync(IDbConnection connection, string moduleName, string runId, CancellationToken cancellationToken)
     {
-        var rows = await QueryRowsAsync($@"
+        var rows = await QueryRowsAsync(connection, @"
 SELECT r.id, r.artifact_root, r.status, r.summary, r.started_at, r.ended_at
 FROM runs r
 INNER JOIN modules m ON m.id = r.module_id
-WHERE m.name='{SqliteCli.Escape(moduleName)}' AND r.run_id='{SqliteCli.Escape(runId)}'
-LIMIT 1;", cancellationToken);
+WHERE m.name=@ModuleName AND r.run_id=@RunId
+LIMIT 1;", new { ModuleName = moduleName, RunId = runId }, cancellationToken);
+
         return rows.FirstOrDefault();
     }
 
@@ -693,25 +723,52 @@ LIMIT 1;", cancellationToken);
         return JsonSerializer.Serialize(payload, new JsonSerializerOptions { WriteIndented = true });
     }
 
-    private async Task<List<JsonObject>> QueryRowsAsync(string sql, CancellationToken cancellationToken)
+    private static async Task<List<JsonObject>> QueryRowsAsync(IDbConnection connection, string sql, object? parameters, CancellationToken cancellationToken)
     {
-        var json = await _sqlite.ExecuteJsonQueryAsync(sql, cancellationToken);
-        if (string.IsNullOrWhiteSpace(json))
+        var rows = await connection.QueryAsync(new CommandDefinition(sql, parameters, cancellationToken: cancellationToken));
+        var result = new List<JsonObject>();
+
+        foreach (var row in rows)
         {
-            return [];
+            if (row is not IDictionary<string, object?> dictionary)
+            {
+                continue;
+            }
+
+            var obj = new JsonObject();
+            foreach (var (key, value) in dictionary)
+            {
+                obj[key] = ToJsonNode(value);
+            }
+            result.Add(obj);
         }
 
-        var node = JsonNode.Parse(json) as JsonArray;
-        if (node is null)
+        return result;
+    }
+
+    private static JsonNode? ToJsonNode(object? value)
+    {
+        if (value is null || value is DBNull)
         {
-            return [];
+            return null;
         }
 
-        return node
-            .Select(static item => item as JsonObject)
-            .Where(static item => item is not null)
-            .Select(static item => item!)
-            .ToList();
+        return value switch
+        {
+            string s => JsonValue.Create(s),
+            int i => JsonValue.Create(i),
+            long l => JsonValue.Create(l),
+            short s16 => JsonValue.Create(s16),
+            byte b => JsonValue.Create(b),
+            double d => JsonValue.Create(d),
+            float f => JsonValue.Create(f),
+            decimal dec => JsonValue.Create(dec),
+            bool bo => JsonValue.Create(bo),
+            DateTime dt => JsonValue.Create(dt.ToString("O")),
+            DateTimeOffset dto => JsonValue.Create(dto.ToString("O")),
+            byte[] bytes => JsonValue.Create(Convert.ToBase64String(bytes)),
+            _ => JsonValue.Create(value.ToString())
+        };
     }
 
     private static List<string> ParseStringArray(string json)

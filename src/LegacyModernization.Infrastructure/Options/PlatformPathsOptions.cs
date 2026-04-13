@@ -8,4 +8,5 @@ public sealed class PlatformPathsOptions
     public string RunInputsRoot { get; set; } = string.Empty;
     public string DataRoot { get; set; } = string.Empty;
     public string DatabasePath { get; set; } = string.Empty;
+    public string ConnectionString { get; set; } = string.Empty;
 }

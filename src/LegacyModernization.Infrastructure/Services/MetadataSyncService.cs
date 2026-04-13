@@ -1,6 +1,10 @@
+using System.Data;
+using System.Globalization;
 using System.Text.Json;
 using System.Text.Json.Nodes;
+using Dapper;
 using LegacyModernization.Application.Contracts;
+using LegacyModernization.Infrastructure.Abstractions;
 using LegacyModernization.Infrastructure.Options;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -39,13 +43,16 @@ public sealed class MetadataSyncService : IMetadataSyncService
     };
 
     private readonly PlatformPathsOptions _paths;
-    private readonly SqliteCli _sqlite;
+    private readonly ISqliteConnectionFactory _connectionFactory;
     private readonly ILogger<MetadataSyncService> _logger;
 
-    public MetadataSyncService(IOptions<PlatformPathsOptions> options, SqliteCli sqlite, ILogger<MetadataSyncService> logger)
+    public MetadataSyncService(
+        IOptions<PlatformPathsOptions> options,
+        ISqliteConnectionFactory connectionFactory,
+        ILogger<MetadataSyncService> logger)
     {
         _paths = options.Value;
-        _sqlite = sqlite;
+        _connectionFactory = connectionFactory;
         _logger = logger;
     }
 
@@ -56,18 +63,23 @@ public sealed class MetadataSyncService : IMetadataSyncService
         Directory.CreateDirectory(_paths.SkillsRoot);
         Directory.CreateDirectory(_paths.RunInputsRoot);
 
-        await _sqlite.ExecuteNonQueryAsync(GetDropSql(), cancellationToken);
-        await _sqlite.ExecuteNonQueryAsync(GetCreateSql(), cancellationToken);
+        await using var connection = await _connectionFactory.CreateOpenConnectionAsync(cancellationToken);
+        await using var transaction = connection.BeginTransaction();
 
-        await LoadSkillsAsync(cancellationToken);
+        await connection.ExecuteAsync(new CommandDefinition(GetDropSql(), transaction: transaction, cancellationToken: cancellationToken));
+        await connection.ExecuteAsync(new CommandDefinition(GetCreateSql(), transaction: transaction, cancellationToken: cancellationToken));
+
+        await LoadSkillsAsync(connection, transaction, cancellationToken);
         var runBundles = await LoadRunsAsync(cancellationToken);
-        await PersistRunsAsync(runBundles, cancellationToken);
-        await PersistIterationDeltasAsync(cancellationToken);
+        await PersistRunsAsync(connection, transaction, runBundles, cancellationToken);
+        await PersistIterationDeltasAsync(connection, transaction, cancellationToken);
 
-        _logger.LogInformation("Metadata sync completed. Runs={Runs} Skills={Skills}", runBundles.Count, runBundles.Sum(static bundle => bundle.Skills.Count));
+        transaction.Commit();
+
+        _logger.LogInformation("Metadata sync completed. Runs={Runs}, Skills={Skills}", runBundles.Count, runBundles.Sum(static bundle => bundle.Skills.Count));
     }
 
-    private async Task LoadSkillsAsync(CancellationToken cancellationToken)
+    private async Task LoadSkillsAsync(IDbConnection connection, IDbTransaction transaction, CancellationToken cancellationToken)
     {
         if (!Directory.Exists(_paths.SkillsRoot))
         {
@@ -78,6 +90,12 @@ public sealed class MetadataSyncService : IMetadataSyncService
             .Where(static dir => !Path.GetFileName(dir).StartsWith("_", StringComparison.OrdinalIgnoreCase))
             .OrderBy(static dir => dir, StringComparer.OrdinalIgnoreCase)
             .ToList();
+
+        const string sql = @"
+INSERT INTO skills
+(name, stage, category, script_entry, required_inputs_json, optional_inputs_json, output_files_json, artifact_folders_json, dependencies_json, summary_output_type, result_contract_version, purpose, skill_markdown)
+VALUES
+(@Name, @Stage, @Category, @ScriptEntry, @RequiredInputsJson, @OptionalInputsJson, @OutputFilesJson, @ArtifactFoldersJson, @DependenciesJson, @SummaryOutputType, @ResultContractVersion, @Purpose, @SkillMarkdown);";
 
         foreach (var skillDir in skillDirs)
         {
@@ -96,27 +114,23 @@ public sealed class MetadataSyncService : IMetadataSyncService
 
             var name = config["name"]?.GetValue<string>() ?? Path.GetFileName(skillDir);
             var stage = config["stage"]?.GetValue<string>() ?? SkillToStage.GetValueOrDefault(name, "execution");
-            var category = config["category"]?.GetValue<string>() ?? "analysis";
-            var scriptEntry = config["scriptEntry"]?.GetValue<string>() ?? config["script_entry"]?.GetValue<string>() ?? "run.py";
-            var purpose = config["purpose"]?.GetValue<string>() ?? string.Empty;
-            var summaryOutputType = config["summaryOutputType"]?.GetValue<string>() ?? "structured";
-            var resultContractVersion = config["resultContractVersion"]?.GetValue<string>() ?? "2.0";
 
-            var requiredInputs = config["requiredInputs"]?.ToJsonString() ?? "[]";
-            var optionalInputs = config["optionalInputs"]?.ToJsonString() ?? "[]";
-            var outputFiles = config["outputFiles"]?.ToJsonString() ?? config["expectedOutputs"]?.ToJsonString() ?? "[]";
-            var artifactFolders = config["artifactFolders"]?.ToJsonString() ?? config["artifactPaths"]?.ToJsonString() ?? "[]";
-            var dependencies = config["dependencies"]?.ToJsonString() ?? "[]";
-
-            var markdown = await File.ReadAllTextAsync(skillMdPath, cancellationToken);
-
-            var sql = $@"
-INSERT INTO skills
-(name, stage, category, script_entry, required_inputs_json, optional_inputs_json, output_files_json, artifact_folders_json, dependencies_json, summary_output_type, result_contract_version, purpose, skill_markdown)
-VALUES
-('{SqliteCli.Escape(name)}', '{SqliteCli.Escape(stage)}', '{SqliteCli.Escape(category)}', '{SqliteCli.Escape(scriptEntry)}', '{SqliteCli.Escape(requiredInputs)}', '{SqliteCli.Escape(optionalInputs)}', '{SqliteCli.Escape(outputFiles)}', '{SqliteCli.Escape(artifactFolders)}', '{SqliteCli.Escape(dependencies)}', '{SqliteCli.Escape(summaryOutputType)}', '{SqliteCli.Escape(resultContractVersion)}', '{SqliteCli.Escape(purpose)}', '{SqliteCli.Escape(markdown)}');";
-
-            await _sqlite.ExecuteNonQueryAsync(sql, cancellationToken);
+            await connection.ExecuteAsync(new CommandDefinition(sql, new
+            {
+                Name = name,
+                Stage = stage,
+                Category = config["category"]?.GetValue<string>() ?? "analysis",
+                ScriptEntry = config["scriptEntry"]?.GetValue<string>() ?? "run.py",
+                RequiredInputsJson = config["requiredInputs"]?.ToJsonString() ?? "[]",
+                OptionalInputsJson = config["optionalInputs"]?.ToJsonString() ?? "[]",
+                OutputFilesJson = config["outputFiles"]?.ToJsonString() ?? "[]",
+                ArtifactFoldersJson = config["artifactFolders"]?.ToJsonString() ?? "[]",
+                DependenciesJson = config["dependencies"]?.ToJsonString() ?? "[]",
+                SummaryOutputType = config["summaryOutputType"]?.GetValue<string>() ?? "structured",
+                ResultContractVersion = config["resultContractVersion"]?.GetValue<string>() ?? "2.0",
+                Purpose = config["purpose"]?.GetValue<string>() ?? string.Empty,
+                SkillMarkdown = await File.ReadAllTextAsync(skillMdPath, cancellationToken)
+            }, transaction, cancellationToken: cancellationToken));
         }
     }
 
@@ -199,16 +213,37 @@ VALUES
         return bundles;
     }
 
-    private async Task PersistRunsAsync(List<ParsedRunBundle> bundles, CancellationToken cancellationToken)
+    private async Task PersistRunsAsync(IDbConnection connection, IDbTransaction transaction, List<ParsedRunBundle> bundles, CancellationToken cancellationToken)
     {
+        const string insertModuleSql = @"
+INSERT OR IGNORE INTO modules(name, legacy_source_root, converted_source_root, created_at)
+VALUES(@Name, @LegacySourceRoot, @ConvertedSourceRoot, @CreatedAt);";
+
+        const string selectModuleSql = "SELECT id FROM modules WHERE name=@Name LIMIT 1;";
+
+        const string insertRunSql = @"
+INSERT INTO runs(module_id, run_id, status, started_at, ended_at, summary, base_url, brs_path, artifact_root, created_at)
+VALUES(@ModuleId, @RunId, @Status, @StartedAt, @EndedAt, @Summary, @BaseUrl, @BrsPath, @ArtifactRoot, @CreatedAt);";
+
+        const string selectRunSql = "SELECT id FROM runs WHERE module_id=@ModuleId AND run_id=@RunId LIMIT 1;";
+
+        const string insertSkillSql = @"
+INSERT INTO skill_executions
+(run_fk, skill_name, stage, status, started_at, ended_at, summary, metrics_json, artifacts_json, findings_json, recommendations_json, result_contract_version, result_json)
+VALUES
+(@RunFk, @SkillName, @Stage, @Status, @StartedAt, @EndedAt, @Summary, @MetricsJson, @ArtifactsJson, @FindingsJson, @RecommendationsJson, @ResultContractVersion, @ResultJson);";
+
         foreach (var bundle in bundles)
         {
-            var moduleSql = $@"
-INSERT OR IGNORE INTO modules(name, legacy_source_root, converted_source_root, created_at)
-VALUES('{SqliteCli.Escape(bundle.ModuleName)}', '{SqliteCli.Escape(bundle.LegacySourceRoot)}', '{SqliteCli.Escape(bundle.ConvertedSourceRoot)}', '{DateTime.UtcNow:O}');";
-            await _sqlite.ExecuteNonQueryAsync(moduleSql, cancellationToken);
+            await connection.ExecuteAsync(new CommandDefinition(insertModuleSql, new
+            {
+                Name = bundle.ModuleName,
+                LegacySourceRoot = bundle.LegacySourceRoot,
+                ConvertedSourceRoot = bundle.ConvertedSourceRoot,
+                CreatedAt = DateTime.UtcNow.ToString("O")
+            }, transaction, cancellationToken: cancellationToken));
 
-            var moduleId = await GetSingleLongAsync($"SELECT id AS value FROM modules WHERE name='{SqliteCli.Escape(bundle.ModuleName)}' LIMIT 1;", cancellationToken);
+            var moduleId = await connection.ExecuteScalarAsync<long?>(new CommandDefinition(selectModuleSql, new { Name = bundle.ModuleName }, transaction, cancellationToken: cancellationToken));
             if (moduleId is null)
             {
                 continue;
@@ -217,15 +252,24 @@ VALUES('{SqliteCli.Escape(bundle.ModuleName)}', '{SqliteCli.Escape(bundle.Legacy
             var orderedSkills = bundle.Skills.OrderBy(static s => s.StartedAt, StringComparer.OrdinalIgnoreCase).ToList();
             var startedAt = orderedSkills.FirstOrDefault()?.StartedAt ?? DateTime.UtcNow.ToString("O");
             var endedAt = orderedSkills.LastOrDefault()?.EndedAt ?? DateTime.UtcNow.ToString("O");
-            var runStatus = orderedSkills.Any(static s => s.Status.Equals("failed", StringComparison.OrdinalIgnoreCase)) ? "failed" : "passed";
+            var status = orderedSkills.Any(static s => s.Status.Equals("failed", StringComparison.OrdinalIgnoreCase)) ? "failed" : "passed";
             var summary = $"{orderedSkills.Count(static s => s.Status.Equals("passed", StringComparison.OrdinalIgnoreCase))}/{orderedSkills.Count} skills passed.";
 
-            var runSql = $@"
-INSERT INTO runs(module_id, run_id, status, started_at, ended_at, summary, base_url, brs_path, artifact_root, created_at)
-VALUES({moduleId.Value}, '{SqliteCli.Escape(bundle.RunId)}', '{SqliteCli.Escape(runStatus)}', '{SqliteCli.Escape(startedAt)}', '{SqliteCli.Escape(endedAt)}', '{SqliteCli.Escape(summary)}', '{SqliteCli.Escape(bundle.BaseUrl)}', '{SqliteCli.Escape(bundle.BrsPath)}', '{SqliteCli.Escape(bundle.ArtifactRoot)}', '{DateTime.UtcNow:O}');";
-            await _sqlite.ExecuteNonQueryAsync(runSql, cancellationToken);
+            await connection.ExecuteAsync(new CommandDefinition(insertRunSql, new
+            {
+                ModuleId = moduleId.Value,
+                RunId = bundle.RunId,
+                Status = status,
+                StartedAt = startedAt,
+                EndedAt = endedAt,
+                Summary = summary,
+                BaseUrl = bundle.BaseUrl,
+                BrsPath = bundle.BrsPath,
+                ArtifactRoot = bundle.ArtifactRoot,
+                CreatedAt = DateTime.UtcNow.ToString("O")
+            }, transaction, cancellationToken: cancellationToken));
 
-            var runFk = await GetSingleLongAsync($"SELECT id AS value FROM runs WHERE module_id={moduleId.Value} AND run_id='{SqliteCli.Escape(bundle.RunId)}' LIMIT 1;", cancellationToken);
+            var runFk = await connection.ExecuteScalarAsync<long?>(new CommandDefinition(selectRunSql, new { ModuleId = moduleId.Value, RunId = bundle.RunId }, transaction, cancellationToken: cancellationToken));
             if (runFk is null)
             {
                 continue;
@@ -233,77 +277,96 @@ VALUES({moduleId.Value}, '{SqliteCli.Escape(bundle.RunId)}', '{SqliteCli.Escape(
 
             foreach (var skill in orderedSkills)
             {
-                var skillSql = $@"
-INSERT INTO skill_executions
-(run_fk, skill_name, stage, status, started_at, ended_at, summary, metrics_json, artifacts_json, findings_json, recommendations_json, result_contract_version, result_json)
-VALUES
-({runFk.Value}, '{SqliteCli.Escape(skill.SkillName)}', '{SqliteCli.Escape(skill.Stage)}', '{SqliteCli.Escape(skill.Status)}', '{SqliteCli.Escape(skill.StartedAt)}', '{SqliteCli.Escape(skill.EndedAt)}', '{SqliteCli.Escape(skill.Summary)}', '{SqliteCli.Escape(skill.MetricsJson)}', '{SqliteCli.Escape(skill.ArtifactsJson)}', '{SqliteCli.Escape(skill.FindingsJson)}', '{SqliteCli.Escape(skill.RecommendationsJson)}', '{SqliteCli.Escape(skill.ResultContractVersion)}', '{SqliteCli.Escape(skill.ResultJson)}');";
-                await _sqlite.ExecuteNonQueryAsync(skillSql, cancellationToken);
+                await connection.ExecuteAsync(new CommandDefinition(insertSkillSql, new
+                {
+                    RunFk = runFk.Value,
+                    SkillName = skill.SkillName,
+                    Stage = skill.Stage,
+                    Status = skill.Status,
+                    StartedAt = skill.StartedAt,
+                    EndedAt = skill.EndedAt,
+                    Summary = skill.Summary,
+                    MetricsJson = skill.MetricsJson,
+                    ArtifactsJson = skill.ArtifactsJson,
+                    FindingsJson = skill.FindingsJson,
+                    RecommendationsJson = skill.RecommendationsJson,
+                    ResultContractVersion = skill.ResultContractVersion,
+                    ResultJson = skill.ResultJson
+                }, transaction, cancellationToken: cancellationToken));
 
-                await PersistFindingsAsync(runFk.Value, skill, cancellationToken);
-                await PersistRecommendationsAsync(runFk.Value, skill, cancellationToken);
-                await PersistTestCategoryIfApplicableAsync(runFk.Value, skill, cancellationToken);
+                await PersistFindingsAsync(connection, transaction, runFk.Value, skill, cancellationToken);
+                await PersistRecommendationsAsync(connection, transaction, runFk.Value, skill, cancellationToken);
+                await PersistTestCategoryIfApplicableAsync(connection, transaction, runFk.Value, skill, cancellationToken);
             }
         }
     }
 
-    private async Task PersistFindingsAsync(long runFk, ParsedSkillExecution skill, CancellationToken cancellationToken)
+    private async Task PersistFindingsAsync(IDbConnection connection, IDbTransaction transaction, long runFk, ParsedSkillExecution skill, CancellationToken cancellationToken)
     {
         if (skill.RawResult["findings"] is not JsonArray findingArray)
         {
             return;
         }
 
-        foreach (var findingNode in findingArray)
-        {
-            var finding = findingNode as JsonObject;
-            var issueType = finding?["type"]?.GetValue<string>() ?? "General";
-            var message = finding?["message"]?.GetValue<string>() ?? findingNode?.ToJsonString() ?? string.Empty;
-            var scenario = finding?["scenario"]?.GetValue<string>() ?? string.Empty;
-            var likelyCause = finding?["likelyCause"]?.GetValue<string>() ?? finding?["cause"]?.GetValue<string>() ?? string.Empty;
-            var evidence = finding?["evidence"]?.GetValue<string>() ?? string.Empty;
-            var severity = finding?["severity"]?.GetValue<string>() ?? "medium";
-            var status = finding?["status"]?.GetValue<string>() ?? "open";
-            var confidence = ParseDouble(finding?["confidence"], 0.65);
-            var resolvedInRunId = finding?["resolvedInRunId"]?.GetValue<string>() ?? string.Empty;
-            var resolutionNotes = finding?["resolutionNotes"]?.GetValue<string>() ?? string.Empty;
-            var affectedFilesJson = finding?["affectedFiles"]?.ToJsonString() ?? "[]";
-
-            var sql = $@"
+        const string sql = @"
 INSERT INTO finding_records
 (run_fk, stage, skill_name, scenario, issue_type, message, likely_cause, evidence, severity, status, confidence, affected_files_json, recommendation, resolved_in_run_id, resolution_notes)
 VALUES
-({runFk}, '{SqliteCli.Escape(skill.Stage)}', '{SqliteCli.Escape(skill.SkillName)}', '{SqliteCli.Escape(scenario)}', '{SqliteCli.Escape(issueType)}', '{SqliteCli.Escape(message)}', '{SqliteCli.Escape(likelyCause)}', '{SqliteCli.Escape(evidence)}', '{SqliteCli.Escape(severity)}', '{SqliteCli.Escape(status)}', {confidence.ToString(System.Globalization.CultureInfo.InvariantCulture)}, '{SqliteCli.Escape(affectedFilesJson)}', '', '{SqliteCli.Escape(resolvedInRunId)}', '{SqliteCli.Escape(resolutionNotes)}');";
+(@RunFk, @Stage, @SkillName, @Scenario, @IssueType, @Message, @LikelyCause, @Evidence, @Severity, @Status, @Confidence, @AffectedFilesJson, @Recommendation, @ResolvedInRunId, @ResolutionNotes);";
 
-            await _sqlite.ExecuteNonQueryAsync(sql, cancellationToken);
+        foreach (var findingNode in findingArray)
+        {
+            var finding = findingNode as JsonObject;
+            await connection.ExecuteAsync(new CommandDefinition(sql, new
+            {
+                RunFk = runFk,
+                Stage = skill.Stage,
+                SkillName = skill.SkillName,
+                Scenario = finding?["scenario"]?.GetValue<string>() ?? string.Empty,
+                IssueType = finding?["type"]?.GetValue<string>() ?? "General",
+                Message = finding?["message"]?.GetValue<string>() ?? findingNode?.ToJsonString() ?? string.Empty,
+                LikelyCause = finding?["likelyCause"]?.GetValue<string>() ?? finding?["cause"]?.GetValue<string>() ?? string.Empty,
+                Evidence = finding?["evidence"]?.GetValue<string>() ?? string.Empty,
+                Severity = finding?["severity"]?.GetValue<string>() ?? "medium",
+                Status = finding?["status"]?.GetValue<string>() ?? "open",
+                Confidence = ParseDouble(finding?["confidence"], 0.65),
+                AffectedFilesJson = finding?["affectedFiles"]?.ToJsonString() ?? "[]",
+                Recommendation = string.Empty,
+                ResolvedInRunId = finding?["resolvedInRunId"]?.GetValue<string>() ?? string.Empty,
+                ResolutionNotes = finding?["resolutionNotes"]?.GetValue<string>() ?? string.Empty
+            }, transaction, cancellationToken: cancellationToken));
         }
     }
 
-    private async Task PersistRecommendationsAsync(long runFk, ParsedSkillExecution skill, CancellationToken cancellationToken)
+    private async Task PersistRecommendationsAsync(IDbConnection connection, IDbTransaction transaction, long runFk, ParsedSkillExecution skill, CancellationToken cancellationToken)
     {
         if (skill.RawResult["recommendations"] is not JsonArray recommendationArray)
         {
             return;
         }
 
-        foreach (var recommendationNode in recommendationArray)
-        {
-            var recommendationObject = recommendationNode as JsonObject;
-            var message = recommendationObject?["message"]?.GetValue<string>() ?? recommendationNode?.GetValue<string>() ?? recommendationNode?.ToJsonString() ?? string.Empty;
-            var priority = recommendationObject?["priority"]?.GetValue<string>() ?? "medium";
-            var evidence = recommendationObject?["evidence"]?.GetValue<string>() ?? string.Empty;
-
-            var sql = $@"
+        const string sql = @"
 INSERT INTO recommendation_records
 (run_fk, stage, skill_name, message, priority, evidence)
 VALUES
-({runFk}, '{SqliteCli.Escape(skill.Stage)}', '{SqliteCli.Escape(skill.SkillName)}', '{SqliteCli.Escape(message)}', '{SqliteCli.Escape(priority)}', '{SqliteCli.Escape(evidence)}');";
+(@RunFk, @Stage, @SkillName, @Message, @Priority, @Evidence);";
 
-            await _sqlite.ExecuteNonQueryAsync(sql, cancellationToken);
+        foreach (var recommendationNode in recommendationArray)
+        {
+            var recommendationObject = recommendationNode as JsonObject;
+            await connection.ExecuteAsync(new CommandDefinition(sql, new
+            {
+                RunFk = runFk,
+                Stage = skill.Stage,
+                SkillName = skill.SkillName,
+                Message = recommendationObject?["message"]?.GetValue<string>() ?? recommendationNode?.GetValue<string>() ?? recommendationNode?.ToJsonString() ?? string.Empty,
+                Priority = recommendationObject?["priority"]?.GetValue<string>() ?? "medium",
+                Evidence = recommendationObject?["evidence"]?.GetValue<string>() ?? string.Empty
+            }, transaction, cancellationToken: cancellationToken));
         }
     }
 
-    private async Task PersistTestCategoryIfApplicableAsync(long runFk, ParsedSkillExecution skill, CancellationToken cancellationToken)
+    private async Task PersistTestCategoryIfApplicableAsync(IDbConnection connection, IDbTransaction transaction, long runFk, ParsedSkillExecution skill, CancellationToken cancellationToken)
     {
         if (!TestCategoryBySkill.TryGetValue(skill.SkillName, out var testInfo))
         {
@@ -311,32 +374,38 @@ VALUES
         }
 
         var metrics = ParseMetrics(skill.MetricsJson);
-        var total = metrics.GetValueOrDefault("total");
-        var passed = metrics.GetValueOrDefault("passed");
-        var failed = metrics.GetValueOrDefault("failed");
-        var warningCount = metrics.GetValueOrDefault("warnings");
-        var newTests = metrics.GetValueOrDefault("newTestsAdded");
-
-        var scenariosJson = ExtractScenarioJson(skill.RawResult);
-        var logsJson = BuildLogsJson(skill.ArtifactsJson);
-
-        var sql = $@"
+        const string sql = @"
 INSERT INTO test_category_results
 (run_fk, category, purpose, scenarios_json, total, passed, failed, warnings, new_tests_added, logs_json, artifacts_json, source_skill, stage)
 VALUES
-({runFk}, '{SqliteCli.Escape(testInfo.Category)}', '{SqliteCli.Escape(testInfo.Purpose)}', '{SqliteCli.Escape(scenariosJson)}', {total}, {passed}, {failed}, {warningCount}, {newTests}, '{SqliteCli.Escape(logsJson)}', '{SqliteCli.Escape(skill.ArtifactsJson)}', '{SqliteCli.Escape(skill.SkillName)}', '{SqliteCli.Escape(skill.Stage)}');";
+(@RunFk, @Category, @Purpose, @ScenariosJson, @Total, @Passed, @Failed, @Warnings, @NewTestsAdded, @LogsJson, @ArtifactsJson, @SourceSkill, @Stage);";
 
-        await _sqlite.ExecuteNonQueryAsync(sql, cancellationToken);
+        await connection.ExecuteAsync(new CommandDefinition(sql, new
+        {
+            RunFk = runFk,
+            Category = testInfo.Category,
+            Purpose = testInfo.Purpose,
+            ScenariosJson = ExtractScenarioJson(skill.RawResult),
+            Total = metrics.GetValueOrDefault("total"),
+            Passed = metrics.GetValueOrDefault("passed"),
+            Failed = metrics.GetValueOrDefault("failed"),
+            Warnings = metrics.GetValueOrDefault("warnings"),
+            NewTestsAdded = metrics.GetValueOrDefault("newTestsAdded"),
+            LogsJson = BuildLogsJson(skill.ArtifactsJson),
+            ArtifactsJson = skill.ArtifactsJson,
+            SourceSkill = skill.SkillName,
+            Stage = skill.Stage
+        }, transaction, cancellationToken: cancellationToken));
     }
 
-    private async Task PersistIterationDeltasAsync(CancellationToken cancellationToken)
+    private async Task PersistIterationDeltasAsync(IDbConnection connection, IDbTransaction transaction, CancellationToken cancellationToken)
     {
-        var modules = await QueryRowsAsync("SELECT id, name FROM modules ORDER BY name;", cancellationToken);
+        var modules = await QueryRowsAsync(connection, "SELECT id, name FROM modules ORDER BY name;", null, transaction, cancellationToken);
 
         foreach (var module in modules)
         {
             var moduleId = module["id"]?.GetValue<long>() ?? 0;
-            var runs = await QueryRowsAsync($"SELECT id, run_id FROM runs WHERE module_id={moduleId} ORDER BY run_id;", cancellationToken);
+            var runs = await QueryRowsAsync(connection, "SELECT id, run_id FROM runs WHERE module_id=@ModuleId ORDER BY run_id;", new { ModuleId = moduleId }, transaction, cancellationToken);
 
             JsonObject? previousRun = null;
             var previousFindingTypes = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
@@ -347,12 +416,12 @@ VALUES
                 var runFk = run["id"]?.GetValue<long>() ?? 0;
                 var runId = run["run_id"]?.GetValue<string>() ?? string.Empty;
 
-                var testsAdded = (await GetSingleLongAsync($"SELECT COALESCE(SUM(new_tests_added),0) AS value FROM test_category_results WHERE run_fk={runFk};", cancellationToken)) ?? 0;
-                var totalFailed = (int)((await GetSingleLongAsync($"SELECT COALESCE(SUM(failed),0) AS value FROM test_category_results WHERE run_fk={runFk};", cancellationToken)) ?? 0);
-                var resolvedFindings = (await GetSingleLongAsync($"SELECT COUNT(1) AS value FROM finding_records WHERE run_fk={runFk} AND LOWER(status)='resolved';", cancellationToken)) ?? 0;
+                var testsAdded = (await connection.ExecuteScalarAsync<long?>(new CommandDefinition("SELECT COALESCE(SUM(new_tests_added),0) FROM test_category_results WHERE run_fk=@RunFk;", new { RunFk = runFk }, transaction, cancellationToken: cancellationToken))) ?? 0;
+                var totalFailed = (int)((await connection.ExecuteScalarAsync<long?>(new CommandDefinition("SELECT COALESCE(SUM(failed),0) FROM test_category_results WHERE run_fk=@RunFk;", new { RunFk = runFk }, transaction, cancellationToken: cancellationToken))) ?? 0);
+                var resolvedFindings = (await connection.ExecuteScalarAsync<long?>(new CommandDefinition("SELECT COUNT(1) FROM finding_records WHERE run_fk=@RunFk AND LOWER(status)='resolved';", new { RunFk = runFk }, transaction, cancellationToken: cancellationToken))) ?? 0;
 
                 var currentTypes = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-                var currentTypeRows = await QueryRowsAsync($"SELECT DISTINCT issue_type FROM finding_records WHERE run_fk={runFk};", cancellationToken);
+                var currentTypeRows = await QueryRowsAsync(connection, "SELECT DISTINCT issue_type FROM finding_records WHERE run_fk=@RunFk;", new { RunFk = runFk }, transaction, cancellationToken);
                 foreach (var typeRow in currentTypeRows)
                 {
                     var type = typeRow["issue_type"]?.GetValue<string>();
@@ -365,8 +434,8 @@ VALUES
                 var newFindings = currentTypes.Except(previousFindingTypes, StringComparer.OrdinalIgnoreCase).Count();
                 var testsFixed = previousRun is null ? 0 : Math.Max(0, previousTotalFailed - totalFailed);
                 var failuresReduced = previousRun is null ? 0 : Math.Max(0, previousTotalFailed - totalFailed);
-
                 var trend = ComputeTrend(previousRun is null, failuresReduced, newFindings, (int)resolvedFindings);
+                var previousRunId = previousRun?["run_id"]?.GetValue<string>() ?? string.Empty;
 
                 var deltaJson = JsonSerializer.Serialize(new
                 {
@@ -378,14 +447,24 @@ VALUES
                     progressionTrend = trend
                 });
 
-                var previousRunId = previousRun?["run_id"]?.GetValue<string>() ?? string.Empty;
-
-                var insertSql = $@"
+                await connection.ExecuteAsync(new CommandDefinition(@"
 INSERT INTO iteration_deltas
 (module_id, run_id, previous_run_id, tests_added, tests_fixed, failures_reduced, new_findings_introduced, resolved_findings, progression_trend, delta_json)
 VALUES
-({moduleId}, '{SqliteCli.Escape(runId)}', '{SqliteCli.Escape(previousRunId)}', {testsAdded}, {testsFixed}, {failuresReduced}, {newFindings}, {resolvedFindings}, '{SqliteCli.Escape(trend)}', '{SqliteCli.Escape(deltaJson)}');";
-                await _sqlite.ExecuteNonQueryAsync(insertSql, cancellationToken);
+(@ModuleId, @RunId, @PreviousRunId, @TestsAdded, @TestsFixed, @FailuresReduced, @NewFindingsIntroduced, @ResolvedFindings, @ProgressionTrend, @DeltaJson);",
+                    new
+                    {
+                        ModuleId = moduleId,
+                        RunId = runId,
+                        PreviousRunId = previousRunId,
+                        TestsAdded = testsAdded,
+                        TestsFixed = testsFixed,
+                        FailuresReduced = failuresReduced,
+                        NewFindingsIntroduced = newFindings,
+                        ResolvedFindings = resolvedFindings,
+                        ProgressionTrend = trend,
+                        DeltaJson = deltaJson
+                    }, transaction, cancellationToken: cancellationToken));
 
                 previousRun = run;
                 previousTotalFailed = totalFailed;
@@ -414,37 +493,52 @@ VALUES
         return "stable";
     }
 
-    private async Task<long?> GetSingleLongAsync(string sql, CancellationToken cancellationToken)
+    private static async Task<List<JsonObject>> QueryRowsAsync(IDbConnection connection, string sql, object? parameters, IDbTransaction transaction, CancellationToken cancellationToken)
     {
-        var rows = await QueryRowsAsync(sql, cancellationToken);
-        var first = rows.FirstOrDefault();
-        if (first is null || !first.TryGetPropertyValue("value", out var valueNode) || valueNode is null)
+        var rows = await connection.QueryAsync(new CommandDefinition(sql, parameters, transaction, cancellationToken: cancellationToken));
+        var result = new List<JsonObject>();
+
+        foreach (var row in rows)
+        {
+            if (row is not IDictionary<string, object?> dictionary)
+            {
+                continue;
+            }
+
+            var obj = new JsonObject();
+            foreach (var (key, value) in dictionary)
+            {
+                obj[key] = ToJsonNode(value);
+            }
+            result.Add(obj);
+        }
+
+        return result;
+    }
+
+    private static JsonNode? ToJsonNode(object? value)
+    {
+        if (value is null || value is DBNull)
         {
             return null;
         }
 
-        return long.TryParse(valueNode.ToString(), out var parsed) ? parsed : null;
-    }
-
-    private async Task<List<JsonObject>> QueryRowsAsync(string sql, CancellationToken cancellationToken)
-    {
-        var json = await _sqlite.ExecuteJsonQueryAsync(sql, cancellationToken);
-        if (string.IsNullOrWhiteSpace(json))
+        return value switch
         {
-            return [];
-        }
-
-        var node = JsonNode.Parse(json) as JsonArray;
-        if (node is null)
-        {
-            return [];
-        }
-
-        return node
-            .Select(static item => item as JsonObject)
-            .Where(static item => item is not null)
-            .Select(static item => item!)
-            .ToList();
+            string s => JsonValue.Create(s),
+            int i => JsonValue.Create(i),
+            long l => JsonValue.Create(l),
+            short s16 => JsonValue.Create(s16),
+            byte b => JsonValue.Create(b),
+            double d => JsonValue.Create(d),
+            float f => JsonValue.Create(f),
+            decimal dec => JsonValue.Create(dec),
+            bool bo => JsonValue.Create(bo),
+            DateTime dt => JsonValue.Create(dt.ToString("O")),
+            DateTimeOffset dto => JsonValue.Create(dto.ToString("O")),
+            byte[] bytes => JsonValue.Create(Convert.ToBase64String(bytes)),
+            _ => JsonValue.Create(value.ToString())
+        };
     }
 
     private static Dictionary<string, int> ParseMetrics(string json)
@@ -486,17 +580,14 @@ VALUES
             return fallback;
         }
 
-        return double.TryParse(node.ToString(), out var value) ? value : fallback;
+        return double.TryParse(node.ToString(), NumberStyles.Any, CultureInfo.InvariantCulture, out var value)
+            ? value
+            : fallback;
     }
 
     private static string ExtractScenarioJson(JsonObject rawResult)
     {
-        if (rawResult["metrics"] is not JsonObject metrics)
-        {
-            return "[]";
-        }
-
-        if (metrics["scenarios"] is not JsonArray scenarios)
+        if (rawResult["metrics"] is not JsonObject metrics || metrics["scenarios"] is not JsonArray scenarios)
         {
             return "[]";
         }
@@ -504,9 +595,9 @@ VALUES
         var names = new JsonArray();
         foreach (var scenario in scenarios)
         {
-            if (scenario is JsonObject scenarioObject)
+            if (scenario is JsonObject objectScenario)
             {
-                var name = scenarioObject["name"]?.GetValue<string>() ?? string.Empty;
+                var name = objectScenario["name"]?.GetValue<string>() ?? string.Empty;
                 if (!string.IsNullOrWhiteSpace(name))
                 {
                     names.Add(name);
@@ -544,7 +635,10 @@ VALUES
                     continue;
                 }
 
-                if (path.EndsWith(".log", StringComparison.OrdinalIgnoreCase) || path.EndsWith(".txt", StringComparison.OrdinalIgnoreCase) || path.EndsWith("console-logs.json", StringComparison.OrdinalIgnoreCase) || path.EndsWith("network-failures.json", StringComparison.OrdinalIgnoreCase))
+                if (path.EndsWith(".log", StringComparison.OrdinalIgnoreCase) ||
+                    path.EndsWith(".txt", StringComparison.OrdinalIgnoreCase) ||
+                    path.EndsWith("console-logs.json", StringComparison.OrdinalIgnoreCase) ||
+                    path.EndsWith("network-failures.json", StringComparison.OrdinalIgnoreCase))
                 {
                     logs.Add(path);
                 }

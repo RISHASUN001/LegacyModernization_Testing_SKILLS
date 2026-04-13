@@ -11,6 +11,13 @@ var skillsRoot = Path.Combine(workspaceRoot, "skills");
 var artifactsRoot = Path.Combine(workspaceRoot, "artifacts");
 var runInputsRoot = Path.Combine(workspaceRoot, "run-inputs");
 var dataRoot = Path.Combine(workspaceRoot, "data");
+var databasePath = Path.Combine(dataRoot, "modernization.db");
+
+var connectionString = builder.Configuration.GetConnectionString("ModernizationDb");
+if (string.IsNullOrWhiteSpace(connectionString))
+{
+    connectionString = "Data Source=data/modernization.db";
+}
 
 builder.Services.Configure<PlatformPathsOptions>(options =>
 {
@@ -19,7 +26,8 @@ builder.Services.Configure<PlatformPathsOptions>(options =>
     options.ArtifactsRoot = artifactsRoot;
     options.RunInputsRoot = runInputsRoot;
     options.DataRoot = dataRoot;
-    options.DatabasePath = Path.Combine(dataRoot, "modernization.db");
+    options.DatabasePath = databasePath;
+    options.ConnectionString = connectionString;
 });
 
 builder.Services.AddLegacyModernizationInfrastructure();
