@@ -13,7 +13,9 @@
   ],
   "outputFiles": [
     "result.json",
-    "lessons.json"
+    "lessons-learned.json",
+    "lessons.json",
+    "../_knowledge-base/lessons-kb.json"
   ],
   "artifactFolders": [
     "artifacts/{module}/{runId}/lessons-learned/"
@@ -23,5 +25,13 @@
     "parity-verification"
   ],
   "summaryOutputType": "lessons-summary",
-  "resultContractVersion": "2.0"
+  "resultContractVersion": "2.0",
+  "externalDependencies": [],
+  "execution": {
+    "primaryCommand": "python run.py --input <module-run-input.json> --artifacts-root <artifacts-root>",
+    "timeoutNotes": "Real-first graceful execution. Writes result.json even on degraded/failure paths.",
+    "realCommandHints": [
+      "python run.py --input <module-run-input.json> --artifacts-root <artifacts-root>"
+    ]
+  }
 }

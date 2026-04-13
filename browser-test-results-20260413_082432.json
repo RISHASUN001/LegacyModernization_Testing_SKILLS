@@ -1,0 +1,21 @@
+{
+  "skillName": "browser-testing-with-devtools",
+  "stage": "execution",
+  "status": "failed",
+  "startedAt": "2026-04-13T08:24:32.765253Z",
+  "endedAt": "2026-04-13T08:24:32.795787Z",
+  "summary": "Browser testing failed: Dashboard health check failed - ensure application is running at http://0.0.0.0:5001/",
+  "metrics": {},
+  "findings": [
+    {
+      "type": "error",
+      "severity": "critical",
+      "message": "Test execution failed: Dashboard health check failed - ensure application is running at http://0.0.0.0:5001/",
+      "recommendation": "Ensure dashboard is running at http://0.0.0.0:5001/ and test API endpoints are available"
+    }
+  ],
+  "recommendations": [],
+  "artifacts": [],
+  "resultContractVersion": "2.0",
+  "testMode": true
+}

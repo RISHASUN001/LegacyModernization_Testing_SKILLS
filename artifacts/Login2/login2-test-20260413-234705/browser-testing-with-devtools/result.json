@@ -1,0 +1,73 @@
+{
+  "skillName": "browser-testing-with-devtools",
+  "stage": "execution",
+  "moduleName": "Login2",
+  "runId": "login2-test-20260413-234705",
+  "status": "passed",
+  "startedAt": "2026-04-13T15:50:59.128409Z",
+  "endedAt": "2026-04-13T15:50:59.162289Z",
+  "summary": "DevTools diagnostics for Login2: consoleErrors=0, networkFailures=0, degradedMode=True.",
+  "metrics": {
+    "total": 6,
+    "passed": 6,
+    "failed": 0,
+    "warnings": 1,
+    "newTestsAdded": 0,
+    "degradedMode": true
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/Login2/login2-test-20260413-234705/browser-testing-with-devtools/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login2/login2-test-20260413-234705/browser-testing-with-devtools/preflight.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login2/login2-test-20260413-234705/browser-testing-with-devtools/console-logs.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login2/login2-test-20260413-234705/browser-testing-with-devtools/network-failures.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login2/login2-test-20260413-234705/browser-testing-with-devtools/dom-state.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login2/login2-test-20260413-234705/browser-testing-with-devtools/runtime-issues.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login2/login2-test-20260413-234705/browser-testing-with-devtools/performance-observations.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login2/login2-test-20260413-234705/browser-testing-with-devtools/execution-log.txt"
+  ],
+  "findings": [
+    {
+      "type": "EnvironmentDependencyMissing",
+      "scenario": "DevTools diagnostics API health check",
+      "message": "Required endpoint unavailable: http://0.0.0.0:5001/api/test/health",
+      "likelyCause": "Converted app does not expose /api/test diagnostics endpoints.",
+      "evidence": "HTTP fetch failed for test diagnostics health endpoint.",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.97
+    }
+  ],
+  "recommendations": [
+    {
+      "message": "Enable diagnostics test API endpoints or set testApiEndpoint in run input.",
+      "priority": "high",
+      "evidence": "DevTools diagnostics needs /api/test/* evidence sources."
+    }
+  ],
+  "resultContractVersion": "2.0",
+  "statusReason": "execution-degraded-missing-endpoints",
+  "preflight": {
+    "category": "DevTools Diagnostics",
+    "baseUrl": {
+      "required": true,
+      "provided": "http://0.0.0.0:5001/",
+      "normalized": "http://0.0.0.0:5001",
+      "ok": true,
+      "reason": "ok"
+    },
+    "reachability": {
+      "required": true,
+      "url": "http://0.0.0.0:5001/api/test/health",
+      "ok": true,
+      "statusCode": 404,
+      "reason": "http-error-404"
+    },
+    "strictMode": true
+  },
+  "provenanceSummary": {
+    "scenarioSources": [
+      "fallback"
+    ],
+    "confidence": 0.45
+  }
+}

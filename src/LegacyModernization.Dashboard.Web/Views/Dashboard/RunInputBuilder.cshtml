@@ -4,7 +4,7 @@
 }
 
 <h2 class="mb-1">Run Input Builder</h2>
-<p class="text-muted">Generate `module-run-input.json` for external Continue.dev/Claude skill execution. Skills run in IDE, then persisted results are loaded by this dashboard.</p>
+<p class="text-muted">Generate `module-run-input.json` for external Continue.dev/Claude skill execution. Test API endpoint is auto-derived from Base URL as <code>{baseUrl}/api/test</code>.</p>
 
 @if (!string.IsNullOrWhiteSpace(Model.Message))
 {
@@ -16,15 +16,25 @@
     <div class="row g-3">
         <div class="col-md-4">
             <label class="form-label">Run ID</label>
-            <input class="form-control" name="RunId" value="@Model.Page.Draft.RunId" />
+            <div class="input-group">
+                <input class="form-control" name="RunId" id="runIdInput" value="@Model.Page.Draft.RunId" />
+                <button class="btn btn-outline-secondary" type="button" id="regenRunIdBtn">Unique</button>
+            </div>
+            <div class="form-text">Auto-suggests a unique ID by module and timestamp to avoid stale duplicate history rows.</div>
         </div>
         <div class="col-md-4">
             <label class="form-label">Module Name</label>
-            <input class="form-control" name="ModuleName" value="@Model.Page.Draft.ModuleName" />
+            <input class="form-control" name="ModuleName" id="moduleNameInput" value="@Model.Page.Draft.ModuleName" />
         </div>
         <div class="col-md-4">
             <label class="form-label">Base URL</label>
-            <input class="form-control" name="BaseUrl" value="@Model.Page.Draft.BaseUrl" />
+            <input class="form-control" name="BaseUrl" id="baseUrlInput" value="@Model.Page.Draft.BaseUrl" placeholder="http://localhost:5001" />
+            <div class="form-text">Used for E2E/Playwright reachability and auto-built Test API endpoint.</div>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Derived Test API Endpoint</label>
+            <input class="form-control" id="derivedTestApiEndpoint" value="@($"{(Model.Page.Draft.BaseUrl ?? string.Empty).TrimEnd('/')}/api/test")" readonly />
+            <div class="form-text">Auto-derived from Base URL at preview/save time and shown live here.</div>
         </div>
 
         <div class="col-md-6">
@@ -52,6 +62,45 @@
         <div class="col-md-4">
             <label class="form-label">Keywords</label>
             <textarea class="form-control" rows="5" name="KeywordsText">@Model.Page.Draft.KeywordsText</textarea>
+        </div>
+
+        <div class="col-md-12">
+            <h3 class="h6 mt-2">Optional Category Commands (for strict preflight command resolution)</h3>
+            <div class="alert alert-info py-2 mt-2 mb-0 small">
+                <div><strong>What this is for:</strong> each execution category can run a real command. If blank, skills try auto-detection; if set, preflight is more reliable.</div>
+                <div class="mt-1"><strong>Swagger note:</strong> Swagger/OpenAPI is useful for API docs and manual testing, but this field expects an executable command (for example <code>python3 -m pytest -m api</code> or <code>dotnet test ...</code>).</div>
+                <div class="mt-1">These defaults are starter values; change them to match your repo paths and tooling.</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Unit Command</label>
+            <input class="form-control" name="UnitCommand" value="@Model.Page.Draft.UnitCommand" placeholder="dotnet test ./tests/UnitTests.csproj" />
+            <div class="form-text">Runs unit-level logic/validator tests.</div>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Integration Command</label>
+            <input class="form-control" name="IntegrationCommand" value="@Model.Page.Draft.IntegrationCommand" />
+            <div class="form-text">Runs service + database/infrastructure integration tests.</div>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">API Command</label>
+            <input class="form-control" name="ApiCommand" value="@Model.Page.Draft.ApiCommand" placeholder="python3 -m pytest -m api" />
+            <div class="form-text">Runs API contract tests via executable tool (for example pytest or Newman).</div>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">E2E Command</label>
+            <input class="form-control" name="E2eCommand" value="@Model.Page.Draft.E2eCommand" placeholder="python3 -m pytest -m e2e" />
+            <div class="form-text">Runs full user journey tests end-to-end.</div>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Edge Case Command</label>
+            <input class="form-control" name="EdgeCaseCommand" value="@Model.Page.Draft.EdgeCaseCommand" />
+            <div class="form-text">Runs boundary/failure/retry regression test suite.</div>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Playwright Command</label>
+            <input class="form-control" name="PlaywrightCommand" value="@Model.Page.Draft.PlaywrightCommand" placeholder="python3 -m pytest -m playwright" />
+            <div class="form-text">Runs browser automation suite used for UI evidence capture.</div>
         </div>
 
         <div class="col-12">
@@ -89,6 +138,54 @@
     const preview = document.getElementById('jsonPreview');
     const copy = document.getElementById('copyJsonBtn');
     const download = document.getElementById('downloadJsonBtn');
+    const baseUrlInput = document.getElementById('baseUrlInput');
+    const derivedEndpoint = document.getElementById('derivedTestApiEndpoint');
+    const runIdInput = document.getElementById('runIdInput');
+    const moduleNameInput = document.getElementById('moduleNameInput');
+    const regenRunIdBtn = document.getElementById('regenRunIdBtn');
+
+    const toSafeSlug = (value) => (value || '')
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/(^-|-$)/g, '') || 'module';
+
+    const makeUniqueRunId = () => {
+        const moduleSlug = toSafeSlug(moduleNameInput?.value);
+        const now = new Date();
+        const y = now.getFullYear();
+        const m = String(now.getMonth() + 1).padStart(2, '0');
+        const d = String(now.getDate()).padStart(2, '0');
+        const hh = String(now.getHours()).padStart(2, '0');
+        const mm = String(now.getMinutes()).padStart(2, '0');
+        const ss = String(now.getSeconds()).padStart(2, '0');
+        return `${moduleSlug}-test-${y}${m}${d}-${hh}${mm}${ss}`;
+    };
+
+    const ensureRunId = (force = false) => {
+        if (!runIdInput) {
+            return;
+        }
+        const current = (runIdInput.value || '').trim();
+        if (!force && current && !/^run-001$/i.test(current)) {
+            return;
+        }
+        runIdInput.value = makeUniqueRunId();
+    };
+
+    const updateDerivedEndpoint = () => {
+        if (!derivedEndpoint) {
+            return;
+        }
+        const base = (baseUrlInput?.value || '').trim().replace(/\/+$/, '');
+        derivedEndpoint.value = base ? `${base}/api/test` : '';
+    };
+
+    baseUrlInput?.addEventListener('input', updateDerivedEndpoint);
+    baseUrlInput?.addEventListener('change', updateDerivedEndpoint);
+    regenRunIdBtn?.addEventListener('click', () => ensureRunId(true));
+    moduleNameInput?.addEventListener('change', () => ensureRunId(true));
+    updateDerivedEndpoint();
+    ensureRunId();
 
     copy?.addEventListener('click', async () => {
         await navigator.clipboard.writeText(preview.textContent || '');

@@ -1,8 +1,19 @@
-{
-  "executedScenarios": [
-    "Draft save then submit",
-    "Session timeout recovery",
-    "Duplicate submit safety",
-    "Concurrent conflict resolution"
-  ]
-}
+[
+  {
+    "name": "Journey parity: View module records",
+    "status": "failed",
+    "notes": "Preflight failed",
+    "coverage": [
+      "critical-path",
+      "ui-api-db"
+    ],
+    "provenance": {
+      "type": "flow-derived",
+      "sources": [
+        "artifact:module-documentation/module-analysis.json"
+      ],
+      "confidence": 0.73,
+      "unknowns": []
+    }
+  }
+]

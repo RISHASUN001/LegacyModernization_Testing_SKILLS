@@ -1,0 +1,61 @@
+{
+  "moduleName": "Checklist",
+  "runId": "run-001",
+  "baseUrl": "http://localhost:5276",
+  "convertedSourceRoot": "C:/edcs2000/src_conversion4",
+  "legacySourceRoot": "C:/edcs2000/src",
+  "brsPath": "C:/docs/checklist_brs.docx",
+  "databasePath": "data/modernization.db",
+  "testApiEndpoint": "http://localhost:5276/api/test",
+  "performanceThresholds": {
+    "LCP_ms": 2500,
+    "INP_ms": 200,
+    "CLS": 0.1,
+    "TTFB_ms": 600,
+    "FCP_ms": 1800
+  },
+  "wcagLevel": "AA",
+  "testScenarios": [
+    "critical-path",
+    "component-rendering",
+    "network-integration",
+    "accessibility",
+    "performance",
+    "user-interaction"
+  ],
+  "viewportSizes": [
+    { "width": 1920, "height": 1080, "name": "desktop" },
+    { "width": 768, "height": 1024, "name": "tablet" },
+    { "width": 375, "height": 667, "name": "mobile" }
+  ],
+  "testInteractionFlows": [
+    {
+      "name": "Critical Path - Load Page",
+      "steps": [
+        "Navigate to base URL",
+        "Wait for page load",
+        "Check console for errors"
+      ]
+    },
+    {
+      "name": "Form Submission",
+      "steps": [
+        "Fill form fields",
+        "Click submit button",
+        "Verify success message"
+      ]
+    },
+    {
+      "name": "API Call Validation",
+      "steps": [
+        "Trigger API endpoint",
+        "Check response status",
+        "Validate response structure"
+      ]
+    }
+  ],
+  "skipScenarios": [],
+  "debugMode": true,
+  "captureScreenshots": true,
+  "captureDomSnapshots": true
+}

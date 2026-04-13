@@ -1,0 +1,34 @@
+{
+  "stage": "architecture-review",
+  "stageTitle": "Architecture Review",
+  "stageIndex": 3,
+  "status": "failed",
+  "skillCount": 1,
+  "skillsPassed": 0,
+  "skillsFailed": 1,
+  "skills": [
+    {
+      "skill": "clean-architecture-assessment",
+      "stage": "architecture-review",
+      "status": "failed",
+      "startedAt": "2026-04-13T11:32:38.535618Z",
+      "endedAt": "2026-04-13T11:32:38.667602Z",
+      "durationSeconds": 0.131,
+      "summary": "Architecture assessment for Login found 2 issue(s).",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/artifacts/Login/test-001/clean-architecture-assessment/result.json\n",
+      "stderr": "",
+      "command": [
+        "python3",
+        "/Users/risha/Documents/Buildathon/skills/clean-architecture-assessment/run.py",
+        "--input",
+        "/Users/risha/Documents/Buildathon/artifacts/Login/test-001/module-run-input.json",
+        "--artifacts-root",
+        "/Users/risha/Documents/Buildathon/artifacts"
+      ],
+      "resultPath": "/Users/risha/Documents/Buildathon/artifacts/Login/test-001/clean-architecture-assessment/result.json"
+    }
+  ],
+  "startedAt": "2026-04-13T11:32:38.535618Z",
+  "endedAt": "2026-04-13T11:32:38.667602Z"
+}

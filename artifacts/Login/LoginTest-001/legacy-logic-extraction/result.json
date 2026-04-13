@@ -1,0 +1,29 @@
+{
+  "skillName": "legacy-logic-extraction",
+  "stage": "logic-understanding",
+  "moduleName": "Login",
+  "runId": "LoginTest-001",
+  "status": "passed",
+  "startedAt": "2026-04-13T09:47:49.269842Z",
+  "endedAt": "2026-04-13T09:47:49.270508Z",
+  "summary": "Logic extraction identified 9 critical flows and preservation requirements.",
+  "metrics": {
+    "flows": 9,
+    "rules": 8,
+    "dependencies": 4,
+    "preserveItems": 3
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/Login/LoginTest-001/legacy-logic-extraction/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/LoginTest-001/legacy-logic-extraction/logic-summary.json"
+  ],
+  "findings": [],
+  "recommendations": [
+    {
+      "message": "Validate extracted preserve-list with SME before architecture refactor.",
+      "priority": "medium",
+      "evidence": "Session and redirect behavior depends on preserve-list."
+    }
+  ],
+  "resultContractVersion": "2.0"
+}

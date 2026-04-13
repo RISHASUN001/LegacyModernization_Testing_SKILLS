@@ -4,13 +4,14 @@
   "moduleName": "Checklist",
   "runId": "run-001",
   "status": "passed",
-  "startedAt": "2026-04-12T10:08:00Z",
-  "endedAt": "2026-04-12T10:09:00Z",
-  "summary": "Test plan generated with explicit category purpose and initial coverage gaps.",
+  "startedAt": "2026-04-13T11:32:20.486290Z",
+  "endedAt": "2026-04-13T11:32:20.500240Z",
+  "summary": "Test plan generated for Checklist with categories=7 and suggestedTests=1.",
   "metrics": {
-    "existingTests": 61,
-    "suggestedTests": 24,
-    "coveragePercent": 64
+    "existingTests": 0,
+    "suggestedTests": 1,
+    "coveragePercent": 34,
+    "architectureRisks": 1
   },
   "artifacts": [
     "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-001/test-plan-generation/result.json",
@@ -19,10 +20,19 @@
   "findings": [],
   "recommendations": [
     {
-      "message": "Prioritize API and edge-case scenarios before parity gate.",
+      "message": "Prioritize scenarios sourced from must-preserve behaviors and recurring lessons before parity signoff.",
       "priority": "high",
-      "evidence": "Coverage low on compatibility and resilience flows."
+      "evidence": "Test categories now include provenance for flow/risk/fallback/lessons origins."
     }
   ],
-  "resultContractVersion": "2.0"
+  "resultContractVersion": "2.0",
+  "provenanceSummary": {
+    "scenarioSources": [
+      "flow-derived",
+      "risk-derived",
+      "lessons-derived",
+      "fallback"
+    ],
+    "confidence": 0.82
+  }
 }

@@ -1,0 +1,133 @@
+{
+  "skillName": "api-test-execution",
+  "stage": "execution",
+  "moduleName": "Login",
+  "runId": "test-001",
+  "status": "failed",
+  "startedAt": "2026-04-13T11:32:38.863945Z",
+  "endedAt": "2026-04-13T11:32:38.898340Z",
+  "summary": "API execution failed preflight checks and did not run command execution.",
+  "metrics": {
+    "total": 3,
+    "passed": 0,
+    "failed": 3,
+    "warnings": 0,
+    "newTestsAdded": 0,
+    "scenarios": [
+      {
+        "name": "API contract route: /Auth/",
+        "status": "failed",
+        "notes": "Preflight failed",
+        "coverage": [
+          "http-contract"
+        ],
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "artifact:module-discovery/discovery-map.json"
+          ],
+          "confidence": 0.81,
+          "unknowns": []
+        }
+      },
+      {
+        "name": "API contract route: /Views/Auth/Dashboard.cshtml",
+        "status": "failed",
+        "notes": "Preflight failed",
+        "coverage": [
+          "http-contract"
+        ],
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "artifact:module-discovery/discovery-map.json"
+          ],
+          "confidence": 0.81,
+          "unknowns": []
+        }
+      },
+      {
+        "name": "API contract route: /Views/Auth/Index.cshtml",
+        "status": "failed",
+        "notes": "Preflight failed",
+        "coverage": [
+          "http-contract"
+        ],
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "artifact:module-discovery/discovery-map.json"
+          ],
+          "confidence": 0.81,
+          "unknowns": []
+        }
+      }
+    ],
+    "degradedMode": true,
+    "purpose": "Validate HTTP route compatibility, request/response contracts, and validation behavior."
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/Login/test-001/api-test-execution/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/test-001/api-test-execution/preflight.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/test-001/api-test-execution/execution-log.txt"
+  ],
+  "findings": [
+    {
+      "type": "ApplicationUnreachable",
+      "scenario": "API preflight",
+      "message": "Application reachability check failed.",
+      "likelyCause": "Converted app is not running or baseUrl points to wrong host/port.",
+      "evidence": "url=http://0.0.0.0:5001/; reason=<urlopen error [Errno 1] Operation not permitted>",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.95
+    }
+  ],
+  "recommendations": [
+    {
+      "message": "Start the converted app and verify the configured baseUrl/testApiEndpoint.",
+      "priority": "high",
+      "evidence": "Reachability must pass before running execution skills in strict mode."
+    }
+  ],
+  "resultContractVersion": "2.0",
+  "statusReason": "preflight-failed",
+  "preflight": {
+    "category": "API",
+    "baseUrl": {
+      "required": true,
+      "provided": "http://0.0.0.0:5001",
+      "normalized": "http://0.0.0.0:5001",
+      "ok": true,
+      "reason": ""
+    },
+    "reachability": {
+      "required": true,
+      "ok": false,
+      "statusCode": 0,
+      "reason": "<urlopen error [Errno 1] Operation not permitted>",
+      "path": "/",
+      "url": "http://0.0.0.0:5001/"
+    },
+    "commands": {
+      "candidates": [
+        "dotnet test /Users/risha/Documents/Buildathon/samples/legacy-java-app/LegacyModernization.Converted.csproj --nologo --verbosity minimal"
+      ],
+      "available": [
+        "dotnet test /Users/risha/Documents/Buildathon/samples/legacy-java-app/LegacyModernization.Converted.csproj --nologo --verbosity minimal"
+      ],
+      "unavailable": [],
+      "selected": "dotnet test /Users/risha/Documents/Buildathon/samples/legacy-java-app/LegacyModernization.Converted.csproj --nologo --verbosity minimal",
+      "ok": true
+    },
+    "strictMode": true
+  },
+  "provenanceSummary": {
+    "scenarioSources": [
+      "code-evidence",
+      "code-evidence",
+      "code-evidence"
+    ],
+    "confidence": 0.81
+  }
+}

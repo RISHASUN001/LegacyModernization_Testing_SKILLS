@@ -1,0 +1,26 @@
+{
+  "category": "Edge Case",
+  "baseUrl": {
+    "required": true,
+    "provided": "http://0.0.0.0:5001",
+    "normalized": "http://0.0.0.0:5001",
+    "ok": true,
+    "reason": ""
+  },
+  "reachability": {
+    "required": true,
+    "ok": false,
+    "statusCode": 0,
+    "reason": "<urlopen error [Errno 1] Operation not permitted>",
+    "path": "/",
+    "url": "http://0.0.0.0:5001/"
+  },
+  "commands": {
+    "candidates": [],
+    "available": [],
+    "unavailable": [],
+    "selected": "",
+    "ok": false
+  },
+  "strictMode": true
+}

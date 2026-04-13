@@ -1,0 +1,59 @@
+{
+  "skillName": "e2e-test-execution",
+  "stage": "execution",
+  "moduleName": "Login",
+  "runId": "LoginTest-001",
+  "status": "failed",
+  "startedAt": "2026-04-13T09:47:49.646678Z",
+  "endedAt": "2026-04-13T09:47:49.647882Z",
+  "summary": "Playwright E2E journeys reveal workflow and timeout parity gaps.",
+  "metrics": {
+    "total": 9,
+    "passed": 5,
+    "failed": 4,
+    "warnings": 1,
+    "newTestsAdded": 3,
+    "scenarios": [
+      {
+        "name": "Draft save then submit",
+        "status": "failed",
+        "notes": "Submit redirect mismatch."
+      },
+      {
+        "name": "Session timeout recovery",
+        "status": "failed",
+        "notes": "500 returned instead of timeout redirect."
+      }
+    ]
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/Login/LoginTest-001/e2e-test-execution/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/LoginTest-001/e2e-test-execution/log.txt",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/LoginTest-001/e2e-test-execution/e2e-scenarios.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/LoginTest-001/e2e-test-execution/screenshots/e2e-timeout-failure.png",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/LoginTest-001/e2e-test-execution/screenshots/e2e-submit-failure.png"
+  ],
+  "findings": [
+    {
+      "type": "SessionTimeoutParityGap",
+      "scenario": "Session timeout recovery",
+      "message": "E2E timeout behavior differs from legacy module flow.",
+      "likelyCause": "Timeout middleware not aligned with legacy redirect behavior.",
+      "evidence": "Playwright scenario produced 500 and missing timeout redirect.",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.84,
+      "affectedFiles": [
+        "src_conversion4/Modules/Checklist/Web/Middleware/SessionTimeoutMiddleware.cs"
+      ]
+    }
+  ],
+  "recommendations": [
+    {
+      "message": "Align timeout redirect and postback resume flow with original Java behavior.",
+      "priority": "high",
+      "evidence": "4 E2E failures in timeout/submit journeys."
+    }
+  ],
+  "resultContractVersion": "2.0"
+}

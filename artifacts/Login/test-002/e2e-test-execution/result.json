@@ -1,0 +1,102 @@
+{
+  "skillName": "e2e-test-execution",
+  "stage": "execution",
+  "moduleName": "Login",
+  "runId": "test-002",
+  "status": "failed",
+  "startedAt": "2026-04-13T11:32:47.957178Z",
+  "endedAt": "2026-04-13T11:32:47.987036Z",
+  "summary": "E2E execution failed preflight checks and did not run command execution.",
+  "metrics": {
+    "total": 1,
+    "passed": 0,
+    "failed": 1,
+    "warnings": 0,
+    "newTestsAdded": 0,
+    "scenarios": [
+      {
+        "name": "Journey parity: View module records",
+        "status": "failed",
+        "notes": "Preflight failed",
+        "coverage": [
+          "critical-path",
+          "ui-api-db"
+        ],
+        "provenance": {
+          "type": "flow-derived",
+          "sources": [
+            "artifact:module-documentation/module-analysis.json"
+          ],
+          "confidence": 0.73,
+          "unknowns": []
+        }
+      }
+    ],
+    "degradedMode": true,
+    "purpose": "Validate full critical journeys from browser entrypoint to backend persistence."
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/Login/test-002/e2e-test-execution/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/test-002/e2e-test-execution/preflight.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/test-002/e2e-test-execution/execution-log.txt",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/test-002/e2e-test-execution/e2e-scenarios.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/test-002/e2e-test-execution/screenshots/e2e-failure.png"
+  ],
+  "findings": [
+    {
+      "type": "ApplicationUnreachable",
+      "scenario": "E2E preflight",
+      "message": "Application reachability check failed.",
+      "likelyCause": "Converted app is not running or baseUrl points to wrong host/port.",
+      "evidence": "url=http://127.0.0.1:18080/; reason=<urlopen error [Errno 1] Operation not permitted>",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.95
+    }
+  ],
+  "recommendations": [
+    {
+      "message": "Start the converted app and verify the configured baseUrl/testApiEndpoint.",
+      "priority": "high",
+      "evidence": "Reachability must pass before running execution skills in strict mode."
+    }
+  ],
+  "resultContractVersion": "2.0",
+  "statusReason": "preflight-failed",
+  "preflight": {
+    "category": "E2E",
+    "baseUrl": {
+      "required": true,
+      "provided": "http://127.0.0.1:18080",
+      "normalized": "http://127.0.0.1:18080",
+      "ok": true,
+      "reason": ""
+    },
+    "reachability": {
+      "required": true,
+      "ok": false,
+      "statusCode": 0,
+      "reason": "<urlopen error [Errno 1] Operation not permitted>",
+      "path": "/",
+      "url": "http://127.0.0.1:18080/"
+    },
+    "commands": {
+      "candidates": [
+        "python3 -V"
+      ],
+      "available": [
+        "python3 -V"
+      ],
+      "unavailable": [],
+      "selected": "python3 -V",
+      "ok": true
+    },
+    "strictMode": true
+  },
+  "provenanceSummary": {
+    "scenarioSources": [
+      "flow-derived"
+    ],
+    "confidence": 0.73
+  }
+}

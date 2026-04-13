@@ -1,0 +1,15 @@
+{
+  "stage": 4,
+  "name": "Test Plan",
+  "status": "COMPLETED",
+  "scripts_executed": 1,
+  "results": [
+    {
+      "script": "skills/test-plan-generation/run.py",
+      "status": "failed",
+      "error": "usage: run.py [-h] [--input INPUT] [--artifacts-root ARTIFACTS_ROOT]\nrun.py: error: unrecognized arguments: --run-id test-001 --module Checklist --output-dir /Users/risha/Documents/Buildathon/artifact"
+    }
+  ],
+  "timestamp": "2026-04-13T16:23:39.189878",
+  "duration_seconds": 0.0244901180267334
+}

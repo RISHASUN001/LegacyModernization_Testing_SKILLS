@@ -1,0 +1,272 @@
+{
+  "skillName": "integration-test-execution",
+  "stage": "execution",
+  "moduleName": "Login2",
+  "runId": "login2-test-20260413-234705",
+  "status": "passed",
+  "startedAt": "2026-04-13T15:51:00.789282Z",
+  "endedAt": "2026-04-13T15:51:01.484593Z",
+  "summary": "Integration execution completed with 8 passed and 0 failed scenarios.",
+  "metrics": {
+    "total": 8,
+    "passed": 8,
+    "failed": 0,
+    "warnings": 0,
+    "newTestsAdded": 5,
+    "scenarios": [
+      {
+        "name": "Integration flow parity: Open login page",
+        "status": "passed",
+        "notes": "Validate cross-layer orchestration, persistence contracts, and transaction behavior.",
+        "coverage": [
+          "service-repository",
+          "transaction"
+        ],
+        "generated": false,
+        "generatedFrom": [],
+        "provenance": {
+          "type": "flow-derived",
+          "sources": [
+            "artifact:legacy-logic-extraction/logic-summary.json"
+          ],
+          "confidence": 0.75,
+          "unknowns": []
+        }
+      },
+      {
+        "name": "Integration flow parity: Submit credentials",
+        "status": "passed",
+        "notes": "Validate cross-layer orchestration, persistence contracts, and transaction behavior.",
+        "coverage": [
+          "service-repository",
+          "transaction"
+        ],
+        "generated": false,
+        "generatedFrom": [],
+        "provenance": {
+          "type": "flow-derived",
+          "sources": [
+            "artifact:legacy-logic-extraction/logic-summary.json"
+          ],
+          "confidence": 0.75,
+          "unknowns": []
+        }
+      },
+      {
+        "name": "Integration flow parity: Redirect to dashboard/home",
+        "status": "passed",
+        "notes": "Validate cross-layer orchestration, persistence contracts, and transaction behavior.",
+        "coverage": [
+          "service-repository",
+          "transaction"
+        ],
+        "generated": false,
+        "generatedFrom": [],
+        "provenance": {
+          "type": "flow-derived",
+          "sources": [
+            "artifact:legacy-logic-extraction/logic-summary.json"
+          ],
+          "confidence": 0.75,
+          "unknowns": []
+        }
+      },
+      {
+        "name": "Integration workflow: Open login page",
+        "status": "passed",
+        "notes": "Validate cross-layer orchestration, persistence contracts, and transaction behavior.",
+        "coverage": [
+          "service-repository",
+          "transaction"
+        ],
+        "generated": true,
+        "generatedFrom": [
+          "flow:Open login page"
+        ],
+        "provenance": {
+          "type": "inferred",
+          "sources": [
+            "artifact:test-plan-generation/test-plan.json",
+            "artifact:module-discovery/discovery-map.json",
+            "artifact:legacy-logic-extraction/logic-summary.json",
+            "artifact:module-documentation/module-analysis.json"
+          ],
+          "confidence": 0.77,
+          "unknowns": []
+        }
+      },
+      {
+        "name": "Integration workflow: Submit credentials",
+        "status": "passed",
+        "notes": "Validate cross-layer orchestration, persistence contracts, and transaction behavior.",
+        "coverage": [
+          "service-repository",
+          "transaction"
+        ],
+        "generated": true,
+        "generatedFrom": [
+          "flow:Submit credentials"
+        ],
+        "provenance": {
+          "type": "inferred",
+          "sources": [
+            "artifact:test-plan-generation/test-plan.json",
+            "artifact:module-discovery/discovery-map.json",
+            "artifact:legacy-logic-extraction/logic-summary.json",
+            "artifact:module-documentation/module-analysis.json"
+          ],
+          "confidence": 0.77,
+          "unknowns": []
+        }
+      },
+      {
+        "name": "Integration workflow: Redirect to dashboard/home",
+        "status": "passed",
+        "notes": "Validate cross-layer orchestration, persistence contracts, and transaction behavior.",
+        "coverage": [
+          "service-repository",
+          "transaction"
+        ],
+        "generated": true,
+        "generatedFrom": [
+          "flow:Redirect to dashboard/home"
+        ],
+        "provenance": {
+          "type": "inferred",
+          "sources": [
+            "artifact:test-plan-generation/test-plan.json",
+            "artifact:module-discovery/discovery-map.json",
+            "artifact:legacy-logic-extraction/logic-summary.json",
+            "artifact:module-documentation/module-analysis.json"
+          ],
+          "confidence": 0.77,
+          "unknowns": []
+        }
+      },
+      {
+        "name": "Integration workflow: Logout and return to login",
+        "status": "passed",
+        "notes": "Validate cross-layer orchestration, persistence contracts, and transaction behavior.",
+        "coverage": [
+          "service-repository",
+          "transaction"
+        ],
+        "generated": true,
+        "generatedFrom": [
+          "flow:Logout and return to login"
+        ],
+        "provenance": {
+          "type": "inferred",
+          "sources": [
+            "artifact:test-plan-generation/test-plan.json",
+            "artifact:module-discovery/discovery-map.json",
+            "artifact:legacy-logic-extraction/logic-summary.json",
+            "artifact:module-documentation/module-analysis.json"
+          ],
+          "confidence": 0.77,
+          "unknowns": []
+        }
+      },
+      {
+        "name": "Integration contract route: /login",
+        "status": "passed",
+        "notes": "Validate cross-layer orchestration, persistence contracts, and transaction behavior.",
+        "coverage": [
+          "http-contract",
+          "persistence"
+        ],
+        "generated": true,
+        "generatedFrom": [
+          "route:/login"
+        ],
+        "provenance": {
+          "type": "inferred",
+          "sources": [
+            "artifact:test-plan-generation/test-plan.json",
+            "artifact:module-discovery/discovery-map.json",
+            "artifact:legacy-logic-extraction/logic-summary.json",
+            "artifact:module-documentation/module-analysis.json"
+          ],
+          "confidence": 0.77,
+          "unknowns": []
+        }
+      }
+    ],
+    "degradedMode": false,
+    "purpose": "Validate cross-layer orchestration, persistence contracts, and transaction behavior.",
+    "generatedTestsArtifact": "/Users/risha/Documents/Buildathon/artifacts/Login2/login2-test-20260413-234705/integration-test-execution/generated-tests/integration-generated-tests.json"
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/Login2/login2-test-20260413-234705/integration-test-execution/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login2/login2-test-20260413-234705/integration-test-execution/generated-tests/integration-generated-tests.json",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login2/integration-generated-tests.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login2/login2-test-20260413-234705/integration-test-execution/preflight.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login2/login2-test-20260413-234705/integration-test-execution/execution-log.txt"
+  ],
+  "findings": [],
+  "recommendations": [
+    {
+      "message": "Review Integration logs/artifacts and fix failing scenarios before next iteration.",
+      "priority": "medium",
+      "evidence": "0 failed out of 8 scenarios."
+    }
+  ],
+  "resultContractVersion": "2.0",
+  "preflight": {
+    "category": "Integration",
+    "baseUrl": {
+      "required": false,
+      "provided": "http://0.0.0.0:5001/",
+      "normalized": "",
+      "ok": true,
+      "reason": "not-required"
+    },
+    "reachability": {
+      "required": false,
+      "ok": true,
+      "statusCode": 0,
+      "reason": "not-required",
+      "path": "/",
+      "url": ""
+    },
+    "commands": {
+      "candidates": [
+        "dotnet test --nologo --verbosity minimal",
+        "dotnet test /Users/risha/Documents/Buildathon/samples/legacy-java-app/LegacyModernization.Converted.sln --nologo --verbosity minimal"
+      ],
+      "available": [
+        "dotnet test --nologo --verbosity minimal",
+        "dotnet test /Users/risha/Documents/Buildathon/samples/legacy-java-app/LegacyModernization.Converted.sln --nologo --verbosity minimal"
+      ],
+      "unavailable": [],
+      "selected": "dotnet test --nologo --verbosity minimal",
+      "ok": true
+    },
+    "strictMode": true
+  },
+  "trace": {
+    "command": [
+      "dotnet",
+      "test",
+      "--nologo",
+      "--verbosity",
+      "minimal"
+    ],
+    "returnCode": 0,
+    "durationSeconds": 0.692,
+    "cwd": "/Users/risha/Documents/Buildathon/samples/legacy-java-app"
+  },
+  "provenanceSummary": {
+    "scenarioSources": [
+      "flow-derived",
+      "flow-derived",
+      "flow-derived",
+      "inferred",
+      "inferred",
+      "inferred",
+      "inferred",
+      "inferred"
+    ],
+    "confidence": 0.762
+  }
+}

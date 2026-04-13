@@ -1,0 +1,179 @@
+[
+  {
+    "name": "Journey parity: Open login page",
+    "status": "passed",
+    "notes": "Validate full critical journeys from browser entrypoint to backend persistence.",
+    "coverage": [
+      "critical-path",
+      "ui-api-db"
+    ],
+    "generated": false,
+    "generatedFrom": [],
+    "provenance": {
+      "type": "flow-derived",
+      "sources": [
+        "artifact:module-documentation/module-analysis.json"
+      ],
+      "confidence": 0.73,
+      "unknowns": []
+    }
+  },
+  {
+    "name": "Journey parity: Submit credentials",
+    "status": "passed",
+    "notes": "Validate full critical journeys from browser entrypoint to backend persistence.",
+    "coverage": [
+      "critical-path",
+      "ui-api-db"
+    ],
+    "generated": false,
+    "generatedFrom": [],
+    "provenance": {
+      "type": "flow-derived",
+      "sources": [
+        "artifact:module-documentation/module-analysis.json"
+      ],
+      "confidence": 0.73,
+      "unknowns": []
+    }
+  },
+  {
+    "name": "Journey parity: Redirect to dashboard/home",
+    "status": "passed",
+    "notes": "Validate full critical journeys from browser entrypoint to backend persistence.",
+    "coverage": [
+      "critical-path",
+      "ui-api-db"
+    ],
+    "generated": false,
+    "generatedFrom": [],
+    "provenance": {
+      "type": "flow-derived",
+      "sources": [
+        "artifact:module-documentation/module-analysis.json"
+      ],
+      "confidence": 0.73,
+      "unknowns": []
+    }
+  },
+  {
+    "name": "E2E robust path: Open login page",
+    "status": "passed",
+    "notes": "Validate full critical journeys from browser entrypoint to backend persistence.",
+    "coverage": [
+      "ui-api-db",
+      "critical-path"
+    ],
+    "generated": true,
+    "generatedFrom": [
+      "flow:Open login page"
+    ],
+    "provenance": {
+      "type": "inferred",
+      "sources": [
+        "artifact:test-plan-generation/test-plan.json",
+        "artifact:module-discovery/discovery-map.json",
+        "artifact:legacy-logic-extraction/logic-summary.json",
+        "artifact:module-documentation/module-analysis.json"
+      ],
+      "confidence": 0.77,
+      "unknowns": []
+    }
+  },
+  {
+    "name": "E2E robust path: Submit credentials",
+    "status": "passed",
+    "notes": "Validate full critical journeys from browser entrypoint to backend persistence.",
+    "coverage": [
+      "ui-api-db",
+      "critical-path"
+    ],
+    "generated": true,
+    "generatedFrom": [
+      "flow:Submit credentials"
+    ],
+    "provenance": {
+      "type": "inferred",
+      "sources": [
+        "artifact:test-plan-generation/test-plan.json",
+        "artifact:module-discovery/discovery-map.json",
+        "artifact:legacy-logic-extraction/logic-summary.json",
+        "artifact:module-documentation/module-analysis.json"
+      ],
+      "confidence": 0.77,
+      "unknowns": []
+    }
+  },
+  {
+    "name": "E2E robust path: Redirect to dashboard/home",
+    "status": "passed",
+    "notes": "Validate full critical journeys from browser entrypoint to backend persistence.",
+    "coverage": [
+      "ui-api-db",
+      "critical-path"
+    ],
+    "generated": true,
+    "generatedFrom": [
+      "flow:Redirect to dashboard/home"
+    ],
+    "provenance": {
+      "type": "inferred",
+      "sources": [
+        "artifact:test-plan-generation/test-plan.json",
+        "artifact:module-discovery/discovery-map.json",
+        "artifact:legacy-logic-extraction/logic-summary.json",
+        "artifact:module-documentation/module-analysis.json"
+      ],
+      "confidence": 0.77,
+      "unknowns": []
+    }
+  },
+  {
+    "name": "E2E robust path: Logout and return to login",
+    "status": "passed",
+    "notes": "Validate full critical journeys from browser entrypoint to backend persistence.",
+    "coverage": [
+      "ui-api-db",
+      "critical-path"
+    ],
+    "generated": true,
+    "generatedFrom": [
+      "flow:Logout and return to login"
+    ],
+    "provenance": {
+      "type": "inferred",
+      "sources": [
+        "artifact:test-plan-generation/test-plan.json",
+        "artifact:module-discovery/discovery-map.json",
+        "artifact:legacy-logic-extraction/logic-summary.json",
+        "artifact:module-documentation/module-analysis.json"
+      ],
+      "confidence": 0.77,
+      "unknowns": []
+    }
+  },
+  {
+    "name": "E2E route resilience: /login",
+    "status": "passed",
+    "notes": "Validate full critical journeys from browser entrypoint to backend persistence.",
+    "coverage": [
+      "navigation",
+      "session"
+    ],
+    "generated": true,
+    "generatedFrom": [
+      "route:/login"
+    ],
+    "provenance": {
+      "type": "inferred",
+      "sources": [
+        "artifact:test-plan-generation/test-plan.json",
+        "artifact:module-discovery/discovery-map.json",
+        "artifact:legacy-logic-extraction/logic-summary.json",
+        "artifact:module-documentation/module-analysis.json"
+      ],
+      "confidence": 0.77,
+      "unknowns": []
+    }
+  }
+]

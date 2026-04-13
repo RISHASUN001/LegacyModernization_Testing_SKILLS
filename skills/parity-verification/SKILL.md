@@ -5,6 +5,7 @@
 
 ## purpose
 Verify converted module behavior parity against legacy baselines and identify gaps.
+Includes explicit SQL/table parity checks with before/after query mapping when query evidence exists.
 
 ## stage alignment
 Supports **Stage: findings** in the 7-stage modernization pipeline.
@@ -27,6 +28,13 @@ Use this skill when Stage **findings** evidence must be generated or refreshed f
 - `result.json`
 - `parity-diff.json`
 
+## parity artifact details
+`parity-diff.json` now includes:
+- `checks[]`: behavioral parity checks and SQL/table parity summary check.
+- `sqlParity.legacyQueryCount`, `sqlParity.convertedQueryCount`, `sqlParity.matchedCount`.
+- `sqlParity.tableMatches[]`: table-level legacy vs converted occurrence comparison.
+- `sqlParity.beforeAfter[]`: legacy query snippet vs best converted query match, with confidence.
+
 ## artifact files produced
 - `artifacts/{module}/{runId}/parity-verification/`
 
@@ -37,6 +45,7 @@ Use this skill when Stage **findings** evidence must be generated or refreshed f
 ## common failure patterns
 - Edge path parity ignored while happy path passes
 - Legacy redirect contracts not implemented
+- SQL/table mapping drift between Java and C# data access layers
 
 ## downstream skills
 - `lessons-learned`
@@ -45,3 +54,21 @@ Use this skill when Stage **findings** evidence must be generated or refreshed f
 ## script reference / execution notes
 - Entry script: `run.py`
 - Execution mode: external (Continue.dev / Claude in IDE), Option A-first.
+
+## How To Run
+- Single skill:
+  - `python run.py --input <module-run-input.json> --artifacts-root <artifacts-root>`
+- Full 7-stage pipeline (router):
+  - `python skills/legacy-modernization-orchestrator/run.py --input <module-run-input.json>`
+
+## Script Reference / Execution Notes
+- Primary script entry is defined in `config.json` (`scriptEntry`).
+- Option A mode: run externally in Continue.dev/Claude, persist artifacts/results, then load from dashboard.
+
+## Provenance & Preflight (Revamp)
+- Result contract remains `2.0` with additive optional fields: `statusReason`, `preflight`, `trace`, `provenanceSummary`.
+- Stage artifacts include provenance envelopes (`type`, `sources`, `confidence`, `unknowns`) where applicable.
+- Execution skills run in strict preflight mode and produce `preflight.json` + `execution-log.txt`.
+- Primary runtime command:
+  - `python run.py --input <module-run-input.json> --artifacts-root <artifacts-root>`
+

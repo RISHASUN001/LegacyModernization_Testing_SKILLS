@@ -1,0 +1,18 @@
+{
+  "category": "DevTools Diagnostics",
+  "baseUrl": {
+    "required": true,
+    "provided": "http://0.0.0.0:5001/",
+    "normalized": "http://0.0.0.0:5001",
+    "ok": true,
+    "reason": "ok"
+  },
+  "reachability": {
+    "required": true,
+    "url": "http://0.0.0.0:5001/api/test/health",
+    "ok": true,
+    "statusCode": 404,
+    "reason": "http-error-404"
+  },
+  "strictMode": true
+}

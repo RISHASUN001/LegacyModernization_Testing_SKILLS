@@ -1,0 +1,360 @@
+{
+  "moduleName": "Login3",
+  "category": "Integration",
+  "lastRunId": "Login3-Test001",
+  "generatedCount": 13,
+  "generatedTests": [
+    {
+      "id": "integration-gen-001",
+      "category": "Integration",
+      "name": "Integration workflow: View module records",
+      "coverage": [
+        "service-repository",
+        "transaction"
+      ],
+      "priority": "medium",
+      "given": "Given the Login3 module is configured and reachable",
+      "when": "When executing generated scenario: Integration workflow: View module records",
+      "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
+      "generatedFrom": [
+        "flow:View module records"
+      ],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "id": "integration-gen-002",
+      "category": "Integration",
+      "name": "Integration contract route: /Views/Auth/Dashboard.cshtml",
+      "coverage": [
+        "http-contract",
+        "persistence"
+      ],
+      "priority": "medium",
+      "given": "Given the Login3 module is configured and reachable",
+      "when": "When executing generated scenario: Integration contract route: /Views/Auth/Dashboard.cshtml",
+      "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
+      "generatedFrom": [
+        "route:/Views/Auth/Dashboard.cshtml"
+      ],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "id": "integration-gen-003",
+      "category": "Integration",
+      "name": "Integration contract route: /Views/Auth/Index.cshtml",
+      "coverage": [
+        "http-contract",
+        "persistence"
+      ],
+      "priority": "medium",
+      "given": "Given the Login3 module is configured and reachable",
+      "when": "When executing generated scenario: Integration contract route: /Views/Auth/Index.cshtml",
+      "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
+      "generatedFrom": [
+        "route:/Views/Auth/Index.cshtml"
+      ],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "id": "integration-gen-004",
+      "category": "Integration",
+      "name": "Integration robustness generated case 1 for Login3",
+      "coverage": [
+        "robustness",
+        "fallback"
+      ],
+      "priority": "medium",
+      "given": "Given the Login3 module is configured and reachable",
+      "when": "When executing generated scenario: Integration robustness generated case 1 for Login3",
+      "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
+      "generatedFrom": [
+        "fallback:insufficient-discovery-evidence"
+      ],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "id": "integration-gen-004",
+      "category": "Integration",
+      "name": "Regression reuse: Integration workflow: View module records",
+      "coverage": [
+        "regression",
+        "historical-learning"
+      ],
+      "priority": "medium",
+      "given": "Given the Login3 module is configured and reachable",
+      "when": "When executing generated scenario: Regression reuse: Integration workflow: View module records",
+      "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
+      "generatedFrom": [
+        "history:Integration workflow: View module records"
+      ],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "id": "integration-gen-005",
+      "category": "Integration",
+      "name": "Regression reuse: Integration contract route: /Views/Auth/Dashboard.cshtml",
+      "coverage": [
+        "regression",
+        "historical-learning"
+      ],
+      "priority": "medium",
+      "given": "Given the Login3 module is configured and reachable",
+      "when": "When executing generated scenario: Regression reuse: Integration contract route: /Views/Auth/Dashboard.cshtml",
+      "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
+      "generatedFrom": [
+        "history:Integration contract route: /Views/Auth/Dashboard.cshtml"
+      ],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "id": "integration-gen-006",
+      "category": "Integration",
+      "name": "Regression reuse: Integration contract route: /Views/Auth/Index.cshtml",
+      "coverage": [
+        "regression",
+        "historical-learning"
+      ],
+      "priority": "medium",
+      "given": "Given the Login3 module is configured and reachable",
+      "when": "When executing generated scenario: Regression reuse: Integration contract route: /Views/Auth/Index.cshtml",
+      "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
+      "generatedFrom": [
+        "history:Integration contract route: /Views/Auth/Index.cshtml"
+      ],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "id": "integration-gen-007",
+      "category": "Integration",
+      "name": "Regression reuse: Integration robustness generated case 1 for Login3",
+      "coverage": [
+        "regression",
+        "historical-learning"
+      ],
+      "priority": "medium",
+      "given": "Given the Login3 module is configured and reachable",
+      "when": "When executing generated scenario: Regression reuse: Integration robustness generated case 1 for Login3",
+      "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
+      "generatedFrom": [
+        "history:Integration robustness generated case 1 for Login3"
+      ],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "id": "integration-gen-001",
+      "category": "Integration",
+      "name": "Integration workflow: Open login page",
+      "coverage": [
+        "service-repository",
+        "transaction"
+      ],
+      "priority": "medium",
+      "given": "Given the Login3 module is configured and reachable",
+      "when": "When executing generated scenario: Integration workflow: Open login page",
+      "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
+      "generatedFrom": [
+        "flow:Open login page"
+      ],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "id": "integration-gen-002",
+      "category": "Integration",
+      "name": "Integration workflow: Submit credentials",
+      "coverage": [
+        "service-repository",
+        "transaction"
+      ],
+      "priority": "medium",
+      "given": "Given the Login3 module is configured and reachable",
+      "when": "When executing generated scenario: Integration workflow: Submit credentials",
+      "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
+      "generatedFrom": [
+        "flow:Submit credentials"
+      ],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "id": "integration-gen-003",
+      "category": "Integration",
+      "name": "Integration workflow: Redirect to dashboard/home",
+      "coverage": [
+        "service-repository",
+        "transaction"
+      ],
+      "priority": "medium",
+      "given": "Given the Login3 module is configured and reachable",
+      "when": "When executing generated scenario: Integration workflow: Redirect to dashboard/home",
+      "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
+      "generatedFrom": [
+        "flow:Redirect to dashboard/home"
+      ],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "id": "integration-gen-004",
+      "category": "Integration",
+      "name": "Integration workflow: Logout and return to login",
+      "coverage": [
+        "service-repository",
+        "transaction"
+      ],
+      "priority": "medium",
+      "given": "Given the Login3 module is configured and reachable",
+      "when": "When executing generated scenario: Integration workflow: Logout and return to login",
+      "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
+      "generatedFrom": [
+        "flow:Logout and return to login"
+      ],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "id": "integration-gen-005",
+      "category": "Integration",
+      "name": "Integration contract route: /login",
+      "coverage": [
+        "http-contract",
+        "persistence"
+      ],
+      "priority": "medium",
+      "given": "Given the Login3 module is configured and reachable",
+      "when": "When executing generated scenario: Integration contract route: /login",
+      "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
+      "generatedFrom": [
+        "route:/login"
+      ],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    }
+  ],
+  "notes": "Persistent generated tests used to improve robustness on future iterations."
+}

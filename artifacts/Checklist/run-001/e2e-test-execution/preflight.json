@@ -1,0 +1,26 @@
+{
+  "category": "E2E",
+  "baseUrl": {
+    "required": true,
+    "provided": "http://localhost:5276",
+    "normalized": "http://localhost:5276",
+    "ok": true,
+    "reason": ""
+  },
+  "reachability": {
+    "required": true,
+    "ok": false,
+    "statusCode": 0,
+    "reason": "<urlopen error [Errno 1] Operation not permitted>",
+    "path": "/",
+    "url": "http://localhost:5276/"
+  },
+  "commands": {
+    "candidates": [],
+    "available": [],
+    "unavailable": [],
+    "selected": "",
+    "ok": false
+  },
+  "strictMode": true
+}

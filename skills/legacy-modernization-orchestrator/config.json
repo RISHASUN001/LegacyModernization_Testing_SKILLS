@@ -1,0 +1,176 @@
+{
+  "orchestrator": {
+    "name": "Legacy Modernization Orchestrator",
+    "version": "1.0",
+    "description": "7-stage cascading pipeline for legacy-to-modern validation"
+  },
+  "stages": [
+    {
+      "number": 1,
+      "name": "Discovery",
+      "skill": "module-discovery",
+      "script": "skills/module-discovery/run.py",
+      "description": "Discover modules and features in legacy application",
+      "timeout_seconds": 60,
+      "enabled": true
+    },
+    {
+      "number": 2,
+      "name": "Logic Understanding",
+      "skills": [
+        "legacy-logic-extraction",
+        "module-documentation"
+      ],
+      "scripts": [
+        "skills/legacy-logic-extraction/run.py",
+        "skills/module-documentation/run.py"
+      ],
+      "description": "Extract legacy logic and document modern equivalents",
+      "timeout_seconds": 120,
+      "enabled": true
+    },
+    {
+      "number": 3,
+      "name": "Architecture Review",
+      "skill": "clean-architecture-assessment",
+      "script": "skills/clean-architecture-assessment/run.py",
+      "description": "Assess modern architecture quality and patterns",
+      "timeout_seconds": 90,
+      "enabled": true
+    },
+    {
+      "number": 4,
+      "name": "Test Plan",
+      "skill": "test-plan-generation",
+      "script": "skills/test-plan-generation/run.py",
+      "description": "Generate comprehensive test scenarios (23+)",
+      "timeout_seconds": 60,
+      "enabled": true
+    },
+    {
+      "number": 5,
+      "name": "Execution",
+      "skills": [
+        "unit-test-execution",
+        "integration-test-execution",
+        "e2e-test-execution",
+        "api-test-execution",
+        "edge-case-testing",
+        "playwright-browser-verification",
+        "browser-testing-with-devtools"
+      ],
+      "scripts": [
+        "skills/unit-test-execution/run.py",
+        "skills/integration-test-execution/run.py",
+        "skills/e2e-test-execution/run.py",
+        "skills/api-test-execution/run.py",
+        "skills/edge-case-testing/run.py",
+        "skills/playwright-browser-verification/run.py",
+        "skills/browser-testing-with-devtools/run.py"
+      ],
+      "description": "Execute all tests in parallel (47+ total tests)",
+      "timeout_seconds": 300,
+      "parallel": true,
+      "max_workers": 6,
+      "enabled": true
+    },
+    {
+      "number": 6,
+      "name": "Findings",
+      "skills": [
+        "failure-diagnosis",
+        "lessons-learned"
+      ],
+      "scripts": [
+        "skills/failure-diagnosis/run.py",
+        "skills/lessons-learned/run.py"
+      ],
+      "description": "Analyze findings and generate recommendations",
+      "timeout_seconds": 120,
+      "enabled": true
+    },
+    {
+      "number": 7,
+      "name": "Iteration",
+      "skills": [
+        "parity-verification",
+        "iteration-comparison"
+      ],
+      "scripts": [
+        "skills/parity-verification/run.py",
+        "skills/iteration-comparison/run.py"
+      ],
+      "description": "Verify parity and track progress across iterations",
+      "timeout_seconds": 90,
+      "enabled": true
+    }
+  ],
+  "database": {
+    "type": "sqlite3",
+    "path": "data/modernization.db",
+    "create_if_missing": true,
+    "vacuum_after_run": true,
+    "backup_before_run": true,
+    "backup_dir": "data/backups"
+  },
+  "thresholds": {
+    "test_pass_rate_minimum": 0.95,
+    "architecture_score_minimum": 75,
+    "parity_coverage_minimum": 0.95,
+    "performance_baseline_ms": 500,
+    "api_response_threshold_ms": 100,
+    "page_load_threshold_ms": 500,
+    "test_execution_timeout_seconds": 300
+  },
+  "execution": {
+    "mode": "cascading",
+    "order": "sequential_stages_parallel_tests",
+    "error_handling": "skip_dependent_stages",
+    "stop_on_error": false,
+    "logging_level": "INFO",
+    "primaryCommand": "python run.py --input <module-run-input.json> --artifacts-root <artifacts-root>",
+    "timeoutNotes": "Real-first graceful execution. Writes result.json even on degraded/failure paths.",
+    "realCommandHints": [
+      "python run.py --input <module-run-input.json> --artifacts-root <artifacts-root>"
+    ]
+  },
+  "output": {
+    "formats": [
+      "json",
+      "db",
+      "markdown"
+    ],
+    "output_directory": "artifacts",
+    "naming_pattern": "{module}/{run_id}",
+    "include_timing": true,
+    "include_logs": true,
+    "stream_results": false
+  },
+  "frontend_integration": {
+    "enabled": true,
+    "dashboard_url": "http://localhost:5000",
+    "api_endpoint": "/api/modernization",
+    "push_on_stage_complete": true,
+    "query_interval_ms": 1000
+  },
+  "retry": {
+    "max_attempts": 2,
+    "backoff_multiplier": 1.5,
+    "retry_on_errors": [
+      "timeout",
+      "connection_refused",
+      "database_locked"
+    ]
+  },
+  "notification": {
+    "on_stage_complete": true,
+    "on_error": true,
+    "on_all_complete": true,
+    "methods": [
+      "console",
+      "db",
+      "dashboard"
+    ]
+  },
+  "externalDependencies": []
+}

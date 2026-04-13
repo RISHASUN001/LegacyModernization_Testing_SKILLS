@@ -1,0 +1,50 @@
+{
+  "moduleName": "Login",
+  "runId": "test-002",
+  "previousRunId": "test-001",
+  "resolvedIssues": [
+    "ExecutionEnvironmentMissing::E2E preflight::No runnable command could be resolved for this category.",
+    "ExecutionEnvironmentMissing::Edge Case preflight::No runnable command could be resolved for this category.",
+    "ExecutionEnvironmentMissing::Playwright / E2E Browser preflight::No runnable command could be resolved for this category.",
+    "ParityGap::Legacy vs converted behavior parity::Parity score for Login is 0 with 3 failing checks."
+  ],
+  "recurringIssues": [
+    "ApplicationUnreachable::API preflight::Application reachability check failed.",
+    "ApplicationUnreachable::E2E preflight::Application reachability check failed.",
+    "ApplicationUnreachable::Edge Case preflight::Application reachability check failed.",
+    "ApplicationUnreachable::Playwright / E2E Browser preflight::Application reachability check failed.",
+    "ArchitectureIssuesDetected::Clean architecture review::Detected 2 architecture issue(s), including 1 high-severity issue(s).",
+    "EnvironmentDependencyMissing::DevTools diagnostics preflight::DevTools evidence endpoint is not reachable.",
+    "ScenarioFailure::API contract route: /Auth/::API contract route: /Auth/ failed in skill api-test-execution.",
+    "ScenarioFailure::API contract route: /Views/Auth/Dashboard.cshtml::API contract route: /Views/Auth/Dashboard.cshtml failed in skill api-test-execution.",
+    "ScenarioFailure::API contract route: /Views/Auth/Index.cshtml::API contract route: /Views/Auth/Index.cshtml failed in skill api-test-execution.",
+    "ScenarioFailure::Browser runtime validation for View module records::Browser runtime validation for View module records failed in skill playwright-browser-verification.",
+    "ScenarioFailure::Journey parity: View module records::Journey parity: View module records failed in skill e2e-test-execution.",
+    "ScenarioFailure::Must-preserve edge behavior: Data mapping compatibility for persistence operations::Must-preserve edge behavior: Data mapping compatibility for persistence operations failed in skill edge-case-testing.",
+    "ScenarioFailure::Must-preserve edge behavior: Route and URL behavior parity for user-visible flows::Must-preserve edge behavior: Route and URL behavior parity for user-visible flows failed in skill edge-case-testing.",
+    "ScenarioFailure::Must-preserve edge behavior: Validation/error message semantics from legacy behavior::Must-preserve edge behavior: Validation/error message semantics from legacy behavior failed in skill edge-case-testing.",
+    "ScenarioFailure::browser-testing-with-devtools::browser-testing-with-devtools failed in skill browser-testing-with-devtools.",
+    "ScenarioFailure::clean-architecture-assessment::clean-architecture-assessment failed in skill clean-architecture-assessment.",
+    "ScenarioFailure::parity-verification::parity-verification failed in skill parity-verification."
+  ],
+  "newIssues": [
+    "ParityGap::Legacy vs converted behavior parity::Parity score for Login is 64 with 5 failing checks.",
+    "ScenarioFailure::Recurring risk regression guard: NamespaceFolderMismatch::Recurring risk regression guard: NamespaceFolderMismatch failed in skill edge-case-testing."
+  ],
+  "knowledgeUpdates": [
+    {
+      "signature": "ParityGap::Legacy vs converted behavior parity::Parity score for Login is 64 with 5 failing checks.",
+      "stage": "findings",
+      "skill": "parity-verification",
+      "message": "Parity score for Login is 64 with 5 failing checks.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "ScenarioFailure::Recurring risk regression guard: NamespaceFolderMismatch::Recurring risk regression guard: NamespaceFolderMismatch failed in skill edge-case-testing.",
+      "stage": "findings",
+      "skill": "failure-diagnosis",
+      "message": "Recurring risk regression guard: NamespaceFolderMismatch failed in skill edge-case-testing.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    }
+  ]
+}

@@ -48,3 +48,21 @@ Use this skill when Stage **test-plan** evidence must be generated or refreshed 
 ## script reference / execution notes
 - Entry script: `run.py`
 - Execution mode: external (Continue.dev / Claude in IDE), Option A-first.
+
+## How To Run
+- Single skill:
+  - `python run.py --input <module-run-input.json> --artifacts-root <artifacts-root>`
+- Full 7-stage pipeline (router):
+  - `python skills/legacy-modernization-orchestrator/run.py --input <module-run-input.json>`
+
+## Script Reference / Execution Notes
+- Primary script entry is defined in `config.json` (`scriptEntry`).
+- Option A mode: run externally in Continue.dev/Claude, persist artifacts/results, then load from dashboard.
+
+## Provenance & Preflight (Revamp)
+- Result contract remains `2.0` with additive optional fields: `statusReason`, `preflight`, `trace`, `provenanceSummary`.
+- Stage artifacts include provenance envelopes (`type`, `sources`, `confidence`, `unknowns`) where applicable.
+- Execution skills run in strict preflight mode and produce `preflight.json` + `execution-log.txt`.
+- Primary runtime command:
+  - `python run.py --input <module-run-input.json> --artifacts-root <artifacts-root>`
+

@@ -1,0 +1,34 @@
+{
+  "skillName": "module-discovery",
+  "stage": "discovery",
+  "moduleName": "Login2",
+  "runId": "login2-test-20260413-234705",
+  "status": "passed",
+  "startedAt": "2026-04-13T15:50:57.823540Z",
+  "endedAt": "2026-04-13T15:50:57.839115Z",
+  "summary": "Discovery completed for Login2: assets=18, routes=1, dbTouchpoints=0.",
+  "metrics": {
+    "totalAssets": 18,
+    "javaFiles": 1,
+    "jspFiles": 2,
+    "jsFiles": 0,
+    "configFiles": 1,
+    "urls": 1,
+    "dbTouchpoints": 0,
+    "confidence": 0.92
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/Login2/login2-test-20260413-234705/module-discovery/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login2/login2-test-20260413-234705/module-discovery/discovery-map.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login2/login2-test-20260413-234705/module-discovery/discovery-evidence.json"
+  ],
+  "findings": [],
+  "recommendations": [],
+  "resultContractVersion": "2.0",
+  "provenanceSummary": {
+    "scenarioSources": [
+      "code-evidence"
+    ],
+    "confidence": 0.92
+  }
+}

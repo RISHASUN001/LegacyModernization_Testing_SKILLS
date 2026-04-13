@@ -1,0 +1,28 @@
+{
+  "moduleName": "Login",
+  "roots": [
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app"
+  ],
+  "hintPaths": [],
+  "terms": [
+    "login"
+  ],
+  "javaFiles": [
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java"
+  ],
+  "jspFiles": [],
+  "jsFiles": [],
+  "configFiles": [],
+  "urls": [
+    "//",
+    "///",
+    "/login",
+    "/summary"
+  ],
+  "dbTouchpoints": [],
+  "evidenceFiles": [
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java"
+  ]
+}

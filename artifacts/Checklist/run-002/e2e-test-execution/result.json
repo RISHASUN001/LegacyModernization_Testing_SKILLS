@@ -3,59 +3,100 @@
   "stage": "execution",
   "moduleName": "Checklist",
   "runId": "run-002",
-  "status": "passed",
-  "startedAt": "2026-04-12T10:14:00Z",
-  "endedAt": "2026-04-12T10:15:00Z",
-  "summary": "E2E suite mostly stable with one warning scenario remaining.",
+  "status": "failed",
+  "startedAt": "2026-04-13T11:32:31.201418Z",
+  "endedAt": "2026-04-13T11:32:31.232899Z",
+  "summary": "E2E execution failed preflight checks and did not run command execution.",
   "metrics": {
-    "total": 12,
-    "passed": 11,
+    "total": 1,
+    "passed": 0,
     "failed": 1,
-    "warnings": 1,
-    "newTestsAdded": 3,
+    "warnings": 0,
+    "newTestsAdded": 0,
     "scenarios": [
       {
-        "name": "Draft save then submit",
-        "status": "passed",
-        "notes": "Flow fixed."
-      },
-      {
-        "name": "Session timeout recovery",
-        "status": "passed",
-        "notes": "Redirect now aligns."
-      },
-      {
-        "name": "Concurrent conflict resolution",
+        "name": "Journey parity: View module records",
         "status": "failed",
-        "notes": "Known warning scenario under load."
+        "notes": "Preflight failed",
+        "coverage": [
+          "critical-path",
+          "ui-api-db"
+        ],
+        "provenance": {
+          "type": "flow-derived",
+          "sources": [
+            "artifact:module-documentation/module-analysis.json"
+          ],
+          "confidence": 0.73,
+          "unknowns": []
+        }
       }
-    ]
+    ],
+    "degradedMode": true,
+    "purpose": "Validate full critical journeys from browser entrypoint to backend persistence."
   },
   "artifacts": [
     "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/e2e-test-execution/result.json",
-    "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/e2e-test-execution/log.txt",
-    "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/e2e-test-execution/e2e-scenarios.json"
+    "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/e2e-test-execution/preflight.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/e2e-test-execution/execution-log.txt",
+    "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/e2e-test-execution/e2e-scenarios.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/e2e-test-execution/screenshots/e2e-failure.png"
   ],
   "findings": [
     {
-      "type": "SessionTimeoutParityGap",
-      "scenario": "Session timeout recovery",
-      "message": "Timeout parity issue resolved.",
-      "likelyCause": "Middleware now mirrors legacy redirect contract.",
-      "evidence": "Timeout scenario now passes in e2e suite.",
+      "type": "ApplicationUnreachable",
+      "scenario": "E2E preflight",
+      "message": "Application reachability check failed.",
+      "likelyCause": "Converted app is not running or baseUrl points to wrong host/port.",
+      "evidence": "url=http://127.0.0.1:18080/; reason=<urlopen error [Errno 1] Operation not permitted>",
       "severity": "high",
-      "status": "resolved",
-      "confidence": 0.88,
-      "resolvedInRunId": "run-002",
-      "resolutionNotes": "Added dedicated timeout redirect handler."
+      "status": "open",
+      "confidence": 0.95
     }
   ],
   "recommendations": [
     {
-      "message": "Stabilize concurrent conflict path under load and retain warning marker until consistent.",
-      "priority": "medium",
-      "evidence": "1 e2e failure remains in conflict scenario."
+      "message": "Start the converted app and verify the configured baseUrl/testApiEndpoint.",
+      "priority": "high",
+      "evidence": "Reachability must pass before running execution skills in strict mode."
     }
   ],
-  "resultContractVersion": "2.0"
+  "resultContractVersion": "2.0",
+  "statusReason": "preflight-failed",
+  "preflight": {
+    "category": "E2E",
+    "baseUrl": {
+      "required": true,
+      "provided": "http://127.0.0.1:18080",
+      "normalized": "http://127.0.0.1:18080",
+      "ok": true,
+      "reason": ""
+    },
+    "reachability": {
+      "required": true,
+      "ok": false,
+      "statusCode": 0,
+      "reason": "<urlopen error [Errno 1] Operation not permitted>",
+      "path": "/",
+      "url": "http://127.0.0.1:18080/"
+    },
+    "commands": {
+      "candidates": [
+        "python3 -V"
+      ],
+      "available": [
+        "python3 -V"
+      ],
+      "unavailable": [],
+      "selected": "python3 -V",
+      "ok": true
+    },
+    "strictMode": true
+  },
+  "provenanceSummary": {
+    "scenarioSources": [
+      "flow-derived"
+    ],
+    "confidence": 0.73
+  }
 }

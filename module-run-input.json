@@ -1,26 +1,15 @@
 {
   "runId": "run-001",
-  "moduleName": "Checklist",
-  "legacySourceRoot": "C:/edcs2000/src",
-  "convertedSourceRoot": "C:/edcs2000/src_conversion4",
+  "moduleName": "<ModuleName>",
+  "legacySourceRoot": "<path-to-legacy-source-root>",
+  "convertedSourceRoot": "<path-to-converted-source-root>",
   "baseUrl": "http://localhost:5276",
-  "brsPath": "C:/docs/checklist_brs.docx",
+  "testApiEndpoint": "http://localhost:5276/api/test",
+  "brsPath": "",
   "moduleHints": {
-    "relatedFolders": [
-      "src/jsp/checklist",
-      "src/com/seagate/edcs/checklist"
-    ],
-    "knownUrls": [
-      "/checklist/loadChecklist.do",
-      "/checklist/saveChecklist.do"
-    ],
-    "keywords": [
-      "checklist",
-      "ATC",
-      "sensor",
-      "work order",
-      "validation"
-    ]
+    "relatedFolders": [],
+    "knownUrls": [],
+    "keywords": []
   },
   "selectedSkills": [
     "module-discovery",
@@ -34,6 +23,7 @@
     "api-test-execution",
     "edge-case-testing",
     "playwright-browser-verification",
+    "browser-testing-with-devtools",
     "failure-diagnosis",
     "lessons-learned",
     "iteration-comparison",

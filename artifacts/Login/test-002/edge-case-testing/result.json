@@ -1,0 +1,154 @@
+{
+  "skillName": "edge-case-testing",
+  "stage": "execution",
+  "moduleName": "Login",
+  "runId": "test-002",
+  "status": "failed",
+  "startedAt": "2026-04-13T11:32:48.086985Z",
+  "endedAt": "2026-04-13T11:32:48.116541Z",
+  "summary": "Edge Case execution failed preflight checks and did not run command execution.",
+  "metrics": {
+    "total": 4,
+    "passed": 0,
+    "failed": 4,
+    "warnings": 0,
+    "newTestsAdded": 0,
+    "scenarios": [
+      {
+        "name": "Must-preserve edge behavior: Route and URL behavior parity for user-visible flows",
+        "status": "failed",
+        "notes": "Preflight failed",
+        "coverage": [
+          "edge-case",
+          "resilience"
+        ],
+        "provenance": {
+          "type": "risk-derived",
+          "sources": [
+            "artifact:legacy-logic-extraction/logic-summary.json"
+          ],
+          "confidence": 0.7,
+          "unknowns": []
+        }
+      },
+      {
+        "name": "Must-preserve edge behavior: Validation/error message semantics from legacy behavior",
+        "status": "failed",
+        "notes": "Preflight failed",
+        "coverage": [
+          "edge-case",
+          "resilience"
+        ],
+        "provenance": {
+          "type": "risk-derived",
+          "sources": [
+            "artifact:legacy-logic-extraction/logic-summary.json"
+          ],
+          "confidence": 0.7,
+          "unknowns": []
+        }
+      },
+      {
+        "name": "Must-preserve edge behavior: Data mapping compatibility for persistence operations",
+        "status": "failed",
+        "notes": "Preflight failed",
+        "coverage": [
+          "edge-case",
+          "resilience"
+        ],
+        "provenance": {
+          "type": "risk-derived",
+          "sources": [
+            "artifact:legacy-logic-extraction/logic-summary.json"
+          ],
+          "confidence": 0.7,
+          "unknowns": []
+        }
+      },
+      {
+        "name": "Recurring risk regression guard: NamespaceFolderMismatch",
+        "status": "failed",
+        "notes": "Preflight failed",
+        "coverage": [
+          "lessons-regression"
+        ],
+        "provenance": {
+          "type": "lessons-derived",
+          "sources": [
+            "artifact:_knowledge-base/lessons-kb.json"
+          ],
+          "confidence": 0.8,
+          "unknowns": []
+        }
+      }
+    ],
+    "degradedMode": true,
+    "purpose": "Validate boundary conditions, resilience, retries, and low-frequency high-impact paths."
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/Login/test-002/edge-case-testing/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/test-002/edge-case-testing/preflight.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/test-002/edge-case-testing/execution-log.txt",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/test-002/edge-case-testing/edge-case-matrix.json"
+  ],
+  "findings": [
+    {
+      "type": "ApplicationUnreachable",
+      "scenario": "Edge Case preflight",
+      "message": "Application reachability check failed.",
+      "likelyCause": "Converted app is not running or baseUrl points to wrong host/port.",
+      "evidence": "url=http://127.0.0.1:18080/; reason=<urlopen error [Errno 1] Operation not permitted>",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.95
+    }
+  ],
+  "recommendations": [
+    {
+      "message": "Start the converted app and verify the configured baseUrl/testApiEndpoint.",
+      "priority": "high",
+      "evidence": "Reachability must pass before running execution skills in strict mode."
+    }
+  ],
+  "resultContractVersion": "2.0",
+  "statusReason": "preflight-failed",
+  "preflight": {
+    "category": "Edge Case",
+    "baseUrl": {
+      "required": true,
+      "provided": "http://127.0.0.1:18080",
+      "normalized": "http://127.0.0.1:18080",
+      "ok": true,
+      "reason": ""
+    },
+    "reachability": {
+      "required": true,
+      "ok": false,
+      "statusCode": 0,
+      "reason": "<urlopen error [Errno 1] Operation not permitted>",
+      "path": "/",
+      "url": "http://127.0.0.1:18080/"
+    },
+    "commands": {
+      "candidates": [
+        "python3 -V"
+      ],
+      "available": [
+        "python3 -V"
+      ],
+      "unavailable": [],
+      "selected": "python3 -V",
+      "ok": true
+    },
+    "strictMode": true
+  },
+  "provenanceSummary": {
+    "scenarioSources": [
+      "risk-derived",
+      "risk-derived",
+      "risk-derived",
+      "lessons-derived"
+    ],
+    "confidence": 0.725
+  }
+}

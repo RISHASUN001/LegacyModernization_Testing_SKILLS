@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legacy Modernization Dashboard - Test Login</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .login-container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 400px;
+        }
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .login-header h1 {
+            color: #333;
+            font-weight: 700;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        .login-header p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 0;
+        }
+        .form-control {
+            padding: 12px;
+            font-size: 14px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        .form-control:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            color: #333;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+        .btn-login {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: white;
+            padding: 12px;
+            font-weight: 600;
+            border-radius: 5px;
+            width: 100%;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+            color: white;
+        }
+        .demo-info {
+            background: #f0f4ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-size: 13px;
+            border-left: 4px solid #667eea;
+        }
+        .demo-info strong {
+            color: #333;
+        }
+        .demo-info p {
+            margin-bottom: 5px;
+        }
+        .demo-info .code {
+            background: white;
+            padding: 8px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #667eea;
+            display: inline-block;
+            margin-top: 5px;
+        }
+        .error-message {
+            display: none;
+            background: #f8d7da;
+            color: #721c24;
+            padding: 12px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border: 1px solid #f5c6cb;
+        }
+        .success-message {
+            display: none;
+            background: #d4edda;
+            color: #155724;
+            padding: 12px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border: 1px solid #c3e6cb;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <h1>🔄 Legacy Modernization</h1>
+            <p>Dashboard Testing Portal</p>
+        </div>
+
+        <div id="successMessage" class="success-message"></div>
+        <div id="errorMessage" class="error-message"></div>
+
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input 
+                    type="email" 
+                    class="form-control" 
+                    id="email" 
+                    placeholder="test@example.com"
+                    value="test@buildathon.dev"
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input 
+                    type="password" 
+                    class="form-control" 
+                    id="password" 
+                    placeholder="Enter password"
+                    value="TestPassword123!"
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label for="module">Module to Test</label>
+                <select class="form-control" id="module" required>
+                    <option value="">Select a module</option>
+                    <option value="Checklist">Checklist</option>
+                    <option value="PaymentModule">Payment Module</option>
+                    <option value="InventorySystem">Inventory System</option>
+                    <option value="UserAuthentication">User Authentication</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn-login">Sign In & Access Dashboard</button>
+        </form>
+
+        <div class="demo-info">
+            <strong>📝 Demo Credentials:</strong>
+            <p>Email: <span class="code">test@buildathon.dev</span></p>
+            <p>Password: <span class="code">TestPassword123!</span></p>
+            <p style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #ddd;">
+                <strong>🧪 Test Setup:</strong><br>
+                This test login will redirect to the dashboard with pre-loaded test data for the selected module.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const module = document.getElementById('module').value;
+            
+            // Validate
+            if (!email || !password || !module) {
+                showError('Please fill in all fields');
+                return;
+            }
+
+            try {
+                // Show loading state
+                const btn = e.target.querySelector('.btn-login');
+                const originalText = btn.textContent;
+                btn.disabled = true;
+                btn.textContent = 'Signing in...';
+
+                // Simulate authentication delay
+                await new Promise(resolve => setTimeout(resolve, 500));
+
+                // Redirect to dashboard with test module
+                const encodedModule = encodeURIComponent(module);
+                window.location.href = `http://localhost:5276/run-pipeline/${encodedModule}/run-001?testMode=true`;
+                
+            } catch (error) {
+                showError(`Login failed: ${error.message}`);
+                const btn = e.target.querySelector('.btn-login');
+                btn.disabled = false;
+                btn.textContent = originalText;
+            }
+        });
+
+        function showError(message) {
+            const errorDiv = document.getElementById('errorMessage');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+            setTimeout(() => {
+                errorDiv.style.display = 'none';
+            }, 5000);
+        }
+
+        function showSuccess(message) {
+            const successDiv = document.getElementById('successMessage');
+            successDiv.textContent = message;
+            successDiv.style.display = 'block';
+            setTimeout(() => {
+                successDiv.style.display = 'none';
+            }, 5000);
+        }
+
+        // Pre-fill for easy testing
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add enter key support
+            document.getElementById('password').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    document.getElementById('loginForm').dispatchEvent(new Event('submit'));
+                }
+            });
+        });
+    </script>
+</body>
+</html>

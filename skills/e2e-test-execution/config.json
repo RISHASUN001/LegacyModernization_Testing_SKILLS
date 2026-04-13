@@ -3,7 +3,7 @@
   "stage": "execution",
   "category": "testing",
   "purpose": "Execute end-to-end scenarios validating complete workflow continuity from UI to persistence.",
-  "scriptEntry": "run.ps1",
+  "scriptEntry": "run.py",
   "requiredInputs": [
     "moduleName",
     "baseUrl"
@@ -13,8 +13,10 @@
   ],
   "outputFiles": [
     "result.json",
-    "log.txt",
-    "e2e-scenarios.json"
+    "preflight.json",
+    "execution-log.txt",
+    "e2e-scenarios.json",
+    "screenshots/*"
   ],
   "artifactFolders": [
     "artifacts/{module}/{runId}/e2e-test-execution/"
@@ -24,5 +26,14 @@
     "api-test-execution"
   ],
   "summaryOutputType": "test-category-result",
-  "resultContractVersion": "2.0"
+  "resultContractVersion": "2.0",
+  "externalDependencies": [],
+  "execution": {
+    "primaryCommand": "python run.py --input <module-run-input.json> --artifacts-root <artifacts-root>",
+    "timeoutNotes": "Real-first graceful execution. Writes result.json even on degraded/failure paths.",
+    "realCommandHints": [
+      "python3 -m pytest -m e2e",
+      "testCommands.e2e from run input"
+    ]
+  }
 }

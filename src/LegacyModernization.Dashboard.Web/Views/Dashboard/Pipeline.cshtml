@@ -1,6 +1,12 @@
 @model RunPipelinePageDto
 @{
     ViewData["Title"] = "7-Stage Pipeline";
+    var logicFlowNodes = (Model.LogicUnderstanding.FlowDetails.Any()
+            ? Model.LogicUnderstanding.FlowDetails.Select(static x => x.Value)
+            : Model.LogicUnderstanding.ImportantFlows)
+        .Where(static x => !string.IsNullOrWhiteSpace(x))
+        .Take(6)
+        .ToList();
 }
 
 <div class="d-flex flex-wrap align-items-start justify-content-between gap-3 mb-3">
@@ -24,6 +30,7 @@
                 <span class="ms-1 status-pill @stage.Status.ToLowerInvariant()">@stage.Status</span>
             </a>
         }
+        <a class="btn btn-sm btn-outline-secondary" href="#stage-parity">Parity Analysis</a>
     </div>
 </div>
 
@@ -51,11 +58,57 @@
         </div>
         <div class="col-lg-4">
             <h4 class="h6">URLs</h4>
-            <ul>@foreach (var x in Model.Discovery.Urls) { <li><code>@x</code></li> }</ul>
+            <ul>
+                @if (Model.Discovery.UrlDetails.Any())
+                {
+                    @foreach (var x in Model.Discovery.UrlDetails)
+                    {
+                        <li>
+                            <code>@x.Value</code>
+                            <span class="badge text-bg-light ms-1">@x.ProvenanceType</span>
+                            <span class="small text-muted ms-1">conf: @x.Confidence.ToString("0.00")</span>
+                        </li>
+                    }
+                }
+                else
+                {
+                    @foreach (var x in Model.Discovery.Urls) { <li><code>@x</code></li> }
+                }
+            </ul>
         </div>
         <div class="col-lg-4">
             <h4 class="h6">DB Touchpoints</h4>
-            <ul>@foreach (var x in Model.Discovery.DbTouchpoints) { <li>@x</li> }</ul>
+            <ul>
+                @if (Model.Discovery.DbTouchpointDetails.Any())
+                {
+                    @foreach (var x in Model.Discovery.DbTouchpointDetails)
+                    {
+                        <li>
+                            @x.Value
+                            <span class="badge text-bg-light ms-1">@x.ProvenanceType</span>
+                            <span class="small text-muted ms-1">conf: @x.Confidence.ToString("0.00")</span>
+                        </li>
+                    }
+                }
+                else
+                {
+                    @foreach (var x in Model.Discovery.DbTouchpoints) { <li>@x</li> }
+                }
+            </ul>
+        </div>
+        <div class="col-lg-12">
+            <h4 class="h6">Entrypoint Hints</h4>
+            <ul>
+                @foreach (var hint in Model.Discovery.EntrypointHints)
+                {
+                    <li>
+                        <code>@hint.Value</code>
+                        <span class="badge text-bg-light ms-1">@hint.ProvenanceType</span>
+                        <span class="small text-muted ms-1">conf: @hint.Confidence.ToString("0.00")</span>
+                    </li>
+                }
+            </ul>
+            <div class="small text-muted">Discovery confidence: @Model.Discovery.Confidence.ToString("0.00")</div>
         </div>
     </div>
     <div class="small text-muted mt-2">Source: <code>@Model.Discovery.SourceArtifactPath</code></div>
@@ -67,14 +120,53 @@
         <span class="stage-pill">purpose / flows / rules / preserve list</span>
     </div>
     <p><strong>Module Purpose:</strong> @Model.LogicUnderstanding.ModulePurpose</p>
+    @if (logicFlowNodes.Any())
+    {
+        <h4 class="h6">Logic Flow Diagram</h4>
+        <div class="logic-diagram" role="img" aria-label="Module logic flow represented with arrow links">
+            @for (var i = 0; i < logicFlowNodes.Count; i++)
+            {
+                <span class="logic-node">@logicFlowNodes[i]</span>
+                @if (i < logicFlowNodes.Count - 1)
+                {
+                    <span class="logic-arrow">→</span>
+                }
+            }
+        </div>
+        <div class="small text-muted mb-2">Use this as the high-level behavior map for scenario tests and parity checks.</div>
+    }
     <div class="row g-3">
         <div class="col-lg-6">
             <h4 class="h6">Important Flows</h4>
-            <ul>@foreach (var x in Model.LogicUnderstanding.ImportantFlows) { <li>@x</li> }</ul>
+            <ul>
+                @if (Model.LogicUnderstanding.FlowDetails.Any())
+                {
+                    @foreach (var x in Model.LogicUnderstanding.FlowDetails)
+                    {
+                        <li>@x.Value <span class="badge text-bg-light ms-1">@x.ProvenanceType</span> <span class="small text-muted">conf: @x.Confidence.ToString("0.00")</span></li>
+                    }
+                }
+                else
+                {
+                    @foreach (var x in Model.LogicUnderstanding.ImportantFlows) { <li>@x</li> }
+                }
+            </ul>
         </div>
         <div class="col-lg-6">
             <h4 class="h6">Rules</h4>
-            <ul>@foreach (var x in Model.LogicUnderstanding.Rules) { <li>@x</li> }</ul>
+            <ul>
+                @if (Model.LogicUnderstanding.RuleDetails.Any())
+                {
+                    @foreach (var x in Model.LogicUnderstanding.RuleDetails)
+                    {
+                        <li>@x.Value <span class="badge text-bg-light ms-1">@x.ProvenanceType</span> <span class="small text-muted">conf: @x.Confidence.ToString("0.00")</span></li>
+                    }
+                }
+                else
+                {
+                    @foreach (var x in Model.LogicUnderstanding.Rules) { <li>@x</li> }
+                }
+            </ul>
         </div>
         <div class="col-lg-6">
             <h4 class="h6">Dependencies</h4>
@@ -84,6 +176,157 @@
             <h4 class="h6">Must Preserve</h4>
             <ul>@foreach (var x in Model.LogicUnderstanding.MustPreserve) { <li>@x</li> }</ul>
         </div>
+    </div>
+    <div class="small text-muted mt-2">Logic confidence: @Model.LogicUnderstanding.Confidence.ToString("0.00")</div>
+    @if (Model.LogicUnderstanding.Unknowns.Any())
+    {
+        <div class="mt-2">
+            <h4 class="h6">Unknowns</h4>
+            <ul>@foreach (var x in Model.LogicUnderstanding.Unknowns) { <li>@x</li> }</ul>
+        </div>
+    }
+</section>
+
+<section id="stage-parity" class="stage-section panel-card p-3 mb-3">
+    <div class="stage-heading">
+        <h3 class="h5 mb-0">Parity Analysis</h3>
+        <span class="stage-pill">legacy Java vs converted C# functional closeness</span>
+    </div>
+
+    <div class="row g-3 mb-2">
+        <div class="col-md-3"><div class="border rounded p-2"><small class="text-muted">Parity Score</small><div class="fw-semibold">@Model.Parity.ParityScore%</div></div></div>
+        <div class="col-md-3"><div class="border rounded p-2"><small class="text-muted">Total Checks</small><div class="fw-semibold">@Model.Parity.TotalChecks</div></div></div>
+        <div class="col-md-3"><div class="border rounded p-2"><small class="text-muted">Passed Checks</small><div class="fw-semibold text-success">@Model.Parity.PassedChecks</div></div></div>
+        <div class="col-md-3"><div class="border rounded p-2"><small class="text-muted">Failed Checks</small><div class="fw-semibold text-danger">@Model.Parity.FailedChecks</div></div></div>
+    </div>
+
+    <div class="small text-muted mb-2">Confidence: @Model.Parity.Confidence.ToString("0.00")</div>
+
+    <div class="table-responsive mb-2">
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th>Parity Check</th>
+                    <th>Status</th>
+                    <th>Evidence</th>
+                    <th>Confidence</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var check in Model.Parity.Checks)
+            {
+                <tr>
+                    <td>@check.Name</td>
+                    <td><span class="status-pill @check.Status.ToLowerInvariant()">@check.Status</span></td>
+                    <td>
+                        @if (check.EvidenceLines.Any())
+                        {
+                            <ul class="mb-0">
+                                @foreach (var line in check.EvidenceLines)
+                                {
+                                    <li>@line</li>
+                                }
+                            </ul>
+                        }
+                        else
+                        {
+                            <span class="text-muted small">No evidence captured.</span>
+                        }
+                    </td>
+                    <td>@check.Confidence.ToString("0.00") <div class="small text-muted">@check.ProvenanceType</div></td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+
+    @if (Model.Parity.Gaps.Any())
+    {
+        <h4 class="h6">Parity Gaps</h4>
+        <ul>
+            @foreach (var gap in Model.Parity.Gaps)
+            {
+                <li>@gap</li>
+            }
+        </ul>
+    }
+
+    <h4 class="h6 mt-3">SQL and Table Parity (Before vs After)</h4>
+    <div class="row g-3 mb-2">
+        <div class="col-md-4"><div class="border rounded p-2"><small class="text-muted">Legacy Queries</small><div class="fw-semibold">@Model.Parity.SqlParity.LegacyQueryCount</div></div></div>
+        <div class="col-md-4"><div class="border rounded p-2"><small class="text-muted">Converted Queries</small><div class="fw-semibold">@Model.Parity.SqlParity.ConvertedQueryCount</div></div></div>
+        <div class="col-md-4"><div class="border rounded p-2"><small class="text-muted">Matched Queries</small><div class="fw-semibold">@Model.Parity.SqlParity.MatchedCount</div></div></div>
+    </div>
+
+    <div class="table-responsive mb-3">
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th>Table</th>
+                    <th>Legacy Count</th>
+                    <th>Converted Count</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var t in Model.Parity.SqlParity.Tables)
+            {
+                <tr>
+                    <td><code>@t.Table</code></td>
+                    <td>@t.LegacyOccurrences</td>
+                    <td>@t.ConvertedOccurrences</td>
+                    <td><span class="status-pill @t.Status.ToLowerInvariant()">@t.Status</span></td>
+                </tr>
+            }
+            @if (!Model.Parity.SqlParity.Tables.Any())
+            {
+                <tr><td colspan="4" class="text-muted">No SQL table evidence found for this run.</td></tr>
+            }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-sm align-middle">
+            <thead>
+                <tr>
+                    <th>Status</th>
+                    <th>Legacy (Before)</th>
+                    <th>Converted (After)</th>
+                    <th>Confidence</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var pair in Model.Parity.SqlParity.BeforeAfter)
+            {
+                <tr>
+                    <td><span class="status-pill @pair.Status.ToLowerInvariant()">@pair.Status</span></td>
+                    <td>
+                        <div class="small"><code>@pair.LegacyFile</code></div>
+                        <div class="small"><strong>Tables:</strong> @string.Join(", ", pair.LegacyTables)</div>
+                        <div class="small text-muted">@pair.LegacyQuery</div>
+                    </td>
+                    <td>
+                        @if (!string.IsNullOrWhiteSpace(pair.ConvertedFile))
+                        {
+                            <div class="small"><code>@pair.ConvertedFile</code></div>
+                            <div class="small"><strong>Tables:</strong> @string.Join(", ", pair.ConvertedTables)</div>
+                            <div class="small text-muted">@pair.ConvertedQuery</div>
+                        }
+                        else
+                        {
+                            <span class="text-muted">No converted match</span>
+                        }
+                    </td>
+                    <td>@pair.Confidence.ToString("0.00")</td>
+                </tr>
+            }
+            @if (!Model.Parity.SqlParity.BeforeAfter.Any())
+            {
+                <tr><td colspan="4" class="text-muted">No query before/after pairs generated.</td></tr>
+            }
+            </tbody>
+        </table>
     </div>
 </section>
 
@@ -156,7 +399,22 @@
         <tbody>
         @foreach (var c in Model.TestPlan.TestCategories)
         {
-            <tr><td>@c.Category</td><td>@c.Purpose</td></tr>
+            <tr>
+                <td>@c.Category</td>
+                <td>
+                    <div>@c.Purpose</div>
+                    @if (c.Scenarios.Any())
+                    {
+                        <div class="small text-muted">Scenarios:</div>
+                        <ul class="mb-0">
+                            @foreach (var s in c.Scenarios.Take(3))
+                            {
+                                <li>@s.Name <span class="badge text-bg-light ms-1">@s.ProvenanceType</span> <span class="text-muted">conf: @s.Confidence.ToString("0.00")</span></li>
+                            }
+                        </ul>
+                    }
+                </td>
+            </tr>
         }
         </tbody>
     </table>
@@ -165,55 +423,255 @@
 <section id="stage-execution" class="stage-section panel-card p-3 mb-3">
     <div class="stage-heading">
         <h3 class="h5 mb-0">5. Execution</h3>
-        <span class="stage-pill">unit / integration / e2e / api / edge / playwright</span>
+        <span class="stage-pill">unit / integration / e2e / api / edge / playwright / devtools</span>
     </div>
 
-    <div class="table-responsive mb-3">
-        <table class="table table-sm align-middle">
-            <thead>
-            <tr>
-                <th>Category</th>
-                <th>Purpose</th>
-                <th>Total</th>
-                <th>Passed</th>
-                <th>Failed</th>
-                <th>Warnings</th>
-                <th>New Tests</th>
-                <th>Source Skill</th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach (var c in Model.Execution.TestCategories)
-            {
-                <tr>
-                    <td>@c.Category</td>
-                    <td>@c.Purpose</td>
-                    <td>@c.TotalCount</td>
-                    <td class="text-success">@c.Passed</td>
-                    <td class="text-danger">@c.Failed</td>
-                    <td class="text-warning">@c.Warnings</td>
-                    <td>@c.NewTestsAdded</td>
-                    <td><code>@c.SourceSkill</code></td>
-                </tr>
-            }
-            </tbody>
-        </table>
+    <div class="execution-grid mb-3">
+        @foreach (var c in Model.Execution.TestCategories)
+        {
+            <article class="execution-kpi-card">
+                <div class="d-flex align-items-center justify-content-between mb-1">
+                    <h4 class="h6 mb-0">@c.Category</h4>
+                    <span class="status-pill @(c.PreflightStatus.ToLowerInvariant())">@c.PreflightStatus</span>
+                </div>
+                <div class="small text-muted mb-2">@c.Purpose</div>
+                <div class="execution-metric-row">
+                    <span>Total: <strong>@c.TotalCount</strong></span>
+                    <span class="text-success">Passed: <strong>@c.Passed</strong></span>
+                    <span class="text-danger">Failed: <strong>@c.Failed</strong></span>
+                    <span class="text-warning">Warnings: <strong>@c.Warnings</strong></span>
+                </div>
+                <div class="execution-metric-row">
+                    <span>Generated: <strong>@c.NewTestsAdded</strong></span>
+                    <span>Skill: <code>@c.SourceSkill</code></span>
+                </div>
+                @if (!string.IsNullOrWhiteSpace(c.PreflightReason) && !string.Equals(c.PreflightReason, "ok", StringComparison.OrdinalIgnoreCase))
+                {
+                    <div class="small text-danger mt-1">Preflight reason: @c.PreflightReason</div>
+                }
+            </article>
+        }
     </div>
 
-    @foreach (var c in Model.Execution.TestCategories)
+    <div class="accordion execution-accordion" id="executionCategoriesAccordion">
+    @for (var i = 0; i < Model.Execution.TestCategories.Count; i++)
     {
-        <div class="border rounded p-2 mb-2">
-            <strong>@c.Category Scenarios</strong>
-            <ul class="mb-2">@foreach (var s in c.ScenariosCovered) { <li>@s</li> }</ul>
-            <div class="small"><strong>Logs:</strong> @string.Join(" | ", c.Logs)</div>
-            <div class="small"><strong>Artifacts:</strong> @string.Join(" | ", c.Artifacts)</div>
+        var c = Model.Execution.TestCategories[i];
+        var generatedScenarios = c.ScenarioDetails.Where(s => s.Generated).ToList();
+        var executionFindings = Model.Findings.Findings
+            .Where(f => string.Equals(f.Stage, "execution", StringComparison.OrdinalIgnoreCase)
+                        && string.Equals(f.SkillName, c.SourceSkill, StringComparison.OrdinalIgnoreCase))
+            .ToList();
+        var executionRecommendations = Model.Findings.Recommendations
+            .Where(r => string.Equals(r.Stage, "execution", StringComparison.OrdinalIgnoreCase)
+                        && string.Equals(r.SkillName, c.SourceSkill, StringComparison.OrdinalIgnoreCase))
+            .ToList();
+        var collapseId = $"execution-category-{i}";
+        var headingId = $"execution-heading-{i}";
+        var expanded = i == 0;
+
+        <div class="accordion-item execution-category-card mb-2">
+            <h2 class="accordion-header" id="@headingId">
+                <button class="accordion-button @(expanded ? string.Empty : "collapsed")" type="button" data-bs-toggle="collapse" data-bs-target="#@collapseId" aria-expanded="@(expanded ? "true" : "false")" aria-controls="@collapseId">
+                    <span class="me-2 fw-semibold">@c.Category</span>
+                    <span class="badge text-bg-light border me-2">@c.ScenarioDetails.Count scenario(s)</span>
+                    <span class="status-pill @c.PreflightStatus.ToLowerInvariant()">@c.PreflightStatus</span>
+                </button>
+            </h2>
+            <div id="@collapseId" class="accordion-collapse collapse @(expanded ? "show" : string.Empty)" aria-labelledby="@headingId" data-bs-parent="#executionCategoriesAccordion">
+                <div class="accordion-body pt-2">
+                    <div class="execution-category-header">
+                        <h4 class="h6 mb-0">@c.Category Details</h4>
+                        <span class="badge text-bg-primary">@c.Passed passed / @c.Failed failed</span>
+                    </div>
+
+            <div class="table-responsive mb-3">
+                <table class="table table-sm align-middle mb-0">
+                    <thead>
+                        <tr>
+                            <th>Scenario</th>
+                            <th>Status</th>
+                            <th>Coverage</th>
+                            <th>Generated</th>
+                            <th>Provenance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @if (c.ScenarioDetails.Any())
+                    {
+                        @foreach (var s in c.ScenarioDetails)
+                        {
+                            <tr>
+                                <td>
+                                    <div class="fw-semibold">@s.Name</div>
+                                    @if (!string.IsNullOrWhiteSpace(s.Notes))
+                                    {
+                                        <div class="small text-muted">@s.Notes</div>
+                                    }
+                                </td>
+                                <td><span class="status-pill @s.Status.ToLowerInvariant()">@s.Status</span></td>
+                                <td>
+                                    @if (s.Coverage.Any())
+                                    {
+                                        @foreach (var cov in s.Coverage)
+                                        {
+                                            <span class="badge text-bg-light border me-1 mb-1">@cov</span>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted small">n/a</span>
+                                    }
+                                </td>
+                                <td>
+                                    @if (s.Generated)
+                                    {
+                                        <span class="badge text-bg-warning">Generated</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge text-bg-secondary">Existing</span>
+                                    }
+                                </td>
+                                <td>
+                                    <span class="badge text-bg-light border">@s.ProvenanceType</span>
+                                    <div class="small text-muted">conf: @s.Confidence.ToString("0.00")</div>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        @foreach (var s in c.ScenariosCovered)
+                        {
+                            <tr>
+                                <td>@s</td>
+                                <td><span class="status-pill unknown">unknown</span></td>
+                                <td><span class="text-muted small">n/a</span></td>
+                                <td><span class="badge text-bg-secondary">Unknown</span></td>
+                                <td><span class="badge text-bg-light border">inferred</span></td>
+                            </tr>
+                        }
+                    }
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="row g-3">
+                <div class="col-lg-4">
+                    <h5 class="h6">Generated Test Cases</h5>
+                    @if (generatedScenarios.Any())
+                    {
+                        <ul class="mb-0">
+                            @foreach (var s in generatedScenarios)
+                            {
+                                <li>
+                                    @s.Name
+                                    @if (s.GeneratedFrom.Any())
+                                    {
+                                        <div class="small text-muted">from: @string.Join(", ", s.GeneratedFrom)</div>
+                                    }
+                                </li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <div class="small text-muted">No generated tests recorded for this category in this run.</div>
+                    }
+                </div>
+
+                <div class="col-lg-4">
+                    <h5 class="h6">Failure Reasons</h5>
+                    @if (executionFindings.Any())
+                    {
+                        <ul class="mb-0">
+                            @foreach (var f in executionFindings)
+                            {
+                                <li>
+                                    <strong>@f.FindingType</strong>: @f.Message
+                                    <div class="small text-muted">Cause: @f.LikelyCause</div>
+                                    <div class="small text-muted">Evidence: @f.Evidence</div>
+                                </li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <div class="small text-muted">No execution findings recorded.</div>
+                    }
+                </div>
+
+                <div class="col-lg-4">
+                    <h5 class="h6">Resolution Guidance</h5>
+                    @if (executionRecommendations.Any())
+                    {
+                        <ul class="mb-0">
+                            @foreach (var r in executionRecommendations)
+                            {
+                                <li>
+                                    <strong>@r.Priority</strong>: @r.Message
+                                    <div class="small text-muted">@r.Evidence</div>
+                                </li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <div class="small text-muted">No recommendations recorded.</div>
+                    }
+                </div>
+            </div>
+
+                    <div class="row g-3 mt-1">
+                <div class="col-lg-6">
+                    <h5 class="h6">Execution Logs</h5>
+                    @if (c.Logs.Any())
+                    {
+                        <ul class="mb-0">@foreach (var log in c.Logs) { <li><code>@log</code></li> }</ul>
+                    }
+                    else
+                    {
+                        <div class="small text-muted">No logs recorded.</div>
+                    }
+                </div>
+                <div class="col-lg-6">
+                    <h5 class="h6">Artifacts</h5>
+                    @if (c.Artifacts.Any())
+                    {
+                        <ul class="mb-0">@foreach (var artifact in c.Artifacts) { <li><code>@artifact</code></li> }</ul>
+                    }
+                    else
+                    {
+                        <div class="small text-muted">No artifacts recorded.</div>
+                    }
+                </div>
+            </div>
+                </div>
+            </div>
         </div>
     }
+    </div>
 
     <h4 class="h6 mt-3">Playwright / Browser Verification Evidence</h4>
     <div class="mb-2">
         <span class="status-pill @Model.Execution.Playwright.Status.ToLowerInvariant()">@Model.Execution.Playwright.Status</span>
         <span class="ms-2">@Model.Execution.Playwright.Summary</span>
+    </div>
+
+    <div class="mb-3">
+        <span class="badge @(string.Equals(Model.Execution.Playwright.TestApiStatus, "present", StringComparison.OrdinalIgnoreCase) ? "text-bg-success" : "text-bg-danger")">
+            Test API: @(string.Equals(Model.Execution.Playwright.TestApiStatus, "present", StringComparison.OrdinalIgnoreCase) ? "Present" : "Missing")
+        </span>
+        @if (!string.IsNullOrWhiteSpace(Model.Execution.Playwright.TestApiEndpoint))
+        {
+            <span class="ms-2"><code>@Model.Execution.Playwright.TestApiEndpoint</code></span>
+        }
+        @if (!string.IsNullOrWhiteSpace(Model.Execution.Playwright.TestApiReason))
+        {
+            <div class="small text-muted mt-1">Reason: @Model.Execution.Playwright.TestApiReason</div>
+        }
+        <div class="small text-muted mt-1">This indicates diagnostics endpoint availability, not whether previous iteration tests exist.</div>
     </div>
 
     <div class="row g-3">
@@ -265,6 +723,7 @@
                     <th>Scenario</th>
                     <th>Likely Cause</th>
                     <th>Evidence</th>
+                    <th>Confidence</th>
                     <th>Status</th>
                 </tr>
             </thead>
@@ -277,6 +736,7 @@
                     <td>@f.Scenario</td>
                     <td>@f.LikelyCause</td>
                     <td>@f.Evidence</td>
+                    <td>@f.Confidence.ToString("0.00")<div class="small text-muted">@f.ProvenanceType</div></td>
                     <td>
                         <span class="status-pill @f.Status.ToLowerInvariant()">@f.Status</span>
                         @if (!string.IsNullOrWhiteSpace(f.ResolvedInRunId))
@@ -290,19 +750,76 @@
         </table>
     </div>
 
+    <div class="row g-3 mb-3">
+        <div class="col-lg-6">
+            <h4 class="h6">Key Learnings</h4>
+            <div class="small text-muted mb-1">Persistent modernization pitfalls captured from repeated runs.</div>
+            <ul class="mb-0">
+                @foreach (var pitfall in Model.KeyLearnings.KnownPitfalls)
+                {
+                    <li>@pitfall</li>
+                }
+            </ul>
+            @if (!Model.KeyLearnings.KnownPitfalls.Any())
+            {
+                <div class="small text-muted">No key learnings recorded yet.</div>
+            }
+        </div>
+        <div class="col-lg-6">
+            <h4 class="h6">Recurring Signatures</h4>
+            <ul class="mb-0">
+                @foreach (var signature in Model.KeyLearnings.RecurringSignatures)
+                {
+                    <li>@signature</li>
+                }
+            </ul>
+            @if (!Model.KeyLearnings.RecurringSignatures.Any())
+            {
+                <div class="small text-muted">No recurring signatures for this module run.</div>
+            }
+        </div>
+    </div>
+
+    <div class="row g-3">
+        <div class="col-lg-4">
+            <h4 class="h6">New Issues</h4>
+            <ul class="mb-0">@foreach (var x in Model.KeyLearnings.NewIssues) { <li>@x</li> }</ul>
+            @if (!Model.KeyLearnings.NewIssues.Any())
+            {
+                <div class="small text-muted">No new issues introduced.</div>
+            }
+        </div>
+        <div class="col-lg-4">
+            <h4 class="h6">Recurring Issues</h4>
+            <ul class="mb-0">@foreach (var x in Model.KeyLearnings.RecurringIssues) { <li>@x</li> }</ul>
+            @if (!Model.KeyLearnings.RecurringIssues.Any())
+            {
+                <div class="small text-muted">No recurring issues for this run.</div>
+            }
+        </div>
+        <div class="col-lg-4">
+            <h4 class="h6">Resolved Issues</h4>
+            <ul class="mb-0">@foreach (var x in Model.KeyLearnings.ResolvedIssues) { <li>@x</li> }</ul>
+            @if (!Model.KeyLearnings.ResolvedIssues.Any())
+            {
+                <div class="small text-muted">No resolved issues detected from previous run.</div>
+            }
+        </div>
+    </div>
+
     <h4 class="h6">Recommendations</h4>
     <ul>
     @foreach (var r in Model.Findings.Recommendations)
     {
-        <li><strong>@r.Priority</strong> - @r.Message <span class="text-muted">(@r.Stage / @r.SkillName)</span></li>
+        <li><strong>@r.Priority</strong> - @r.Message <span class="text-muted">(@r.Stage / @r.SkillName / @r.ProvenanceType)</span></li>
     }
     </ul>
 </section>
 
 <section id="stage-iteration-comparison" class="stage-section panel-card p-3 mb-4">
     <div class="stage-heading">
-        <h3 class="h5 mb-0">7. Iteration Comparison</h3>
-        <span class="stage-pill">previous vs current progression</span>
+        <h3 class="h5 mb-0">7. Iteration Comparison and Improvements</h3>
+        <span class="stage-pill">previous vs current progression and quality uplift</span>
     </div>
 
     <div class="row g-3">

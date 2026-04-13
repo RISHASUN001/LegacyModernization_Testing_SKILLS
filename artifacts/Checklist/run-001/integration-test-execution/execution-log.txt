@@ -1,0 +1,12 @@
+command: dotnet test /Users/risha/Documents/Buildathon/samples/legacy-java-app/LegacyModernization.Converted.csproj --nologo --verbosity minimal
+returnCode: 0
+timedOut: False
+durationSeconds: 1.391
+
+--- stdout ---
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+
+
+--- stderr ---
+CSSM_ModuleLoad(): One or more parameters passed to a function were not valid.

@@ -1,0 +1,360 @@
+{
+  "moduleName": "Login2",
+  "category": "Unit",
+  "lastRunId": "login2-test-20260413-234705",
+  "generatedCount": 13,
+  "generatedTests": [
+    {
+      "id": "unit-gen-001",
+      "category": "Unit",
+      "name": "Unit robustness generated case 1 for Login2",
+      "coverage": [
+        "robustness",
+        "fallback"
+      ],
+      "priority": "medium",
+      "given": "Given the Login2 module is configured and reachable",
+      "when": "When executing generated scenario: Unit robustness generated case 1 for Login2",
+      "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
+      "generatedFrom": [
+        "fallback:insufficient-discovery-evidence"
+      ],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "id": "unit-gen-002",
+      "category": "Unit",
+      "name": "Unit robustness generated case 2 for Login2",
+      "coverage": [
+        "robustness",
+        "fallback"
+      ],
+      "priority": "medium",
+      "given": "Given the Login2 module is configured and reachable",
+      "when": "When executing generated scenario: Unit robustness generated case 2 for Login2",
+      "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
+      "generatedFrom": [
+        "fallback:insufficient-discovery-evidence"
+      ],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "id": "unit-gen-003",
+      "category": "Unit",
+      "name": "Unit robustness generated case 3 for Login2",
+      "coverage": [
+        "robustness",
+        "fallback"
+      ],
+      "priority": "medium",
+      "given": "Given the Login2 module is configured and reachable",
+      "when": "When executing generated scenario: Unit robustness generated case 3 for Login2",
+      "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
+      "generatedFrom": [
+        "fallback:insufficient-discovery-evidence"
+      ],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "id": "unit-gen-004",
+      "category": "Unit",
+      "name": "Unit robustness generated case 4 for Login2",
+      "coverage": [
+        "robustness",
+        "fallback"
+      ],
+      "priority": "medium",
+      "given": "Given the Login2 module is configured and reachable",
+      "when": "When executing generated scenario: Unit robustness generated case 4 for Login2",
+      "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
+      "generatedFrom": [
+        "fallback:insufficient-discovery-evidence"
+      ],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "id": "unit-gen-001",
+      "category": "Unit",
+      "name": "Unit guard: If credentials are invalid, stay on login page and show validation message",
+      "coverage": [
+        "rule-validation",
+        "deterministic-behavior"
+      ],
+      "priority": "medium",
+      "given": "Given the Login2 module is configured and reachable",
+      "when": "When executing generated scenario: Unit guard: If credentials are invalid, stay on login page and show validation message",
+      "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
+      "generatedFrom": [
+        "rule:If credentials are invalid, stay on login page and show validation message"
+      ],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "id": "unit-gen-002",
+      "category": "Unit",
+      "name": "Unit guard: If credentials are valid, establish session and redirect to home/dashboard",
+      "coverage": [
+        "rule-validation",
+        "deterministic-behavior"
+      ],
+      "priority": "medium",
+      "given": "Given the Login2 module is configured and reachable",
+      "when": "When executing generated scenario: Unit guard: If credentials are valid, establish session and redirect to home/dashboard",
+      "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
+      "generatedFrom": [
+        "rule:If credentials are valid, establish session and redirect to home/dashboard"
+      ],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "id": "unit-gen-003",
+      "category": "Unit",
+      "name": "Unit guard: If session is expired, protected routes redirect to login",
+      "coverage": [
+        "rule-validation",
+        "deterministic-behavior"
+      ],
+      "priority": "medium",
+      "given": "Given the Login2 module is configured and reachable",
+      "when": "When executing generated scenario: Unit guard: If session is expired, protected routes redirect to login",
+      "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
+      "generatedFrom": [
+        "rule:If session is expired, protected routes redirect to login"
+      ],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "id": "unit-gen-004",
+      "category": "Unit",
+      "name": "Unit parity guard: Route and URL behavior parity for user-visible flows",
+      "coverage": [
+        "parity",
+        "regression"
+      ],
+      "priority": "high",
+      "given": "Given the Login2 module is configured and reachable",
+      "when": "When executing generated scenario: Unit parity guard: Route and URL behavior parity for user-visible flows",
+      "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
+      "generatedFrom": [
+        "preserve:Route and URL behavior parity for user-visible flows"
+      ],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "id": "unit-gen-005",
+      "category": "Unit",
+      "name": "Unit parity guard: Validation/error message semantics from legacy behavior",
+      "coverage": [
+        "parity",
+        "regression"
+      ],
+      "priority": "high",
+      "given": "Given the Login2 module is configured and reachable",
+      "when": "When executing generated scenario: Unit parity guard: Validation/error message semantics from legacy behavior",
+      "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
+      "generatedFrom": [
+        "preserve:Validation/error message semantics from legacy behavior"
+      ],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "id": "unit-gen-006",
+      "category": "Unit",
+      "name": "Regression reuse: Unit robustness generated case 1 for Login2",
+      "coverage": [
+        "regression",
+        "historical-learning"
+      ],
+      "priority": "medium",
+      "given": "Given the Login2 module is configured and reachable",
+      "when": "When executing generated scenario: Regression reuse: Unit robustness generated case 1 for Login2",
+      "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
+      "generatedFrom": [
+        "history:Unit robustness generated case 1 for Login2"
+      ],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "id": "unit-gen-007",
+      "category": "Unit",
+      "name": "Regression reuse: Unit robustness generated case 2 for Login2",
+      "coverage": [
+        "regression",
+        "historical-learning"
+      ],
+      "priority": "medium",
+      "given": "Given the Login2 module is configured and reachable",
+      "when": "When executing generated scenario: Regression reuse: Unit robustness generated case 2 for Login2",
+      "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
+      "generatedFrom": [
+        "history:Unit robustness generated case 2 for Login2"
+      ],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "id": "unit-gen-008",
+      "category": "Unit",
+      "name": "Regression reuse: Unit robustness generated case 3 for Login2",
+      "coverage": [
+        "regression",
+        "historical-learning"
+      ],
+      "priority": "medium",
+      "given": "Given the Login2 module is configured and reachable",
+      "when": "When executing generated scenario: Regression reuse: Unit robustness generated case 3 for Login2",
+      "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
+      "generatedFrom": [
+        "history:Unit robustness generated case 3 for Login2"
+      ],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "id": "unit-gen-009",
+      "category": "Unit",
+      "name": "Regression reuse: Unit robustness generated case 4 for Login2",
+      "coverage": [
+        "regression",
+        "historical-learning"
+      ],
+      "priority": "medium",
+      "given": "Given the Login2 module is configured and reachable",
+      "when": "When executing generated scenario: Regression reuse: Unit robustness generated case 4 for Login2",
+      "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
+      "generatedFrom": [
+        "history:Unit robustness generated case 4 for Login2"
+      ],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    }
+  ],
+  "notes": "Persistent generated tests used to improve robustness on future iterations."
+}

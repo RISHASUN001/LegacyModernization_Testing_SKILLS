@@ -1,0 +1,38 @@
+{
+  "skillName": "test-plan-generation",
+  "stage": "test-plan",
+  "moduleName": "Login2",
+  "runId": "login2-test-20260413-234705",
+  "status": "passed",
+  "startedAt": "2026-04-13T15:50:58.141158Z",
+  "endedAt": "2026-04-13T15:50:58.153305Z",
+  "summary": "Test plan generated for Login2 with categories=7 and suggestedTests=4.",
+  "metrics": {
+    "existingTests": 0,
+    "suggestedTests": 4,
+    "coveragePercent": 34,
+    "architectureRisks": 1
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/Login2/login2-test-20260413-234705/test-plan-generation/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login2/login2-test-20260413-234705/test-plan-generation/test-plan.json"
+  ],
+  "findings": [],
+  "recommendations": [
+    {
+      "message": "Prioritize scenarios sourced from must-preserve behaviors and recurring lessons before parity signoff.",
+      "priority": "high",
+      "evidence": "Test categories now include provenance for flow/risk/fallback/lessons origins."
+    }
+  ],
+  "resultContractVersion": "2.0",
+  "provenanceSummary": {
+    "scenarioSources": [
+      "flow-derived",
+      "risk-derived",
+      "lessons-derived",
+      "fallback"
+    ],
+    "confidence": 0.82
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "moduleName": "Login2",
+  "runId": "login2-test-20260413-234705",
+  "previousRunId": "_knowledge-base",
+  "testsAdded": 4,
+  "testsFixed": 0,
+  "failuresReduced": 0,
+  "newFindingsIntroduced": 6,
+  "resolvedFindings": 0,
+  "progressionTrend": "regressing",
+  "categoryDelta": {
+    "api-test-execution": {
+      "previousFailed": 0,
+      "currentFailed": 0,
+      "failuresReduced": 0
+    },
+    "browser-testing-with-devtools": {
+      "previousFailed": 0,
+      "currentFailed": 0,
+      "failuresReduced": 0
+    },
+    "clean-architecture-assessment": {
+      "previousFailed": 0,
+      "currentFailed": 0,
+      "failuresReduced": 0
+    },
+    "e2e-test-execution": {
+      "previousFailed": 0,
+      "currentFailed": 0,
+      "failuresReduced": 0
+    },
+    "edge-case-testing": {
+      "previousFailed": 0,
+      "currentFailed": 0,
+      "failuresReduced": 0
+    },
+    "failure-diagnosis": {
+      "previousFailed": 0,
+      "currentFailed": 0,
+      "failuresReduced": 0
+    },
+    "integration-test-execution": {
+      "previousFailed": 0,
+      "currentFailed": 0,
+      "failuresReduced": 0
+    },
+    "legacy-logic-extraction": {
+      "previousFailed": 0,
+      "currentFailed": 0,
+      "failuresReduced": 0
+    },
+    "lessons-learned": {
+      "previousFailed": 0,
+      "currentFailed": 0,
+      "failuresReduced": 0
+    },
+    "module-discovery": {
+      "previousFailed": 0,
+      "currentFailed": 0,
+      "failuresReduced": 0
+    },
+    "module-documentation": {
+      "previousFailed": 0,
+      "currentFailed": 0,
+      "failuresReduced": 0
+    },
+    "parity-verification": {
+      "previousFailed": 0,
+      "currentFailed": 0,
+      "failuresReduced": 0
+    },
+    "playwright-browser-verification": {
+      "previousFailed": 0,
+      "currentFailed": 0,
+      "failuresReduced": 0
+    },
+    "test-plan-generation": {
+      "previousFailed": 0,
+      "currentFailed": 0,
+      "failuresReduced": 0
+    },
+    "unit-test-execution": {
+      "previousFailed": 0,
+      "currentFailed": 0,
+      "failuresReduced": 0
+    }
+  }
+}

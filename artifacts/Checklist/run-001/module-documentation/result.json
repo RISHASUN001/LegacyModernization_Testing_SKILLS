@@ -4,12 +4,15 @@
   "moduleName": "Checklist",
   "runId": "run-001",
   "status": "passed",
-  "startedAt": "2026-04-12T10:04:00Z",
-  "endedAt": "2026-04-12T10:05:00Z",
-  "summary": "Module documentation published for checklist legacy parity baseline.",
+  "startedAt": "2026-04-13T11:32:20.233650Z",
+  "endedAt": "2026-04-13T11:32:20.244283Z",
+  "summary": "Module documentation generated for Checklist with flows=1, rules=2, unknowns=1.",
   "metrics": {
-    "sections": 6,
-    "flowsDocumented": 5
+    "sections": 9,
+    "flowsDocumented": 1,
+    "rulesDocumented": 2,
+    "relatedFiles": 3,
+    "confidence": 0.63
   },
   "artifacts": [
     "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-001/module-documentation/result.json",
@@ -18,10 +21,21 @@
   "findings": [],
   "recommendations": [
     {
-      "message": "Review documentation with QA and SME before finalizing test plan.",
-      "priority": "medium",
-      "evidence": "Rule list drives test categories."
+      "message": "Use module-analysis workflows/rules as primary source for scenario and parity mapping.",
+      "priority": "high",
+      "evidence": "Documentation artifact now includes provenance-tagged flows and business rules."
     }
   ],
-  "resultContractVersion": "2.0"
+  "resultContractVersion": "2.0",
+  "provenanceSummary": {
+    "scenarioSources": [
+      "code-evidence",
+      "inferred",
+      "fallback"
+    ],
+    "confidence": 0.63,
+    "unknowns": [
+      "No DB touchpoint extracted; persistence parity must be confirmed with runtime logs."
+    ]
+  }
 }

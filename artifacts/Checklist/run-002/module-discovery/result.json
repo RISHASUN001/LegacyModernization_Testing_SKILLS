@@ -4,30 +4,31 @@
   "moduleName": "Checklist",
   "runId": "run-002",
   "status": "passed",
-  "startedAt": "2026-04-12T18:52:07.110384Z",
-  "endedAt": "2026-04-12T18:52:07.111098Z",
-  "summary": "Discovery completed with high confidence and expanded URL/DB mapping.",
+  "startedAt": "2026-04-13T11:32:30.475698Z",
+  "endedAt": "2026-04-13T11:32:30.483970Z",
+  "summary": "Discovery completed for Checklist: assets=13, routes=3, dbTouchpoints=0.",
   "metrics": {
-    "totalAssets": 79,
-    "javaFiles": 34,
-    "jspFiles": 13,
-    "jsFiles": 11,
-    "configFiles": 8,
-    "urls": 8,
-    "dbTouchpoints": 5,
-    "confidence": 92
+    "totalAssets": 13,
+    "javaFiles": 1,
+    "jspFiles": 2,
+    "jsFiles": 0,
+    "configFiles": 0,
+    "urls": 3,
+    "dbTouchpoints": 0,
+    "confidence": 0.92
   },
   "artifacts": [
-    "artifacts/Checklist/run-002/module-discovery/result.json",
-    "artifacts/Checklist/run-002/module-discovery/discovery-map.json"
+    "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/module-discovery/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/module-discovery/discovery-map.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/module-discovery/discovery-evidence.json"
   ],
   "findings": [],
-  "recommendations": [
-    {
-      "message": "Persist discovery map as baseline for future iteration diffs.",
-      "priority": "low",
-      "evidence": "Stable asset map achieved."
-    }
-  ],
-  "resultContractVersion": "2.0"
+  "recommendations": [],
+  "resultContractVersion": "2.0",
+  "provenanceSummary": {
+    "scenarioSources": [
+      "code-evidence"
+    ],
+    "confidence": 0.92
+  }
 }

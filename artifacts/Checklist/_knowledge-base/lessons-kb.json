@@ -1,0 +1,50 @@
+{
+  "moduleName": "Checklist",
+  "updatedAt": "2026-04-13T11:32:31.879248Z",
+  "latestRunId": "run-002",
+  "recurringSignatures": [
+    "ApplicationUnreachable::API preflight::Application reachability check failed.",
+    "ApplicationUnreachable::E2E preflight::Application reachability check failed.",
+    "ApplicationUnreachable::Edge Case preflight::Application reachability check failed.",
+    "ApplicationUnreachable::Playwright / E2E Browser preflight::Application reachability check failed.",
+    "ArchitectureIssuesDetected::Clean architecture review::Detected 1 architecture issue(s), including 1 high-severity issue(s).",
+    "EnvironmentDependencyMissing::DevTools diagnostics preflight::DevTools evidence endpoint is not reachable.",
+    "ScenarioFailure::API contract route: /Views/Auth/Dashboard.cshtml::API contract route: /Views/Auth/Dashboard.cshtml failed in skill api-test-execution.",
+    "ScenarioFailure::API contract route: /Views/Auth/Index.cshtml::API contract route: /Views/Auth/Index.cshtml failed in skill api-test-execution.",
+    "ScenarioFailure::API contract route: /dashboard::API contract route: /dashboard failed in skill api-test-execution.",
+    "ScenarioFailure::Browser runtime validation for View module records::Browser runtime validation for View module records failed in skill playwright-browser-verification.",
+    "ScenarioFailure::Journey parity: View module records::Journey parity: View module records failed in skill e2e-test-execution.",
+    "ScenarioFailure::Must-preserve edge behavior: Data mapping compatibility for persistence operations::Must-preserve edge behavior: Data mapping compatibility for persistence operations failed in skill edge-case-testing.",
+    "ScenarioFailure::Must-preserve edge behavior: Route and URL behavior parity for user-visible flows::Must-preserve edge behavior: Route and URL behavior parity for user-visible flows failed in skill edge-case-testing.",
+    "ScenarioFailure::Must-preserve edge behavior: Validation/error message semantics from legacy behavior::Must-preserve edge behavior: Validation/error message semantics from legacy behavior failed in skill edge-case-testing.",
+    "ScenarioFailure::browser-testing-with-devtools::browser-testing-with-devtools failed in skill browser-testing-with-devtools.",
+    "ScenarioFailure::clean-architecture-assessment::clean-architecture-assessment failed in skill clean-architecture-assessment.",
+    "ScenarioFailure::parity-verification::parity-verification failed in skill parity-verification.",
+    "NamespaceFolderMismatch",
+    "DIRegistrationMissing",
+    "RouteAssumptionMismatch"
+  ],
+  "knownPitfalls": [
+    "DIRegistrationMissing",
+    "DapperCaseSensitivity",
+    "NamespaceFolderMismatch",
+    "OracleMappingIssue",
+    "RelativeUrlFailure",
+    "RouteAssumptionMismatch",
+    "SessionHandlingPitfall"
+  ],
+  "history": [
+    {
+      "runId": "run-001",
+      "resolvedCount": 0,
+      "recurringCount": 0,
+      "newCount": 21
+    },
+    {
+      "runId": "run-002",
+      "resolvedCount": 4,
+      "recurringCount": 17,
+      "newCount": 2
+    }
+  ]
+}

@@ -1,0 +1,160 @@
+{
+  "stage": "execution",
+  "stageTitle": "Execution",
+  "stageIndex": 5,
+  "status": "failed",
+  "skillCount": 7,
+  "skillsPassed": 2,
+  "skillsFailed": 5,
+  "skills": [
+    {
+      "skill": "api-test-execution",
+      "stage": "execution",
+      "status": "failed",
+      "startedAt": "2026-04-13T11:32:47.610394Z",
+      "endedAt": "2026-04-13T11:32:47.738892Z",
+      "durationSeconds": 0.128,
+      "summary": "API execution failed preflight checks and did not run command execution.",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/artifacts/Login/test-002/api-test-execution/result.json\n",
+      "stderr": "",
+      "command": [
+        "python3",
+        "/Users/risha/Documents/Buildathon/skills/api-test-execution/run.py",
+        "--input",
+        "/Users/risha/Documents/Buildathon/artifacts/Login/test-002/module-run-input.json",
+        "--artifacts-root",
+        "/Users/risha/Documents/Buildathon/artifacts"
+      ],
+      "resultPath": "/Users/risha/Documents/Buildathon/artifacts/Login/test-002/api-test-execution/result.json"
+    },
+    {
+      "skill": "browser-testing-with-devtools",
+      "stage": "execution",
+      "status": "failed",
+      "startedAt": "2026-04-13T11:32:47.738916Z",
+      "endedAt": "2026-04-13T11:32:47.870941Z",
+      "durationSeconds": 0.132,
+      "summary": "DevTools diagnostics failed preflight checks and did not execute endpoint collection.",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/artifacts/Login/test-002/browser-testing-with-devtools/result.json\n",
+      "stderr": "",
+      "command": [
+        "python3",
+        "/Users/risha/Documents/Buildathon/skills/browser-testing-with-devtools/run.py",
+        "--input",
+        "/Users/risha/Documents/Buildathon/artifacts/Login/test-002/module-run-input.json",
+        "--artifacts-root",
+        "/Users/risha/Documents/Buildathon/artifacts"
+      ],
+      "resultPath": "/Users/risha/Documents/Buildathon/artifacts/Login/test-002/browser-testing-with-devtools/result.json"
+    },
+    {
+      "skill": "e2e-test-execution",
+      "stage": "execution",
+      "status": "failed",
+      "startedAt": "2026-04-13T11:32:47.870963Z",
+      "endedAt": "2026-04-13T11:32:48.000077Z",
+      "durationSeconds": 0.129,
+      "summary": "E2E execution failed preflight checks and did not run command execution.",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/artifacts/Login/test-002/e2e-test-execution/result.json\n",
+      "stderr": "",
+      "command": [
+        "python3",
+        "/Users/risha/Documents/Buildathon/skills/e2e-test-execution/run.py",
+        "--input",
+        "/Users/risha/Documents/Buildathon/artifacts/Login/test-002/module-run-input.json",
+        "--artifacts-root",
+        "/Users/risha/Documents/Buildathon/artifacts"
+      ],
+      "resultPath": "/Users/risha/Documents/Buildathon/artifacts/Login/test-002/e2e-test-execution/result.json"
+    },
+    {
+      "skill": "edge-case-testing",
+      "stage": "execution",
+      "status": "failed",
+      "startedAt": "2026-04-13T11:32:48.000099Z",
+      "endedAt": "2026-04-13T11:32:48.129532Z",
+      "durationSeconds": 0.129,
+      "summary": "Edge Case execution failed preflight checks and did not run command execution.",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/artifacts/Login/test-002/edge-case-testing/result.json\n",
+      "stderr": "",
+      "command": [
+        "python3",
+        "/Users/risha/Documents/Buildathon/skills/edge-case-testing/run.py",
+        "--input",
+        "/Users/risha/Documents/Buildathon/artifacts/Login/test-002/module-run-input.json",
+        "--artifacts-root",
+        "/Users/risha/Documents/Buildathon/artifacts"
+      ],
+      "resultPath": "/Users/risha/Documents/Buildathon/artifacts/Login/test-002/edge-case-testing/result.json"
+    },
+    {
+      "skill": "integration-test-execution",
+      "stage": "execution",
+      "status": "passed",
+      "startedAt": "2026-04-13T11:32:48.129554Z",
+      "endedAt": "2026-04-13T11:32:48.245394Z",
+      "durationSeconds": 0.116,
+      "summary": "Integration execution completed with 1 passed and 0 failed scenarios.",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/artifacts/Login/test-002/integration-test-execution/result.json\n",
+      "stderr": "",
+      "command": [
+        "python3",
+        "/Users/risha/Documents/Buildathon/skills/integration-test-execution/run.py",
+        "--input",
+        "/Users/risha/Documents/Buildathon/artifacts/Login/test-002/module-run-input.json",
+        "--artifacts-root",
+        "/Users/risha/Documents/Buildathon/artifacts"
+      ],
+      "resultPath": "/Users/risha/Documents/Buildathon/artifacts/Login/test-002/integration-test-execution/result.json"
+    },
+    {
+      "skill": "playwright-browser-verification",
+      "stage": "execution",
+      "status": "failed",
+      "startedAt": "2026-04-13T11:32:48.245417Z",
+      "endedAt": "2026-04-13T11:32:48.393919Z",
+      "durationSeconds": 0.148,
+      "summary": "Playwright / E2E Browser execution failed preflight checks and did not run command execution.",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/artifacts/Login/test-002/playwright-browser-verification/result.json\n",
+      "stderr": "",
+      "command": [
+        "python3",
+        "/Users/risha/Documents/Buildathon/skills/playwright-browser-verification/run.py",
+        "--input",
+        "/Users/risha/Documents/Buildathon/artifacts/Login/test-002/module-run-input.json",
+        "--artifacts-root",
+        "/Users/risha/Documents/Buildathon/artifacts"
+      ],
+      "resultPath": "/Users/risha/Documents/Buildathon/artifacts/Login/test-002/playwright-browser-verification/result.json"
+    },
+    {
+      "skill": "unit-test-execution",
+      "stage": "execution",
+      "status": "passed",
+      "startedAt": "2026-04-13T11:32:48.393942Z",
+      "endedAt": "2026-04-13T11:32:48.513426Z",
+      "durationSeconds": 0.119,
+      "summary": "Unit execution completed with 2 passed and 0 failed scenarios.",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/artifacts/Login/test-002/unit-test-execution/result.json\n",
+      "stderr": "",
+      "command": [
+        "python3",
+        "/Users/risha/Documents/Buildathon/skills/unit-test-execution/run.py",
+        "--input",
+        "/Users/risha/Documents/Buildathon/artifacts/Login/test-002/module-run-input.json",
+        "--artifacts-root",
+        "/Users/risha/Documents/Buildathon/artifacts"
+      ],
+      "resultPath": "/Users/risha/Documents/Buildathon/artifacts/Login/test-002/unit-test-execution/result.json"
+    }
+  ],
+  "startedAt": "2026-04-13T11:32:47.610394Z",
+  "endedAt": "2026-04-13T11:32:48.513426Z"
+}

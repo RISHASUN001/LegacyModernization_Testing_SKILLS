@@ -1,0 +1,56 @@
+{
+  "skillName": "api-test-execution",
+  "stage": "execution",
+  "moduleName": "Login",
+  "runId": "LoginTest-001",
+  "status": "failed",
+  "startedAt": "2026-04-13T09:47:49.467682Z",
+  "endedAt": "2026-04-13T09:47:49.468194Z",
+  "summary": "API tests show route compatibility and contract mismatches.",
+  "metrics": {
+    "total": 18,
+    "passed": 13,
+    "failed": 5,
+    "warnings": 0,
+    "newTestsAdded": 4,
+    "scenarios": [
+      {
+        "name": "Legacy save route compatibility",
+        "status": "failed",
+        "notes": "404 on /saveChecklist.do"
+      },
+      {
+        "name": "Validation response schema",
+        "status": "failed",
+        "notes": "Error contract mismatch"
+      }
+    ]
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/Login/LoginTest-001/api-test-execution/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/LoginTest-001/api-test-execution/log.txt"
+  ],
+  "findings": [
+    {
+      "type": "RouteParityMismatch",
+      "scenario": "Legacy save route compatibility",
+      "message": "Legacy .do route not mapped in converted API.",
+      "likelyCause": "Compatibility route not configured.",
+      "evidence": "POST /checklist/saveChecklist.do returns 404.",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.91,
+      "affectedFiles": [
+        "src_conversion4/Modules/Checklist/Web/ChecklistController.cs"
+      ]
+    }
+  ],
+  "recommendations": [
+    {
+      "message": "Add compatibility route aliases and align validation error schema with legacy expectations.",
+      "priority": "high",
+      "evidence": "5 API failures on compatibility and validation paths."
+    }
+  ],
+  "resultContractVersion": "2.0"
+}

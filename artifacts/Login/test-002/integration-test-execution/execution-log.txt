@@ -1,0 +1,10 @@
+command: python3 -V
+returnCode: 0
+timedOut: False
+durationSeconds: 0.015
+
+--- stdout ---
+Python 3.13.7
+
+
+--- stderr ---

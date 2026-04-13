@@ -4,13 +4,14 @@
   "moduleName": "Checklist",
   "runId": "run-001",
   "status": "failed",
-  "startedAt": "2026-04-12T10:06:00Z",
-  "endedAt": "2026-04-12T10:07:00Z",
-  "summary": "Architecture review identified critical DI and coupling issues.",
+  "startedAt": "2026-04-13T11:32:20.359658Z",
+  "endedAt": "2026-04-13T11:32:20.371241Z",
+  "summary": "Architecture assessment for Checklist found 1 issue(s).",
   "metrics": {
-    "violations": 6,
-    "critical": 2,
-    "warnings": 4
+    "violations": 1,
+    "critical": 1,
+    "warnings": 0,
+    "confidence": 0.79
   },
   "artifacts": [
     "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-001/clean-architecture-assessment/result.json",
@@ -18,25 +19,29 @@
   ],
   "findings": [
     {
-      "type": "DirectInfrastructureDependency",
-      "scenario": "Controller to repository coupling",
-      "message": "ChecklistController depends directly on Oracle repository implementation.",
-      "likelyCause": "Missing application-level repository abstraction.",
-      "evidence": "ChecklistController constructor injects ChecklistOracleRepository.",
+      "type": "ArchitectureIssuesDetected",
+      "scenario": "Clean architecture review",
+      "message": "Detected 1 architecture issue(s), including 1 high-severity issue(s).",
+      "likelyCause": "Layer boundaries, namespace organization, or DI registrations are incomplete.",
+      "evidence": "See architecture-review.json categorized issue lists.",
       "severity": "high",
       "status": "open",
-      "confidence": 0.9,
-      "affectedFiles": [
-        "src_conversion4/Modules/Checklist/ChecklistController.cs"
-      ]
+      "confidence": 0.82
     }
   ],
   "recommendations": [
     {
-      "message": "Introduce application interfaces and move infrastructure binding to composition root.",
+      "message": "Address high-severity layering/DI issues first, then resolve namespace and coupling warnings.",
       "priority": "high",
-      "evidence": "Direct implementation injection detected."
+      "evidence": "Architecture-review categories prioritize remediation order."
     }
   ],
-  "resultContractVersion": "2.0"
+  "resultContractVersion": "2.0",
+  "provenanceSummary": {
+    "scenarioSources": [
+      "code-evidence"
+    ],
+    "confidence": 0.79,
+    "unknowns": []
+  }
 }

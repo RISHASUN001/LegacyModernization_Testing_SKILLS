@@ -111,19 +111,35 @@ public sealed class DashboardController : Controller
 
     private static string BuildJsonPreview(RunInputDraftDto draft)
     {
+        var baseUrl = (draft.BaseUrl ?? string.Empty).Trim();
+        var normalizedBaseUrl = baseUrl.TrimEnd('/');
+        var testApiEndpoint = string.IsNullOrWhiteSpace(normalizedBaseUrl)
+            ? string.Empty
+            : $"{normalizedBaseUrl}/api/test";
+
         var payload = new
         {
-            runId = draft.RunId,
-            moduleName = draft.ModuleName,
-            legacySourceRoot = draft.LegacySourceRoot,
-            convertedSourceRoot = draft.ConvertedSourceRoot,
-            baseUrl = draft.BaseUrl,
-            brsPath = draft.BrsPath,
+            runId = string.IsNullOrWhiteSpace(draft.RunId) ? "run-001" : draft.RunId.Trim(),
+            moduleName = (draft.ModuleName ?? string.Empty).Trim(),
+            legacySourceRoot = (draft.LegacySourceRoot ?? string.Empty).Trim(),
+            convertedSourceRoot = (draft.ConvertedSourceRoot ?? string.Empty).Trim(),
+            baseUrl,
+            testApiEndpoint,
+            brsPath = (draft.BrsPath ?? string.Empty).Trim(),
             moduleHints = new
             {
                 relatedFolders = SplitLines(draft.RelatedFoldersText),
                 knownUrls = SplitLines(draft.KnownUrlsText),
                 keywords = SplitLines(draft.KeywordsText)
+            },
+            testCommands = new
+            {
+                unit = draft.UnitCommand?.Trim(),
+                integration = draft.IntegrationCommand?.Trim(),
+                api = draft.ApiCommand?.Trim(),
+                e2e = draft.E2eCommand?.Trim(),
+                edgeCase = draft.EdgeCaseCommand?.Trim(),
+                playwright = draft.PlaywrightCommand?.Trim()
             },
             selectedSkills = draft.SelectedSkills
         };

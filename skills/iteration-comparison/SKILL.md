@@ -43,3 +43,13 @@ Use this skill when Stage **iteration-comparison** evidence must be generated or
 ## script reference / execution notes
 - Entry script: `run.py`
 - Execution mode: external (Continue.dev / Claude in IDE), Option A-first.
+
+## How To Run
+- Single skill:
+  - `python run.py --input <module-run-input.json> --artifacts-root <artifacts-root>`
+- Full 7-stage pipeline (router):
+  - `python skills/legacy-modernization-orchestrator/run.py --input <module-run-input.json>`
+
+## Script Reference / Execution Notes
+- Primary script entry is defined in `config.json` (`scriptEntry`).
+- Option A mode: run externally in Continue.dev/Claude, persist artifacts/results, then load from dashboard.

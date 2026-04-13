@@ -1,0 +1,28 @@
+{
+  "javaFiles": [
+    "src/com/seagate/edcs/checklist/action/ChecklistAction.java",
+    "src/com/seagate/edcs/checklist/dao/ChecklistDao.java",
+    "src/com/seagate/edcs/checklist/service/ChecklistService.java"
+  ],
+  "jspFiles": [
+    "src/jsp/checklist/checklistMain.jsp",
+    "src/jsp/checklist/checklistEdit.jsp"
+  ],
+  "jsFiles": [
+    "src/jsp/checklist/js/checklist.js",
+    "src/jsp/checklist/js/checklistValidation.js"
+  ],
+  "configFiles": [
+    "src/struts-config.xml",
+    "src/config/checklist.properties"
+  ],
+  "urls": [
+    "/checklist/loadChecklist.do",
+    "/checklist/viewChecklist.do"
+  ],
+  "dbTouchpoints": [
+    "PKG_CHECKLIST.GET_HEADER",
+    "PKG_CHECKLIST.GET_ITEMS",
+    "PKG_CHECKLIST.SAVE_ITEMS"
+  ]
+}

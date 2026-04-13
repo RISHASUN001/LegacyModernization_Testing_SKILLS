@@ -1,0 +1,32 @@
+{
+  "category": "Playwright / E2E Browser",
+  "baseUrl": {
+    "required": true,
+    "provided": "http://0.0.0.0:5001/",
+    "normalized": "http://0.0.0.0:5001",
+    "ok": true,
+    "reason": ""
+  },
+  "reachability": {
+    "required": true,
+    "ok": true,
+    "statusCode": 200,
+    "reason": "reachable",
+    "path": "/",
+    "url": "http://0.0.0.0:5001/"
+  },
+  "commands": {
+    "candidates": [
+      "python3 -m pytest -m playwright",
+      "python3 -m pytest -m playwright"
+    ],
+    "available": [
+      "python3 -m pytest -m playwright",
+      "python3 -m pytest -m playwright"
+    ],
+    "unavailable": [],
+    "selected": "python3 -m pytest -m playwright",
+    "ok": true
+  },
+  "strictMode": true
+}

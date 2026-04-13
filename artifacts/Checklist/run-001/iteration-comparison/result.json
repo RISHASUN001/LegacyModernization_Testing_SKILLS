@@ -4,28 +4,119 @@
   "moduleName": "Checklist",
   "runId": "run-001",
   "status": "passed",
-  "startedAt": "2026-04-12T10:26:00Z",
-  "endedAt": "2026-04-12T10:27:00Z",
-  "summary": "Baseline run has no prior iteration for comparison.",
+  "startedAt": "2026-04-13T11:38:07.858298Z",
+  "endedAt": "2026-04-13T11:38:07.863312Z",
+  "summary": "Iteration comparison for Checklist: prev=none, trend=baseline, failuresReduced=0, resolvedFindings=0.",
   "metrics": {
-    "testsAdded": 0,
+    "moduleName": "Checklist",
+    "runId": "run-001",
+    "previousRunId": "",
+    "testsAdded": 1,
     "testsFixed": 0,
     "failuresReduced": 0,
-    "newFindingsIntroduced": 0,
+    "newFindingsIntroduced": 21,
     "resolvedFindings": 0,
-    "previousRunId": ""
+    "progressionTrend": "baseline",
+    "categoryDelta": {
+      "api-test-execution": {
+        "previousFailed": 0,
+        "currentFailed": 3,
+        "failuresReduced": 0
+      },
+      "browser-testing-with-devtools": {
+        "previousFailed": 0,
+        "currentFailed": 6,
+        "failuresReduced": 0
+      },
+      "clean-architecture-assessment": {
+        "previousFailed": 0,
+        "currentFailed": 0,
+        "failuresReduced": 0
+      },
+      "e2e-test-execution": {
+        "previousFailed": 0,
+        "currentFailed": 1,
+        "failuresReduced": 0
+      },
+      "edge-case-testing": {
+        "previousFailed": 0,
+        "currentFailed": 3,
+        "failuresReduced": 0
+      },
+      "failure-diagnosis": {
+        "previousFailed": 0,
+        "currentFailed": 0,
+        "failuresReduced": 0
+      },
+      "integration-test-execution": {
+        "previousFailed": 0,
+        "currentFailed": 0,
+        "failuresReduced": 0
+      },
+      "iteration-comparison": {
+        "previousFailed": 0,
+        "currentFailed": 0,
+        "failuresReduced": 0
+      },
+      "legacy-logic-extraction": {
+        "previousFailed": 0,
+        "currentFailed": 0,
+        "failuresReduced": 0
+      },
+      "lessons-learned": {
+        "previousFailed": 0,
+        "currentFailed": 0,
+        "failuresReduced": 0
+      },
+      "module-discovery": {
+        "previousFailed": 0,
+        "currentFailed": 0,
+        "failuresReduced": 0
+      },
+      "module-documentation": {
+        "previousFailed": 0,
+        "currentFailed": 0,
+        "failuresReduced": 0
+      },
+      "parity-verification": {
+        "previousFailed": 0,
+        "currentFailed": 3,
+        "failuresReduced": 0
+      },
+      "playwright-browser-verification": {
+        "previousFailed": 0,
+        "currentFailed": 1,
+        "failuresReduced": 0
+      },
+      "test-plan-generation": {
+        "previousFailed": 0,
+        "currentFailed": 0,
+        "failuresReduced": 0
+      },
+      "unit-test-execution": {
+        "previousFailed": 0,
+        "currentFailed": 0,
+        "failuresReduced": 0
+      }
+    }
   },
   "artifacts": [
-    "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-001/iteration-comparison/result.json",
+    "artifacts/Checklist/run-001/iteration-comparison/result.json",
     "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-001/iteration-comparison/iteration-delta.json"
   ],
   "findings": [],
   "recommendations": [
     {
-      "message": "Use run-001 as baseline and compare against run-002 onward.",
-      "priority": "low",
-      "evidence": "No previous run available."
+      "message": "Use categoryDelta to target recurring failing categories first in next run.",
+      "priority": "medium",
+      "evidence": "trend=baseline; categoryDeltaCount=16"
     }
   ],
-  "resultContractVersion": "2.0"
+  "resultContractVersion": "2.0",
+  "provenanceSummary": {
+    "scenarioSources": [
+      "code-evidence"
+    ],
+    "confidence": 0.65
+  }
 }

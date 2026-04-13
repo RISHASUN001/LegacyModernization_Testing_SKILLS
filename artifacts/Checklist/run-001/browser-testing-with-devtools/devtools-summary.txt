@@ -1,0 +1,7 @@
+module=Checklist
+baseUrl=http://localhost:5276
+testApiEndpoint=http://localhost:5276/api/test
+degradedMode=True
+consoleMessages=0
+networkFailures=0
+runtimeIssues=0

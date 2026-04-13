@@ -1,1 +1,1 @@
-npx playwright test checklist.spec.ts -> Passed:9 Failed:1 Warnings:1
+No executable command available for this category in current environment.

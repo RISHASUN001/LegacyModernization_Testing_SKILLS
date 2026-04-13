@@ -3,14 +3,15 @@
   "stage": "architecture-review",
   "moduleName": "Checklist",
   "runId": "run-002",
-  "status": "passed",
-  "startedAt": "2026-04-12T10:06:00Z",
-  "endedAt": "2026-04-12T10:07:00Z",
-  "summary": "Architecture review shows major critical issues resolved; one minor namespace warning remains.",
+  "status": "failed",
+  "startedAt": "2026-04-13T11:32:30.757138Z",
+  "endedAt": "2026-04-13T11:32:30.764773Z",
+  "summary": "Architecture assessment for Checklist found 1 issue(s).",
   "metrics": {
-    "violations": 2,
-    "critical": 0,
-    "warnings": 2
+    "violations": 1,
+    "critical": 1,
+    "warnings": 0,
+    "confidence": 0.79
   },
   "artifacts": [
     "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/clean-architecture-assessment/result.json",
@@ -18,27 +19,29 @@
   ],
   "findings": [
     {
-      "type": "DirectInfrastructureDependency",
-      "scenario": "Controller to repository coupling",
-      "message": "Controller now uses application abstraction and DI registration corrected.",
-      "likelyCause": "Resolved through use-case abstraction.",
-      "evidence": "Controller injects IChecklistQueryUseCase.",
+      "type": "ArchitectureIssuesDetected",
+      "scenario": "Clean architecture review",
+      "message": "Detected 1 architecture issue(s), including 1 high-severity issue(s).",
+      "likelyCause": "Layer boundaries, namespace organization, or DI registrations are incomplete.",
+      "evidence": "See architecture-review.json categorized issue lists.",
       "severity": "high",
-      "status": "resolved",
-      "confidence": 0.89,
-      "resolvedInRunId": "run-002",
-      "resolutionNotes": "Dependency moved behind application layer interface.",
-      "affectedFiles": [
-        "src_conversion4/Modules/Checklist/ChecklistController.cs"
-      ]
+      "status": "open",
+      "confidence": 0.82
     }
   ],
   "recommendations": [
     {
-      "message": "Finalize namespace cleanup for remaining DTO class placement.",
-      "priority": "low",
-      "evidence": "One DTO still under migration namespace."
+      "message": "Address high-severity layering/DI issues first, then resolve namespace and coupling warnings.",
+      "priority": "high",
+      "evidence": "Architecture-review categories prioritize remediation order."
     }
   ],
-  "resultContractVersion": "2.0"
+  "resultContractVersion": "2.0",
+  "provenanceSummary": {
+    "scenarioSources": [
+      "code-evidence"
+    ],
+    "confidence": 0.79,
+    "unknowns": []
+  }
 }

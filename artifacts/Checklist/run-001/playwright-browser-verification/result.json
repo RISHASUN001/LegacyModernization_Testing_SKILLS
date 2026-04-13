@@ -4,79 +4,116 @@
   "moduleName": "Checklist",
   "runId": "run-001",
   "status": "failed",
-  "startedAt": "2026-04-12T10:20:00Z",
-  "endedAt": "2026-04-12T10:21:00Z",
-  "summary": "Playwright browser verification found selector and runtime issues.",
+  "startedAt": "2026-04-13T11:32:23.228706Z",
+  "endedAt": "2026-04-13T11:32:23.282405Z",
+  "summary": "Playwright / E2E Browser execution failed preflight checks and did not run command execution.",
   "metrics": {
-    "total": 8,
-    "passed": 5,
-    "failed": 3,
-    "warnings": 2,
-    "newTestsAdded": 2,
+    "total": 1,
+    "passed": 0,
+    "failed": 1,
+    "warnings": 0,
+    "newTestsAdded": 0,
     "scenarios": [
       {
-        "name": "Checklist load",
-        "status": "passed",
-        "notes": "Initial render good."
-      },
-      {
-        "name": "Save draft action",
+        "name": "Browser runtime validation for View module records",
         "status": "failed",
-        "notes": "Selector mismatch."
-      },
-      {
-        "name": "Submit validation banner",
-        "status": "failed",
-        "notes": "Banner missing on invalid ATC."
+        "notes": "Preflight failed",
+        "coverage": [
+          "browser-runtime",
+          "network",
+          "dom"
+        ],
+        "provenance": {
+          "type": "flow-derived",
+          "sources": [
+            "artifact:legacy-logic-extraction/logic-summary.json",
+            "artifact:module-discovery/discovery-map.json"
+          ],
+          "confidence": 0.72,
+          "unknowns": []
+        }
       }
-    ]
+    ],
+    "degradedMode": true,
+    "purpose": "Validate browser UX/runtime/network/DOM evidence for migrated module journeys."
   },
   "artifacts": [
     "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-001/playwright-browser-verification/result.json",
-    "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-001/playwright-browser-verification/log.txt",
+    "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-001/playwright-browser-verification/preflight.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-001/playwright-browser-verification/execution-log.txt",
     "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-001/playwright-browser-verification/console-logs.json",
     "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-001/playwright-browser-verification/network-failures.json",
     "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-001/playwright-browser-verification/dom-state.json",
     "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-001/playwright-browser-verification/runtime-issues.json",
     "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-001/playwright-browser-verification/performance-observations.json",
-    "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-001/playwright-browser-verification/screenshots/failure-save-selector.png",
-    "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-001/playwright-browser-verification/screenshots/failure-validation-banner.png"
+    "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-001/playwright-browser-verification/screenshots/browser-overview.png"
   ],
   "findings": [
     {
-      "type": "PlaywrightSelectorDrift",
-      "scenario": "Save draft action",
-      "message": "Playwright selector no longer matches save button.",
-      "likelyCause": "UI changed from #btnSave to data-test selector.",
-      "evidence": "click selector timeout in playwright log.",
-      "severity": "medium",
-      "status": "open",
-      "confidence": 0.8,
-      "affectedFiles": [
-        "src_conversion4/wwwroot/js/checklist.js",
-        "tests/playwright/checklist.spec.ts"
-      ]
-    },
-    {
-      "type": "JsRuntimeError",
-      "scenario": "Submit validation banner",
-      "message": "JavaScript runtime error prevents validation rendering.",
-      "likelyCause": "Null reference in checklist form binding.",
-      "evidence": "TypeError in browser console at checklist.js:214",
+      "type": "ApplicationUnreachable",
+      "scenario": "Playwright / E2E Browser preflight",
+      "message": "Application reachability check failed.",
+      "likelyCause": "Converted app is not running or baseUrl points to wrong host/port.",
+      "evidence": "url=http://localhost:5276/; reason=<urlopen error [Errno 1] Operation not permitted>",
       "severity": "high",
       "status": "open",
-      "confidence": 0.85,
-      "affectedFiles": [
-        "src_conversion4/wwwroot/js/checklist.js"
-      ]
+      "confidence": 0.95
+    },
+    {
+      "type": "ExecutionEnvironmentMissing",
+      "scenario": "Playwright / E2E Browser preflight",
+      "message": "No runnable command could be resolved for this category.",
+      "likelyCause": "Tooling not installed or test command not configured in run input.",
+      "evidence": "No command candidates resolved to available executables.",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.95
     }
   ],
   "recommendations": [
     {
-      "message": "Switch selectors to stable data-test attributes and fix runtime null guard.",
+      "message": "Start the converted app and verify the configured baseUrl/testApiEndpoint.",
       "priority": "high",
-      "evidence": "3 playwright failures and runtime console errors."
+      "evidence": "Reachability must pass before running execution skills in strict mode."
+    },
+    {
+      "message": "Install required tooling and/or provide explicit category test command in run input.",
+      "priority": "high",
+      "evidence": "commandCandidates=[]"
     }
   ],
-  "resultContractVersion": "2.0"
+  "resultContractVersion": "2.0",
+  "statusReason": "preflight-failed",
+  "preflight": {
+    "category": "Playwright / E2E Browser",
+    "baseUrl": {
+      "required": true,
+      "provided": "http://localhost:5276",
+      "normalized": "http://localhost:5276",
+      "ok": true,
+      "reason": ""
+    },
+    "reachability": {
+      "required": true,
+      "ok": false,
+      "statusCode": 0,
+      "reason": "<urlopen error [Errno 1] Operation not permitted>",
+      "path": "/",
+      "url": "http://localhost:5276/"
+    },
+    "commands": {
+      "candidates": [],
+      "available": [],
+      "unavailable": [],
+      "selected": "",
+      "ok": false
+    },
+    "strictMode": true
+  },
+  "provenanceSummary": {
+    "scenarioSources": [
+      "flow-derived"
+    ],
+    "confidence": 0.72
+  }
 }

@@ -4,16 +4,16 @@
   "moduleName": "Checklist",
   "runId": "run-001",
   "status": "failed",
-  "startedAt": "2026-04-12T10:28:00Z",
-  "endedAt": "2026-04-12T10:29:00Z",
-  "summary": "Parity score indicates notable gaps in timeout and submit behavior.",
+  "startedAt": "2026-04-13T11:32:24.635136Z",
+  "endedAt": "2026-04-13T11:32:24.640333Z",
+  "summary": "Parity verification for Checklist: score=0, failedChecks=3.",
   "metrics": {
-    "total": 24,
-    "passed": 16,
-    "failed": 8,
-    "warnings": 1,
-    "newTestsAdded": 2,
-    "parityScore": 68
+    "total": 3,
+    "passed": 0,
+    "failed": 3,
+    "warnings": 2,
+    "newTestsAdded": 0,
+    "parityScore": 0
   },
   "artifacts": [
     "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-001/parity-verification/result.json",
@@ -22,21 +22,32 @@
   "findings": [
     {
       "type": "ParityGap",
-      "scenario": "Timeout + submit parity",
-      "message": "Converted module diverges from legacy timeout and submit response behavior.",
-      "likelyCause": "Middleware and response contract differences.",
-      "evidence": "Parity-diff highlights timeout redirect and submit payload mismatch.",
+      "scenario": "Legacy vs converted behavior parity",
+      "message": "Parity score for Checklist is 0 with 3 failing checks.",
+      "likelyCause": "Execution failures and/or unmet must-preserve behavior checks.",
+      "evidence": "See parity-diff.json checks[] and evidence links.",
       "severity": "high",
       "status": "open",
-      "confidence": 0.9
+      "confidence": 0.81
     }
   ],
   "recommendations": [
     {
-      "message": "Close timeout redirect and submit contract gaps before release-readiness signoff.",
+      "message": "Close failed parity checks by aligning execution failures to must-preserve behavior requirements.",
       "priority": "high",
-      "evidence": "Parity score below target threshold."
+      "evidence": "parityScore=0; failedChecks=3"
     }
   ],
-  "resultContractVersion": "2.0"
+  "resultContractVersion": "2.0",
+  "provenanceSummary": {
+    "scenarioSources": [
+      "code-evidence",
+      "fallback"
+    ],
+    "confidence": 0.81,
+    "unknowns": [
+      "3 parity checks failed based on execution and preserve-behavior linkage.",
+      "No DB touchpoint evidence; persistence parity validation confidence reduced."
+    ]
+  }
 }

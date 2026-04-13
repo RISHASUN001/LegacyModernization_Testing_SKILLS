@@ -3,7 +3,7 @@
   "stage": "execution",
   "category": "testing",
   "purpose": "Execute integration tests for data mapping and cross-layer orchestration validation.",
-  "scriptEntry": "run.ps1",
+  "scriptEntry": "run.py",
   "requiredInputs": [
     "moduleName",
     "convertedSourceRoot"
@@ -13,7 +13,8 @@
   ],
   "outputFiles": [
     "result.json",
-    "log.txt"
+    "preflight.json",
+    "execution-log.txt"
   ],
   "artifactFolders": [
     "artifacts/{module}/{runId}/integration-test-execution/"
@@ -23,5 +24,14 @@
     "unit-test-execution"
   ],
   "summaryOutputType": "test-category-result",
-  "resultContractVersion": "2.0"
+  "resultContractVersion": "2.0",
+  "externalDependencies": [],
+  "execution": {
+    "primaryCommand": "python run.py --input <module-run-input.json> --artifacts-root <artifacts-root>",
+    "timeoutNotes": "Real-first graceful execution. Writes result.json even on degraded/failure paths.",
+    "realCommandHints": [
+      "dotnet test <IntegrationTests.csproj>",
+      "testCommands.integration from run input"
+    ]
+  }
 }

@@ -1,28 +1,342 @@
 {
+  "moduleName": "Checklist",
+  "roots": [
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app"
+  ],
+  "hintPaths": [
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app"
+  ],
+  "terms": [
+    "checklist",
+    "task",
+    "validation",
+    "dashboard"
+  ],
+  "assetCounts": {
+    "java": 1,
+    "jsp": 2,
+    "js": 0,
+    "config": 0,
+    "csharp": 5,
+    "test": 0,
+    "other": 5,
+    "total": 13,
+    "urls": 3,
+    "dbTouchpoints": 0
+  },
+  "filesByType": {
+    "java": [
+      {
+        "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java",
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java"
+          ],
+          "confidence": 0.9,
+          "unknowns": []
+        }
+      }
+    ],
+    "jsp": [
+      {
+        "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp",
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp"
+          ],
+          "confidence": 0.86,
+          "unknowns": []
+        }
+      },
+      {
+        "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/index.jsp",
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "/Users/risha/Documents/Buildathon/samples/legacy-java-app/index.jsp"
+          ],
+          "confidence": 0.86,
+          "unknowns": []
+        }
+      }
+    ],
+    "js": [],
+    "config": [],
+    "csharp": [
+      {
+        "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Program.cs",
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Program.cs"
+          ],
+          "confidence": 0.8,
+          "unknowns": []
+        }
+      },
+      {
+        "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Controllers/AuthController.cs",
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Controllers/AuthController.cs"
+          ],
+          "confidence": 0.8,
+          "unknowns": []
+        }
+      },
+      {
+        "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Views/Auth/Dashboard.cshtml",
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Views/Auth/Dashboard.cshtml"
+          ],
+          "confidence": 0.8,
+          "unknowns": []
+        }
+      },
+      {
+        "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Views/Auth/Index.cshtml",
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Views/Auth/Index.cshtml"
+          ],
+          "confidence": 0.8,
+          "unknowns": []
+        }
+      },
+      {
+        "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Services/LoginService.cs",
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Services/LoginService.cs"
+          ],
+          "confidence": 0.8,
+          "unknowns": []
+        }
+      }
+    ],
+    "test": [],
+    "other": [
+      {
+        "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/README-CONVERTED-APP.md",
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "/Users/risha/Documents/Buildathon/samples/legacy-java-app/README-CONVERTED-APP.md"
+          ],
+          "confidence": 0.6,
+          "unknowns": []
+        }
+      },
+      {
+        "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LegacyModernization.Converted.sln",
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LegacyModernization.Converted.sln"
+          ],
+          "confidence": 0.6,
+          "unknowns": []
+        }
+      },
+      {
+        "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LegacyModernization.Converted.csproj",
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LegacyModernization.Converted.csproj"
+          ],
+          "confidence": 0.6,
+          "unknowns": []
+        }
+      },
+      {
+        "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/README.md",
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "/Users/risha/Documents/Buildathon/samples/legacy-java-app/README.md"
+          ],
+          "confidence": 0.6,
+          "unknowns": []
+        }
+      },
+      {
+        "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/CONVERSION_REFERENCE.md",
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "/Users/risha/Documents/Buildathon/samples/legacy-java-app/CONVERSION_REFERENCE.md"
+          ],
+          "confidence": 0.6,
+          "unknowns": []
+        }
+      }
+    ]
+  },
+  "routeCandidates": [
+    {
+      "route": "/Views/Auth/Dashboard.cshtml",
+      "normalizedRoute": "/Views/Auth/Dashboard.cshtml",
+      "provenance": {
+        "type": "code-evidence",
+        "sources": [
+          "url-extraction"
+        ],
+        "confidence": 0.82,
+        "unknowns": []
+      }
+    },
+    {
+      "route": "/Views/Auth/Index.cshtml",
+      "normalizedRoute": "/Views/Auth/Index.cshtml",
+      "provenance": {
+        "type": "code-evidence",
+        "sources": [
+          "url-extraction"
+        ],
+        "confidence": 0.82,
+        "unknowns": []
+      }
+    },
+    {
+      "route": "/dashboard",
+      "normalizedRoute": "/dashboard",
+      "provenance": {
+        "type": "code-evidence",
+        "sources": [
+          "url-extraction"
+        ],
+        "confidence": 0.82,
+        "unknowns": [
+          "Route extension/type could not be inferred"
+        ]
+      }
+    }
+  ],
+  "dbTouchpointsDetailed": [],
+  "entrypointHints": [
+    {
+      "kind": "route",
+      "value": "/Views/Auth/Dashboard.cshtml",
+      "provenance": {
+        "type": "code-evidence",
+        "sources": [
+          "url-extraction"
+        ],
+        "confidence": 0.66,
+        "unknowns": [
+          "Route may be shared across modules"
+        ]
+      }
+    },
+    {
+      "kind": "route",
+      "value": "/Views/Auth/Index.cshtml",
+      "provenance": {
+        "type": "code-evidence",
+        "sources": [
+          "url-extraction"
+        ],
+        "confidence": 0.66,
+        "unknowns": [
+          "Route may be shared across modules"
+        ]
+      }
+    },
+    {
+      "kind": "route",
+      "value": "/dashboard",
+      "provenance": {
+        "type": "code-evidence",
+        "sources": [
+          "url-extraction"
+        ],
+        "confidence": 0.66,
+        "unknowns": [
+          "Route may be shared across modules"
+        ]
+      }
+    },
+    {
+      "kind": "code-entrypoint",
+      "value": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java",
+      "provenance": {
+        "type": "code-evidence",
+        "sources": [
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java"
+        ],
+        "confidence": 0.88,
+        "unknowns": []
+      }
+    },
+    {
+      "kind": "view-entrypoint",
+      "value": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/index.jsp",
+      "provenance": {
+        "type": "code-evidence",
+        "sources": [
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/index.jsp"
+        ],
+        "confidence": 0.76,
+        "unknowns": []
+      }
+    }
+  ],
+  "confidence": 0.92,
+  "provenance": {
+    "type": "code-evidence",
+    "sources": [
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app"
+    ],
+    "confidence": 0.92,
+    "unknowns": []
+  },
   "javaFiles": [
-    "src/com/seagate/edcs/checklist/action/ChecklistAction.java",
-    "src/com/seagate/edcs/checklist/dao/ChecklistDao.java",
-    "src/com/seagate/edcs/checklist/service/ChecklistService.java"
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java"
   ],
   "jspFiles": [
-    "src/jsp/checklist/checklistMain.jsp",
-    "src/jsp/checklist/checklistEdit.jsp"
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/index.jsp"
   ],
-  "jsFiles": [
-    "src/jsp/checklist/js/checklist.js",
-    "src/jsp/checklist/js/checklistValidation.js"
+  "jsFiles": [],
+  "configFiles": [],
+  "csharpFiles": [
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Program.cs",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Controllers/AuthController.cs",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Views/Auth/Dashboard.cshtml",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Views/Auth/Index.cshtml",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Services/LoginService.cs"
   ],
-  "configFiles": [
-    "src/struts-config.xml",
-    "src/config/checklist.properties"
+  "testFiles": [],
+  "otherFiles": [
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/README-CONVERTED-APP.md",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LegacyModernization.Converted.sln",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LegacyModernization.Converted.csproj",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/README.md",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/CONVERSION_REFERENCE.md"
   ],
   "urls": [
-    "/checklist/loadChecklist.do",
-    "/checklist/viewChecklist.do"
+    "/Views/Auth/Dashboard.cshtml",
+    "/Views/Auth/Index.cshtml",
+    "/dashboard"
   ],
-  "dbTouchpoints": [
-    "PKG_CHECKLIST.GET_HEADER",
-    "PKG_CHECKLIST.GET_ITEMS",
-    "PKG_CHECKLIST.SAVE_ITEMS"
+  "dbTouchpoints": [],
+  "evidenceFiles": [
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/index.jsp",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Program.cs",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Controllers/AuthController.cs",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Views/Auth/Dashboard.cshtml",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Views/Auth/Index.cshtml",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Services/LoginService.cs"
   ]
 }

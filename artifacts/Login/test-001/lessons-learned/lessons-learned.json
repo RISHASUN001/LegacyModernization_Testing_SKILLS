@@ -1,0 +1,179 @@
+{
+  "moduleName": "Login",
+  "runId": "test-001",
+  "previousRunId": "",
+  "resolvedIssues": [],
+  "recurringIssues": [],
+  "newIssues": [
+    "ApplicationUnreachable::API preflight::Application reachability check failed.",
+    "ApplicationUnreachable::E2E preflight::Application reachability check failed.",
+    "ApplicationUnreachable::Edge Case preflight::Application reachability check failed.",
+    "ApplicationUnreachable::Playwright / E2E Browser preflight::Application reachability check failed.",
+    "ArchitectureIssuesDetected::Clean architecture review::Detected 2 architecture issue(s), including 1 high-severity issue(s).",
+    "EnvironmentDependencyMissing::DevTools diagnostics preflight::DevTools evidence endpoint is not reachable.",
+    "ExecutionEnvironmentMissing::E2E preflight::No runnable command could be resolved for this category.",
+    "ExecutionEnvironmentMissing::Edge Case preflight::No runnable command could be resolved for this category.",
+    "ExecutionEnvironmentMissing::Playwright / E2E Browser preflight::No runnable command could be resolved for this category.",
+    "ParityGap::Legacy vs converted behavior parity::Parity score for Login is 64 with 5 failing checks.",
+    "ScenarioFailure::API contract route: /Auth/::API contract route: /Auth/ failed in skill api-test-execution.",
+    "ScenarioFailure::API contract route: /Views/Auth/Dashboard.cshtml::API contract route: /Views/Auth/Dashboard.cshtml failed in skill api-test-execution.",
+    "ScenarioFailure::API contract route: /Views/Auth/Index.cshtml::API contract route: /Views/Auth/Index.cshtml failed in skill api-test-execution.",
+    "ScenarioFailure::Browser runtime validation for View module records::Browser runtime validation for View module records failed in skill playwright-browser-verification.",
+    "ScenarioFailure::Journey parity: View module records::Journey parity: View module records failed in skill e2e-test-execution.",
+    "ScenarioFailure::Must-preserve edge behavior: Data mapping compatibility for persistence operations::Must-preserve edge behavior: Data mapping compatibility for persistence operations failed in skill edge-case-testing.",
+    "ScenarioFailure::Must-preserve edge behavior: Route and URL behavior parity for user-visible flows::Must-preserve edge behavior: Route and URL behavior parity for user-visible flows failed in skill edge-case-testing.",
+    "ScenarioFailure::Must-preserve edge behavior: Validation/error message semantics from legacy behavior::Must-preserve edge behavior: Validation/error message semantics from legacy behavior failed in skill edge-case-testing.",
+    "ScenarioFailure::browser-testing-with-devtools::browser-testing-with-devtools failed in skill browser-testing-with-devtools.",
+    "ScenarioFailure::clean-architecture-assessment::clean-architecture-assessment failed in skill clean-architecture-assessment.",
+    "ScenarioFailure::parity-verification::parity-verification failed in skill parity-verification."
+  ],
+  "knowledgeUpdates": [
+    {
+      "signature": "ApplicationUnreachable::API preflight::Application reachability check failed.",
+      "stage": "execution",
+      "skill": "api-test-execution",
+      "message": "Application reachability check failed.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "ApplicationUnreachable::E2E preflight::Application reachability check failed.",
+      "stage": "execution",
+      "skill": "e2e-test-execution",
+      "message": "Application reachability check failed.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "ApplicationUnreachable::Edge Case preflight::Application reachability check failed.",
+      "stage": "execution",
+      "skill": "edge-case-testing",
+      "message": "Application reachability check failed.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "ApplicationUnreachable::Playwright / E2E Browser preflight::Application reachability check failed.",
+      "stage": "execution",
+      "skill": "playwright-browser-verification",
+      "message": "Application reachability check failed.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "ArchitectureIssuesDetected::Clean architecture review::Detected 2 architecture issue(s), including 1 high-severity issue(s).",
+      "stage": "architecture-review",
+      "skill": "clean-architecture-assessment",
+      "message": "Detected 2 architecture issue(s), including 1 high-severity issue(s).",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "EnvironmentDependencyMissing::DevTools diagnostics preflight::DevTools evidence endpoint is not reachable.",
+      "stage": "execution",
+      "skill": "browser-testing-with-devtools",
+      "message": "DevTools evidence endpoint is not reachable.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "ExecutionEnvironmentMissing::E2E preflight::No runnable command could be resolved for this category.",
+      "stage": "execution",
+      "skill": "e2e-test-execution",
+      "message": "No runnable command could be resolved for this category.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "ExecutionEnvironmentMissing::Edge Case preflight::No runnable command could be resolved for this category.",
+      "stage": "execution",
+      "skill": "edge-case-testing",
+      "message": "No runnable command could be resolved for this category.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "ExecutionEnvironmentMissing::Playwright / E2E Browser preflight::No runnable command could be resolved for this category.",
+      "stage": "execution",
+      "skill": "playwright-browser-verification",
+      "message": "No runnable command could be resolved for this category.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "ParityGap::Legacy vs converted behavior parity::Parity score for Login is 64 with 5 failing checks.",
+      "stage": "findings",
+      "skill": "parity-verification",
+      "message": "Parity score for Login is 64 with 5 failing checks.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "ScenarioFailure::API contract route: /Auth/::API contract route: /Auth/ failed in skill api-test-execution.",
+      "stage": "findings",
+      "skill": "failure-diagnosis",
+      "message": "API contract route: /Auth/ failed in skill api-test-execution.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "ScenarioFailure::API contract route: /Views/Auth/Dashboard.cshtml::API contract route: /Views/Auth/Dashboard.cshtml failed in skill api-test-execution.",
+      "stage": "findings",
+      "skill": "failure-diagnosis",
+      "message": "API contract route: /Views/Auth/Dashboard.cshtml failed in skill api-test-execution.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "ScenarioFailure::API contract route: /Views/Auth/Index.cshtml::API contract route: /Views/Auth/Index.cshtml failed in skill api-test-execution.",
+      "stage": "findings",
+      "skill": "failure-diagnosis",
+      "message": "API contract route: /Views/Auth/Index.cshtml failed in skill api-test-execution.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "ScenarioFailure::Browser runtime validation for View module records::Browser runtime validation for View module records failed in skill playwright-browser-verification.",
+      "stage": "findings",
+      "skill": "failure-diagnosis",
+      "message": "Browser runtime validation for View module records failed in skill playwright-browser-verification.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "ScenarioFailure::Journey parity: View module records::Journey parity: View module records failed in skill e2e-test-execution.",
+      "stage": "findings",
+      "skill": "failure-diagnosis",
+      "message": "Journey parity: View module records failed in skill e2e-test-execution.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "ScenarioFailure::Must-preserve edge behavior: Data mapping compatibility for persistence operations::Must-preserve edge behavior: Data mapping compatibility for persistence operations failed in skill edge-case-testing.",
+      "stage": "findings",
+      "skill": "failure-diagnosis",
+      "message": "Must-preserve edge behavior: Data mapping compatibility for persistence operations failed in skill edge-case-testing.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "ScenarioFailure::Must-preserve edge behavior: Route and URL behavior parity for user-visible flows::Must-preserve edge behavior: Route and URL behavior parity for user-visible flows failed in skill edge-case-testing.",
+      "stage": "findings",
+      "skill": "failure-diagnosis",
+      "message": "Must-preserve edge behavior: Route and URL behavior parity for user-visible flows failed in skill edge-case-testing.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "ScenarioFailure::Must-preserve edge behavior: Validation/error message semantics from legacy behavior::Must-preserve edge behavior: Validation/error message semantics from legacy behavior failed in skill edge-case-testing.",
+      "stage": "findings",
+      "skill": "failure-diagnosis",
+      "message": "Must-preserve edge behavior: Validation/error message semantics from legacy behavior failed in skill edge-case-testing.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "ScenarioFailure::browser-testing-with-devtools::browser-testing-with-devtools failed in skill browser-testing-with-devtools.",
+      "stage": "findings",
+      "skill": "failure-diagnosis",
+      "message": "browser-testing-with-devtools failed in skill browser-testing-with-devtools.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "ScenarioFailure::clean-architecture-assessment::clean-architecture-assessment failed in skill clean-architecture-assessment.",
+      "stage": "findings",
+      "skill": "failure-diagnosis",
+      "message": "clean-architecture-assessment failed in skill clean-architecture-assessment.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "ScenarioFailure::parity-verification::parity-verification failed in skill parity-verification.",
+      "stage": "findings",
+      "skill": "failure-diagnosis",
+      "message": "parity-verification failed in skill parity-verification.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    }
+  ]
+}

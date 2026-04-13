@@ -1,0 +1,34 @@
+{
+  "stage": "discovery",
+  "stageTitle": "Discovery",
+  "stageIndex": 1,
+  "status": "passed",
+  "skillCount": 1,
+  "skillsPassed": 1,
+  "skillsFailed": 0,
+  "skills": [
+    {
+      "skill": "module-discovery",
+      "stage": "discovery",
+      "status": "passed",
+      "startedAt": "2026-04-13T11:32:38.231053Z",
+      "endedAt": "2026-04-13T11:32:38.311132Z",
+      "durationSeconds": 0.08,
+      "summary": "Discovery completed for Login: assets=13, routes=5, dbTouchpoints=0.",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/artifacts/Login/test-001/module-discovery/result.json\n",
+      "stderr": "",
+      "command": [
+        "python3",
+        "/Users/risha/Documents/Buildathon/skills/module-discovery/run.py",
+        "--input",
+        "/Users/risha/Documents/Buildathon/artifacts/Login/test-001/module-run-input.json",
+        "--artifacts-root",
+        "/Users/risha/Documents/Buildathon/artifacts"
+      ],
+      "resultPath": "/Users/risha/Documents/Buildathon/artifacts/Login/test-001/module-discovery/result.json"
+    }
+  ],
+  "startedAt": "2026-04-13T11:32:38.231053Z",
+  "endedAt": "2026-04-13T11:32:38.311132Z"
+}

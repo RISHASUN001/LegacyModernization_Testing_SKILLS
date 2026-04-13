@@ -1,0 +1,42 @@
+{
+  "skillName": "clean-architecture-assessment",
+  "stage": "architecture-review",
+  "moduleName": "Login",
+  "runId": "LoginTest-001",
+  "status": "failed",
+  "startedAt": "2026-04-13T09:47:49.368424Z",
+  "endedAt": "2026-04-13T09:47:49.369073Z",
+  "summary": "Architecture review identified critical DI and coupling issues.",
+  "metrics": {
+    "violations": 6,
+    "critical": 2,
+    "warnings": 4
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/Login/LoginTest-001/clean-architecture-assessment/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/LoginTest-001/clean-architecture-assessment/architecture-review.json"
+  ],
+  "findings": [
+    {
+      "type": "DirectInfrastructureDependency",
+      "scenario": "Controller to repository coupling",
+      "message": "ChecklistController depends directly on Oracle repository implementation.",
+      "likelyCause": "Missing application-level repository abstraction.",
+      "evidence": "ChecklistController constructor injects ChecklistOracleRepository.",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.9,
+      "affectedFiles": [
+        "src_conversion4/Modules/Checklist/ChecklistController.cs"
+      ]
+    }
+  ],
+  "recommendations": [
+    {
+      "message": "Introduce application interfaces and move infrastructure binding to composition root.",
+      "priority": "high",
+      "evidence": "Direct implementation injection detected."
+    }
+  ],
+  "resultContractVersion": "2.0"
+}

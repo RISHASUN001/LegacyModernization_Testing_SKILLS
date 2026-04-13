@@ -4,13 +4,14 @@
   "moduleName": "Checklist",
   "runId": "run-002",
   "status": "passed",
-  "startedAt": "2026-04-12T10:08:00Z",
-  "endedAt": "2026-04-12T10:09:00Z",
-  "summary": "Test plan refined with stronger category mapping and increased projected coverage.",
+  "startedAt": "2026-04-13T11:32:30.838806Z",
+  "endedAt": "2026-04-13T11:32:30.846306Z",
+  "summary": "Test plan generated for Checklist with categories=7 and suggestedTests=4.",
   "metrics": {
-    "existingTests": 84,
-    "suggestedTests": 17,
-    "coveragePercent": 82
+    "existingTests": 0,
+    "suggestedTests": 4,
+    "coveragePercent": 34,
+    "architectureRisks": 1
   },
   "artifacts": [
     "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/test-plan-generation/result.json",
@@ -19,10 +20,19 @@
   "findings": [],
   "recommendations": [
     {
-      "message": "Lock current test plan and carry remaining suggestions into next sprint backlog.",
-      "priority": "medium",
-      "evidence": "High-value categories now covered."
+      "message": "Prioritize scenarios sourced from must-preserve behaviors and recurring lessons before parity signoff.",
+      "priority": "high",
+      "evidence": "Test categories now include provenance for flow/risk/fallback/lessons origins."
     }
   ],
-  "resultContractVersion": "2.0"
+  "resultContractVersion": "2.0",
+  "provenanceSummary": {
+    "scenarioSources": [
+      "flow-derived",
+      "risk-derived",
+      "lessons-derived",
+      "fallback"
+    ],
+    "confidence": 0.82
+  }
 }

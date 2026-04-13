@@ -1,12 +1,406 @@
 {
+  "moduleName": "Checklist",
+  "runId": "run-002",
+  "totalSkillResults": 15,
+  "failedSkillResults": 7,
   "clusters": [
     {
-      "name": "Conflict lock timing",
-      "likelyCause": "Non-deterministic lock propagation",
+      "name": "e2e-test-execution failure cluster",
+      "likelyCause": "E2E execution failed preflight checks and did not run command execution.",
       "affectedSkills": [
-        "e2e-test-execution",
-        "playwright-browser-verification"
+        "e2e-test-execution"
+      ],
+      "failedScenarios": [
+        "Journey parity: View module records"
+      ],
+      "evidenceArtifacts": [
+        "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/e2e-test-execution/execution-log.txt"
       ]
+    },
+    {
+      "name": "parity-verification failure cluster",
+      "likelyCause": "Parity verification for Checklist: score=62, failedChecks=5.",
+      "affectedSkills": [
+        "parity-verification"
+      ],
+      "failedScenarios": [
+        "parity-verification"
+      ],
+      "evidenceArtifacts": []
+    },
+    {
+      "name": "playwright-browser-verification failure cluster",
+      "likelyCause": "Playwright / E2E Browser execution failed preflight checks and did not run command execution.",
+      "affectedSkills": [
+        "playwright-browser-verification"
+      ],
+      "failedScenarios": [
+        "Browser runtime validation for View module records"
+      ],
+      "evidenceArtifacts": [
+        "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/playwright-browser-verification/execution-log.txt",
+        "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/playwright-browser-verification/console-logs.json",
+        "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/playwright-browser-verification/network-failures.json"
+      ]
+    },
+    {
+      "name": "clean-architecture-assessment failure cluster",
+      "likelyCause": "Architecture assessment for Checklist found 1 issue(s).",
+      "affectedSkills": [
+        "clean-architecture-assessment"
+      ],
+      "failedScenarios": [
+        "clean-architecture-assessment"
+      ],
+      "evidenceArtifacts": []
+    },
+    {
+      "name": "edge-case-testing failure cluster",
+      "likelyCause": "Edge Case execution failed preflight checks and did not run command execution.",
+      "affectedSkills": [
+        "edge-case-testing"
+      ],
+      "failedScenarios": [
+        "Must-preserve edge behavior: Route and URL behavior parity for user-visible flows",
+        "Must-preserve edge behavior: Validation/error message semantics from legacy behavior",
+        "Must-preserve edge behavior: Data mapping compatibility for persistence operations",
+        "Recurring risk regression guard: NamespaceFolderMismatch"
+      ],
+      "evidenceArtifacts": [
+        "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/edge-case-testing/execution-log.txt"
+      ]
+    },
+    {
+      "name": "api-test-execution failure cluster",
+      "likelyCause": "API execution failed preflight checks and did not run command execution.",
+      "affectedSkills": [
+        "api-test-execution"
+      ],
+      "failedScenarios": [
+        "API contract route: /Views/Auth/Dashboard.cshtml",
+        "API contract route: /Views/Auth/Index.cshtml",
+        "API contract route: /dashboard"
+      ],
+      "evidenceArtifacts": [
+        "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/api-test-execution/execution-log.txt"
+      ]
+    },
+    {
+      "name": "browser-testing-with-devtools failure cluster",
+      "likelyCause": "DevTools diagnostics failed preflight checks and did not execute endpoint collection.",
+      "affectedSkills": [
+        "browser-testing-with-devtools"
+      ],
+      "failedScenarios": [
+        "browser-testing-with-devtools"
+      ],
+      "evidenceArtifacts": [
+        "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/browser-testing-with-devtools/console-logs.json",
+        "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/browser-testing-with-devtools/network-failures.json",
+        "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/browser-testing-with-devtools/execution-log.txt"
+      ]
+    }
+  ],
+  "scenarioFailures": [
+    {
+      "skill": "e2e-test-execution",
+      "scenario": "Journey parity: View module records",
+      "likelyCause": "E2E execution failed preflight checks and did not run command execution.",
+      "evidence": {
+        "resultSummary": "E2E execution failed preflight checks and did not run command execution.",
+        "logs": [
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/e2e-test-execution/execution-log.txt"
+        ],
+        "artifacts": [
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/e2e-test-execution/result.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/e2e-test-execution/preflight.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/e2e-test-execution/execution-log.txt",
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/e2e-test-execution/e2e-scenarios.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/e2e-test-execution/screenshots/e2e-failure.png"
+        ]
+      },
+      "provenance": {
+        "type": "flow-derived",
+        "sources": [
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.73,
+        "unknowns": []
+      }
+    },
+    {
+      "skill": "parity-verification",
+      "scenario": "parity-verification",
+      "likelyCause": "Parity verification for Checklist: score=62, failedChecks=5.",
+      "evidence": {
+        "resultSummary": "Parity verification for Checklist: score=62, failedChecks=5.",
+        "logs": [],
+        "artifacts": [
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/parity-verification/result.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/parity-verification/parity-diff.json"
+        ]
+      },
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:parity-verification/result.json"
+        ],
+        "confidence": 0.65
+      }
+    },
+    {
+      "skill": "playwright-browser-verification",
+      "scenario": "Browser runtime validation for View module records",
+      "likelyCause": "Playwright / E2E Browser execution failed preflight checks and did not run command execution.",
+      "evidence": {
+        "resultSummary": "Playwright / E2E Browser execution failed preflight checks and did not run command execution.",
+        "logs": [
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/playwright-browser-verification/execution-log.txt",
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/playwright-browser-verification/console-logs.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/playwright-browser-verification/network-failures.json"
+        ],
+        "artifacts": [
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/playwright-browser-verification/result.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/playwright-browser-verification/preflight.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/playwright-browser-verification/execution-log.txt",
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/playwright-browser-verification/console-logs.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/playwright-browser-verification/network-failures.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/playwright-browser-verification/dom-state.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/playwright-browser-verification/runtime-issues.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/playwright-browser-verification/performance-observations.json"
+        ]
+      },
+      "provenance": {
+        "type": "flow-derived",
+        "sources": [
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-discovery/discovery-map.json"
+        ],
+        "confidence": 0.72,
+        "unknowns": []
+      }
+    },
+    {
+      "skill": "clean-architecture-assessment",
+      "scenario": "clean-architecture-assessment",
+      "likelyCause": "Architecture assessment for Checklist found 1 issue(s).",
+      "evidence": {
+        "resultSummary": "Architecture assessment for Checklist found 1 issue(s).",
+        "logs": [],
+        "artifacts": [
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/clean-architecture-assessment/result.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/clean-architecture-assessment/architecture-review.json"
+        ]
+      },
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:clean-architecture-assessment/result.json"
+        ],
+        "confidence": 0.65
+      }
+    },
+    {
+      "skill": "edge-case-testing",
+      "scenario": "Must-preserve edge behavior: Route and URL behavior parity for user-visible flows",
+      "likelyCause": "Edge Case execution failed preflight checks and did not run command execution.",
+      "evidence": {
+        "resultSummary": "Edge Case execution failed preflight checks and did not run command execution.",
+        "logs": [
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/edge-case-testing/execution-log.txt"
+        ],
+        "artifacts": [
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/edge-case-testing/result.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/edge-case-testing/preflight.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/edge-case-testing/execution-log.txt",
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/edge-case-testing/edge-case-matrix.json"
+        ]
+      },
+      "provenance": {
+        "type": "risk-derived",
+        "sources": [
+          "artifact:legacy-logic-extraction/logic-summary.json"
+        ],
+        "confidence": 0.7,
+        "unknowns": []
+      }
+    },
+    {
+      "skill": "edge-case-testing",
+      "scenario": "Must-preserve edge behavior: Validation/error message semantics from legacy behavior",
+      "likelyCause": "Edge Case execution failed preflight checks and did not run command execution.",
+      "evidence": {
+        "resultSummary": "Edge Case execution failed preflight checks and did not run command execution.",
+        "logs": [
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/edge-case-testing/execution-log.txt"
+        ],
+        "artifacts": [
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/edge-case-testing/result.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/edge-case-testing/preflight.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/edge-case-testing/execution-log.txt",
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/edge-case-testing/edge-case-matrix.json"
+        ]
+      },
+      "provenance": {
+        "type": "risk-derived",
+        "sources": [
+          "artifact:legacy-logic-extraction/logic-summary.json"
+        ],
+        "confidence": 0.7,
+        "unknowns": []
+      }
+    },
+    {
+      "skill": "edge-case-testing",
+      "scenario": "Must-preserve edge behavior: Data mapping compatibility for persistence operations",
+      "likelyCause": "Edge Case execution failed preflight checks and did not run command execution.",
+      "evidence": {
+        "resultSummary": "Edge Case execution failed preflight checks and did not run command execution.",
+        "logs": [
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/edge-case-testing/execution-log.txt"
+        ],
+        "artifacts": [
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/edge-case-testing/result.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/edge-case-testing/preflight.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/edge-case-testing/execution-log.txt",
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/edge-case-testing/edge-case-matrix.json"
+        ]
+      },
+      "provenance": {
+        "type": "risk-derived",
+        "sources": [
+          "artifact:legacy-logic-extraction/logic-summary.json"
+        ],
+        "confidence": 0.7,
+        "unknowns": []
+      }
+    },
+    {
+      "skill": "edge-case-testing",
+      "scenario": "Recurring risk regression guard: NamespaceFolderMismatch",
+      "likelyCause": "Edge Case execution failed preflight checks and did not run command execution.",
+      "evidence": {
+        "resultSummary": "Edge Case execution failed preflight checks and did not run command execution.",
+        "logs": [
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/edge-case-testing/execution-log.txt"
+        ],
+        "artifacts": [
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/edge-case-testing/result.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/edge-case-testing/preflight.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/edge-case-testing/execution-log.txt",
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/edge-case-testing/edge-case-matrix.json"
+        ]
+      },
+      "provenance": {
+        "type": "lessons-derived",
+        "sources": [
+          "artifact:_knowledge-base/lessons-kb.json"
+        ],
+        "confidence": 0.8,
+        "unknowns": []
+      }
+    },
+    {
+      "skill": "api-test-execution",
+      "scenario": "API contract route: /Views/Auth/Dashboard.cshtml",
+      "likelyCause": "API execution failed preflight checks and did not run command execution.",
+      "evidence": {
+        "resultSummary": "API execution failed preflight checks and did not run command execution.",
+        "logs": [
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/api-test-execution/execution-log.txt"
+        ],
+        "artifacts": [
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/api-test-execution/result.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/api-test-execution/preflight.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/api-test-execution/execution-log.txt"
+        ]
+      },
+      "provenance": {
+        "type": "code-evidence",
+        "sources": [
+          "artifact:module-discovery/discovery-map.json"
+        ],
+        "confidence": 0.81,
+        "unknowns": []
+      }
+    },
+    {
+      "skill": "api-test-execution",
+      "scenario": "API contract route: /Views/Auth/Index.cshtml",
+      "likelyCause": "API execution failed preflight checks and did not run command execution.",
+      "evidence": {
+        "resultSummary": "API execution failed preflight checks and did not run command execution.",
+        "logs": [
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/api-test-execution/execution-log.txt"
+        ],
+        "artifacts": [
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/api-test-execution/result.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/api-test-execution/preflight.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/api-test-execution/execution-log.txt"
+        ]
+      },
+      "provenance": {
+        "type": "code-evidence",
+        "sources": [
+          "artifact:module-discovery/discovery-map.json"
+        ],
+        "confidence": 0.81,
+        "unknowns": []
+      }
+    },
+    {
+      "skill": "api-test-execution",
+      "scenario": "API contract route: /dashboard",
+      "likelyCause": "API execution failed preflight checks and did not run command execution.",
+      "evidence": {
+        "resultSummary": "API execution failed preflight checks and did not run command execution.",
+        "logs": [
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/api-test-execution/execution-log.txt"
+        ],
+        "artifacts": [
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/api-test-execution/result.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/api-test-execution/preflight.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/api-test-execution/execution-log.txt"
+        ]
+      },
+      "provenance": {
+        "type": "code-evidence",
+        "sources": [
+          "artifact:module-discovery/discovery-map.json"
+        ],
+        "confidence": 0.81,
+        "unknowns": []
+      }
+    },
+    {
+      "skill": "browser-testing-with-devtools",
+      "scenario": "browser-testing-with-devtools",
+      "likelyCause": "DevTools diagnostics failed preflight checks and did not execute endpoint collection.",
+      "evidence": {
+        "resultSummary": "DevTools diagnostics failed preflight checks and did not execute endpoint collection.",
+        "logs": [
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/browser-testing-with-devtools/console-logs.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/browser-testing-with-devtools/network-failures.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/browser-testing-with-devtools/execution-log.txt"
+        ],
+        "artifacts": [
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/browser-testing-with-devtools/result.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/browser-testing-with-devtools/preflight.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/browser-testing-with-devtools/console-logs.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/browser-testing-with-devtools/network-failures.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/browser-testing-with-devtools/dom-state.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/browser-testing-with-devtools/runtime-issues.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/browser-testing-with-devtools/performance-observations.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/browser-testing-with-devtools/execution-log.txt"
+        ]
+      },
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:browser-testing-with-devtools/result.json"
+        ],
+        "confidence": 0.65
+      }
     }
   ]
 }

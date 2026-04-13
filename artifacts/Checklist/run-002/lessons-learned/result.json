@@ -4,24 +4,35 @@
   "moduleName": "Checklist",
   "runId": "run-002",
   "status": "passed",
-  "startedAt": "2026-04-12T10:24:00Z",
-  "endedAt": "2026-04-12T10:25:00Z",
-  "summary": "Lessons updated with stronger traceability and repeatable remediation patterns.",
+  "startedAt": "2026-04-13T11:32:31.879248Z",
+  "endedAt": "2026-04-13T11:32:31.883277Z",
+  "summary": "Lessons synthesized for Checklist: resolved=4, recurring=17, new=2.",
   "metrics": {
-    "lessons": 5,
-    "actionItems": 3
+    "resolved": 4,
+    "recurring": 17,
+    "new": 2,
+    "kbRecurringSignatures": 20
   },
   "artifacts": [
     "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/lessons-learned/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Checklist/_knowledge-base/lessons-kb.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/lessons-learned/lessons-learned.json",
     "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/lessons-learned/lessons.json"
   ],
   "findings": [],
   "recommendations": [
     {
-      "message": "Adopt lessons template across all module modernization workstreams.",
-      "priority": "low",
-      "evidence": "Improved clarity in run-to-run diagnosis."
+      "message": "Use recurring lesson signatures to generate mandatory regression scenarios in next run.",
+      "priority": "high",
+      "evidence": "recurring=17, resolved=4, new=2"
     }
   ],
-  "resultContractVersion": "2.0"
+  "resultContractVersion": "2.0",
+  "provenanceSummary": {
+    "scenarioSources": [
+      "code-evidence",
+      "lessons-learned"
+    ],
+    "confidence": 0.84
+  }
 }

@@ -3,7 +3,7 @@
   "stage": "execution",
   "category": "testing",
   "purpose": "Run browser and devtools-inspired verification with screenshots, console/network/runtime evidence.",
-  "scriptEntry": "run.ps1",
+  "scriptEntry": "run.py",
   "requiredInputs": [
     "moduleName",
     "baseUrl"
@@ -14,7 +14,8 @@
   ],
   "outputFiles": [
     "result.json",
-    "log.txt",
+    "preflight.json",
+    "execution-log.txt",
     "console-logs.json",
     "network-failures.json",
     "dom-state.json",
@@ -30,5 +31,17 @@
     "api-test-execution"
   ],
   "summaryOutputType": "test-category-result",
-  "resultContractVersion": "2.0"
+  "resultContractVersion": "2.0",
+  "externalDependencies": [
+    "playwright(optional)",
+    "testApiEndpoint(optional)"
+  ],
+  "execution": {
+    "primaryCommand": "python run.py --input <module-run-input.json> --artifacts-root <artifacts-root>",
+    "timeoutNotes": "Real-first graceful execution. Writes result.json even on degraded/failure paths.",
+    "realCommandHints": [
+      "python3 -m pytest -m playwright",
+      "testCommands.playwright from run input"
+    ]
+  }
 }

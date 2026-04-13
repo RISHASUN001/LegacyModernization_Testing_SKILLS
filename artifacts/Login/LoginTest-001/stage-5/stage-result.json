@@ -1,0 +1,160 @@
+{
+  "stage": "execution",
+  "stageTitle": "Execution",
+  "stageIndex": 5,
+  "status": "failed",
+  "skillCount": 7,
+  "skillsPassed": 0,
+  "skillsFailed": 7,
+  "skills": [
+    {
+      "skill": "api-test-execution",
+      "stage": "execution",
+      "status": "failed",
+      "startedAt": "2026-04-13T09:47:49.425734Z",
+      "endedAt": "2026-04-13T09:47:49.473267Z",
+      "durationSeconds": 0.047,
+      "summary": "API tests show route compatibility and contract mismatches.",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/artifacts/Login/LoginTest-001/api-test-execution/result.json\n",
+      "stderr": "",
+      "command": [
+        "python3",
+        "/Users/risha/Documents/Buildathon/skills/api-test-execution/run.py",
+        "--input",
+        "/Users/risha/Documents/Buildathon/artifacts/Login/LoginTest-001/module-run-input.json",
+        "--artifacts-root",
+        "/Users/risha/Documents/Buildathon/artifacts"
+      ],
+      "resultPath": "/Users/risha/Documents/Buildathon/artifacts/Login/LoginTest-001/api-test-execution/result.json"
+    },
+    {
+      "skill": "browser-testing-with-devtools",
+      "stage": "execution",
+      "status": "failed",
+      "startedAt": "2026-04-13T09:47:49.473288Z",
+      "endedAt": "2026-04-13T09:47:49.602271Z",
+      "durationSeconds": 0.129,
+      "summary": "DevTools diagnostics failed due to missing environment dependencies.",
+      "returnCode": 1,
+      "stdout": "/Users/risha/Documents/Buildathon/artifacts/Login/LoginTest-001/browser-testing-with-devtools/result.json\n",
+      "stderr": "",
+      "command": [
+        "python3",
+        "/Users/risha/Documents/Buildathon/skills/browser-testing-with-devtools/run.py",
+        "--input",
+        "/Users/risha/Documents/Buildathon/artifacts/Login/LoginTest-001/module-run-input.json",
+        "--artifacts-root",
+        "/Users/risha/Documents/Buildathon/artifacts"
+      ],
+      "resultPath": "/Users/risha/Documents/Buildathon/artifacts/Login/LoginTest-001/browser-testing-with-devtools/result.json"
+    },
+    {
+      "skill": "e2e-test-execution",
+      "stage": "execution",
+      "status": "failed",
+      "startedAt": "2026-04-13T09:47:49.602293Z",
+      "endedAt": "2026-04-13T09:47:49.653406Z",
+      "durationSeconds": 0.051,
+      "summary": "Playwright E2E journeys reveal workflow and timeout parity gaps.",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/artifacts/Login/LoginTest-001/e2e-test-execution/result.json\n",
+      "stderr": "",
+      "command": [
+        "python3",
+        "/Users/risha/Documents/Buildathon/skills/e2e-test-execution/run.py",
+        "--input",
+        "/Users/risha/Documents/Buildathon/artifacts/Login/LoginTest-001/module-run-input.json",
+        "--artifacts-root",
+        "/Users/risha/Documents/Buildathon/artifacts"
+      ],
+      "resultPath": "/Users/risha/Documents/Buildathon/artifacts/Login/LoginTest-001/e2e-test-execution/result.json"
+    },
+    {
+      "skill": "edge-case-testing",
+      "stage": "execution",
+      "status": "failed",
+      "startedAt": "2026-04-13T09:47:49.653426Z",
+      "endedAt": "2026-04-13T09:47:49.704532Z",
+      "durationSeconds": 0.051,
+      "summary": "Edge-case testing found race and stale-session defects.",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/artifacts/Login/LoginTest-001/edge-case-testing/result.json\n",
+      "stderr": "",
+      "command": [
+        "python3",
+        "/Users/risha/Documents/Buildathon/skills/edge-case-testing/run.py",
+        "--input",
+        "/Users/risha/Documents/Buildathon/artifacts/Login/LoginTest-001/module-run-input.json",
+        "--artifacts-root",
+        "/Users/risha/Documents/Buildathon/artifacts"
+      ],
+      "resultPath": "/Users/risha/Documents/Buildathon/artifacts/Login/LoginTest-001/edge-case-testing/result.json"
+    },
+    {
+      "skill": "integration-test-execution",
+      "stage": "execution",
+      "status": "failed",
+      "startedAt": "2026-04-13T09:47:49.704554Z",
+      "endedAt": "2026-04-13T09:47:49.754576Z",
+      "durationSeconds": 0.05,
+      "summary": "Integration tests found data access and mapping parity defects.",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/artifacts/Login/LoginTest-001/integration-test-execution/result.json\n",
+      "stderr": "",
+      "command": [
+        "python3",
+        "/Users/risha/Documents/Buildathon/skills/integration-test-execution/run.py",
+        "--input",
+        "/Users/risha/Documents/Buildathon/artifacts/Login/LoginTest-001/module-run-input.json",
+        "--artifacts-root",
+        "/Users/risha/Documents/Buildathon/artifacts"
+      ],
+      "resultPath": "/Users/risha/Documents/Buildathon/artifacts/Login/LoginTest-001/integration-test-execution/result.json"
+    },
+    {
+      "skill": "playwright-browser-verification",
+      "stage": "execution",
+      "status": "failed",
+      "startedAt": "2026-04-13T09:47:49.754597Z",
+      "endedAt": "2026-04-13T09:47:49.804985Z",
+      "durationSeconds": 0.05,
+      "summary": "Playwright browser verification found selector and runtime issues.",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/artifacts/Login/LoginTest-001/playwright-browser-verification/result.json\n",
+      "stderr": "",
+      "command": [
+        "python3",
+        "/Users/risha/Documents/Buildathon/skills/playwright-browser-verification/run.py",
+        "--input",
+        "/Users/risha/Documents/Buildathon/artifacts/Login/LoginTest-001/module-run-input.json",
+        "--artifacts-root",
+        "/Users/risha/Documents/Buildathon/artifacts"
+      ],
+      "resultPath": "/Users/risha/Documents/Buildathon/artifacts/Login/LoginTest-001/playwright-browser-verification/result.json"
+    },
+    {
+      "skill": "unit-test-execution",
+      "stage": "execution",
+      "status": "failed",
+      "startedAt": "2026-04-13T09:47:49.805005Z",
+      "endedAt": "2026-04-13T09:47:49.855525Z",
+      "durationSeconds": 0.05,
+      "summary": "Unit tests executed with validator and rule-regression failures.",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/artifacts/Login/LoginTest-001/unit-test-execution/result.json\n",
+      "stderr": "",
+      "command": [
+        "python3",
+        "/Users/risha/Documents/Buildathon/skills/unit-test-execution/run.py",
+        "--input",
+        "/Users/risha/Documents/Buildathon/artifacts/Login/LoginTest-001/module-run-input.json",
+        "--artifacts-root",
+        "/Users/risha/Documents/Buildathon/artifacts"
+      ],
+      "resultPath": "/Users/risha/Documents/Buildathon/artifacts/Login/LoginTest-001/unit-test-execution/result.json"
+    }
+  ],
+  "startedAt": "2026-04-13T09:47:49.425734Z",
+  "endedAt": "2026-04-13T09:47:49.855525Z"
+}

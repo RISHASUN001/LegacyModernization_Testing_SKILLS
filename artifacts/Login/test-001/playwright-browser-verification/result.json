@@ -1,0 +1,119 @@
+{
+  "skillName": "playwright-browser-verification",
+  "stage": "execution",
+  "moduleName": "Login",
+  "runId": "test-001",
+  "status": "failed",
+  "startedAt": "2026-04-13T11:32:41.057708Z",
+  "endedAt": "2026-04-13T11:32:41.102468Z",
+  "summary": "Playwright / E2E Browser execution failed preflight checks and did not run command execution.",
+  "metrics": {
+    "total": 1,
+    "passed": 0,
+    "failed": 1,
+    "warnings": 0,
+    "newTestsAdded": 0,
+    "scenarios": [
+      {
+        "name": "Browser runtime validation for View module records",
+        "status": "failed",
+        "notes": "Preflight failed",
+        "coverage": [
+          "browser-runtime",
+          "network",
+          "dom"
+        ],
+        "provenance": {
+          "type": "flow-derived",
+          "sources": [
+            "artifact:legacy-logic-extraction/logic-summary.json",
+            "artifact:module-discovery/discovery-map.json"
+          ],
+          "confidence": 0.72,
+          "unknowns": []
+        }
+      }
+    ],
+    "degradedMode": true,
+    "purpose": "Validate browser UX/runtime/network/DOM evidence for migrated module journeys."
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/Login/test-001/playwright-browser-verification/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/test-001/playwright-browser-verification/preflight.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/test-001/playwright-browser-verification/execution-log.txt",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/test-001/playwright-browser-verification/console-logs.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/test-001/playwright-browser-verification/network-failures.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/test-001/playwright-browser-verification/dom-state.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/test-001/playwright-browser-verification/runtime-issues.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/test-001/playwright-browser-verification/performance-observations.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/test-001/playwright-browser-verification/screenshots/browser-overview.png"
+  ],
+  "findings": [
+    {
+      "type": "ApplicationUnreachable",
+      "scenario": "Playwright / E2E Browser preflight",
+      "message": "Application reachability check failed.",
+      "likelyCause": "Converted app is not running or baseUrl points to wrong host/port.",
+      "evidence": "url=http://0.0.0.0:5001/; reason=<urlopen error [Errno 1] Operation not permitted>",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.95
+    },
+    {
+      "type": "ExecutionEnvironmentMissing",
+      "scenario": "Playwright / E2E Browser preflight",
+      "message": "No runnable command could be resolved for this category.",
+      "likelyCause": "Tooling not installed or test command not configured in run input.",
+      "evidence": "No command candidates resolved to available executables.",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.95
+    }
+  ],
+  "recommendations": [
+    {
+      "message": "Start the converted app and verify the configured baseUrl/testApiEndpoint.",
+      "priority": "high",
+      "evidence": "Reachability must pass before running execution skills in strict mode."
+    },
+    {
+      "message": "Install required tooling and/or provide explicit category test command in run input.",
+      "priority": "high",
+      "evidence": "commandCandidates=[]"
+    }
+  ],
+  "resultContractVersion": "2.0",
+  "statusReason": "preflight-failed",
+  "preflight": {
+    "category": "Playwright / E2E Browser",
+    "baseUrl": {
+      "required": true,
+      "provided": "http://0.0.0.0:5001",
+      "normalized": "http://0.0.0.0:5001",
+      "ok": true,
+      "reason": ""
+    },
+    "reachability": {
+      "required": true,
+      "ok": false,
+      "statusCode": 0,
+      "reason": "<urlopen error [Errno 1] Operation not permitted>",
+      "path": "/",
+      "url": "http://0.0.0.0:5001/"
+    },
+    "commands": {
+      "candidates": [],
+      "available": [],
+      "unavailable": [],
+      "selected": "",
+      "ok": false
+    },
+    "strictMode": true
+  },
+  "provenanceSummary": {
+    "scenarioSources": [
+      "flow-derived"
+    ],
+    "confidence": 0.72
+  }
+}

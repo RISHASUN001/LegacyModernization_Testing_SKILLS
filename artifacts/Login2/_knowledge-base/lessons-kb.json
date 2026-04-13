@@ -1,0 +1,26 @@
+{
+  "moduleName": "Login2",
+  "updatedAt": "2026-04-13T15:51:03.068171Z",
+  "latestRunId": "login2-test-20260413-234705",
+  "recurringSignatures": [
+    "NamespaceFolderMismatch",
+    "DIRegistrationMissing"
+  ],
+  "knownPitfalls": [
+    "DIRegistrationMissing",
+    "DapperCaseSensitivity",
+    "NamespaceFolderMismatch",
+    "OracleMappingIssue",
+    "RelativeUrlFailure",
+    "RouteAssumptionMismatch",
+    "SessionHandlingPitfall"
+  ],
+  "history": [
+    {
+      "runId": "login2-test-20260413-234705",
+      "resolvedCount": 0,
+      "recurringCount": 0,
+      "newCount": 6
+    }
+  ]
+}

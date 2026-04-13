@@ -1,0 +1,30 @@
+{
+  "category": "Edge Case",
+  "baseUrl": {
+    "required": true,
+    "provided": "http://0.0.0.0:5001/",
+    "normalized": "http://0.0.0.0:5001",
+    "ok": true,
+    "reason": ""
+  },
+  "reachability": {
+    "required": true,
+    "ok": true,
+    "statusCode": 200,
+    "reason": "reachable",
+    "path": "/",
+    "url": "http://0.0.0.0:5001/"
+  },
+  "commands": {
+    "candidates": [
+      "dotnet test --nologo --verbosity minimal"
+    ],
+    "available": [
+      "dotnet test --nologo --verbosity minimal"
+    ],
+    "unavailable": [],
+    "selected": "dotnet test --nologo --verbosity minimal",
+    "ok": true
+  },
+  "strictMode": true
+}

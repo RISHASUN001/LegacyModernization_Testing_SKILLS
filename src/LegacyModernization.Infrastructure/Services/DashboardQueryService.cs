@@ -144,7 +144,11 @@ END, name;", null, cancellationToken);
     {
         await using var connection = await _connectionFactory.CreateOpenConnectionAsync(cancellationToken);
 
-        var skills = await QueryRowsAsync(connection, "SELECT name FROM skills ORDER BY name;", null, cancellationToken);
+        var skills = await QueryRowsAsync(
+            connection,
+            "SELECT name FROM skills WHERE name <> 'legacy-modernization-orchestrator' ORDER BY name;",
+            null,
+            cancellationToken);
         var skillNames = skills.Select(static s => s.GetString("name")).Where(static s => !string.IsNullOrWhiteSpace(s)).ToList();
         var draft = new RunInputDraftDto { SelectedSkills = skillNames };
 
@@ -254,7 +258,9 @@ GROUP BY stage;", new { RunFk = runFk }, cancellationToken);
         var architecture = await BuildArchitectureStageAsync(artifactRoot, cancellationToken);
         var testPlan = await BuildTestPlanStageAsync(artifactRoot, cancellationToken);
         var execution = await BuildExecutionStageAsync(connection, runFk, artifactRoot, cancellationToken);
+        var parity = await BuildParityStageAsync(artifactRoot, cancellationToken);
         var findings = await BuildFindingsStageAsync(connection, runFk, moduleName, runId, cancellationToken);
+        var keyLearnings = await BuildKeyLearningsAsync(artifactRoot, cancellationToken);
         var iteration = await BuildIterationSummaryAsync(connection, moduleName, runId, artifactRoot, cancellationToken);
 
         return new RunPipelinePageDto
@@ -271,7 +277,9 @@ GROUP BY stage;", new { RunFk = runFk }, cancellationToken);
             ArchitectureReview = architecture,
             TestPlan = testPlan,
             Execution = execution,
+            Parity = parity,
             Findings = findings,
+            KeyLearnings = keyLearnings,
             IterationComparison = iteration
         };
     }
@@ -333,6 +341,7 @@ ORDER BY r.run_id DESC, rec.id DESC;", parameters, cancellationToken);
                 Severity = row.GetString("severity"),
                 Status = row.GetString("status"),
                 Confidence = row.GetDouble("confidence"),
+                ProvenanceType = "code-evidence",
                 ResolvedInRunId = row.GetString("resolved_in_run_id"),
                 ResolutionNotes = row.GetString("resolution_notes"),
                 AffectedFiles = ParseStringArray(row.GetString("affected_files_json"))
@@ -345,7 +354,8 @@ ORDER BY r.run_id DESC, rec.id DESC;", parameters, cancellationToken);
                 SkillName = row.GetString("skill_name"),
                 Message = row.GetString("message"),
                 Priority = row.GetString("priority"),
-                Evidence = row.GetString("evidence")
+                Evidence = row.GetString("evidence"),
+                ProvenanceType = "code-evidence"
             }).ToList()
         };
     }
@@ -406,6 +416,10 @@ ORDER BY d.run_id;", new { ModuleName = moduleName }, cancellationToken);
             ConfigFiles = ParseStringArray(node["configFiles"]?.ToJsonString() ?? "[]"),
             Urls = ParseStringArray(node["urls"]?.ToJsonString() ?? "[]"),
             DbTouchpoints = ParseStringArray(node["dbTouchpoints"]?.ToJsonString() ?? "[]"),
+            UrlDetails = ParseRouteDetails(node["routeCandidates"]),
+            DbTouchpointDetails = ParseNamedProvenancedDetails(node["dbTouchpointsDetailed"], "name"),
+            EntrypointHints = ParseNamedProvenancedDetails(node["entrypointHints"], "value"),
+            Confidence = ParseDouble(node["confidence"], 0),
             SourceArtifactPath = path
         };
     }
@@ -433,13 +447,23 @@ ORDER BY d.run_id;", new { ModuleName = moduleName }, cancellationToken);
             return new LogicUnderstandingStageDto { SourceArtifactPath = sourcePath };
         }
 
+        var modulePurpose = node["modulePurpose"] as JsonObject;
+        var modulePurposeText = modulePurpose?["text"]?.GetValue<string>()
+            ?? node["modulePurpose"]?.GetValue<string>()
+            ?? node["modulePurposeText"]?.GetValue<string>()
+            ?? string.Empty;
+
         return new LogicUnderstandingStageDto
         {
-            ModulePurpose = node["modulePurpose"]?.GetValue<string>() ?? string.Empty,
+            ModulePurpose = modulePurposeText,
             ImportantFlows = ParseStringArray(node["importantFlows"]?.ToJsonString() ?? node["userFlows"]?.ToJsonString() ?? "[]"),
             Rules = ParseStringArray(node["rules"]?.ToJsonString() ?? node["businessRules"]?.ToJsonString() ?? "[]"),
             Dependencies = ParseStringArray(node["dependencies"]?.ToJsonString() ?? "[]"),
             MustPreserve = ParseStringArray(node["mustPreserve"]?.ToJsonString() ?? "[]"),
+            FlowDetails = ParseNamedProvenancedDetails(node["workflows"], "name"),
+            RuleDetails = ParseNamedProvenancedDetails(node["businessRules"], "rule"),
+            Unknowns = ParseStringArray(node["unknowns"]?.ToJsonString() ?? "[]"),
+            Confidence = ParseDouble(node["confidence"], 0),
             SourceArtifactPath = sourcePath
         };
     }
@@ -497,14 +521,29 @@ ORDER BY d.run_id;", new { ModuleName = moduleName }, cancellationToken);
                 categoryItems.Add(new TestCategoryPlanDto
                 {
                     Category = obj["category"]?.GetValue<string>() ?? string.Empty,
-                    Purpose = obj["purpose"]?.GetValue<string>() ?? string.Empty
+                    Purpose = obj["purpose"]?.GetValue<string>() ?? string.Empty,
+                    Scenarios = ParseScenarioPlans(obj["scenarios"])
                 });
             }
         }
 
+        var existingTestsFound = new List<string>();
+        if (node["existingTestsFound"] is JsonObject existing)
+        {
+            existingTestsFound.Add($"Total Files: {existing["totalFiles"]?.GetValue<int>() ?? 0}");
+            existingTestsFound.Add($"Unit: {existing["unit"]?.GetValue<int>() ?? 0}");
+            existingTestsFound.Add($"Integration: {existing["integration"]?.GetValue<int>() ?? 0}");
+            existingTestsFound.Add($"API: {existing["api"]?.GetValue<int>() ?? 0}");
+            existingTestsFound.Add($"E2E: {existing["e2e"]?.GetValue<int>() ?? 0}");
+        }
+        else
+        {
+            existingTestsFound = ParseStringArray(node["existingTestsFound"]?.ToJsonString() ?? "[]");
+        }
+
         return new TestPlanStageDto
         {
-            ExistingTestsFound = ParseStringArray(node["existingTestsFound"]?.ToJsonString() ?? "[]"),
+            ExistingTestsFound = existingTestsFound,
             NewTestsSuggested = ParseStringArray(node["newTestsSuggested"]?.ToJsonString() ?? "[]"),
             TestCategories = categoryItems,
             CoverageSummary = node["coverageSummary"]?.GetValue<string>() ?? string.Empty,
@@ -525,23 +564,33 @@ ORDER BY CASE category
     WHEN 'E2E' THEN 3
     WHEN 'API' THEN 4
     WHEN 'Edge Case' THEN 5
+    WHEN 'Playwright / E2E Browser' THEN 6
     WHEN 'Playwright / Browser Verification' THEN 6
+    WHEN 'DevTools Diagnostics' THEN 7
     ELSE 99
 END;", new { RunFk = runFk }, cancellationToken);
 
-        var categories = rows.Select(static row => new TestCategoryExecutionDto
-        {
-            Category = row.GetString("category"),
-            Purpose = row.GetString("purpose"),
-            ScenariosCovered = ParseStringArray(row.GetString("scenarios_json")),
-            TotalCount = row.GetInt("total"),
-            Passed = row.GetInt("passed"),
-            Failed = row.GetInt("failed"),
-            Warnings = row.GetInt("warnings"),
-            NewTestsAdded = row.GetInt("new_tests_added"),
-            SourceSkill = row.GetString("source_skill"),
-            Logs = ParseStringArray(row.GetString("logs_json")),
-            Artifacts = ParseStringArray(row.GetString("artifacts_json"))
+        var categories = rows.Select(static row => {
+            var scenarioDetails = ParseExecutionScenarioDetails(row.GetString("scenarios_json"));
+            var preflight = ParsePreflightFromArtifacts(ParseStringArray(row.GetString("artifacts_json")));
+            return new TestCategoryExecutionDto
+            {
+                Category = row.GetString("category"),
+                Purpose = row.GetString("purpose"),
+                ScenariosCovered = scenarioDetails.Select(static s => s.Name).Where(static s => !string.IsNullOrWhiteSpace(s)).ToList(),
+                ScenarioDetails = scenarioDetails,
+                TotalCount = row.GetInt("total"),
+                Passed = row.GetInt("passed"),
+                Failed = row.GetInt("failed"),
+                Warnings = row.GetInt("warnings"),
+                NewTestsAdded = row.GetInt("new_tests_added"),
+                SourceSkill = row.GetString("source_skill"),
+                PreflightStatus = preflight.ok ? "ok" : "failed",
+                PreflightReason = preflight.reason,
+                ScenarioConfidence = scenarioDetails.Count == 0 ? 0 : scenarioDetails.Average(static s => s.Confidence),
+                Logs = ParseStringArray(row.GetString("logs_json")),
+                Artifacts = ParseStringArray(row.GetString("artifacts_json"))
+            };
         }).ToList();
 
         var playwright = await BuildPlaywrightEvidenceAsync(connection, runFk, artifactRoot, cancellationToken);
@@ -587,16 +636,42 @@ LIMIT 1;", new { RunFk = runFk }, cancellationToken)).FirstOrDefault();
         var domPath = Path.Combine(artifactRoot, "playwright-browser-verification", "dom-state.json");
         var runtimePath = Path.Combine(artifactRoot, "playwright-browser-verification", "runtime-issues.json");
         var perfPath = Path.Combine(artifactRoot, "playwright-browser-verification", "performance-observations.json");
+        var testApiStatusPath = Path.Combine(artifactRoot, "playwright-browser-verification", "test-api-status.json");
         var screenshotRoot = Path.Combine(artifactRoot, "playwright-browser-verification", "screenshots");
 
         var consoleEntries = await ReadStringArrayFileAsync(consolePath, cancellationToken);
         var consoleErrors = consoleEntries.Where(static e => e.Contains("error", StringComparison.OrdinalIgnoreCase) || e.Contains("TypeError", StringComparison.OrdinalIgnoreCase)).ToList();
         var consoleWarnings = consoleEntries.Where(static e => e.Contains("warn", StringComparison.OrdinalIgnoreCase) || e.Contains("warning", StringComparison.OrdinalIgnoreCase)).ToList();
 
+        var testApiEndpoint = string.Empty;
+        var testApiStatus = "unknown";
+        var testApiReason = string.Empty;
+        if (File.Exists(testApiStatusPath))
+        {
+            try
+            {
+                var apiNode = JsonNode.Parse(await File.ReadAllTextAsync(testApiStatusPath, cancellationToken)) as JsonObject;
+                if (apiNode is not null)
+                {
+                    testApiEndpoint = apiNode["endpoint"]?.GetValue<string>() ?? string.Empty;
+                    testApiStatus = apiNode["status"]?.GetValue<string>() ?? "unknown";
+                    testApiReason = apiNode["reason"]?.GetValue<string>() ?? string.Empty;
+                }
+            }
+            catch
+            {
+                testApiStatus = "unknown";
+                testApiReason = "test-api-status-read-failed";
+            }
+        }
+
         return new PlaywrightEvidenceDto
         {
             Status = row.GetString("status"),
             Summary = row.GetString("summary"),
+            TestApiEndpoint = testApiEndpoint,
+            TestApiStatus = testApiStatus,
+            TestApiReason = testApiReason,
             Scenarios = scenarios,
             ConsoleErrors = consoleErrors,
             ConsoleWarnings = consoleWarnings,
@@ -642,6 +717,7 @@ ORDER BY id DESC;", new { RunFk = runFk }, cancellationToken);
                 Severity = row.GetString("severity"),
                 Status = row.GetString("status"),
                 Confidence = row.GetDouble("confidence"),
+                ProvenanceType = "code-evidence",
                 ResolvedInRunId = row.GetString("resolved_in_run_id"),
                 ResolutionNotes = row.GetString("resolution_notes"),
                 AffectedFiles = ParseStringArray(row.GetString("affected_files_json"))
@@ -654,8 +730,63 @@ ORDER BY id DESC;", new { RunFk = runFk }, cancellationToken);
                 SkillName = row.GetString("skill_name"),
                 Message = row.GetString("message"),
                 Priority = row.GetString("priority"),
-                Evidence = row.GetString("evidence")
+                Evidence = row.GetString("evidence"),
+                ProvenanceType = "code-evidence"
             }).ToList()
+        };
+    }
+
+    private async Task<ParityStageDto> BuildParityStageAsync(string artifactRoot, CancellationToken cancellationToken)
+    {
+        var path = Path.Combine(artifactRoot, "parity-verification", "parity-diff.json");
+        if (!File.Exists(path))
+        {
+            return new ParityStageDto { SourceArtifactPath = path };
+        }
+
+        var node = JsonNode.Parse(await File.ReadAllTextAsync(path, cancellationToken)) as JsonObject;
+        if (node is null)
+        {
+            return new ParityStageDto { SourceArtifactPath = path };
+        }
+
+        var checks = ParseParityChecks(node["checks"]);
+        var failed = checks.Count(static c => !string.Equals(c.Status, "passed", StringComparison.OrdinalIgnoreCase));
+
+        return new ParityStageDto
+        {
+            ParityScore = (int)(node["parityScore"]?.GetValue<double>() ?? 0),
+            TotalChecks = checks.Count,
+            PassedChecks = Math.Max(0, checks.Count - failed),
+            FailedChecks = failed,
+            Confidence = ParseDouble(node["confidence"], 0),
+            Checks = checks,
+            SqlParity = ParseSqlParity(node["sqlParity"]),
+            Gaps = ParseStringArray(node["gaps"]?.ToJsonString() ?? "[]"),
+            SourceArtifactPath = path
+        };
+    }
+
+    private async Task<KeyLearningsDto> BuildKeyLearningsAsync(string artifactRoot, CancellationToken cancellationToken)
+    {
+        var lessonsPath = Path.Combine(artifactRoot, "lessons-learned", "lessons-learned.json");
+        var kbPath = Path.Combine(Path.GetDirectoryName(artifactRoot) ?? string.Empty, "_knowledge-base", "lessons-kb.json");
+
+        var lessonsNode = File.Exists(lessonsPath)
+            ? JsonNode.Parse(await File.ReadAllTextAsync(lessonsPath, cancellationToken)) as JsonObject
+            : null;
+        var kbNode = File.Exists(kbPath)
+            ? JsonNode.Parse(await File.ReadAllTextAsync(kbPath, cancellationToken)) as JsonObject
+            : null;
+
+        return new KeyLearningsDto
+        {
+            RecurringSignatures = ParseStringArray(kbNode?["recurringSignatures"]?.ToJsonString() ?? "[]"),
+            KnownPitfalls = ParseStringArray(kbNode?["knownPitfalls"]?.ToJsonString() ?? "[]"),
+            NewIssues = ParseStringArray(lessonsNode?["newIssues"]?.ToJsonString() ?? "[]"),
+            RecurringIssues = ParseStringArray(lessonsNode?["recurringIssues"]?.ToJsonString() ?? "[]"),
+            ResolvedIssues = ParseStringArray(lessonsNode?["resolvedIssues"]?.ToJsonString() ?? "[]"),
+            SourceArtifactPath = File.Exists(lessonsPath) ? lessonsPath : kbPath
         };
     }
 
@@ -696,6 +827,7 @@ SELECT r.id, r.artifact_root, r.status, r.summary, r.started_at, r.ended_at
 FROM runs r
 INNER JOIN modules m ON m.id = r.module_id
 WHERE m.name=@ModuleName AND r.run_id=@RunId
+ORDER BY r.id DESC
 LIMIT 1;", new { ModuleName = moduleName, RunId = runId }, cancellationToken);
 
         return rows.FirstOrDefault();
@@ -703,19 +835,35 @@ LIMIT 1;", new { ModuleName = moduleName, RunId = runId }, cancellationToken);
 
     private string BuildRunInputJson(RunInputDraftDto draft)
     {
+        var baseUrl = (draft.BaseUrl ?? string.Empty).Trim();
+        var normalizedBaseUrl = baseUrl.TrimEnd('/');
+        var testApiEndpoint = string.IsNullOrWhiteSpace(normalizedBaseUrl)
+            ? string.Empty
+            : $"{normalizedBaseUrl}/api/test";
+
         var payload = new
         {
             runId = string.IsNullOrWhiteSpace(draft.RunId) ? "run-001" : draft.RunId.Trim(),
-            moduleName = string.IsNullOrWhiteSpace(draft.ModuleName) ? "Checklist" : draft.ModuleName.Trim(),
+            moduleName = draft.ModuleName.Trim(),
             legacySourceRoot = draft.LegacySourceRoot.Trim(),
             convertedSourceRoot = draft.ConvertedSourceRoot.Trim(),
-            baseUrl = draft.BaseUrl.Trim(),
+            baseUrl,
+            testApiEndpoint,
             brsPath = draft.BrsPath.Trim(),
             moduleHints = new
             {
                 relatedFolders = ParseMultiline(draft.RelatedFoldersText),
                 knownUrls = ParseMultiline(draft.KnownUrlsText),
                 keywords = ParseMultiline(draft.KeywordsText)
+            },
+            testCommands = new
+            {
+                unit = draft.UnitCommand.Trim(),
+                integration = draft.IntegrationCommand.Trim(),
+                api = draft.ApiCommand.Trim(),
+                e2e = draft.E2eCommand.Trim(),
+                edgeCase = draft.EdgeCaseCommand.Trim(),
+                playwright = draft.PlaywrightCommand.Trim()
             },
             selectedSkills = (draft.SelectedSkills ?? []).Distinct(StringComparer.OrdinalIgnoreCase).OrderBy(static s => s).ToList()
         };
@@ -787,13 +935,428 @@ LIMIT 1;", new { ModuleName = moduleName, RunId = runId }, cancellationToken);
             }
 
             return node
-                .Select(static item => item?.GetValue<string>() ?? string.Empty)
+                .Select(static item =>
+                {
+                    if (item is null)
+                    {
+                        return string.Empty;
+                    }
+
+                    if (item is JsonValue value)
+                    {
+                        return value.GetValue<string>();
+                    }
+
+                    if (item is JsonObject obj)
+                    {
+                        return obj["name"]?.GetValue<string>()
+                            ?? obj["value"]?.GetValue<string>()
+                            ?? obj["rule"]?.GetValue<string>()
+                            ?? obj["behavior"]?.GetValue<string>()
+                            ?? obj["path"]?.GetValue<string>()
+                            ?? string.Empty;
+                    }
+
+                    return string.Empty;
+                })
                 .Where(static item => !string.IsNullOrWhiteSpace(item))
                 .ToList();
         }
         catch
         {
             return [];
+        }
+    }
+
+    private static double ParseDouble(JsonNode? node, double fallback)
+    {
+        if (node is null)
+        {
+            return fallback;
+        }
+
+        return double.TryParse(node.ToString(), out var parsed) ? parsed : fallback;
+    }
+
+    private static (string Type, double Confidence, List<string> Sources) ParseProvenance(JsonNode? node)
+    {
+        if (node is not JsonObject obj)
+        {
+            return ("inferred", 0.5, []);
+        }
+
+        var type = obj["type"]?.GetValue<string>() ?? "inferred";
+        var confidence = ParseDouble(obj["confidence"], 0.5);
+        var sources = ParseStringArray(obj["sources"]?.ToJsonString() ?? "[]");
+        return (type, confidence, sources);
+    }
+
+    private static List<ProvenancedValueDto> ParseNamedProvenancedDetails(JsonNode? node, string valueKey)
+    {
+        if (node is not JsonArray array)
+        {
+            return [];
+        }
+
+        var output = new List<ProvenancedValueDto>();
+        foreach (var item in array)
+        {
+            if (item is not JsonObject obj)
+            {
+                continue;
+            }
+
+            var value = obj[valueKey]?.GetValue<string>() ?? string.Empty;
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                continue;
+            }
+
+            var provenance = ParseProvenance(obj["provenance"]);
+            output.Add(new ProvenancedValueDto
+            {
+                Value = value,
+                ProvenanceType = provenance.Type,
+                Confidence = provenance.Confidence,
+                Sources = provenance.Sources
+            });
+        }
+
+        return output;
+    }
+
+    private static List<ProvenancedValueDto> ParseRouteDetails(JsonNode? node)
+    {
+        if (node is not JsonArray array)
+        {
+            return [];
+        }
+
+        var output = new List<ProvenancedValueDto>();
+        foreach (var item in array)
+        {
+            if (item is not JsonObject obj)
+            {
+                continue;
+            }
+
+            var value = obj["route"]?.GetValue<string>() ?? obj["normalizedRoute"]?.GetValue<string>() ?? string.Empty;
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                continue;
+            }
+
+            var provenance = ParseProvenance(obj["provenance"]);
+            output.Add(new ProvenancedValueDto
+            {
+                Value = value,
+                ProvenanceType = provenance.Type,
+                Confidence = provenance.Confidence,
+                Sources = provenance.Sources
+            });
+        }
+
+        return output;
+    }
+
+    private static List<TestScenarioPlanDto> ParseScenarioPlans(JsonNode? node)
+    {
+        if (node is not JsonArray array)
+        {
+            return [];
+        }
+
+        var output = new List<TestScenarioPlanDto>();
+        foreach (var item in array)
+        {
+            if (item is JsonValue value)
+            {
+                var text = value.GetValue<string>();
+                if (string.IsNullOrWhiteSpace(text))
+                {
+                    continue;
+                }
+
+                output.Add(new TestScenarioPlanDto
+                {
+                    Name = text,
+                    Coverage = [],
+                    ProvenanceType = "inferred",
+                    Confidence = 0.5
+                });
+                continue;
+            }
+
+            if (item is not JsonObject obj)
+            {
+                continue;
+            }
+
+            var scenarioName = obj["name"]?.GetValue<string>() ?? string.Empty;
+            if (string.IsNullOrWhiteSpace(scenarioName))
+            {
+                continue;
+            }
+
+            var provenance = ParseProvenance(obj["provenance"]);
+            output.Add(new TestScenarioPlanDto
+            {
+                Name = scenarioName,
+                Coverage = ParseStringArray(obj["coverage"]?.ToJsonString() ?? "[]"),
+                ProvenanceType = provenance.Type,
+                Confidence = provenance.Confidence
+            });
+        }
+
+        return output;
+    }
+
+    private static List<TestScenarioExecutionDto> ParseExecutionScenarioDetails(string json)
+    {
+        if (string.IsNullOrWhiteSpace(json))
+        {
+            return [];
+        }
+
+        try
+        {
+            var node = JsonNode.Parse(json);
+            if (node is not JsonArray array)
+            {
+                return [];
+            }
+
+            var output = new List<TestScenarioExecutionDto>();
+            foreach (var item in array)
+            {
+                if (item is JsonValue value)
+                {
+                    var text = value.GetValue<string>();
+                    if (string.IsNullOrWhiteSpace(text))
+                    {
+                        continue;
+                    }
+                    output.Add(new TestScenarioExecutionDto
+                    {
+                        Name = text,
+                        Status = "unknown",
+                        Notes = string.Empty,
+                        Coverage = [],
+                        Generated = false,
+                        GeneratedFrom = [],
+                        ProvenanceType = "inferred",
+                        Confidence = 0.5
+                    });
+                    continue;
+                }
+
+                if (item is not JsonObject obj)
+                {
+                    continue;
+                }
+
+                var provenance = ParseProvenance(obj["provenance"]);
+                output.Add(new TestScenarioExecutionDto
+                {
+                    Name = obj["name"]?.GetValue<string>() ?? string.Empty,
+                    Status = obj["status"]?.GetValue<string>() ?? "unknown",
+                    Notes = obj["notes"]?.GetValue<string>() ?? string.Empty,
+                    Coverage = ParseStringArray(obj["coverage"]?.ToJsonString() ?? "[]"),
+                    Generated = obj["generated"]?.GetValue<bool>() ?? false,
+                    GeneratedFrom = ParseStringArray(obj["generatedFrom"]?.ToJsonString() ?? "[]"),
+                    ProvenanceType = provenance.Type,
+                    Confidence = provenance.Confidence
+                });
+            }
+
+            return output;
+        }
+        catch
+        {
+            return [];
+        }
+    }
+
+    private static List<ParityCheckDto> ParseParityChecks(JsonNode? node)
+    {
+        if (node is not JsonArray array)
+        {
+            return [];
+        }
+
+        var output = new List<ParityCheckDto>();
+        foreach (var item in array)
+        {
+            if (item is not JsonObject obj)
+            {
+                continue;
+            }
+
+            var evidenceLines = new List<string>();
+            if (obj["evidence"] is JsonObject evidence)
+            {
+                if (evidence["failedExecutionSkills"] is JsonArray failedSkills)
+                {
+                    var values = ParseStringArray(failedSkills.ToJsonString());
+                    if (values.Count > 0)
+                    {
+                        evidenceLines.Add($"Failed execution skills: {string.Join(", ", values)}");
+                    }
+                }
+
+                if (evidence["relatedUrls"] is JsonArray urls)
+                {
+                    var values = ParseStringArray(urls.ToJsonString());
+                    if (values.Count > 0)
+                    {
+                        evidenceLines.Add($"Related URLs: {string.Join(", ", values.Take(5))}");
+                    }
+                }
+
+                if (evidence["relatedDbTouchpoints"] is JsonArray dbTouchpoints)
+                {
+                    var values = ParseStringArray(dbTouchpoints.ToJsonString());
+                    if (values.Count > 0)
+                    {
+                        evidenceLines.Add($"DB touchpoints: {string.Join(", ", values.Take(5))}");
+                    }
+                }
+
+                foreach (var entry in evidence)
+                {
+                    if (entry.Value is JsonValue value &&
+                        !string.Equals(entry.Key, "legacyQueryCount", StringComparison.OrdinalIgnoreCase) &&
+                        !string.Equals(entry.Key, "convertedQueryCount", StringComparison.OrdinalIgnoreCase) &&
+                        !string.Equals(entry.Key, "matchedCount", StringComparison.OrdinalIgnoreCase) &&
+                        !string.Equals(entry.Key, "missingCount", StringComparison.OrdinalIgnoreCase))
+                    {
+                        evidenceLines.Add($"{entry.Key}: {value}");
+                    }
+                }
+
+                var legacyCount = evidence["legacyQueryCount"]?.GetValue<int>();
+                var convertedCount = evidence["convertedQueryCount"]?.GetValue<int>();
+                var matchedCount = evidence["matchedCount"]?.GetValue<int>();
+                var missingCount = evidence["missingCount"]?.GetValue<int>();
+                if (legacyCount.HasValue || convertedCount.HasValue || matchedCount.HasValue || missingCount.HasValue)
+                {
+                    evidenceLines.Add($"SQL summary: legacy={legacyCount ?? 0}, converted={convertedCount ?? 0}, matched={matchedCount ?? 0}, missing={missingCount ?? 0}");
+                }
+            }
+
+            var provenance = ParseProvenance(obj["provenance"]);
+            output.Add(new ParityCheckDto
+            {
+                Name = obj["name"]?.GetValue<string>() ?? string.Empty,
+                Status = obj["status"]?.GetValue<string>() ?? "unknown",
+                EvidenceLines = evidenceLines,
+                ProvenanceType = provenance.Type,
+                Confidence = provenance.Confidence
+            });
+        }
+
+        return output;
+    }
+
+    private static SqlParityDto ParseSqlParity(JsonNode? node)
+    {
+        if (node is not JsonObject obj)
+        {
+            return new SqlParityDto();
+        }
+
+        var tables = new List<TableParityDto>();
+        if (obj["tableMatches"] is JsonArray tableArray)
+        {
+            foreach (var item in tableArray)
+            {
+                if (item is not JsonObject table)
+                {
+                    continue;
+                }
+
+                tables.Add(new TableParityDto
+                {
+                    Table = table["table"]?.GetValue<string>() ?? string.Empty,
+                    LegacyOccurrences = table["legacyOccurrences"]?.GetValue<int>() ?? 0,
+                    ConvertedOccurrences = table["convertedOccurrences"]?.GetValue<int>() ?? 0,
+                    Status = table["status"]?.GetValue<string>() ?? "unknown"
+                });
+            }
+        }
+
+        var beforeAfter = new List<SqlBeforeAfterDto>();
+        if (obj["beforeAfter"] is JsonArray beforeAfterArray)
+        {
+            foreach (var item in beforeAfterArray)
+            {
+                if (item is not JsonObject map)
+                {
+                    continue;
+                }
+
+                beforeAfter.Add(new SqlBeforeAfterDto
+                {
+                    Status = map["status"]?.GetValue<string>() ?? "unknown",
+                    LegacyFile = map["legacyFile"]?.GetValue<string>() ?? string.Empty,
+                    LegacyQuery = map["legacyQuery"]?.GetValue<string>() ?? string.Empty,
+                    LegacyTables = ParseStringArray(map["legacyTables"]?.ToJsonString() ?? "[]"),
+                    ConvertedFile = map["convertedFile"]?.GetValue<string>() ?? string.Empty,
+                    ConvertedQuery = map["convertedQuery"]?.GetValue<string>() ?? string.Empty,
+                    ConvertedTables = ParseStringArray(map["convertedTables"]?.ToJsonString() ?? "[]"),
+                    Confidence = ParseDouble(map["confidence"], 0)
+                });
+            }
+        }
+
+        return new SqlParityDto
+        {
+            LegacyQueryCount = obj["legacyQueryCount"]?.GetValue<int>() ?? 0,
+            ConvertedQueryCount = obj["convertedQueryCount"]?.GetValue<int>() ?? 0,
+            MatchedCount = obj["matchedCount"]?.GetValue<int>() ?? 0,
+            Tables = tables,
+            BeforeAfter = beforeAfter
+        };
+    }
+
+    private static (bool ok, string reason) ParsePreflightFromArtifacts(List<string> artifacts)
+    {
+        var preflightPath = artifacts.FirstOrDefault(static a => a.EndsWith("preflight.json", StringComparison.OrdinalIgnoreCase));
+        if (string.IsNullOrWhiteSpace(preflightPath) || !File.Exists(preflightPath))
+        {
+            return (false, "missing-preflight-artifact");
+        }
+
+        try
+        {
+            var node = JsonNode.Parse(File.ReadAllText(preflightPath)) as JsonObject;
+            if (node is null)
+            {
+                return (false, "invalid-preflight-json");
+            }
+
+            var failedReasons = new List<string>();
+            if ((node["baseUrl"] as JsonObject)?["ok"]?.GetValue<bool>() == false)
+            {
+                failedReasons.Add("baseUrl");
+            }
+            if ((node["reachability"] as JsonObject)?["ok"]?.GetValue<bool>() == false)
+            {
+                failedReasons.Add("reachability");
+            }
+            var commandsNode = node["commands"] as JsonObject;
+            if (commandsNode is not null && commandsNode["ok"]?.GetValue<bool>() == false)
+            {
+                failedReasons.Add("commands");
+            }
+
+            return failedReasons.Count == 0
+                ? (true, "ok")
+                : (false, string.Join(",", failedReasons));
+        }
+        catch
+        {
+            return (false, "preflight-read-failed");
         }
     }
 
@@ -845,7 +1408,28 @@ LIMIT 1;", new { ModuleName = moduleName, RunId = runId }, cancellationToken);
             if (node is JsonArray array)
             {
                 return array
-                    .Select(static item => item?.GetValue<string>() ?? string.Empty)
+                    .Select(static item =>
+                    {
+                        if (item is null)
+                        {
+                            return string.Empty;
+                        }
+
+                        if (item is JsonValue value)
+                        {
+                            return value.GetValue<string>();
+                        }
+
+                        if (item is JsonObject obj)
+                        {
+                            return obj["message"]?.GetValue<string>()
+                                ?? obj["url"]?.GetValue<string>()
+                                ?? obj["name"]?.GetValue<string>()
+                                ?? obj.ToJsonString();
+                        }
+
+                        return item.ToJsonString();
+                    })
                     .Where(static item => !string.IsNullOrWhiteSpace(item))
                     .ToList();
             }
@@ -856,6 +1440,197 @@ LIMIT 1;", new { ModuleName = moduleName, RunId = runId }, cancellationToken);
         {
             return [text.Trim()];
         }
+    }
+
+    /// <summary>
+    /// Retrieves browser testing results for a given module and run.
+    /// </summary>
+    public async Task<BrowserTestingResultsDto?> GetBrowserTestingResultsAsync(
+        string moduleName,
+        string runId,
+        CancellationToken cancellationToken = default)
+    {
+        await using var connection = await _connectionFactory.CreateOpenConnectionAsync(cancellationToken);
+
+        // Get the run_fk
+        var runRow = await GetRunRowAsync(connection, moduleName, runId, cancellationToken);
+        if (runRow is null)
+        {
+            return null;
+        }
+
+        var runFk = runRow.GetLong("id");
+
+        // Query browser_devtools_sessions
+        var sessionsRows = await QueryRowsAsync(connection, @"
+SELECT id, base_url, start_timestamp, end_timestamp, total_scenarios, 
+       passed_scenarios, failed_scenarios, viewport_sizes
+FROM browser_devtools_sessions
+WHERE run_fk = @RunFk;", new { RunFk = runFk }, cancellationToken);
+
+        if (sessionsRows.Count == 0)
+        {
+            return new BrowserTestingResultsDto
+            {
+                ModuleName = moduleName,
+                RunId = runId,
+                Status = "not_executed",
+                Sessions = [],
+                ConsoleLogs = [],
+                NetworkRequests = [],
+                PerformanceMetrics = [],
+                AccessibilityIssues = [],
+                Screenshots = [],
+                DomSnapshots = []
+            };
+        }
+
+        var results = new BrowserTestingResultsDto
+        {
+            ModuleName = moduleName,
+            RunId = runId,
+            Status = "completed",
+            Sessions = sessionsRows.Select(static row => new BrowserSessionDto
+            {
+                Id = row.GetLong("id"),
+                BaseUrl = row.GetString("base_url"),
+                StartTimestamp = row.GetString("start_timestamp"),
+                EndTimestamp = row.GetString("end_timestamp"),
+                TotalScenarios = row.GetInt("total_scenarios"),
+                PassedScenarios = row.GetInt("passed_scenarios"),
+                FailedScenarios = row.GetInt("failed_scenarios"),
+                ViewportSizes = row.GetString("viewport_sizes")
+            }).ToList(),
+            ConsoleLogs = [],
+            NetworkRequests = [],
+            PerformanceMetrics = [],
+            AccessibilityIssues = [],
+            Screenshots = [],
+            DomSnapshots = []
+        };
+
+        // Get console logs for each session
+        foreach (var session in results.Sessions)
+        {
+            var logsRows = await QueryRowsAsync(connection, @"
+SELECT level, message, source_file, source_line, timestamp, stack_trace
+FROM browser_console_logs
+WHERE session_fk = @SessionFk
+ORDER BY timestamp;", new { SessionFk = session.Id }, cancellationToken);
+
+            results.ConsoleLogs.AddRange(logsRows.Select(static row => new BrowserConsoleLogDto
+            {
+                Level = row.GetString("level"),
+                Message = row.GetString("message"),
+                SourceFile = row.GetString("source_file"),
+                SourceLine = row.GetInt("source_line"),
+                Timestamp = row.GetString("timestamp"),
+                StackTrace = row.GetString("stack_trace")
+            }));
+        }
+
+        // Get network requests
+        foreach (var session in results.Sessions)
+        {
+            var requestsRows = await QueryRowsAsync(connection, @"
+SELECT method, url, status_code, request_payload, response_payload, 
+       response_time_ms, content_type, timestamp
+FROM browser_network_requests
+WHERE session_fk = @SessionFk
+ORDER BY timestamp;", new { SessionFk = session.Id }, cancellationToken);
+
+            results.NetworkRequests.AddRange(requestsRows.Select(static row => new BrowserNetworkRequestDto
+            {
+                Method = row.GetString("method"),
+                Url = row.GetString("url"),
+                StatusCode = row.GetInt("status_code"),
+                RequestPayload = row.GetString("request_payload"),
+                ResponsePayload = row.GetString("response_payload"),
+                ResponseTimeMs = row.GetInt("response_time_ms"),
+                ContentType = row.GetString("content_type"),
+                Timestamp = row.GetString("timestamp")
+            }));
+        }
+
+        // Get performance metrics
+        foreach (var session in results.Sessions)
+        {
+            var metricsRows = await QueryRowsAsync(connection, @"
+SELECT metric_name, metric_value, target_threshold, meets_threshold, timestamp
+FROM browser_performance_metrics
+WHERE session_fk = @SessionFk
+ORDER BY timestamp;", new { SessionFk = session.Id }, cancellationToken);
+
+            results.PerformanceMetrics.AddRange(metricsRows.Select(static row => new BrowserPerformanceMetricDto
+            {
+                MetricName = row["metric_name"]?.GetValue<string>() ?? string.Empty,
+                MetricValue = row["metric_value"]?.GetValue<double>() ?? 0,
+                TargetThreshold = row["target_threshold"]?.GetValue<double>() ?? 0,
+                MeetsThreshold = row["meets_threshold"]?.GetValue<bool>() ?? false,
+                Timestamp = row["timestamp"]?.GetValue<string>() ?? string.Empty
+            }));
+        }
+
+        // Get accessibility issues
+        foreach (var session in results.Sessions)
+        {
+            var issuesRows = await QueryRowsAsync(connection, @"
+SELECT issue_type, severity, element_selector, issue_description, recommendation, timestamp
+FROM browser_accessibility_issues
+WHERE session_fk = @SessionFk
+ORDER BY timestamp;", new { SessionFk = session.Id }, cancellationToken);
+
+            results.AccessibilityIssues.AddRange(issuesRows.Select(static row => new BrowserAccessibilityIssueDto
+            {
+                IssueType = row.GetString("issue_type"),
+                Severity = row.GetString("severity"),
+                ElementSelector = row.GetString("element_selector"),
+                IssueDescription = row.GetString("issue_description"),
+                Recommendation = row.GetString("recommendation"),
+                Timestamp = row.GetString("timestamp")
+            }));
+        }
+
+        // Get screenshots
+        foreach (var session in results.Sessions)
+        {
+            var screenshotsRows = await QueryRowsAsync(connection, @"
+SELECT filename, artifact_path, viewport_width, viewport_height, scenario_context, captured_at
+FROM browser_screenshots
+WHERE session_fk = @SessionFk
+ORDER BY captured_at;", new { SessionFk = session.Id }, cancellationToken);
+
+            results.Screenshots.AddRange(screenshotsRows.Select(static row => new BrowserScreenshotDto
+            {
+                Filename = row.GetString("filename"),
+                ArtifactPath = row.GetString("artifact_path"),
+                ViewportWidth = row.GetInt("viewport_width"),
+                ViewportHeight = row.GetInt("viewport_height"),
+                ScenarioContext = row.GetString("scenario_context"),
+                CapturedAt = row.GetString("captured_at")
+            }));
+        }
+
+        // Get DOM snapshots
+        foreach (var session in results.Sessions)
+        {
+            var snapshotsRows = await QueryRowsAsync(connection, @"
+SELECT filename, artifact_path, scenario_context, element_count, captured_at
+FROM browser_dom_snapshots
+WHERE session_fk = @SessionFk
+ORDER BY captured_at;", new { SessionFk = session.Id }, cancellationToken);
+
+            results.DomSnapshots.AddRange(snapshotsRows.Select(static row => new BrowserDomSnapshotDto
+            {
+                Filename = row.GetString("filename"),
+                ArtifactPath = row.GetString("artifact_path"),
+                ScenarioContext = row.GetString("scenario_context"),
+                ElementCount = row.GetInt("element_count"),
+                CapturedAt = row.GetString("captured_at")
+            }));
+        }
+
+        return results;
     }
 }
 

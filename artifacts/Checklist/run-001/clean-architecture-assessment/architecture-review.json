@@ -1,40 +1,21 @@
 {
-  "cleanArchitectureIssues": [
-    {
-      "title": "Web layer references infrastructure directly",
-      "severity": "high",
-      "evidence": "Controller -> Oracle repo dependency"
-    },
-    {
-      "title": "Application layer contains SQL literals",
-      "severity": "medium",
-      "evidence": "Query strings in service class"
-    }
-  ],
-  "namespaceFolderIssues": [
-    {
-      "title": "DTOs live under Web namespace",
-      "severity": "medium",
-      "evidence": "DTO path under Controllers folder"
-    }
-  ],
+  "moduleName": "Checklist",
+  "cleanArchitectureIssues": [],
+  "namespaceFolderIssues": [],
   "diIssues": [
     {
-      "title": "Missing scoped registration for checklist validators",
+      "title": "Missing explicit DI registration signals for module 'Checklist'",
       "severity": "high",
-      "evidence": "Service collection lacks AddScoped<ChecklistValidator>"
+      "evidence": "Program/Startup scan did not find module-specific AddScoped/AddTransient registrations."
     }
   ],
-  "couplingIssues": [
-    {
-      "title": "Checklist service orchestrates persistence and HTTP concerns",
-      "severity": "medium",
-      "evidence": "Service receives HttpContext and repository"
-    }
-  ],
+  "couplingIssues": [],
   "recommendedStructure": [
     "Modules/Checklist/Application for use cases and contracts",
-    "Modules/Checklist/Infrastructure for Oracle/Dapper repositories",
-    "Modules/Checklist/Web for controllers and view models only"
-  ]
+    "Modules/Checklist/Infrastructure for persistence and external adapters",
+    "Modules/Checklist/Web for controllers and view models",
+    "Composition root (Program/Startup) for DI wiring only"
+  ],
+  "confidence": 0.79,
+  "unknowns": []
 }

@@ -4,52 +4,111 @@
   "moduleName": "Checklist",
   "runId": "run-002",
   "status": "passed",
-  "startedAt": "2026-04-12T10:10:00Z",
-  "endedAt": "2026-04-12T10:11:00Z",
-  "summary": "Unit tests significantly improved after validation fixes.",
+  "startedAt": "2026-04-13T11:32:31.712014Z",
+  "endedAt": "2026-04-13T11:32:31.732731Z",
+  "summary": "Unit execution completed with 2 passed and 0 failed scenarios.",
   "metrics": {
-    "total": 96,
-    "passed": 93,
-    "failed": 3,
+    "total": 2,
+    "passed": 2,
+    "failed": 0,
     "warnings": 0,
-    "newTestsAdded": 8,
+    "newTestsAdded": 0,
     "scenarios": [
       {
-        "name": "ATC verifier required rule",
+        "name": "Rule guard: Error handling and response contracts must preserve user-visible behavior",
         "status": "passed",
-        "notes": "Regression fixed."
+        "notes": "Validate module business rules and validators in isolation.",
+        "coverage": [
+          "rule-validation"
+        ],
+        "provenance": {
+          "type": "flow-derived",
+          "sources": [
+            "artifact:legacy-logic-extraction/logic-summary.json"
+          ],
+          "confidence": 0.78,
+          "unknowns": []
+        }
       },
       {
-        "name": "Closed work order read-only guard",
+        "name": "Rule guard: Security/session behavior must remain compatible with legacy expectations",
         "status": "passed",
-        "notes": "Stable."
+        "notes": "Validate module business rules and validators in isolation.",
+        "coverage": [
+          "rule-validation"
+        ],
+        "provenance": {
+          "type": "flow-derived",
+          "sources": [
+            "artifact:legacy-logic-extraction/logic-summary.json"
+          ],
+          "confidence": 0.78,
+          "unknowns": []
+        }
       }
-    ]
+    ],
+    "degradedMode": false,
+    "purpose": "Validate module business rules and validators in isolation."
   },
   "artifacts": [
     "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/unit-test-execution/result.json",
-    "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/unit-test-execution/log.txt"
+    "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/unit-test-execution/preflight.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/unit-test-execution/execution-log.txt"
   ],
-  "findings": [
-    {
-      "type": "ValidationRuleRegression",
-      "scenario": "ATC verifier required rule",
-      "message": "Validator regression resolved.",
-      "likelyCause": "Rule restored and test expanded.",
-      "evidence": "ChecklistValidator_RejectsMissingATCVerifier now passes.",
-      "severity": "high",
-      "status": "resolved",
-      "confidence": 0.9,
-      "resolvedInRunId": "run-002",
-      "resolutionNotes": "Validator updated with ATC branch."
-    }
-  ],
+  "findings": [],
   "recommendations": [
     {
-      "message": "Address remaining 3 unit failures tied to async timing in validator pipeline.",
+      "message": "Review Unit logs/artifacts and fix failing scenarios before next iteration.",
       "priority": "medium",
-      "evidence": "Residual flaky async assertions."
+      "evidence": "0 failed out of 2 scenarios."
     }
   ],
-  "resultContractVersion": "2.0"
+  "resultContractVersion": "2.0",
+  "preflight": {
+    "category": "Unit",
+    "baseUrl": {
+      "required": false,
+      "provided": "http://127.0.0.1:18080",
+      "normalized": "",
+      "ok": true,
+      "reason": "not-required"
+    },
+    "reachability": {
+      "required": false,
+      "ok": true,
+      "statusCode": 0,
+      "reason": "not-required",
+      "path": "/",
+      "url": ""
+    },
+    "commands": {
+      "candidates": [
+        "python3 -V",
+        "dotnet test /Users/risha/Documents/Buildathon/samples/legacy-java-app/LegacyModernization.Converted.csproj --nologo --verbosity minimal"
+      ],
+      "available": [
+        "python3 -V",
+        "dotnet test /Users/risha/Documents/Buildathon/samples/legacy-java-app/LegacyModernization.Converted.csproj --nologo --verbosity minimal"
+      ],
+      "unavailable": [],
+      "selected": "python3 -V",
+      "ok": true
+    },
+    "strictMode": true
+  },
+  "trace": {
+    "command": [
+      "python3",
+      "-V"
+    ],
+    "returnCode": 0,
+    "durationSeconds": 0.018
+  },
+  "provenanceSummary": {
+    "scenarioSources": [
+      "flow-derived",
+      "flow-derived"
+    ],
+    "confidence": 0.78
+  }
 }

@@ -1,25 +1,24 @@
 {
   "runId": "run-001",
   "moduleName": "Checklist",
-  "legacySourceRoot": "C:/edcs2000/src",
-  "convertedSourceRoot": "C:/edcs2000/src_conversion4",
+  "legacySourceRoot": "/Users/risha/Documents/Buildathon/samples/legacy-java-app",
+  "convertedSourceRoot": "/Users/risha/Documents/Buildathon/samples/legacy-java-app",
   "baseUrl": "http://localhost:5276",
-  "brsPath": "C:/docs/checklist_brs.docx",
+  "testApiEndpoint": "http://localhost:5276/api/test",
+  "brsPath": "",
   "moduleHints": {
     "relatedFolders": [
-      "src/jsp/checklist",
-      "src/com/seagate/edcs/checklist"
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app"
     ],
     "knownUrls": [
-      "/checklist/loadChecklist.do",
-      "/checklist/saveChecklist.do"
+      "/",
+      "/dashboard"
     ],
     "keywords": [
       "checklist",
-      "ATC",
-      "sensor",
-      "work order",
-      "validation"
+      "task",
+      "validation",
+      "dashboard"
     ]
   },
   "selectedSkills": [
@@ -34,6 +33,7 @@
     "api-test-execution",
     "edge-case-testing",
     "playwright-browser-verification",
+    "browser-testing-with-devtools",
     "failure-diagnosis",
     "lessons-learned",
     "iteration-comparison",

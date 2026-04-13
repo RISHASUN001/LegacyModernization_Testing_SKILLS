@@ -1,0 +1,24 @@
+{
+  "modulePurpose": "Checklist validates work-order completion readiness with ATC and sensor checkpoints.",
+  "importantFlows": [
+    "Load checklist by work order",
+    "Edit checklist rows by role",
+    "Save draft checklist",
+    "Submit checklist for verification"
+  ],
+  "rules": [
+    "Closed work orders are read-only",
+    "ATC fields require verifier id",
+    "Sensor failures block final submit"
+  ],
+  "dependencies": [
+    "WorkOrder module",
+    "Sensor service",
+    "Oracle package PKG_CHECKLIST"
+  ],
+  "mustPreserve": [
+    "Legacy timeout redirect behavior",
+    "ATC rule ordering",
+    "Supervisor override branch"
+  ]
+}

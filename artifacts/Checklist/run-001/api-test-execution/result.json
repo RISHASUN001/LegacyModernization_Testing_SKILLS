@@ -4,53 +4,130 @@
   "moduleName": "Checklist",
   "runId": "run-001",
   "status": "failed",
-  "startedAt": "2026-04-12T10:16:00Z",
-  "endedAt": "2026-04-12T10:17:00Z",
-  "summary": "API tests show route and response contract mismatch.",
+  "startedAt": "2026-04-13T11:32:20.716805Z",
+  "endedAt": "2026-04-13T11:32:20.765485Z",
+  "summary": "API execution failed preflight checks and did not run command execution.",
   "metrics": {
-    "total": 18,
-    "passed": 13,
-    "failed": 5,
+    "total": 3,
+    "passed": 0,
+    "failed": 3,
     "warnings": 0,
-    "newTestsAdded": 4,
+    "newTestsAdded": 0,
     "scenarios": [
       {
-        "name": "Legacy save route compatibility",
+        "name": "API contract route: /Views/Auth/Dashboard.cshtml",
         "status": "failed",
-        "notes": "404 on /saveChecklist.do"
+        "notes": "Preflight failed",
+        "coverage": [
+          "http-contract"
+        ],
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "artifact:module-discovery/discovery-map.json"
+          ],
+          "confidence": 0.81,
+          "unknowns": []
+        }
       },
       {
-        "name": "Validation response schema",
+        "name": "API contract route: /Views/Auth/Index.cshtml",
         "status": "failed",
-        "notes": "Error contract mismatch"
+        "notes": "Preflight failed",
+        "coverage": [
+          "http-contract"
+        ],
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "artifact:module-discovery/discovery-map.json"
+          ],
+          "confidence": 0.81,
+          "unknowns": []
+        }
+      },
+      {
+        "name": "API contract route: /dashboard",
+        "status": "failed",
+        "notes": "Preflight failed",
+        "coverage": [
+          "http-contract"
+        ],
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "artifact:module-discovery/discovery-map.json"
+          ],
+          "confidence": 0.81,
+          "unknowns": []
+        }
       }
-    ]
+    ],
+    "degradedMode": true,
+    "purpose": "Validate HTTP route compatibility, request/response contracts, and validation behavior."
   },
   "artifacts": [
     "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-001/api-test-execution/result.json",
-    "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-001/api-test-execution/log.txt"
+    "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-001/api-test-execution/preflight.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-001/api-test-execution/execution-log.txt"
   ],
   "findings": [
     {
-      "type": "RouteParityMismatch",
-      "scenario": "Legacy save route compatibility",
-      "message": "Legacy .do route not mapped in converted API.",
-      "likelyCause": "Compatibility route not configured.",
-      "evidence": "POST /checklist/saveChecklist.do returns 404.",
+      "type": "ApplicationUnreachable",
+      "scenario": "API preflight",
+      "message": "Application reachability check failed.",
+      "likelyCause": "Converted app is not running or baseUrl points to wrong host/port.",
+      "evidence": "url=http://localhost:5276/; reason=<urlopen error [Errno 1] Operation not permitted>",
       "severity": "high",
       "status": "open",
-      "confidence": 0.91,
-      "affectedFiles": [
-        "src_conversion4/Modules/Checklist/Web/ChecklistController.cs"
-      ]
+      "confidence": 0.95
     }
   ],
   "recommendations": [
     {
-      "message": "Add compatibility route aliases and align validation error schema.",
+      "message": "Start the converted app and verify the configured baseUrl/testApiEndpoint.",
       "priority": "high",
-      "evidence": "5 API failures on compatibility and validation paths."
+      "evidence": "Reachability must pass before running execution skills in strict mode."
     }
   ],
-  "resultContractVersion": "2.0"
+  "resultContractVersion": "2.0",
+  "statusReason": "preflight-failed",
+  "preflight": {
+    "category": "API",
+    "baseUrl": {
+      "required": true,
+      "provided": "http://localhost:5276",
+      "normalized": "http://localhost:5276",
+      "ok": true,
+      "reason": ""
+    },
+    "reachability": {
+      "required": true,
+      "ok": false,
+      "statusCode": 0,
+      "reason": "<urlopen error [Errno 1] Operation not permitted>",
+      "path": "/",
+      "url": "http://localhost:5276/"
+    },
+    "commands": {
+      "candidates": [
+        "dotnet test /Users/risha/Documents/Buildathon/samples/legacy-java-app/LegacyModernization.Converted.csproj --nologo --verbosity minimal"
+      ],
+      "available": [
+        "dotnet test /Users/risha/Documents/Buildathon/samples/legacy-java-app/LegacyModernization.Converted.csproj --nologo --verbosity minimal"
+      ],
+      "unavailable": [],
+      "selected": "dotnet test /Users/risha/Documents/Buildathon/samples/legacy-java-app/LegacyModernization.Converted.csproj --nologo --verbosity minimal",
+      "ok": true
+    },
+    "strictMode": true
+  },
+  "provenanceSummary": {
+    "scenarioSources": [
+      "code-evidence",
+      "code-evidence",
+      "code-evidence"
+    ],
+    "confidence": 0.81
+  }
 }

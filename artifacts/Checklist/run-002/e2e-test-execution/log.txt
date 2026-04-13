@@ -1,1 +1,1 @@
-dotnet test Checklist.E2E -> Passed:11 Failed:1 Warning:1
+No executable command available for this category in current environment.

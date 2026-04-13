@@ -1,0 +1,43 @@
+{
+  "skillName": "parity-verification",
+  "stage": "findings",
+  "moduleName": "Login2",
+  "runId": "login2-test-20260413-234705",
+  "status": "passed",
+  "startedAt": "2026-04-13T15:51:03.137002Z",
+  "endedAt": "2026-04-13T15:51:03.158278Z",
+  "summary": "Parity verification for Login2: score=100, failedChecks=0.",
+  "metrics": {
+    "total": 6,
+    "passed": 6,
+    "failed": 0,
+    "warnings": 1,
+    "newTestsAdded": 0,
+    "parityScore": 100,
+    "matchedQueries": 0,
+    "legacyQueries": 0
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/Login2/login2-test-20260413-234705/parity-verification/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login2/login2-test-20260413-234705/parity-verification/parity-diff.json"
+  ],
+  "findings": [],
+  "recommendations": [
+    {
+      "message": "Close failed parity checks by aligning execution failures to must-preserve behavior requirements.",
+      "priority": "medium",
+      "evidence": "parityScore=100; failedChecks=0"
+    }
+  ],
+  "resultContractVersion": "2.0",
+  "provenanceSummary": {
+    "scenarioSources": [
+      "code-evidence",
+      "fallback"
+    ],
+    "confidence": 0.81,
+    "unknowns": [
+      "No DB touchpoint evidence; persistence parity validation confidence reduced."
+    ]
+  }
+}

@@ -1,3 +1,1 @@
-[
-  "PUT /api/checklist/lock -> 409 Conflict (expected in race scenario)"
-]
+[]

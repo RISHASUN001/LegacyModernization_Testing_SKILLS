@@ -1,4 +1,4 @@
-[
-  "Checklist page load TTI 2.3s",
-  "Submit latency reduced to 1.2s"
-]
+{
+  "status": "skipped",
+  "reason": "preflight-failed"
+}

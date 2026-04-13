@@ -1,34 +1,21 @@
 {
-  "cleanArchitectureIssues": [
-    {
-      "title": "No critical boundary breach detected",
-      "severity": "low",
-      "evidence": "Dependency direction validated"
-    }
-  ],
-  "namespaceFolderIssues": [
-    {
-      "title": "One DTO namespace still uses migration prefix",
-      "severity": "low",
-      "evidence": "ChecklistResponseDto namespace mismatch"
-    }
-  ],
+  "moduleName": "Checklist",
+  "cleanArchitectureIssues": [],
+  "namespaceFolderIssues": [],
   "diIssues": [
     {
-      "title": "Validator and use case services registered correctly",
-      "severity": "low",
-      "evidence": "Service collection updated"
+      "title": "Missing explicit DI registration signals for module 'Checklist'",
+      "severity": "high",
+      "evidence": "Program/Startup scan did not find module-specific AddScoped/AddTransient registrations."
     }
   ],
-  "couplingIssues": [
-    {
-      "title": "Minor coupling around telemetry helper remains",
-      "severity": "low",
-      "evidence": "Shared logger utility still static"
-    }
-  ],
+  "couplingIssues": [],
   "recommendedStructure": [
-    "Finalize Contracts namespace under Application",
-    "Keep Infrastructure registration centralized in composition root"
-  ]
+    "Modules/Checklist/Application for use cases and contracts",
+    "Modules/Checklist/Infrastructure for persistence and external adapters",
+    "Modules/Checklist/Web for controllers and view models",
+    "Composition root (Program/Startup) for DI wiring only"
+  ],
+  "confidence": 0.79,
+  "unknowns": []
 }

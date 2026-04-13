@@ -26,6 +26,7 @@ public sealed class MetadataSyncService : IMetadataSyncService
         ["api-test-execution"] = "execution",
         ["edge-case-testing"] = "execution",
         ["playwright-browser-verification"] = "execution",
+        ["browser-testing-with-devtools"] = "execution",
         ["failure-diagnosis"] = "findings",
         ["lessons-learned"] = "findings",
         ["iteration-comparison"] = "iteration-comparison",
@@ -39,7 +40,8 @@ public sealed class MetadataSyncService : IMetadataSyncService
         ["e2e-test-execution"] = ("E2E", "Validate full user journeys across services and UI boundaries."),
         ["api-test-execution"] = ("API", "Validate HTTP contract compatibility and endpoint behavior."),
         ["edge-case-testing"] = ("Edge Case", "Validate low-frequency but high-impact behavior and resilience."),
-        ["playwright-browser-verification"] = ("Playwright / Browser Verification", "Validate browser behavior with console/network/runtime evidence.")
+        ["playwright-browser-verification"] = ("Playwright / E2E Browser", "Validate browser journeys with Playwright scenarios, screenshots, and UI assertions."),
+        ["browser-testing-with-devtools"] = ("DevTools Diagnostics", "Inspect console, network, runtime, DOM state, and performance evidence for browser-side failures.")
     };
 
     private readonly PlatformPathsOptions _paths;
@@ -183,6 +185,7 @@ VALUES
                     }
 
                     var skillName = result["skillName"]?.GetValue<string>() ?? Path.GetFileName(skillDir);
+                    EnsureResultAlignedToFolder(result, moduleName, bundle.RunId, skillName);
                     var stage = result["stage"]?.GetValue<string>() ?? SkillToStage.GetValueOrDefault(skillName, "execution");
 
                     bundle.Skills.Add(new ParsedSkillExecution
@@ -211,6 +214,52 @@ VALUES
         }
 
         return bundles;
+    }
+
+    private static void EnsureResultAlignedToFolder(JsonObject result, string expectedModuleName, string expectedRunId, string skillName)
+    {
+        var resultModule = result["moduleName"]?.GetValue<string>() ?? string.Empty;
+        var resultRun = result["runId"]?.GetValue<string>() ?? string.Empty;
+        var mismatch = !string.Equals(resultModule, expectedModuleName, StringComparison.OrdinalIgnoreCase)
+            || !string.Equals(resultRun, expectedRunId, StringComparison.OrdinalIgnoreCase);
+
+        result["moduleName"] = expectedModuleName;
+        result["runId"] = expectedRunId;
+        if (!mismatch)
+        {
+            return;
+        }
+
+        if (result["findings"] is not JsonArray findings)
+        {
+            findings = [];
+            result["findings"] = findings;
+        }
+
+        findings.Add(new JsonObject
+        {
+            ["type"] = "ArtifactPathContractMismatch",
+            ["scenario"] = "Metadata sync artifact alignment",
+            ["message"] = $"Skill result module/run did not match artifact folder for '{skillName}'.",
+            ["likelyCause"] = "Skill wrote inconsistent moduleName/runId in result.json.",
+            ["evidence"] = $"expected={expectedModuleName}/{expectedRunId}; actual={resultModule}/{resultRun}",
+            ["severity"] = "high",
+            ["status"] = "open",
+            ["confidence"] = 0.99
+        });
+
+        if (result["recommendations"] is not JsonArray recommendations)
+        {
+            recommendations = [];
+            result["recommendations"] = recommendations;
+        }
+
+        recommendations.Add(new JsonObject
+        {
+            ["message"] = "Align skill result.json moduleName/runId with artifacts/<module>/<runId>/ path contract.",
+            ["priority"] = "high",
+            ["evidence"] = "Metadata sync normalized result metadata to preserve dashboard integrity."
+        });
     }
 
     private async Task PersistRunsAsync(IDbConnection connection, IDbTransaction transaction, List<ParsedRunBundle> bundles, CancellationToken cancellationToken)
@@ -374,6 +423,7 @@ VALUES
         }
 
         var metrics = ParseMetrics(skill.MetricsJson);
+        var purposeOverride = ParsePurpose(skill.RawResult);
         const string sql = @"
 INSERT INTO test_category_results
 (run_fk, category, purpose, scenarios_json, total, passed, failed, warnings, new_tests_added, logs_json, artifacts_json, source_skill, stage)
@@ -384,7 +434,7 @@ VALUES
         {
             RunFk = runFk,
             Category = testInfo.Category,
-            Purpose = testInfo.Purpose,
+            Purpose = string.IsNullOrWhiteSpace(purposeOverride) ? testInfo.Purpose : purposeOverride,
             ScenariosJson = ExtractScenarioJson(skill.RawResult),
             Total = metrics.GetValueOrDefault("total"),
             Passed = metrics.GetValueOrDefault("passed"),
@@ -396,6 +446,16 @@ VALUES
             SourceSkill = skill.SkillName,
             Stage = skill.Stage
         }, transaction, cancellationToken: cancellationToken));
+    }
+
+    private static string ParsePurpose(JsonObject rawResult)
+    {
+        if (rawResult["metrics"] is not JsonObject metrics)
+        {
+            return string.Empty;
+        }
+
+        return metrics["purpose"]?.GetValue<string>() ?? string.Empty;
     }
 
     private async Task PersistIterationDeltasAsync(IDbConnection connection, IDbTransaction transaction, CancellationToken cancellationToken)
@@ -591,29 +651,7 @@ VALUES
         {
             return "[]";
         }
-
-        var names = new JsonArray();
-        foreach (var scenario in scenarios)
-        {
-            if (scenario is JsonObject objectScenario)
-            {
-                var name = objectScenario["name"]?.GetValue<string>() ?? string.Empty;
-                if (!string.IsNullOrWhiteSpace(name))
-                {
-                    names.Add(name);
-                }
-            }
-            else if (scenario is JsonValue value)
-            {
-                var text = value.GetValue<string>();
-                if (!string.IsNullOrWhiteSpace(text))
-                {
-                    names.Add(text);
-                }
-            }
-        }
-
-        return names.ToJsonString();
+        return scenarios.ToJsonString();
     }
 
     private static string BuildLogsJson(string artifactsJson)
@@ -637,6 +675,8 @@ VALUES
 
                 if (path.EndsWith(".log", StringComparison.OrdinalIgnoreCase) ||
                     path.EndsWith(".txt", StringComparison.OrdinalIgnoreCase) ||
+                    path.EndsWith("execution-log.txt", StringComparison.OrdinalIgnoreCase) ||
+                    path.EndsWith("preflight.json", StringComparison.OrdinalIgnoreCase) ||
                     path.EndsWith("console-logs.json", StringComparison.OrdinalIgnoreCase) ||
                     path.EndsWith("network-failures.json", StringComparison.OrdinalIgnoreCase))
                 {
@@ -655,6 +695,13 @@ VALUES
     private static string GetDropSql()
     {
         return @"
+DROP TABLE IF EXISTS browser_dom_snapshots;
+DROP TABLE IF EXISTS browser_screenshots;
+DROP TABLE IF EXISTS browser_accessibility_issues;
+DROP TABLE IF EXISTS browser_performance_metrics;
+DROP TABLE IF EXISTS browser_network_requests;
+DROP TABLE IF EXISTS browser_console_logs;
+DROP TABLE IF EXISTS browser_devtools_sessions;
 DROP TABLE IF EXISTS iteration_deltas;
 DROP TABLE IF EXISTS recommendation_records;
 DROP TABLE IF EXISTS finding_records;
@@ -789,6 +836,93 @@ CREATE TABLE iteration_deltas (
     progression_trend TEXT NOT NULL,
     delta_json TEXT NOT NULL,
     FOREIGN KEY(module_id) REFERENCES modules(id)
+);
+
+CREATE TABLE browser_devtools_sessions (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    skill_execution_fk INTEGER NOT NULL,
+    run_fk INTEGER NOT NULL,
+    base_url TEXT NOT NULL,
+    start_timestamp TEXT NOT NULL,
+    end_timestamp TEXT NOT NULL,
+    total_scenarios INTEGER NOT NULL,
+    passed_scenarios INTEGER NOT NULL,
+    failed_scenarios INTEGER NOT NULL,
+    viewport_sizes TEXT NOT NULL,
+    FOREIGN KEY(skill_execution_fk) REFERENCES skill_executions(id),
+    FOREIGN KEY(run_fk) REFERENCES runs(id)
+);
+
+CREATE TABLE browser_console_logs (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    session_fk INTEGER NOT NULL,
+    level TEXT NOT NULL,
+    message TEXT NOT NULL,
+    source_file TEXT,
+    source_line INTEGER,
+    timestamp TEXT NOT NULL,
+    stack_trace TEXT,
+    FOREIGN KEY(session_fk) REFERENCES browser_devtools_sessions(id)
+);
+
+CREATE TABLE browser_network_requests (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    session_fk INTEGER NOT NULL,
+    method TEXT NOT NULL,
+    url TEXT NOT NULL,
+    status_code INTEGER,
+    request_payload TEXT,
+    response_payload TEXT,
+    response_time_ms INTEGER,
+    content_type TEXT,
+    timestamp TEXT NOT NULL,
+    FOREIGN KEY(session_fk) REFERENCES browser_devtools_sessions(id)
+);
+
+CREATE TABLE browser_performance_metrics (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    session_fk INTEGER NOT NULL,
+    metric_name TEXT NOT NULL,
+    metric_value REAL NOT NULL,
+    target_threshold REAL,
+    meets_threshold BOOLEAN,
+    timestamp TEXT NOT NULL,
+    FOREIGN KEY(session_fk) REFERENCES browser_devtools_sessions(id)
+);
+
+CREATE TABLE browser_accessibility_issues (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    session_fk INTEGER NOT NULL,
+    issue_type TEXT NOT NULL,
+    severity TEXT NOT NULL,
+    element_selector TEXT,
+    issue_description TEXT NOT NULL,
+    recommendation TEXT,
+    timestamp TEXT NOT NULL,
+    FOREIGN KEY(session_fk) REFERENCES browser_devtools_sessions(id)
+);
+
+CREATE TABLE browser_screenshots (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    session_fk INTEGER NOT NULL,
+    filename TEXT NOT NULL,
+    artifact_path TEXT NOT NULL,
+    viewport_width INTEGER,
+    viewport_height INTEGER,
+    scenario_context TEXT,
+    captured_at TEXT NOT NULL,
+    FOREIGN KEY(session_fk) REFERENCES browser_devtools_sessions(id)
+);
+
+CREATE TABLE browser_dom_snapshots (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    session_fk INTEGER NOT NULL,
+    filename TEXT NOT NULL,
+    artifact_path TEXT NOT NULL,
+    scenario_context TEXT,
+    element_count INTEGER,
+    captured_at TEXT NOT NULL,
+    FOREIGN KEY(session_fk) REFERENCES browser_devtools_sessions(id)
 );";
     }
 

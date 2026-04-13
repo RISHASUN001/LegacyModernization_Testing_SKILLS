@@ -1,38 +1,257 @@
 {
-  "existingTestsFound": [
-    "61 tests across unit/integration/API in converted solution",
-    "No dedicated e2e regression suite yet"
-  ],
+  "moduleName": "Checklist",
+  "existingTestsFound": {
+    "totalFiles": 0,
+    "unit": 0,
+    "integration": 0,
+    "api": 0,
+    "e2e": 0,
+    "sampleFiles": [],
+    "provenance": {
+      "type": "code-evidence",
+      "sources": [],
+      "confidence": 0.4,
+      "unknowns": []
+    }
+  },
   "newTestsSuggested": [
-    "Add e2e submit/timeout journey",
-    "Add stale-session and duplicate-submit edge cases",
-    "Add Playwright DOM-state assertions for validation banners"
+    "Add parity scenario for workflow: View module records"
   ],
   "testCategories": [
     {
       "category": "Unit",
-      "purpose": "Validate domain rules and validators quickly."
+      "purpose": "Validate module business rules and validators in isolation.",
+      "scenarios": [
+        {
+          "name": "Rule guard: Error handling and response contracts must preserve user-visible behavior",
+          "coverage": [
+            "rule-validation"
+          ],
+          "provenance": {
+            "type": "flow-derived",
+            "sources": [
+              "artifact:legacy-logic-extraction/logic-summary.json"
+            ],
+            "confidence": 0.78,
+            "unknowns": []
+          }
+        },
+        {
+          "name": "Rule guard: Security/session behavior must remain compatible with legacy expectations",
+          "coverage": [
+            "rule-validation"
+          ],
+          "provenance": {
+            "type": "flow-derived",
+            "sources": [
+              "artifact:legacy-logic-extraction/logic-summary.json"
+            ],
+            "confidence": 0.78,
+            "unknowns": []
+          }
+        }
+      ]
     },
     {
       "category": "Integration",
-      "purpose": "Validate repository mapping and service orchestration."
-    },
-    {
-      "category": "E2E",
-      "purpose": "Validate full journey across API, UI, and data updates."
+      "purpose": "Validate cross-layer orchestration, persistence contracts, and transaction behavior.",
+      "scenarios": [
+        {
+          "name": "Integration flow parity: View module records",
+          "coverage": [
+            "service-repository",
+            "transaction"
+          ],
+          "provenance": {
+            "type": "flow-derived",
+            "sources": [
+              "artifact:legacy-logic-extraction/logic-summary.json"
+            ],
+            "confidence": 0.75,
+            "unknowns": []
+          }
+        }
+      ]
     },
     {
       "category": "API",
-      "purpose": "Validate endpoint contract and status code behavior."
+      "purpose": "Validate HTTP route compatibility, request/response contracts, and validation behavior.",
+      "scenarios": [
+        {
+          "name": "API contract route: /Views/Auth/Dashboard.cshtml",
+          "coverage": [
+            "http-contract"
+          ],
+          "provenance": {
+            "type": "code-evidence",
+            "sources": [
+              "artifact:module-discovery/discovery-map.json"
+            ],
+            "confidence": 0.81,
+            "unknowns": []
+          }
+        },
+        {
+          "name": "API contract route: /Views/Auth/Index.cshtml",
+          "coverage": [
+            "http-contract"
+          ],
+          "provenance": {
+            "type": "code-evidence",
+            "sources": [
+              "artifact:module-discovery/discovery-map.json"
+            ],
+            "confidence": 0.81,
+            "unknowns": []
+          }
+        },
+        {
+          "name": "API contract route: /dashboard",
+          "coverage": [
+            "http-contract"
+          ],
+          "provenance": {
+            "type": "code-evidence",
+            "sources": [
+              "artifact:module-discovery/discovery-map.json"
+            ],
+            "confidence": 0.81,
+            "unknowns": []
+          }
+        }
+      ]
+    },
+    {
+      "category": "E2E",
+      "purpose": "Validate full critical journeys from browser entrypoint to backend persistence.",
+      "scenarios": [
+        {
+          "name": "Journey parity: View module records",
+          "coverage": [
+            "critical-path",
+            "ui-api-db"
+          ],
+          "provenance": {
+            "type": "flow-derived",
+            "sources": [
+              "artifact:module-documentation/module-analysis.json"
+            ],
+            "confidence": 0.73,
+            "unknowns": []
+          }
+        }
+      ]
     },
     {
       "category": "Edge Case",
-      "purpose": "Validate resilience paths and rare failure conditions."
+      "purpose": "Validate boundary conditions, resilience, retries, and low-frequency high-impact paths.",
+      "scenarios": [
+        {
+          "name": "Must-preserve edge behavior: Route and URL behavior parity for user-visible flows",
+          "coverage": [
+            "edge-case",
+            "resilience"
+          ],
+          "provenance": {
+            "type": "risk-derived",
+            "sources": [
+              "artifact:legacy-logic-extraction/logic-summary.json"
+            ],
+            "confidence": 0.7,
+            "unknowns": []
+          }
+        },
+        {
+          "name": "Must-preserve edge behavior: Validation/error message semantics from legacy behavior",
+          "coverage": [
+            "edge-case",
+            "resilience"
+          ],
+          "provenance": {
+            "type": "risk-derived",
+            "sources": [
+              "artifact:legacy-logic-extraction/logic-summary.json"
+            ],
+            "confidence": 0.7,
+            "unknowns": []
+          }
+        },
+        {
+          "name": "Must-preserve edge behavior: Data mapping compatibility for persistence operations",
+          "coverage": [
+            "edge-case",
+            "resilience"
+          ],
+          "provenance": {
+            "type": "risk-derived",
+            "sources": [
+              "artifact:legacy-logic-extraction/logic-summary.json"
+            ],
+            "confidence": 0.7,
+            "unknowns": []
+          }
+        }
+      ]
     },
     {
-      "category": "Playwright / Browser Verification",
-      "purpose": "Validate browser behavior with runtime/network evidence."
+      "category": "Playwright / E2E Browser",
+      "purpose": "Validate browser UX/runtime/network/DOM evidence for migrated module journeys.",
+      "scenarios": [
+        {
+          "name": "Browser runtime validation for View module records",
+          "coverage": [
+            "browser-runtime",
+            "network",
+            "dom"
+          ],
+          "provenance": {
+            "type": "flow-derived",
+            "sources": [
+              "artifact:legacy-logic-extraction/logic-summary.json",
+              "artifact:module-discovery/discovery-map.json"
+            ],
+            "confidence": 0.72,
+            "unknowns": []
+          }
+        }
+      ]
+    },
+    {
+      "category": "DevTools Diagnostics",
+      "purpose": "Inspect console, network, runtime, DOM state, and performance evidence for root-cause diagnostics.",
+      "scenarios": [
+        {
+          "name": "Collect console error/warning evidence",
+          "coverage": [
+            "console"
+          ],
+          "provenance": {
+            "type": "flow-derived",
+            "sources": [
+              "artifact:playwright-browser-verification/result.json"
+            ],
+            "confidence": 0.68,
+            "unknowns": []
+          }
+        },
+        {
+          "name": "Collect failed request evidence and latency outliers",
+          "coverage": [
+            "network",
+            "performance"
+          ],
+          "provenance": {
+            "type": "flow-derived",
+            "sources": [
+              "artifact:playwright-browser-verification/result.json"
+            ],
+            "confidence": 0.68,
+            "unknowns": []
+          }
+        }
+      ]
     }
   ],
-  "coverageSummary": "Overall functional coverage estimated at 64%; weakest areas are e2e parity and browser-state assertions."
+  "coverageSummary": "Estimated coverage baseline for Checklist: 34%.",
+  "confidence": 0.82
 }

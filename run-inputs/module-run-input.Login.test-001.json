@@ -1,0 +1,42 @@
+{
+  "runId": "test-001",
+  "moduleName": "Login",
+  "legacySourceRoot": "/Users/risha/Documents/Buildathon/samples/legacy-java-app",
+  "convertedSourceRoot": "/Users/risha/Documents/Buildathon/samples/legacy-java-app",
+  "baseUrl": "http://0.0.0.0:5001",
+  "testApiEndpoint": "http://0.0.0.0:5001/api/test",
+  "brsPath": "",
+  "moduleHints": {
+    "relatedFolders": [
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app"
+    ],
+    "knownUrls": [
+      "/",
+      "/dashboard"
+    ],
+    "keywords": [
+      "login",
+      "auth",
+      "password",
+      "dashboard"
+    ]
+  },
+  "selectedSkills": [
+    "module-discovery",
+    "legacy-logic-extraction",
+    "module-documentation",
+    "clean-architecture-assessment",
+    "test-plan-generation",
+    "unit-test-execution",
+    "integration-test-execution",
+    "e2e-test-execution",
+    "api-test-execution",
+    "edge-case-testing",
+    "playwright-browser-verification",
+    "browser-testing-with-devtools",
+    "failure-diagnosis",
+    "lessons-learned",
+    "iteration-comparison",
+    "parity-verification"
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "stage": "findings",
+  "stageTitle": "Findings",
+  "stageIndex": 6,
+  "status": "failed",
+  "skillCount": 3,
+  "skillsPassed": 2,
+  "skillsFailed": 1,
+  "skills": [
+    {
+      "skill": "failure-diagnosis",
+      "stage": "findings",
+      "status": "passed",
+      "startedAt": "2026-04-13T11:32:31.745840Z",
+      "endedAt": "2026-04-13T11:32:31.818192Z",
+      "durationSeconds": 0.072,
+      "summary": "Failure diagnosis generated 7 cluster(s) and 12 scenario-level failures for Checklist.",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/failure-diagnosis/result.json\n",
+      "stderr": "",
+      "command": [
+        "python3",
+        "/Users/risha/Documents/Buildathon/skills/failure-diagnosis/run.py",
+        "--input",
+        "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/module-run-input.json",
+        "--artifacts-root",
+        "/Users/risha/Documents/Buildathon/artifacts"
+      ],
+      "resultPath": "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/failure-diagnosis/result.json"
+    },
+    {
+      "skill": "lessons-learned",
+      "stage": "findings",
+      "status": "passed",
+      "startedAt": "2026-04-13T11:32:31.818215Z",
+      "endedAt": "2026-04-13T11:32:31.892907Z",
+      "durationSeconds": 0.074,
+      "summary": "Lessons synthesized for Checklist: resolved=4, recurring=17, new=2.",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/lessons-learned/result.json\n",
+      "stderr": "",
+      "command": [
+        "python3",
+        "/Users/risha/Documents/Buildathon/skills/lessons-learned/run.py",
+        "--input",
+        "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/module-run-input.json",
+        "--artifacts-root",
+        "/Users/risha/Documents/Buildathon/artifacts"
+      ],
+      "resultPath": "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/lessons-learned/result.json"
+    },
+    {
+      "skill": "parity-verification",
+      "stage": "findings",
+      "status": "failed",
+      "startedAt": "2026-04-13T11:32:31.892931Z",
+      "endedAt": "2026-04-13T11:32:31.966779Z",
+      "durationSeconds": 0.073,
+      "summary": "Parity verification for Checklist: score=0, failedChecks=3.",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/parity-verification/result.json\n",
+      "stderr": "",
+      "command": [
+        "python3",
+        "/Users/risha/Documents/Buildathon/skills/parity-verification/run.py",
+        "--input",
+        "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/module-run-input.json",
+        "--artifacts-root",
+        "/Users/risha/Documents/Buildathon/artifacts"
+      ],
+      "resultPath": "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/parity-verification/result.json"
+    }
+  ],
+  "startedAt": "2026-04-13T11:32:31.745840Z",
+  "endedAt": "2026-04-13T11:32:31.966779Z"
+}

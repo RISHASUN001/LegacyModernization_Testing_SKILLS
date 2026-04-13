@@ -1,0 +1,222 @@
+{
+  "skillName": "api-test-execution",
+  "stage": "execution",
+  "moduleName": "Login2",
+  "runId": "login2-test-20260413-234705",
+  "status": "passed",
+  "startedAt": "2026-04-13T15:50:58.267670Z",
+  "endedAt": "2026-04-13T15:50:59.033170Z",
+  "summary": "API execution completed with 5 passed and 0 failed scenarios.",
+  "metrics": {
+    "total": 5,
+    "passed": 5,
+    "failed": 0,
+    "warnings": 1,
+    "newTestsAdded": 4,
+    "scenarios": [
+      {
+        "name": "API contract route: /login",
+        "status": "passed",
+        "notes": "Validate HTTP route compatibility, request/response contracts, and validation behavior.",
+        "coverage": [
+          "http-contract"
+        ],
+        "generated": false,
+        "generatedFrom": [],
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "artifact:module-discovery/discovery-map.json"
+          ],
+          "confidence": 0.81,
+          "unknowns": []
+        }
+      },
+      {
+        "name": "API robustness generated case 1 for Login2",
+        "status": "passed",
+        "notes": "Validate HTTP route compatibility, request/response contracts, and validation behavior.",
+        "coverage": [
+          "robustness",
+          "fallback"
+        ],
+        "generated": true,
+        "generatedFrom": [
+          "fallback:insufficient-discovery-evidence"
+        ],
+        "provenance": {
+          "type": "inferred",
+          "sources": [
+            "artifact:test-plan-generation/test-plan.json",
+            "artifact:module-discovery/discovery-map.json",
+            "artifact:legacy-logic-extraction/logic-summary.json",
+            "artifact:module-documentation/module-analysis.json"
+          ],
+          "confidence": 0.77,
+          "unknowns": []
+        }
+      },
+      {
+        "name": "API robustness generated case 2 for Login2",
+        "status": "passed",
+        "notes": "Validate HTTP route compatibility, request/response contracts, and validation behavior.",
+        "coverage": [
+          "robustness",
+          "fallback"
+        ],
+        "generated": true,
+        "generatedFrom": [
+          "fallback:insufficient-discovery-evidence"
+        ],
+        "provenance": {
+          "type": "inferred",
+          "sources": [
+            "artifact:test-plan-generation/test-plan.json",
+            "artifact:module-discovery/discovery-map.json",
+            "artifact:legacy-logic-extraction/logic-summary.json",
+            "artifact:module-documentation/module-analysis.json"
+          ],
+          "confidence": 0.77,
+          "unknowns": []
+        }
+      },
+      {
+        "name": "API robustness generated case 3 for Login2",
+        "status": "passed",
+        "notes": "Validate HTTP route compatibility, request/response contracts, and validation behavior.",
+        "coverage": [
+          "robustness",
+          "fallback"
+        ],
+        "generated": true,
+        "generatedFrom": [
+          "fallback:insufficient-discovery-evidence"
+        ],
+        "provenance": {
+          "type": "inferred",
+          "sources": [
+            "artifact:test-plan-generation/test-plan.json",
+            "artifact:module-discovery/discovery-map.json",
+            "artifact:legacy-logic-extraction/logic-summary.json",
+            "artifact:module-documentation/module-analysis.json"
+          ],
+          "confidence": 0.77,
+          "unknowns": []
+        }
+      },
+      {
+        "name": "API robustness generated case 4 for Login2",
+        "status": "passed",
+        "notes": "Validate HTTP route compatibility, request/response contracts, and validation behavior.",
+        "coverage": [
+          "robustness",
+          "fallback"
+        ],
+        "generated": true,
+        "generatedFrom": [
+          "fallback:insufficient-discovery-evidence"
+        ],
+        "provenance": {
+          "type": "inferred",
+          "sources": [
+            "artifact:test-plan-generation/test-plan.json",
+            "artifact:module-discovery/discovery-map.json",
+            "artifact:legacy-logic-extraction/logic-summary.json",
+            "artifact:module-documentation/module-analysis.json"
+          ],
+          "confidence": 0.77,
+          "unknowns": []
+        }
+      }
+    ],
+    "degradedMode": false,
+    "purpose": "Validate HTTP route compatibility, request/response contracts, and validation behavior.",
+    "generatedTestsArtifact": "/Users/risha/Documents/Buildathon/artifacts/Login2/login2-test-20260413-234705/api-test-execution/generated-tests/api-generated-tests.json"
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/Login2/login2-test-20260413-234705/api-test-execution/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login2/login2-test-20260413-234705/api-test-execution/generated-tests/api-generated-tests.json",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login2/api-generated-tests.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login2/login2-test-20260413-234705/api-test-execution/preflight.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login2/login2-test-20260413-234705/api-test-execution/execution-log.txt"
+  ],
+  "findings": [
+    {
+      "type": "NoTestsCollected",
+      "scenario": "API",
+      "message": "No runnable API tests were collected in this run; treated as non-blocking baseline.",
+      "likelyCause": "Fresh module or markers/projects not yet created.",
+      "evidence": "Execution output indicates zero tests collected.",
+      "severity": "low",
+      "status": "open",
+      "confidence": 0.95
+    }
+  ],
+  "recommendations": [
+    {
+      "message": "Review API logs/artifacts and fix failing scenarios before next iteration.",
+      "priority": "medium",
+      "evidence": "0 failed out of 5 scenarios."
+    },
+    {
+      "message": "Add concrete API tests (or refine command/markers) to move from baseline to executable coverage.",
+      "priority": "medium",
+      "evidence": "No tests were collected by the execution command."
+    }
+  ],
+  "resultContractVersion": "2.0",
+  "preflight": {
+    "category": "API",
+    "baseUrl": {
+      "required": true,
+      "provided": "http://0.0.0.0:5001/",
+      "normalized": "http://0.0.0.0:5001",
+      "ok": true,
+      "reason": ""
+    },
+    "reachability": {
+      "required": true,
+      "ok": true,
+      "statusCode": 200,
+      "reason": "reachable",
+      "path": "/",
+      "url": "http://0.0.0.0:5001/"
+    },
+    "commands": {
+      "candidates": [
+        "python3 -m pytest -m api",
+        "dotnet test /Users/risha/Documents/Buildathon/samples/legacy-java-app/LegacyModernization.Converted.sln --nologo --verbosity minimal"
+      ],
+      "available": [
+        "python3 -m pytest -m api",
+        "dotnet test /Users/risha/Documents/Buildathon/samples/legacy-java-app/LegacyModernization.Converted.sln --nologo --verbosity minimal"
+      ],
+      "unavailable": [],
+      "selected": "python3 -m pytest -m api",
+      "ok": true
+    },
+    "strictMode": true
+  },
+  "trace": {
+    "command": [
+      "python3",
+      "-m",
+      "pytest",
+      "-m",
+      "api"
+    ],
+    "returnCode": 5,
+    "durationSeconds": 0.718,
+    "cwd": "/Users/risha/Documents/Buildathon/samples/legacy-java-app"
+  },
+  "provenanceSummary": {
+    "scenarioSources": [
+      "code-evidence",
+      "inferred",
+      "inferred",
+      "inferred",
+      "inferred"
+    ],
+    "confidence": 0.778
+  }
+}

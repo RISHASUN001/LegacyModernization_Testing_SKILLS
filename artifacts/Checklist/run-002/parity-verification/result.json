@@ -3,17 +3,17 @@
   "stage": "findings",
   "moduleName": "Checklist",
   "runId": "run-002",
-  "status": "passed",
-  "startedAt": "2026-04-12T10:28:00Z",
-  "endedAt": "2026-04-12T10:29:00Z",
-  "summary": "Parity verification improved significantly with only minor behavioral differences remaining.",
+  "status": "failed",
+  "startedAt": "2026-04-13T11:32:31.954321Z",
+  "endedAt": "2026-04-13T11:32:31.957316Z",
+  "summary": "Parity verification for Checklist: score=0, failedChecks=3.",
   "metrics": {
-    "total": 28,
-    "passed": 25,
+    "total": 3,
+    "passed": 0,
     "failed": 3,
-    "warnings": 1,
-    "newTestsAdded": 3,
-    "parityScore": 91
+    "warnings": 2,
+    "newTestsAdded": 0,
+    "parityScore": 0
   },
   "artifacts": [
     "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/parity-verification/result.json",
@@ -22,23 +22,32 @@
   "findings": [
     {
       "type": "ParityGap",
-      "scenario": "Timeout + submit parity",
-      "message": "Major parity gaps resolved; minor warning ordering issue remains.",
-      "likelyCause": "Residual warning order difference in one branch.",
-      "evidence": "Parity score improved to 91 with two minor deltas.",
-      "severity": "medium",
-      "status": "resolved",
-      "confidence": 0.84,
-      "resolvedInRunId": "run-002",
-      "resolutionNotes": "Timeout and submit contracts now aligned with legacy baseline."
+      "scenario": "Legacy vs converted behavior parity",
+      "message": "Parity score for Checklist is 0 with 3 failing checks.",
+      "likelyCause": "Execution failures and/or unmet must-preserve behavior checks.",
+      "evidence": "See parity-diff.json checks[] and evidence links.",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.81
     }
   ],
   "recommendations": [
     {
-      "message": "Resolve final warning-order and conflict-message text parity deltas.",
-      "priority": "medium",
-      "evidence": "3 parity checks still failing."
+      "message": "Close failed parity checks by aligning execution failures to must-preserve behavior requirements.",
+      "priority": "high",
+      "evidence": "parityScore=0; failedChecks=3"
     }
   ],
-  "resultContractVersion": "2.0"
+  "resultContractVersion": "2.0",
+  "provenanceSummary": {
+    "scenarioSources": [
+      "code-evidence",
+      "fallback"
+    ],
+    "confidence": 0.81,
+    "unknowns": [
+      "3 parity checks failed based on execution and preserve-behavior linkage.",
+      "No DB touchpoint evidence; persistence parity validation confidence reduced."
+    ]
+  }
 }

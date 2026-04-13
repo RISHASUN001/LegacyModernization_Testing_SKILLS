@@ -1,0 +1,32 @@
+{
+  "category": "API",
+  "baseUrl": {
+    "required": true,
+    "provided": "http://0.0.0.0:5001/",
+    "normalized": "http://0.0.0.0:5001",
+    "ok": true,
+    "reason": ""
+  },
+  "reachability": {
+    "required": true,
+    "ok": true,
+    "statusCode": 200,
+    "reason": "reachable",
+    "path": "/",
+    "url": "http://0.0.0.0:5001/"
+  },
+  "commands": {
+    "candidates": [
+      "python3 -m pytest -m api",
+      "dotnet test /Users/risha/Documents/Buildathon/samples/legacy-java-app/LegacyModernization.Converted.sln --nologo --verbosity minimal"
+    ],
+    "available": [
+      "python3 -m pytest -m api",
+      "dotnet test /Users/risha/Documents/Buildathon/samples/legacy-java-app/LegacyModernization.Converted.sln --nologo --verbosity minimal"
+    ],
+    "unavailable": [],
+    "selected": "python3 -m pytest -m api",
+    "ok": true
+  },
+  "strictMode": true
+}

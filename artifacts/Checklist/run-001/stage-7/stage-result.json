@@ -1,0 +1,34 @@
+{
+  "stage": "iteration-comparison",
+  "stageTitle": "Iteration Comparison",
+  "stageIndex": 7,
+  "status": "passed",
+  "skillCount": 1,
+  "skillsPassed": 1,
+  "skillsFailed": 0,
+  "skills": [
+    {
+      "skill": "iteration-comparison",
+      "stage": "iteration-comparison",
+      "status": "passed",
+      "startedAt": "2026-04-13T11:32:24.656844Z",
+      "endedAt": "2026-04-13T11:32:24.771445Z",
+      "durationSeconds": 0.114,
+      "summary": "Iteration comparison completed for Checklist: prev=none, trend=baseline, failuresReduced=0.",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-001/iteration-comparison/result.json\n",
+      "stderr": "",
+      "command": [
+        "python3",
+        "/Users/risha/Documents/Buildathon/skills/iteration-comparison/run.py",
+        "--input",
+        "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-001/module-run-input.json",
+        "--artifacts-root",
+        "/Users/risha/Documents/Buildathon/artifacts"
+      ],
+      "resultPath": "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-001/iteration-comparison/result.json"
+    }
+  ],
+  "startedAt": "2026-04-13T11:32:24.656844Z",
+  "endedAt": "2026-04-13T11:32:24.771445Z"
+}

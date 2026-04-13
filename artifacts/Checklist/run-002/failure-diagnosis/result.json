@@ -4,13 +4,14 @@
   "moduleName": "Checklist",
   "runId": "run-002",
   "status": "passed",
-  "startedAt": "2026-04-12T10:22:00Z",
-  "endedAt": "2026-04-12T10:23:00Z",
-  "summary": "Failure diagnosis reduced to 2 low/medium clusters after major fixes.",
+  "startedAt": "2026-04-13T11:32:31.804189Z",
+  "endedAt": "2026-04-13T11:32:31.808794Z",
+  "summary": "Failure diagnosis generated 7 cluster(s) and 12 scenario-level failures for Checklist.",
   "metrics": {
-    "clusters": 2,
-    "highImpact": 0,
-    "quickWins": 2
+    "clusters": 7,
+    "scenarioFailures": 12,
+    "highImpact": 12,
+    "quickWins": 0
   },
   "artifacts": [
     "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/failure-diagnosis/result.json",
@@ -18,22 +19,199 @@
   ],
   "findings": [
     {
-      "type": "ClusteredFailurePattern",
-      "scenario": "Remaining flaky conflict paths",
-      "message": "Remaining failures now centered on concurrent conflict warning race.",
-      "likelyCause": "Timing-dependent lock state checks.",
-      "evidence": "Failure cluster narrowed to e2e/playwright conflict scenarios.",
-      "severity": "medium",
+      "type": "ScenarioFailure",
+      "scenario": "Journey parity: View module records",
+      "message": "Journey parity: View module records failed in skill e2e-test-execution.",
+      "likelyCause": "E2E execution failed preflight checks and did not run command execution.",
+      "evidence": "skill=e2e-test-execution; logs=/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/e2e-test-execution/execution-log.txt",
+      "severity": "high",
       "status": "open",
-      "confidence": 0.71
+      "confidence": 0.73,
+      "relatedStage": "execution",
+      "relatedSkill": "e2e-test-execution",
+      "affectedFiles": [
+        "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/e2e-test-execution/execution-log.txt"
+      ]
+    },
+    {
+      "type": "ScenarioFailure",
+      "scenario": "parity-verification",
+      "message": "parity-verification failed in skill parity-verification.",
+      "likelyCause": "Parity verification for Checklist: score=62, failedChecks=5.",
+      "evidence": "skill=parity-verification; logs=none",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.65,
+      "relatedStage": "findings",
+      "relatedSkill": "parity-verification",
+      "affectedFiles": []
+    },
+    {
+      "type": "ScenarioFailure",
+      "scenario": "Browser runtime validation for View module records",
+      "message": "Browser runtime validation for View module records failed in skill playwright-browser-verification.",
+      "likelyCause": "Playwright / E2E Browser execution failed preflight checks and did not run command execution.",
+      "evidence": "skill=playwright-browser-verification; logs=/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/playwright-browser-verification/execution-log.txt, /Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/playwright-browser-verification/console-logs.json",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.72,
+      "relatedStage": "execution",
+      "relatedSkill": "playwright-browser-verification",
+      "affectedFiles": [
+        "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/playwright-browser-verification/execution-log.txt",
+        "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/playwright-browser-verification/console-logs.json",
+        "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/playwright-browser-verification/network-failures.json"
+      ]
+    },
+    {
+      "type": "ScenarioFailure",
+      "scenario": "clean-architecture-assessment",
+      "message": "clean-architecture-assessment failed in skill clean-architecture-assessment.",
+      "likelyCause": "Architecture assessment for Checklist found 1 issue(s).",
+      "evidence": "skill=clean-architecture-assessment; logs=none",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.65,
+      "relatedStage": "architecture-review",
+      "relatedSkill": "clean-architecture-assessment",
+      "affectedFiles": []
+    },
+    {
+      "type": "ScenarioFailure",
+      "scenario": "Must-preserve edge behavior: Route and URL behavior parity for user-visible flows",
+      "message": "Must-preserve edge behavior: Route and URL behavior parity for user-visible flows failed in skill edge-case-testing.",
+      "likelyCause": "Edge Case execution failed preflight checks and did not run command execution.",
+      "evidence": "skill=edge-case-testing; logs=/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/edge-case-testing/execution-log.txt",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.7,
+      "relatedStage": "execution",
+      "relatedSkill": "edge-case-testing",
+      "affectedFiles": [
+        "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/edge-case-testing/execution-log.txt"
+      ]
+    },
+    {
+      "type": "ScenarioFailure",
+      "scenario": "Must-preserve edge behavior: Validation/error message semantics from legacy behavior",
+      "message": "Must-preserve edge behavior: Validation/error message semantics from legacy behavior failed in skill edge-case-testing.",
+      "likelyCause": "Edge Case execution failed preflight checks and did not run command execution.",
+      "evidence": "skill=edge-case-testing; logs=/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/edge-case-testing/execution-log.txt",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.7,
+      "relatedStage": "execution",
+      "relatedSkill": "edge-case-testing",
+      "affectedFiles": [
+        "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/edge-case-testing/execution-log.txt"
+      ]
+    },
+    {
+      "type": "ScenarioFailure",
+      "scenario": "Must-preserve edge behavior: Data mapping compatibility for persistence operations",
+      "message": "Must-preserve edge behavior: Data mapping compatibility for persistence operations failed in skill edge-case-testing.",
+      "likelyCause": "Edge Case execution failed preflight checks and did not run command execution.",
+      "evidence": "skill=edge-case-testing; logs=/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/edge-case-testing/execution-log.txt",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.7,
+      "relatedStage": "execution",
+      "relatedSkill": "edge-case-testing",
+      "affectedFiles": [
+        "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/edge-case-testing/execution-log.txt"
+      ]
+    },
+    {
+      "type": "ScenarioFailure",
+      "scenario": "Recurring risk regression guard: NamespaceFolderMismatch",
+      "message": "Recurring risk regression guard: NamespaceFolderMismatch failed in skill edge-case-testing.",
+      "likelyCause": "Edge Case execution failed preflight checks and did not run command execution.",
+      "evidence": "skill=edge-case-testing; logs=/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/edge-case-testing/execution-log.txt",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.8,
+      "relatedStage": "execution",
+      "relatedSkill": "edge-case-testing",
+      "affectedFiles": [
+        "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/edge-case-testing/execution-log.txt"
+      ]
+    },
+    {
+      "type": "ScenarioFailure",
+      "scenario": "API contract route: /Views/Auth/Dashboard.cshtml",
+      "message": "API contract route: /Views/Auth/Dashboard.cshtml failed in skill api-test-execution.",
+      "likelyCause": "API execution failed preflight checks and did not run command execution.",
+      "evidence": "skill=api-test-execution; logs=/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/api-test-execution/execution-log.txt",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.81,
+      "relatedStage": "execution",
+      "relatedSkill": "api-test-execution",
+      "affectedFiles": [
+        "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/api-test-execution/execution-log.txt"
+      ]
+    },
+    {
+      "type": "ScenarioFailure",
+      "scenario": "API contract route: /Views/Auth/Index.cshtml",
+      "message": "API contract route: /Views/Auth/Index.cshtml failed in skill api-test-execution.",
+      "likelyCause": "API execution failed preflight checks and did not run command execution.",
+      "evidence": "skill=api-test-execution; logs=/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/api-test-execution/execution-log.txt",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.81,
+      "relatedStage": "execution",
+      "relatedSkill": "api-test-execution",
+      "affectedFiles": [
+        "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/api-test-execution/execution-log.txt"
+      ]
+    },
+    {
+      "type": "ScenarioFailure",
+      "scenario": "API contract route: /dashboard",
+      "message": "API contract route: /dashboard failed in skill api-test-execution.",
+      "likelyCause": "API execution failed preflight checks and did not run command execution.",
+      "evidence": "skill=api-test-execution; logs=/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/api-test-execution/execution-log.txt",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.81,
+      "relatedStage": "execution",
+      "relatedSkill": "api-test-execution",
+      "affectedFiles": [
+        "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/api-test-execution/execution-log.txt"
+      ]
+    },
+    {
+      "type": "ScenarioFailure",
+      "scenario": "browser-testing-with-devtools",
+      "message": "browser-testing-with-devtools failed in skill browser-testing-with-devtools.",
+      "likelyCause": "DevTools diagnostics failed preflight checks and did not execute endpoint collection.",
+      "evidence": "skill=browser-testing-with-devtools; logs=/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/browser-testing-with-devtools/console-logs.json, /Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/browser-testing-with-devtools/network-failures.json",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.65,
+      "relatedStage": "execution",
+      "relatedSkill": "browser-testing-with-devtools",
+      "affectedFiles": [
+        "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/browser-testing-with-devtools/console-logs.json",
+        "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/browser-testing-with-devtools/network-failures.json",
+        "/Users/risha/Documents/Buildathon/artifacts/Checklist/run-002/browser-testing-with-devtools/execution-log.txt"
+      ]
     }
   ],
   "recommendations": [
     {
-      "message": "Focus next iteration on deterministic lock-state synchronization in conflict flow.",
-      "priority": "medium",
-      "evidence": "Only 1-2 flaky scenarios remain."
+      "message": "Prioritize scenario-level failures that have concrete console/network/log evidence first.",
+      "priority": "high",
+      "evidence": "scenarioFailures=12; clusters=7"
     }
   ],
-  "resultContractVersion": "2.0"
+  "resultContractVersion": "2.0",
+  "provenanceSummary": {
+    "scenarioSources": [
+      "code-evidence",
+      "inferred"
+    ],
+    "confidence": 0.8
+  }
 }

@@ -1,0 +1,73 @@
+{
+  "skillName": "browser-testing-with-devtools",
+  "stage": "execution",
+  "moduleName": "Login",
+  "runId": "test-002",
+  "status": "failed",
+  "startedAt": "2026-04-13T11:32:47.827960Z",
+  "endedAt": "2026-04-13T11:32:47.857640Z",
+  "summary": "DevTools diagnostics failed preflight checks and did not execute endpoint collection.",
+  "metrics": {
+    "total": 6,
+    "passed": 0,
+    "failed": 6,
+    "warnings": 0,
+    "newTestsAdded": 0,
+    "degradedMode": true
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/Login/test-002/browser-testing-with-devtools/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/test-002/browser-testing-with-devtools/preflight.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/test-002/browser-testing-with-devtools/console-logs.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/test-002/browser-testing-with-devtools/network-failures.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/test-002/browser-testing-with-devtools/dom-state.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/test-002/browser-testing-with-devtools/runtime-issues.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/test-002/browser-testing-with-devtools/performance-observations.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/test-002/browser-testing-with-devtools/execution-log.txt"
+  ],
+  "findings": [
+    {
+      "type": "EnvironmentDependencyMissing",
+      "scenario": "DevTools diagnostics preflight",
+      "message": "DevTools evidence endpoint is not reachable.",
+      "likelyCause": "Invalid baseUrl or missing /api/test/health endpoint.",
+      "evidence": "url=http://127.0.0.1:18080/api/test/health; reason=<urlopen error [Errno 1] Operation not permitted>",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.98
+    }
+  ],
+  "recommendations": [
+    {
+      "message": "Expose /api/test/* diagnostics endpoints and provide a valid absolute baseUrl/testApiEndpoint.",
+      "priority": "high",
+      "evidence": "Strict preflight requires diagnostics endpoint reachability."
+    }
+  ],
+  "resultContractVersion": "2.0",
+  "statusReason": "preflight-failed",
+  "preflight": {
+    "category": "DevTools Diagnostics",
+    "baseUrl": {
+      "required": true,
+      "provided": "http://127.0.0.1:18080",
+      "normalized": "http://127.0.0.1:18080",
+      "ok": true,
+      "reason": "ok"
+    },
+    "reachability": {
+      "required": true,
+      "url": "http://127.0.0.1:18080/api/test/health",
+      "ok": false,
+      "statusCode": 0,
+      "reason": "<urlopen error [Errno 1] Operation not permitted>"
+    },
+    "strictMode": true
+  },
+  "provenanceSummary": {
+    "scenarioSources": [
+      "fallback"
+    ],
+    "confidence": 0.35
+  }
+}

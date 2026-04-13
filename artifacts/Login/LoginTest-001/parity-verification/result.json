@@ -1,0 +1,42 @@
+{
+  "skillName": "parity-verification",
+  "stage": "findings",
+  "moduleName": "Login",
+  "runId": "LoginTest-001",
+  "status": "failed",
+  "startedAt": "2026-04-13T09:47:50.024970Z",
+  "endedAt": "2026-04-13T09:47:50.025693Z",
+  "summary": "Parity score indicates notable gaps in timeout and submit behavior.",
+  "metrics": {
+    "total": 24,
+    "passed": 16,
+    "failed": 8,
+    "warnings": 1,
+    "newTestsAdded": 2,
+    "parityScore": 68
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/Login/LoginTest-001/parity-verification/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/LoginTest-001/parity-verification/parity-diff.json"
+  ],
+  "findings": [
+    {
+      "type": "ParityGap",
+      "scenario": "Timeout + submit parity",
+      "message": "Converted module diverges from legacy timeout and submit response behavior.",
+      "likelyCause": "Middleware and response contract differences.",
+      "evidence": "Parity-diff highlights timeout redirect and submit payload mismatch.",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.9
+    }
+  ],
+  "recommendations": [
+    {
+      "message": "Close timeout redirect and submit contract gaps before release-readiness signoff.",
+      "priority": "high",
+      "evidence": "Parity score below target threshold."
+    }
+  ],
+  "resultContractVersion": "2.0"
+}

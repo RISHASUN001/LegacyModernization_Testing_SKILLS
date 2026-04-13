@@ -44,6 +44,7 @@
                         <td>
                             <div><strong>@finding.FindingType</strong></div>
                             <div class="small text-muted">@finding.Message</div>
+                            <div class="small text-muted">source: @finding.ProvenanceType | conf: @finding.Confidence.ToString("0.00")</div>
                         </td>
                         <td>@finding.LikelyCause</td>
                         <td>
@@ -65,7 +66,7 @@
             <ul>
                 @foreach (var rec in Model.Recommendations)
                 {
-                    <li><strong>@rec.Priority</strong> - @rec.Message <div class="small text-muted">@rec.Stage / @rec.SkillName</div></li>
+                    <li><strong>@rec.Priority</strong> - @rec.Message <div class="small text-muted">@rec.Stage / @rec.SkillName / @rec.ProvenanceType</div></li>
                 }
             </ul>
         </div>

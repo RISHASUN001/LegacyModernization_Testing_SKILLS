@@ -1,24 +1,177 @@
 {
-  "modulePurpose": "Checklist validates work-order completion readiness with ATC and sensor checkpoints.",
-  "importantFlows": [
-    "Load checklist by work order",
-    "Edit checklist rows by role",
-    "Save draft checklist",
-    "Submit checklist for verification"
+  "moduleName": "Checklist",
+  "modulePurpose": {
+    "text": "Checklist module orchestrates legacy-compatible business workflows in the modernized application.",
+    "provenance": {
+      "type": "inferred",
+      "sources": [
+        "artifact:module-discovery/discovery-map.json",
+        "moduleName"
+      ],
+      "confidence": 0.72,
+      "unknowns": []
+    }
+  },
+  "workflows": [
+    {
+      "id": "checklist-view-module-records",
+      "name": "View module records",
+      "steps": [
+        {
+          "name": "Trigger route/view",
+          "expectedOutcome": "User enters module flow"
+        },
+        {
+          "name": "Validation and rule checks",
+          "expectedOutcome": "Invalid states are rejected"
+        },
+        {
+          "name": "Persistence/service action",
+          "expectedOutcome": "State is persisted consistently"
+        },
+        {
+          "name": "Response/UI transition",
+          "expectedOutcome": "User-visible behavior matches legacy"
+        }
+      ],
+      "preserveCriticality": "high",
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "/Views/Auth/Dashboard.cshtml",
+          "/Views/Auth/Index.cshtml",
+          "/dashboard"
+        ],
+        "confidence": 0.72,
+        "unknowns": []
+      }
+    }
   ],
-  "rules": [
-    "Closed work orders are read-only",
-    "ATC fields require verifier id",
-    "Sensor failures block final submit"
+  "businessRules": [
+    {
+      "id": "R-001",
+      "rule": "Error handling and response contracts must preserve user-visible behavior",
+      "rationale": "Derived from discovered module assets and persistence/client-side signals.",
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "/Views/Auth/Dashboard.cshtml",
+          "/Views/Auth/Index.cshtml",
+          "/dashboard"
+        ],
+        "confidence": 0.74,
+        "unknowns": []
+      }
+    },
+    {
+      "id": "R-002",
+      "rule": "Security/session behavior must remain compatible with legacy expectations",
+      "rationale": "Derived from discovered module assets and persistence/client-side signals.",
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "/Views/Auth/Dashboard.cshtml",
+          "/Views/Auth/Index.cshtml",
+          "/dashboard"
+        ],
+        "confidence": 0.74,
+        "unknowns": []
+      }
+    }
   ],
   "dependencies": [
-    "WorkOrder module",
-    "Sensor service",
-    "Oracle package PKG_CHECKLIST"
+    {
+      "name": "Converted web controllers",
+      "provenance": {
+        "type": "code-evidence",
+        "sources": [
+          "file-path-patterns"
+        ],
+        "confidence": 0.68,
+        "unknowns": []
+      }
+    },
+    {
+      "name": "Converted services",
+      "provenance": {
+        "type": "code-evidence",
+        "sources": [
+          "file-path-patterns"
+        ],
+        "confidence": 0.68,
+        "unknowns": []
+      }
+    }
+  ],
+  "mustPreserveBehaviors": [
+    {
+      "behavior": "Route and URL behavior parity for user-visible flows",
+      "criticality": "high",
+      "provenance": {
+        "type": "code-evidence",
+        "sources": [
+          "/Views/Auth/Dashboard.cshtml",
+          "/Views/Auth/Index.cshtml",
+          "/dashboard"
+        ],
+        "confidence": 0.8,
+        "unknowns": []
+      }
+    },
+    {
+      "behavior": "Validation/error message semantics from legacy behavior",
+      "criticality": "high",
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java"
+        ],
+        "confidence": 0.7,
+        "unknowns": []
+      }
+    },
+    {
+      "behavior": "Data mapping compatibility for persistence operations",
+      "criticality": "high",
+      "provenance": {
+        "type": "code-evidence",
+        "sources": [],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    }
+  ],
+  "unknowns": [
+    "No DB touchpoint extracted; persistence parity must be confirmed with runtime logs."
+  ],
+  "confidence": 0.63,
+  "sourceEvidence": {
+    "urls": [
+      "/Views/Auth/Dashboard.cshtml",
+      "/Views/Auth/Index.cshtml",
+      "/dashboard"
+    ],
+    "dbTouchpoints": [],
+    "legacyFiles": [
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java",
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp",
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app/index.jsp"
+    ]
+  },
+  "importantFlows": [
+    "View module records"
+  ],
+  "rules": [
+    "Error handling and response contracts must preserve user-visible behavior",
+    "Security/session behavior must remain compatible with legacy expectations"
+  ],
+  "dependenciesText": [
+    "Converted web controllers",
+    "Converted services"
   ],
   "mustPreserve": [
-    "Legacy timeout redirect behavior",
-    "ATC rule ordering",
-    "Supervisor override branch"
+    "Route and URL behavior parity for user-visible flows",
+    "Validation/error message semantics from legacy behavior",
+    "Data mapping compatibility for persistence operations"
   ]
 }

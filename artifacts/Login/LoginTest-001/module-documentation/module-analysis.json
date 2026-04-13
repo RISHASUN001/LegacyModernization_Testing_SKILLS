@@ -1,0 +1,25 @@
+{
+  "modulePurpose": "Checklist module ensures completion readiness before order closure.",
+  "importantFlows": [
+    "Open checklist",
+    "Edit items",
+    "Save draft",
+    "Submit",
+    "Review history"
+  ],
+  "rules": [
+    "ATC verifier required",
+    "Sensor fail blocks submit",
+    "Read-only on closed work order"
+  ],
+  "dependencies": [
+    "Checklist JS validation",
+    "Oracle package",
+    "WorkOrder service"
+  ],
+  "mustPreserve": [
+    "Validation message order",
+    "Timeout redirect",
+    "Legacy URL compatibility"
+  ]
+}

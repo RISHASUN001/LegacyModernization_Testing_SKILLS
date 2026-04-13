@@ -1,0 +1,38 @@
+{
+  "skillName": "lessons-learned",
+  "stage": "findings",
+  "moduleName": "Login2",
+  "runId": "login2-test-20260413-234705",
+  "status": "passed",
+  "startedAt": "2026-04-13T15:51:03.068171Z",
+  "endedAt": "2026-04-13T15:51:03.070779Z",
+  "summary": "Lessons synthesized for Login2: resolved=0, recurring=0, new=6.",
+  "metrics": {
+    "resolved": 0,
+    "recurring": 0,
+    "new": 6,
+    "kbRecurringSignatures": 2
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/Login2/login2-test-20260413-234705/lessons-learned/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login2/_knowledge-base/lessons-kb.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login2/login2-test-20260413-234705/lessons-learned/lessons-learned.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login2/login2-test-20260413-234705/lessons-learned/lessons.json"
+  ],
+  "findings": [],
+  "recommendations": [
+    {
+      "message": "Use recurring lesson signatures to generate mandatory regression scenarios in next run.",
+      "priority": "medium",
+      "evidence": "recurring=0, resolved=0, new=6"
+    }
+  ],
+  "resultContractVersion": "2.0",
+  "provenanceSummary": {
+    "scenarioSources": [
+      "code-evidence",
+      "lessons-learned"
+    ],
+    "confidence": 0.84
+  }
+}
