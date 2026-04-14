@@ -269,6 +269,8 @@ public sealed class PlaywrightEvidenceDto
     public string TestApiEndpoint { get; init; } = string.Empty;
     public string TestApiStatus { get; init; } = "unknown";
     public string TestApiReason { get; init; } = string.Empty;
+    public string TestApiSource { get; init; } = string.Empty;
+    public bool TestApiAutoProvisioned { get; init; }
     public List<PlaywrightScenarioDto> Scenarios { get; init; } = [];
     public List<string> ConsoleErrors { get; init; } = [];
     public List<string> ConsoleWarnings { get; init; } = [];

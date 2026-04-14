@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import json
 import re
 from pathlib import Path
 import sys
@@ -17,6 +18,8 @@ SPEC = {
     "stage": "logic-understanding",
     "requiredInputs": ["moduleName", "legacySourceRoot"],
 }
+
+PROFILE_PATH = Path(__file__).with_name("module-profiles.json")
 
 
 def _workflow(flow_name: str, trigger_sources: list[str], module_name: str) -> dict:
@@ -35,7 +38,19 @@ def _workflow(flow_name: str, trigger_sources: list[str], module_name: str) -> d
     }
 
 
-def _detect_context(module_name: str, discovery: dict) -> set[str]:
+def _load_profiles() -> list[dict]:
+    try:
+        payload = json.loads(PROFILE_PATH.read_text(encoding="utf-8"))
+    except Exception:
+        return []
+
+    profiles = payload.get("profiles") if isinstance(payload, dict) else []
+    if not isinstance(profiles, list):
+        return []
+    return [p for p in profiles if isinstance(p, dict)]
+
+
+def _detect_context(module_name: str, discovery: dict, profiles: list[dict]) -> list[str]:
     haystack = " ".join(
         [module_name]
         + [str(x) for x in (discovery.get("urls") or [])]
@@ -43,48 +58,36 @@ def _detect_context(module_name: str, discovery: dict) -> set[str]:
         + [str(x) for x in (discovery.get("jspFiles") or [])]
     ).lower()
 
-    tags: set[str] = set()
-    if any(token in haystack for token in ["login", "auth", "signin", "logout", "password"]):
-        tags.add("auth")
-    if any(token in haystack for token in ["checklist", "item", "workorder", "wo", "status"]):
-        tags.add("checklist")
+    tags: list[str] = []
+    for profile in profiles:
+        profile_id = str(profile.get("id") or "").strip()
+        tokens = [str(x).lower() for x in (profile.get("matchTokens") or []) if str(x).strip()]
+        if not profile_id or not tokens:
+            continue
+        if any(token in haystack for token in tokens):
+            tags.append(profile_id)
     return tags
 
 
-def _module_specific_flows(module_name: str, context_tags: set[str]) -> list[str]:
-    if "auth" in context_tags:
-        return [
-            "Open login page",
-            "Submit credentials",
-            "Redirect to dashboard/home",
-            "Logout and return to login",
-        ]
-    if "checklist" in context_tags:
-        return [
-            "Open checklist item",
-            "Validate checklist inputs",
-            "Submit checklist decision",
-            "Create or update WO on failure conditions",
-            "Transition checklist status",
-        ]
-    return []
+def _profile_by_id(profile_id: str, profiles: list[dict]) -> dict:
+    for profile in profiles:
+        if str(profile.get("id") or "").strip().lower() == profile_id.lower():
+            return profile
+    return {}
 
 
-def _module_specific_rules(context_tags: set[str]) -> list[str]:
-    if "auth" in context_tags:
-        return [
-            "If credentials are invalid, stay on login page and show validation message",
-            "If credentials are valid, establish session and redirect to home/dashboard",
-            "If session is expired, protected routes redirect to login",
-        ]
-    if "checklist" in context_tags:
-        return [
-            "If required checklist fields are missing, block submission and show errors",
-            "If checklist result indicates defect/failure, create or link a Work Order (WO)",
-            "If checklist is approved and all checks pass, status transitions to completed",
-            "If x and y conditions occur together, status becomes z according to business matrix",
-        ]
-    return []
+def _module_specific_flows(context_profile: dict) -> list[str]:
+    flows = context_profile.get("flows")
+    if not isinstance(flows, list):
+        return []
+    return [str(x).strip() for x in flows if str(x).strip()]
+
+
+def _module_specific_rules(context_profile: dict) -> list[str]:
+    rules = context_profile.get("rules")
+    if not isinstance(rules, list):
+        return []
+    return [str(x).strip() for x in rules if str(x).strip()]
 
 
 def execute(ctx):
@@ -100,13 +103,15 @@ def execute(ctx):
             "entrypointHints": [],
         }
 
+    profiles = _load_profiles()
     urls = discovery.get("urls", []) if isinstance(discovery.get("urls"), list) else []
     db_touchpoints = discovery.get("dbTouchpoints", []) if isinstance(discovery.get("dbTouchpoints"), list) else []
     has_js = bool(discovery.get("jsFiles", []))
-    context_tags = _detect_context(ctx.module_name, discovery)
+    context_tags = _detect_context(ctx.module_name, discovery, profiles)
+    context_profile = _profile_by_id(context_tags[0], profiles) if context_tags else {}
 
     module_title = title_case_module(ctx.module_name)
-    inferred_flows = _module_specific_flows(ctx.module_name, context_tags) or infer_flows_from_urls(urls)
+    inferred_flows = _module_specific_flows(context_profile) or infer_flows_from_urls(urls)
     dependencies = build_dependencies(ctx.resolve_scope())
 
     workflows = [_workflow(flow, urls[:6], ctx.module_name) for flow in inferred_flows]
@@ -130,7 +135,7 @@ def execute(ctx):
             }
         ]
 
-    raw_rules = _module_specific_rules(context_tags) or infer_rules_from_touchpoints(db_touchpoints, has_js)
+    raw_rules = _module_specific_rules(context_profile) or infer_rules_from_touchpoints(db_touchpoints, has_js)
     business_rules = []
     for idx, rule in enumerate(raw_rules, start=1):
         business_rules.append(
@@ -176,10 +181,14 @@ def execute(ctx):
                 "provenance": make_provenance("code-evidence", sources=db_touchpoints[:6], confidence=0.76),
             }
         )
-    if "auth" in context_tags:
+    profile_preserve = context_profile.get("mustPreserve") if isinstance(context_profile.get("mustPreserve"), list) else []
+    for behavior in profile_preserve:
+        text = str(behavior).strip()
+        if not text:
+            continue
         must_preserve.append(
             {
-                "behavior": "Invalid credentials and session expiry handling (error codes, redirect targets)",
+                "behavior": text,
                 "criticality": "high",
                 "provenance": make_provenance("inferred", sources=urls[:4], confidence=0.79),
             }
@@ -204,16 +213,14 @@ def execute(ctx):
         "discoveredDbTouchpoints": db_touchpoints[:8],
         "modulePurpose": {
             "text": (
-                f"{module_title} module handles authentication and protected-page access flows. "
-                f"Java files discovered: {len(java_files_sample)}. Key routes: {', '.join(urls[:3]) if urls else 'none'}"
-                if "auth" in context_tags
-                else (
-                    f"{module_title} module manages checklist decisions, status transitions, and WO-triggering rules. "
-                    f"Java files discovered: {len(java_files_sample)}. DB touchpoints: {', '.join(db_touchpoints[:3]) if db_touchpoints else 'none'}"
-                    if "checklist" in context_tags
-                    else f"{module_title} module orchestrates legacy-compatible business workflows. "
-                    f"Java assets: {len(java_files_sample)}, Routes: {len(urls)}, DB: {len(db_touchpoints)}.  Converted to C#: {len(csharp_files_sample)} files."
-                )
+                str(context_profile.get("purposeTemplate") or "")
+                .replace("{moduleTitle}", module_title)
+                .replace("{javaCount}", str(len(java_files_sample)))
+                .replace("{topRoutes}", ', '.join(urls[:3]) if urls else 'none')
+                .replace("{topDbTouchpoints}", ', '.join(db_touchpoints[:3]) if db_touchpoints else 'none')
+                if context_profile
+                else f"{module_title} module orchestrates legacy-compatible business workflows. "
+                f"Java assets: {len(java_files_sample)}, Routes: {len(urls)}, DB: {len(db_touchpoints)}.  Converted to C#: {len(csharp_files_sample)} files."
             ),
             "provenance": make_provenance(
                 "code-evidence",

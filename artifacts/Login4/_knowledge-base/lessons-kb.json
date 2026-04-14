@@ -1,0 +1,32 @@
+{
+  "moduleName": "Login4",
+  "updatedAt": "2026-04-13T17:15:01.249953Z",
+  "latestRunId": "login4-test-20260414-002723",
+  "recurringSignatures": [
+    "NamespaceFolderMismatch",
+    "DIRegistrationMissing"
+  ],
+  "knownPitfalls": [
+    "DIRegistrationMissing",
+    "DapperCaseSensitivity",
+    "NamespaceFolderMismatch",
+    "OracleMappingIssue",
+    "RelativeUrlFailure",
+    "RouteAssumptionMismatch",
+    "SessionHandlingPitfall"
+  ],
+  "history": [
+    {
+      "runId": "login4-test-20260414-002723",
+      "resolvedCount": 0,
+      "recurringCount": 0,
+      "newCount": 6
+    },
+    {
+      "runId": "login4-test-20260414-002723",
+      "resolvedCount": 0,
+      "recurringCount": 0,
+      "newCount": 6
+    }
+  ]
+}

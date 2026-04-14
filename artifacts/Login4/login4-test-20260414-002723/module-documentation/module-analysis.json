@@ -1,0 +1,311 @@
+{
+  "moduleName": "Login4",
+  "modulePurpose": {
+    "text": "Login4 module handles authentication and protected-page access flows. Java files discovered: 1. Key routes: /login",
+    "provenance": {
+      "type": "code-evidence",
+      "sources": [
+        "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java",
+        "artifact:module-discovery/discovery-map.json"
+      ],
+      "confidence": 0.78,
+      "unknowns": []
+    }
+  },
+  "importantFlows": [
+    {
+      "id": "login4-open-login-page",
+      "name": "Open login page",
+      "steps": [
+        {
+          "name": "Trigger route/view",
+          "expectedOutcome": "User enters module flow"
+        },
+        {
+          "name": "Validation and rule checks",
+          "expectedOutcome": "Invalid states are rejected"
+        },
+        {
+          "name": "Persistence/service action",
+          "expectedOutcome": "State is persisted consistently"
+        },
+        {
+          "name": "Response/UI transition",
+          "expectedOutcome": "User-visible behavior matches legacy"
+        }
+      ],
+      "preserveCriticality": "high",
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "/login"
+        ],
+        "confidence": 0.72,
+        "unknowns": []
+      }
+    },
+    {
+      "id": "login4-submit-valid-credentials",
+      "name": "Submit valid credentials",
+      "steps": [
+        {
+          "name": "Trigger route/view",
+          "expectedOutcome": "User enters module flow"
+        },
+        {
+          "name": "Validation and rule checks",
+          "expectedOutcome": "Invalid states are rejected"
+        },
+        {
+          "name": "Persistence/service action",
+          "expectedOutcome": "State is persisted consistently"
+        },
+        {
+          "name": "Response/UI transition",
+          "expectedOutcome": "User-visible behavior matches legacy"
+        }
+      ],
+      "preserveCriticality": "high",
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "/login"
+        ],
+        "confidence": 0.72,
+        "unknowns": []
+      }
+    },
+    {
+      "id": "login4-submit-invalid-credentials",
+      "name": "Submit invalid credentials",
+      "steps": [
+        {
+          "name": "Trigger route/view",
+          "expectedOutcome": "User enters module flow"
+        },
+        {
+          "name": "Validation and rule checks",
+          "expectedOutcome": "Invalid states are rejected"
+        },
+        {
+          "name": "Persistence/service action",
+          "expectedOutcome": "State is persisted consistently"
+        },
+        {
+          "name": "Response/UI transition",
+          "expectedOutcome": "User-visible behavior matches legacy"
+        }
+      ],
+      "preserveCriticality": "high",
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "/login"
+        ],
+        "confidence": 0.72,
+        "unknowns": []
+      }
+    },
+    {
+      "id": "login4-session-timeout-returns-to-login",
+      "name": "Session timeout returns to login",
+      "steps": [
+        {
+          "name": "Trigger route/view",
+          "expectedOutcome": "User enters module flow"
+        },
+        {
+          "name": "Validation and rule checks",
+          "expectedOutcome": "Invalid states are rejected"
+        },
+        {
+          "name": "Persistence/service action",
+          "expectedOutcome": "State is persisted consistently"
+        },
+        {
+          "name": "Response/UI transition",
+          "expectedOutcome": "User-visible behavior matches legacy"
+        }
+      ],
+      "preserveCriticality": "high",
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "/login"
+        ],
+        "confidence": 0.72,
+        "unknowns": []
+      }
+    }
+  ],
+  "businessRules": [
+    {
+      "id": "R-001",
+      "rule": "If credentials are invalid, stay on login page and show validation message",
+      "rationale": "Derived from discovered module assets and persistence/client-side signals.",
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "/login"
+        ],
+        "confidence": 0.74,
+        "unknowns": []
+      }
+    },
+    {
+      "id": "R-002",
+      "rule": "If credentials are valid, establish session and return authentication success response",
+      "rationale": "Derived from discovered module assets and persistence/client-side signals.",
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "/login"
+        ],
+        "confidence": 0.74,
+        "unknowns": []
+      }
+    },
+    {
+      "id": "R-003",
+      "rule": "If session is expired, protected routes redirect to login",
+      "rationale": "Derived from discovered module assets and persistence/client-side signals.",
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "/login"
+        ],
+        "confidence": 0.74,
+        "unknowns": []
+      }
+    }
+  ],
+  "dependencies": [
+    {
+      "name": "Converted web controllers",
+      "provenance": {
+        "type": "code-evidence",
+        "sources": [
+          "file-path-patterns"
+        ],
+        "confidence": 0.68,
+        "unknowns": []
+      }
+    },
+    {
+      "name": "Converted services",
+      "provenance": {
+        "type": "code-evidence",
+        "sources": [
+          "file-path-patterns"
+        ],
+        "confidence": 0.68,
+        "unknowns": []
+      }
+    }
+  ],
+  "mustPreserveBehaviors": [
+    {
+      "behavior": "Route and URL behavior parity for user-visible flows",
+      "criticality": "high",
+      "provenance": {
+        "type": "code-evidence",
+        "sources": [
+          "/login"
+        ],
+        "confidence": 0.8,
+        "unknowns": []
+      }
+    },
+    {
+      "behavior": "Validation/error message semantics from legacy behavior",
+      "criticality": "high",
+      "provenance": {
+        "type": "code-evidence",
+        "sources": [
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java"
+        ],
+        "confidence": 0.78,
+        "unknowns": []
+      }
+    },
+    {
+      "behavior": "Data mapping compatibility for persistence operations (Dapper case-sensitivity, ViewModel binding)",
+      "criticality": "high",
+      "provenance": {
+        "type": "code-evidence",
+        "sources": [
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Program.cs",
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Controllers/AuthController.cs",
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Views/Auth/Dashboard.cshtml",
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Views/Auth/Index.cshtml",
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Services/LoginService.cs"
+        ],
+        "confidence": 0.82,
+        "unknowns": []
+      }
+    },
+    {
+      "behavior": "Session/cookie handling and user context preservation across requests",
+      "criticality": "high",
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java"
+        ],
+        "confidence": 0.75,
+        "unknowns": []
+      }
+    },
+    {
+      "behavior": "Invalid credentials and session expiry handling (error codes, redirect targets)",
+      "criticality": "high",
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "/login"
+        ],
+        "confidence": 0.79,
+        "unknowns": []
+      }
+    }
+  ],
+  "relatedFiles": {
+    "legacyJava": [
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java"
+    ],
+    "legacyJsp": [
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp",
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app/index.jsp"
+    ],
+    "legacyJs": [],
+    "convertedCsharp": [
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Program.cs",
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Controllers/AuthController.cs",
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Views/Auth/Dashboard.cshtml",
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Views/Auth/Index.cshtml",
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Services/LoginService.cs"
+    ],
+    "testFiles": []
+  },
+  "dbInteractions": [],
+  "urls": [
+    "/login"
+  ],
+  "unknowns": [
+    "No DB touchpoint extracted; persistence parity must be confirmed with runtime logs."
+  ],
+  "confidence": 0.63,
+  "modulePurposeText": "Login4 module handles authentication and protected-page access flows. Java files discovered: 1. Key routes: /login",
+  "rules": [
+    "If credentials are invalid, stay on login page and show validation message",
+    "If credentials are valid, establish session and return authentication success response",
+    "If session is expired, protected routes redirect to login"
+  ],
+  "mustPreserve": [
+    "Route and URL behavior parity for user-visible flows",
+    "Validation/error message semantics from legacy behavior",
+    "Data mapping compatibility for persistence operations (Dapper case-sensitivity, ViewModel binding)",
+    "Session/cookie handling and user context preservation across requests",
+    "Invalid credentials and session expiry handling (error codes, redirect targets)"
+  ]
+}

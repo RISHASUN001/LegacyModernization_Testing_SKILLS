@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import json
 from pathlib import Path
 import sys
 
@@ -16,6 +17,39 @@ SPEC = {
     "stage": "test-plan",
     "requiredInputs": ["moduleName", "convertedSourceRoot"],
 }
+
+PROFILE_PATH = Path(__file__).resolve().parents[1] / "legacy-logic-extraction" / "module-profiles.json"
+
+
+def _load_profiles() -> list[dict]:
+    try:
+        payload = json.loads(PROFILE_PATH.read_text(encoding="utf-8"))
+    except Exception:
+        return []
+
+    profiles = payload.get("profiles") if isinstance(payload, dict) else []
+    if not isinstance(profiles, list):
+        return []
+    return [p for p in profiles if isinstance(p, dict)]
+
+
+def _detect_profile_ids(module_name: str, discovery: dict, profiles: list[dict]) -> list[str]:
+    haystack = " ".join(
+        [module_name]
+        + [str(x) for x in (discovery.get("urls") or [])]
+        + [str(x) for x in (discovery.get("javaFiles") or [])]
+        + [str(x) for x in (discovery.get("jspFiles") or [])]
+    ).lower()
+
+    matched: list[str] = []
+    for profile in profiles:
+        profile_id = str(profile.get("id") or "").strip()
+        tokens = [str(x).lower() for x in (profile.get("matchTokens") or []) if str(x).strip()]
+        if not profile_id or not tokens:
+            continue
+        if any(token in haystack for token in tokens):
+            matched.append(profile_id)
+    return matched
 
 
 def _load_lessons_kb(ctx) -> dict:
@@ -49,6 +83,15 @@ def execute(ctx):
     logic = ctx.load_artifact_json("legacy-logic-extraction", "logic-summary.json") or {}
     architecture = ctx.load_artifact_json("clean-architecture-assessment", "architecture-review.json") or {}
     lessons_kb = _load_lessons_kb(ctx)
+    profiles = _load_profiles()
+    matched_profile_ids = _detect_profile_ids(ctx.module_name, discovery, profiles)
+
+    module_tokens = [ctx.module_name.lower()]
+    for profile in profiles:
+        if str(profile.get("id") or "") not in matched_profile_ids:
+            continue
+        module_tokens.extend([str(x).lower() for x in (profile.get("matchTokens") or []) if str(x).strip()])
+    module_tokens = list(dict.fromkeys([t for t in module_tokens if t]))
 
     raw_urls = discovery.get("urls", []) or scope.get("urls", [])
     urls = []
@@ -60,6 +103,8 @@ def execute(ctx):
         if lower.startswith("/views/") or lower.startswith("/wwwroot/"):
             continue
         if any(lower.endswith(ext) for ext in [".cshtml", ".jsp", ".java", ".js", ".ts", ".json", ".xml", ".md"]):
+            continue
+        if not any(token in lower for token in module_tokens):
             continue
         urls.append(text)
     workflows = logic.get("workflows", []) if isinstance(logic.get("workflows"), list) else []
@@ -84,6 +129,11 @@ def execute(ctx):
 
     workflow_names = [str(w.get("name") or "") if isinstance(w, dict) else str(w) for w in workflows]
     workflow_names = [w for w in workflow_names if w]
+    if matched_profile_ids:
+        workflow_names = [
+            w for w in workflow_names
+            if any(token in w.lower() for token in module_tokens)
+        ] or workflow_names
     preserve_names = [m.get("behavior", "") if isinstance(m, dict) else str(m) for m in must_preserve]
     preserve_names = [p for p in preserve_names if p]
 

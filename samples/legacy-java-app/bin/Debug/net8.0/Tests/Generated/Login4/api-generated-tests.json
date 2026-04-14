@@ -1,0 +1,117 @@
+{
+  "moduleName": "Login4",
+  "category": "API",
+  "lastRunId": "login4-test-20260414-002723",
+  "generatedCount": 4,
+  "generatedTests": [
+    {
+      "id": "api-gen-001",
+      "category": "API",
+      "name": "API robustness generated case 1 for Login4",
+      "coverage": [
+        "robustness",
+        "fallback"
+      ],
+      "priority": "medium",
+      "given": "Given the Login4 module is configured and reachable",
+      "when": "When executing generated scenario: API robustness generated case 1 for Login4",
+      "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
+      "generatedFrom": [
+        "fallback:insufficient-discovery-evidence"
+      ],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "id": "api-gen-002",
+      "category": "API",
+      "name": "API robustness generated case 2 for Login4",
+      "coverage": [
+        "robustness",
+        "fallback"
+      ],
+      "priority": "medium",
+      "given": "Given the Login4 module is configured and reachable",
+      "when": "When executing generated scenario: API robustness generated case 2 for Login4",
+      "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
+      "generatedFrom": [
+        "fallback:insufficient-discovery-evidence"
+      ],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "id": "api-gen-003",
+      "category": "API",
+      "name": "API robustness generated case 3 for Login4",
+      "coverage": [
+        "robustness",
+        "fallback"
+      ],
+      "priority": "medium",
+      "given": "Given the Login4 module is configured and reachable",
+      "when": "When executing generated scenario: API robustness generated case 3 for Login4",
+      "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
+      "generatedFrom": [
+        "fallback:insufficient-discovery-evidence"
+      ],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "id": "api-gen-004",
+      "category": "API",
+      "name": "API robustness generated case 4 for Login4",
+      "coverage": [
+        "robustness",
+        "fallback"
+      ],
+      "priority": "medium",
+      "given": "Given the Login4 module is configured and reachable",
+      "when": "When executing generated scenario: API robustness generated case 4 for Login4",
+      "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
+      "generatedFrom": [
+        "fallback:insufficient-discovery-evidence"
+      ],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    }
+  ],
+  "notes": "Persistent generated tests used to improve robustness on future iterations."
+}

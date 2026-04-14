@@ -1,0 +1,146 @@
+{
+  "moduleName": "Login4",
+  "runId": "login4-test-20260414-002723",
+  "parityScore": 100,
+  "checkedItems": {
+    "mustPreserve": 5,
+    "urls": 1,
+    "dbTouchpoints": 0,
+    "executionSkills": 7,
+    "legacyQueries": 0,
+    "convertedQueries": 0,
+    "matchedQueries": 0
+  },
+  "checks": [
+    {
+      "name": "Route and URL behavior parity for user-visible flows",
+      "status": "passed",
+      "evidence": {
+        "failedExecutionSkills": [],
+        "relatedUrls": [
+          "/login"
+        ],
+        "relatedDbTouchpoints": []
+      },
+      "provenance": {
+        "type": "code-evidence",
+        "sources": [
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-discovery/discovery-map.json"
+        ],
+        "confidence": 0.8,
+        "unknowns": []
+      }
+    },
+    {
+      "name": "Validation/error message semantics from legacy behavior",
+      "status": "passed",
+      "evidence": {
+        "failedExecutionSkills": [],
+        "relatedUrls": [
+          "/login"
+        ],
+        "relatedDbTouchpoints": []
+      },
+      "provenance": {
+        "type": "code-evidence",
+        "sources": [
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-discovery/discovery-map.json"
+        ],
+        "confidence": 0.78,
+        "unknowns": []
+      }
+    },
+    {
+      "name": "Data mapping compatibility for persistence operations (Dapper case-sensitivity, ViewModel binding)",
+      "status": "passed",
+      "evidence": {
+        "failedExecutionSkills": [],
+        "relatedUrls": [
+          "/login"
+        ],
+        "relatedDbTouchpoints": []
+      },
+      "provenance": {
+        "type": "code-evidence",
+        "sources": [
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-discovery/discovery-map.json"
+        ],
+        "confidence": 0.82,
+        "unknowns": []
+      }
+    },
+    {
+      "name": "Session/cookie handling and user context preservation across requests",
+      "status": "passed",
+      "evidence": {
+        "failedExecutionSkills": [],
+        "relatedUrls": [
+          "/login"
+        ],
+        "relatedDbTouchpoints": []
+      },
+      "provenance": {
+        "type": "code-evidence",
+        "sources": [
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-discovery/discovery-map.json"
+        ],
+        "confidence": 0.75,
+        "unknowns": []
+      }
+    },
+    {
+      "name": "Invalid credentials and session expiry handling (error codes, redirect targets)",
+      "status": "passed",
+      "evidence": {
+        "failedExecutionSkills": [],
+        "relatedUrls": [
+          "/login"
+        ],
+        "relatedDbTouchpoints": []
+      },
+      "provenance": {
+        "type": "code-evidence",
+        "sources": [
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-discovery/discovery-map.json"
+        ],
+        "confidence": 0.79,
+        "unknowns": []
+      }
+    },
+    {
+      "name": "SQL/table parity between legacy and converted code",
+      "status": "passed",
+      "evidence": {
+        "legacyQueryCount": 0,
+        "convertedQueryCount": 0,
+        "matchedCount": 0,
+        "missingCount": 0
+      },
+      "provenance": {
+        "type": "code-evidence",
+        "sources": [
+          "module-scope:legacy+converted",
+          "sql-pattern-extraction"
+        ],
+        "confidence": 0.78,
+        "unknowns": []
+      }
+    }
+  ],
+  "sqlParity": {
+    "legacyQueryCount": 0,
+    "convertedQueryCount": 0,
+    "matchedCount": 0,
+    "tableMatches": [],
+    "beforeAfter": []
+  },
+  "gaps": [
+    "No DB touchpoint evidence; persistence parity validation confidence reduced."
+  ],
+  "confidence": 0.81
+}

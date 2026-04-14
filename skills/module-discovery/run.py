@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+import json
 import re
 import sys
 
@@ -24,6 +25,48 @@ def _with_provenance(path: str, sources: list[str], confidence: float) -> dict:
         "path": path,
         "provenance": make_provenance("code-evidence", sources=sources, confidence=confidence),
     }
+
+
+def _load_module_profiles() -> list[dict]:
+    profile_path = Path(__file__).resolve().parents[1] / "legacy-logic-extraction" / "module-profiles.json"
+    try:
+        payload = json.loads(profile_path.read_text(encoding="utf-8"))
+    except Exception:
+        return []
+    profiles = payload.get("profiles") if isinstance(payload, dict) else []
+    if not isinstance(profiles, list):
+        return []
+    return [p for p in profiles if isinstance(p, dict)]
+
+
+def _module_jsp_tokens(module_name: str, routes: list[str]) -> list[str]:
+    base_tokens = [
+        "form",
+        "edit",
+        "view",
+        "create",
+        "details",
+        "index",
+    ]
+
+    profiles = _load_module_profiles()
+    haystack = " ".join([module_name] + [str(x) for x in routes]).lower()
+    for profile in profiles:
+        tokens = [str(x).strip().lower() for x in (profile.get("matchTokens") or []) if str(x).strip()]
+        if tokens and any(token in haystack for token in tokens):
+            base_tokens.extend(tokens)
+
+    module_parts = [part.strip().lower() for part in re.split(r"[^a-zA-Z0-9]+", module_name) if part.strip()]
+    base_tokens.extend(module_parts)
+
+    deduped: list[str] = []
+    seen: set[str] = set()
+    for token in base_tokens:
+        if token in seen:
+            continue
+        seen.add(token)
+        deduped.append(token)
+    return deduped
 
 
 def _hint_entrypoints(scope: dict, module_name: str) -> list[dict]:
@@ -55,7 +98,9 @@ def _hint_entrypoints(scope: dict, module_name: str) -> list[dict]:
             }
         )
 
-    jsp_forms = [p for p in scope.get("jspFiles", []) if re.search(r"(index|login|form|edit|view)", p, re.IGNORECASE)]
+    jsp_tokens = _module_jsp_tokens(module_name, routes)
+    jsp_pattern = "(" + "|".join(re.escape(token) for token in jsp_tokens) + ")"
+    jsp_forms = [p for p in scope.get("jspFiles", []) if re.search(jsp_pattern, p, re.IGNORECASE)]
     for path in jsp_forms[:40]:
         entrypoints.append(
             {

@@ -1,0 +1,204 @@
+{
+  "moduleName": "Login4",
+  "category": "Edge Case",
+  "lastRunId": "login4-test-20260414-002723",
+  "generatedCount": 7,
+  "generatedTests": [
+    {
+      "id": "edge-case-gen-001",
+      "category": "Edge Case",
+      "name": "Edge resilience: Route and URL behavior parity for user-visible flows",
+      "coverage": [
+        "edge-case",
+        "recovery",
+        "resilience"
+      ],
+      "priority": "medium",
+      "given": "Given the Login4 module is configured and reachable",
+      "when": "When executing generated scenario: Edge resilience: Route and URL behavior parity for user-visible flows",
+      "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
+      "generatedFrom": [
+        "preserve:Route and URL behavior parity for user-visible flows"
+      ],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "id": "edge-case-gen-002",
+      "category": "Edge Case",
+      "name": "Edge resilience: Validation/error message semantics from legacy behavior",
+      "coverage": [
+        "edge-case",
+        "recovery",
+        "resilience"
+      ],
+      "priority": "medium",
+      "given": "Given the Login4 module is configured and reachable",
+      "when": "When executing generated scenario: Edge resilience: Validation/error message semantics from legacy behavior",
+      "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
+      "generatedFrom": [
+        "preserve:Validation/error message semantics from legacy behavior"
+      ],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "id": "edge-case-gen-003",
+      "category": "Edge Case",
+      "name": "Edge resilience: Data mapping compatibility for persistence operations (Dapper case-sensitivity, ViewModel binding)",
+      "coverage": [
+        "edge-case",
+        "recovery",
+        "resilience"
+      ],
+      "priority": "medium",
+      "given": "Given the Login4 module is configured and reachable",
+      "when": "When executing generated scenario: Edge resilience: Data mapping compatibility for persistence operations (Dapper case-sensitivity, ViewModel binding)",
+      "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
+      "generatedFrom": [
+        "preserve:Data mapping compatibility for persistence operations (Dapper case-sensitivity, ViewModel binding)"
+      ],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "id": "edge-case-gen-004",
+      "category": "Edge Case",
+      "name": "Edge resilience: Session/cookie handling and user context preservation across requests",
+      "coverage": [
+        "edge-case",
+        "recovery",
+        "resilience"
+      ],
+      "priority": "medium",
+      "given": "Given the Login4 module is configured and reachable",
+      "when": "When executing generated scenario: Edge resilience: Session/cookie handling and user context preservation across requests",
+      "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
+      "generatedFrom": [
+        "preserve:Session/cookie handling and user context preservation across requests"
+      ],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "id": "edge-case-gen-005",
+      "category": "Edge Case",
+      "name": "Edge retry/timeout behavior: Open login page",
+      "coverage": [
+        "retry",
+        "timeout",
+        "idempotency"
+      ],
+      "priority": "medium",
+      "given": "Given the Login4 module is configured and reachable",
+      "when": "When executing generated scenario: Edge retry/timeout behavior: Open login page",
+      "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
+      "generatedFrom": [
+        "flow:Open login page"
+      ],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "id": "edge-case-gen-006",
+      "category": "Edge Case",
+      "name": "Edge retry/timeout behavior: Submit valid credentials",
+      "coverage": [
+        "retry",
+        "timeout",
+        "idempotency"
+      ],
+      "priority": "medium",
+      "given": "Given the Login4 module is configured and reachable",
+      "when": "When executing generated scenario: Edge retry/timeout behavior: Submit valid credentials",
+      "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
+      "generatedFrom": [
+        "flow:Submit valid credentials"
+      ],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "id": "edge-case-gen-004",
+      "category": "Edge Case",
+      "name": "Edge Case robustness generated case 1 for Login4",
+      "coverage": [
+        "robustness",
+        "fallback"
+      ],
+      "priority": "medium",
+      "given": "Given the Login4 module is configured and reachable",
+      "when": "When executing generated scenario: Edge Case robustness generated case 1 for Login4",
+      "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
+      "generatedFrom": [
+        "fallback:insufficient-discovery-evidence"
+      ],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    }
+  ],
+  "notes": "Persistent generated tests used to improve robustness on future iterations."
+}

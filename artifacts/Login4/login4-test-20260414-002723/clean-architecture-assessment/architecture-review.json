@@ -1,0 +1,21 @@
+{
+  "moduleName": "Login4",
+  "cleanArchitectureIssues": [],
+  "namespaceFolderIssues": [],
+  "diIssues": [
+    {
+      "title": "Missing explicit DI registration signals for module 'Login4'",
+      "severity": "high",
+      "evidence": "Program/Startup scan did not find module-specific AddScoped/AddTransient registrations."
+    }
+  ],
+  "couplingIssues": [],
+  "recommendedStructure": [
+    "Modules/Login4/Application for use cases and contracts",
+    "Modules/Login4/Infrastructure for persistence and external adapters",
+    "Modules/Login4/Web for controllers and view models",
+    "Composition root (Program/Startup) for DI wiring only"
+  ],
+  "confidence": 0.79,
+  "unknowns": []
+}

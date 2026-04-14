@@ -1,0 +1,48 @@
+{
+  "baseUrl": {
+    "provided": "http://localhost:5001",
+    "normalized": "http://localhost:5001",
+    "ok": true,
+    "reason": "ok"
+  },
+  "testApi": {
+    "provided": "http://localhost:5001/api/test",
+    "selectedEndpoint": "http://127.0.0.1:5000/api/test",
+    "selectedSource": "dashboard-fallback",
+    "status": "fallback-attached",
+    "reason": "http-status-403",
+    "autoProvisioned": true
+  },
+  "checks": [
+    {
+      "source": "provided",
+      "endpoint": "http://localhost:5001/api/test",
+      "healthUrl": "http://localhost:5001/api/test/health",
+      "reachable": true,
+      "statusCode": 404,
+      "reason": "http-error-404",
+      "healthy": false,
+      "endpointPresent": false
+    },
+    {
+      "source": "dashboard-fallback",
+      "endpoint": "http://localhost:5000/api/test",
+      "healthUrl": "http://localhost:5000/api/test/health",
+      "reachable": true,
+      "statusCode": 403,
+      "reason": "http-error-403",
+      "healthy": false,
+      "endpointPresent": true
+    },
+    {
+      "source": "dashboard-fallback",
+      "endpoint": "http://127.0.0.1:5000/api/test",
+      "healthUrl": "http://127.0.0.1:5000/api/test/health",
+      "reachable": true,
+      "statusCode": 403,
+      "reason": "http-error-403",
+      "healthy": false,
+      "endpointPresent": true
+    }
+  ]
+}

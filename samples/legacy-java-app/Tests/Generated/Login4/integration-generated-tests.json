@@ -1,0 +1,171 @@
+{
+  "moduleName": "Login4",
+  "category": "Integration",
+  "lastRunId": "login4-test-20260414-002723",
+  "generatedCount": 6,
+  "generatedTests": [
+    {
+      "id": "integration-gen-001",
+      "category": "Integration",
+      "name": "Integration workflow: Open login page",
+      "coverage": [
+        "service-repository",
+        "transaction"
+      ],
+      "priority": "medium",
+      "given": "Given the Login4 module is configured and reachable",
+      "when": "When executing generated scenario: Integration workflow: Open login page",
+      "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
+      "generatedFrom": [
+        "flow:Open login page"
+      ],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "id": "integration-gen-002",
+      "category": "Integration",
+      "name": "Integration workflow: Submit valid credentials",
+      "coverage": [
+        "service-repository",
+        "transaction"
+      ],
+      "priority": "medium",
+      "given": "Given the Login4 module is configured and reachable",
+      "when": "When executing generated scenario: Integration workflow: Submit valid credentials",
+      "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
+      "generatedFrom": [
+        "flow:Submit valid credentials"
+      ],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "id": "integration-gen-003",
+      "category": "Integration",
+      "name": "Integration workflow: Submit invalid credentials",
+      "coverage": [
+        "service-repository",
+        "transaction"
+      ],
+      "priority": "medium",
+      "given": "Given the Login4 module is configured and reachable",
+      "when": "When executing generated scenario: Integration workflow: Submit invalid credentials",
+      "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
+      "generatedFrom": [
+        "flow:Submit invalid credentials"
+      ],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "id": "integration-gen-004",
+      "category": "Integration",
+      "name": "Integration workflow: Session timeout returns to login",
+      "coverage": [
+        "service-repository",
+        "transaction"
+      ],
+      "priority": "medium",
+      "given": "Given the Login4 module is configured and reachable",
+      "when": "When executing generated scenario: Integration workflow: Session timeout returns to login",
+      "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
+      "generatedFrom": [
+        "flow:Session timeout returns to login"
+      ],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "id": "integration-gen-005",
+      "category": "Integration",
+      "name": "Integration contract route: /login",
+      "coverage": [
+        "http-contract",
+        "persistence"
+      ],
+      "priority": "medium",
+      "given": "Given the Login4 module is configured and reachable",
+      "when": "When executing generated scenario: Integration contract route: /login",
+      "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
+      "generatedFrom": [
+        "route:/login"
+      ],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "id": "integration-gen-004",
+      "category": "Integration",
+      "name": "Integration robustness generated case 1 for Login4",
+      "coverage": [
+        "robustness",
+        "fallback"
+      ],
+      "priority": "medium",
+      "given": "Given the Login4 module is configured and reachable",
+      "when": "When executing generated scenario: Integration robustness generated case 1 for Login4",
+      "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
+      "generatedFrom": [
+        "fallback:insufficient-discovery-evidence"
+      ],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    }
+  ],
+  "notes": "Persistent generated tests used to improve robustness on future iterations."
+}

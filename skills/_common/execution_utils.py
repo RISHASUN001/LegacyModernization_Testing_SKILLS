@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import os
 import re
 import shutil
 import urllib.error
@@ -12,6 +13,31 @@ from typing import Any
 
 from skill_logic import parse_test_counts
 from skill_runtime import make_provenance
+
+_MODULE_PROFILE_PATH = Path(__file__).resolve().parents[1] / "legacy-logic-extraction" / "module-profiles.json"
+_RUNTIME_DEFAULTS_PATH = Path(__file__).resolve().parent / "runtime-defaults.json"
+
+
+def _load_runtime_defaults() -> dict[str, Any]:
+    try:
+        payload = json.loads(_RUNTIME_DEFAULTS_PATH.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+    return payload if isinstance(payload, dict) else {}
+
+
+def _default_dashboard_fallbacks() -> list[str]:
+    configured = os.getenv("LEGACYMOD_TEST_API_FALLBACKS", "").strip()
+    if configured:
+        return [item.strip() for item in configured.split(",") if item.strip()]
+
+    defaults = _load_runtime_defaults()
+    configured_defaults = defaults.get("dashboardTestApiFallbacks") if isinstance(defaults, dict) else None
+    if isinstance(configured_defaults, list):
+        extracted = [str(item).strip() for item in configured_defaults if str(item).strip()]
+        if extracted:
+            return extracted
+    return []
 
 
 def _command_available(command: list[str]) -> bool:
@@ -46,8 +72,126 @@ def normalize_absolute_base_url(base_url: str) -> tuple[bool, str, str]:
     parsed = urllib.parse.urlparse(candidate)
     if parsed.scheme not in {"http", "https"} or not parsed.netloc:
         return False, "", "baseUrl must be an absolute http/https URL"
-    normalized = f"{parsed.scheme}://{parsed.netloc}"
+    netloc = parsed.netloc
+    host = parsed.hostname or ""
+    if host in {"0.0.0.0", "::", "[::]"}:
+        replacement = "localhost"
+        if parsed.port:
+            netloc = f"{replacement}:{parsed.port}"
+        else:
+            netloc = replacement
+    normalized = f"{parsed.scheme}://{netloc}"
     return True, normalized.rstrip("/"), ""
+
+
+def _normalize_absolute_url(url: str) -> tuple[bool, str, str]:
+    candidate = (url or "").strip()
+    parsed = urllib.parse.urlparse(candidate)
+    if parsed.scheme not in {"http", "https"} or not parsed.netloc:
+        return False, "", "url must be an absolute http/https URL"
+
+    netloc = parsed.netloc
+    host = parsed.hostname or ""
+    if host in {"0.0.0.0", "::", "[::]"}:
+        replacement = "localhost"
+        if parsed.port:
+            netloc = f"{replacement}:{parsed.port}"
+        else:
+            netloc = replacement
+
+    path = parsed.path.rstrip("/")
+    normalized = f"{parsed.scheme}://{netloc}{path}"
+    return True, normalized, ""
+
+
+def resolve_test_api_endpoint(
+    *,
+    base_url_input: str,
+    test_api_endpoint_input: str,
+    dashboard_fallbacks: list[str] | None = None,
+) -> dict[str, Any]:
+    base_ok, normalized_base_url, base_reason = normalize_absolute_base_url(base_url_input)
+    provided = (test_api_endpoint_input or "").strip().rstrip("/")
+
+    candidates: list[tuple[str, str]] = []
+
+    if provided:
+        provided_ok, provided_normalized, _ = _normalize_absolute_url(provided)
+        if provided_ok:
+            candidates.append(("provided", provided_normalized.rstrip("/")))
+
+    if base_ok:
+        candidates.append(("base-derived", f"{normalized_base_url}/api/test"))
+
+    for fallback in dashboard_fallbacks or _default_dashboard_fallbacks():
+        fallback_ok, fallback_normalized, _ = _normalize_absolute_url(fallback)
+        if fallback_ok:
+            candidates.append(("dashboard-fallback", fallback_normalized.rstrip("/")))
+
+    deduped: list[tuple[str, str]] = []
+    seen_endpoints: set[str] = set()
+    for source, endpoint in candidates:
+        key = endpoint.lower()
+        if key in seen_endpoints:
+            continue
+        seen_endpoints.add(key)
+        deduped.append((source, endpoint))
+
+    checks: list[dict[str, Any]] = []
+    selected_source = ""
+    selected_endpoint = provided or (f"{normalized_base_url}/api/test" if base_ok else "")
+    selected_status = "missing"
+    selected_reason = "test-api-unreachable"
+
+    for source, endpoint in deduped:
+        health_url = f"{endpoint}/health"
+        reachable, status_code, reason = check_reachability(health_url)
+        status = int(status_code)
+        healthy = reachable and 200 <= status < 300
+        endpoint_present = reachable and status not in {0, 404} and status < 500
+        checks.append(
+            {
+                "source": source,
+                "endpoint": endpoint,
+                "healthUrl": health_url,
+                "reachable": reachable,
+                "statusCode": status_code,
+                "reason": reason,
+                "healthy": healthy,
+                "endpointPresent": endpoint_present,
+            }
+        )
+        if healthy or endpoint_present:
+            selected_source = source
+            selected_endpoint = endpoint
+            selected_status = "present" if source != "dashboard-fallback" else "fallback-attached"
+            selected_reason = "reachable" if healthy else f"http-status-{status}"
+        if healthy:
+            break
+
+    if not selected_source and checks:
+        first = checks[0]
+        selected_source = str(first.get("source") or "provided")
+        selected_endpoint = str(first.get("endpoint") or selected_endpoint)
+        selected_reason = str(first.get("reason") or selected_reason)
+
+    return {
+        "baseUrl": {
+            "provided": base_url_input,
+            "normalized": normalized_base_url,
+            "ok": base_ok,
+            "reason": base_reason if not base_ok else "ok",
+        },
+        "testApi": {
+            "provided": provided,
+            "selectedEndpoint": selected_endpoint,
+            "selectedSource": selected_source,
+            "status": selected_status,
+            "reason": selected_reason,
+            "autoProvisioned": selected_status == "fallback-attached",
+        },
+        "checks": checks,
+    }
 
 
 def normalize_route(base_url: str, route: str) -> str:
@@ -110,6 +254,30 @@ def _scenario_item(
         "generatedFrom": generated_from or [],
         "provenance": make_provenance(provenance_type, sources=sources, confidence=confidence),
     }
+
+
+def _load_module_profiles() -> list[dict[str, Any]]:
+    try:
+        payload = json.loads(_MODULE_PROFILE_PATH.read_text(encoding="utf-8"))
+    except Exception:
+        return []
+    profiles = payload.get("profiles") if isinstance(payload, dict) else []
+    if not isinstance(profiles, list):
+        return []
+    return [p for p in profiles if isinstance(p, dict)]
+
+
+def _detect_profile_ids(module_name: str, urls: list[str], profiles: list[dict[str, Any]]) -> list[str]:
+    haystack = " ".join([module_name] + urls).lower()
+    matched: list[str] = []
+    for profile in profiles:
+        profile_id = str(profile.get("id") or "").strip()
+        tokens = [str(x).lower() for x in (profile.get("matchTokens") or []) if str(x).strip()]
+        if not profile_id or not tokens:
+            continue
+        if any(token in haystack for token in tokens):
+            matched.append(profile_id)
+    return matched
 
 
 def scenarios_from_test_plan(
@@ -230,14 +398,45 @@ def _slugify(value: str) -> str:
     return slug or "category"
 
 
+def _canonical_scenario_key(name: str) -> str:
+    text = (name or "").strip().lower()
+    if not text:
+        return ""
+
+    prefixes = [
+        "integration flow parity:",
+        "integration workflow:",
+        "journey parity:",
+        "e2e robust path:",
+        "browser runtime validation for",
+        "unit guard:",
+        "unit parity guard:",
+        "edge resilience:",
+        "edge retry/timeout behavior:",
+        "api contract route:",
+        "integration contract route:",
+        "e2e route resilience:",
+        "must-preserve edge behavior:",
+        "regression reuse:",
+    ]
+    for prefix in prefixes:
+        if text.startswith(prefix):
+            text = text[len(prefix):].strip()
+            break
+
+    text = re.sub(r"\s+", " ", text)
+    return text
+
+
 def _dedupe_scenarios(scenarios: list[dict[str, Any]]) -> list[dict[str, Any]]:
     seen: set[str] = set()
     deduped: list[dict[str, Any]] = []
     for scenario in scenarios:
-        name = str(scenario.get("name") or "").strip().lower()
-        if not name or name in seen:
+        raw_name = str(scenario.get("name") or "").strip()
+        key = _canonical_scenario_key(raw_name)
+        if not key or key in seen:
             continue
-        seen.add(name)
+        seen.add(key)
         deduped.append(scenario)
     return deduped
 
@@ -300,10 +499,11 @@ def _persist_generated_tests_to_repo(ctx, category: str, blueprints: list[dict[s
     merged: list[dict[str, Any]] = []
     seen: set[str] = set()
     for item in [*existing, *blueprints]:
-        name = str(item.get("name") or "").strip().lower()
-        if not name or name in seen:
+        raw_name = str(item.get("name") or "").strip()
+        key = _canonical_scenario_key(raw_name)
+        if not key or key in seen:
             continue
-        seen.add(name)
+        seen.add(key)
         merged.append(item)
 
     payload = {
@@ -360,6 +560,34 @@ def _load_generation_evidence(ctx) -> dict[str, Any]:
             elif isinstance(item, str) and item.strip():
                 extracted_preserve.append(item.strip())
 
+    profiles = _load_module_profiles()
+    incoming_urls = [str(u) for u in (urls if isinstance(urls, list) else []) if str(u).strip()]
+    matched_profile_ids = _detect_profile_ids(ctx.module_name, incoming_urls, profiles)
+    auth_module = "auth" in matched_profile_ids
+    auth_route_prefixes: list[str] = []
+    if auth_module:
+        for profile in profiles:
+            profile_id = str(profile.get("id") or "").strip()
+            if profile_id != "auth":
+                continue
+            raw_prefixes = profile.get("routePrefixes") if isinstance(profile.get("routePrefixes"), list) else []
+            auth_route_prefixes = [str(x).strip().lower() for x in raw_prefixes if str(x).strip()]
+            break
+
+    if auth_module:
+        extracted_workflows = [w for w in extracted_workflows if "dashboard" not in w.lower() and "home" not in w.lower()]
+        extracted_rules = [r for r in extracted_rules if "dashboard" not in r.lower() and "home/dashboard" not in r.lower()]
+        filtered_urls = []
+        for route in [str(u) for u in (urls if isinstance(urls, list) else []) if str(u).strip()]:
+            lower = route.lower()
+            if "dashboard" in lower:
+                continue
+            if any(lower.startswith(prefix) for prefix in auth_route_prefixes):
+                filtered_urls.append(route)
+        urls_out = filtered_urls
+    else:
+        urls_out = incoming_urls
+
     evidence_sources = [
         "artifact:test-plan-generation/test-plan.json",
         "artifact:module-discovery/discovery-map.json",
@@ -368,12 +596,13 @@ def _load_generation_evidence(ctx) -> dict[str, Any]:
     ]
 
     return {
-        "urls": [str(u) for u in (urls if isinstance(urls, list) else []) if str(u).strip()],
+        "urls": urls_out,
         "workflows": extracted_workflows,
         "rules": extracted_rules,
         "preserve": extracted_preserve,
         "docSignals": list(documentation.keys()) if isinstance(documentation, dict) else [],
         "sources": evidence_sources,
+        "profileIds": matched_profile_ids,
     }
 
 
@@ -394,8 +623,19 @@ def _make_generated_blueprints(
     preserve = evidence["preserve"]
     urls = evidence["urls"]
     historical_generated = _load_repo_generated_test_names(ctx, category)
+    auth_module = "auth" in [str(x) for x in evidence.get("profileIds", [])]
+
+    existing_keys = {
+        _canonical_scenario_key(str(item.get("name") or ""))
+        for item in base_scenarios
+        if _canonical_scenario_key(str(item.get("name") or ""))
+    }
 
     def add_generated(name: str, coverage: list[str], generated_from: list[str]) -> None:
+        key = _canonical_scenario_key(name)
+        if not key or key in existing_keys:
+            return
+        existing_keys.add(key)
         generated.append(
             _scenario_item(
                 name=name,
@@ -461,12 +701,13 @@ def _make_generated_blueprints(
                 [f"flow:{flow}"],
             )
 
-    for historic in historical_generated[:4]:
-        add_generated(
-            f"Regression reuse: {historic}",
-            ["regression", "historical-learning"],
-            [f"history:{historic}"],
-        )
+    if not auth_module:
+        for historic in historical_generated[:2]:
+            add_generated(
+                f"Regression reuse: {historic}",
+                ["regression", "historical-learning"],
+                [f"history:{historic}"],
+            )
 
     # Ensure minimum generated coverage exists even with sparse discovery evidence.
     idx = 1

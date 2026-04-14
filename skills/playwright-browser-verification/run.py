@@ -13,7 +13,7 @@ if str(COMMON) not in sys.path:
     sys.path.insert(0, str(COMMON))
 
 from skill_runtime import run_python_skill
-from execution_utils import command_candidates_from_payload, run_test_category
+from execution_utils import command_candidates_from_payload, run_test_category, resolve_test_api_endpoint
 
 SPEC = {
     "name": "playwright-browser-verification",
@@ -33,7 +33,17 @@ def _fetch_json(url: str, timeout: int = 5):
 def execute(ctx):
     converted_root = str(ctx.get("convertedSourceRoot") or "")
     base_url = str(ctx.get("baseUrl") or "").rstrip("/")
-    test_api_endpoint = str(ctx.get("testApiEndpoint") or f"{base_url}/api/test").rstrip("/")
+    endpoint_resolution = resolve_test_api_endpoint(
+        base_url_input=base_url,
+        test_api_endpoint_input=str(ctx.get("testApiEndpoint") or ""),
+    )
+    test_api_node = endpoint_resolution.get("testApi", {})
+    test_api_endpoint = str(test_api_node.get("selectedEndpoint") or "").rstrip("/")
+    test_api_status = str(test_api_node.get("status") or "missing")
+    test_api_source = str(test_api_node.get("selectedSource") or "")
+    test_api_auto_provisioned = bool(test_api_node.get("autoProvisioned"))
+
+    ctx.write_json("test-api-bootstrap.json", endpoint_resolution)
 
     commands = command_candidates_from_payload(ctx.payload, ["testCommands.playwright", "commands.playwright"])
 
@@ -58,8 +68,10 @@ def execute(ctx):
         {
             "endpoint": test_api_endpoint,
             "healthUrl": f"{test_api_endpoint}/health",
-            "status": "present" if test_api_present else "missing",
+            "status": test_api_status if test_api_status != "missing" else ("present" if test_api_present else "missing"),
             "reason": test_api_reason,
+            "source": test_api_source,
+            "autoProvisioned": test_api_auto_provisioned,
             "payload": test_api_health_payload if isinstance(test_api_health_payload, dict) else {},
         },
     )
@@ -135,6 +147,14 @@ def execute(ctx):
                 "evidence": "Playwright skill depends on evidence endpoint data for console/network/runtime context.",
             }
         )
+    elif test_api_auto_provisioned:
+        result.setdefault("recommendations", []).append(
+            {
+                "message": "Playwright used dashboard fallback /api/test endpoint; create module-hosted /api/test for environment-specific diagnostics.",
+                "priority": "medium",
+                "evidence": f"Selected source: {test_api_source}",
+            }
+        )
 
     failed = int(result.get("metrics", {}).get("failed", 0))
     failed += len([m for m in console_messages if str(m.get("level", "")).lower() == "error"])
@@ -158,7 +178,7 @@ def execute(ctx):
         f"Playwright/browser verification for {ctx.module_name}: "
         f"{result['metrics']['passed']} passed, {result['metrics']['failed']} failed, "
         f"consoleErrors={len([m for m in console_messages if str(m.get('level', '')).lower() == 'error'])}, "
-        f"networkFailures={len(failed_requests)}."
+        f"networkFailures={len(failed_requests)}, testApiSource={test_api_source or 'n/a'}."
     )
 
     result["provenanceSummary"] = {

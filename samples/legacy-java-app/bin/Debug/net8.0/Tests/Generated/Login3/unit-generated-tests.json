@@ -2,7 +2,7 @@
   "moduleName": "Login3",
   "category": "Unit",
   "lastRunId": "Login3-Test001",
-  "generatedCount": 11,
+  "generatedCount": 12,
   "generatedTests": [
     {
       "id": "unit-gen-001",
@@ -288,6 +288,33 @@
       "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
       "generatedFrom": [
         "rule:If session is expired, protected routes redirect to login"
+      ],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "id": "unit-gen-002",
+      "category": "Unit",
+      "name": "Unit guard: If credentials are valid, establish session and return authentication success response",
+      "coverage": [
+        "rule-validation",
+        "deterministic-behavior"
+      ],
+      "priority": "medium",
+      "given": "Given the Login3 module is configured and reachable",
+      "when": "When executing generated scenario: Unit guard: If credentials are valid, establish session and return authentication success response",
+      "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
+      "generatedFrom": [
+        "rule:If credentials are valid, establish session and return authentication success response"
       ],
       "provenance": {
         "type": "inferred",

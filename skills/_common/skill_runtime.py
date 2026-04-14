@@ -52,6 +52,8 @@ _TEXT_FILE_SUFFIXES = {
 _URL_RE = re.compile(r"(/[-A-Za-z0-9_./]+(?:\.do|\.jsp|\.action|\.aspx|\.json|\.html|\.htm)?)")
 _DB_TOUCHPOINT_RE = re.compile(r"\b([A-Z][A-Z0-9_]{2,}\.[A-Z][A-Z0-9_]{2,})\b")
 _SQL_TABLE_RE = re.compile(r"\b(?:FROM|JOIN|INTO|UPDATE)\s+([A-Z_][A-Z0-9_]{2,})\b", re.IGNORECASE)
+_ROUTE_PREFIX_RE = re.compile(r"\[\s*Route\s*\(\s*\"([^\"]+)\"\s*\)\s*\]", re.IGNORECASE)
+_HTTP_ROUTE_RE = re.compile(r"\[\s*Http(?:Get|Post|Put|Delete|Patch|Head|Options)\s*\(\s*\"([^\"]*)\"\s*\)\s*\]", re.IGNORECASE)
 
 PROVENANCE_TYPES = {
     "code-evidence",
@@ -240,6 +242,45 @@ def _valid_url_candidate(value: str) -> bool:
     return True
 
 
+def _normalize_route_template(template: str) -> str:
+    route = (template or "").strip()
+    if not route:
+        return ""
+    route = route.replace("[controller]", "controller")
+    route = route.replace("[action]", "action")
+    route = route.replace("[area]", "area")
+    route = route.strip("/")
+    if not route:
+        return "/"
+    return f"/{route}"
+
+
+def _extract_controller_routes(text: str) -> list[str]:
+    if "Controller" not in text:
+        return []
+
+    prefixes = [_normalize_route_template(x) for x in _ROUTE_PREFIX_RE.findall(text)]
+    prefixes = [p for p in prefixes if p]
+    if not prefixes:
+        prefixes = [""]
+
+    routes: list[str] = []
+    for http_route in _HTTP_ROUTE_RE.findall(text):
+        normalized = _normalize_route_template(http_route)
+        for prefix in prefixes:
+            if normalized == "/":
+                combined = prefix or "/"
+            elif not normalized:
+                combined = prefix or "/"
+            elif prefix and prefix != "/":
+                combined = f"{prefix.rstrip('/')}/{normalized.lstrip('/')}"
+            else:
+                combined = normalized
+            routes.append(combined if combined.startswith("/") else f"/{combined}")
+
+    return _dedupe([r for r in routes if _valid_url_candidate(r) or r == "/"])
+
+
 def resolve_module_scope(payload: dict[str, Any], module_name: str) -> dict[str, Any]:
     roots: list[Path] = []
     for key in ("legacySourceRoot", "convertedSourceRoot"):
@@ -249,6 +290,8 @@ def resolve_module_scope(payload: dict[str, Any], module_name: str) -> dict[str,
         p = Path(raw)
         if p.exists():
             roots.append(p)
+            if p.is_file() and p.suffix.lower() in {".sln", ".slnx", ".csproj", ".vbproj"}:
+                roots.append(p.parent)
 
     hints = payload.get("moduleHints") if isinstance(payload.get("moduleHints"), dict) else {}
     related_folders = hints.get("relatedFolders") if isinstance(hints, dict) else []
@@ -329,6 +372,8 @@ def resolve_module_scope(payload: dict[str, Any], module_name: str) -> dict[str,
             continue
 
         urls.extend(match.group(1) for match in _URL_RE.finditer(text))
+        if kind == "csharp":
+            urls.extend(_extract_controller_routes(text))
         db_touchpoints.extend(match.group(1) for match in _DB_TOUCHPOINT_RE.finditer(text))
         db_touchpoints.extend(
             match.group(1).upper()

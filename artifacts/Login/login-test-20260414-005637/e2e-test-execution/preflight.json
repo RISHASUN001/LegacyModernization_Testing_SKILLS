@@ -1,0 +1,32 @@
+{
+  "category": "E2E",
+  "baseUrl": {
+    "required": true,
+    "provided": "http://localhost:5001",
+    "normalized": "http://localhost:5001",
+    "ok": true,
+    "reason": ""
+  },
+  "reachability": {
+    "required": true,
+    "ok": true,
+    "statusCode": 200,
+    "reason": "reachable",
+    "path": "/",
+    "url": "http://localhost:5001/"
+  },
+  "commands": {
+    "candidates": [
+      "python3 -m pytest -m e2e",
+      "python3 -m pytest -m e2e"
+    ],
+    "available": [
+      "python3 -m pytest -m e2e",
+      "python3 -m pytest -m e2e"
+    ],
+    "unavailable": [],
+    "selected": "python3 -m pytest -m e2e",
+    "ok": true
+  },
+  "strictMode": true
+}

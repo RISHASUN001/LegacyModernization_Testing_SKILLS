@@ -1,1 +1,0 @@
-newman run checklist-api.json -> Passed:13 Failed:5

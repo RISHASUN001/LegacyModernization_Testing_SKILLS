@@ -2,7 +2,7 @@
   "moduleName": "Login3",
   "category": "E2E",
   "lastRunId": "Login3-Test001",
-  "generatedCount": 13,
+  "generatedCount": 16,
   "generatedTests": [
     {
       "id": "e2e-gen-001",
@@ -342,6 +342,87 @@
       "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
       "generatedFrom": [
         "route:/login"
+      ],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "id": "e2e-gen-002",
+      "category": "E2E",
+      "name": "E2E robust path: Submit valid credentials",
+      "coverage": [
+        "ui-api-db",
+        "critical-path"
+      ],
+      "priority": "high",
+      "given": "Given the Login3 module is configured and reachable",
+      "when": "When executing generated scenario: E2E robust path: Submit valid credentials",
+      "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
+      "generatedFrom": [
+        "flow:Submit valid credentials"
+      ],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "id": "e2e-gen-003",
+      "category": "E2E",
+      "name": "E2E robust path: Submit invalid credentials",
+      "coverage": [
+        "ui-api-db",
+        "critical-path"
+      ],
+      "priority": "high",
+      "given": "Given the Login3 module is configured and reachable",
+      "when": "When executing generated scenario: E2E robust path: Submit invalid credentials",
+      "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
+      "generatedFrom": [
+        "flow:Submit invalid credentials"
+      ],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "id": "e2e-gen-004",
+      "category": "E2E",
+      "name": "E2E robust path: Session timeout returns to login",
+      "coverage": [
+        "ui-api-db",
+        "critical-path"
+      ],
+      "priority": "high",
+      "given": "Given the Login3 module is configured and reachable",
+      "when": "When executing generated scenario: E2E robust path: Session timeout returns to login",
+      "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
+      "generatedFrom": [
+        "flow:Session timeout returns to login"
       ],
       "provenance": {
         "type": "inferred",

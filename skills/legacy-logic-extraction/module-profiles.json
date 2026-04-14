@@ -1,0 +1,59 @@
+{
+  "profiles": [
+    {
+      "id": "auth",
+      "matchTokens": [
+        "login",
+        "auth",
+        "signin",
+        "logout",
+        "password"
+      ],
+      "routePrefixes": [
+        "/login",
+        "/auth",
+        "/signin",
+        "/logout"
+      ],
+      "purposeTemplate": "{moduleTitle} module handles authentication and protected-page access flows. Java files discovered: {javaCount}. Key routes: {topRoutes}",
+      "flows": [
+        "Open login page",
+        "Submit valid credentials",
+        "Submit invalid credentials",
+        "Session timeout returns to login"
+      ],
+      "rules": [
+        "If credentials are invalid, stay on login page and show validation message",
+        "If credentials are valid, establish session and return authentication success response",
+        "If session is expired, protected routes redirect to login"
+      ],
+      "mustPreserve": [
+        "Invalid credentials and session expiry handling (error codes, redirect targets)"
+      ]
+    },
+    {
+      "id": "checklist",
+      "matchTokens": [
+        "checklist",
+        "workorder",
+        "status",
+        "item"
+      ],
+      "purposeTemplate": "{moduleTitle} module manages checklist decisions, status transitions, and WO-triggering rules. Java files discovered: {javaCount}. DB touchpoints: {topDbTouchpoints}",
+      "flows": [
+        "Open checklist item",
+        "Validate checklist inputs",
+        "Submit checklist decision",
+        "Create or update WO on failure conditions",
+        "Transition checklist status"
+      ],
+      "rules": [
+        "If required checklist fields are missing, block submission and show errors",
+        "If checklist result indicates defect/failure, create or link a Work Order (WO)",
+        "If checklist is approved and all checks pass, status transitions to completed",
+        "If x and y conditions occur together, status becomes z according to business matrix"
+      ],
+      "mustPreserve": []
+    }
+  ]
+}

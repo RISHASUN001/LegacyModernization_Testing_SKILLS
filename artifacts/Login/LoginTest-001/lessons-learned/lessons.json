@@ -1,7 +1,0 @@
-{
-  "items": [
-    "Alias mismatches can cascade across integration and API failures.",
-    "Stable data-test selectors improve browser verification reliability.",
-    "Timeout parity must be validated by e2e and playwright together."
-  ]
-}

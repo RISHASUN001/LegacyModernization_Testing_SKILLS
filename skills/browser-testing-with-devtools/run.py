@@ -19,7 +19,7 @@ if str(COMMON) not in sys.path:
     sys.path.insert(0, str(COMMON))
 
 from skill_runtime import run_python_skill
-from execution_utils import check_reachability, normalize_absolute_base_url
+from execution_utils import check_reachability, resolve_test_api_endpoint
 
 SPEC = {
     "name": "browser-testing-with-devtools",
@@ -38,8 +38,20 @@ def _fetch_json(url: str, timeout: int = 5):
 
 def execute(ctx):
     base_url_input = str(ctx.get("baseUrl") or "")
-    base_ok, base_url, base_reason = normalize_absolute_base_url(base_url_input)
-    test_api_endpoint = str(ctx.get("testApiEndpoint") or f"{base_url}/api/test").rstrip("/")
+    endpoint_resolution = resolve_test_api_endpoint(
+        base_url_input=base_url_input,
+        test_api_endpoint_input=str(ctx.get("testApiEndpoint") or ""),
+    )
+    base_ok = bool(endpoint_resolution.get("baseUrl", {}).get("ok"))
+    base_url = str(endpoint_resolution.get("baseUrl", {}).get("normalized") or "")
+    base_reason = str(endpoint_resolution.get("baseUrl", {}).get("reason") or "")
+    test_api_node = endpoint_resolution.get("testApi", {})
+    test_api_endpoint = str(test_api_node.get("selectedEndpoint") or "").rstrip("/")
+    test_api_status = str(test_api_node.get("status") or "missing")
+    test_api_source = str(test_api_node.get("selectedSource") or "")
+    test_api_auto_provisioned = bool(test_api_node.get("autoProvisioned"))
+
+    ctx.write_json("test-api-bootstrap.json", endpoint_resolution)
     health_url = f"{test_api_endpoint}/health"
     reachable, status_code, reachability_reason = check_reachability(health_url) if base_ok else (False, 0, "invalid-base-url")
 
@@ -58,6 +70,11 @@ def execute(ctx):
             "ok": reachable,
             "statusCode": status_code,
             "reason": reachability_reason,
+        },
+        "testApi": {
+            "status": test_api_status,
+            "source": test_api_source,
+            "autoProvisioned": test_api_auto_provisioned,
         },
         "strictMode": True,
     }
@@ -91,8 +108,8 @@ def execute(ctx):
                     "type": "EnvironmentDependencyMissing",
                     "scenario": "DevTools diagnostics preflight",
                     "message": "DevTools evidence endpoint is not reachable.",
-                    "likelyCause": "Invalid baseUrl or missing /api/test/health endpoint.",
-                    "evidence": f"url={health_url}; reason={reachability_reason}",
+                    "likelyCause": "Invalid baseUrl or missing reachable /api/test/health endpoint.",
+                    "evidence": f"url={health_url}; reason={reachability_reason}; source={test_api_source}",
                     "severity": "high",
                     "status": "open",
                     "confidence": 0.98,
@@ -100,7 +117,7 @@ def execute(ctx):
             ],
             "recommendations": [
                 {
-                    "message": "Expose /api/test/* diagnostics endpoints and provide a valid absolute baseUrl/testApiEndpoint.",
+                    "message": "Expose /api/test/* diagnostics endpoints (or provide a configured dashboard fallback endpoint) and provide a valid absolute baseUrl/testApiEndpoint.",
                     "priority": "high",
                     "evidence": "Strict preflight requires diagnostics endpoint reachability.",
                 }
@@ -168,6 +185,14 @@ def execute(ctx):
                 "evidence": "DevTools diagnostics needs /api/test/* evidence sources.",
             }
         )
+    elif test_api_auto_provisioned:
+        recommendations.append(
+            {
+                "message": "Diagnostics used dashboard fallback /api/test endpoint; add module-hosted /api/test for environment-faithful evidence.",
+                "priority": "medium",
+                "evidence": f"Selected source: {test_api_source}",
+            }
+        )
 
     if runtime_issues:
         findings.append(
@@ -207,7 +232,8 @@ def execute(ctx):
         "statusReason": "execution-degraded-missing-endpoints" if degraded else None,
         "summary": (
             f"DevTools diagnostics for {ctx.module_name}: "
-            f"consoleErrors={len(runtime_issues)}, networkFailures={len(failed_requests)}, degradedMode={degraded}."
+            f"consoleErrors={len(runtime_issues)}, networkFailures={len(failed_requests)}, "
+            f"degradedMode={degraded}, testApiSource={test_api_source or 'n/a'}."
         ),
         "metrics": {
             "total": 6,

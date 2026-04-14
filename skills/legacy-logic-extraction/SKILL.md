@@ -19,6 +19,7 @@ Use this skill when Stage **logic-understanding** evidence must be generated or 
 ## process
 - Load `module-run-input.json` from run context.
 - Resolve artifact output folder under `artifacts/<module>/<run>/<skill>/`.
+- Load module behavior profiles from `module-profiles.json` (token matching, purpose template, flows, rules, preserve behaviors).
 - Execute stage-specific analysis/test workflow.
 - Persist `result.json` and stage detail artifacts.
 
@@ -43,6 +44,7 @@ Use this skill when Stage **logic-understanding** evidence must be generated or 
 
 ## script reference / execution notes
 - Entry script: `run.py`
+- Module profile file: `module-profiles.json` (data-driven behavior definitions)
 - Execution mode: external (Continue.dev / Claude in IDE), Option A-first.
 
 ## How To Run

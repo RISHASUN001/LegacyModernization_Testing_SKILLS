@@ -7,6 +7,17 @@
         .Where(static x => !string.IsNullOrWhiteSpace(x))
         .Take(6)
         .ToList();
+    var totalFindings = Model.Findings.Findings.Count;
+    var openFindings = Model.Findings.Findings.Count(static x => string.Equals(x.Status, "open", StringComparison.OrdinalIgnoreCase));
+    var executionFailures = Model.Execution.TestCategories.Sum(static x => x.Failed);
+    var executionTotal = Model.Execution.TestCategories.Sum(static x => x.TotalCount);
+    var runWarnings = Model.Execution.TestCategories.Sum(static x => x.Warnings);
+    var missingTestApi = !string.Equals(Model.Execution.Playwright.TestApiStatus, "present", StringComparison.OrdinalIgnoreCase);
+    var fallbackTestApiEndpoint = $"{Context.Request.Scheme}://{Context.Request.Host}/api/test";
+    var screenshotArtifacts = Model.Execution.Playwright.Screenshots
+        .Where(static x => !string.IsNullOrWhiteSpace(x))
+        .Take(8)
+        .ToList();
 }
 
 <div class="d-flex flex-wrap align-items-start justify-content-between gap-3 mb-3">
@@ -22,6 +33,29 @@
 </div>
 
 <div class="panel-card p-3 mb-4">
+    <div class="pipeline-summary-grid mb-3">
+        <div class="pipeline-summary-card">
+            <div class="summary-label">Execution Coverage</div>
+            <div class="summary-value">@executionTotal scenarios</div>
+            <div class="small text-muted">failed @executionFailures, warnings @runWarnings</div>
+        </div>
+        <div class="pipeline-summary-card">
+            <div class="summary-label">Findings</div>
+            <div class="summary-value">@totalFindings total</div>
+            <div class="small text-muted">open @openFindings</div>
+        </div>
+        <div class="pipeline-summary-card">
+            <div class="summary-label">Parity Score</div>
+            <div class="summary-value">@Model.Parity.ParityScore%</div>
+            <div class="small text-muted">@Model.Parity.PassedChecks/@Model.Parity.TotalChecks checks passed</div>
+        </div>
+        <div class="pipeline-summary-card">
+            <div class="summary-label">Data Confidence</div>
+            <div class="summary-value">@Model.LogicUnderstanding.Confidence.ToString("0.00")</div>
+            <div class="small text-muted">logic understanding source confidence</div>
+        </div>
+    </div>
+
     <div class="d-flex flex-wrap gap-2">
         @foreach (var stage in Model.StageStatuses)
         {
@@ -484,6 +518,16 @@
                         <h4 class="h6 mb-0">@c.Category Details</h4>
                         <span class="badge text-bg-primary">@c.Passed passed / @c.Failed failed</span>
                     </div>
+                    <div class="execution-scope-note mb-2">
+                        @if (string.Equals(c.Category, "Integration", StringComparison.OrdinalIgnoreCase))
+                        {
+                            <span class="badge text-bg-info-subtle text-info-emphasis border">Integration validates cross-layer service/repository and persistence orchestration.</span>
+                        }
+                        else if (string.Equals(c.Category, "E2E", StringComparison.OrdinalIgnoreCase))
+                        {
+                            <span class="badge text-bg-warning-subtle text-warning-emphasis border">E2E validates browser journey behavior and UX parity from entrypoint to outcome.</span>
+                        }
+                    </div>
 
             <div class="table-responsive mb-3">
                 <table class="table table-sm align-middle mb-0">
@@ -660,19 +704,46 @@
     </div>
 
     <div class="mb-3">
-        <span class="badge @(string.Equals(Model.Execution.Playwright.TestApiStatus, "present", StringComparison.OrdinalIgnoreCase) ? "text-bg-success" : "text-bg-danger")">
-            Test API: @(string.Equals(Model.Execution.Playwright.TestApiStatus, "present", StringComparison.OrdinalIgnoreCase) ? "Present" : "Missing")
+        <span class="badge @((string.Equals(Model.Execution.Playwright.TestApiStatus, "present", StringComparison.OrdinalIgnoreCase) || string.Equals(Model.Execution.Playwright.TestApiStatus, "fallback-attached", StringComparison.OrdinalIgnoreCase)) ? "text-bg-success" : "text-bg-danger")">
+            Test API: @(string.Equals(Model.Execution.Playwright.TestApiStatus, "present", StringComparison.OrdinalIgnoreCase)
+                ? "Present"
+                : string.Equals(Model.Execution.Playwright.TestApiStatus, "fallback-attached", StringComparison.OrdinalIgnoreCase)
+                    ? "Fallback Attached"
+                    : "Missing")
         </span>
         @if (!string.IsNullOrWhiteSpace(Model.Execution.Playwright.TestApiEndpoint))
         {
             <span class="ms-2"><code>@Model.Execution.Playwright.TestApiEndpoint</code></span>
         }
+        @if (!string.IsNullOrWhiteSpace(Model.Execution.Playwright.TestApiSource))
+        {
+            <span class="badge text-bg-light border ms-2">source: @Model.Execution.Playwright.TestApiSource</span>
+        }
         @if (!string.IsNullOrWhiteSpace(Model.Execution.Playwright.TestApiReason))
         {
             <div class="small text-muted mt-1">Reason: @Model.Execution.Playwright.TestApiReason</div>
         }
+        @if (Model.Execution.Playwright.TestApiAutoProvisioned)
+        {
+            <div class="small text-muted mt-1">Fallback diagnostics endpoint was auto-attached for this run because module-hosted test API was unavailable.</div>
+        }
         <div class="small text-muted mt-1">This indicates diagnostics endpoint availability, not whether previous iteration tests exist.</div>
     </div>
+
+    @if (missingTestApi)
+    {
+        <div class="alert alert-warning mb-3">
+            <div class="fw-semibold mb-1">Diagnostics endpoint missing for this run input.</div>
+            <div class="small mb-2">The app does not auto-create a diagnostics API in your target module host. Use the dashboard-provided endpoint or expose /api/test in the converted app.</div>
+            <div class="small">
+                Suggested endpoint for next run input:
+                <code>@fallbackTestApiEndpoint</code>
+            </div>
+            <div class="small mt-1">
+                <a href="@($"{fallbackTestApiEndpoint}/health")" target="_blank" rel="noopener">Check fallback health endpoint</a>
+            </div>
+        </div>
+    }
 
     <div class="row g-3">
         <div class="col-lg-6">
@@ -705,7 +776,23 @@
     </div>
 
     <h5 class="h6 mt-2">Screenshots</h5>
-    <ul>@foreach (var x in Model.Execution.Playwright.Screenshots) { <li><code>@x</code></li> }</ul>
+    @if (screenshotArtifacts.Any())
+    {
+        <div class="screenshot-grid">
+            @foreach (var screenshotPath in screenshotArtifacts)
+            {
+                var screenshotUrl = Url.Action("ArtifactFile", "Dashboard", new { path = screenshotPath }) ?? string.Empty;
+                <a class="screenshot-card" href="@screenshotUrl" target="_blank" rel="noopener">
+                    <img src="@screenshotUrl" alt="Playwright evidence screenshot" loading="lazy" />
+                    <span class="small text-muted">@System.IO.Path.GetFileName(screenshotPath)</span>
+                </a>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="small text-muted">No screenshots captured for this run.</div>
+    }
 </section>
 
 <section id="stage-findings" class="stage-section panel-card p-3 mb-3">
@@ -714,7 +801,16 @@
         <span class="stage-pill">failed scenarios / likely causes / recommendations</span>
     </div>
 
-    <div class="table-responsive mb-3">
+    <div class="findings-summary-strip mb-3">
+        <span class="badge text-bg-light border">Total: @Model.Findings.Findings.Count</span>
+        <span class="badge text-bg-light border">Open: @Model.Findings.Findings.Count(static f => string.Equals(f.Status, "open", StringComparison.OrdinalIgnoreCase))</span>
+        <span class="badge text-bg-light border">High severity: @Model.Findings.Findings.Count(static f => string.Equals(f.Severity, "high", StringComparison.OrdinalIgnoreCase))</span>
+        <span class="badge text-bg-light border">Recommendations: @Model.Findings.Recommendations.Count</span>
+    </div>
+
+    <details class="findings-details" open>
+        <summary class="mb-2">Detailed Findings Matrix</summary>
+        <div class="table-responsive mb-3">
         <table class="table table-sm">
             <thead>
                 <tr>
@@ -748,7 +844,8 @@
             }
             </tbody>
         </table>
-    </div>
+        </div>
+    </details>
 
     <div class="row g-3 mb-3">
         <div class="col-lg-6">

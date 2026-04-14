@@ -22,6 +22,7 @@
   "dependencies": [
     "module-discovery"
   ],
+  "moduleProfilesFile": "module-profiles.json",
   "summaryOutputType": "logic-summary",
   "resultContractVersion": "2.0",
   "externalDependencies": [],

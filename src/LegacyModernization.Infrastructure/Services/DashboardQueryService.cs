@@ -646,6 +646,8 @@ LIMIT 1;", new { RunFk = runFk }, cancellationToken)).FirstOrDefault();
         var testApiEndpoint = string.Empty;
         var testApiStatus = "unknown";
         var testApiReason = string.Empty;
+        var testApiSource = string.Empty;
+        var testApiAutoProvisioned = false;
         if (File.Exists(testApiStatusPath))
         {
             try
@@ -656,6 +658,8 @@ LIMIT 1;", new { RunFk = runFk }, cancellationToken)).FirstOrDefault();
                     testApiEndpoint = apiNode["endpoint"]?.GetValue<string>() ?? string.Empty;
                     testApiStatus = apiNode["status"]?.GetValue<string>() ?? "unknown";
                     testApiReason = apiNode["reason"]?.GetValue<string>() ?? string.Empty;
+                    testApiSource = apiNode["source"]?.GetValue<string>() ?? string.Empty;
+                    testApiAutoProvisioned = apiNode["autoProvisioned"]?.GetValue<bool>() ?? false;
                 }
             }
             catch
@@ -672,6 +676,8 @@ LIMIT 1;", new { RunFk = runFk }, cancellationToken)).FirstOrDefault();
             TestApiEndpoint = testApiEndpoint,
             TestApiStatus = testApiStatus,
             TestApiReason = testApiReason,
+            TestApiSource = testApiSource,
+            TestApiAutoProvisioned = testApiAutoProvisioned,
             Scenarios = scenarios,
             ConsoleErrors = consoleErrors,
             ConsoleWarnings = consoleWarnings,
@@ -701,9 +707,7 @@ FROM recommendation_records
 WHERE run_fk=@RunFk
 ORDER BY id DESC;", new { RunFk = runFk }, cancellationToken);
 
-        return new FindingsStageDto
-        {
-            Findings = findings.Select(row => new FindingDto
+        var findingDtos = findings.Select(row => new FindingDto
             {
                 ModuleName = moduleName,
                 RunId = runId,
@@ -721,8 +725,10 @@ ORDER BY id DESC;", new { RunFk = runFk }, cancellationToken);
                 ResolvedInRunId = row.GetString("resolved_in_run_id"),
                 ResolutionNotes = row.GetString("resolution_notes"),
                 AffectedFiles = ParseStringArray(row.GetString("affected_files_json"))
-            }).ToList(),
-            Recommendations = recommendations.Select(row => new RecommendationDto
+            })
+            .ToList();
+
+        var recommendationDtos = recommendations.Select(row => new RecommendationDto
             {
                 ModuleName = moduleName,
                 RunId = runId,
@@ -732,7 +738,13 @@ ORDER BY id DESC;", new { RunFk = runFk }, cancellationToken);
                 Priority = row.GetString("priority"),
                 Evidence = row.GetString("evidence"),
                 ProvenanceType = "code-evidence"
-            }).ToList()
+            })
+            .ToList();
+
+        return new FindingsStageDto
+        {
+            Findings = DeduplicateFindings(findingDtos),
+            Recommendations = DeduplicateRecommendations(recommendationDtos)
         };
     }
 
@@ -790,6 +802,68 @@ ORDER BY id DESC;", new { RunFk = runFk }, cancellationToken);
         };
     }
 
+    private static List<FindingDto> DeduplicateFindings(List<FindingDto> findings)
+    {
+        return findings
+            .GroupBy(static f => string.Join("|",
+                NormalizeKey(f.Stage),
+                NormalizeKey(f.SkillName),
+                NormalizeKey(f.Scenario),
+                NormalizeKey(f.FindingType),
+                NormalizeKey(f.Message)), StringComparer.Ordinal)
+            .Select(static g => g
+                .OrderByDescending(x => x.Confidence)
+                .ThenByDescending(x => SeverityRank(x.Severity))
+                .First())
+            .OrderByDescending(static x => SeverityRank(x.Severity))
+            .ThenBy(static x => x.Stage, StringComparer.OrdinalIgnoreCase)
+            .ThenBy(static x => x.SkillName, StringComparer.OrdinalIgnoreCase)
+            .ToList();
+    }
+
+    private static List<RecommendationDto> DeduplicateRecommendations(List<RecommendationDto> recommendations)
+    {
+        return recommendations
+            .GroupBy(static r => string.Join("|",
+                NormalizeKey(r.Stage),
+                NormalizeKey(r.SkillName),
+                NormalizeKey(r.Priority),
+                NormalizeKey(r.Message)), StringComparer.Ordinal)
+            .Select(static g => g.First())
+            .OrderByDescending(static x => PriorityRank(x.Priority))
+            .ThenBy(static x => x.Stage, StringComparer.OrdinalIgnoreCase)
+            .ThenBy(static x => x.SkillName, StringComparer.OrdinalIgnoreCase)
+            .ToList();
+    }
+
+    private static string NormalizeKey(string? value)
+    {
+        return (value ?? string.Empty).Trim().ToLowerInvariant();
+    }
+
+    private static int SeverityRank(string? severity)
+    {
+        return NormalizeKey(severity) switch
+        {
+            "critical" => 4,
+            "high" => 3,
+            "medium" => 2,
+            "low" => 1,
+            _ => 0
+        };
+    }
+
+    private static int PriorityRank(string? priority)
+    {
+        return NormalizeKey(priority) switch
+        {
+            "high" => 3,
+            "medium" => 2,
+            "low" => 1,
+            _ => 0
+        };
+    }
+
     private async Task<IterationComparisonSummaryDto> BuildIterationSummaryAsync(IDbConnection connection, string moduleName, string runId, string artifactRoot, CancellationToken cancellationToken)
     {
         var rows = await QueryRowsAsync(connection, @"
@@ -835,11 +909,12 @@ LIMIT 1;", new { ModuleName = moduleName, RunId = runId }, cancellationToken);
 
     private string BuildRunInputJson(RunInputDraftDto draft)
     {
-        var baseUrl = (draft.BaseUrl ?? string.Empty).Trim();
+        var baseUrl = NormalizeBaseUrlForRunInput((draft.BaseUrl ?? string.Empty).Trim());
         var normalizedBaseUrl = baseUrl.TrimEnd('/');
         var testApiEndpoint = string.IsNullOrWhiteSpace(normalizedBaseUrl)
             ? string.Empty
             : $"{normalizedBaseUrl}/api/test";
+        var knownUrls = ResolveKnownUrls(ParseMultiline(draft.KnownUrlsText), normalizedBaseUrl);
 
         var payload = new
         {
@@ -853,7 +928,7 @@ LIMIT 1;", new { ModuleName = moduleName, RunId = runId }, cancellationToken);
             moduleHints = new
             {
                 relatedFolders = ParseMultiline(draft.RelatedFoldersText),
-                knownUrls = ParseMultiline(draft.KnownUrlsText),
+                knownUrls,
                 keywords = ParseMultiline(draft.KeywordsText)
             },
             testCommands = new
@@ -1368,6 +1443,52 @@ LIMIT 1;", new { ModuleName = moduleName, RunId = runId }, cancellationToken);
             .Where(static item => !string.IsNullOrWhiteSpace(item))
             .Distinct(StringComparer.OrdinalIgnoreCase)
             .ToList();
+    }
+
+    private static string NormalizeBaseUrlForRunInput(string baseUrl)
+    {
+        if (string.IsNullOrWhiteSpace(baseUrl))
+        {
+            return string.Empty;
+        }
+
+        if (!Uri.TryCreate(baseUrl, UriKind.Absolute, out var uri))
+        {
+            return baseUrl;
+        }
+
+        var host = uri.Host == "0.0.0.0" ? "localhost" : uri.Host;
+        var builder = new UriBuilder(uri.Scheme, host, uri.Port);
+        return builder.Uri.ToString().TrimEnd('/');
+    }
+
+    private static List<string> ResolveKnownUrls(List<string> knownUrls, string normalizedBaseUrl)
+    {
+        if (string.IsNullOrWhiteSpace(normalizedBaseUrl))
+        {
+            return knownUrls;
+        }
+
+        var resolved = new List<string>();
+        foreach (var value in knownUrls)
+        {
+            if (Uri.TryCreate(value, UriKind.Absolute, out var absolute))
+            {
+                var host = absolute.Host == "0.0.0.0" ? "localhost" : absolute.Host;
+                resolved.Add(new UriBuilder(absolute.Scheme, host, absolute.Port, absolute.AbsolutePath).Uri.ToString().TrimEnd('/'));
+                continue;
+            }
+
+            if (value.StartsWith('/'))
+            {
+                resolved.Add($"{normalizedBaseUrl}{value}");
+                continue;
+            }
+
+            resolved.Add(value);
+        }
+
+        return resolved.Distinct(StringComparer.OrdinalIgnoreCase).ToList();
     }
 
     private static List<ArchitectureIssueDto> ParseArchitectureIssues(JsonNode? node)

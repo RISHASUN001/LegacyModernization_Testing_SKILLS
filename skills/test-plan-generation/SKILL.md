@@ -19,6 +19,7 @@ Use this skill when Stage **test-plan** evidence must be generated or refreshed 
 ## process
 - Load `module-run-input.json` from run context.
 - Resolve artifact output folder under `artifacts/<module>/<run>/<skill>/`.
+- Build scenarios from upstream artifacts (`module-discovery`, `legacy-logic-extraction`, `module-documentation`, `lessons-learned`) and module profile matching metadata.
 - Execute stage-specific analysis/test workflow.
 - Persist `result.json` and stage detail artifacts.
 
@@ -44,6 +45,9 @@ Use this skill when Stage **test-plan** evidence must be generated or refreshed 
 - `api-test-execution`
 - `edge-case-testing`
 - `playwright-browser-verification`
+
+## module scope behavior
+- Scenario selection is module-scoped using discovered routes/evidence and profile token matching; no fixed module names are required.
 
 ## script reference / execution notes
 - Entry script: `run.py`

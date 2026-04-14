@@ -1,0 +1,122 @@
+{
+  "skillName": "iteration-comparison",
+  "stage": "iteration-comparison",
+  "moduleName": "Login4",
+  "runId": "login4-test-20260414-002723",
+  "status": "passed",
+  "startedAt": "2026-04-13T17:15:01.452112Z",
+  "endedAt": "2026-04-13T17:15:01.454665Z",
+  "summary": "Iteration comparison for Login4: prev=_knowledge-base, trend=regressing, failuresReduced=0, resolvedFindings=0.",
+  "metrics": {
+    "moduleName": "Login4",
+    "runId": "login4-test-20260414-002723",
+    "previousRunId": "_knowledge-base",
+    "testsAdded": 4,
+    "testsFixed": 0,
+    "failuresReduced": 0,
+    "newFindingsIntroduced": 6,
+    "resolvedFindings": 0,
+    "progressionTrend": "regressing",
+    "categoryDelta": {
+      "api-test-execution": {
+        "previousFailed": 0,
+        "currentFailed": 0,
+        "failuresReduced": 0
+      },
+      "browser-testing-with-devtools": {
+        "previousFailed": 0,
+        "currentFailed": 0,
+        "failuresReduced": 0
+      },
+      "clean-architecture-assessment": {
+        "previousFailed": 0,
+        "currentFailed": 0,
+        "failuresReduced": 0
+      },
+      "e2e-test-execution": {
+        "previousFailed": 0,
+        "currentFailed": 0,
+        "failuresReduced": 0
+      },
+      "edge-case-testing": {
+        "previousFailed": 0,
+        "currentFailed": 0,
+        "failuresReduced": 0
+      },
+      "failure-diagnosis": {
+        "previousFailed": 0,
+        "currentFailed": 0,
+        "failuresReduced": 0
+      },
+      "integration-test-execution": {
+        "previousFailed": 0,
+        "currentFailed": 0,
+        "failuresReduced": 0
+      },
+      "iteration-comparison": {
+        "previousFailed": 0,
+        "currentFailed": 0,
+        "failuresReduced": 0
+      },
+      "legacy-logic-extraction": {
+        "previousFailed": 0,
+        "currentFailed": 0,
+        "failuresReduced": 0
+      },
+      "lessons-learned": {
+        "previousFailed": 0,
+        "currentFailed": 0,
+        "failuresReduced": 0
+      },
+      "module-discovery": {
+        "previousFailed": 0,
+        "currentFailed": 0,
+        "failuresReduced": 0
+      },
+      "module-documentation": {
+        "previousFailed": 0,
+        "currentFailed": 0,
+        "failuresReduced": 0
+      },
+      "parity-verification": {
+        "previousFailed": 0,
+        "currentFailed": 0,
+        "failuresReduced": 0
+      },
+      "playwright-browser-verification": {
+        "previousFailed": 0,
+        "currentFailed": 0,
+        "failuresReduced": 0
+      },
+      "test-plan-generation": {
+        "previousFailed": 0,
+        "currentFailed": 0,
+        "failuresReduced": 0
+      },
+      "unit-test-execution": {
+        "previousFailed": 0,
+        "currentFailed": 0,
+        "failuresReduced": 0
+      }
+    }
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/Login4/login4-test-20260414-002723/iteration-comparison/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login4/login4-test-20260414-002723/iteration-comparison/iteration-delta.json"
+  ],
+  "findings": [],
+  "recommendations": [
+    {
+      "message": "Use categoryDelta to target recurring failing categories first in next run.",
+      "priority": "medium",
+      "evidence": "trend=regressing; categoryDeltaCount=16"
+    }
+  ],
+  "resultContractVersion": "2.0",
+  "provenanceSummary": {
+    "scenarioSources": [
+      "code-evidence"
+    ],
+    "confidence": 0.82
+  }
+}

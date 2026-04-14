@@ -1,8 +1,0 @@
-{
-  "parityScore": 68,
-  "gaps": [
-    "Timeout redirect behavior mismatch",
-    "Submit response schema mismatch",
-    "ATC warning ordering mismatch"
-  ]
-}

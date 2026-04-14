@@ -1,0 +1,41 @@
+{
+  "skillName": "legacy-logic-extraction",
+  "stage": "logic-understanding",
+  "moduleName": "Login4",
+  "runId": "login4-test-20260414-002723",
+  "status": "passed",
+  "startedAt": "2026-04-13T17:14:54.588097Z",
+  "endedAt": "2026-04-13T17:14:54.609134Z",
+  "summary": "Logic extraction completed for Login4: workflows=4, rules=3, unknowns=1.",
+  "metrics": {
+    "flows": 4,
+    "rules": 3,
+    "dependencies": 2,
+    "preserveItems": 5,
+    "unknowns": 1,
+    "confidence": 0.63
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/Login4/login4-test-20260414-002723/legacy-logic-extraction/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login4/login4-test-20260414-002723/legacy-logic-extraction/logic-summary.json"
+  ],
+  "findings": [],
+  "recommendations": [
+    {
+      "message": "Use workflow and must-preserve behavior items as the source-of-truth for test scenario generation.",
+      "priority": "high",
+      "evidence": "Logic extraction now emits evidence-scoped workflows and rule artifacts."
+    }
+  ],
+  "resultContractVersion": "2.0",
+  "provenanceSummary": {
+    "scenarioSources": [
+      "code-evidence",
+      "inferred"
+    ],
+    "confidence": 0.63,
+    "unknowns": [
+      "No DB touchpoint extracted; persistence parity must be confirmed with runtime logs."
+    ]
+  }
+}

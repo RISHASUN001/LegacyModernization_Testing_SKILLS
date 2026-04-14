@@ -1,0 +1,38 @@
+{
+  "skillName": "test-plan-generation",
+  "stage": "test-plan",
+  "moduleName": "Login",
+  "runId": "login-test-20260414-005637",
+  "status": "passed",
+  "startedAt": "2026-04-13T16:59:05.523168Z",
+  "endedAt": "2026-04-13T16:59:05.541326Z",
+  "summary": "Test plan generated for Login with categories=7 and suggestedTests=2.",
+  "metrics": {
+    "existingTests": 0,
+    "suggestedTests": 2,
+    "coveragePercent": 33,
+    "architectureRisks": 2
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/test-plan-generation/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/test-plan-generation/test-plan.json"
+  ],
+  "findings": [],
+  "recommendations": [
+    {
+      "message": "Prioritize scenarios sourced from must-preserve behaviors and recurring lessons before parity signoff.",
+      "priority": "high",
+      "evidence": "Test categories now include provenance for flow/risk/fallback/lessons origins."
+    }
+  ],
+  "resultContractVersion": "2.0",
+  "provenanceSummary": {
+    "scenarioSources": [
+      "flow-derived",
+      "risk-derived",
+      "lessons-derived",
+      "fallback"
+    ],
+    "confidence": 0.82
+  }
+}

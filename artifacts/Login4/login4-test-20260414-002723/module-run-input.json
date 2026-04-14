@@ -1,0 +1,49 @@
+{
+  "runId": "login4-test-20260414-002723",
+  "moduleName": "Login4",
+  "legacySourceRoot": "/Users/risha/Documents/Buildathon/samples/legacy-java-app",
+  "convertedSourceRoot": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LegacyModernization.Converted.sln",
+  "baseUrl": "http://localhost:5001",
+  "testApiEndpoint": "http://localhost:5001/api/test",
+  "brsPath": "",
+  "moduleHints": {
+    "relatedFolders": [
+      "/Users/risha/Documents/Buildathon/.CLAUDE_AUTO_INVOKE.md",
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app"
+    ],
+    "knownUrls": [
+      "http://localhost:5001",
+      "http://localhost:5001/dashboard"
+    ],
+    "keywords": [
+      "Login",
+      "Password"
+    ]
+  },
+  "testCommands": {
+    "unit": "dotnet test --nologo --verbosity minimal",
+    "integration": "dotnet test --nologo --verbosity minimal",
+    "api": "python3 -m pytest -m api",
+    "e2e": "python3 -m pytest -m e2e",
+    "edgeCase": "dotnet test --nologo --verbosity minimal",
+    "playwright": "python3 -m pytest -m playwright"
+  },
+  "selectedSkills": [
+    "api-test-execution",
+    "browser-testing-with-devtools",
+    "clean-architecture-assessment",
+    "e2e-test-execution",
+    "edge-case-testing",
+    "failure-diagnosis",
+    "integration-test-execution",
+    "iteration-comparison",
+    "legacy-logic-extraction",
+    "lessons-learned",
+    "module-discovery",
+    "module-documentation",
+    "parity-verification",
+    "playwright-browser-verification",
+    "test-plan-generation",
+    "unit-test-execution"
+  ]
+}

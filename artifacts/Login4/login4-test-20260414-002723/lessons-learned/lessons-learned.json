@@ -1,0 +1,59 @@
+{
+  "moduleName": "Login4",
+  "runId": "login4-test-20260414-002723",
+  "previousRunId": "_knowledge-base",
+  "resolvedIssues": [],
+  "recurringIssues": [],
+  "newIssues": [
+    "ArchitectureIssuesDetected::Clean architecture review::Detected 1 architecture issue(s), including 1 high-severity issue(s).",
+    "BrowserEvidenceUnavailable::Playwright evidence collection::No browser evidence returned from http://127.0.0.1:5000/api/test endpoints.",
+    "EnvironmentDependencyMissing::DevTools diagnostics API health check::Required endpoint unavailable: http://127.0.0.1:5000/api/test/health",
+    "NoTestsCollected::API::No runnable API tests were collected in this run; treated as non-blocking baseline.",
+    "NoTestsCollected::E2E::No runnable E2E tests were collected in this run; treated as non-blocking baseline.",
+    "NoTestsCollected::Playwright / E2E Browser::No runnable Playwright / E2E Browser tests were collected in this run; treated as non-blocking baseline."
+  ],
+  "knowledgeUpdates": [
+    {
+      "signature": "ArchitectureIssuesDetected::Clean architecture review::Detected 1 architecture issue(s), including 1 high-severity issue(s).",
+      "stage": "architecture-review",
+      "skill": "clean-architecture-assessment",
+      "message": "Detected 1 architecture issue(s), including 1 high-severity issue(s).",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "BrowserEvidenceUnavailable::Playwright evidence collection::No browser evidence returned from http://127.0.0.1:5000/api/test endpoints.",
+      "stage": "execution",
+      "skill": "playwright-browser-verification",
+      "message": "No browser evidence returned from http://127.0.0.1:5000/api/test endpoints.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "EnvironmentDependencyMissing::DevTools diagnostics API health check::Required endpoint unavailable: http://127.0.0.1:5000/api/test/health",
+      "stage": "execution",
+      "skill": "browser-testing-with-devtools",
+      "message": "Required endpoint unavailable: http://127.0.0.1:5000/api/test/health",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "NoTestsCollected::API::No runnable API tests were collected in this run; treated as non-blocking baseline.",
+      "stage": "execution",
+      "skill": "api-test-execution",
+      "message": "No runnable API tests were collected in this run; treated as non-blocking baseline.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "NoTestsCollected::E2E::No runnable E2E tests were collected in this run; treated as non-blocking baseline.",
+      "stage": "execution",
+      "skill": "e2e-test-execution",
+      "message": "No runnable E2E tests were collected in this run; treated as non-blocking baseline.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "NoTestsCollected::Playwright / E2E Browser::No runnable Playwright / E2E Browser tests were collected in this run; treated as non-blocking baseline.",
+      "stage": "execution",
+      "skill": "playwright-browser-verification",
+      "message": "No runnable Playwright / E2E Browser tests were collected in this run; treated as non-blocking baseline.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    }
+  ]
+}

@@ -1,1 +1,0 @@
-dotnet test Checklist.UnitTests -> Passed:62 Failed:16 Warning:1

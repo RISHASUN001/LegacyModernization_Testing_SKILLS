@@ -1,7 +1,0 @@
-{
-  "endpoint": "http://0.0.0.0:5001/api/test",
-  "healthUrl": "http://0.0.0.0:5001/api/test/health",
-  "status": "missing",
-  "reason": "missing-or-unreachable",
-  "payload": {}
-}

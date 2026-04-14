@@ -2,7 +2,7 @@
   "moduleName": "Login3",
   "category": "Edge Case",
   "lastRunId": "Login3-Test001",
-  "generatedCount": 12,
+  "generatedCount": 13,
   "generatedTests": [
     {
       "id": "edge-case-gen-001",
@@ -323,6 +323,34 @@
       "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
       "generatedFrom": [
         "preserve:Session/cookie handling and user context preservation across requests"
+      ],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "id": "edge-case-gen-006",
+      "category": "Edge Case",
+      "name": "Edge retry/timeout behavior: Submit valid credentials",
+      "coverage": [
+        "retry",
+        "timeout",
+        "idempotency"
+      ],
+      "priority": "medium",
+      "given": "Given the Login3 module is configured and reachable",
+      "when": "When executing generated scenario: Edge retry/timeout behavior: Submit valid credentials",
+      "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
+      "generatedFrom": [
+        "flow:Submit valid credentials"
       ],
       "provenance": {
         "type": "inferred",

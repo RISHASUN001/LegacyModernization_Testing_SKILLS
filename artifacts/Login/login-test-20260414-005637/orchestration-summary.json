@@ -1,0 +1,456 @@
+{
+  "runId": "login-test-20260414-005637",
+  "moduleName": "Login",
+  "status": "passed",
+  "startedAt": "2026-04-13T16:59:05.116362Z",
+  "endedAt": "2026-04-13T16:59:10.640496Z",
+  "selectedSkills": [
+    "module-discovery",
+    "legacy-logic-extraction",
+    "module-documentation",
+    "clean-architecture-assessment",
+    "test-plan-generation",
+    "api-test-execution",
+    "browser-testing-with-devtools",
+    "e2e-test-execution",
+    "edge-case-testing",
+    "integration-test-execution",
+    "playwright-browser-verification",
+    "unit-test-execution",
+    "failure-diagnosis",
+    "lessons-learned",
+    "parity-verification",
+    "iteration-comparison"
+  ],
+  "stages": [
+    {
+      "stage": "discovery",
+      "stageTitle": "Discovery",
+      "stageIndex": 1,
+      "status": "passed",
+      "skillCount": 1,
+      "skillsPassed": 1,
+      "skillsFailed": 0,
+      "skills": [
+        {
+          "skill": "module-discovery",
+          "stage": "discovery",
+          "status": "passed",
+          "startedAt": "2026-04-13T16:59:05.116818Z",
+          "endedAt": "2026-04-13T16:59:05.213958Z",
+          "durationSeconds": 0.097,
+          "summary": "Discovery completed for Login: assets=18, routes=1, dbTouchpoints=0.",
+          "returnCode": 0,
+          "stdout": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/module-discovery/result.json\n",
+          "stderr": "",
+          "command": [
+            "python3",
+            "/Users/risha/Documents/Buildathon/skills/module-discovery/run.py",
+            "--input",
+            "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/module-run-input.json",
+            "--artifacts-root",
+            "/Users/risha/Documents/Buildathon/artifacts"
+          ],
+          "resultPath": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/module-discovery/result.json"
+        }
+      ],
+      "startedAt": "2026-04-13T16:59:05.116818Z",
+      "endedAt": "2026-04-13T16:59:05.213958Z"
+    },
+    {
+      "stage": "logic-understanding",
+      "stageTitle": "Logic Understanding",
+      "stageIndex": 2,
+      "status": "passed",
+      "skillCount": 2,
+      "skillsPassed": 2,
+      "skillsFailed": 0,
+      "skills": [
+        {
+          "skill": "legacy-logic-extraction",
+          "stage": "logic-understanding",
+          "status": "passed",
+          "startedAt": "2026-04-13T16:59:05.214432Z",
+          "endedAt": "2026-04-13T16:59:05.299721Z",
+          "durationSeconds": 0.085,
+          "summary": "Logic extraction completed for Login: workflows=4, rules=3, unknowns=1.",
+          "returnCode": 0,
+          "stdout": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/legacy-logic-extraction/result.json\n",
+          "stderr": "",
+          "command": [
+            "python3",
+            "/Users/risha/Documents/Buildathon/skills/legacy-logic-extraction/run.py",
+            "--input",
+            "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/module-run-input.json",
+            "--artifacts-root",
+            "/Users/risha/Documents/Buildathon/artifacts"
+          ],
+          "resultPath": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/legacy-logic-extraction/result.json"
+        },
+        {
+          "skill": "module-documentation",
+          "stage": "logic-understanding",
+          "status": "passed",
+          "startedAt": "2026-04-13T16:59:05.299742Z",
+          "endedAt": "2026-04-13T16:59:05.382484Z",
+          "durationSeconds": 0.083,
+          "summary": "Module documentation generated for Login with flows=4, rules=3, unknowns=1.",
+          "returnCode": 0,
+          "stdout": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/module-documentation/result.json\n",
+          "stderr": "",
+          "command": [
+            "python3",
+            "/Users/risha/Documents/Buildathon/skills/module-documentation/run.py",
+            "--input",
+            "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/module-run-input.json",
+            "--artifacts-root",
+            "/Users/risha/Documents/Buildathon/artifacts"
+          ],
+          "resultPath": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/module-documentation/result.json"
+        }
+      ],
+      "startedAt": "2026-04-13T16:59:05.214432Z",
+      "endedAt": "2026-04-13T16:59:05.382484Z"
+    },
+    {
+      "stage": "architecture-review",
+      "stageTitle": "Architecture Review",
+      "stageIndex": 3,
+      "status": "passed",
+      "skillCount": 1,
+      "skillsPassed": 1,
+      "skillsFailed": 0,
+      "skills": [
+        {
+          "skill": "clean-architecture-assessment",
+          "stage": "architecture-review",
+          "status": "passed",
+          "startedAt": "2026-04-13T16:59:05.382918Z",
+          "endedAt": "2026-04-13T16:59:05.465096Z",
+          "durationSeconds": 0.082,
+          "summary": "Architecture assessment for Login found 2 issue(s).",
+          "returnCode": 0,
+          "stdout": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/clean-architecture-assessment/result.json\n",
+          "stderr": "",
+          "command": [
+            "python3",
+            "/Users/risha/Documents/Buildathon/skills/clean-architecture-assessment/run.py",
+            "--input",
+            "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/module-run-input.json",
+            "--artifacts-root",
+            "/Users/risha/Documents/Buildathon/artifacts"
+          ],
+          "resultPath": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/clean-architecture-assessment/result.json"
+        }
+      ],
+      "startedAt": "2026-04-13T16:59:05.382918Z",
+      "endedAt": "2026-04-13T16:59:05.465096Z"
+    },
+    {
+      "stage": "test-plan",
+      "stageTitle": "Test Plan",
+      "stageIndex": 4,
+      "status": "passed",
+      "skillCount": 1,
+      "skillsPassed": 1,
+      "skillsFailed": 0,
+      "skills": [
+        {
+          "skill": "test-plan-generation",
+          "stage": "test-plan",
+          "status": "passed",
+          "startedAt": "2026-04-13T16:59:05.465675Z",
+          "endedAt": "2026-04-13T16:59:05.549207Z",
+          "durationSeconds": 0.083,
+          "summary": "Test plan generated for Login with categories=7 and suggestedTests=2.",
+          "returnCode": 0,
+          "stdout": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/test-plan-generation/result.json\n",
+          "stderr": "",
+          "command": [
+            "python3",
+            "/Users/risha/Documents/Buildathon/skills/test-plan-generation/run.py",
+            "--input",
+            "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/module-run-input.json",
+            "--artifacts-root",
+            "/Users/risha/Documents/Buildathon/artifacts"
+          ],
+          "resultPath": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/test-plan-generation/result.json"
+        }
+      ],
+      "startedAt": "2026-04-13T16:59:05.465675Z",
+      "endedAt": "2026-04-13T16:59:05.549207Z"
+    },
+    {
+      "stage": "execution",
+      "stageTitle": "Execution",
+      "stageIndex": 5,
+      "status": "passed",
+      "skillCount": 7,
+      "skillsPassed": 7,
+      "skillsFailed": 0,
+      "skills": [
+        {
+          "skill": "api-test-execution",
+          "stage": "execution",
+          "status": "passed",
+          "startedAt": "2026-04-13T16:59:05.549620Z",
+          "endedAt": "2026-04-13T16:59:06.438102Z",
+          "durationSeconds": 0.888,
+          "summary": "API execution completed with 5 passed and 0 failed scenarios.",
+          "returnCode": 0,
+          "stdout": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/api-test-execution/result.json\n",
+          "stderr": "",
+          "command": [
+            "python3",
+            "/Users/risha/Documents/Buildathon/skills/api-test-execution/run.py",
+            "--input",
+            "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/module-run-input.json",
+            "--artifacts-root",
+            "/Users/risha/Documents/Buildathon/artifacts"
+          ],
+          "resultPath": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/api-test-execution/result.json"
+        },
+        {
+          "skill": "browser-testing-with-devtools",
+          "stage": "execution",
+          "status": "passed",
+          "startedAt": "2026-04-13T16:59:06.438124Z",
+          "endedAt": "2026-04-13T16:59:06.573084Z",
+          "durationSeconds": 0.135,
+          "summary": "DevTools diagnostics for Login: consoleErrors=0, networkFailures=0, degradedMode=True, testApiSource=dashboard-fallback.",
+          "returnCode": 0,
+          "stdout": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/browser-testing-with-devtools/result.json\n",
+          "stderr": "",
+          "command": [
+            "python3",
+            "/Users/risha/Documents/Buildathon/skills/browser-testing-with-devtools/run.py",
+            "--input",
+            "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/module-run-input.json",
+            "--artifacts-root",
+            "/Users/risha/Documents/Buildathon/artifacts"
+          ],
+          "resultPath": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/browser-testing-with-devtools/result.json"
+        },
+        {
+          "skill": "e2e-test-execution",
+          "stage": "execution",
+          "status": "passed",
+          "startedAt": "2026-04-13T16:59:06.573104Z",
+          "endedAt": "2026-04-13T16:59:07.260981Z",
+          "durationSeconds": 0.688,
+          "summary": "E2E execution completed with 7 passed and 0 failed scenarios.",
+          "returnCode": 0,
+          "stdout": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/result.json\n",
+          "stderr": "",
+          "command": [
+            "python3",
+            "/Users/risha/Documents/Buildathon/skills/e2e-test-execution/run.py",
+            "--input",
+            "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/module-run-input.json",
+            "--artifacts-root",
+            "/Users/risha/Documents/Buildathon/artifacts"
+          ],
+          "resultPath": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/result.json"
+        },
+        {
+          "skill": "edge-case-testing",
+          "stage": "execution",
+          "status": "passed",
+          "startedAt": "2026-04-13T16:59:07.261003Z",
+          "endedAt": "2026-04-13T16:59:08.100551Z",
+          "durationSeconds": 0.839,
+          "summary": "Edge Case execution completed with 11 passed and 0 failed scenarios.",
+          "returnCode": 0,
+          "stdout": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/edge-case-testing/result.json\n",
+          "stderr": "",
+          "command": [
+            "python3",
+            "/Users/risha/Documents/Buildathon/skills/edge-case-testing/run.py",
+            "--input",
+            "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/module-run-input.json",
+            "--artifacts-root",
+            "/Users/risha/Documents/Buildathon/artifacts"
+          ],
+          "resultPath": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/edge-case-testing/result.json"
+        },
+        {
+          "skill": "integration-test-execution",
+          "stage": "execution",
+          "status": "passed",
+          "startedAt": "2026-04-13T16:59:08.100575Z",
+          "endedAt": "2026-04-13T16:59:08.859836Z",
+          "durationSeconds": 0.759,
+          "summary": "Integration execution completed with 7 passed and 0 failed scenarios.",
+          "returnCode": 0,
+          "stdout": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/integration-test-execution/result.json\n",
+          "stderr": "",
+          "command": [
+            "python3",
+            "/Users/risha/Documents/Buildathon/skills/integration-test-execution/run.py",
+            "--input",
+            "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/module-run-input.json",
+            "--artifacts-root",
+            "/Users/risha/Documents/Buildathon/artifacts"
+          ],
+          "resultPath": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/integration-test-execution/result.json"
+        },
+        {
+          "skill": "playwright-browser-verification",
+          "stage": "execution",
+          "status": "passed",
+          "startedAt": "2026-04-13T16:59:08.859858Z",
+          "endedAt": "2026-04-13T16:59:09.548035Z",
+          "durationSeconds": 0.688,
+          "summary": "Playwright/browser verification for Login: 6 passed, 0 failed, consoleErrors=0, networkFailures=0, testApiSource=dashboard-fallback.",
+          "returnCode": 0,
+          "stdout": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/result.json\n",
+          "stderr": "",
+          "command": [
+            "python3",
+            "/Users/risha/Documents/Buildathon/skills/playwright-browser-verification/run.py",
+            "--input",
+            "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/module-run-input.json",
+            "--artifacts-root",
+            "/Users/risha/Documents/Buildathon/artifacts"
+          ],
+          "resultPath": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/result.json"
+        },
+        {
+          "skill": "unit-test-execution",
+          "stage": "execution",
+          "status": "passed",
+          "startedAt": "2026-04-13T16:59:09.548060Z",
+          "endedAt": "2026-04-13T16:59:10.330761Z",
+          "durationSeconds": 0.782,
+          "summary": "Unit execution completed with 8 passed and 0 failed scenarios.",
+          "returnCode": 0,
+          "stdout": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/unit-test-execution/result.json\n",
+          "stderr": "",
+          "command": [
+            "python3",
+            "/Users/risha/Documents/Buildathon/skills/unit-test-execution/run.py",
+            "--input",
+            "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/module-run-input.json",
+            "--artifacts-root",
+            "/Users/risha/Documents/Buildathon/artifacts"
+          ],
+          "resultPath": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/unit-test-execution/result.json"
+        }
+      ],
+      "startedAt": "2026-04-13T16:59:05.549620Z",
+      "endedAt": "2026-04-13T16:59:10.330761Z"
+    },
+    {
+      "stage": "findings",
+      "stageTitle": "Findings",
+      "stageIndex": 6,
+      "status": "passed",
+      "skillCount": 3,
+      "skillsPassed": 3,
+      "skillsFailed": 0,
+      "skills": [
+        {
+          "skill": "failure-diagnosis",
+          "stage": "findings",
+          "status": "passed",
+          "startedAt": "2026-04-13T16:59:10.331364Z",
+          "endedAt": "2026-04-13T16:59:10.402173Z",
+          "durationSeconds": 0.071,
+          "summary": "Failure diagnosis generated 0 cluster(s) and 0 scenario-level failures for Login.",
+          "returnCode": 0,
+          "stdout": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/failure-diagnosis/result.json\n",
+          "stderr": "",
+          "command": [
+            "python3",
+            "/Users/risha/Documents/Buildathon/skills/failure-diagnosis/run.py",
+            "--input",
+            "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/module-run-input.json",
+            "--artifacts-root",
+            "/Users/risha/Documents/Buildathon/artifacts"
+          ],
+          "resultPath": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/failure-diagnosis/result.json"
+        },
+        {
+          "skill": "lessons-learned",
+          "stage": "findings",
+          "status": "passed",
+          "startedAt": "2026-04-13T16:59:10.402190Z",
+          "endedAt": "2026-04-13T16:59:10.472710Z",
+          "durationSeconds": 0.07,
+          "summary": "Lessons synthesized for Login: resolved=0, recurring=0, new=6.",
+          "returnCode": 0,
+          "stdout": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/lessons-learned/result.json\n",
+          "stderr": "",
+          "command": [
+            "python3",
+            "/Users/risha/Documents/Buildathon/skills/lessons-learned/run.py",
+            "--input",
+            "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/module-run-input.json",
+            "--artifacts-root",
+            "/Users/risha/Documents/Buildathon/artifacts"
+          ],
+          "resultPath": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/lessons-learned/result.json"
+        },
+        {
+          "skill": "parity-verification",
+          "stage": "findings",
+          "status": "passed",
+          "startedAt": "2026-04-13T16:59:10.472733Z",
+          "endedAt": "2026-04-13T16:59:10.572946Z",
+          "durationSeconds": 0.1,
+          "summary": "Parity verification for Login: score=100, failedChecks=0.",
+          "returnCode": 0,
+          "stdout": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/parity-verification/result.json\n",
+          "stderr": "",
+          "command": [
+            "python3",
+            "/Users/risha/Documents/Buildathon/skills/parity-verification/run.py",
+            "--input",
+            "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/module-run-input.json",
+            "--artifacts-root",
+            "/Users/risha/Documents/Buildathon/artifacts"
+          ],
+          "resultPath": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/parity-verification/result.json"
+        }
+      ],
+      "startedAt": "2026-04-13T16:59:10.331364Z",
+      "endedAt": "2026-04-13T16:59:10.572946Z"
+    },
+    {
+      "stage": "iteration-comparison",
+      "stageTitle": "Iteration Comparison",
+      "stageIndex": 7,
+      "status": "passed",
+      "skillCount": 1,
+      "skillsPassed": 1,
+      "skillsFailed": 0,
+      "skills": [
+        {
+          "skill": "iteration-comparison",
+          "stage": "iteration-comparison",
+          "status": "passed",
+          "startedAt": "2026-04-13T16:59:10.573460Z",
+          "endedAt": "2026-04-13T16:59:10.640138Z",
+          "durationSeconds": 0.066,
+          "summary": "Iteration comparison for Login: prev=none, trend=baseline, failuresReduced=0, resolvedFindings=0.",
+          "returnCode": 0,
+          "stdout": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/iteration-comparison/result.json\n",
+          "stderr": "",
+          "command": [
+            "python3",
+            "/Users/risha/Documents/Buildathon/skills/iteration-comparison/run.py",
+            "--input",
+            "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/module-run-input.json",
+            "--artifacts-root",
+            "/Users/risha/Documents/Buildathon/artifacts"
+          ],
+          "resultPath": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/iteration-comparison/result.json"
+        }
+      ],
+      "startedAt": "2026-04-13T16:59:10.573460Z",
+      "endedAt": "2026-04-13T16:59:10.640138Z"
+    }
+  ],
+  "failedSkills": [],
+  "artifactsRoot": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637"
+}
