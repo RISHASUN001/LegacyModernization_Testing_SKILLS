@@ -211,6 +211,8 @@ def execute(ctx):
         "roots": scope.get("roots", []),
         "hintPaths": scope.get("hintPaths", []),
         "terms": scope.get("terms", []),
+        "scopeContext": scope.get("scopeContext", {}),
+        "totalSelectedFiles": int(scope.get("totalSelectedFiles", 0) or 0),
         "assetCounts": asset_counts,
         "filesByType": files_by_type,
         "routeCandidates": route_candidates,

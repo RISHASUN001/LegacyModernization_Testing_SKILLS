@@ -18,6 +18,8 @@
         .Where(static x => !string.IsNullOrWhiteSpace(x))
         .Take(8)
         .ToList();
+    var dependencyViolations = Model.Parity.DependencyParity.Violations.Count;
+    var dependencyCount = Model.Parity.DependencyParity.Dependencies.Count;
 }
 
 <div class="d-flex flex-wrap align-items-start justify-content-between gap-3 mb-3">
@@ -67,6 +69,153 @@
         <a class="btn btn-sm btn-outline-secondary" href="#stage-parity">Parity Analysis</a>
     </div>
 </div>
+
+<section class="panel-card p-3 mb-3">
+    <div class="stage-heading">
+        <h3 class="h5 mb-0">Guided View</h3>
+        <span class="stage-pill">purpose / scope / policy / dependencies</span>
+    </div>
+
+    <ul class="nav nav-pills pipeline-tabs mb-3" id="pipelineSubTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="overview-tab" data-bs-toggle="pill" data-bs-target="#overview-pane" type="button" role="tab" aria-controls="overview-pane" aria-selected="true">Overview</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="scope-tab" data-bs-toggle="pill" data-bs-target="#scope-pane" type="button" role="tab" aria-controls="scope-pane" aria-selected="false">Scope and Policy</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="architecture-tab" data-bs-toggle="pill" data-bs-target="#architecture-pane" type="button" role="tab" aria-controls="architecture-pane" aria-selected="false">Architecture</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="dependency-tab" data-bs-toggle="pill" data-bs-target="#dependency-pane" type="button" role="tab" aria-controls="dependency-pane" aria-selected="false">Parity Dependencies</button>
+        </li>
+    </ul>
+
+    <div class="tab-content pipeline-tab-content">
+        <div class="tab-pane fade show active" id="overview-pane" role="tabpanel" aria-labelledby="overview-tab" tabindex="0">
+            <p class="mb-2">This run validates modernization fidelity for <strong>@Model.ModuleName</strong> by combining scoped discovery, architecture conformance, and execution evidence.</p>
+            <div class="pipeline-summary-grid">
+                <div class="pipeline-summary-card">
+                    <div class="summary-label">Module Purpose</div>
+                    <div class="small">@Model.LogicUnderstanding.ModulePurpose</div>
+                </div>
+                <div class="pipeline-summary-card">
+                    <div class="summary-label">Scope Focus</div>
+                    <div class="small">@(string.IsNullOrWhiteSpace(Model.Discovery.ScopeContext.ScopeHint) ? "No explicit scope hint" : Model.Discovery.ScopeContext.ScopeHint)</div>
+                </div>
+                <div class="pipeline-summary-card">
+                    <div class="summary-label">Architecture Policy</div>
+                    <div class="small">@Model.ArchitectureReview.ArchitecturePolicy</div>
+                </div>
+                <div class="pipeline-summary-card">
+                    <div class="summary-label">Dependency Violations</div>
+                    <div class="small">@dependencyViolations of @dependencyCount dependencies</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="scope-pane" role="tabpanel" aria-labelledby="scope-tab" tabindex="0">
+            <div class="row g-3">
+                <div class="col-lg-4">
+                    <div class="pipeline-summary-card h-100">
+                        <div class="summary-label">Discovery Scope</div>
+                        <div class="small">strictModuleOnly: <strong>@Model.Discovery.ScopeContext.StrictModuleOnly</strong></div>
+                        <div class="small">targetUrlPath: <code>@Model.Discovery.ScopeContext.TargetUrlPath</code></div>
+                        <div class="small">scopeHint: @Model.Discovery.ScopeContext.ScopeHint</div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="pipeline-summary-card h-100">
+                        <div class="summary-label">Logic Scope Applied</div>
+                        <div class="small">targetUrl: <code>@Model.LogicUnderstanding.ScopeApplied.TargetUrl</code></div>
+                        <div class="small">scopeHint: @Model.LogicUnderstanding.ScopeApplied.ScopeHint</div>
+                        <div class="small">scopeTerms: @string.Join(", ", Model.LogicUnderstanding.ScopeApplied.ScopeTerms)</div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="pipeline-summary-card h-100">
+                        <div class="summary-label">Test Plan Scope Applied</div>
+                        <div class="small">targetUrl: <code>@Model.TestPlan.ScopeApplied.TargetUrl</code></div>
+                        <div class="small">scopeHint: @Model.TestPlan.ScopeApplied.ScopeHint</div>
+                        <div class="small">scopeTerms: @string.Join(", ", Model.TestPlan.ScopeApplied.ScopeTerms)</div>
+                    </div>
+                </div>
+            </div>
+            <div class="small text-muted mt-2">Purpose: keep generated logic and test scenarios aligned with the intended module boundary.</div>
+        </div>
+
+        <div class="tab-pane fade" id="architecture-pane" role="tabpanel" aria-labelledby="architecture-tab" tabindex="0">
+            <div class="row g-3">
+                <div class="col-lg-6">
+                    <div class="pipeline-summary-card h-100">
+                        <div class="summary-label">Architecture Policy</div>
+                        <div class="summary-value">@Model.ArchitectureReview.ArchitecturePolicy</div>
+                        <div class="small text-muted">Confidence: @Model.ArchitectureReview.Confidence.ToString("0.00")</div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="pipeline-summary-card h-100">
+                        <div class="summary-label">Why It Matters</div>
+                        <div class="small">Policy-driven checks ensure modernization does not silently introduce unsafe layering or accidental coupling.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="dependency-pane" role="tabpanel" aria-labelledby="dependency-tab" tabindex="0">
+            <div class="row g-3">
+                <div class="col-lg-4">
+                    <div class="pipeline-summary-card h-100">
+                        <div class="summary-label">Allowed Cross Modules</div>
+                        <ul class="mb-0">
+                            @foreach (var allowed in Model.Parity.DependencyParity.AllowedCrossModules)
+                            {
+                                <li>@allowed</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="pipeline-summary-card h-100">
+                        <div class="summary-label">Detected Dependencies</div>
+                        <ul class="mb-0">
+                            @if (Model.Parity.DependencyParity.Dependencies.Any())
+                            {
+                                @foreach (var dep in Model.Parity.DependencyParity.Dependencies)
+                                {
+                                    <li>@dep</li>
+                                }
+                            }
+                            else
+                            {
+                                <li class="text-muted">No dependencies detected.</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="pipeline-summary-card h-100">
+                        <div class="summary-label">Violations</div>
+                        <ul class="mb-0">
+                            @if (Model.Parity.DependencyParity.Violations.Any())
+                            {
+                                @foreach (var violation in Model.Parity.DependencyParity.Violations)
+                                {
+                                    <li class="text-danger">@violation</li>
+                                }
+                            }
+                            else
+                            {
+                                <li class="text-success">No cross-module dependency violations.</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="small text-muted mt-2">Purpose: enforce module boundaries while permitting explicit shared dependencies.</div>
+        </div>
+    </div>
+</section>
 
 <section id="stage-discovery" class="stage-section panel-card p-3 mb-3">
     <div class="stage-heading">
@@ -146,6 +295,10 @@
         </div>
     </div>
     <div class="small text-muted mt-2">Source: <code>@Model.Discovery.SourceArtifactPath</code></div>
+    @if (Model.Discovery.ScopeContext.ScopeTokens.Any())
+    {
+        <div class="small text-muted mt-1">Scope tokens: @string.Join(", ", Model.Discovery.ScopeContext.ScopeTokens)</div>
+    }
 </section>
 
 <section id="stage-logic-understanding" class="stage-section panel-card p-3 mb-3">
@@ -212,6 +365,10 @@
         </div>
     </div>
     <div class="small text-muted mt-2">Logic confidence: @Model.LogicUnderstanding.Confidence.ToString("0.00")</div>
+    @if (Model.LogicUnderstanding.ScopeApplied.ScopeTerms.Any())
+    {
+        <div class="small text-muted mt-1">Scope applied: @string.Join(", ", Model.LogicUnderstanding.ScopeApplied.ScopeTerms)</div>
+    }
     @if (Model.LogicUnderstanding.Unknowns.Any())
     {
         <div class="mt-2">
@@ -235,6 +392,50 @@
     </div>
 
     <div class="small text-muted mb-2">Confidence: @Model.Parity.Confidence.ToString("0.00")</div>
+
+    <div class="row g-3 mb-3">
+        <div class="col-lg-4">
+            <h4 class="h6">Allowed Cross Modules</h4>
+            <ul>
+                @foreach (var allowed in Model.Parity.DependencyParity.AllowedCrossModules)
+                {
+                    <li>@allowed</li>
+                }
+            </ul>
+        </div>
+        <div class="col-lg-4">
+            <h4 class="h6">Dependencies</h4>
+            <ul>
+                @if (Model.Parity.DependencyParity.Dependencies.Any())
+                {
+                    @foreach (var dep in Model.Parity.DependencyParity.Dependencies)
+                    {
+                        <li>@dep</li>
+                    }
+                }
+                else
+                {
+                    <li class="text-muted">No dependency evidence captured.</li>
+                }
+            </ul>
+        </div>
+        <div class="col-lg-4">
+            <h4 class="h6">Dependency Violations</h4>
+            <ul>
+                @if (Model.Parity.DependencyParity.Violations.Any())
+                {
+                    @foreach (var violation in Model.Parity.DependencyParity.Violations)
+                    {
+                        <li class="text-danger">@violation</li>
+                    }
+                }
+                else
+                {
+                    <li class="text-success">No dependency policy violations.</li>
+                }
+            </ul>
+        </div>
+    </div>
 
     <div class="table-responsive mb-2">
         <table class="table table-sm">
@@ -370,6 +571,13 @@
         <span class="stage-pill">clean architecture + DI + coupling</span>
     </div>
     <div class="row g-3">
+        <div class="col-lg-12">
+            <div class="pipeline-summary-card">
+                <div class="summary-label">Applied Architecture Policy</div>
+                <div class="summary-value">@Model.ArchitectureReview.ArchitecturePolicy</div>
+                <div class="small text-muted">confidence: @Model.ArchitectureReview.Confidence.ToString("0.00")</div>
+            </div>
+        </div>
         <div class="col-lg-6">
             <h4 class="h6">Clean Architecture Issues</h4>
             <ul>
@@ -417,6 +625,10 @@
         <span class="stage-pill">existing + suggested + coverage + category purpose</span>
     </div>
     <p><strong>Coverage Summary:</strong> @Model.TestPlan.CoverageSummary</p>
+    @if (Model.TestPlan.ScopeApplied.ScopeTerms.Any())
+    {
+        <div class="small text-muted mb-2">Scope applied to test plan: @string.Join(", ", Model.TestPlan.ScopeApplied.ScopeTerms) (confidence @Model.TestPlan.Confidence.ToString("0.00"))</div>
+    }
     <div class="row g-3">
         <div class="col-lg-6">
             <h4 class="h6">Existing Tests Found</h4>

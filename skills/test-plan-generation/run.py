@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 import sys
 
@@ -77,6 +78,28 @@ def _category(name: str, purpose: str, scenarios: list[dict]) -> dict:
     return {"category": name, "purpose": purpose, "scenarios": scenarios}
 
 
+def _build_scope_terms(ctx, logic: dict) -> list[str]:
+    terms: list[str] = []
+
+    scope_applied = logic.get("scopeApplied") if isinstance(logic.get("scopeApplied"), dict) else {}
+    terms.extend([str(x).lower() for x in (scope_applied.get("scopeTerms") or []) if str(x).strip()])
+
+    target_url = str(ctx.get("targetUrl") or "").lower()
+    terms.extend([p for p in re.split(r"[^a-z0-9]+", target_url) if len(p) >= 2])
+
+    scope_hint = str(ctx.get("moduleHints.scopeHint") or "").lower()
+    terms.extend([p for p in re.split(r"[^a-z0-9]+", scope_hint) if len(p) >= 2])
+
+    return sorted(set(terms))
+
+
+def _filter_strings_by_scope(values: list[str], scope_terms: list[str]) -> list[str]:
+    if not scope_terms:
+        return values
+    filtered = [value for value in values if any(term in value.lower() for term in scope_terms)]
+    return filtered or values
+
+
 def execute(ctx):
     scope = ctx.resolve_scope()
     discovery = ctx.load_artifact_json("module-discovery", "discovery-map.json") or {}
@@ -85,6 +108,7 @@ def execute(ctx):
     lessons_kb = _load_lessons_kb(ctx)
     profiles = _load_profiles()
     matched_profile_ids = _detect_profile_ids(ctx.module_name, discovery, profiles)
+    scope_terms = _build_scope_terms(ctx, logic)
 
     module_tokens = [ctx.module_name.lower()]
     for profile in profiles:
@@ -107,6 +131,7 @@ def execute(ctx):
         if not any(token in lower for token in module_tokens):
             continue
         urls.append(text)
+    urls = _filter_strings_by_scope(urls, scope_terms)
     workflows = logic.get("workflows", []) if isinstance(logic.get("workflows"), list) else []
     if not workflows:
         inferred = logic.get("importantFlows", []) or infer_flows_from_urls(urls)
@@ -134,8 +159,10 @@ def execute(ctx):
             w for w in workflow_names
             if any(token in w.lower() for token in module_tokens)
         ] or workflow_names
+    workflow_names = _filter_strings_by_scope(workflow_names, scope_terms)
     preserve_names = [m.get("behavior", "") if isinstance(m, dict) else str(m) for m in must_preserve]
     preserve_names = [p for p in preserve_names if p]
+    preserve_names = _filter_strings_by_scope(preserve_names, scope_terms)
 
     recurring_signatures = lessons_kb.get("recurringSignatures", []) if isinstance(lessons_kb.get("recurringSignatures"), list) else []
 
@@ -314,6 +341,11 @@ def execute(ctx):
         "newTestsSuggested": new_tests_suggested[:40],
         "testCategories": categories,
         "coverageSummary": f"Estimated coverage baseline for {ctx.module_name}: {coverage_percent}%.",
+        "scopeApplied": {
+            "scopeTerms": scope_terms[:30],
+            "targetUrl": str(ctx.get("targetUrl") or ""),
+            "scopeHint": str(ctx.get("moduleHints.scopeHint") or ""),
+        },
         "confidence": 0.82 if workflows and (rules or urls) else 0.55,
     }
 

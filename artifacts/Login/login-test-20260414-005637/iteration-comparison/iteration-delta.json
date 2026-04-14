@@ -2,7 +2,7 @@
   "moduleName": "Login",
   "runId": "login-test-20260414-005637",
   "previousRunId": "",
-  "testsAdded": 2,
+  "testsAdded": 6,
   "testsFixed": 0,
   "failuresReduced": 0,
   "newFindingsIntroduced": 6,
@@ -40,6 +40,11 @@
       "failuresReduced": 0
     },
     "integration-test-execution": {
+      "previousFailed": 0,
+      "currentFailed": 0,
+      "failuresReduced": 0
+    },
+    "iteration-comparison": {
       "previousFailed": 0,
       "currentFailed": 0,
       "failuresReduced": 0

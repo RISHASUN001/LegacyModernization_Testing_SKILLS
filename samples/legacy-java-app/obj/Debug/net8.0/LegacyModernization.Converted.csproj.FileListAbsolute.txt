@@ -41,3 +41,9 @@
 /Users/risha/Documents/Buildathon/samples/legacy-java-app/bin/Debug/net8.0/Tests/Generated/Login4/integration-generated-tests.json
 /Users/risha/Documents/Buildathon/samples/legacy-java-app/bin/Debug/net8.0/Tests/Generated/Login4/playwright-e2e-browser-generated-tests.json
 /Users/risha/Documents/Buildathon/samples/legacy-java-app/bin/Debug/net8.0/Tests/Generated/Login4/unit-generated-tests.json
+/Users/risha/Documents/Buildathon/samples/legacy-java-app/bin/Debug/net8.0/Tests/Generated/Login/api-generated-tests.json
+/Users/risha/Documents/Buildathon/samples/legacy-java-app/bin/Debug/net8.0/Tests/Generated/Login/e2e-generated-tests.json
+/Users/risha/Documents/Buildathon/samples/legacy-java-app/bin/Debug/net8.0/Tests/Generated/Login/edge-case-generated-tests.json
+/Users/risha/Documents/Buildathon/samples/legacy-java-app/bin/Debug/net8.0/Tests/Generated/Login/integration-generated-tests.json
+/Users/risha/Documents/Buildathon/samples/legacy-java-app/bin/Debug/net8.0/Tests/Generated/Login/playwright-e2e-browser-generated-tests.json
+/Users/risha/Documents/Buildathon/samples/legacy-java-app/bin/Debug/net8.0/Tests/Generated/Login/unit-generated-tests.json

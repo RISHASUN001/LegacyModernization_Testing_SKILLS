@@ -4,15 +4,15 @@
   "moduleName": "Login",
   "runId": "login-test-20260414-005637",
   "status": "passed",
-  "startedAt": "2026-04-13T16:59:07.342465Z",
-  "endedAt": "2026-04-13T16:59:08.087634Z",
-  "summary": "Edge Case execution completed with 11 passed and 0 failed scenarios.",
+  "startedAt": "2026-04-14T02:40:48.385245Z",
+  "endedAt": "2026-04-14T02:40:49.261324Z",
+  "summary": "Edge Case execution completed with 10 passed and 0 failed scenarios.",
   "metrics": {
-    "total": 11,
-    "passed": 11,
+    "total": 10,
+    "passed": 10,
     "failed": 0,
     "warnings": 0,
-    "newTestsAdded": 6,
+    "newTestsAdded": 4,
     "scenarios": [
       {
         "name": "Must-preserve edge behavior: Route and URL behavior parity for user-visible flows",
@@ -118,77 +118,20 @@
         }
       },
       {
-        "name": "Edge resilience: Route and URL behavior parity for user-visible flows",
+        "name": "Recurring risk regression guard: DapperCaseSensitivity",
         "status": "passed",
         "notes": "Validate boundary conditions, Dapper case-sensitivity, ViewModel binding, retries, and low-frequency high-impact paths.",
         "coverage": [
-          "edge-case",
-          "recovery",
-          "resilience"
+          "lessons-regression"
         ],
-        "generated": true,
-        "generatedFrom": [
-          "preserve:Route and URL behavior parity for user-visible flows"
-        ],
+        "generated": false,
+        "generatedFrom": [],
         "provenance": {
-          "type": "inferred",
+          "type": "lessons-derived",
           "sources": [
-            "artifact:test-plan-generation/test-plan.json",
-            "artifact:module-discovery/discovery-map.json",
-            "artifact:legacy-logic-extraction/logic-summary.json",
-            "artifact:module-documentation/module-analysis.json"
+            "artifact:_knowledge-base/lessons-kb.json"
           ],
-          "confidence": 0.77,
-          "unknowns": []
-        }
-      },
-      {
-        "name": "Edge resilience: Validation/error message semantics from legacy behavior",
-        "status": "passed",
-        "notes": "Validate boundary conditions, Dapper case-sensitivity, ViewModel binding, retries, and low-frequency high-impact paths.",
-        "coverage": [
-          "edge-case",
-          "recovery",
-          "resilience"
-        ],
-        "generated": true,
-        "generatedFrom": [
-          "preserve:Validation/error message semantics from legacy behavior"
-        ],
-        "provenance": {
-          "type": "inferred",
-          "sources": [
-            "artifact:test-plan-generation/test-plan.json",
-            "artifact:module-discovery/discovery-map.json",
-            "artifact:legacy-logic-extraction/logic-summary.json",
-            "artifact:module-documentation/module-analysis.json"
-          ],
-          "confidence": 0.77,
-          "unknowns": []
-        }
-      },
-      {
-        "name": "Edge resilience: Data mapping compatibility for persistence operations (Dapper case-sensitivity, ViewModel binding)",
-        "status": "passed",
-        "notes": "Validate boundary conditions, Dapper case-sensitivity, ViewModel binding, retries, and low-frequency high-impact paths.",
-        "coverage": [
-          "edge-case",
-          "recovery",
-          "resilience"
-        ],
-        "generated": true,
-        "generatedFrom": [
-          "preserve:Data mapping compatibility for persistence operations (Dapper case-sensitivity, ViewModel binding)"
-        ],
-        "provenance": {
-          "type": "inferred",
-          "sources": [
-            "artifact:test-plan-generation/test-plan.json",
-            "artifact:module-discovery/discovery-map.json",
-            "artifact:legacy-logic-extraction/logic-summary.json",
-            "artifact:module-documentation/module-analysis.json"
-          ],
-          "confidence": 0.77,
+          "confidence": 0.8,
           "unknowns": []
         }
       },
@@ -243,7 +186,7 @@
         }
       },
       {
-        "name": "Edge retry/timeout behavior: Submit valid credentials",
+        "name": "Edge retry/timeout behavior: Session timeout returns to login",
         "status": "passed",
         "notes": "Validate boundary conditions, Dapper case-sensitivity, ViewModel binding, retries, and low-frequency high-impact paths.",
         "coverage": [
@@ -253,7 +196,31 @@
         ],
         "generated": true,
         "generatedFrom": [
-          "flow:Submit valid credentials"
+          "flow:Session timeout returns to login"
+        ],
+        "provenance": {
+          "type": "inferred",
+          "sources": [
+            "artifact:test-plan-generation/test-plan.json",
+            "artifact:module-discovery/discovery-map.json",
+            "artifact:legacy-logic-extraction/logic-summary.json",
+            "artifact:module-documentation/module-analysis.json"
+          ],
+          "confidence": 0.77,
+          "unknowns": []
+        }
+      },
+      {
+        "name": "Edge Case robustness generated case 1 for Login",
+        "status": "passed",
+        "notes": "Validate boundary conditions, Dapper case-sensitivity, ViewModel binding, retries, and low-frequency high-impact paths.",
+        "coverage": [
+          "robustness",
+          "fallback"
+        ],
+        "generated": true,
+        "generatedFrom": [
+          "fallback:insufficient-discovery-evidence"
         ],
         "provenance": {
           "type": "inferred",
@@ -285,7 +252,7 @@
     {
       "message": "Review Edge Case logs/artifacts and fix failing scenarios before next iteration.",
       "priority": "medium",
-      "evidence": "0 failed out of 11 scenarios."
+      "evidence": "0 failed out of 10 scenarios."
     }
   ],
   "resultContractVersion": "2.0",
@@ -328,7 +295,7 @@
       "minimal"
     ],
     "returnCode": 0,
-    "durationSeconds": 0.712,
+    "durationSeconds": 0.837,
     "cwd": "/Users/risha/Documents/Buildathon/samples/legacy-java-app"
   },
   "provenanceSummary": {
@@ -338,13 +305,12 @@
       "risk-derived",
       "risk-derived",
       "risk-derived",
-      "inferred",
-      "inferred",
+      "lessons-derived",
       "inferred",
       "inferred",
       "inferred",
       "inferred"
     ],
-    "confidence": 0.756
+    "confidence": 0.758
   }
 }

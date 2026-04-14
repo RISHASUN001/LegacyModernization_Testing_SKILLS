@@ -16,9 +16,13 @@ Use this skill when Stage **architecture-review** evidence must be generated or 
 - `moduleName`
 - `convertedSourceRoot`
 
+## optional inputs
+- `architecturePolicy` (`module-first`, `balanced`, `clean-architecture`)
+
 ## process
 - Load `module-run-input.json` from run context.
-- Resolve artifact output folder under `artifacts/<module>/<run>/<skill>/`.
+- Resolve artifact output folder under `artifacts/{module}/{runId}/{skill}/`.
+- Evaluate architecture policy checks (module-first folder minimalism, DI signals, controller coupling, namespace alignment).
 - Execute stage-specific analysis/test workflow.
 - Persist `result.json` and stage detail artifacts.
 

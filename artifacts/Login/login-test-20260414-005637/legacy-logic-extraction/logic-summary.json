@@ -59,68 +59,6 @@
       }
     },
     {
-      "id": "login-submit-valid-credentials",
-      "name": "Submit valid credentials",
-      "steps": [
-        {
-          "name": "Trigger route/view",
-          "expectedOutcome": "User enters module flow"
-        },
-        {
-          "name": "Validation and rule checks",
-          "expectedOutcome": "Invalid states are rejected"
-        },
-        {
-          "name": "Persistence/service action",
-          "expectedOutcome": "State is persisted consistently"
-        },
-        {
-          "name": "Response/UI transition",
-          "expectedOutcome": "User-visible behavior matches legacy"
-        }
-      ],
-      "preserveCriticality": "high",
-      "provenance": {
-        "type": "inferred",
-        "sources": [
-          "/login"
-        ],
-        "confidence": 0.72,
-        "unknowns": []
-      }
-    },
-    {
-      "id": "login-submit-invalid-credentials",
-      "name": "Submit invalid credentials",
-      "steps": [
-        {
-          "name": "Trigger route/view",
-          "expectedOutcome": "User enters module flow"
-        },
-        {
-          "name": "Validation and rule checks",
-          "expectedOutcome": "Invalid states are rejected"
-        },
-        {
-          "name": "Persistence/service action",
-          "expectedOutcome": "State is persisted consistently"
-        },
-        {
-          "name": "Response/UI transition",
-          "expectedOutcome": "User-visible behavior matches legacy"
-        }
-      ],
-      "preserveCriticality": "high",
-      "provenance": {
-        "type": "inferred",
-        "sources": [
-          "/login"
-        ],
-        "confidence": 0.72,
-        "unknowns": []
-      }
-    },
-    {
       "id": "login-session-timeout-returns-to-login",
       "name": "Session timeout returns to login",
       "steps": [
@@ -168,19 +106,6 @@
     },
     {
       "id": "R-002",
-      "rule": "If credentials are valid, establish session and return authentication success response",
-      "rationale": "Derived from discovered module assets and persistence/client-side signals.",
-      "provenance": {
-        "type": "inferred",
-        "sources": [
-          "/login"
-        ],
-        "confidence": 0.74,
-        "unknowns": []
-      }
-    },
-    {
-      "id": "R-003",
       "rule": "If session is expired, protected routes redirect to login",
       "rationale": "Derived from discovered module assets and persistence/client-side signals.",
       "provenance": {
@@ -298,15 +223,19 @@
       "/Users/risha/Documents/Buildathon/samples/legacy-java-app/index.jsp"
     ]
   },
+  "scopeApplied": {
+    "scopeTerms": [
+      "login"
+    ],
+    "targetUrl": "",
+    "scopeHint": ""
+  },
   "importantFlows": [
     "Open login page",
-    "Submit valid credentials",
-    "Submit invalid credentials",
     "Session timeout returns to login"
   ],
   "rules": [
     "If credentials are invalid, stay on login page and show validation message",
-    "If credentials are valid, establish session and return authentication success response",
     "If session is expired, protected routes redirect to login"
   ],
   "dependenciesText": [

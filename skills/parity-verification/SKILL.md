@@ -18,9 +18,12 @@ Use this skill when Stage **findings** evidence must be generated or refreshed f
 - `legacySourceRoot`
 - `convertedSourceRoot`
 
+## optional inputs
+- `allowedCrossModules` (module dependency allow-list, default includes `Shared`)
+
 ## process
 - Load `module-run-input.json` from run context.
-- Resolve artifact output folder under `artifacts/<module>/<run>/<skill>/`.
+- Resolve artifact output folder under `artifacts/{module}/{runId}/{skill}/`.
 - Execute stage-specific analysis/test workflow.
 - Persist `result.json` and stage detail artifacts.
 
@@ -34,6 +37,7 @@ Use this skill when Stage **findings** evidence must be generated or refreshed f
 - `sqlParity.legacyQueryCount`, `sqlParity.convertedQueryCount`, `sqlParity.matchedCount`.
 - `sqlParity.tableMatches[]`: table-level legacy vs converted occurrence comparison.
 - `sqlParity.beforeAfter[]`: legacy query snippet vs best converted query match, with confidence.
+- `dependencyParity.allowedCrossModules`, `dependencyParity.dependencies[]`, `dependencyParity.violations[]` for cross-module dependency policy validation.
 
 ## artifact files produced
 - `artifacts/{module}/{runId}/parity-verification/`

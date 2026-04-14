@@ -18,7 +18,7 @@ Use this skill when Stage **iteration-comparison** evidence must be generated or
 
 ## process
 - Load `module-run-input.json` from run context.
-- Resolve artifact output folder under `artifacts/<module>/<run>/<skill>/`.
+- Resolve artifact output folder under `artifacts/{module}/{runId}/{skill}/`.
 - Execute stage-specific analysis/test workflow.
 - Persist `result.json` and stage detail artifacts.
 

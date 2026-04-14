@@ -1,0 +1,127 @@
+@{
+    ViewData["Title"] = "Help Guide";
+}
+
+<section class="panel-card p-3 mb-3">
+    <h2 class="h4 mb-2">How This Platform Works</h2>
+    <p class="mb-0">
+        This console helps you modernize one module at a time with explicit scope controls, architecture guardrails, and parity checks.
+        The goal is to keep behavior equivalent while making modernization outputs auditable and repeatable.
+    </p>
+</section>
+
+<section class="panel-card p-3 mb-3">
+    <h3 class="h5 mb-2">What Each Area Does</h3>
+    <div class="table-responsive">
+        <table class="table table-sm align-middle mb-0">
+            <thead>
+                <tr>
+                    <th>Area</th>
+                    <th>Purpose</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Run Input Builder</td>
+                    <td>Define module scope, URLs, policy, and skill execution inputs.</td>
+                    <td>Prevents accidental broad scans and makes each run deterministic.</td>
+                </tr>
+                <tr>
+                    <td>Pipeline</td>
+                    <td>Shows discovery, logic, architecture, test planning, execution, and parity outcomes.</td>
+                    <td>Gives traceability from source evidence to modernization confidence.</td>
+                </tr>
+                <tr>
+                    <td>Findings</td>
+                    <td>Lists failed scenarios, likely causes, and recommendations.</td>
+                    <td>Speeds up troubleshooting and issue prioritization.</td>
+                </tr>
+                <tr>
+                    <td>Iteration Comparison</td>
+                    <td>Compares the current run with previous runs for the same module.</td>
+                    <td>Shows measurable quality uplift over time.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="panel-card p-3 mb-3">
+    <h3 class="h5 mb-2">Scope and Policy Toggles</h3>
+    <div class="help-grid">
+        <article class="help-item">
+            <h4 class="h6">strictModuleOnly</h4>
+            <p class="small mb-1">When enabled, only files strongly matching the selected module scope are used.</p>
+            <p class="small text-muted mb-0">Effect: reduces noise and cross-module contamination.</p>
+        </article>
+        <article class="help-item">
+            <h4 class="h6">scopeHint</h4>
+            <p class="small mb-1">Natural-language hint describing the exact module intent.</p>
+            <p class="small text-muted mb-0">Effect: discovery, logic extraction, and test planning focus on your stated intent.</p>
+        </article>
+        <article class="help-item">
+            <h4 class="h6">targetUrl</h4>
+            <p class="small mb-1">Primary user journey URL or route to validate (for example, /login).</p>
+            <p class="small text-muted mb-0">Effect: prioritizes route-relevant files, flows, and parity checks.</p>
+        </article>
+        <article class="help-item">
+            <h4 class="h6">allowedCrossModules</h4>
+            <p class="small mb-1">Permitted shared dependencies such as Shared or Common.</p>
+            <p class="small text-muted mb-0">Effect: allows deliberate reuse while flagging unexpected coupling.</p>
+        </article>
+        <article class="help-item">
+            <h4 class="h6">architecturePolicy</h4>
+            <p class="small mb-1">Policy for structure checks, defaulting to module-first.</p>
+            <p class="small text-muted mb-0">Effect: architecture review severity and recommendations align to the selected policy.</p>
+        </article>
+        <article class="help-item">
+            <h4 class="h6">generateModuleClaudeMd</h4>
+            <p class="small mb-1">Emits module-scoped guidance artifact for downstream automation.</p>
+            <p class="small text-muted mb-0">Effect: preserves run context and policy in generated artifacts.</p>
+        </article>
+    </div>
+</section>
+
+<section class="panel-card p-3 mb-3">
+    <h3 class="h5 mb-2">Sample Scoped Run Input</h3>
+    <pre class="json-preview mb-0">{
+  "runId": "run-003",
+  "moduleName": "Login",
+  "baseUrl": "http://localhost:5276",
+    "targetUrl": "http://localhost:5276/login",
+  "strictModuleOnly": true,
+  "allowedCrossModules": ["Shared"],
+  "architecturePolicy": "module-first",
+  "generateModuleClaudeMd": true,
+  "moduleHints": {
+        "scopeHint": "Login entry then dashboard landing flow",
+        "knownUrls": ["/login", "/dashboard"],
+        "keywords": ["login", "credentials", "session", "dashboard"]
+  }
+}</pre>
+</section>
+
+<section class="panel-card p-3 mb-3">
+        <h3 class="h5 mb-2">Next Run Recipe (Copy Every Time)</h3>
+        <ol class="mb-2">
+                <li>Set <strong>targetUrl</strong> to the entry route (for example, <code>/login</code>).</li>
+                <li>Add at least one post-action route in <strong>moduleHints.knownUrls</strong> (for example, <code>/dashboard</code>).</li>
+                <li>Keep <strong>strictModuleOnly=true</strong> for focused module runs.</li>
+                <li>Keep <strong>generateModuleClaudeMd=true</strong> so CLAUDE guidance is regenerated for the run.</li>
+                <li>Use <strong>scopeHint</strong> to describe the complete user journey, not just one page.</li>
+        </ol>
+        <p class="small text-muted mb-0">
+                Tip: if you only specify <code>/login</code> and no companion routes, downstream test planning may under-represent post-login behavior.
+        </p>
+</section>
+
+<section class="panel-card p-3">
+    <h3 class="h5 mb-2">Quick Usage Flow</h3>
+    <ol class="mb-0">
+        <li>Configure run input with scope and policy toggles.</li>
+        <li>Execute skills and open the Pipeline page for that module run.</li>
+        <li>Review Scope and Policy tab first, then Parity and Findings.</li>
+        <li>Use Iteration Comparison to verify objective improvement before closing the module.</li>
+    </ol>
+</section>

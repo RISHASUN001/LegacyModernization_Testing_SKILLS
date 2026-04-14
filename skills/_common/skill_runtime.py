@@ -10,6 +10,7 @@ import re
 import subprocess
 import sys
 import time
+import urllib.parse
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Callable
@@ -50,6 +51,10 @@ _TEXT_FILE_SUFFIXES = {
     ".md",
 }
 _URL_RE = re.compile(r"(/[-A-Za-z0-9_./]+(?:\.do|\.jsp|\.action|\.aspx|\.json|\.html|\.htm)?)")
+_REDIRECT_URL_RE = re.compile(
+    r"(?:sendRedirect|redirect:|RedirectTo(?:Action|Route)?|window\.location(?:\.href)?|location\.href)\s*\(?\s*[\"'](/[-A-Za-z0-9_./-]+)[\"']",
+    re.IGNORECASE,
+)
 _DB_TOUCHPOINT_RE = re.compile(r"\b([A-Z][A-Z0-9_]{2,}\.[A-Z][A-Z0-9_]{2,})\b")
 _SQL_TABLE_RE = re.compile(r"\b(?:FROM|JOIN|INTO|UPDATE)\s+([A-Z_][A-Z0-9_]{2,})\b", re.IGNORECASE)
 _ROUTE_PREFIX_RE = re.compile(r"\[\s*Route\s*\(\s*\"([^\"]+)\"\s*\)\s*\]", re.IGNORECASE)
@@ -168,7 +173,15 @@ def _load_required_inputs(spec: dict[str, Any], script_path: Path) -> list[str]:
 def _build_terms(payload: dict[str, Any], module_name: str) -> list[str]:
     hints = payload.get("moduleHints") or {}
     keywords = hints.get("keywords") if isinstance(hints, dict) else []
-    terms = [module_name] + [str(k) for k in (keywords or [])]
+    scope_hint = str(hints.get("scopeHint") or "") if isinstance(hints, dict) else ""
+    target_url = str(payload.get("targetUrl") or "")
+
+    target_path = target_url
+    parsed = urllib.parse.urlparse(target_url)
+    if parsed.scheme and parsed.netloc:
+        target_path = parsed.path
+
+    terms = [module_name, scope_hint, target_path] + [str(k) for k in (keywords or [])]
     term_parts: list[str] = []
     for term in terms:
         cleaned = term.strip().lower()
@@ -177,6 +190,68 @@ def _build_terms(payload: dict[str, Any], module_name: str) -> list[str]:
         term_parts.append(cleaned)
         term_parts.extend([p for p in re.split(r"[^a-z0-9]+", cleaned) if p])
     return _dedupe([t for t in term_parts if len(t) >= 2])
+
+
+def _to_bool(value: Any, default: bool = False) -> bool:
+    if isinstance(value, bool):
+        return value
+    if isinstance(value, (int, float)):
+        return bool(value)
+    if isinstance(value, str):
+        lowered = value.strip().lower()
+        if lowered in {"true", "1", "yes", "on"}:
+            return True
+        if lowered in {"false", "0", "no", "off"}:
+            return False
+    return default
+
+
+def _to_string_list(value: Any) -> list[str]:
+    if isinstance(value, list):
+        return [str(v).strip() for v in value if str(v).strip()]
+    if isinstance(value, str):
+        return [part.strip() for part in re.split(r"[,\n\r\t]+", value) if part.strip()]
+    return []
+
+
+def _normalize_scope_hint(raw: str) -> str:
+    words = [w for w in re.split(r"\s+", (raw or "").strip()) if w]
+    return " ".join(words[:20])
+
+
+def _extract_target_path(raw_target_url: str) -> str:
+    value = (raw_target_url or "").strip()
+    if not value:
+        return ""
+    parsed = urllib.parse.urlparse(value)
+    if parsed.scheme and parsed.netloc:
+        return parsed.path or ""
+    return value if value.startswith("/") else ""
+
+
+def _normalize_known_urls(raw_values: list[Any]) -> list[str]:
+    normalized: list[str] = []
+    for raw in raw_values:
+        text = str(raw or "").strip()
+        if not text:
+            continue
+        parsed = urllib.parse.urlparse(text)
+        if parsed.scheme and parsed.netloc:
+            path = (parsed.path or "").strip()
+            if path.startswith("/"):
+                normalized.append(path)
+            continue
+        if text.startswith("/"):
+            normalized.append(text)
+    return _dedupe(normalized)
+
+
+def _is_same_or_child_path(parent: Path, child: Path) -> bool:
+    try:
+        child.resolve().relative_to(parent.resolve())
+        return True
+    except Exception:
+        return False
 
 
 def _classify_file(path: str) -> str:
@@ -295,8 +370,19 @@ def resolve_module_scope(payload: dict[str, Any], module_name: str) -> dict[str,
 
     hints = payload.get("moduleHints") if isinstance(payload.get("moduleHints"), dict) else {}
     related_folders = hints.get("relatedFolders") if isinstance(hints, dict) else []
-    known_urls = [str(u).strip() for u in ((hints.get("knownUrls") if isinstance(hints, dict) else []) or []) if str(u).strip()]
+    known_urls = _normalize_known_urls((hints.get("knownUrls") if isinstance(hints, dict) else []) or [])
     terms = _build_terms(payload, module_name)
+    strict_module_only = _to_bool(payload.get("strictModuleOnly"), default=False)
+    allowed_cross_modules = _to_string_list(payload.get("allowedCrossModules"))
+    scope_hint = _normalize_scope_hint(str((hints.get("scopeHint") if isinstance(hints, dict) else "") or ""))
+    target_path = _extract_target_path(str(payload.get("targetUrl") or ""))
+
+    module_tokens = [module_name.lower()]
+    module_tokens.extend([p for p in re.split(r"[^a-z0-9]+", module_name.lower()) if p])
+    module_tokens.extend([m.lower() for m in allowed_cross_modules])
+
+    target_tokens = [p for p in re.split(r"[^a-z0-9]+", target_path.lower()) if len(p) >= 2]
+    scope_tokens = [p for p in re.split(r"[^a-z0-9]+", scope_hint.lower()) if len(p) >= 2]
 
     hint_paths: list[Path] = []
     for raw_hint in related_folders or []:
@@ -318,6 +404,34 @@ def resolve_module_scope(payload: dict[str, Any], module_name: str) -> dict[str,
 
     hint_set = {f.resolve().as_posix() for f in hint_files}
 
+    roots_resolved = [r.resolve() for r in roots]
+
+    def _path_allowed(path: Path) -> bool:
+        normalized = path.resolve().as_posix().lower()
+        name = path.name.lower()
+
+        if name in {"program.cs", "startup.cs", "global.asax.cs"}:
+            return True
+
+        if strict_module_only:
+            segments = [seg for seg in normalized.split("/") if seg]
+            if "modules" in segments:
+                idx = segments.index("modules")
+                if idx + 1 < len(segments):
+                    owner = segments[idx + 1]
+                    if owner not in module_tokens:
+                        return False
+
+            if any(token and token in normalized for token in module_tokens):
+                return True
+
+            if any(_is_same_or_child_path(Path(hint), path) for hint in hint_paths):
+                return True
+
+            return False
+
+        return True
+
     heuristic_files: list[Path] = []
     for root in roots:
         for candidate in _iter_candidate_files(root):
@@ -327,10 +441,13 @@ def resolve_module_scope(payload: dict[str, Any], module_name: str) -> dict[str,
             if full in hint_set:
                 continue
             lower = full.lower()
+            if not _path_allowed(candidate):
+                continue
             if any(term in lower for term in terms):
                 heuristic_files.append(candidate)
 
     selected = hint_files + heuristic_files
+    selected = [f for f in selected if _path_allowed(f)]
     selected = selected[:_MAX_SCAN_FILES]
 
     classified: dict[str, list[str]] = {
@@ -344,6 +461,7 @@ def resolve_module_scope(payload: dict[str, Any], module_name: str) -> dict[str,
     }
 
     urls: list[str] = []
+    companion_urls: list[str] = []
     db_touchpoints: list[str] = []
 
     for file_path in selected:
@@ -371,9 +489,19 @@ def resolve_module_scope(payload: dict[str, Any], module_name: str) -> dict[str,
         if not text:
             continue
 
-        urls.extend(match.group(1) for match in _URL_RE.finditer(text))
+        file_urls = [match.group(1) for match in _URL_RE.finditer(text)]
+        file_urls.extend(match.group(1) for match in _REDIRECT_URL_RE.finditer(text))
         if kind == "csharp":
-            urls.extend(_extract_controller_routes(text))
+            file_urls.extend(_extract_controller_routes(text))
+
+        file_urls = _dedupe([u for u in file_urls if _valid_url_candidate(u)])
+        urls.extend(file_urls)
+
+        if strict_module_only and target_tokens and file_urls:
+            has_target_url = any(any(token in u.lower() for token in target_tokens) for u in file_urls)
+            if has_target_url:
+                companion_urls.extend(file_urls)
+
         db_touchpoints.extend(match.group(1) for match in _DB_TOUCHPOINT_RE.finditer(text))
         db_touchpoints.extend(
             match.group(1).upper()
@@ -405,6 +533,12 @@ def resolve_module_scope(payload: dict[str, Any], module_name: str) -> dict[str,
         if url in known_urls:
             filtered_urls.append(url)
 
+    if strict_module_only and target_tokens:
+        scoped = [u for u in filtered_urls if any(token in u.lower() for token in target_tokens)]
+        if scoped:
+            companion = [u for u in filtered_urls if u in companion_urls and u not in scoped]
+            filtered_urls = _dedupe(scoped + companion)
+
     filtered_db = []
     for touchpoint in db_touchpoints:
         upper = touchpoint.upper()
@@ -421,10 +555,17 @@ def resolve_module_scope(payload: dict[str, Any], module_name: str) -> dict[str,
         **classified,
         "urls": urls,
         "dbTouchpoints": db_touchpoints,
-        "roots": [r.resolve().as_posix() for r in roots],
+        "roots": [r.as_posix() for r in roots_resolved],
         "terms": terms,
         "hintPaths": [p.resolve().as_posix() for p in hint_paths],
         "totalSelectedFiles": len(selected),
+        "scopeContext": {
+            "strictModuleOnly": strict_module_only,
+            "scopeHint": scope_hint,
+            "targetUrlPath": target_path,
+            "allowedCrossModules": allowed_cross_modules,
+            "scopeTokens": _dedupe(scope_tokens + target_tokens),
+        },
     }
 
 

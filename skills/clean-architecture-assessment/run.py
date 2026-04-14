@@ -19,6 +19,32 @@ SPEC = {
 
 NAMESPACE_RE = re.compile(r"^\s*namespace\s+([A-Za-z0-9_.]+)", re.MULTILINE)
 CTOR_RE = re.compile(r"\bpublic\s+([A-Za-z0-9_]+Controller)\s*\(([^)]*)\)", re.MULTILINE)
+USING_RE = re.compile(r"^\s*using\s+([A-Za-z0-9_.]+)\s*;", re.MULTILINE)
+
+
+def _architecture_policy(ctx) -> str:
+    policy = str(ctx.get("architecturePolicy") or "module-first").strip().lower()
+    return policy if policy in {"module-first", "balanced", "clean-architecture"} else "module-first"
+
+
+def _module_roots(csharp_files: list[Path], module_name: str) -> list[Path]:
+    token = module_name.lower()
+    roots: list[Path] = []
+    for path in csharp_files:
+        lower_parts = [p.lower() for p in path.parts]
+        if "modules" in lower_parts:
+            idx = lower_parts.index("modules")
+            if idx + 1 < len(path.parts) and path.parts[idx + 1].lower() == token:
+                roots.append(Path(*path.parts[: idx + 2]))
+    deduped: list[Path] = []
+    seen: set[str] = set()
+    for root in roots:
+        key = root.as_posix().lower()
+        if key in seen:
+            continue
+        seen.add(key)
+        deduped.append(root)
+    return deduped
 
 
 def _read_text(path: Path) -> str:
@@ -38,6 +64,7 @@ def execute(ctx):
     coupling_issues: list[dict] = []
 
     module_token = ctx.module_name.lower()
+    policy = _architecture_policy(ctx)
 
     program_files = [p for p in csharp_files if p.name.lower() in {"program.cs", "startup.cs"}]
     has_module_di = False
@@ -55,6 +82,24 @@ def execute(ctx):
                 "evidence": "Program/Startup scan did not find module-specific AddScoped/AddTransient registrations.",
             }
         )
+
+    if policy == "module-first":
+        disallowed = {"domain", "application", "infrastructure", "features", "usecases"}
+        module_roots = _module_roots(csharp_files, ctx.module_name)
+        for module_root in module_roots[:3]:
+            if not module_root.exists():
+                continue
+            for child in module_root.iterdir():
+                if not child.is_dir():
+                    continue
+                if child.name.lower() in disallowed:
+                    clean_issues.append(
+                        {
+                            "title": "Unnecessary folder for module-first policy",
+                            "severity": "medium",
+                            "evidence": f"{child.as_posix()} should be simplified under module-first architecture policy.",
+                        }
+                    )
 
     for path in csharp_files[:500]:
         text = _read_text(path)
@@ -83,6 +128,18 @@ def execute(ctx):
                 }
             )
 
+        if "controller" in rel.lower():
+            using_refs = [u for u in USING_RE.findall(text)]
+            direct_repo_refs = [u for u in using_refs if u.lower().endswith("repository") or ".persistence." in u.lower()]
+            if direct_repo_refs:
+                coupling_issues.append(
+                    {
+                        "title": "Controller has direct persistence/repository coupling",
+                        "severity": "high",
+                        "evidence": f"{rel} uses {', '.join(direct_repo_refs[:3])}",
+                    }
+                )
+
         ctor = CTOR_RE.search(text)
         if ctor:
             args = ctor.group(2)
@@ -105,6 +162,7 @@ def execute(ctx):
 
     architecture_review = {
         "moduleName": ctx.module_name,
+        "architecturePolicy": policy,
         "cleanArchitectureIssues": clean_issues[:20],
         "namespaceFolderIssues": namespace_issues[:20],
         "diIssues": di_issues[:20],

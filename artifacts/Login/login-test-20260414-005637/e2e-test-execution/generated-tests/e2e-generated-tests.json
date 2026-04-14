@@ -2,22 +2,22 @@
   "moduleName": "Login",
   "runId": "login-test-20260414-005637",
   "category": "E2E",
-  "generatedCount": 5,
+  "generatedCount": 4,
   "generatedTests": [
     {
       "id": "e2e-gen-001",
       "category": "E2E",
-      "name": "E2E robust path: Open login page",
+      "name": "E2E route resilience: /login",
       "coverage": [
-        "ui-api-db",
-        "critical-path"
+        "navigation",
+        "session"
       ],
-      "priority": "high",
+      "priority": "medium",
       "given": "Given the Login module is configured and reachable",
-      "when": "When executing generated scenario: E2E robust path: Open login page",
+      "when": "When executing generated scenario: E2E route resilience: /login",
       "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
       "generatedFrom": [
-        "flow:Open login page"
+        "route:/login"
       ],
       "provenance": {
         "type": "inferred",
@@ -34,17 +34,17 @@
     {
       "id": "e2e-gen-002",
       "category": "E2E",
-      "name": "E2E robust path: Submit valid credentials",
+      "name": "E2E robustness generated case 1 for Login",
       "coverage": [
-        "ui-api-db",
-        "critical-path"
+        "robustness",
+        "fallback"
       ],
-      "priority": "high",
+      "priority": "medium",
       "given": "Given the Login module is configured and reachable",
-      "when": "When executing generated scenario: E2E robust path: Submit valid credentials",
+      "when": "When executing generated scenario: E2E robustness generated case 1 for Login",
       "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
       "generatedFrom": [
-        "flow:Submit valid credentials"
+        "fallback:insufficient-discovery-evidence"
       ],
       "provenance": {
         "type": "inferred",
@@ -61,17 +61,17 @@
     {
       "id": "e2e-gen-003",
       "category": "E2E",
-      "name": "E2E robust path: Submit invalid credentials",
+      "name": "E2E robustness generated case 2 for Login",
       "coverage": [
-        "ui-api-db",
-        "critical-path"
+        "robustness",
+        "fallback"
       ],
-      "priority": "high",
+      "priority": "medium",
       "given": "Given the Login module is configured and reachable",
-      "when": "When executing generated scenario: E2E robust path: Submit invalid credentials",
+      "when": "When executing generated scenario: E2E robustness generated case 2 for Login",
       "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
       "generatedFrom": [
-        "flow:Submit invalid credentials"
+        "fallback:insufficient-discovery-evidence"
       ],
       "provenance": {
         "type": "inferred",
@@ -88,44 +88,17 @@
     {
       "id": "e2e-gen-004",
       "category": "E2E",
-      "name": "E2E robust path: Session timeout returns to login",
+      "name": "E2E robustness generated case 3 for Login",
       "coverage": [
-        "ui-api-db",
-        "critical-path"
-      ],
-      "priority": "high",
-      "given": "Given the Login module is configured and reachable",
-      "when": "When executing generated scenario: E2E robust path: Session timeout returns to login",
-      "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
-      "generatedFrom": [
-        "flow:Session timeout returns to login"
-      ],
-      "provenance": {
-        "type": "inferred",
-        "sources": [
-          "artifact:test-plan-generation/test-plan.json",
-          "artifact:module-discovery/discovery-map.json",
-          "artifact:legacy-logic-extraction/logic-summary.json",
-          "artifact:module-documentation/module-analysis.json"
-        ],
-        "confidence": 0.77,
-        "unknowns": []
-      }
-    },
-    {
-      "id": "e2e-gen-005",
-      "category": "E2E",
-      "name": "E2E route resilience: /login",
-      "coverage": [
-        "navigation",
-        "session"
+        "robustness",
+        "fallback"
       ],
       "priority": "medium",
       "given": "Given the Login module is configured and reachable",
-      "when": "When executing generated scenario: E2E route resilience: /login",
+      "when": "When executing generated scenario: E2E robustness generated case 3 for Login",
       "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
       "generatedFrom": [
-        "route:/login"
+        "fallback:insufficient-discovery-evidence"
       ],
       "provenance": {
         "type": "inferred",

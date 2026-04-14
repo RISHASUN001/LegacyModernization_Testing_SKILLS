@@ -124,6 +124,29 @@ def normalize_payload(payload: dict[str, Any], args: argparse.Namespace) -> dict
     if "convertedSourceRoot" not in normalized and "converted_source_root" in payload:
         normalized["convertedSourceRoot"] = payload.get("converted_source_root", "")
 
+    if "targetUrl" not in normalized and "target_url" in payload:
+        normalized["targetUrl"] = payload.get("target_url", "")
+
+    if "strictModuleOnly" not in normalized and "strict_module_only" in payload:
+        normalized["strictModuleOnly"] = bool(payload.get("strict_module_only"))
+
+    if "allowedCrossModules" not in normalized and "allowed_cross_modules" in payload:
+        value = payload.get("allowed_cross_modules")
+        if isinstance(value, list):
+            normalized["allowedCrossModules"] = [str(v) for v in value if str(v).strip()]
+
+    if "architecturePolicy" not in normalized and "architecture_policy" in payload:
+        normalized["architecturePolicy"] = str(payload.get("architecture_policy") or "")
+
+    if "generateModuleClaudeMd" not in normalized and "generate_module_claude_md" in payload:
+        normalized["generateModuleClaudeMd"] = bool(payload.get("generate_module_claude_md"))
+
+    hints = normalized.get("moduleHints") if isinstance(normalized.get("moduleHints"), dict) else {}
+    if isinstance(hints, dict):
+        if "scopeHint" not in hints and "scope_hint" in hints:
+            hints["scopeHint"] = hints.get("scope_hint")
+        normalized["moduleHints"] = hints
+
     selected = payload.get("selectedSkills")
     if isinstance(selected, list):
         normalized["selectedSkills"] = [str(s) for s in selected]

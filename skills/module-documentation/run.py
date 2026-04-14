@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import re
 from pathlib import Path
 import sys
 
@@ -42,6 +43,94 @@ def _normalize_workflows(logic: dict, module_name: str) -> tuple[list[dict], lis
         ],
         ["Structured workflows missing from logic summary; fallback workflow used in documentation."],
     )
+
+
+def _scan_skill_map(skills_root: Path) -> list[str]:
+    skills: list[str] = []
+    for skill_md in sorted(skills_root.glob("**/SKILL.md")):
+        rel = skill_md.relative_to(skills_root).as_posix()
+        if "/_" in rel:
+            continue
+        skill_name = rel.split("/", 1)[0]
+        if skill_name not in skills:
+            skills.append(skill_name)
+    return skills
+
+
+def _generate_claude_markdown(ctx, analysis: dict) -> str:
+    run_root = ctx.artifacts_root / ctx.module_name / ctx.run_id
+    scope_context = ctx.resolve_scope().get("scopeContext") if isinstance(ctx.resolve_scope().get("scopeContext"), dict) else {}
+    module_purpose = str((analysis.get("modulePurpose") or {}).get("text") or "").strip()
+    flow_names = [str(x.get("name") or "") for x in (analysis.get("importantFlows") or []) if isinstance(x, dict)]
+    rules = [str(x.get("rule") or "") for x in (analysis.get("businessRules") or []) if isinstance(x, dict)]
+
+    skills_root = Path(__file__).resolve().parents[1]
+    skill_map = _scan_skill_map(skills_root)
+
+    allowed_cross_modules = [str(x).strip() for x in (ctx.get("allowedCrossModules") or []) if str(x).strip()]
+    target_url = str(ctx.get("targetUrl") or "")
+    scope_hint = str(ctx.get("moduleHints.scopeHint") or "")
+    architecture_policy = str(ctx.get("architecturePolicy") or "module-first")
+
+    lines = [
+        f"# CLAUDE Guidance: {ctx.module_name}",
+        "",
+        "## Scope",
+        f"- moduleName: {ctx.module_name}",
+        f"- runId: {ctx.run_id}",
+        f"- strictModuleOnly: {scope_context.get('strictModuleOnly', False)}",
+        f"- targetUrl: {target_url or 'n/a'}",
+        f"- scopeHint: {scope_hint or 'n/a'}",
+        f"- architecturePolicy: {architecture_policy}",
+        f"- allowedCrossModules: {', '.join(allowed_cross_modules) if allowed_cross_modules else 'Shared (default)'}",
+        "",
+        "## Module Purpose",
+        module_purpose or "Module purpose not available.",
+        "",
+        "## Key Flows",
+    ]
+
+    if flow_names:
+        lines.extend([f"- {name}" for name in flow_names[:8] if name])
+    else:
+        lines.append("- No structured flows found.")
+
+    lines.extend(["", "## Core Rules"])
+    if rules:
+        lines.extend([f"- {rule}" for rule in rules[:8] if rule])
+    else:
+        lines.append("- No structured rules found.")
+
+    lines.extend(
+        [
+            "",
+            "## Architecture Guardrails",
+            "- Keep controllers thin and workflow logic in Services.",
+            "- No direct repository usage from controllers.",
+            "- Use gateways/interfaces for cross-module calls.",
+            "- Keep shared folder minimal and cross-cutting only.",
+            "",
+            "## Skill Map Snapshot",
+            "- Recursive SKILL.md scan executed at generation time.",
+        ]
+    )
+    lines.extend([f"- {name}" for name in skill_map[:24]])
+
+    lines.extend(
+        [
+            "",
+            "## Notes",
+            "- This guidance is module-scoped and should not be applied to unrelated modules.",
+            "- Test generation must stay within discovered scope and requested target URL/hint.",
+        ]
+    )
+
+    markdown = "\n".join(lines).strip() + "\n"
+    target = run_root / "CLAUDE.md"
+    target.parent.mkdir(parents=True, exist_ok=True)
+    target.write_text(markdown, encoding="utf-8")
+    ctx.add_artifact(target)
+    return target.as_posix()
 
 
 def execute(ctx):
@@ -91,6 +180,11 @@ def execute(ctx):
 
     ctx.write_json("module-analysis.json", analysis)
 
+    claude_path = ""
+    generate_claude = str(ctx.get("generateModuleClaudeMd", True)).strip().lower() not in {"false", "0", "no", "off"}
+    if generate_claude:
+        claude_path = _generate_claude_markdown(ctx, analysis)
+
     return {
         "status": "passed",
         "summary": (
@@ -102,6 +196,7 @@ def execute(ctx):
             "flowsDocumented": len(workflows),
             "rulesDocumented": len(business_rules),
             "relatedFiles": len(analysis["relatedFiles"]["legacyJava"]) + len(analysis["relatedFiles"]["legacyJsp"]) + len(analysis["relatedFiles"]["legacyJs"]),
+            "claudeArtifactGenerated": 1 if claude_path else 0,
             "confidence": analysis["confidence"],
         },
         "findings": [],

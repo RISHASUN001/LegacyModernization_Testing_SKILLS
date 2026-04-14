@@ -419,6 +419,7 @@ ORDER BY d.run_id;", new { ModuleName = moduleName }, cancellationToken);
             UrlDetails = ParseRouteDetails(node["routeCandidates"]),
             DbTouchpointDetails = ParseNamedProvenancedDetails(node["dbTouchpointsDetailed"], "name"),
             EntrypointHints = ParseNamedProvenancedDetails(node["entrypointHints"], "value"),
+            ScopeContext = ParseScopeContext(node["scopeContext"]),
             Confidence = ParseDouble(node["confidence"], 0),
             SourceArtifactPath = path
         };
@@ -463,6 +464,7 @@ ORDER BY d.run_id;", new { ModuleName = moduleName }, cancellationToken);
             FlowDetails = ParseNamedProvenancedDetails(node["workflows"], "name"),
             RuleDetails = ParseNamedProvenancedDetails(node["businessRules"], "rule"),
             Unknowns = ParseStringArray(node["unknowns"]?.ToJsonString() ?? "[]"),
+            ScopeApplied = ParseScopeApplied(node["scopeApplied"]),
             Confidence = ParseDouble(node["confidence"], 0),
             SourceArtifactPath = sourcePath
         };
@@ -488,6 +490,8 @@ ORDER BY d.run_id;", new { ModuleName = moduleName }, cancellationToken);
             NamespaceFolderIssues = ParseArchitectureIssues(node["namespaceFolderIssues"]),
             DiIssues = ParseArchitectureIssues(node["diIssues"]),
             CouplingIssues = ParseArchitectureIssues(node["couplingIssues"]),
+            ArchitecturePolicy = node["architecturePolicy"]?.GetValue<string>() ?? "module-first",
+            Confidence = ParseDouble(node["confidence"], 0),
             RecommendedStructure = ParseStringArray(node["recommendedStructure"]?.ToJsonString() ?? "[]"),
             SourceArtifactPath = path
         };
@@ -547,6 +551,8 @@ ORDER BY d.run_id;", new { ModuleName = moduleName }, cancellationToken);
             NewTestsSuggested = ParseStringArray(node["newTestsSuggested"]?.ToJsonString() ?? "[]"),
             TestCategories = categoryItems,
             CoverageSummary = node["coverageSummary"]?.GetValue<string>() ?? string.Empty,
+            ScopeApplied = ParseScopeApplied(node["scopeApplied"]),
+            Confidence = ParseDouble(node["confidence"], 0),
             SourceArtifactPath = path
         };
     }
@@ -774,6 +780,7 @@ ORDER BY id DESC;", new { RunFk = runFk }, cancellationToken);
             Confidence = ParseDouble(node["confidence"], 0),
             Checks = checks,
             SqlParity = ParseSqlParity(node["sqlParity"]),
+            DependencyParity = ParseDependencyParity(node["dependencyParity"]),
             Gaps = ParseStringArray(node["gaps"]?.ToJsonString() ?? "[]"),
             SourceArtifactPath = path
         };
@@ -914,6 +921,7 @@ LIMIT 1;", new { ModuleName = moduleName, RunId = runId }, cancellationToken);
         var testApiEndpoint = string.IsNullOrWhiteSpace(normalizedBaseUrl)
             ? string.Empty
             : $"{normalizedBaseUrl}/api/test";
+        var targetUrl = ResolveTargetUrl((draft.TargetUrl ?? string.Empty).Trim(), normalizedBaseUrl);
         var knownUrls = ResolveKnownUrls(ParseMultiline(draft.KnownUrlsText), normalizedBaseUrl);
 
         var payload = new
@@ -924,12 +932,18 @@ LIMIT 1;", new { ModuleName = moduleName, RunId = runId }, cancellationToken);
             convertedSourceRoot = draft.ConvertedSourceRoot.Trim(),
             baseUrl,
             testApiEndpoint,
+            targetUrl,
+            strictModuleOnly = draft.StrictModuleOnly,
+            allowedCrossModules = ParseMultiline(draft.AllowedCrossModulesText),
+            architecturePolicy = NormalizeArchitecturePolicy((draft.ArchitecturePolicy ?? string.Empty).Trim()),
+            generateModuleClaudeMd = draft.GenerateModuleClaudeMd,
             brsPath = draft.BrsPath.Trim(),
             moduleHints = new
             {
                 relatedFolders = ParseMultiline(draft.RelatedFoldersText),
                 knownUrls,
-                keywords = ParseMultiline(draft.KeywordsText)
+                keywords = ParseMultiline(draft.KeywordsText),
+                scopeHint = NormalizeScopeHint((draft.ModuleScopeHint ?? string.Empty).Trim())
             },
             testCommands = new
             {
@@ -1394,6 +1408,53 @@ LIMIT 1;", new { ModuleName = moduleName, RunId = runId }, cancellationToken);
         };
     }
 
+    private static ScopeContextDto ParseScopeContext(JsonNode? node)
+    {
+        if (node is not JsonObject obj)
+        {
+            return new ScopeContextDto();
+        }
+
+        return new ScopeContextDto
+        {
+            StrictModuleOnly = obj["strictModuleOnly"]?.GetValue<bool>() ?? false,
+            ScopeHint = obj["scopeHint"]?.GetValue<string>() ?? string.Empty,
+            TargetUrlPath = obj["targetUrlPath"]?.GetValue<string>() ?? string.Empty,
+            AllowedCrossModules = ParseStringArray(obj["allowedCrossModules"]?.ToJsonString() ?? "[]"),
+            ScopeTokens = ParseStringArray(obj["scopeTokens"]?.ToJsonString() ?? "[]")
+        };
+    }
+
+    private static ScopeAppliedDto ParseScopeApplied(JsonNode? node)
+    {
+        if (node is not JsonObject obj)
+        {
+            return new ScopeAppliedDto();
+        }
+
+        return new ScopeAppliedDto
+        {
+            ScopeTerms = ParseStringArray(obj["scopeTerms"]?.ToJsonString() ?? "[]"),
+            TargetUrl = obj["targetUrl"]?.GetValue<string>() ?? string.Empty,
+            ScopeHint = obj["scopeHint"]?.GetValue<string>() ?? string.Empty
+        };
+    }
+
+    private static DependencyParityDto ParseDependencyParity(JsonNode? node)
+    {
+        if (node is not JsonObject obj)
+        {
+            return new DependencyParityDto();
+        }
+
+        return new DependencyParityDto
+        {
+            AllowedCrossModules = ParseStringArray(obj["allowedCrossModules"]?.ToJsonString() ?? "[]"),
+            Dependencies = ParseStringArray(obj["dependencies"]?.ToJsonString() ?? "[]"),
+            Violations = ParseStringArray(obj["violations"]?.ToJsonString() ?? "[]")
+        };
+    }
+
     private static (bool ok, string reason) ParsePreflightFromArtifacts(List<string> artifacts)
     {
         var preflightPath = artifacts.FirstOrDefault(static a => a.EndsWith("preflight.json", StringComparison.OrdinalIgnoreCase));
@@ -1460,6 +1521,51 @@ LIMIT 1;", new { ModuleName = moduleName, RunId = runId }, cancellationToken);
         var host = uri.Host == "0.0.0.0" ? "localhost" : uri.Host;
         var builder = new UriBuilder(uri.Scheme, host, uri.Port);
         return builder.Uri.ToString().TrimEnd('/');
+    }
+
+    private static string ResolveTargetUrl(string targetUrl, string normalizedBaseUrl)
+    {
+        if (string.IsNullOrWhiteSpace(targetUrl))
+        {
+            return string.Empty;
+        }
+
+        if (Uri.TryCreate(targetUrl, UriKind.Absolute, out var absolute))
+        {
+            var host = absolute.Host == "0.0.0.0" ? "localhost" : absolute.Host;
+            return new UriBuilder(absolute.Scheme, host, absolute.Port, absolute.AbsolutePath).Uri.ToString().TrimEnd('/');
+        }
+
+        if (!string.IsNullOrWhiteSpace(normalizedBaseUrl) && targetUrl.StartsWith('/'))
+        {
+            return $"{normalizedBaseUrl}{targetUrl}";
+        }
+
+        return targetUrl;
+    }
+
+    private static string NormalizeScopeHint(string scopeHint)
+    {
+        if (string.IsNullOrWhiteSpace(scopeHint))
+        {
+            return string.Empty;
+        }
+
+        var words = scopeHint
+            .Split(new[] { ' ', '\t', '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries)
+            .Take(20)
+            .ToArray();
+        return string.Join(' ', words);
+    }
+
+    private static string NormalizeArchitecturePolicy(string policy)
+    {
+        var normalized = (policy ?? string.Empty).Trim().ToLowerInvariant();
+        return normalized switch
+        {
+            "module-first" or "balanced" or "clean-architecture" => normalized,
+            _ => "module-first"
+        };
     }
 
     private static List<string> ResolveKnownUrls(List<string> knownUrls, string normalizedBaseUrl)

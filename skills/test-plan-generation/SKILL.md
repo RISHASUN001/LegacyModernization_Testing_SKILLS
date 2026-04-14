@@ -16,10 +16,16 @@ Use this skill when Stage **test-plan** evidence must be generated or refreshed 
 - `moduleName`
 - `convertedSourceRoot`
 
+## optional scoped inputs
+- `targetUrl`
+- `moduleHints.scopeHint`
+- `strictModuleOnly`
+
 ## process
 - Load `module-run-input.json` from run context.
-- Resolve artifact output folder under `artifacts/<module>/<run>/<skill>/`.
+- Resolve artifact output folder under `artifacts/{module}/{runId}/{skill}/`.
 - Build scenarios from upstream artifacts (`module-discovery`, `legacy-logic-extraction`, `module-documentation`, `lessons-learned`) and module profile matching metadata.
+- Constrain workflows/routes/rules to applied scope context so tests are created only for requested module/menu scope where possible.
 - Execute stage-specific analysis/test workflow.
 - Persist `result.json` and stage detail artifacts.
 
@@ -47,7 +53,8 @@ Use this skill when Stage **test-plan** evidence must be generated or refreshed 
 - `playwright-browser-verification`
 
 ## module scope behavior
-- Scenario selection is module-scoped using discovered routes/evidence and profile token matching; no fixed module names are required.
+- Scenario selection is module-scoped using discovered routes/evidence, profile token matching, and optional target URL/scope hint constraints.
+- Out-of-scope flows are filtered before category scenario generation to reduce false failures on unimplemented menus.
 
 ## script reference / execution notes
 - Entry script: `run.py`

@@ -26,7 +26,7 @@ python3 skills/legacy-modernization-orchestrator/run.py --input <module-run-inpu
 
 ## Contract notes
 
-- Every skill writes `result.json` under `artifacts/<module>/<runId>/<skill>/`.
+- Every skill writes `result.json` under `artifacts/{module}/{runId}/{skill}/`.
 - Skills accept canonical args:
   - `--input`
   - `--artifacts-root`

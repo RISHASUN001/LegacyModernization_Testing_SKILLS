@@ -6,7 +6,7 @@ Revamped hackathon-ready platform for Java EE / JSP / Struts to ASP.NET Core C# 
 
 1. Build `module-run-input.json` from dashboard.
 2. Run selected skills externally in Continue.dev / Claude (IDE).
-3. Skills persist outputs to `artifacts/<module>/<run>/<skill>/...`.
+3. Skills persist outputs to `artifacts/{module}/{runId}/{skill}/...`.
 4. Dashboard syncs artifacts into SQLite metadata (`data/modernization.db`).
 5. Dashboard renders a **7-stage pipeline** with test categories, findings, and iteration deltas.
 

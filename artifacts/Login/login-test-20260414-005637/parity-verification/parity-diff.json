@@ -130,6 +130,26 @@
         "confidence": 0.78,
         "unknowns": []
       }
+    },
+    {
+      "name": "Cross-module dependency policy compliance",
+      "status": "passed",
+      "evidence": {
+        "allowedCrossModules": [
+          "shared"
+        ],
+        "detectedDependencies": 0,
+        "violationCount": 0
+      },
+      "provenance": {
+        "type": "code-evidence",
+        "sources": [
+          "csharp-using/import-analysis",
+          "java-import-analysis"
+        ],
+        "confidence": 0.74,
+        "unknowns": []
+      }
     }
   ],
   "sqlParity": {
@@ -138,6 +158,13 @@
     "matchedCount": 0,
     "tableMatches": [],
     "beforeAfter": []
+  },
+  "dependencyParity": {
+    "allowedCrossModules": [
+      "shared"
+    ],
+    "dependencies": [],
+    "violations": []
   },
   "gaps": [
     "No DB touchpoint evidence; persistence parity validation confidence reduced."

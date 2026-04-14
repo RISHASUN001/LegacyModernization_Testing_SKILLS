@@ -16,15 +16,20 @@ Use this skill when Stage **logic-understanding** evidence must be generated or 
 - `moduleName`
 - `runId`
 
+## optional inputs
+- `generateModuleClaudeMd` (default true) to emit module-scoped CLAUDE guidance under artifacts.
+- `targetUrl`, `moduleHints.scopeHint`, `architecturePolicy`, `allowedCrossModules` are included in generated guidance context when provided.
+
 ## process
 - Load `module-run-input.json` from run context.
-- Resolve artifact output folder under `artifacts/<module>/<run>/<skill>/`.
+- Resolve artifact output folder under `artifacts/{module}/{runId}/{skill}/`.
 - Execute stage-specific analysis/test workflow.
 - Persist `result.json` and stage detail artifacts.
 
 ## outputs
 - `result.json`
 - `module-analysis.json`
+- `artifacts/{module}/{runId}/CLAUDE.md` (module-scoped guidance artifact, when enabled)
 
 ## artifact files produced
 - `artifacts/{module}/{runId}/module-documentation/`

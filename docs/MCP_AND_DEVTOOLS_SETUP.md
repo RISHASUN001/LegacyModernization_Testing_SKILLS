@@ -28,7 +28,7 @@ Example file in repo root:
 3. Build run input JSON from dashboard (or `run-inputs/*.json`)
 4. In Continue/Claude, run orchestrator with that input
 5. Skills write artifacts under:
-   - `artifacts/<module>/<runId>/<skill>/...`
+   - `artifacts/{module}/{runId}/{skill}/...`
 6. Dashboard metadata sync reads persisted artifacts and shows results/stages
 
 ## Notes

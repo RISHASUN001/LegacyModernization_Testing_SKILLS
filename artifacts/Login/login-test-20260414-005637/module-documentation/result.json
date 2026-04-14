@@ -4,19 +4,21 @@
   "moduleName": "Login",
   "runId": "login-test-20260414-005637",
   "status": "passed",
-  "startedAt": "2026-04-13T16:59:05.356668Z",
-  "endedAt": "2026-04-13T16:59:05.374364Z",
-  "summary": "Module documentation generated for Login with flows=4, rules=3, unknowns=1.",
+  "startedAt": "2026-04-14T02:40:45.665416Z",
+  "endedAt": "2026-04-14T02:40:45.702205Z",
+  "summary": "Module documentation generated for Login with flows=2, rules=2, unknowns=1.",
   "metrics": {
     "sections": 9,
-    "flowsDocumented": 4,
-    "rulesDocumented": 3,
+    "flowsDocumented": 2,
+    "rulesDocumented": 2,
     "relatedFiles": 3,
+    "claudeArtifactGenerated": 1,
     "confidence": 0.63
   },
   "artifacts": [
     "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/module-documentation/result.json",
-    "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/module-documentation/module-analysis.json"
+    "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/module-documentation/module-analysis.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/CLAUDE.md"
   ],
   "findings": [],
   "recommendations": [

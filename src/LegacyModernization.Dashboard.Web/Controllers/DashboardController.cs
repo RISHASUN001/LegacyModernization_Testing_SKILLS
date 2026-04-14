@@ -107,6 +107,12 @@ public sealed class DashboardController : Controller
         return View("Findings", model);
     }
 
+    [HttpGet("help-guide")]
+    public IActionResult HelpGuide()
+    {
+        return View("HelpGuide");
+    }
+
     [HttpGet("iteration-comparison/{moduleName}")]
     public async Task<IActionResult> IterationComparison(string moduleName, CancellationToken cancellationToken)
     {
@@ -147,6 +153,7 @@ public sealed class DashboardController : Controller
 
     private static string BuildJsonPreview(RunInputDraftDto draft)
     {
+        draft ??= new RunInputDraftDto();
         var baseUrl = NormalizeBaseUrlForRunInput((draft.BaseUrl ?? string.Empty).Trim());
         var normalizedBaseUrl = baseUrl.TrimEnd('/');
         var testApiEndpoint = string.IsNullOrWhiteSpace(normalizedBaseUrl)
@@ -163,31 +170,37 @@ public sealed class DashboardController : Controller
             convertedSourceRoot = (draft.ConvertedSourceRoot ?? string.Empty).Trim(),
             baseUrl,
             testApiEndpoint,
+            targetUrl = ResolveTargetUrl((draft.TargetUrl ?? string.Empty).Trim(), normalizedBaseUrl),
+            strictModuleOnly = draft.StrictModuleOnly,
+            allowedCrossModules = SplitLines(draft.AllowedCrossModulesText),
+            architecturePolicy = NormalizeArchitecturePolicy((draft.ArchitecturePolicy ?? string.Empty).Trim()),
+            generateModuleClaudeMd = draft.GenerateModuleClaudeMd,
             brsPath = (draft.BrsPath ?? string.Empty).Trim(),
             moduleHints = new
             {
                 relatedFolders = SplitLines(draft.RelatedFoldersText),
                 knownUrls,
-                keywords = SplitLines(draft.KeywordsText)
+                keywords = SplitLines(draft.KeywordsText),
+                scopeHint = NormalizeScopeHint((draft.ModuleScopeHint ?? string.Empty).Trim())
             },
             testCommands = new
             {
-                unit = draft.UnitCommand?.Trim(),
-                integration = draft.IntegrationCommand?.Trim(),
-                api = draft.ApiCommand?.Trim(),
-                e2e = draft.E2eCommand?.Trim(),
-                edgeCase = draft.EdgeCaseCommand?.Trim(),
-                playwright = draft.PlaywrightCommand?.Trim()
+                unit = (draft.UnitCommand ?? string.Empty).Trim(),
+                integration = (draft.IntegrationCommand ?? string.Empty).Trim(),
+                api = (draft.ApiCommand ?? string.Empty).Trim(),
+                e2e = (draft.E2eCommand ?? string.Empty).Trim(),
+                edgeCase = (draft.EdgeCaseCommand ?? string.Empty).Trim(),
+                playwright = (draft.PlaywrightCommand ?? string.Empty).Trim()
             },
-            selectedSkills = draft.SelectedSkills
+            selectedSkills = draft.SelectedSkills ?? []
         };
 
         return System.Text.Json.JsonSerializer.Serialize(payload, new System.Text.Json.JsonSerializerOptions { WriteIndented = true });
     }
 
-    private static List<string> SplitLines(string input)
+    private static List<string> SplitLines(string? input)
     {
-        return input
+        return (input ?? string.Empty)
             .Split(new[] { "\r\n", "\n", "\r" }, StringSplitOptions.RemoveEmptyEntries)
             .Select(static value => value.Trim())
             .Where(static value => !string.IsNullOrWhiteSpace(value))
@@ -239,6 +252,51 @@ public sealed class DashboardController : Controller
         }
 
         return resolved.Distinct(StringComparer.OrdinalIgnoreCase).ToList();
+    }
+
+    private static string ResolveTargetUrl(string targetUrl, string normalizedBaseUrl)
+    {
+        if (string.IsNullOrWhiteSpace(targetUrl))
+        {
+            return string.Empty;
+        }
+
+        if (Uri.TryCreate(targetUrl, UriKind.Absolute, out var absolute))
+        {
+            var host = absolute.Host == "0.0.0.0" ? "localhost" : absolute.Host;
+            return new UriBuilder(absolute.Scheme, host, absolute.Port, absolute.AbsolutePath).Uri.ToString().TrimEnd('/');
+        }
+
+        if (!string.IsNullOrWhiteSpace(normalizedBaseUrl) && targetUrl.StartsWith('/'))
+        {
+            return $"{normalizedBaseUrl}{targetUrl}";
+        }
+
+        return targetUrl;
+    }
+
+    private static string NormalizeScopeHint(string scopeHint)
+    {
+        if (string.IsNullOrWhiteSpace(scopeHint))
+        {
+            return string.Empty;
+        }
+
+        var words = scopeHint
+            .Split(new[] { ' ', '\t', '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries)
+            .Take(20)
+            .ToArray();
+        return string.Join(' ', words);
+    }
+
+    private static string NormalizeArchitecturePolicy(string policy)
+    {
+        var normalized = (policy ?? string.Empty).Trim().ToLowerInvariant();
+        return normalized switch
+        {
+            "module-first" or "balanced" or "clean-architecture" => normalized,
+            _ => "module-first"
+        };
     }
 
     private static string GetContentType(string path)

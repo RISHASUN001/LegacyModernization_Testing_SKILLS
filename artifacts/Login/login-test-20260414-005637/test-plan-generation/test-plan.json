@@ -16,7 +16,11 @@
   },
   "newTestsSuggested": [
     "Add parity scenario for workflow: Open login page",
-    "Add parity scenario for workflow: Session timeout returns to login"
+    "Add parity scenario for workflow: Session timeout returns to login",
+    "Add regression guard for recurring issue: DapperCaseSensitivity",
+    "Add regression guard for recurring issue: NamespaceFolderMismatch",
+    "Add regression guard for recurring issue: DIRegistrationMissing",
+    "Add regression guard for recurring issue: SessionHandlingPitfall"
   ],
   "testCategories": [
     {
@@ -25,20 +29,6 @@
       "scenarios": [
         {
           "name": "Rule guard: If credentials are invalid, stay on login page and show validation message",
-          "coverage": [
-            "rule-validation"
-          ],
-          "provenance": {
-            "type": "flow-derived",
-            "sources": [
-              "artifact:legacy-logic-extraction/logic-summary.json"
-            ],
-            "confidence": 0.78,
-            "unknowns": []
-          }
-        },
-        {
-          "name": "Rule guard: If credentials are valid, establish session and return authentication success response",
           "coverage": [
             "rule-validation"
           ],
@@ -245,6 +235,20 @@
             "confidence": 0.7,
             "unknowns": []
           }
+        },
+        {
+          "name": "Recurring risk regression guard: DapperCaseSensitivity",
+          "coverage": [
+            "lessons-regression"
+          ],
+          "provenance": {
+            "type": "lessons-derived",
+            "sources": [
+              "artifact:_knowledge-base/lessons-kb.json"
+            ],
+            "confidence": 0.8,
+            "unknowns": []
+          }
         }
       ]
     },
@@ -325,5 +329,12 @@
     }
   ],
   "coverageSummary": "Estimated coverage baseline for Login: 33%.",
+  "scopeApplied": {
+    "scopeTerms": [
+      "login"
+    ],
+    "targetUrl": "",
+    "scopeHint": ""
+  },
   "confidence": 0.82
 }

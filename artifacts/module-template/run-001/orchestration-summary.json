@@ -1,0 +1,15 @@
+{
+  "runId": "run-001",
+  "moduleName": "module-template",
+  "status": "failed",
+  "startedAt": "2026-04-13T10:21:55.826544Z",
+  "endedAt": "2026-04-13T10:21:55.826702Z",
+  "selectedSkills": [],
+  "stages": [],
+  "failedSkills": [],
+  "artifactsRoot": "/Users/risha/Documents/Buildathon/artifacts/module-template/run-001",
+  "statusReason": "input-validation-failed",
+  "missingRequiredInputs": [
+    "moduleName"
+  ]
+}

@@ -16,16 +16,24 @@ Use this skill when Stage **logic-understanding** evidence must be generated or 
 - `moduleName`
 - `legacySourceRoot`
 
+## optional scoped inputs
+- `targetUrl`
+- `moduleHints.scopeHint`
+- `strictModuleOnly`
+
 ## process
 - Load `module-run-input.json` from run context.
-- Resolve artifact output folder under `artifacts/<module>/<run>/<skill>/`.
+- Resolve artifact output folder under `artifacts/{module}/{runId}/{skill}/`.
 - Load module behavior profiles from `module-profiles.json` (token matching, purpose template, flows, rules, preserve behaviors).
+- Apply scope filtering from URL/hint context so generated flows and rules stay as module-specific as possible.
 - Execute stage-specific analysis/test workflow.
 - Persist `result.json` and stage detail artifacts.
 
 ## outputs
 - `result.json`
 - `logic-summary.json`
+
+`logic-summary.json` includes `scopeApplied` metadata to show which terms constrained flow/rule extraction.
 
 ## artifact files produced
 - `artifacts/{module}/{runId}/legacy-logic-extraction/`

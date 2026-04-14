@@ -90,6 +90,28 @@ def _module_specific_rules(context_profile: dict) -> list[str]:
     return [str(x).strip() for x in rules if str(x).strip()]
 
 
+def _scope_terms(ctx, discovery: dict) -> list[str]:
+    scope = ctx.resolve_scope().get("scopeContext", {}) if isinstance(ctx.resolve_scope().get("scopeContext"), dict) else {}
+    terms = [str(x).lower() for x in (scope.get("scopeTokens") or []) if str(x).strip()]
+
+    target_url = str(ctx.get("targetUrl") or "").strip().lower()
+    terms.extend([p for p in re.split(r"[^a-z0-9]+", target_url) if len(p) >= 2])
+
+    hint = str(ctx.get("moduleHints.scopeHint") or "").strip().lower()
+    terms.extend([p for p in re.split(r"[^a-z0-9]+", hint) if len(p) >= 2])
+
+    known_urls = discovery.get("urls") if isinstance(discovery.get("urls"), list) else []
+    terms.extend([p for u in known_urls for p in re.split(r"[^a-z0-9]+", str(u).lower()) if len(p) >= 2])
+    return sorted(set(terms))
+
+
+def _filter_by_scope(items: list[str], terms: list[str]) -> list[str]:
+    if not terms:
+        return items
+    filtered = [item for item in items if any(term in item.lower() for term in terms)]
+    return filtered or items
+
+
 def execute(ctx):
     discovery = ctx.load_artifact_json("module-discovery", "discovery-map.json") or {}
     if not discovery:
@@ -111,7 +133,9 @@ def execute(ctx):
     context_profile = _profile_by_id(context_tags[0], profiles) if context_tags else {}
 
     module_title = title_case_module(ctx.module_name)
+    scope_terms = _scope_terms(ctx, discovery)
     inferred_flows = _module_specific_flows(context_profile) or infer_flows_from_urls(urls)
+    inferred_flows = _filter_by_scope(inferred_flows, scope_terms)
     dependencies = build_dependencies(ctx.resolve_scope())
 
     workflows = [_workflow(flow, urls[:6], ctx.module_name) for flow in inferred_flows]
@@ -136,6 +160,7 @@ def execute(ctx):
         ]
 
     raw_rules = _module_specific_rules(context_profile) or infer_rules_from_touchpoints(db_touchpoints, has_js)
+    raw_rules = _filter_by_scope(raw_rules, scope_terms)
     business_rules = []
     for idx, rule in enumerate(raw_rules, start=1):
         business_rules.append(
@@ -244,6 +269,11 @@ def execute(ctx):
             "urls": urls[:30],
             "dbTouchpoints": db_touchpoints[:30],
             "legacyFiles": (discovery.get("javaFiles", []) + discovery.get("jspFiles", []) + discovery.get("jsFiles", []))[:80],
+        },
+        "scopeApplied": {
+            "scopeTerms": scope_terms[:30],
+            "targetUrl": str(ctx.get("targetUrl") or ""),
+            "scopeHint": str(ctx.get("moduleHints.scopeHint") or ""),
         },
         # Backward-compatible keys for existing readers.
         "importantFlows": [w["name"] for w in workflows],

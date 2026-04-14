@@ -19,6 +19,8 @@ SPEC = {
 
 _SQL_STMT_RE = re.compile(r"\b(SELECT|INSERT|UPDATE|DELETE)\b[\s\S]{0,260}?(?:;|$)", re.IGNORECASE)
 _TABLE_RE = re.compile(r"\b(?:FROM|JOIN|INTO|UPDATE|DELETE\s+FROM)\s+([A-Z_][A-Z0-9_]{1,})\b", re.IGNORECASE)
+_USING_RE = re.compile(r"^\s*using\s+([A-Za-z0-9_.]+)\s*;", re.MULTILINE)
+_IMPORT_RE = re.compile(r"^\s*import\s+([A-Za-z0-9_.]+)\s*;", re.MULTILINE)
 
 
 def _read_text(path: str, max_chars: int = 200_000) -> str:
@@ -166,10 +168,90 @@ def _build_sql_parity(scope: dict) -> dict:
     }
 
 
+def _module_tokens_from_scope(scope: dict, module_name: str) -> set[str]:
+    tokens = {module_name.lower()}
+    tokens.update({p for p in re.split(r"[^a-z0-9]+", module_name.lower()) if p})
+
+    for file_path in [str(x) for x in (scope.get("csharpFiles") or [])]:
+        parts = [p.lower() for p in file_path.split("/") if p]
+        if "modules" in parts:
+            idx = parts.index("modules")
+            if idx + 1 < len(parts):
+                tokens.add(parts[idx + 1])
+
+    return {t for t in tokens if t}
+
+
+def _extract_dependency_refs(files: list[str]) -> list[str]:
+    refs: list[str] = []
+    for file_path in files:
+        text = _read_text(file_path)
+        if not text:
+            continue
+        refs.extend(_USING_RE.findall(text))
+        refs.extend(_IMPORT_RE.findall(text))
+    return refs
+
+
+def _classify_cross_module_dependencies(scope: dict, module_name: str, allowed_cross_modules: list[str]) -> dict:
+    module_tokens = _module_tokens_from_scope(scope, module_name)
+    allowed = {m.lower() for m in allowed_cross_modules if m}
+    allowed.update({"shared"})
+
+    known_modules = {
+        "auth",
+        "checklist",
+        "atcchecklist",
+        "mobilecart",
+        "workorder",
+        "reports",
+        "shared",
+        "conveyorchecklist",
+        "conveyorreports",
+    }
+
+    refs = _extract_dependency_refs(
+        [str(x) for x in (scope.get("csharpFiles") or [])]
+        + [str(x) for x in (scope.get("javaFiles") or [])]
+    )
+
+    dependencies: list[dict] = []
+    seen: set[str] = set()
+    for ref in refs:
+        lower = ref.lower()
+        parts = [p for p in re.split(r"[^a-z0-9]+", lower) if p]
+        foreign_tokens = [p for p in parts if p not in module_tokens and p in known_modules]
+        if not foreign_tokens:
+            continue
+
+        foreign = foreign_tokens[0]
+        key = f"{foreign}:{ref}"
+        if key in seen:
+            continue
+        seen.add(key)
+
+        dependencies.append(
+            {
+                "dependencyModule": foreign,
+                "reference": ref,
+                "status": "allowed" if foreign in allowed else "violation",
+            }
+        )
+
+    violations = [d for d in dependencies if d.get("status") == "violation"]
+
+    return {
+        "allowedCrossModules": sorted(allowed),
+        "dependencies": dependencies[:120],
+        "violations": violations[:60],
+    }
+
+
 def execute(ctx):
     discovery = ctx.load_artifact_json("module-discovery", "discovery-map.json") or {}
     logic = ctx.load_artifact_json("legacy-logic-extraction", "logic-summary.json") or {}
     scope = ctx.resolve_scope()
+    allowed_cross_modules = [str(x).strip() for x in (ctx.get("allowedCrossModules") or []) if str(x).strip()]
 
     must_preserve = logic.get("mustPreserveBehaviors", []) if isinstance(logic.get("mustPreserveBehaviors"), list) else []
     if not must_preserve:
@@ -186,6 +268,7 @@ def execute(ctx):
 
     checks: list[dict] = []
     sql_parity = _build_sql_parity(scope)
+    dependency_parity = _classify_cross_module_dependencies(scope, ctx.module_name, allowed_cross_modules)
     sql_missing = max(0, int(sql_parity.get("legacyQueryCount", 0)) - int(sql_parity.get("matchedCount", 0)))
     sql_check_status = "failed" if sql_missing > 0 else "passed"
 
@@ -243,6 +326,23 @@ def execute(ctx):
         }
     )
 
+    checks.append(
+        {
+            "name": "Cross-module dependency policy compliance",
+            "status": "failed" if dependency_parity.get("violations") else "passed",
+            "evidence": {
+                "allowedCrossModules": dependency_parity.get("allowedCrossModules", []),
+                "detectedDependencies": len(dependency_parity.get("dependencies", [])),
+                "violationCount": len(dependency_parity.get("violations", [])),
+            },
+            "provenance": make_provenance(
+                "code-evidence",
+                sources=["csharp-using/import-analysis", "java-import-analysis"],
+                confidence=0.74,
+            ),
+        }
+    )
+
     parity_total = len(checks)
     parity_failed = len([c for c in checks if c["status"] != "passed"])
     parity_passed = max(0, parity_total - parity_failed)
@@ -257,6 +357,10 @@ def execute(ctx):
         gaps.append("No DB touchpoint evidence; persistence parity validation confidence reduced.")
     if sql_missing > 0:
         gaps.append(f"SQL parity mismatch: {sql_missing} legacy query patterns do not have converted matches.")
+    if dependency_parity.get("violations"):
+        gaps.append(
+            f"Detected {len(dependency_parity.get('violations', []))} cross-module dependency policy violation(s)."
+        )
 
     parity = {
         "moduleName": ctx.module_name,
@@ -273,6 +377,7 @@ def execute(ctx):
         },
         "checks": checks,
         "sqlParity": sql_parity,
+        "dependencyParity": dependency_parity,
         "gaps": gaps,
         "confidence": 0.81 if checks and urls else 0.58,
     }

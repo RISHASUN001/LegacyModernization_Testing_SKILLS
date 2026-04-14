@@ -64,6 +64,67 @@
             <textarea class="form-control" rows="5" name="KeywordsText">@Model.Page.Draft.KeywordsText</textarea>
         </div>
 
+        <div class="col-md-6">
+            <label class="form-label">Target URL (optional)</label>
+            <input class="form-control" name="TargetUrl" value="@Model.Page.Draft.TargetUrl" placeholder="/checklist/perform or http://localhost:5276/checklist/perform" />
+            <div class="form-text">Use this when testing one menu path; skills will focus scope around this route.</div>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Module Scope Hint (optional, up to 20 words)</label>
+            <textarea class="form-control" rows="2" name="ModuleScopeHint" placeholder="testing one menu item only, checklist perform flow">@Model.Page.Draft.ModuleScopeHint</textarea>
+            <div class="form-text">Short natural-language hint to narrow discovery/test generation scope.</div>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Architecture Policy</label>
+            @{ var architecturePolicy = (Model.Page.Draft.ArchitecturePolicy ?? "module-first").Trim().ToLowerInvariant(); }
+            <select class="form-select" name="ArchitecturePolicy">
+                @if (architecturePolicy == "module-first")
+                {
+                    <option value="module-first" selected>module-first</option>
+                }
+                else
+                {
+                    <option value="module-first">module-first</option>
+                }
+                @if (architecturePolicy == "balanced")
+                {
+                    <option value="balanced" selected>balanced</option>
+                }
+                else
+                {
+                    <option value="balanced">balanced</option>
+                }
+                @if (architecturePolicy == "clean-architecture")
+                {
+                    <option value="clean-architecture" selected>clean-architecture</option>
+                }
+                else
+                {
+                    <option value="clean-architecture">clean-architecture</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-8">
+            <label class="form-label">Allowed Cross-Modules (one per line)</label>
+            <textarea class="form-control" rows="2" name="AllowedCrossModulesText" placeholder="Shared">@Model.Page.Draft.AllowedCrossModulesText</textarea>
+        </div>
+        <div class="col-md-6">
+            <input type="hidden" name="StrictModuleOnly" value="false" />
+            <div class="form-check mt-4">
+                <input class="form-check-input" type="checkbox" name="StrictModuleOnly" value="true" @(Model.Page.Draft.StrictModuleOnly ? "checked" : string.Empty) />
+                <label class="form-check-label">Strict module-only scan</label>
+            </div>
+            <div class="form-text">When enabled, discovery excludes unrelated module files unless explicitly allow-listed.</div>
+        </div>
+        <div class="col-md-6">
+            <input type="hidden" name="GenerateModuleClaudeMd" value="false" />
+            <div class="form-check mt-4">
+                <input class="form-check-input" type="checkbox" name="GenerateModuleClaudeMd" value="true" @(Model.Page.Draft.GenerateModuleClaudeMd ? "checked" : string.Empty) />
+                <label class="form-check-label">Generate module Claude guidance artifact</label>
+            </div>
+            <div class="form-text">Writes module-only CLAUDE guidance under artifacts for this run.</div>
+        </div>
+
         <div class="col-md-12">
             <h3 class="h6 mt-2">Optional Category Commands (for strict preflight command resolution)</h3>
             <div class="alert alert-info py-2 mt-2 mb-0 small">

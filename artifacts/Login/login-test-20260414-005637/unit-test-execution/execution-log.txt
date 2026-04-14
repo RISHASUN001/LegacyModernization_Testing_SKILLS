@@ -1,7 +1,7 @@
 command: dotnet test --nologo --verbosity minimal
 returnCode: 0
 timedOut: False
-durationSeconds: 0.686
+durationSeconds: 0.755
 
 --- stdout ---
   Determining projects to restore...

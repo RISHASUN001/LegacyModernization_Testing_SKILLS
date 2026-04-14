@@ -1,0 +1,55 @@
+{
+  "runId": "login5-test-20260414-112744",
+  "moduleName": "Login5",
+  "legacySourceRoot": "/Users/risha/Documents/Buildathon/samples/legacy-java-app",
+  "convertedSourceRoot": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LegacyModernization.Converted.sln",
+  "baseUrl": "http://localhost:5001",
+  "testApiEndpoint": "http://localhost:5001/api/test",
+  "targetUrl": "http://localhost:5001",
+  "strictModuleOnly": false,
+  "allowedCrossModules": [],
+  "architecturePolicy": "module-first",
+  "generateModuleClaudeMd": false,
+  "brsPath": "",
+  "moduleHints": {
+    "relatedFolders": [
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LegacyModernization.Converted.sln",
+      "/Users/risha/Documents/Buildathon/.CLAUDE_AUTO_INVOKE.md"
+    ],
+    "knownUrls": [
+      "http://localhost:5001",
+      "http://localhost:5001/dashboard"
+    ],
+    "keywords": [
+      "Login",
+      "Password"
+    ],
+    "scopeHint": "Login with set credentials and land in Dashboard"
+  },
+  "testCommands": {
+    "unit": "dotnet test --nologo --verbosity minimal",
+    "integration": "dotnet test --nologo --verbosity minimal",
+    "api": "python3 -m pytest -m api",
+    "e2e": "python3 -m pytest -m e2e",
+    "edgeCase": "dotnet test --nologo --verbosity minimal",
+    "playwright": "python3 -m pytest -m playwright"
+  },
+  "selectedSkills": [
+    "api-test-execution",
+    "browser-testing-with-devtools",
+    "clean-architecture-assessment",
+    "e2e-test-execution",
+    "edge-case-testing",
+    "failure-diagnosis",
+    "integration-test-execution",
+    "iteration-comparison",
+    "legacy-logic-extraction",
+    "lessons-learned",
+    "module-discovery",
+    "module-documentation",
+    "parity-verification",
+    "playwright-browser-verification",
+    "test-plan-generation",
+    "unit-test-execution"
+  ]
+}

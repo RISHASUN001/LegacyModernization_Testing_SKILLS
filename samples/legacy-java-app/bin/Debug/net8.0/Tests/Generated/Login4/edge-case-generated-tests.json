@@ -2,7 +2,7 @@
   "moduleName": "Login4",
   "category": "Edge Case",
   "lastRunId": "login4-test-20260414-002723",
-  "generatedCount": 6,
+  "generatedCount": 8,
   "generatedTests": [
     {
       "id": "edge-case-gen-001",
@@ -159,6 +159,61 @@
       "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
       "generatedFrom": [
         "flow:Submit valid credentials"
+      ],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "id": "edge-case-gen-004",
+      "category": "Edge Case",
+      "name": "Edge Case robustness generated case 1 for Login4",
+      "coverage": [
+        "robustness",
+        "fallback"
+      ],
+      "priority": "medium",
+      "given": "Given the Login4 module is configured and reachable",
+      "when": "When executing generated scenario: Edge Case robustness generated case 1 for Login4",
+      "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
+      "generatedFrom": [
+        "fallback:insufficient-discovery-evidence"
+      ],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "id": "edge-case-gen-003",
+      "category": "Edge Case",
+      "name": "Edge retry/timeout behavior: Session timeout returns to login",
+      "coverage": [
+        "retry",
+        "timeout",
+        "idempotency"
+      ],
+      "priority": "medium",
+      "given": "Given the Login4 module is configured and reachable",
+      "when": "When executing generated scenario: Edge retry/timeout behavior: Session timeout returns to login",
+      "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
+      "generatedFrom": [
+        "flow:Session timeout returns to login"
       ],
       "provenance": {
         "type": "inferred",

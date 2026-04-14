@@ -2,22 +2,22 @@
   "moduleName": "Login",
   "runId": "login-test-20260414-005637",
   "category": "Integration",
-  "generatedCount": 5,
+  "generatedCount": 4,
   "generatedTests": [
     {
       "id": "integration-gen-001",
       "category": "Integration",
-      "name": "Integration workflow: Open login page",
+      "name": "Integration contract route: /login",
       "coverage": [
-        "service-repository",
-        "transaction"
+        "http-contract",
+        "persistence"
       ],
       "priority": "medium",
       "given": "Given the Login module is configured and reachable",
-      "when": "When executing generated scenario: Integration workflow: Open login page",
+      "when": "When executing generated scenario: Integration contract route: /login",
       "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
       "generatedFrom": [
-        "flow:Open login page"
+        "route:/login"
       ],
       "provenance": {
         "type": "inferred",
@@ -34,17 +34,17 @@
     {
       "id": "integration-gen-002",
       "category": "Integration",
-      "name": "Integration workflow: Submit valid credentials",
+      "name": "Integration robustness generated case 1 for Login",
       "coverage": [
-        "service-repository",
-        "transaction"
+        "robustness",
+        "fallback"
       ],
       "priority": "medium",
       "given": "Given the Login module is configured and reachable",
-      "when": "When executing generated scenario: Integration workflow: Submit valid credentials",
+      "when": "When executing generated scenario: Integration robustness generated case 1 for Login",
       "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
       "generatedFrom": [
-        "flow:Submit valid credentials"
+        "fallback:insufficient-discovery-evidence"
       ],
       "provenance": {
         "type": "inferred",
@@ -61,17 +61,17 @@
     {
       "id": "integration-gen-003",
       "category": "Integration",
-      "name": "Integration workflow: Submit invalid credentials",
+      "name": "Integration robustness generated case 2 for Login",
       "coverage": [
-        "service-repository",
-        "transaction"
+        "robustness",
+        "fallback"
       ],
       "priority": "medium",
       "given": "Given the Login module is configured and reachable",
-      "when": "When executing generated scenario: Integration workflow: Submit invalid credentials",
+      "when": "When executing generated scenario: Integration robustness generated case 2 for Login",
       "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
       "generatedFrom": [
-        "flow:Submit invalid credentials"
+        "fallback:insufficient-discovery-evidence"
       ],
       "provenance": {
         "type": "inferred",
@@ -88,44 +88,17 @@
     {
       "id": "integration-gen-004",
       "category": "Integration",
-      "name": "Integration workflow: Session timeout returns to login",
+      "name": "Integration robustness generated case 3 for Login",
       "coverage": [
-        "service-repository",
-        "transaction"
+        "robustness",
+        "fallback"
       ],
       "priority": "medium",
       "given": "Given the Login module is configured and reachable",
-      "when": "When executing generated scenario: Integration workflow: Session timeout returns to login",
+      "when": "When executing generated scenario: Integration robustness generated case 3 for Login",
       "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
       "generatedFrom": [
-        "flow:Session timeout returns to login"
-      ],
-      "provenance": {
-        "type": "inferred",
-        "sources": [
-          "artifact:test-plan-generation/test-plan.json",
-          "artifact:module-discovery/discovery-map.json",
-          "artifact:legacy-logic-extraction/logic-summary.json",
-          "artifact:module-documentation/module-analysis.json"
-        ],
-        "confidence": 0.77,
-        "unknowns": []
-      }
-    },
-    {
-      "id": "integration-gen-005",
-      "category": "Integration",
-      "name": "Integration contract route: /login",
-      "coverage": [
-        "http-contract",
-        "persistence"
-      ],
-      "priority": "medium",
-      "given": "Given the Login module is configured and reachable",
-      "when": "When executing generated scenario: Integration contract route: /login",
-      "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
-      "generatedFrom": [
-        "route:/login"
+        "fallback:insufficient-discovery-evidence"
       ],
       "provenance": {
         "type": "inferred",

@@ -26,6 +26,14 @@ Pipeline router for all 7 stages:
 - `selectedSkills` (optional; defaults to discovered skills)
 - optional compatibility aliases accepted: `module`, `run_id`
 
+## Optional Scoped Inputs
+- `targetUrl`
+- `moduleHints.scopeHint`
+- `strictModuleOnly`
+- `allowedCrossModules`
+- `architecturePolicy`
+- `generateModuleClaudeMd`
+
 ## Process
 1. Load and normalize run input JSON.
 2. Validate required fields.
@@ -35,10 +43,10 @@ Pipeline router for all 7 stages:
 6. Persist per-stage summaries and `orchestration-summary.json`.
 
 ## Outputs
-- `artifacts/<module>/<runId>/module-run-input.json`
-- `artifacts/<module>/<runId>/stage-<n>/stage-result.json`
-- `artifacts/<module>/<runId>/orchestration-summary.json`
-- per-skill artifacts under `artifacts/<module>/<runId>/<skill>/...`
+- `artifacts/{module}/{runId}/module-run-input.json`
+- `artifacts/{module}/{runId}/stage-<n>/stage-result.json`
+- `artifacts/{module}/{runId}/orchestration-summary.json`
+- per-skill artifacts under `artifacts/{module}/{runId}/{skill}/...`
 
 ## Verification Evidence
 - Stage summaries and final orchestration summary include skill statuses and timings.

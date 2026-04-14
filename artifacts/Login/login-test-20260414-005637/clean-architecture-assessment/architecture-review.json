@@ -1,5 +1,6 @@
 {
   "moduleName": "Login",
+  "architecturePolicy": "module-first",
   "cleanArchitectureIssues": [],
   "namespaceFolderIssues": [
     {

@@ -10,7 +10,8 @@
     "EnvironmentDependencyMissing::DevTools diagnostics API health check::Required endpoint unavailable: http://127.0.0.1:5000/api/test/health",
     "NoTestsCollected::API::No runnable API tests were collected in this run; treated as non-blocking baseline.",
     "NoTestsCollected::E2E::No runnable E2E tests were collected in this run; treated as non-blocking baseline.",
-    "NoTestsCollected::Playwright / E2E Browser::No runnable Playwright / E2E Browser tests were collected in this run; treated as non-blocking baseline."
+    "NoTestsCollected::Playwright / E2E Browser::No runnable Playwright / E2E Browser tests were collected in this run; treated as non-blocking baseline.",
+    "ParityGap::Legacy vs converted behavior parity::Parity score for Login is 29 with 5 failing checks."
   ],
   "knowledgeUpdates": [
     {
@@ -53,6 +54,13 @@
       "stage": "execution",
       "skill": "playwright-browser-verification",
       "message": "No runnable Playwright / E2E Browser tests were collected in this run; treated as non-blocking baseline.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "ParityGap::Legacy vs converted behavior parity::Parity score for Login is 29 with 5 failing checks.",
+      "stage": "findings",
+      "skill": "parity-verification",
+      "message": "Parity score for Login is 29 with 5 failing checks.",
       "recommendedGuard": "Add targeted regression scenario in next test plan."
     }
   ]

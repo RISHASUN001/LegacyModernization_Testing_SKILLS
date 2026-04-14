@@ -17,15 +17,23 @@ Use this skill when Stage **discovery** evidence must be generated or refreshed 
 - `legacySourceRoot`
 - `moduleHints.relatedFolders`
 
+## optional scoped inputs
+- `targetUrl` (absolute or relative URL path to focus one menu flow)
+- `moduleHints.scopeHint` (short natural-language hint, typically <=20 words)
+- `strictModuleOnly` (when true, exclude unrelated module files early)
+- `allowedCrossModules` (explicit allow-list for cross-module evidence)
+
 ## process
 - Load `module-run-input.json` from run context.
-- Resolve artifact output folder under `artifacts/<module>/<run>/<skill>/`.
+- Resolve artifact output folder under `artifacts/{module}/{runId}/{skill}/`.
 - Execute stage-specific analysis/test workflow.
 - Persist `result.json` and stage detail artifacts.
 
 ## outputs
 - `result.json`
 - `discovery-map.json`
+
+`discovery-map.json` now includes `scopeContext` and `totalSelectedFiles` so downstream skills and dashboard views can trace applied scope decisions.
 
 ## artifact files produced
 - `artifacts/{module}/{runId}/module-discovery/`

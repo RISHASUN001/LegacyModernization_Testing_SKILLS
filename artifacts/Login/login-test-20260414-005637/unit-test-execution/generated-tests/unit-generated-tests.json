@@ -2,7 +2,7 @@
   "moduleName": "Login",
   "runId": "login-test-20260414-005637",
   "category": "Unit",
-  "generatedCount": 5,
+  "generatedCount": 4,
   "generatedTests": [
     {
       "id": "unit-gen-001",
@@ -34,33 +34,6 @@
     {
       "id": "unit-gen-002",
       "category": "Unit",
-      "name": "Unit guard: If credentials are valid, establish session and return authentication success response",
-      "coverage": [
-        "rule-validation",
-        "deterministic-behavior"
-      ],
-      "priority": "medium",
-      "given": "Given the Login module is configured and reachable",
-      "when": "When executing generated scenario: Unit guard: If credentials are valid, establish session and return authentication success response",
-      "then": "Then expected behavior is preserved and failures are actionable with root-cause evidence",
-      "generatedFrom": [
-        "rule:If credentials are valid, establish session and return authentication success response"
-      ],
-      "provenance": {
-        "type": "inferred",
-        "sources": [
-          "artifact:test-plan-generation/test-plan.json",
-          "artifact:module-discovery/discovery-map.json",
-          "artifact:legacy-logic-extraction/logic-summary.json",
-          "artifact:module-documentation/module-analysis.json"
-        ],
-        "confidence": 0.77,
-        "unknowns": []
-      }
-    },
-    {
-      "id": "unit-gen-003",
-      "category": "Unit",
       "name": "Unit guard: If session is expired, protected routes redirect to login",
       "coverage": [
         "rule-validation",
@@ -86,7 +59,7 @@
       }
     },
     {
-      "id": "unit-gen-004",
+      "id": "unit-gen-003",
       "category": "Unit",
       "name": "Unit parity guard: Route and URL behavior parity for user-visible flows",
       "coverage": [
@@ -113,7 +86,7 @@
       }
     },
     {
-      "id": "unit-gen-005",
+      "id": "unit-gen-004",
       "category": "Unit",
       "name": "Unit parity guard: Validation/error message semantics from legacy behavior",
       "coverage": [

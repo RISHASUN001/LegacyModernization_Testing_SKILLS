@@ -4,15 +4,15 @@
   "moduleName": "Login",
   "runId": "login-test-20260414-005637",
   "status": "passed",
-  "startedAt": "2026-04-13T16:59:08.181371Z",
-  "endedAt": "2026-04-13T16:59:08.848727Z",
-  "summary": "Integration execution completed with 7 passed and 0 failed scenarios.",
+  "startedAt": "2026-04-14T02:40:49.372500Z",
+  "endedAt": "2026-04-14T02:40:50.633324Z",
+  "summary": "Integration execution completed with 6 passed and 0 failed scenarios.",
   "metrics": {
-    "total": 7,
-    "passed": 7,
+    "total": 6,
+    "passed": 6,
     "failed": 0,
     "warnings": 0,
-    "newTestsAdded": 5,
+    "newTestsAdded": 4,
     "scenarios": [
       {
         "name": "Integration flow parity: Open login page",
@@ -53,102 +53,6 @@
         }
       },
       {
-        "name": "Integration workflow: Open login page",
-        "status": "passed",
-        "notes": "Validate cross-layer orchestration, persistence contracts, and transaction behavior.",
-        "coverage": [
-          "service-repository",
-          "transaction"
-        ],
-        "generated": true,
-        "generatedFrom": [
-          "flow:Open login page"
-        ],
-        "provenance": {
-          "type": "inferred",
-          "sources": [
-            "artifact:test-plan-generation/test-plan.json",
-            "artifact:module-discovery/discovery-map.json",
-            "artifact:legacy-logic-extraction/logic-summary.json",
-            "artifact:module-documentation/module-analysis.json"
-          ],
-          "confidence": 0.77,
-          "unknowns": []
-        }
-      },
-      {
-        "name": "Integration workflow: Submit valid credentials",
-        "status": "passed",
-        "notes": "Validate cross-layer orchestration, persistence contracts, and transaction behavior.",
-        "coverage": [
-          "service-repository",
-          "transaction"
-        ],
-        "generated": true,
-        "generatedFrom": [
-          "flow:Submit valid credentials"
-        ],
-        "provenance": {
-          "type": "inferred",
-          "sources": [
-            "artifact:test-plan-generation/test-plan.json",
-            "artifact:module-discovery/discovery-map.json",
-            "artifact:legacy-logic-extraction/logic-summary.json",
-            "artifact:module-documentation/module-analysis.json"
-          ],
-          "confidence": 0.77,
-          "unknowns": []
-        }
-      },
-      {
-        "name": "Integration workflow: Submit invalid credentials",
-        "status": "passed",
-        "notes": "Validate cross-layer orchestration, persistence contracts, and transaction behavior.",
-        "coverage": [
-          "service-repository",
-          "transaction"
-        ],
-        "generated": true,
-        "generatedFrom": [
-          "flow:Submit invalid credentials"
-        ],
-        "provenance": {
-          "type": "inferred",
-          "sources": [
-            "artifact:test-plan-generation/test-plan.json",
-            "artifact:module-discovery/discovery-map.json",
-            "artifact:legacy-logic-extraction/logic-summary.json",
-            "artifact:module-documentation/module-analysis.json"
-          ],
-          "confidence": 0.77,
-          "unknowns": []
-        }
-      },
-      {
-        "name": "Integration workflow: Session timeout returns to login",
-        "status": "passed",
-        "notes": "Validate cross-layer orchestration, persistence contracts, and transaction behavior.",
-        "coverage": [
-          "service-repository",
-          "transaction"
-        ],
-        "generated": true,
-        "generatedFrom": [
-          "flow:Session timeout returns to login"
-        ],
-        "provenance": {
-          "type": "inferred",
-          "sources": [
-            "artifact:test-plan-generation/test-plan.json",
-            "artifact:module-discovery/discovery-map.json",
-            "artifact:legacy-logic-extraction/logic-summary.json",
-            "artifact:module-documentation/module-analysis.json"
-          ],
-          "confidence": 0.77,
-          "unknowns": []
-        }
-      },
-      {
         "name": "Integration contract route: /login",
         "status": "passed",
         "notes": "Validate cross-layer orchestration, persistence contracts, and transaction behavior.",
@@ -159,6 +63,78 @@
         "generated": true,
         "generatedFrom": [
           "route:/login"
+        ],
+        "provenance": {
+          "type": "inferred",
+          "sources": [
+            "artifact:test-plan-generation/test-plan.json",
+            "artifact:module-discovery/discovery-map.json",
+            "artifact:legacy-logic-extraction/logic-summary.json",
+            "artifact:module-documentation/module-analysis.json"
+          ],
+          "confidence": 0.77,
+          "unknowns": []
+        }
+      },
+      {
+        "name": "Integration robustness generated case 1 for Login",
+        "status": "passed",
+        "notes": "Validate cross-layer orchestration, persistence contracts, and transaction behavior.",
+        "coverage": [
+          "robustness",
+          "fallback"
+        ],
+        "generated": true,
+        "generatedFrom": [
+          "fallback:insufficient-discovery-evidence"
+        ],
+        "provenance": {
+          "type": "inferred",
+          "sources": [
+            "artifact:test-plan-generation/test-plan.json",
+            "artifact:module-discovery/discovery-map.json",
+            "artifact:legacy-logic-extraction/logic-summary.json",
+            "artifact:module-documentation/module-analysis.json"
+          ],
+          "confidence": 0.77,
+          "unknowns": []
+        }
+      },
+      {
+        "name": "Integration robustness generated case 2 for Login",
+        "status": "passed",
+        "notes": "Validate cross-layer orchestration, persistence contracts, and transaction behavior.",
+        "coverage": [
+          "robustness",
+          "fallback"
+        ],
+        "generated": true,
+        "generatedFrom": [
+          "fallback:insufficient-discovery-evidence"
+        ],
+        "provenance": {
+          "type": "inferred",
+          "sources": [
+            "artifact:test-plan-generation/test-plan.json",
+            "artifact:module-discovery/discovery-map.json",
+            "artifact:legacy-logic-extraction/logic-summary.json",
+            "artifact:module-documentation/module-analysis.json"
+          ],
+          "confidence": 0.77,
+          "unknowns": []
+        }
+      },
+      {
+        "name": "Integration robustness generated case 3 for Login",
+        "status": "passed",
+        "notes": "Validate cross-layer orchestration, persistence contracts, and transaction behavior.",
+        "coverage": [
+          "robustness",
+          "fallback"
+        ],
+        "generated": true,
+        "generatedFrom": [
+          "fallback:insufficient-discovery-evidence"
         ],
         "provenance": {
           "type": "inferred",
@@ -189,7 +165,7 @@
     {
       "message": "Review Integration logs/artifacts and fix failing scenarios before next iteration.",
       "priority": "medium",
-      "evidence": "0 failed out of 7 scenarios."
+      "evidence": "0 failed out of 6 scenarios."
     }
   ],
   "resultContractVersion": "2.0",
@@ -234,7 +210,7 @@
       "minimal"
     ],
     "returnCode": 0,
-    "durationSeconds": 0.664,
+    "durationSeconds": 1.256,
     "cwd": "/Users/risha/Documents/Buildathon/samples/legacy-java-app"
   },
   "provenanceSummary": {
@@ -244,9 +220,8 @@
       "inferred",
       "inferred",
       "inferred",
-      "inferred",
       "inferred"
     ],
-    "confidence": 0.764
+    "confidence": 0.763
   }
 }

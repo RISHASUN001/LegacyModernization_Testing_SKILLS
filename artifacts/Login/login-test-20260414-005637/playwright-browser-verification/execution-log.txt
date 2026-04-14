@@ -1,7 +1,7 @@
 command: python3 -m pytest -m playwright
 returnCode: 5
 timedOut: False
-durationSeconds: 0.551
+durationSeconds: 0.652
 
 --- stdout ---
 ============================= test session starts ==============================

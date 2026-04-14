@@ -4,8 +4,8 @@
   "moduleName": "Login",
   "runId": "login-test-20260414-005637",
   "status": "passed",
-  "startedAt": "2026-04-13T16:59:06.523247Z",
-  "endedAt": "2026-04-13T16:59:06.560835Z",
+  "startedAt": "2026-04-14T02:40:47.429449Z",
+  "endedAt": "2026-04-14T02:40:47.475017Z",
   "summary": "DevTools diagnostics for Login: consoleErrors=0, networkFailures=0, degradedMode=True, testApiSource=dashboard-fallback.",
   "metrics": {
     "total": 6,

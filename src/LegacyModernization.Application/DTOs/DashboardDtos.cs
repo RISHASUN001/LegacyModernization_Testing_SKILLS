@@ -70,6 +70,12 @@ public sealed class RunInputDraftDto
     public string RelatedFoldersText { get; set; } = string.Empty;
     public string KnownUrlsText { get; set; } = string.Empty;
     public string KeywordsText { get; set; } = string.Empty;
+    public string ModuleScopeHint { get; set; } = string.Empty;
+    public string TargetUrl { get; set; } = string.Empty;
+    public bool StrictModuleOnly { get; set; }
+    public string AllowedCrossModulesText { get; set; } = string.Empty;
+    public string ArchitecturePolicy { get; set; } = "module-first";
+    public bool GenerateModuleClaudeMd { get; set; } = true;
     public string UnitCommand { get; set; } = "dotnet test --nologo --verbosity minimal";
     public string IntegrationCommand { get; set; } = "dotnet test --nologo --verbosity minimal";
     public string ApiCommand { get; set; } = "python3 -m pytest -m api";
@@ -114,8 +120,16 @@ public sealed class ParityStageDto
     public double Confidence { get; init; }
     public List<ParityCheckDto> Checks { get; init; } = [];
     public SqlParityDto SqlParity { get; init; } = new();
+    public DependencyParityDto DependencyParity { get; init; } = new();
     public List<string> Gaps { get; init; } = [];
     public string SourceArtifactPath { get; init; } = string.Empty;
+}
+
+public sealed class DependencyParityDto
+{
+    public List<string> AllowedCrossModules { get; init; } = [];
+    public List<string> Dependencies { get; init; } = [];
+    public List<string> Violations { get; init; } = [];
 }
 
 public sealed class ParityCheckDto
@@ -186,8 +200,18 @@ public sealed class DiscoveryStageDto
     public List<ProvenancedValueDto> UrlDetails { get; init; } = [];
     public List<ProvenancedValueDto> DbTouchpointDetails { get; init; } = [];
     public List<ProvenancedValueDto> EntrypointHints { get; init; } = [];
+    public ScopeContextDto ScopeContext { get; init; } = new();
     public double Confidence { get; init; }
     public string SourceArtifactPath { get; init; } = string.Empty;
+}
+
+public sealed class ScopeContextDto
+{
+    public bool StrictModuleOnly { get; init; }
+    public string ScopeHint { get; init; } = string.Empty;
+    public string TargetUrlPath { get; init; } = string.Empty;
+    public List<string> AllowedCrossModules { get; init; } = [];
+    public List<string> ScopeTokens { get; init; } = [];
 }
 
 public sealed class LogicUnderstandingStageDto
@@ -200,8 +224,16 @@ public sealed class LogicUnderstandingStageDto
     public List<ProvenancedValueDto> FlowDetails { get; init; } = [];
     public List<ProvenancedValueDto> RuleDetails { get; init; } = [];
     public List<string> Unknowns { get; init; } = [];
+    public ScopeAppliedDto ScopeApplied { get; init; } = new();
     public double Confidence { get; init; }
     public string SourceArtifactPath { get; init; } = string.Empty;
+}
+
+public sealed class ScopeAppliedDto
+{
+    public List<string> ScopeTerms { get; init; } = [];
+    public string TargetUrl { get; init; } = string.Empty;
+    public string ScopeHint { get; init; } = string.Empty;
 }
 
 public sealed class ArchitectureReviewStageDto
@@ -210,6 +242,8 @@ public sealed class ArchitectureReviewStageDto
     public List<ArchitectureIssueDto> NamespaceFolderIssues { get; init; } = [];
     public List<ArchitectureIssueDto> DiIssues { get; init; } = [];
     public List<ArchitectureIssueDto> CouplingIssues { get; init; } = [];
+    public string ArchitecturePolicy { get; init; } = string.Empty;
+    public double Confidence { get; init; }
     public List<string> RecommendedStructure { get; init; } = [];
     public string SourceArtifactPath { get; init; } = string.Empty;
 }
@@ -227,6 +261,8 @@ public sealed class TestPlanStageDto
     public List<string> NewTestsSuggested { get; init; } = [];
     public List<TestCategoryPlanDto> TestCategories { get; init; } = [];
     public string CoverageSummary { get; init; } = string.Empty;
+    public ScopeAppliedDto ScopeApplied { get; init; } = new();
+    public double Confidence { get; init; }
     public string SourceArtifactPath { get; init; } = string.Empty;
 }
 

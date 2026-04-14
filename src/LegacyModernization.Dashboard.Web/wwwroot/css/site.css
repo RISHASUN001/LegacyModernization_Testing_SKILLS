@@ -218,6 +218,27 @@ pre.skill-markdown {
     background: #f8fbff;
 }
 
+.pipeline-tabs .nav-link {
+    border-radius: 999px;
+    font-weight: 700;
+    color: #1f3f73;
+    border: 1px solid #c9daf5;
+    background: #eef4ff;
+}
+
+.pipeline-tabs .nav-link.active {
+    background: #1559d6;
+    color: #fff;
+    border-color: #1559d6;
+}
+
+.pipeline-tab-content {
+    border: 1px solid var(--lm-border);
+    border-radius: 0.8rem;
+    padding: 0.9rem;
+    background: #ffffff;
+}
+
 .summary-label {
     font-size: 0.75rem;
     text-transform: uppercase;
@@ -294,6 +315,19 @@ pre.skill-markdown {
     font-size: 1rem;
     color: #1d4ed8;
     font-weight: 800;
+}
+
+.help-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.75rem;
+}
+
+.help-item {
+    border: 1px solid var(--lm-border);
+    border-radius: 0.75rem;
+    padding: 0.75rem;
+    background: #f8fbff;
 }
 
 @media (max-width: 991px) {
