@@ -1,0 +1,53 @@
+{
+  "moduleName": "LoginFinal",
+  "workflowNames": [
+    "Successful Login",
+    "Invalid Login"
+  ],
+  "strictModuleOnly": false,
+  "anchorTokenCount": 78,
+  "legacyBackendRoots": [
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app"
+  ],
+  "legacyFrontendRoots": [
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app"
+  ],
+  "backendFiles": [
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java"
+  ],
+  "frontendFiles": [
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/index.jsp",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp"
+  ],
+  "selectedFiles": [
+    {
+      "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/index.jsp",
+      "name": "index.jsp",
+      "type": "jsp",
+      "score": 15,
+      "confidence": "high",
+      "routes": [
+        "login"
+      ],
+      "tables": []
+    },
+    {
+      "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java",
+      "name": "LoginServlet.java",
+      "type": "java",
+      "score": 14,
+      "confidence": "high",
+      "routes": [],
+      "tables": []
+    },
+    {
+      "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp",
+      "name": "dashboard.jsp",
+      "type": "jsp",
+      "score": 12,
+      "confidence": "high",
+      "routes": [],
+      "tables": []
+    }
+  ]
+}

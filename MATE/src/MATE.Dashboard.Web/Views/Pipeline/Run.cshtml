@@ -1,0 +1,162 @@
+@model MATE.Dashboard.Web.Models.Pipeline.PipelineRunDto
+@{
+    ViewData["Title"] = $"Run: {Model.ModuleName} / {Model.RunId}";
+}
+
+<div class="stage-header">
+    <h1>@Model.ModuleName</h1>
+    <div class="run-meta">
+        <strong>Run:</strong> <code>@Model.RunId</code>
+    </div>
+    <div class="run-meta mt-2">
+        <span class="status-pill @Model.Status.ToLowerInvariant()">@Model.Status</span>
+        <span class="ms-2"><strong>Started:</strong> @Model.StartedAt</span>
+        <span class="ms-2"><strong>Ended:</strong> @Model.EndedAt</span>
+    </div>
+    @if (!string.IsNullOrWhiteSpace(Model.Summary))
+    {
+        <div class="run-meta mt-2">@Model.Summary</div>
+    }
+</div>
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <a asp-controller="Pipeline" asp-action="Index" class="btn btn-outline-secondary btn-sm">
+        <i class="bi bi-arrow-left me-1"></i>Back to Dashboard
+    </a>
+    <a asp-controller="Pipeline" asp-action="Input" class="btn btn-outline-primary btn-sm">
+        <i class="bi bi-sliders2 me-1"></i>Open Run Input Builder
+    </a>
+</div>
+
+@if (!Model.StageStatuses.Any())
+{
+    <div class="alert alert-warning">No stage data was found for this run.</div>
+}
+else
+{
+    @foreach (var stage in Model.StageStatuses.OrderBy(x => x.StageIndex))
+    {
+        var allArtifacts = stage.Skills
+            .SelectMany(s => s.Artifacts)
+            .GroupBy(a => a.RelativePath, StringComparer.OrdinalIgnoreCase)
+            .Select(g => g.First())
+            .OrderBy(a => a.RelativePath, StringComparer.OrdinalIgnoreCase)
+            .ToList();
+
+        <section class="panel-card mb-3 p-3">
+            <div class="d-flex justify-content-between align-items-start mb-2">
+                <div>
+                    <div class="small text-muted">Stage @stage.StageIndex</div>
+                    <h3 class="h5 mb-1">@stage.StageTitle</h3>
+                    @if (!string.IsNullOrWhiteSpace(stage.StageObjective))
+                    {
+                        <div class="small text-muted">@stage.StageObjective</div>
+                    }
+                </div>
+                <span class="status-pill @stage.Status.ToLowerInvariant()">@stage.Status</span>
+            </div>
+
+            <div class="row g-3 align-items-start">
+                <div class="col-12 col-xl-6">
+                    <div class="stage-card p-3 h-100">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <strong>Skills</strong>
+                            <span class="small text-muted">@stage.Skills.Count total</span>
+                        </div>
+
+                        @if (stage.Skills.Any())
+                        {
+                            @foreach (var skill in stage.Skills)
+                            {
+                                <div class="skill-card">
+                                    <div class="d-flex justify-content-between align-items-start gap-2">
+                                        <div>
+                                            <div class="fw-semibold">@skill.SkillName</div>
+                                            @if (!string.IsNullOrWhiteSpace(skill.Summary))
+                                            {
+                                                <div class="small text-muted mt-1">@skill.Summary</div>
+                                            }
+                                        </div>
+                                        <div class="d-flex align-items-center gap-2">
+                                            @if (skill.Reused)
+                                            {
+                                                <span class="status-pill reused">reused</span>
+                                            }
+                                            <span class="status-pill @skill.Status.ToLowerInvariant()">@skill.Status</span>
+                                        </div>
+                                    </div>
+
+                                    @if (skill.Metrics.Any())
+                                    {
+                                        <div class="metrics-row">
+                                            @foreach (var metric in skill.Metrics.Take(6))
+                                            {
+                                                <span class="metric-badge">@metric.Key: @metric.Value</span>
+                                            }
+                                        </div>
+                                    }
+
+                                    @if (!string.IsNullOrWhiteSpace(skill.StdErr))
+                                    {
+                                        <details class="mt-2">
+                                            <summary class="small text-danger">stderr</summary>
+                                            <pre class="log-output mt-2">@skill.StdErr</pre>
+                                        </details>
+                                    }
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <div class="text-muted small">No skills were executed for this stage.</div>
+                        }
+                    </div>
+                </div>
+
+                <div class="col-12 col-xl-6">
+                    <div class="stage-card p-3 h-100">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <strong>Artifacts</strong>
+                            <span class="small text-muted">@allArtifacts.Count items</span>
+                        </div>
+
+                        @if (allArtifacts.Any())
+                        {
+                            <div class="artifact-grid">
+                                @foreach (var artifact in allArtifacts)
+                                {
+                                    <article class="artifact-card">
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <span class="artifact-kind-badge">@artifact.Kind</span>
+                                            @if (!artifact.Exists)
+                                            {
+                                                <span class="small text-danger">missing</span>
+                                            }
+                                        </div>
+                                        <div class="fw-semibold mb-1" title="@artifact.RelativePath">@artifact.Name</div>
+                                        <div class="small text-muted mb-2" style="word-break: break-all;">@artifact.RelativePath</div>
+                                        @if (artifact.Exists)
+                                        {
+                                            <a asp-controller="Pipeline"
+                                               asp-action="Artifact"
+                                               asp-route-moduleName="@Model.ModuleName"
+                                               asp-route-runId="@Model.RunId"
+                                               asp-route-path="@artifact.RelativePath"
+                                               class="btn btn-sm btn-outline-primary">
+                                                Open Artifact
+                                            </a>
+                                        }
+                                    </article>
+                                }
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="text-muted small">No artifacts were declared for this stage.</div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </section>
+    }
+}

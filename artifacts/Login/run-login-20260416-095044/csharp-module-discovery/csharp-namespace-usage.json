@@ -1,0 +1,31 @@
+{
+  "moduleName": "Login",
+  "namespaces": [
+    {
+      "namespace": "LegacyModernization.Converted.Controllers",
+      "occurrences": 1
+    },
+    {
+      "namespace": "LegacyModernization.Converted.Services",
+      "occurrences": 1
+    }
+  ],
+  "usingReferences": [
+    {
+      "using": "LegacyModernization.Converted.Services",
+      "occurrences": 1
+    },
+    {
+      "using": "Microsoft.AspNetCore.Mvc",
+      "occurrences": 1
+    },
+    {
+      "using": "System",
+      "occurrences": 1
+    },
+    {
+      "using": "System.Collections.Generic",
+      "occurrences": 1
+    }
+  ]
+}

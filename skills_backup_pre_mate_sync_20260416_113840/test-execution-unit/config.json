@@ -1,0 +1,20 @@
+{
+  "name": "test-execution-unit",
+  "stage": "test-execution",
+  "schemaVersion": "2.2",
+  "aiDriven": false,
+  "inputs": [
+    "moduleName",
+    "runId",
+    "dotnetTestTarget"
+  ],
+  "outputs": [
+    "unit-test.log",
+    "unit-test-results.json",
+    "unit-test-execution-manifest.json",
+    "result.json"
+  ],
+  "dependencies": [
+    "unit-test-generation"
+  ]
+}

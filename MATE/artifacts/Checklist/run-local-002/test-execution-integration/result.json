@@ -1,0 +1,19 @@
+{
+  "skillName": "test-execution-integration",
+  "status": "passed",
+  "startedAt": "2026-04-15T16:21:31.018457Z",
+  "endedAt": "2026-04-15T16:21:31.018466Z",
+  "summary": "Integration test execution simulated and artifacts captured.",
+  "metrics": {
+    "total": 0,
+    "passed": 0,
+    "failed": 0
+  },
+  "artifacts": [
+    "MATE/artifacts/Checklist/run-local-002/test-execution-integration/integration-test.log",
+    "MATE/artifacts/Checklist/run-local-002/test-execution-integration/integration-test-results.json"
+  ],
+  "findings": [],
+  "recommendations": [],
+  "resultContractVersion": "1.0"
+}

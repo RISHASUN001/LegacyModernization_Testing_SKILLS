@@ -1,0 +1,26 @@
+{
+  "skillName": "test-execution-unit",
+  "status": "failed",
+  "startedAt": "2026-04-15T20:15:48.757413Z",
+  "endedAt": "2026-04-15T20:15:48.757433Z",
+  "summary": "Unit test execution completed with exit code 1.",
+  "metrics": {
+    "total": 0,
+    "testsCopied": 0,
+    "exitCode": 1
+  },
+  "artifacts": [
+    "MATE/artifacts/Checklist/run-local-005/test-execution-unit/unit-test.log",
+    "MATE/artifacts/Checklist/run-local-005/test-execution-unit/unit-test-results.json",
+    "MATE/artifacts/Checklist/run-local-005/test-execution-unit/unit-test-execution-manifest.json"
+  ],
+  "findings": [
+    {
+      "type": "UnitExecutionFailure",
+      "message": "dotnet test returned non-zero exit code.",
+      "evidence": "MATE/artifacts/Checklist/run-local-005/test-execution-unit/unit-test.log"
+    }
+  ],
+  "recommendations": [],
+  "resultContractVersion": "1.0"
+}

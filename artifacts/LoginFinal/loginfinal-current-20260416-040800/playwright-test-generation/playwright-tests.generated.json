@@ -1,0 +1,22 @@
+{
+  "moduleName": "LoginFinal",
+  "category": "playwright",
+  "tests": [
+    {
+      "name": "test_successful_login",
+      "workflow": "Successful Login",
+      "purpose": "Playwright test for Successful Login workflow",
+      "requiresInput": false,
+      "inputsNeeded": [],
+      "code": "from playwright.sync_api import Page\n\ndef test_successful_login(page: Page) -> None:\n    \"\"\"Test Successful Login workflow.\"\"\"\n    page.goto('http://localhost:5001')\n    page.wait_for_load_state('networkidle')\n    assert page.url\n"
+    },
+    {
+      "name": "test_invalid_login",
+      "workflow": "Invalid Login",
+      "purpose": "Playwright test for Invalid Login workflow",
+      "requiresInput": false,
+      "inputsNeeded": [],
+      "code": "from playwright.sync_api import Page\n\ndef test_invalid_login(page: Page) -> None:\n    \"\"\"Test Invalid Login workflow.\"\"\"\n    page.goto('http://localhost:5001')\n    page.wait_for_load_state('networkidle')\n    assert page.url\n"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+flowchart TD
+  A["/Auth / /Auth/dashboard / /Auth/index"] --> B["Request Handler"]
+  B --> C{Model state validation}
+  C -->|VALID| D["Business Action"]
+  C -->|INVALID| E["Validation Error"]
+  D --> F["Data Access"]
+  F --> G["Auth decision completed"]
+  E --> H["Error Response"]
+  C -->|Module-specif...| V2["Check Module-specific g..."]
+  V2 --> G

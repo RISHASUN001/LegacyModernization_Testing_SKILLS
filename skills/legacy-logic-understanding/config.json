@@ -1,0 +1,22 @@
+{
+  "name": "legacy-logic-understanding",
+  "stage": "legacy-logic-understanding",
+  "schemaVersion": "1.1",
+  "aiDriven": true,
+  "strictAIGenerationCompatible": true,
+  "strictModuleOnlyCompatible": true,
+  "inputs": [
+    "moduleName",
+    "runId",
+    "workflowNames",
+    "startUrl",
+    "strictAIGeneration"
+  ],
+  "outputs": [
+    "legacy-logic-summary.json",
+    "result.json"
+  ],
+  "dependencies": [
+    "legacy-module-discovery"
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "skillName": "failure-diagnosis",
+  "stage": "findings",
+  "moduleName": "LoginFinal",
+  "runId": "loginfinal-test-20260415-170304",
+  "status": "passed",
+  "startedAt": "2026-04-15T09:05:41.862619Z",
+  "endedAt": "2026-04-15T09:05:41.868115Z",
+  "summary": "Failure diagnosis generated 1 cluster(s) and 1 scenario-level failures for LoginFinal.",
+  "metrics": {
+    "clusters": 1,
+    "scenarioFailures": 1,
+    "highImpact": 1,
+    "quickWins": 0
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-170304/failure-diagnosis/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-170304/failure-diagnosis/diagnosis-report.json"
+  ],
+  "findings": [
+    {
+      "type": "ScenarioFailure",
+      "scenario": "excalidraw-diagram",
+      "message": "excalidraw-diagram failed in skill excalidraw-diagram.",
+      "likelyCause": "Skill execution failed: name 'now_iso' is not defined",
+      "evidence": "skill=excalidraw-diagram; logs=none",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.65,
+      "relatedStage": "java-logic",
+      "relatedSkill": "excalidraw-diagram",
+      "affectedFiles": []
+    }
+  ],
+  "recommendations": [
+    {
+      "message": "Prioritize scenario-level failures that have concrete console/network/log evidence first.",
+      "priority": "high",
+      "evidence": "scenarioFailures=1; clusters=1"
+    }
+  ],
+  "resultContractVersion": "2.0",
+  "provenanceSummary": {
+    "scenarioSources": [
+      "code-evidence",
+      "inferred"
+    ],
+    "confidence": 0.8
+  }
+}

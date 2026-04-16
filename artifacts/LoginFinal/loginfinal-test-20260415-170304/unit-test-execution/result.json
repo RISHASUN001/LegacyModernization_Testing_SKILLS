@@ -1,0 +1,227 @@
+{
+  "skillName": "unit-test-execution",
+  "stage": "execution",
+  "moduleName": "LoginFinal",
+  "runId": "loginfinal-test-20260415-170304",
+  "status": "passed",
+  "startedAt": "2026-04-15T09:05:40.997040Z",
+  "endedAt": "2026-04-15T09:05:41.785578Z",
+  "summary": "Unit execution completed with 6 passed and 0 failed scenarios.",
+  "metrics": {
+    "total": 6,
+    "passed": 6,
+    "failed": 0,
+    "warnings": 0,
+    "newTestsAdded": 4,
+    "scenarios": [
+      {
+        "name": "Rule guard: If credentials are invalid, stay on login page and show validation message",
+        "status": "passed",
+        "notes": "Validate module business rules and validators in isolation.",
+        "coverage": [
+          "rule-validation"
+        ],
+        "generated": false,
+        "generatedFrom": [],
+        "provenance": {
+          "type": "flow-derived",
+          "sources": [
+            "artifact:legacy-logic-extraction/logic-summary.json"
+          ],
+          "confidence": 0.78,
+          "unknowns": []
+        }
+      },
+      {
+        "name": "Rule guard: If session is expired, protected routes redirect to login",
+        "status": "passed",
+        "notes": "Validate module business rules and validators in isolation.",
+        "coverage": [
+          "rule-validation"
+        ],
+        "generated": false,
+        "generatedFrom": [],
+        "provenance": {
+          "type": "flow-derived",
+          "sources": [
+            "artifact:legacy-logic-extraction/logic-summary.json"
+          ],
+          "confidence": 0.78,
+          "unknowns": []
+        }
+      },
+      {
+        "name": "Unit guard: If credentials are invalid, stay on login page and show validation message",
+        "status": "passed",
+        "notes": "Validate module business rules and validators in isolation.",
+        "coverage": [
+          "rule-validation",
+          "deterministic-behavior"
+        ],
+        "generated": true,
+        "generatedFrom": [
+          "rule:If credentials are invalid, stay on login page and show validation message"
+        ],
+        "provenance": {
+          "type": "inferred",
+          "sources": [
+            "artifact:test-plan-generation/test-plan.json",
+            "artifact:module-discovery/discovery-map.json",
+            "artifact:legacy-logic-extraction/logic-summary.json",
+            "artifact:module-documentation/module-analysis.json"
+          ],
+          "confidence": 0.77,
+          "unknowns": []
+        }
+      },
+      {
+        "name": "Unit guard: If session is expired, protected routes redirect to login",
+        "status": "passed",
+        "notes": "Validate module business rules and validators in isolation.",
+        "coverage": [
+          "rule-validation",
+          "deterministic-behavior"
+        ],
+        "generated": true,
+        "generatedFrom": [
+          "rule:If session is expired, protected routes redirect to login"
+        ],
+        "provenance": {
+          "type": "inferred",
+          "sources": [
+            "artifact:test-plan-generation/test-plan.json",
+            "artifact:module-discovery/discovery-map.json",
+            "artifact:legacy-logic-extraction/logic-summary.json",
+            "artifact:module-documentation/module-analysis.json"
+          ],
+          "confidence": 0.77,
+          "unknowns": []
+        }
+      },
+      {
+        "name": "Unit parity guard: Route and URL behavior parity for user-visible flows",
+        "status": "passed",
+        "notes": "Validate module business rules and validators in isolation.",
+        "coverage": [
+          "parity",
+          "regression"
+        ],
+        "generated": true,
+        "generatedFrom": [
+          "preserve:Route and URL behavior parity for user-visible flows"
+        ],
+        "provenance": {
+          "type": "inferred",
+          "sources": [
+            "artifact:test-plan-generation/test-plan.json",
+            "artifact:module-discovery/discovery-map.json",
+            "artifact:legacy-logic-extraction/logic-summary.json",
+            "artifact:module-documentation/module-analysis.json"
+          ],
+          "confidence": 0.77,
+          "unknowns": []
+        }
+      },
+      {
+        "name": "Unit parity guard: Validation/error message semantics from legacy behavior",
+        "status": "passed",
+        "notes": "Validate module business rules and validators in isolation.",
+        "coverage": [
+          "parity",
+          "regression"
+        ],
+        "generated": true,
+        "generatedFrom": [
+          "preserve:Validation/error message semantics from legacy behavior"
+        ],
+        "provenance": {
+          "type": "inferred",
+          "sources": [
+            "artifact:test-plan-generation/test-plan.json",
+            "artifact:module-discovery/discovery-map.json",
+            "artifact:legacy-logic-extraction/logic-summary.json",
+            "artifact:module-documentation/module-analysis.json"
+          ],
+          "confidence": 0.77,
+          "unknowns": []
+        }
+      }
+    ],
+    "degradedMode": false,
+    "purpose": "Validate module business rules and validators in isolation.",
+    "generatedTestsArtifact": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-170304/unit-test-execution/generated-tests/unit-generated-tests.json",
+    "generatedExecutableTest": "",
+    "generatedExecutableArtifact": ""
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-170304/unit-test-execution/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-170304/unit-test-execution/generated-tests/unit-generated-tests.json",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/loginfinal-7d280c0f12/loginfinal-test-20260415-170304/unit-generated-tests.json",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-170304/unit-test-execution/preflight.json",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-170304/unit-test-execution/execution-log.txt"
+  ],
+  "findings": [],
+  "recommendations": [
+    {
+      "message": "Review Unit logs/artifacts and fix failing scenarios before next iteration.",
+      "priority": "medium",
+      "evidence": "0 failed out of 6 scenarios."
+    }
+  ],
+  "resultContractVersion": "2.0",
+  "preflight": {
+    "category": "Unit",
+    "baseUrl": {
+      "required": false,
+      "provided": "http://localhost:5001",
+      "normalized": "",
+      "ok": true,
+      "reason": "not-required"
+    },
+    "reachability": {
+      "required": false,
+      "ok": true,
+      "statusCode": 0,
+      "reason": "not-required",
+      "path": "/",
+      "url": ""
+    },
+    "commands": {
+      "candidates": [
+        "dotnet test --nologo --verbosity minimal",
+        "dotnet test /Users/risha/Documents/Buildathon/samples/legacy-java-app/LegacyModernization.Converted.csproj --nologo --verbosity minimal"
+      ],
+      "available": [
+        "dotnet test --nologo --verbosity minimal",
+        "dotnet test /Users/risha/Documents/Buildathon/samples/legacy-java-app/LegacyModernization.Converted.csproj --nologo --verbosity minimal"
+      ],
+      "unavailable": [],
+      "selected": "dotnet test --nologo --verbosity minimal",
+      "ok": true
+    },
+    "strictMode": false
+  },
+  "trace": {
+    "command": [
+      "dotnet",
+      "test",
+      "--nologo",
+      "--verbosity",
+      "minimal"
+    ],
+    "returnCode": 0,
+    "durationSeconds": 0.777,
+    "cwd": "/Users/risha/Documents/Buildathon/samples/legacy-java-app"
+  },
+  "provenanceSummary": {
+    "scenarioSources": [
+      "flow-derived",
+      "flow-derived",
+      "inferred",
+      "inferred",
+      "inferred",
+      "inferred"
+    ],
+    "confidence": 0.773
+  }
+}

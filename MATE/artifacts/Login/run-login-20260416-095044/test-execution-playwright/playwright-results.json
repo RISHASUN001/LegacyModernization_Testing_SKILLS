@@ -1,0 +1,13 @@
+{
+  "moduleName": "Login",
+  "category": "playwright",
+  "status": "failed",
+  "total": 0,
+  "passed": 0,
+  "failed": 0,
+  "exitCode": 5,
+  "logPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-playwright/playwright.log",
+  "consolePath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-playwright/console-messages.json",
+  "networkPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-playwright/network-requests.json",
+  "screenshotPaths": []
+}

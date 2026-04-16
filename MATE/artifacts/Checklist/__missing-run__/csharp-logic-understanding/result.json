@@ -1,0 +1,12 @@
+{
+  "skillName": "csharp-logic-understanding",
+  "status": "passed",
+  "startedAt": "2026-04-15T15:52:50.115555Z",
+  "endedAt": "2026-04-15T15:52:50.115752Z",
+  "summary": "csharp-logic-understanding scaffold executed.",
+  "metrics": {},
+  "artifacts": [
+    "MATE/artifacts/Checklist/__missing-run__/csharp-logic-understanding/result.json"
+  ],
+  "resultContractVersion": "1.0"
+}

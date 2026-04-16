@@ -8,17 +8,19 @@ Revamped hackathon-ready platform for Java EE / JSP / Struts to ASP.NET Core C# 
 2. Run selected skills externally in Continue.dev / Claude (IDE).
 3. Skills persist outputs to `artifacts/{module}/{runId}/{skill}/...`.
 4. Dashboard syncs artifacts into SQLite metadata (`data/modernization.db`).
-5. Dashboard renders a **7-stage pipeline** with test categories, findings, and iteration deltas.
+5. Dashboard renders a **9-stage module-first pipeline** with test categories, findings, diagrams, parity, and iteration deltas.
 
-## 7-Stage Product Flow
+## 9-Stage Product Flow
 
-1. Discovery
-2. Logic Understanding
-3. Architecture Review
-4. Test Plan
-5. Execution
-6. Findings
-7. Iteration Comparison
+1. C# Discovery
+2. C# Logic Understanding
+3. Java Discovery
+4. Java Logic Understanding
+5. Functional Parity
+6. Test Plan
+7. Execution
+8. Findings
+9. Iteration Comparison
 
 ## Skill Pack
 
@@ -31,9 +33,9 @@ Revamped hackathon-ready platform for Java EE / JSP / Struts to ASP.NET Core C# 
 - `unit-test-execution`
 - `integration-test-execution`
 - `e2e-test-execution`
-- `api-test-execution`
 - `edge-case-testing`
 - `playwright-browser-verification`
+- `browser-testing-with-devtools`
 - `failure-diagnosis`
 - `lessons-learned`
 - `iteration-comparison`

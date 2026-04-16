@@ -1,0 +1,26 @@
+{
+  "moduleName": "Login",
+  "moduleScore": 82,
+  "workflowScores": [
+    {
+      "workflowName": "Login flow via /Auth",
+      "score": 0.8
+    },
+    {
+      "workflowName": "Login flow via /Auth/dashboard",
+      "score": 0.833
+    },
+    {
+      "workflowName": "Login flow via /Auth/index",
+      "score": 0.833
+    },
+    {
+      "workflowName": "Login flow via /Auth/login",
+      "score": 0.8
+    },
+    {
+      "workflowName": "Login flow via /Auth/logout",
+      "score": 0.833
+    }
+  ]
+}

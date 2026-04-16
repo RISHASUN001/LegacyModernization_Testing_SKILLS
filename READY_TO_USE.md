@@ -10,7 +10,7 @@
 ✅ **Orchestrator Skill** (auto-detected by Claude)
 - `skills/legacy-modernization-orchestrator/SKILL.md` - Specification
 - `skills/legacy-modernization-orchestrator/run.py` - Execution engine
-- Cascading 7-stage pipeline
+- Cascading 9-stage module-first pipeline
 - Auto-persistence to database
 
 ✅ **Input Builder on Dashboard**
@@ -43,7 +43,7 @@ Dashboard opens at `http://localhost:5000`
 Navigate to `http://localhost:5000` → **Input Builder**:
 
 1. Module: Select "Checklist"
-2. Test Categories: Check all (unit, integration, e2e, api, edge-case, browser)
+2. Test Categories: Check all execution categories (unit, integration, route/form, edge-case, playwright, devtools)
 3. Thresholds: Accept defaults (95% pass, 75 arch score, 95% parity)
 4. Click: **"Generate Input JSON"**
 5. **Copy** the JSON output
@@ -68,13 +68,15 @@ Execute the modernization pipeline with this configuration:
 
 **Stages execute** (15-30 min total):
 ```
-Stage 1: Discovery ✓
-Stage 2: Logic Understanding ✓
-Stage 3: Architecture Review ✓
-Stage 4: Test Plan ✓
-Stage 5: Execution (6 test categories parallel) ✓
-Stage 6: Findings ✓
-Stage 7: Iteration ✓
+Stage 1: C# Discovery ✓
+Stage 2: C# Logic Understanding ✓
+Stage 3: Java Discovery ✓
+Stage 4: Java Logic Understanding ✓
+Stage 5: Functional Parity ✓
+Stage 6: Test Plan ✓
+Stage 7: Execution (categories in parallel) ✓
+Stage 8: Findings ✓
+Stage 9: Iteration ✓
 ✅ Complete
 ```
 
@@ -233,7 +235,7 @@ iteration | total_tests | passed_tests | parity_percentage
 **Navigate to**: `http://localhost:5000` → **"Modernization"** tab
 
 **Displays**:
-1. **Pipeline Status** - Visual progress 1-7
+1. **Pipeline Status** - Visual progress 1-9
 2. **Test Results** - Breakdown by category
 3. **Findings** - Issues + recommendations
 4. **Progress Chart** - Trend line (iterations)

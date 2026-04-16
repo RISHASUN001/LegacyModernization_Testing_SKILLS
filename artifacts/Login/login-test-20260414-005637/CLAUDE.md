@@ -10,7 +10,7 @@
 - allowedCrossModules: Shared (default)
 
 ## Module Purpose
-Login module handles authentication and protected-page access flows. Java files discovered: 1. Key routes: /login
+Login module handles authentication and protected-page access flows. Java files discovered: 1. Key routes: /dashboard, /login
 
 ## Key Flows
 - Open login page
@@ -31,14 +31,19 @@ Login module handles authentication and protected-page access flows. Java files 
 - api-test-execution
 - browser-testing-with-devtools
 - clean-architecture-assessment
+- csharp-logic-understanding
+- csharp-module-discovery
 - e2e-test-execution
 - edge-case-testing
 - failure-diagnosis
 - integration-test-execution
 - iteration-comparison
+- java-counterpart-discovery
+- java-logic-understanding
 - legacy-logic-extraction
 - legacy-modernization-orchestrator
 - lessons-learned
+- logic-flow-visualization
 - module-discovery
 - module-documentation
 - parity-verification

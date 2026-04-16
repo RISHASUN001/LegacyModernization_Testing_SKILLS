@@ -1,0 +1,20 @@
+{
+  "moduleName": "Login",
+  "workflowNames": [
+    "Login"
+  ],
+  "convertedRoots": [
+    "/Users/risha/Documents/Buildathon/src"
+  ],
+  "legacyBackendRoots": [
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/src"
+  ],
+  "legacyFrontendRoots": [
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/web"
+  ],
+  "baseUrl": "http://127.0.0.1:5029",
+  "startUrl": "/login",
+  "dotnetTestTarget": "/Users/risha/Documents/Buildathon/LegacyModernization.slnx",
+  "strictAIGeneration": true,
+  "runId": "run-20260416_021837"
+}

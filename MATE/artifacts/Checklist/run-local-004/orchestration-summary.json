@@ -1,0 +1,1023 @@
+{
+  "schemaVersion": "2.0",
+  "runId": "run-local-004",
+  "moduleName": "Checklist",
+  "startedAt": "2026-04-15T16:37:38.002018Z",
+  "endedAt": "2026-04-15T16:37:39.937207Z",
+  "status": "passed",
+  "summary": "MATE orchestration completed with progressive stage disclosure and persisted stage contracts.",
+  "stages": [
+    {
+      "stage": "csharp-discovery",
+      "stageIndex": 1,
+      "stageTitle": "1. C# Discovery",
+      "stageObjective": "Discover converted module controllers, routes, views, services, repositories, SQL, and tables.",
+      "status": "passed",
+      "skills": [
+        {
+          "skill": "csharp-module-discovery",
+          "stage": "csharp-discovery",
+          "returnCode": 0,
+          "stdout": "MATE/artifacts/Checklist/run-local-004/csharp-module-discovery/result.json",
+          "stderr": "",
+          "status": "passed",
+          "reused": false,
+          "resultPath": "MATE/artifacts/Checklist/run-local-004/csharp-module-discovery/result.json",
+          "summary": "Discovered 41 C# files and mapped controllers/routes/SQL for module-first anchor.",
+          "artifacts": [
+            "MATE/artifacts/Checklist/run-local-004/csharp-module-discovery/csharp-module-map.json",
+            "MATE/artifacts/Checklist/run-local-004/csharp-module-discovery/controller-route-map.json",
+            "MATE/artifacts/Checklist/run-local-004/csharp-module-discovery/csharp-sql-map.json",
+            "MATE/artifacts/Checklist/run-local-004/csharp-module-discovery/csharp-table-usage.json"
+          ],
+          "metrics": {
+            "filesScanned": 41,
+            "controllers": 2,
+            "views": 13,
+            "services": 4,
+            "repositories": 0,
+            "routeRecords": 6,
+            "sqlFiles": 4,
+            "tables": 8,
+            "workflowCount": 2
+          },
+          "findings": []
+        }
+      ],
+      "skillCount": 1,
+      "skillsFailed": 0,
+      "reusedSkills": 0,
+      "contextFile": "MATE/artifacts/Checklist/run-local-004/orchestration/stage-01-context.json",
+      "requiredEvidence": [
+        {
+          "path": "csharp-module-discovery/csharp-module-map.json",
+          "exists": true
+        },
+        {
+          "path": "csharp-module-discovery/controller-route-map.json",
+          "exists": true
+        },
+        {
+          "path": "csharp-module-discovery/csharp-sql-map.json",
+          "exists": true
+        },
+        {
+          "path": "csharp-module-discovery/csharp-table-usage.json",
+          "exists": true
+        }
+      ]
+    },
+    {
+      "stage": "csharp-logic-understanding",
+      "stageIndex": 2,
+      "stageTitle": "2. C# Logic Understanding",
+      "stageObjective": "Use AI to explain workflow branches, validations, and DB touchpoints in converted C# module.",
+      "status": "passed",
+      "skills": [
+        {
+          "skill": "csharp-logic-understanding",
+          "stage": "csharp-logic-understanding",
+          "returnCode": 0,
+          "stdout": "MATE/artifacts/Checklist/run-local-004/csharp-logic-understanding/result.json",
+          "stderr": "",
+          "status": "passed",
+          "reused": false,
+          "resultPath": "MATE/artifacts/Checklist/run-local-004/csharp-logic-understanding/result.json",
+          "summary": "Generated C# logic understanding for 2 workflows.",
+          "artifacts": [
+            "MATE/artifacts/Checklist/run-local-004/csharp-logic-understanding/csharp-logic-summary.json"
+          ],
+          "metrics": {
+            "workflowCount": 2,
+            "provider": "deterministic-fallback"
+          },
+          "findings": []
+        }
+      ],
+      "skillCount": 1,
+      "skillsFailed": 0,
+      "reusedSkills": 0,
+      "contextFile": "MATE/artifacts/Checklist/run-local-004/orchestration/stage-02-context.json",
+      "requiredEvidence": []
+    },
+    {
+      "stage": "java-discovery",
+      "stageIndex": 3,
+      "stageTitle": "3. Java Discovery",
+      "stageObjective": "Locate legacy Java/JSP module files strictly anchored to C# discovery evidence.",
+      "status": "passed",
+      "skills": [
+        {
+          "skill": "legacy-module-discovery",
+          "stage": "java-discovery",
+          "returnCode": 0,
+          "stdout": "MATE/artifacts/Checklist/run-local-004/legacy-module-discovery/result.json",
+          "stderr": "",
+          "status": "passed",
+          "reused": false,
+          "resultPath": "MATE/artifacts/Checklist/run-local-004/legacy-module-discovery/result.json",
+          "summary": "Legacy discovery selected 0 anchored files from 0 candidates.",
+          "artifacts": [
+            "MATE/artifacts/Checklist/run-local-004/legacy-module-discovery/legacy-module-map.json",
+            "MATE/artifacts/Checklist/run-local-004/legacy-module-discovery/java-sql-map.json",
+            "MATE/artifacts/Checklist/run-local-004/legacy-module-discovery/java-table-usage.json"
+          ],
+          "metrics": {
+            "legacyCandidates": 0,
+            "selectedLegacyFiles": 0,
+            "sqlFiles": 0,
+            "tables": 0,
+            "anchorTokens": 285
+          },
+          "findings": []
+        }
+      ],
+      "skillCount": 1,
+      "skillsFailed": 0,
+      "reusedSkills": 0,
+      "contextFile": "MATE/artifacts/Checklist/run-local-004/orchestration/stage-03-context.json",
+      "requiredEvidence": [
+        {
+          "path": "legacy-module-discovery/legacy-module-map.json",
+          "exists": true
+        },
+        {
+          "path": "legacy-module-discovery/java-sql-map.json",
+          "exists": true
+        },
+        {
+          "path": "legacy-module-discovery/java-table-usage.json",
+          "exists": true
+        }
+      ]
+    },
+    {
+      "stage": "java-logic-understanding",
+      "stageIndex": 4,
+      "stageTitle": "4. Java Logic Understanding",
+      "stageObjective": "Use AI to explain expected legacy behavior and business workflow outcomes.",
+      "status": "passed",
+      "skills": [
+        {
+          "skill": "legacy-logic-understanding",
+          "stage": "java-logic-understanding",
+          "returnCode": 0,
+          "stdout": "MATE/artifacts/Checklist/run-local-004/legacy-logic-understanding/result.json",
+          "stderr": "",
+          "status": "passed",
+          "reused": false,
+          "resultPath": "MATE/artifacts/Checklist/run-local-004/legacy-logic-understanding/result.json",
+          "summary": "Generated legacy logic understanding for 2 workflows.",
+          "artifacts": [
+            "MATE/artifacts/Checklist/run-local-004/legacy-logic-understanding/legacy-logic-summary.json"
+          ],
+          "metrics": {
+            "workflowCount": 2,
+            "provider": "deterministic-fallback"
+          },
+          "findings": []
+        }
+      ],
+      "skillCount": 1,
+      "skillsFailed": 0,
+      "reusedSkills": 0,
+      "contextFile": "MATE/artifacts/Checklist/run-local-004/orchestration/stage-04-context.json",
+      "requiredEvidence": []
+    },
+    {
+      "stage": "diagram-generation",
+      "stageIndex": 5,
+      "stageTitle": "5. Diagram Generation",
+      "stageObjective": "Generate mermaid + excalidraw + preview image artifacts for C# and Java workflows.",
+      "status": "passed",
+      "skills": [
+        {
+          "skill": "diagram-generation",
+          "stage": "diagram-generation",
+          "returnCode": 0,
+          "stdout": "MATE/artifacts/Checklist/run-local-004/diagram-generation/result.json",
+          "stderr": "",
+          "status": "passed",
+          "reused": false,
+          "resultPath": "MATE/artifacts/Checklist/run-local-004/diagram-generation/result.json",
+          "summary": "Generated Mermaid + Excalidraw diagram artifacts for C# and legacy flows.",
+          "artifacts": [
+            "MATE/artifacts/Checklist/run-local-004/diagram-generation/csharp-workflow.mmd",
+            "MATE/artifacts/Checklist/run-local-004/diagram-generation/legacy-workflow.mmd",
+            "MATE/artifacts/Checklist/run-local-004/diagram-generation/csharp-workflow.excalidraw.json",
+            "MATE/artifacts/Checklist/run-local-004/diagram-generation/legacy-workflow.excalidraw.json",
+            "MATE/artifacts/Checklist/run-local-004/diagram-generation/previews/csharp-workflow.png",
+            "MATE/artifacts/Checklist/run-local-004/diagram-generation/previews/legacy-workflow.png",
+            "MATE/artifacts/Checklist/run-local-004/diagram-generation/diagram-index.json"
+          ],
+          "metrics": {
+            "diagramBundles": 2
+          },
+          "findings": []
+        }
+      ],
+      "skillCount": 1,
+      "skillsFailed": 0,
+      "reusedSkills": 0,
+      "contextFile": "MATE/artifacts/Checklist/run-local-004/orchestration/stage-05-context.json",
+      "requiredEvidence": [
+        {
+          "path": "diagram-generation/diagram-index.json",
+          "exists": true
+        }
+      ]
+    },
+    {
+      "stage": "functional-parity-and-sql-table-comparison",
+      "stageIndex": 6,
+      "stageTitle": "6. Functional Parity + SQL/Table",
+      "stageObjective": "Compare logic and data usage between legacy and converted modules and flag behavior drift.",
+      "status": "passed",
+      "skills": [
+        {
+          "skill": "parity-analysis",
+          "stage": "functional-parity-and-sql-table-comparison",
+          "returnCode": 0,
+          "stdout": "MATE/artifacts/Checklist/run-local-004/parity-analysis/result.json",
+          "stderr": "",
+          "status": "passed",
+          "reused": false,
+          "resultPath": "MATE/artifacts/Checklist/run-local-004/parity-analysis/result.json",
+          "summary": "Parity analysis completed with score 0%.",
+          "artifacts": [
+            "MATE/artifacts/Checklist/run-local-004/parity-analysis/parity-diff.json",
+            "MATE/artifacts/Checklist/run-local-004/parity-analysis/workflow-parity-summary.json"
+          ],
+          "metrics": {
+            "parityScore": 0,
+            "matched": 0,
+            "missingInCsharp": 0,
+            "additionalInCsharp": 0
+          },
+          "findings": []
+        },
+        {
+          "skill": "sql-table-comparison",
+          "stage": "functional-parity-and-sql-table-comparison",
+          "returnCode": 0,
+          "stdout": "MATE/artifacts/Checklist/run-local-004/sql-table-comparison/result.json",
+          "stderr": "",
+          "status": "passed",
+          "reused": false,
+          "resultPath": "MATE/artifacts/Checklist/run-local-004/sql-table-comparison/result.json",
+          "summary": "SQL/table comparison complete.",
+          "artifacts": [
+            "MATE/artifacts/Checklist/run-local-004/sql-table-comparison/sql-table-compare.json"
+          ],
+          "metrics": {
+            "tableCoverage": 0.0,
+            "commonTables": 0,
+            "missingTables": 0,
+            "additionalTables": 8,
+            "csharpQueryCount": 0,
+            "legacyQueryCount": 0
+          },
+          "findings": []
+        }
+      ],
+      "skillCount": 2,
+      "skillsFailed": 0,
+      "reusedSkills": 0,
+      "contextFile": "MATE/artifacts/Checklist/run-local-004/orchestration/stage-06-context.json",
+      "requiredEvidence": []
+    },
+    {
+      "stage": "ai-test-generation",
+      "stageIndex": 7,
+      "stageTitle": "7. AI Test Generation",
+      "stageObjective": "Generate workflow-specific unit, integration, E2E, playwright, and edge tests.",
+      "status": "passed",
+      "skills": [
+        {
+          "skill": "e2e-test-generation",
+          "stage": "ai-test-generation",
+          "returnCode": 0,
+          "stdout": "MATE/artifacts/Checklist/run-local-004/e2e-test-generation/result.json",
+          "stderr": "",
+          "status": "passed",
+          "reused": false,
+          "resultPath": "MATE/artifacts/Checklist/run-local-004/e2e-test-generation/result.json",
+          "summary": "Generated 0 E2E test draft(s).",
+          "artifacts": [
+            "MATE/artifacts/Checklist/run-local-004/e2e-test-generation/e2e-tests.generated.json"
+          ],
+          "metrics": {
+            "generatedCount": 0,
+            "aiUsed": false
+          },
+          "findings": []
+        },
+        {
+          "skill": "edge-test-generation",
+          "stage": "ai-test-generation",
+          "returnCode": 0,
+          "stdout": "MATE/artifacts/Checklist/run-local-004/edge-test-generation/result.json",
+          "stderr": "",
+          "status": "passed",
+          "reused": false,
+          "resultPath": "MATE/artifacts/Checklist/run-local-004/edge-test-generation/result.json",
+          "summary": "Generated 5 edge test draft(s).",
+          "artifacts": [
+            "MATE/artifacts/Checklist/run-local-004/edge-test-generation/edge-tests.generated.json",
+            "MATE/artifacts/Checklist/run-local-004/edge-test-generation/NullInput.cs",
+            "MATE/artifacts/Checklist/run-local-004/edge-test-generation/BoundaryMin.cs",
+            "MATE/artifacts/Checklist/run-local-004/edge-test-generation/BoundaryMax.cs",
+            "MATE/artifacts/Checklist/run-local-004/edge-test-generation/Concurrency.cs",
+            "MATE/artifacts/Checklist/run-local-004/edge-test-generation/DuplicateSubmission.cs"
+          ],
+          "metrics": {
+            "generatedCount": 5,
+            "aiUsed": false
+          },
+          "findings": []
+        },
+        {
+          "skill": "integration-test-generation",
+          "stage": "ai-test-generation",
+          "returnCode": 0,
+          "stdout": "MATE/artifacts/Checklist/run-local-004/integration-test-generation/result.json",
+          "stderr": "",
+          "status": "passed",
+          "reused": false,
+          "resultPath": "MATE/artifacts/Checklist/run-local-004/integration-test-generation/result.json",
+          "summary": "Generated 0 integration test draft(s).",
+          "artifacts": [
+            "MATE/artifacts/Checklist/run-local-004/integration-test-generation/integration-tests.generated.json"
+          ],
+          "metrics": {
+            "generatedCount": 0,
+            "aiUsed": false
+          },
+          "findings": []
+        },
+        {
+          "skill": "playwright-test-generation",
+          "stage": "ai-test-generation",
+          "returnCode": 0,
+          "stdout": "MATE/artifacts/Checklist/run-local-004/playwright-test-generation/result.json",
+          "stderr": "",
+          "status": "passed",
+          "reused": false,
+          "resultPath": "MATE/artifacts/Checklist/run-local-004/playwright-test-generation/result.json",
+          "summary": "Playwright verification test draft created.",
+          "artifacts": [
+            "MATE/artifacts/Checklist/run-local-004/playwright-test-generation/browser-verification.spec.ts",
+            "MATE/artifacts/Checklist/run-local-004/playwright-test-generation/playwright-tests.generated.json"
+          ],
+          "metrics": {
+            "generatedCount": 1
+          },
+          "findings": []
+        },
+        {
+          "skill": "unit-test-generation",
+          "stage": "ai-test-generation",
+          "returnCode": 0,
+          "stdout": "MATE/artifacts/Checklist/run-local-004/unit-test-generation/result.json",
+          "stderr": "",
+          "status": "passed",
+          "reused": false,
+          "resultPath": "MATE/artifacts/Checklist/run-local-004/unit-test-generation/result.json",
+          "summary": "Generated 0 unit test draft(s).",
+          "artifacts": [
+            "MATE/artifacts/Checklist/run-local-004/unit-test-generation/unit-tests.generated.json"
+          ],
+          "metrics": {
+            "generatedCount": 0,
+            "aiUsed": false
+          },
+          "findings": []
+        }
+      ],
+      "skillCount": 5,
+      "skillsFailed": 0,
+      "reusedSkills": 0,
+      "contextFile": "MATE/artifacts/Checklist/run-local-004/orchestration/stage-07-context.json",
+      "requiredEvidence": []
+    },
+    {
+      "stage": "test-execution",
+      "stageIndex": 8,
+      "stageTitle": "8. Test Execution",
+      "stageObjective": "Execute generated tests and capture logs, failures, console, network, and screenshots.",
+      "status": "passed",
+      "skills": [
+        {
+          "skill": "test-execution-integration",
+          "stage": "test-execution",
+          "returnCode": 0,
+          "stdout": "MATE/artifacts/Checklist/run-local-004/test-execution-integration/result.json",
+          "stderr": "",
+          "status": "passed",
+          "reused": false,
+          "resultPath": "MATE/artifacts/Checklist/run-local-004/test-execution-integration/result.json",
+          "summary": "Integration test execution simulated and artifacts captured.",
+          "artifacts": [
+            "MATE/artifacts/Checklist/run-local-004/test-execution-integration/integration-test.log",
+            "MATE/artifacts/Checklist/run-local-004/test-execution-integration/integration-test-results.json"
+          ],
+          "metrics": {
+            "total": 0,
+            "passed": 0,
+            "failed": 0
+          },
+          "findings": []
+        },
+        {
+          "skill": "test-execution-playwright",
+          "stage": "test-execution",
+          "returnCode": 0,
+          "stdout": "MATE/artifacts/Checklist/run-local-004/test-execution-playwright/result.json",
+          "stderr": "",
+          "status": "passed",
+          "reused": false,
+          "resultPath": "MATE/artifacts/Checklist/run-local-004/test-execution-playwright/result.json",
+          "summary": "Playwright execution simulated with logs, console, network and screenshot artifacts.",
+          "artifacts": [
+            "MATE/artifacts/Checklist/run-local-004/test-execution-playwright/playwright.log",
+            "MATE/artifacts/Checklist/run-local-004/test-execution-playwright/console-messages.json",
+            "MATE/artifacts/Checklist/run-local-004/test-execution-playwright/network-requests.json",
+            "MATE/artifacts/Checklist/run-local-004/test-execution-playwright/home.png",
+            "MATE/artifacts/Checklist/run-local-004/test-execution-playwright/playwright-results.json"
+          ],
+          "metrics": {
+            "executedSpecs": 1,
+            "screenshots": 1
+          },
+          "findings": []
+        },
+        {
+          "skill": "test-execution-unit",
+          "stage": "test-execution",
+          "returnCode": 0,
+          "stdout": "MATE/artifacts/Checklist/run-local-004/test-execution-unit/result.json",
+          "stderr": "",
+          "status": "passed",
+          "reused": false,
+          "resultPath": "MATE/artifacts/Checklist/run-local-004/test-execution-unit/result.json",
+          "summary": "Unit test execution simulated and artifacts captured.",
+          "artifacts": [
+            "MATE/artifacts/Checklist/run-local-004/test-execution-unit/unit-test.log",
+            "MATE/artifacts/Checklist/run-local-004/test-execution-unit/unit-test-results.json"
+          ],
+          "metrics": {
+            "total": 0,
+            "passed": 0,
+            "failed": 0
+          },
+          "findings": []
+        }
+      ],
+      "skillCount": 3,
+      "skillsFailed": 0,
+      "reusedSkills": 0,
+      "contextFile": "MATE/artifacts/Checklist/run-local-004/orchestration/stage-08-context.json",
+      "requiredEvidence": [
+        {
+          "path": "test-execution-unit/unit-test-results.json",
+          "exists": true
+        },
+        {
+          "path": "test-execution-integration/integration-test-results.json",
+          "exists": true
+        },
+        {
+          "path": "test-execution-playwright/playwright-results.json",
+          "exists": true
+        }
+      ]
+    },
+    {
+      "stage": "clean-architecture-and-findings",
+      "stageIndex": 9,
+      "stageTitle": "9. Clean Architecture + Findings",
+      "stageObjective": "Assess C# architecture and synthesize findings/recommendations across the full run.",
+      "status": "passed",
+      "skills": [
+        {
+          "skill": "clean-architecture-assessment",
+          "stage": "clean-architecture-and-findings",
+          "returnCode": 0,
+          "stdout": "MATE/artifacts/Checklist/run-local-004/clean-architecture-assessment/result.json",
+          "stderr": "",
+          "status": "passed",
+          "reused": false,
+          "resultPath": "MATE/artifacts/Checklist/run-local-004/clean-architecture-assessment/result.json",
+          "summary": "Clean architecture assessment completed.",
+          "artifacts": [
+            "MATE/artifacts/Checklist/run-local-004/clean-architecture-assessment/clean-architecture-report.json"
+          ],
+          "metrics": {
+            "checks": 3,
+            "warnings": 0
+          },
+          "findings": []
+        },
+        {
+          "skill": "findings-synthesis",
+          "stage": "clean-architecture-and-findings",
+          "returnCode": 0,
+          "stdout": "MATE/artifacts/Checklist/run-local-004/findings-synthesis/result.json",
+          "stderr": "",
+          "status": "passed",
+          "reused": false,
+          "resultPath": "MATE/artifacts/Checklist/run-local-004/findings-synthesis/result.json",
+          "summary": "Synthesized 0 finding(s) across run artifacts.",
+          "artifacts": [
+            "MATE/artifacts/Checklist/run-local-004/findings-synthesis/findings-synthesis.json",
+            "MATE/artifacts/Checklist/run-local-004/findings-synthesis/findings-summary.md"
+          ],
+          "metrics": {
+            "totalFindings": 0
+          },
+          "findings": []
+        }
+      ],
+      "skillCount": 2,
+      "skillsFailed": 0,
+      "reusedSkills": 0,
+      "contextFile": "MATE/artifacts/Checklist/run-local-004/orchestration/stage-09-context.json",
+      "requiredEvidence": [
+        {
+          "path": "clean-architecture-assessment/clean-architecture-report.json",
+          "exists": true
+        },
+        {
+          "path": "findings-synthesis/findings-synthesis.json",
+          "exists": true
+        }
+      ]
+    },
+    {
+      "stage": "pipeline-vanity-check",
+      "stageIndex": 10,
+      "stageTitle": "10. Pipeline Vanity Check",
+      "stageObjective": "Verify stage completeness, required evidence presence, and final recommendation.",
+      "status": "passed",
+      "skills": [
+        {
+          "skill": "vanity-check",
+          "stage": "pipeline-vanity-check",
+          "returnCode": 0,
+          "stdout": "MATE/artifacts/Checklist/run-local-004/vanity-check/result.json",
+          "stderr": "",
+          "status": "passed",
+          "reused": false,
+          "resultPath": "MATE/artifacts/Checklist/run-local-004/vanity-check/result.json",
+          "summary": "Vanity gate completed. Recommendation: ship-with-confidence.",
+          "artifacts": [
+            "MATE/artifacts/Checklist/run-local-004/vanity-check/vanity-gate.json"
+          ],
+          "metrics": {
+            "findings": 0,
+            "blockers": 0
+          },
+          "findings": [
+            {
+              "type": "VanityGate",
+              "message": "Recommendation is ship-with-confidence.",
+              "severity": "low"
+            }
+          ]
+        }
+      ],
+      "skillCount": 1,
+      "skillsFailed": 0,
+      "reusedSkills": 0,
+      "contextFile": "MATE/artifacts/Checklist/run-local-004/orchestration/stage-10-context.json",
+      "requiredEvidence": [
+        {
+          "path": "vanity-check/vanity-gate.json",
+          "exists": true
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "skill": "csharp-module-discovery",
+      "stage": "csharp-discovery",
+      "returnCode": 0,
+      "stdout": "MATE/artifacts/Checklist/run-local-004/csharp-module-discovery/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": false,
+      "resultPath": "MATE/artifacts/Checklist/run-local-004/csharp-module-discovery/result.json",
+      "summary": "Discovered 41 C# files and mapped controllers/routes/SQL for module-first anchor.",
+      "artifacts": [
+        "MATE/artifacts/Checklist/run-local-004/csharp-module-discovery/csharp-module-map.json",
+        "MATE/artifacts/Checklist/run-local-004/csharp-module-discovery/controller-route-map.json",
+        "MATE/artifacts/Checklist/run-local-004/csharp-module-discovery/csharp-sql-map.json",
+        "MATE/artifacts/Checklist/run-local-004/csharp-module-discovery/csharp-table-usage.json"
+      ],
+      "metrics": {
+        "filesScanned": 41,
+        "controllers": 2,
+        "views": 13,
+        "services": 4,
+        "repositories": 0,
+        "routeRecords": 6,
+        "sqlFiles": 4,
+        "tables": 8,
+        "workflowCount": 2
+      },
+      "findings": []
+    },
+    {
+      "skill": "csharp-logic-understanding",
+      "stage": "csharp-logic-understanding",
+      "returnCode": 0,
+      "stdout": "MATE/artifacts/Checklist/run-local-004/csharp-logic-understanding/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": false,
+      "resultPath": "MATE/artifacts/Checklist/run-local-004/csharp-logic-understanding/result.json",
+      "summary": "Generated C# logic understanding for 2 workflows.",
+      "artifacts": [
+        "MATE/artifacts/Checklist/run-local-004/csharp-logic-understanding/csharp-logic-summary.json"
+      ],
+      "metrics": {
+        "workflowCount": 2,
+        "provider": "deterministic-fallback"
+      },
+      "findings": []
+    },
+    {
+      "skill": "legacy-module-discovery",
+      "stage": "java-discovery",
+      "returnCode": 0,
+      "stdout": "MATE/artifacts/Checklist/run-local-004/legacy-module-discovery/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": false,
+      "resultPath": "MATE/artifacts/Checklist/run-local-004/legacy-module-discovery/result.json",
+      "summary": "Legacy discovery selected 0 anchored files from 0 candidates.",
+      "artifacts": [
+        "MATE/artifacts/Checklist/run-local-004/legacy-module-discovery/legacy-module-map.json",
+        "MATE/artifacts/Checklist/run-local-004/legacy-module-discovery/java-sql-map.json",
+        "MATE/artifacts/Checklist/run-local-004/legacy-module-discovery/java-table-usage.json"
+      ],
+      "metrics": {
+        "legacyCandidates": 0,
+        "selectedLegacyFiles": 0,
+        "sqlFiles": 0,
+        "tables": 0,
+        "anchorTokens": 285
+      },
+      "findings": []
+    },
+    {
+      "skill": "legacy-logic-understanding",
+      "stage": "java-logic-understanding",
+      "returnCode": 0,
+      "stdout": "MATE/artifacts/Checklist/run-local-004/legacy-logic-understanding/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": false,
+      "resultPath": "MATE/artifacts/Checklist/run-local-004/legacy-logic-understanding/result.json",
+      "summary": "Generated legacy logic understanding for 2 workflows.",
+      "artifacts": [
+        "MATE/artifacts/Checklist/run-local-004/legacy-logic-understanding/legacy-logic-summary.json"
+      ],
+      "metrics": {
+        "workflowCount": 2,
+        "provider": "deterministic-fallback"
+      },
+      "findings": []
+    },
+    {
+      "skill": "diagram-generation",
+      "stage": "diagram-generation",
+      "returnCode": 0,
+      "stdout": "MATE/artifacts/Checklist/run-local-004/diagram-generation/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": false,
+      "resultPath": "MATE/artifacts/Checklist/run-local-004/diagram-generation/result.json",
+      "summary": "Generated Mermaid + Excalidraw diagram artifacts for C# and legacy flows.",
+      "artifacts": [
+        "MATE/artifacts/Checklist/run-local-004/diagram-generation/csharp-workflow.mmd",
+        "MATE/artifacts/Checklist/run-local-004/diagram-generation/legacy-workflow.mmd",
+        "MATE/artifacts/Checklist/run-local-004/diagram-generation/csharp-workflow.excalidraw.json",
+        "MATE/artifacts/Checklist/run-local-004/diagram-generation/legacy-workflow.excalidraw.json",
+        "MATE/artifacts/Checklist/run-local-004/diagram-generation/previews/csharp-workflow.png",
+        "MATE/artifacts/Checklist/run-local-004/diagram-generation/previews/legacy-workflow.png",
+        "MATE/artifacts/Checklist/run-local-004/diagram-generation/diagram-index.json"
+      ],
+      "metrics": {
+        "diagramBundles": 2
+      },
+      "findings": []
+    },
+    {
+      "skill": "parity-analysis",
+      "stage": "functional-parity-and-sql-table-comparison",
+      "returnCode": 0,
+      "stdout": "MATE/artifacts/Checklist/run-local-004/parity-analysis/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": false,
+      "resultPath": "MATE/artifacts/Checklist/run-local-004/parity-analysis/result.json",
+      "summary": "Parity analysis completed with score 0%.",
+      "artifacts": [
+        "MATE/artifacts/Checklist/run-local-004/parity-analysis/parity-diff.json",
+        "MATE/artifacts/Checklist/run-local-004/parity-analysis/workflow-parity-summary.json"
+      ],
+      "metrics": {
+        "parityScore": 0,
+        "matched": 0,
+        "missingInCsharp": 0,
+        "additionalInCsharp": 0
+      },
+      "findings": []
+    },
+    {
+      "skill": "sql-table-comparison",
+      "stage": "functional-parity-and-sql-table-comparison",
+      "returnCode": 0,
+      "stdout": "MATE/artifacts/Checklist/run-local-004/sql-table-comparison/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": false,
+      "resultPath": "MATE/artifacts/Checklist/run-local-004/sql-table-comparison/result.json",
+      "summary": "SQL/table comparison complete.",
+      "artifacts": [
+        "MATE/artifacts/Checklist/run-local-004/sql-table-comparison/sql-table-compare.json"
+      ],
+      "metrics": {
+        "tableCoverage": 0.0,
+        "commonTables": 0,
+        "missingTables": 0,
+        "additionalTables": 8,
+        "csharpQueryCount": 0,
+        "legacyQueryCount": 0
+      },
+      "findings": []
+    },
+    {
+      "skill": "e2e-test-generation",
+      "stage": "ai-test-generation",
+      "returnCode": 0,
+      "stdout": "MATE/artifacts/Checklist/run-local-004/e2e-test-generation/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": false,
+      "resultPath": "MATE/artifacts/Checklist/run-local-004/e2e-test-generation/result.json",
+      "summary": "Generated 0 E2E test draft(s).",
+      "artifacts": [
+        "MATE/artifacts/Checklist/run-local-004/e2e-test-generation/e2e-tests.generated.json"
+      ],
+      "metrics": {
+        "generatedCount": 0,
+        "aiUsed": false
+      },
+      "findings": []
+    },
+    {
+      "skill": "edge-test-generation",
+      "stage": "ai-test-generation",
+      "returnCode": 0,
+      "stdout": "MATE/artifacts/Checklist/run-local-004/edge-test-generation/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": false,
+      "resultPath": "MATE/artifacts/Checklist/run-local-004/edge-test-generation/result.json",
+      "summary": "Generated 5 edge test draft(s).",
+      "artifacts": [
+        "MATE/artifacts/Checklist/run-local-004/edge-test-generation/edge-tests.generated.json",
+        "MATE/artifacts/Checklist/run-local-004/edge-test-generation/NullInput.cs",
+        "MATE/artifacts/Checklist/run-local-004/edge-test-generation/BoundaryMin.cs",
+        "MATE/artifacts/Checklist/run-local-004/edge-test-generation/BoundaryMax.cs",
+        "MATE/artifacts/Checklist/run-local-004/edge-test-generation/Concurrency.cs",
+        "MATE/artifacts/Checklist/run-local-004/edge-test-generation/DuplicateSubmission.cs"
+      ],
+      "metrics": {
+        "generatedCount": 5,
+        "aiUsed": false
+      },
+      "findings": []
+    },
+    {
+      "skill": "integration-test-generation",
+      "stage": "ai-test-generation",
+      "returnCode": 0,
+      "stdout": "MATE/artifacts/Checklist/run-local-004/integration-test-generation/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": false,
+      "resultPath": "MATE/artifacts/Checklist/run-local-004/integration-test-generation/result.json",
+      "summary": "Generated 0 integration test draft(s).",
+      "artifacts": [
+        "MATE/artifacts/Checklist/run-local-004/integration-test-generation/integration-tests.generated.json"
+      ],
+      "metrics": {
+        "generatedCount": 0,
+        "aiUsed": false
+      },
+      "findings": []
+    },
+    {
+      "skill": "playwright-test-generation",
+      "stage": "ai-test-generation",
+      "returnCode": 0,
+      "stdout": "MATE/artifacts/Checklist/run-local-004/playwright-test-generation/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": false,
+      "resultPath": "MATE/artifacts/Checklist/run-local-004/playwright-test-generation/result.json",
+      "summary": "Playwright verification test draft created.",
+      "artifacts": [
+        "MATE/artifacts/Checklist/run-local-004/playwright-test-generation/browser-verification.spec.ts",
+        "MATE/artifacts/Checklist/run-local-004/playwright-test-generation/playwright-tests.generated.json"
+      ],
+      "metrics": {
+        "generatedCount": 1
+      },
+      "findings": []
+    },
+    {
+      "skill": "unit-test-generation",
+      "stage": "ai-test-generation",
+      "returnCode": 0,
+      "stdout": "MATE/artifacts/Checklist/run-local-004/unit-test-generation/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": false,
+      "resultPath": "MATE/artifacts/Checklist/run-local-004/unit-test-generation/result.json",
+      "summary": "Generated 0 unit test draft(s).",
+      "artifacts": [
+        "MATE/artifacts/Checklist/run-local-004/unit-test-generation/unit-tests.generated.json"
+      ],
+      "metrics": {
+        "generatedCount": 0,
+        "aiUsed": false
+      },
+      "findings": []
+    },
+    {
+      "skill": "test-execution-integration",
+      "stage": "test-execution",
+      "returnCode": 0,
+      "stdout": "MATE/artifacts/Checklist/run-local-004/test-execution-integration/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": false,
+      "resultPath": "MATE/artifacts/Checklist/run-local-004/test-execution-integration/result.json",
+      "summary": "Integration test execution simulated and artifacts captured.",
+      "artifacts": [
+        "MATE/artifacts/Checklist/run-local-004/test-execution-integration/integration-test.log",
+        "MATE/artifacts/Checklist/run-local-004/test-execution-integration/integration-test-results.json"
+      ],
+      "metrics": {
+        "total": 0,
+        "passed": 0,
+        "failed": 0
+      },
+      "findings": []
+    },
+    {
+      "skill": "test-execution-playwright",
+      "stage": "test-execution",
+      "returnCode": 0,
+      "stdout": "MATE/artifacts/Checklist/run-local-004/test-execution-playwright/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": false,
+      "resultPath": "MATE/artifacts/Checklist/run-local-004/test-execution-playwright/result.json",
+      "summary": "Playwright execution simulated with logs, console, network and screenshot artifacts.",
+      "artifacts": [
+        "MATE/artifacts/Checklist/run-local-004/test-execution-playwright/playwright.log",
+        "MATE/artifacts/Checklist/run-local-004/test-execution-playwright/console-messages.json",
+        "MATE/artifacts/Checklist/run-local-004/test-execution-playwright/network-requests.json",
+        "MATE/artifacts/Checklist/run-local-004/test-execution-playwright/home.png",
+        "MATE/artifacts/Checklist/run-local-004/test-execution-playwright/playwright-results.json"
+      ],
+      "metrics": {
+        "executedSpecs": 1,
+        "screenshots": 1
+      },
+      "findings": []
+    },
+    {
+      "skill": "test-execution-unit",
+      "stage": "test-execution",
+      "returnCode": 0,
+      "stdout": "MATE/artifacts/Checklist/run-local-004/test-execution-unit/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": false,
+      "resultPath": "MATE/artifacts/Checklist/run-local-004/test-execution-unit/result.json",
+      "summary": "Unit test execution simulated and artifacts captured.",
+      "artifacts": [
+        "MATE/artifacts/Checklist/run-local-004/test-execution-unit/unit-test.log",
+        "MATE/artifacts/Checklist/run-local-004/test-execution-unit/unit-test-results.json"
+      ],
+      "metrics": {
+        "total": 0,
+        "passed": 0,
+        "failed": 0
+      },
+      "findings": []
+    },
+    {
+      "skill": "clean-architecture-assessment",
+      "stage": "clean-architecture-and-findings",
+      "returnCode": 0,
+      "stdout": "MATE/artifacts/Checklist/run-local-004/clean-architecture-assessment/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": false,
+      "resultPath": "MATE/artifacts/Checklist/run-local-004/clean-architecture-assessment/result.json",
+      "summary": "Clean architecture assessment completed.",
+      "artifacts": [
+        "MATE/artifacts/Checklist/run-local-004/clean-architecture-assessment/clean-architecture-report.json"
+      ],
+      "metrics": {
+        "checks": 3,
+        "warnings": 0
+      },
+      "findings": []
+    },
+    {
+      "skill": "findings-synthesis",
+      "stage": "clean-architecture-and-findings",
+      "returnCode": 0,
+      "stdout": "MATE/artifacts/Checklist/run-local-004/findings-synthesis/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": false,
+      "resultPath": "MATE/artifacts/Checklist/run-local-004/findings-synthesis/result.json",
+      "summary": "Synthesized 0 finding(s) across run artifacts.",
+      "artifacts": [
+        "MATE/artifacts/Checklist/run-local-004/findings-synthesis/findings-synthesis.json",
+        "MATE/artifacts/Checklist/run-local-004/findings-synthesis/findings-summary.md"
+      ],
+      "metrics": {
+        "totalFindings": 0
+      },
+      "findings": []
+    },
+    {
+      "skill": "vanity-check",
+      "stage": "pipeline-vanity-check",
+      "returnCode": 0,
+      "stdout": "MATE/artifacts/Checklist/run-local-004/vanity-check/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": false,
+      "resultPath": "MATE/artifacts/Checklist/run-local-004/vanity-check/result.json",
+      "summary": "Vanity gate completed. Recommendation: ship-with-confidence.",
+      "artifacts": [
+        "MATE/artifacts/Checklist/run-local-004/vanity-check/vanity-gate.json"
+      ],
+      "metrics": {
+        "findings": 0,
+        "blockers": 0
+      },
+      "findings": [
+        {
+          "type": "VanityGate",
+          "message": "Recommendation is ship-with-confidence.",
+          "severity": "low"
+        }
+      ]
+    }
+  ],
+  "stageEvidenceIndex": {
+    "csharp-discovery": [
+      "csharp-module-discovery/csharp-module-map.json",
+      "csharp-module-discovery/controller-route-map.json",
+      "csharp-module-discovery/csharp-sql-map.json",
+      "csharp-module-discovery/csharp-table-usage.json"
+    ],
+    "csharp-logic-understanding": [],
+    "java-discovery": [
+      "legacy-module-discovery/legacy-module-map.json",
+      "legacy-module-discovery/java-sql-map.json",
+      "legacy-module-discovery/java-table-usage.json"
+    ],
+    "java-logic-understanding": [],
+    "diagram-generation": [
+      "diagram-generation/diagram-index.json"
+    ],
+    "functional-parity-and-sql-table-comparison": [],
+    "ai-test-generation": [],
+    "test-execution": [
+      "test-execution-unit/unit-test-results.json",
+      "test-execution-integration/integration-test-results.json",
+      "test-execution-playwright/playwright-results.json"
+    ],
+    "clean-architecture-and-findings": [
+      "clean-architecture-assessment/clean-architecture-report.json",
+      "findings-synthesis/findings-synthesis.json"
+    ],
+    "pipeline-vanity-check": [
+      "vanity-check/vanity-gate.json"
+    ]
+  }
+}

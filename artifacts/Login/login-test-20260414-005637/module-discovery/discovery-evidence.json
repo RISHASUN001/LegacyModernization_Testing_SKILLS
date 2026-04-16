@@ -20,6 +20,20 @@
     ],
     "routeEvidence": [
       {
+        "route": "/dashboard",
+        "normalizedRoute": "/dashboard",
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "url-extraction"
+          ],
+          "confidence": 0.82,
+          "unknowns": [
+            "Route extension/type could not be inferred"
+          ]
+        }
+      },
+      {
         "route": "/login",
         "normalizedRoute": "/login",
         "provenance": {
@@ -53,6 +67,20 @@
       {
         "kind": "route",
         "value": "/Views/Auth/Index.cshtml",
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "url-extraction"
+          ],
+          "confidence": 0.66,
+          "unknowns": [
+            "Route may be shared across modules"
+          ]
+        }
+      },
+      {
+        "kind": "route",
+        "value": "/dashboard",
         "provenance": {
           "type": "code-evidence",
           "sources": [

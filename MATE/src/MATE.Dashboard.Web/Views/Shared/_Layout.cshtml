@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MATE Pipeline</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+@{
+    var controller = ViewContext.RouteData.Values["controller"]?.ToString() ?? string.Empty;
+    var action = ViewContext.RouteData.Values["action"]?.ToString() ?? string.Empty;
+}
+
+<div class="dashboard-shell">
+    <aside class="dashboard-sidebar">
+        <a class="brand-block" asp-controller="Pipeline" asp-action="Index">
+            <span class="brand-logo">MA</span>
+            <span>
+                <strong class="brand-title">MATE</strong>
+                <small class="brand-subtitle">10-Stage Pipeline</small>
+            </span>
+        </a>
+
+        <nav class="dashboard-nav">
+            <a class="dashboard-tab @(action == "Index" ? "active" : "")" asp-controller="Pipeline" asp-action="Index">
+                <i class="bi bi-grid-1x2-fill"></i> Pipeline Runs
+            </a>
+            <a class="dashboard-tab @(action == "Input" ? "active" : "")" asp-controller="Pipeline" asp-action="Input">
+                <i class="bi bi-sliders2"></i> New Run Input
+            </a>
+        </nav>
+    </aside>
+
+    <div class="dashboard-main">
+        <header class="dashboard-topbar">
+            <h1>@(ViewData["Title"] ?? "MATE Pipeline")</h1>
+            <span class="dashboard-tag">AI-First Legacy Modernization</span>
+        </header>
+
+        <main class="dashboard-content">
+            @RenderBody()
+        </main>
+    </div>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

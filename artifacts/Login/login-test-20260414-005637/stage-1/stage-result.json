@@ -1,6 +1,6 @@
 {
-  "stage": "discovery",
-  "stageTitle": "Discovery",
+  "stage": "csharp-discovery",
+  "stageTitle": "C# Discovery",
   "stageIndex": 1,
   "status": "passed",
   "skillCount": 1,
@@ -8,27 +8,27 @@
   "skillsFailed": 0,
   "skills": [
     {
-      "skill": "module-discovery",
-      "stage": "discovery",
+      "skill": "csharp-module-discovery",
+      "stage": "csharp-discovery",
       "status": "passed",
-      "startedAt": "2026-04-14T02:40:45.374339Z",
-      "endedAt": "2026-04-14T02:40:45.501886Z",
-      "durationSeconds": 0.127,
-      "summary": "Discovery completed for Login: assets=24, routes=1, dbTouchpoints=0.",
+      "startedAt": "2026-04-14T16:31:45.420938Z",
+      "endedAt": "2026-04-14T16:31:45.517230Z",
+      "durationSeconds": 0.096,
+      "summary": "C# module discovery produced 0 controllers, 0 evidence-based workflows, and 0 SQL signatures.",
       "returnCode": 0,
-      "stdout": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/module-discovery/result.json\n",
+      "stdout": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/csharp-module-discovery/result.json\n",
       "stderr": "",
       "command": [
         "python3",
-        "/Users/risha/Documents/Buildathon/skills/module-discovery/run.py",
+        "/Users/risha/Documents/Buildathon/skills/csharp-module-discovery/run.py",
         "--input",
         "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/module-run-input.json",
         "--artifacts-root",
         "/Users/risha/Documents/Buildathon/artifacts"
       ],
-      "resultPath": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/module-discovery/result.json"
+      "resultPath": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/csharp-module-discovery/result.json"
     }
   ],
-  "startedAt": "2026-04-14T02:40:45.374339Z",
-  "endedAt": "2026-04-14T02:40:45.501886Z"
+  "startedAt": "2026-04-14T16:31:45.420938Z",
+  "endedAt": "2026-04-14T16:31:45.517230Z"
 }

@@ -1,0 +1,66 @@
+{
+  "moduleName": "LoginFinal",
+  "workflows": [
+    {
+      "workflowName": "Successful Login",
+      "status": "preserved",
+      "preservationScore": 1.0,
+      "csharp": {
+        "entryPoint": "/Auth/login",
+        "dependencies": [
+          {
+            "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Services/LoginService.cs",
+            "source": "using-or-type-reference"
+          }
+        ]
+      },
+      "java": {
+        "workflowName": "Successful Login",
+        "entryPoint": "/Auth/login",
+        "dependencies": [
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java"
+        ]
+      },
+      "provenance": {
+        "type": "flow-derived",
+        "sources": [
+          "csharp-logic-summary.json",
+          "java-logic-summary.json"
+        ],
+        "confidence": 0.74,
+        "unknowns": []
+      }
+    },
+    {
+      "workflowName": "Invalid Login",
+      "status": "preserved",
+      "preservationScore": 1.0,
+      "csharp": {
+        "entryPoint": "/Auth/dashboard",
+        "dependencies": [
+          {
+            "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Services/LoginService.cs",
+            "source": "using-or-type-reference"
+          }
+        ]
+      },
+      "java": {
+        "workflowName": "Invalid Login",
+        "entryPoint": "/Auth/dashboard",
+        "dependencies": [
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java",
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp"
+        ]
+      },
+      "provenance": {
+        "type": "flow-derived",
+        "sources": [
+          "csharp-logic-summary.json",
+          "java-logic-summary.json"
+        ],
+        "confidence": 0.74,
+        "unknowns": []
+      }
+    }
+  ]
+}

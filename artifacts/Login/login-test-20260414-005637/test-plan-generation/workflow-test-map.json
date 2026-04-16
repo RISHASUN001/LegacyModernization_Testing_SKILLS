@@ -1,0 +1,48 @@
+{
+  "moduleName": "Login",
+  "runId": "login-test-20260414-005637",
+  "workflows": [
+    {
+      "workflowName": "Open login page",
+      "entryRoute": "",
+      "categories": [
+        "Unit",
+        "Integration",
+        "Route/Form Tests",
+        "E2E",
+        "Edge Case",
+        "Playwright / E2E Browser",
+        "DevTools Diagnostics"
+      ],
+      "provenance": {
+        "type": "flow-derived",
+        "sources": [
+          "artifact:csharp-logic-understanding/csharp-logic-summary.json"
+        ],
+        "confidence": 0.78,
+        "unknowns": []
+      }
+    },
+    {
+      "workflowName": "Session timeout returns to login",
+      "entryRoute": "",
+      "categories": [
+        "Unit",
+        "Integration",
+        "Route/Form Tests",
+        "E2E",
+        "Edge Case",
+        "Playwright / E2E Browser",
+        "DevTools Diagnostics"
+      ],
+      "provenance": {
+        "type": "flow-derived",
+        "sources": [
+          "artifact:csharp-logic-understanding/csharp-logic-summary.json"
+        ],
+        "confidence": 0.78,
+        "unknowns": []
+      }
+    }
+  ]
+}

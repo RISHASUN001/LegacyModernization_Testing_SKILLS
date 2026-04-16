@@ -1,0 +1,249 @@
+{
+  "moduleName": "Login",
+  "modulePurpose": "Legacy Java logic understanding for module Login.",
+  "workflows": [
+    {
+      "workflowId": "java-workflow-01",
+      "name": "Login legacy flow via /Auth",
+      "purpose": "Legacy Java workflow understanding for Login counterpart path.",
+      "entryPoint": "/Auth",
+      "actionSequence": [
+        "Action/Servlet receives request",
+        "Service/EJB handles business branch",
+        "DAO executes SQL",
+        "JSP forward/redirect renders response"
+      ],
+      "validations": [
+        "Request/form validation",
+        "Session/context checks"
+      ],
+      "decisionBranches": [
+        "Forward path selected by condition",
+        "Error path propagates to JSP or message handler"
+      ],
+      "sideEffects": [
+        "Database read/write",
+        "Session propagation",
+        "Audit/log side effects"
+      ],
+      "dbTouchpoints": [],
+      "expectedOutputs": [
+        "JSP/report rendering",
+        "Form persistence behavior"
+      ],
+      "dependencies": [],
+      "importEvidence": {
+        "seedFiles": [],
+        "imports": [],
+        "importLinkedFiles": []
+      },
+      "provenance": {
+        "type": "flow-derived",
+        "sources": [
+          "legacy-workflows.json"
+        ],
+        "confidence": 0.69,
+        "unknowns": []
+      }
+    },
+    {
+      "workflowId": "java-workflow-02",
+      "name": "Login legacy flow via /Auth/dashboard",
+      "purpose": "Legacy Java workflow understanding for Login counterpart path.",
+      "entryPoint": "/Auth/dashboard",
+      "actionSequence": [
+        "Action/Servlet receives request",
+        "Service/EJB handles business branch",
+        "DAO executes SQL",
+        "JSP forward/redirect renders response"
+      ],
+      "validations": [
+        "Request/form validation",
+        "Session/context checks"
+      ],
+      "decisionBranches": [
+        "Forward path selected by condition",
+        "Error path propagates to JSP or message handler"
+      ],
+      "sideEffects": [
+        "Database read/write",
+        "Session propagation",
+        "Audit/log side effects"
+      ],
+      "dbTouchpoints": [],
+      "expectedOutputs": [
+        "JSP/report rendering",
+        "Form persistence behavior"
+      ],
+      "dependencies": [
+        "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp"
+      ],
+      "importEvidence": {
+        "seedFiles": [
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp"
+        ],
+        "imports": [],
+        "importLinkedFiles": []
+      },
+      "provenance": {
+        "type": "flow-derived",
+        "sources": [
+          "legacy-workflows.json"
+        ],
+        "confidence": 0.69,
+        "unknowns": []
+      }
+    },
+    {
+      "workflowId": "java-workflow-03",
+      "name": "Login legacy flow via /Auth/index",
+      "purpose": "Legacy Java workflow understanding for Login counterpart path.",
+      "entryPoint": "/Auth/index",
+      "actionSequence": [
+        "Action/Servlet receives request",
+        "Service/EJB handles business branch",
+        "DAO executes SQL",
+        "JSP forward/redirect renders response"
+      ],
+      "validations": [
+        "Request/form validation",
+        "Session/context checks"
+      ],
+      "decisionBranches": [
+        "Forward path selected by condition",
+        "Error path propagates to JSP or message handler"
+      ],
+      "sideEffects": [
+        "Database read/write",
+        "Session propagation",
+        "Audit/log side effects"
+      ],
+      "dbTouchpoints": [],
+      "expectedOutputs": [
+        "JSP/report rendering",
+        "Form persistence behavior"
+      ],
+      "dependencies": [
+        "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp"
+      ],
+      "importEvidence": {
+        "seedFiles": [
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp"
+        ],
+        "imports": [],
+        "importLinkedFiles": []
+      },
+      "provenance": {
+        "type": "flow-derived",
+        "sources": [
+          "legacy-workflows.json"
+        ],
+        "confidence": 0.69,
+        "unknowns": []
+      }
+    },
+    {
+      "workflowId": "java-workflow-04",
+      "name": "Login legacy flow via /Auth/login",
+      "purpose": "Legacy Java workflow understanding for Login counterpart path.",
+      "entryPoint": "/Auth/login",
+      "actionSequence": [
+        "Action/Servlet receives request",
+        "Service/EJB handles business branch",
+        "DAO executes SQL",
+        "JSP forward/redirect renders response"
+      ],
+      "validations": [
+        "Request/form validation",
+        "Session/context checks"
+      ],
+      "decisionBranches": [
+        "Forward path selected by condition",
+        "Error path propagates to JSP or message handler"
+      ],
+      "sideEffects": [
+        "Database read/write",
+        "Session propagation",
+        "Audit/log side effects"
+      ],
+      "dbTouchpoints": [],
+      "expectedOutputs": [
+        "JSP/report rendering",
+        "Form persistence behavior"
+      ],
+      "dependencies": [],
+      "importEvidence": {
+        "seedFiles": [],
+        "imports": [],
+        "importLinkedFiles": []
+      },
+      "provenance": {
+        "type": "flow-derived",
+        "sources": [
+          "legacy-workflows.json"
+        ],
+        "confidence": 0.69,
+        "unknowns": []
+      }
+    },
+    {
+      "workflowId": "java-workflow-05",
+      "name": "Login legacy flow via /Auth/logout",
+      "purpose": "Legacy Java workflow understanding for Login counterpart path.",
+      "entryPoint": "/Auth/logout",
+      "actionSequence": [
+        "Action/Servlet receives request",
+        "Service/EJB handles business branch",
+        "DAO executes SQL",
+        "JSP forward/redirect renders response"
+      ],
+      "validations": [
+        "Request/form validation",
+        "Session/context checks"
+      ],
+      "decisionBranches": [
+        "Forward path selected by condition",
+        "Error path propagates to JSP or message handler"
+      ],
+      "sideEffects": [
+        "Database read/write",
+        "Session propagation",
+        "Audit/log side effects"
+      ],
+      "dbTouchpoints": [],
+      "expectedOutputs": [
+        "JSP/report rendering",
+        "Form persistence behavior"
+      ],
+      "dependencies": [],
+      "importEvidence": {
+        "seedFiles": [],
+        "imports": [],
+        "importLinkedFiles": []
+      },
+      "provenance": {
+        "type": "flow-derived",
+        "sources": [
+          "legacy-workflows.json"
+        ],
+        "confidence": 0.69,
+        "unknowns": []
+      }
+    }
+  ],
+  "businessRules": [
+    {
+      "rule": "Legacy flow intent must remain preserved in converted module.",
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "legacy-workflows.json"
+        ],
+        "confidence": 0.64,
+        "unknowns": []
+      }
+    }
+  ],
+  "unknowns": [],
+  "confidence": 0.74
+}

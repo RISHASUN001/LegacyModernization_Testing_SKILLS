@@ -1,0 +1,140 @@
+{
+  "moduleName": "LoginFinal",
+  "modulePurpose": "Legacy Java logic understanding for module LoginFinal.",
+  "workflows": [
+    {
+      "workflowId": "java-workflow-01",
+      "name": "Successful Login",
+      "purpose": "Legacy Java workflow understanding for LoginFinal counterpart path.",
+      "entryPoint": "/Auth/login",
+      "actionSequence": [
+        "Action/Servlet receives request",
+        "Service/EJB handles business branch",
+        "DAO executes SQL",
+        "JSP forward/redirect renders response"
+      ],
+      "validations": [
+        "Request/form validation",
+        "Session/context checks"
+      ],
+      "decisionBranches": [
+        "Forward path selected by condition",
+        "Error path propagates to JSP or message handler"
+      ],
+      "sideEffects": [
+        "Database read/write",
+        "Session propagation",
+        "Audit/log side effects"
+      ],
+      "dbTouchpoints": [],
+      "expectedOutputs": [
+        "JSP/report rendering",
+        "Form persistence behavior"
+      ],
+      "dependencies": [
+        "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java"
+      ],
+      "importEvidence": {
+        "seedFiles": [
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java",
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java"
+        ],
+        "imports": [
+          "java.io.IOException",
+          "java.util.logging.Logger",
+          "javax.servlet.ServletException",
+          "javax.servlet.annotation.WebServlet",
+          "javax.servlet.http.HttpServlet",
+          "javax.servlet.http.HttpServletRequest",
+          "javax.servlet.http.HttpServletResponse",
+          "javax.servlet.http.HttpSession"
+        ],
+        "importLinkedFiles": []
+      },
+      "provenance": {
+        "type": "flow-derived",
+        "sources": [
+          "legacy-workflows.json"
+        ],
+        "confidence": 0.69,
+        "unknowns": []
+      }
+    },
+    {
+      "workflowId": "java-workflow-02",
+      "name": "Invalid Login",
+      "purpose": "Legacy Java workflow understanding for LoginFinal counterpart path.",
+      "entryPoint": "/Auth/dashboard",
+      "actionSequence": [
+        "Action/Servlet receives request",
+        "Service/EJB handles business branch",
+        "DAO executes SQL",
+        "JSP forward/redirect renders response"
+      ],
+      "validations": [
+        "Request/form validation",
+        "Session/context checks"
+      ],
+      "decisionBranches": [
+        "Forward path selected by condition",
+        "Error path propagates to JSP or message handler"
+      ],
+      "sideEffects": [
+        "Database read/write",
+        "Session propagation",
+        "Audit/log side effects"
+      ],
+      "dbTouchpoints": [],
+      "expectedOutputs": [
+        "JSP/report rendering",
+        "Form persistence behavior"
+      ],
+      "dependencies": [
+        "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java",
+        "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp"
+      ],
+      "importEvidence": {
+        "seedFiles": [
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java",
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java",
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp",
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp"
+        ],
+        "imports": [
+          "java.io.IOException",
+          "java.util.logging.Logger",
+          "javax.servlet.ServletException",
+          "javax.servlet.annotation.WebServlet",
+          "javax.servlet.http.HttpServlet",
+          "javax.servlet.http.HttpServletRequest",
+          "javax.servlet.http.HttpServletResponse",
+          "javax.servlet.http.HttpSession"
+        ],
+        "importLinkedFiles": []
+      },
+      "provenance": {
+        "type": "flow-derived",
+        "sources": [
+          "legacy-workflows.json"
+        ],
+        "confidence": 0.69,
+        "unknowns": []
+      }
+    }
+  ],
+  "businessRules": [
+    {
+      "rule": "Legacy flow intent must remain preserved in converted module.",
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "legacy-workflows.json"
+        ],
+        "confidence": 0.64,
+        "unknowns": []
+      }
+    }
+  ],
+  "unknowns": [],
+  "confidence": 0.74
+}

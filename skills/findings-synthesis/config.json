@@ -1,0 +1,24 @@
+{
+  "name": "findings-synthesis",
+  "stage": "clean-architecture-and-findings",
+  "schemaVersion": "2.0",
+  "aiDriven": true,
+  "inputs": [
+    "moduleName",
+    "runId",
+    "strictAIGeneration"
+  ],
+  "outputs": [
+    "findings-synthesis.json",
+    "findings-summary.md",
+    "findings-dashboard.json",
+    "result.json"
+  ],
+  "dependencies": [
+    "clean-architecture-assessment",
+    "test-execution-unit",
+    "test-execution-integration",
+    "test-execution-playwright",
+    "parity-analysis"
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "runId": "run-login-20260416-095044",
+  "moduleName": "Login",
+  "stage": "csharp-discovery",
+  "stageIndex": 1,
+  "title": "1. C# Discovery",
+  "objective": "Discover converted module controllers, routes, views, services, repositories, SQL, and tables.",
+  "disclosure": {
+    "now": {
+      "inputType": "pipeline-input + converted roots",
+      "outputType": "csharp-module-map + route/sql/table maps",
+      "skills": [
+        "csharp-module-discovery"
+      ]
+    },
+    "next": {
+      "stage": "csharp-logic-understanding",
+      "title": "2. C# Logic Understanding",
+      "expectedInputType": "csharp discovery artifacts"
+    }
+  },
+  "contracts": [
+    {
+      "skill": "csharp-module-discovery",
+      "inputs": [
+        "moduleName",
+        "runId",
+        "workflowNames",
+        "convertedRoots",
+        "controllerHints",
+        "viewHints",
+        "keywords",
+        "startUrl",
+        "strictModuleOnly"
+      ],
+      "outputs": [
+        "csharp-module-map.json",
+        "controller-route-map.json",
+        "csharp-sql-map.json",
+        "csharp-table-usage.json",
+        "scoped-file-relevance.json",
+        "result.json"
+      ],
+      "dependencies": []
+    }
+  ]
+}

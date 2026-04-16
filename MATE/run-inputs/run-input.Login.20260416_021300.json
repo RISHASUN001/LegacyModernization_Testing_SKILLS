@@ -1,0 +1,36 @@
+{
+  "runId": "run-login-20260416-095044",
+  "moduleName": "Login",
+  "workflowNames": [
+    "Login"
+  ],
+  "convertedRoots": [
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app"
+  ],
+  "legacyBackendRoots": [
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java"
+  ],
+  "legacyFrontendRoots": [
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/index.jsp"
+  ],
+  "baseUrl": "http://localhost:5001",
+  "startUrl": "/",
+  "dotnetTestTarget": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LegacyModernization.Converted.sln",
+  "strictModuleOnly": true,
+  "strictAIGeneration": true,
+  "enableUserInputPrompting": true,
+  "keywords": [
+    "login",
+    "password"
+  ],
+  "controllerHints": [],
+  "viewHints": [],
+  "expectedEndUrls": [],
+  "relatedFolders": [
+    "/Users/risha/Documents/Buildathon/MATE/skills/orchestrator/ORCHESTRATOR.md"
+  ],
+  "knownUrls": [
+    "/dashboard"
+  ]
+}

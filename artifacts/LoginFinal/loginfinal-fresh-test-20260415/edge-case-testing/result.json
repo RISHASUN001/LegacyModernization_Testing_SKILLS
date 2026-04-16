@@ -1,0 +1,318 @@
+{
+  "skillName": "edge-case-testing",
+  "stage": "execution",
+  "moduleName": "LoginFinal",
+  "runId": "loginfinal-fresh-test-20260415",
+  "status": "passed",
+  "startedAt": "2026-04-15T08:49:30.097446Z",
+  "endedAt": "2026-04-15T08:49:30.890316Z",
+  "summary": "Edge Case execution completed with 10 passed and 0 failed scenarios.",
+  "metrics": {
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "warnings": 0,
+    "newTestsAdded": 4,
+    "scenarios": [
+      {
+        "name": "Must-preserve edge behavior: Route and URL behavior parity for user-visible flows",
+        "status": "passed",
+        "notes": "Validate boundary conditions, Dapper case-sensitivity, ViewModel binding, retries, and low-frequency high-impact paths.",
+        "coverage": [
+          "edge-case",
+          "resilience",
+          "dapper-case-sensitivity",
+          "viewmodel-binding"
+        ],
+        "generated": false,
+        "generatedFrom": [],
+        "provenance": {
+          "type": "risk-derived",
+          "sources": [
+            "artifact:legacy-logic-extraction/logic-summary.json"
+          ],
+          "confidence": 0.76,
+          "unknowns": []
+        }
+      },
+      {
+        "name": "Must-preserve edge behavior: Validation/error message semantics from legacy behavior",
+        "status": "passed",
+        "notes": "Validate boundary conditions, Dapper case-sensitivity, ViewModel binding, retries, and low-frequency high-impact paths.",
+        "coverage": [
+          "edge-case",
+          "resilience",
+          "dapper-case-sensitivity",
+          "viewmodel-binding"
+        ],
+        "generated": false,
+        "generatedFrom": [],
+        "provenance": {
+          "type": "risk-derived",
+          "sources": [
+            "artifact:legacy-logic-extraction/logic-summary.json"
+          ],
+          "confidence": 0.76,
+          "unknowns": []
+        }
+      },
+      {
+        "name": "Must-preserve edge behavior: Data mapping compatibility for persistence operations (Dapper case-sensitivity, ViewModel binding)",
+        "status": "passed",
+        "notes": "Validate boundary conditions, Dapper case-sensitivity, ViewModel binding, retries, and low-frequency high-impact paths.",
+        "coverage": [
+          "edge-case",
+          "resilience",
+          "dapper-case-sensitivity",
+          "viewmodel-binding"
+        ],
+        "generated": false,
+        "generatedFrom": [],
+        "provenance": {
+          "type": "risk-derived",
+          "sources": [
+            "artifact:legacy-logic-extraction/logic-summary.json"
+          ],
+          "confidence": 0.76,
+          "unknowns": []
+        }
+      },
+      {
+        "name": "Dapper case-sensitivity and column mapping edge cases",
+        "status": "passed",
+        "notes": "Validate boundary conditions, Dapper case-sensitivity, ViewModel binding, retries, and low-frequency high-impact paths.",
+        "coverage": [
+          "dapper",
+          "orm",
+          "case-sensitivity"
+        ],
+        "generated": false,
+        "generatedFrom": [],
+        "provenance": {
+          "type": "risk-derived",
+          "sources": [
+            "artifact:legacy-logic-extraction/logic-summary.json"
+          ],
+          "confidence": 0.72,
+          "unknowns": []
+        }
+      },
+      {
+        "name": "ViewModel binding and property mapping validation",
+        "status": "passed",
+        "notes": "Validate boundary conditions, Dapper case-sensitivity, ViewModel binding, retries, and low-frequency high-impact paths.",
+        "coverage": [
+          "viewmodel",
+          "binding",
+          "dto-mapping"
+        ],
+        "generated": false,
+        "generatedFrom": [],
+        "provenance": {
+          "type": "risk-derived",
+          "sources": [
+            "artifact:legacy-logic-extraction/logic-summary.json"
+          ],
+          "confidence": 0.7,
+          "unknowns": []
+        }
+      },
+      {
+        "name": "Recurring risk regression guard: NamespaceFolderMismatch",
+        "status": "passed",
+        "notes": "Validate boundary conditions, Dapper case-sensitivity, ViewModel binding, retries, and low-frequency high-impact paths.",
+        "coverage": [
+          "lessons-regression"
+        ],
+        "generated": false,
+        "generatedFrom": [],
+        "provenance": {
+          "type": "lessons-derived",
+          "sources": [
+            "artifact:_knowledge-base/lessons-kb.json"
+          ],
+          "confidence": 0.8,
+          "unknowns": []
+        }
+      },
+      {
+        "name": "Edge resilience: Session/cookie handling and user context preservation across requests",
+        "status": "passed",
+        "notes": "Validate boundary conditions, Dapper case-sensitivity, ViewModel binding, retries, and low-frequency high-impact paths.",
+        "coverage": [
+          "edge-case",
+          "recovery",
+          "resilience"
+        ],
+        "generated": true,
+        "generatedFrom": [
+          "preserve:Session/cookie handling and user context preservation across requests"
+        ],
+        "provenance": {
+          "type": "inferred",
+          "sources": [
+            "artifact:test-plan-generation/test-plan.json",
+            "artifact:module-discovery/discovery-map.json",
+            "artifact:legacy-logic-extraction/logic-summary.json",
+            "artifact:module-documentation/module-analysis.json"
+          ],
+          "confidence": 0.77,
+          "unknowns": []
+        }
+      },
+      {
+        "name": "Edge retry/timeout behavior: Open login page",
+        "status": "passed",
+        "notes": "Validate boundary conditions, Dapper case-sensitivity, ViewModel binding, retries, and low-frequency high-impact paths.",
+        "coverage": [
+          "retry",
+          "timeout",
+          "idempotency"
+        ],
+        "generated": true,
+        "generatedFrom": [
+          "flow:Open login page"
+        ],
+        "provenance": {
+          "type": "inferred",
+          "sources": [
+            "artifact:test-plan-generation/test-plan.json",
+            "artifact:module-discovery/discovery-map.json",
+            "artifact:legacy-logic-extraction/logic-summary.json",
+            "artifact:module-documentation/module-analysis.json"
+          ],
+          "confidence": 0.77,
+          "unknowns": []
+        }
+      },
+      {
+        "name": "Edge retry/timeout behavior: Session timeout returns to login",
+        "status": "passed",
+        "notes": "Validate boundary conditions, Dapper case-sensitivity, ViewModel binding, retries, and low-frequency high-impact paths.",
+        "coverage": [
+          "retry",
+          "timeout",
+          "idempotency"
+        ],
+        "generated": true,
+        "generatedFrom": [
+          "flow:Session timeout returns to login"
+        ],
+        "provenance": {
+          "type": "inferred",
+          "sources": [
+            "artifact:test-plan-generation/test-plan.json",
+            "artifact:module-discovery/discovery-map.json",
+            "artifact:legacy-logic-extraction/logic-summary.json",
+            "artifact:module-documentation/module-analysis.json"
+          ],
+          "confidence": 0.77,
+          "unknowns": []
+        }
+      },
+      {
+        "name": "Edge Case robustness generated case 1 for LoginFinal",
+        "status": "passed",
+        "notes": "Validate boundary conditions, Dapper case-sensitivity, ViewModel binding, retries, and low-frequency high-impact paths.",
+        "coverage": [
+          "robustness",
+          "fallback"
+        ],
+        "generated": true,
+        "generatedFrom": [
+          "fallback:insufficient-discovery-evidence"
+        ],
+        "provenance": {
+          "type": "inferred",
+          "sources": [
+            "artifact:test-plan-generation/test-plan.json",
+            "artifact:module-discovery/discovery-map.json",
+            "artifact:legacy-logic-extraction/logic-summary.json",
+            "artifact:module-documentation/module-analysis.json"
+          ],
+          "confidence": 0.77,
+          "unknowns": []
+        }
+      }
+    ],
+    "degradedMode": false,
+    "purpose": "Validate boundary conditions, Dapper case-sensitivity, ViewModel binding, retries, and low-frequency high-impact paths.",
+    "generatedTestsArtifact": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-fresh-test-20260415/edge-case-testing/generated-tests/edge-case-generated-tests.json",
+    "generatedExecutableTest": "",
+    "generatedExecutableArtifact": ""
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-fresh-test-20260415/edge-case-testing/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-fresh-test-20260415/edge-case-testing/generated-tests/edge-case-generated-tests.json",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/loginfinal-7d280c0f12/loginfinal-fresh-test-20260415/edge-case-generated-tests.json",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-fresh-test-20260415/edge-case-testing/preflight.json",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-fresh-test-20260415/edge-case-testing/execution-log.txt",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-fresh-test-20260415/edge-case-testing/edge-case-matrix.json"
+  ],
+  "findings": [],
+  "recommendations": [
+    {
+      "message": "Review Edge Case logs/artifacts and fix failing scenarios before next iteration.",
+      "priority": "medium",
+      "evidence": "0 failed out of 10 scenarios."
+    }
+  ],
+  "resultContractVersion": "2.0",
+  "preflight": {
+    "category": "Edge Case",
+    "baseUrl": {
+      "required": true,
+      "provided": "http://localhost:5001",
+      "normalized": "http://localhost:5001",
+      "ok": true,
+      "reason": ""
+    },
+    "reachability": {
+      "required": true,
+      "ok": true,
+      "statusCode": 200,
+      "reason": "reachable",
+      "path": "/",
+      "url": "http://localhost:5001/"
+    },
+    "commands": {
+      "candidates": [
+        "dotnet test --nologo --verbosity minimal"
+      ],
+      "available": [
+        "dotnet test --nologo --verbosity minimal"
+      ],
+      "unavailable": [],
+      "selected": "dotnet test --nologo --verbosity minimal",
+      "ok": true
+    },
+    "strictMode": false
+  },
+  "trace": {
+    "command": [
+      "dotnet",
+      "test",
+      "--nologo",
+      "--verbosity",
+      "minimal"
+    ],
+    "returnCode": 0,
+    "durationSeconds": 0.758,
+    "cwd": "/Users/risha/Documents/Buildathon/samples/legacy-java-app"
+  },
+  "provenanceSummary": {
+    "scenarioSources": [
+      "risk-derived",
+      "risk-derived",
+      "risk-derived",
+      "risk-derived",
+      "risk-derived",
+      "lessons-derived",
+      "inferred",
+      "inferred",
+      "inferred",
+      "inferred"
+    ],
+    "confidence": 0.758
+  }
+}

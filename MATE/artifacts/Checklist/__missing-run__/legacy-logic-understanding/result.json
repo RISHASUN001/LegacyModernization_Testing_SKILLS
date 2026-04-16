@@ -1,0 +1,12 @@
+{
+  "skillName": "legacy-logic-understanding",
+  "status": "passed",
+  "startedAt": "2026-04-15T15:52:50.210673Z",
+  "endedAt": "2026-04-15T15:52:50.210865Z",
+  "summary": "legacy-logic-understanding scaffold executed.",
+  "metrics": {},
+  "artifacts": [
+    "MATE/artifacts/Checklist/__missing-run__/legacy-logic-understanding/result.json"
+  ],
+  "resultContractVersion": "1.0"
+}

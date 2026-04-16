@@ -1,0 +1,65 @@
+{
+  "moduleName": "LoginFinal",
+  "source": "legacy",
+  "provider": "deterministic-discovery-based",
+  "workflows": [
+    {
+      "name": "Successful Login",
+      "entryPoint": "",
+      "legacyFiles": [],
+      "likelyJspFlow": [],
+      "actionClasses": [],
+      "daoClasses": [],
+      "decisionBranches": [
+        "Form submission paths (POST actions)",
+        "Validation error handling flows",
+        "Success/failure page redirects"
+      ],
+      "validations": [
+        "JSP-level form validation",
+        "Action class business logic validation",
+        "Database constraint violations"
+      ],
+      "dbTouchpoints": [],
+      "tables": [],
+      "functionalConstraints": [
+        "Legacy framework patterns and conventions",
+        "Database-specific behaviors",
+        "Session and state management assumptions"
+      ],
+      "outcome": "Legacy workflow understanding derived from codebase structure",
+      "notes": [
+        "Analysis based on file discovery and naming conventions"
+      ]
+    },
+    {
+      "name": "Invalid Login",
+      "entryPoint": "",
+      "legacyFiles": [],
+      "likelyJspFlow": [],
+      "actionClasses": [],
+      "daoClasses": [],
+      "decisionBranches": [
+        "Form submission paths (POST actions)",
+        "Validation error handling flows",
+        "Success/failure page redirects"
+      ],
+      "validations": [
+        "JSP-level form validation",
+        "Action class business logic validation",
+        "Database constraint violations"
+      ],
+      "dbTouchpoints": [],
+      "tables": [],
+      "functionalConstraints": [
+        "Legacy framework patterns and conventions",
+        "Database-specific behaviors",
+        "Session and state management assumptions"
+      ],
+      "outcome": "Legacy workflow understanding derived from codebase structure",
+      "notes": [
+        "Analysis based on file discovery and naming conventions"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "moduleName": "LoginFinal",
+  "category": "unit",
+  "status": "passed",
+  "testsDiscovered": 0,
+  "testsCopied": 0,
+  "command": [
+    "dotnet",
+    "test",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app",
+    "--logger",
+    "trx"
+  ],
+  "items": []
+}

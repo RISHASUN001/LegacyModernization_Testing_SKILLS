@@ -15,10 +15,17 @@ public sealed class MetadataSyncService : IMetadataSyncService
 {
     private static readonly Dictionary<string, string> SkillToStage = new(StringComparer.OrdinalIgnoreCase)
     {
-        ["module-discovery"] = "discovery",
-        ["legacy-logic-extraction"] = "logic-understanding",
-        ["module-documentation"] = "logic-understanding",
-        ["clean-architecture-assessment"] = "architecture-review",
+        ["module-discovery"] = "java-discovery",
+        ["csharp-module-discovery"] = "csharp-discovery",
+        ["legacy-logic-extraction"] = "java-logic",
+        ["csharp-logic-understanding"] = "csharp-logic",
+        ["module-documentation"] = "java-logic",
+        ["logic-flow-visualization"] = "java-logic",
+        ["java-counterpart-discovery"] = "java-discovery",
+        ["java-logic-understanding"] = "java-logic",
+        ["legacy-logic-understanding"] = "java-logic",
+        ["clean-architecture-assessment"] = "csharp-logic",
+        ["parity-verification"] = "functional-parity",
         ["test-plan-generation"] = "test-plan",
         ["unit-test-execution"] = "execution",
         ["integration-test-execution"] = "execution",
@@ -29,8 +36,7 @@ public sealed class MetadataSyncService : IMetadataSyncService
         ["browser-testing-with-devtools"] = "execution",
         ["failure-diagnosis"] = "findings",
         ["lessons-learned"] = "findings",
-        ["iteration-comparison"] = "iteration-comparison",
-        ["parity-verification"] = "findings"
+        ["iteration-comparison"] = "iteration-comparison"
     };
 
     private static readonly Dictionary<string, (string Category, string Purpose)> TestCategoryBySkill = new(StringComparer.OrdinalIgnoreCase)

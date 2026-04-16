@@ -1,0 +1,22 @@
+{
+  "moduleName": "LoginFinal",
+  "architecturePolicy": "module-first",
+  "cleanArchitectureIssues": [],
+  "namespaceFolderIssues": [],
+  "diIssues": [
+    {
+      "title": "Missing explicit DI registration signals for module 'LoginFinal'",
+      "severity": "high",
+      "evidence": "Program/Startup scan did not find module-specific AddScoped/AddTransient registrations."
+    }
+  ],
+  "couplingIssues": [],
+  "recommendedStructure": [
+    "Modules/LoginFinal/Application for use cases and contracts",
+    "Modules/LoginFinal/Infrastructure for persistence and external adapters",
+    "Modules/LoginFinal/Web for controllers and view models",
+    "Composition root (Program/Startup) for DI wiring only"
+  ],
+  "confidence": 0.79,
+  "unknowns": []
+}

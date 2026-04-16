@@ -1,0 +1,12 @@
+{
+  "skillName": "findings-synthesis",
+  "status": "passed",
+  "startedAt": "2026-04-15T15:52:50.826245Z",
+  "endedAt": "2026-04-15T15:52:50.826414Z",
+  "summary": "findings-synthesis scaffold executed.",
+  "metrics": {},
+  "artifacts": [
+    "MATE/artifacts/Checklist/__missing-run__/findings-synthesis/result.json"
+  ],
+  "resultContractVersion": "1.0"
+}

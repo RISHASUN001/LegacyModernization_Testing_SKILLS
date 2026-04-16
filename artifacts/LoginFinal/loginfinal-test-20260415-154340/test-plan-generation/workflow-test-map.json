@@ -1,0 +1,111 @@
+{
+  "moduleName": "LoginFinal",
+  "runId": "loginfinal-test-20260415-154340",
+  "workflows": [
+    {
+      "workflowName": "LoginFinal flow via /Auth",
+      "entryRoute": "/Auth",
+      "categories": [
+        "Unit",
+        "Integration",
+        "Route/Form Tests",
+        "E2E",
+        "Edge Case",
+        "Playwright / E2E Browser",
+        "DevTools Diagnostics"
+      ],
+      "provenance": {
+        "type": "flow-derived",
+        "sources": [
+          "artifact:csharp-logic-understanding/csharp-logic-summary.json"
+        ],
+        "confidence": 0.78,
+        "unknowns": []
+      }
+    },
+    {
+      "workflowName": "LoginFinal flow via /Auth/dashboard",
+      "entryRoute": "/Auth/dashboard",
+      "categories": [
+        "Unit",
+        "Integration",
+        "Route/Form Tests",
+        "E2E",
+        "Edge Case",
+        "Playwright / E2E Browser",
+        "DevTools Diagnostics"
+      ],
+      "provenance": {
+        "type": "flow-derived",
+        "sources": [
+          "artifact:csharp-logic-understanding/csharp-logic-summary.json"
+        ],
+        "confidence": 0.78,
+        "unknowns": []
+      }
+    },
+    {
+      "workflowName": "LoginFinal flow via /Auth/index",
+      "entryRoute": "/Auth/index",
+      "categories": [
+        "Unit",
+        "Integration",
+        "Route/Form Tests",
+        "E2E",
+        "Edge Case",
+        "Playwright / E2E Browser",
+        "DevTools Diagnostics"
+      ],
+      "provenance": {
+        "type": "flow-derived",
+        "sources": [
+          "artifact:csharp-logic-understanding/csharp-logic-summary.json"
+        ],
+        "confidence": 0.78,
+        "unknowns": []
+      }
+    },
+    {
+      "workflowName": "LoginFinal flow via /Auth/login",
+      "entryRoute": "/Auth/login",
+      "categories": [
+        "Unit",
+        "Integration",
+        "Route/Form Tests",
+        "E2E",
+        "Edge Case",
+        "Playwright / E2E Browser",
+        "DevTools Diagnostics"
+      ],
+      "provenance": {
+        "type": "flow-derived",
+        "sources": [
+          "artifact:csharp-logic-understanding/csharp-logic-summary.json"
+        ],
+        "confidence": 0.78,
+        "unknowns": []
+      }
+    },
+    {
+      "workflowName": "LoginFinal flow via /Auth/logout",
+      "entryRoute": "/Auth/logout",
+      "categories": [
+        "Unit",
+        "Integration",
+        "Route/Form Tests",
+        "E2E",
+        "Edge Case",
+        "Playwright / E2E Browser",
+        "DevTools Diagnostics"
+      ],
+      "provenance": {
+        "type": "flow-derived",
+        "sources": [
+          "artifact:csharp-logic-understanding/csharp-logic-summary.json"
+        ],
+        "confidence": 0.78,
+        "unknowns": []
+      }
+    }
+  ]
+}

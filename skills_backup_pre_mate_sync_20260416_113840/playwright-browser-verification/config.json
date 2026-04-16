@@ -1,0 +1,45 @@
+{
+  "name": "playwright-browser-verification",
+  "stage": "execution",
+  "category": "testing",
+  "purpose": "Run browser and devtools-inspired verification with screenshots, console/network/runtime evidence.",
+  "scriptEntry": "run.py",
+  "requiredInputs": [
+    "moduleName",
+    "baseUrl"
+  ],
+  "optionalInputs": [
+    "browser",
+    "headless"
+  ],
+  "outputFiles": [
+    "result.json",
+    "preflight.json",
+    "execution-log.txt",
+    "console-logs.json",
+    "network-failures.json",
+    "dom-state.json",
+    "runtime-issues.json",
+    "performance-observations.json",
+    "screenshots/*"
+  ],
+  "artifactFolders": [
+    "artifacts/{module}/{runId}/playwright-browser-verification/"
+  ],
+  "dependencies": [
+    "test-plan-generation"
+  ],
+  "summaryOutputType": "test-category-result",
+  "resultContractVersion": "2.0",
+  "externalDependencies": [
+    "playwright(optional)"
+  ],
+  "execution": {
+    "primaryCommand": "python run.py --input <module-run-input.json> --artifacts-root <artifacts-root>",
+    "timeoutNotes": "Real-first graceful execution. Writes result.json even on degraded/failure paths.",
+    "realCommandHints": [
+      "python3 -m pytest -m playwright",
+      "testCommands.playwright from run input"
+    ]
+  }
+}

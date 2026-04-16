@@ -1,0 +1,38 @@
+{
+  "skillName": "lessons-learned",
+  "stage": "findings",
+  "moduleName": "LoginFinal",
+  "runId": "loginfinal-test-20260415-172444",
+  "status": "passed",
+  "startedAt": "2026-04-15T09:27:12.205005Z",
+  "endedAt": "2026-04-15T09:27:12.212756Z",
+  "summary": "Lessons synthesized for LoginFinal: resolved=2, recurring=3, new=0.",
+  "metrics": {
+    "resolved": 2,
+    "recurring": 3,
+    "new": 0,
+    "kbRecurringSignatures": 5
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-172444/lessons-learned/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/_knowledge-base/lessons-kb.json",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-172444/lessons-learned/lessons-learned.json",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-172444/lessons-learned/lessons.json"
+  ],
+  "findings": [],
+  "recommendations": [
+    {
+      "message": "Use recurring lesson signatures to generate mandatory regression scenarios in next run.",
+      "priority": "high",
+      "evidence": "recurring=3, resolved=2, new=0"
+    }
+  ],
+  "resultContractVersion": "2.0",
+  "provenanceSummary": {
+    "scenarioSources": [
+      "code-evidence",
+      "lessons-learned"
+    ],
+    "confidence": 0.84
+  }
+}

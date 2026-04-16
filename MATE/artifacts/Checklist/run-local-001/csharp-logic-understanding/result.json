@@ -1,0 +1,17 @@
+{
+  "skillName": "csharp-logic-understanding",
+  "status": "passed",
+  "startedAt": "2026-04-15T16:20:44.090299Z",
+  "endedAt": "2026-04-15T16:20:44.090307Z",
+  "summary": "Generated C# logic understanding for 2 workflows.",
+  "metrics": {
+    "workflowCount": 2,
+    "provider": "deterministic-fallback"
+  },
+  "artifacts": [
+    "MATE/artifacts/Checklist/run-local-001/csharp-logic-understanding/csharp-logic-summary.json"
+  ],
+  "findings": [],
+  "recommendations": [],
+  "resultContractVersion": "1.0"
+}

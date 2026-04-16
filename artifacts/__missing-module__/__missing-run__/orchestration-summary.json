@@ -1,0 +1,16 @@
+{
+  "runId": "",
+  "moduleName": "",
+  "status": "failed",
+  "startedAt": "2026-04-16T01:03:18.179961Z",
+  "endedAt": "2026-04-16T01:03:18.180601Z",
+  "selectedSkills": [],
+  "stages": [],
+  "failedSkills": [],
+  "artifactsRoot": "/Users/risha/Documents/Buildathon/artifacts/__missing-module__/__missing-run__",
+  "statusReason": "input-validation-failed",
+  "missingRequiredInputs": [
+    "moduleName",
+    "runId"
+  ]
+}

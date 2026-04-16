@@ -1,0 +1,12 @@
+{
+  "skillName": "parity-analysis",
+  "status": "passed",
+  "startedAt": "2026-04-15T15:52:50.307515Z",
+  "endedAt": "2026-04-15T15:52:50.307740Z",
+  "summary": "parity-analysis scaffold executed.",
+  "metrics": {},
+  "artifacts": [
+    "MATE/artifacts/Checklist/__missing-run__/parity-analysis/result.json"
+  ],
+  "resultContractVersion": "1.0"
+}

@@ -1,0 +1,27 @@
+{
+  "skillName": "csharp-module-discovery",
+  "status": "passed",
+  "startedAt": "2026-04-15T16:20:44.030087Z",
+  "endedAt": "2026-04-15T16:20:44.030103Z",
+  "summary": "Discovered 41 C# files and mapped controllers/routes/SQL for module-first anchor.",
+  "metrics": {
+    "filesScanned": 41,
+    "controllers": 2,
+    "views": 13,
+    "services": 4,
+    "repositories": 0,
+    "routeRecords": 6,
+    "sqlFiles": 4,
+    "tables": 8,
+    "workflowCount": 2
+  },
+  "artifacts": [
+    "MATE/artifacts/Checklist/run-local-001/csharp-module-discovery/csharp-module-map.json",
+    "MATE/artifacts/Checklist/run-local-001/csharp-module-discovery/controller-route-map.json",
+    "MATE/artifacts/Checklist/run-local-001/csharp-module-discovery/csharp-sql-map.json",
+    "MATE/artifacts/Checklist/run-local-001/csharp-module-discovery/csharp-table-usage.json"
+  ],
+  "findings": [],
+  "recommendations": [],
+  "resultContractVersion": "1.0"
+}

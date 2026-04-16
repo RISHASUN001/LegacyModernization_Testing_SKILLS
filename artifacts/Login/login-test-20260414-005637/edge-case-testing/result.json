@@ -4,8 +4,8 @@
   "moduleName": "Login",
   "runId": "login-test-20260414-005637",
   "status": "passed",
-  "startedAt": "2026-04-14T02:40:48.385245Z",
-  "endedAt": "2026-04-14T02:40:49.261324Z",
+  "startedAt": "2026-04-14T16:31:47.432296Z",
+  "endedAt": "2026-04-14T16:31:48.271894Z",
   "summary": "Edge Case execution completed with 10 passed and 0 failed scenarios.",
   "metrics": {
     "total": 10,
@@ -118,7 +118,7 @@
         }
       },
       {
-        "name": "Recurring risk regression guard: DapperCaseSensitivity",
+        "name": "Recurring risk regression guard: NamespaceFolderMismatch",
         "status": "passed",
         "notes": "Validate boundary conditions, Dapper case-sensitivity, ViewModel binding, retries, and low-frequency high-impact paths.",
         "coverage": [
@@ -295,7 +295,7 @@
       "minimal"
     ],
     "returnCode": 0,
-    "durationSeconds": 0.837,
+    "durationSeconds": 0.819,
     "cwd": "/Users/risha/Documents/Buildathon/samples/legacy-java-app"
   },
   "provenanceSummary": {

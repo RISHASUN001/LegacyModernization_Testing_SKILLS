@@ -1,0 +1,35 @@
+{
+  "runId": "run-local-003",
+  "moduleName": "Checklist",
+  "stage": "csharp-discovery",
+  "stageIndex": 1,
+  "title": "1. C# Discovery",
+  "objective": "Discover converted module controllers, routes, views, services, repositories, SQL, and tables.",
+  "disclosure": {
+    "now": {
+      "inputType": "pipeline-input + converted roots",
+      "outputType": "csharp-module-map + route/sql/table maps",
+      "skills": [
+        "csharp-module-discovery"
+      ]
+    },
+    "next": {
+      "stage": "csharp-logic-understanding",
+      "title": "2. C# Logic Understanding",
+      "expectedInputType": "csharp discovery artifacts"
+    }
+  },
+  "contracts": [
+    {
+      "skill": "csharp-module-discovery",
+      "inputs": [
+        "moduleName",
+        "runId"
+      ],
+      "outputs": [
+        "result.json"
+      ],
+      "dependencies": []
+    }
+  ]
+}

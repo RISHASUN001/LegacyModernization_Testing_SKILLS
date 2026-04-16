@@ -1,0 +1,20 @@
+{
+  "skillName": "parity-analysis",
+  "status": "passed",
+  "startedAt": "2026-04-15T16:37:38.466314Z",
+  "endedAt": "2026-04-15T16:37:38.466322Z",
+  "summary": "Parity analysis completed with score 0%.",
+  "metrics": {
+    "parityScore": 0,
+    "matched": 0,
+    "missingInCsharp": 0,
+    "additionalInCsharp": 0
+  },
+  "artifacts": [
+    "MATE/artifacts/Checklist/run-local-004/parity-analysis/parity-diff.json",
+    "MATE/artifacts/Checklist/run-local-004/parity-analysis/workflow-parity-summary.json"
+  ],
+  "findings": [],
+  "recommendations": [],
+  "resultContractVersion": "1.0"
+}

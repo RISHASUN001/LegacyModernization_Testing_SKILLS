@@ -1,0 +1,27 @@
+{
+  "name": "parity-analysis",
+  "stage": "functional-parity-and-sql-table-comparison",
+  "schemaVersion": "1.1",
+  "aiDriven": true,
+  "strictAIGenerationCompatible": true,
+  "strictModuleOnlyCompatible": true,
+  "inputs": [
+    "moduleName",
+    "runId",
+    "workflowNames",
+    "strictAIGeneration"
+  ],
+  "outputs": [
+    "parity-diff.json",
+    "workflow-parity-summary.json",
+    "sql-table-parity.json",
+    "preservation-score.json",
+    "result.json"
+  ],
+  "dependencies": [
+    "csharp-logic-understanding",
+    "legacy-logic-understanding",
+    "csharp-module-discovery",
+    "legacy-module-discovery"
+  ]
+}

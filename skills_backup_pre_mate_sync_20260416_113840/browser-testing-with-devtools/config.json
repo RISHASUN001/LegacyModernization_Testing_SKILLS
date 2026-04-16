@@ -1,0 +1,84 @@
+{
+  "name": "browser-testing-with-devtools",
+  "stage": "execution",
+  "category": "ui-testing",
+  "scriptEntry": "run.py",
+  "requiredInputs": [
+    "moduleName",
+    "baseUrl",
+    "convertedSourceRoot"
+  ],
+  "optionalInputs": [
+    "testScenarios",
+    "performanceThresholds",
+    "accessibilityChecks",
+    "networkMocking",
+    "viewportSizes",
+    "debugConsoleFilter"
+  ],
+  "outputFiles": [
+    "result.json",
+    "preflight.json",
+    "execution-log.txt",
+    "console-logs.json",
+    "network-failures.json",
+    "dom-state.json",
+    "runtime-issues.json",
+    "performance-observations.json"
+  ],
+  "artifactFolders": [
+    "artifacts/{module}/{runId}/browser-testing-with-devtools/"
+  ],
+  "dependencies": [
+    "e2e-test-execution"
+  ],
+  "summaryOutputType": "structured",
+  "resultContractVersion": "2.0",
+  "purpose": "Browser diagnostics using app-direct route probes and Playwright/runtime evidence. Captures console/network/runtime/DOM/performance evidence and persists structured findings for dashboard replay.",
+  "executionMode": {
+    "default": "app-direct",
+    "optional": "mcp",
+    "notes": "No local MCP installation is required for baseline execution when baseUrl and routes are reachable."
+  },
+  "profiles": {
+    "baseline": {
+      "scenarios": [
+        "dom-inspection",
+        "console-analysis",
+        "network-monitoring",
+        "accessibility-scan"
+      ],
+      "timeout_ms": 180000,
+      "viewport_sizes": [
+        "desktop_1920"
+      ]
+    },
+    "improved": {
+      "scenarios": [
+        "dom-inspection",
+        "console-analysis",
+        "network-monitoring",
+        "interactive-workflow",
+        "performance-profiling",
+        "accessibility-scan"
+      ],
+      "timeout_ms": 300000,
+      "viewport_sizes": [
+        "mobile_375",
+        "tablet_768",
+        "desktop_1920"
+      ]
+    }
+  },
+  "externalDependencies": [
+    "optional-mcp-server"
+  ],
+  "execution": {
+    "primaryCommand": "python run.py --input <module-run-input.json> --artifacts-root <artifacts-root>",
+    "timeoutNotes": "Real-first graceful execution. Writes result.json even on degraded/failure paths.",
+    "realCommandHints": [
+      "baseUrl + module routes",
+      "optional MCP-backed collectors"
+    ]
+  }
+}

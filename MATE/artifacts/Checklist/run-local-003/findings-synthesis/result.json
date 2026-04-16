@@ -1,0 +1,17 @@
+{
+  "skillName": "findings-synthesis",
+  "status": "passed",
+  "startedAt": "2026-04-15T16:34:34.130529Z",
+  "endedAt": "2026-04-15T16:34:34.130537Z",
+  "summary": "Synthesized 0 finding(s) across run artifacts.",
+  "metrics": {
+    "totalFindings": 0
+  },
+  "artifacts": [
+    "MATE/artifacts/Checklist/run-local-003/findings-synthesis/findings-synthesis.json",
+    "MATE/artifacts/Checklist/run-local-003/findings-synthesis/findings-summary.md"
+  ],
+  "findings": [],
+  "recommendations": [],
+  "resultContractVersion": "1.0"
+}

@@ -1,0 +1,35 @@
+{
+  "runId": "run-local-003",
+  "moduleName": "Checklist",
+  "stage": "java-discovery",
+  "stageIndex": 3,
+  "title": "3. Java Discovery",
+  "objective": "Locate legacy Java/JSP module files strictly anchored to C# discovery evidence.",
+  "disclosure": {
+    "now": {
+      "inputType": "csharp discovery anchors + legacy roots",
+      "outputType": "legacy-module-map + java sql/table maps",
+      "skills": [
+        "legacy-module-discovery"
+      ]
+    },
+    "next": {
+      "stage": "java-logic-understanding",
+      "title": "4. Java Logic Understanding",
+      "expectedInputType": "legacy discovery artifacts"
+    }
+  },
+  "contracts": [
+    {
+      "skill": "legacy-module-discovery",
+      "inputs": [
+        "moduleName",
+        "runId"
+      ],
+      "outputs": [
+        "result.json"
+      ],
+      "dependencies": []
+    }
+  ]
+}

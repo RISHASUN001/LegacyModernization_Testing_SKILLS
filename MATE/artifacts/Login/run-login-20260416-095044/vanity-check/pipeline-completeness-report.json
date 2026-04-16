@@ -1,0 +1,111 @@
+{
+  "moduleName": "Login",
+  "totalChecks": 15,
+  "presentChecks": 6,
+  "missingRequired": [
+    "legacy-logic",
+    "diagram-index",
+    "parity-diff",
+    "preservation-score",
+    "unit-tests-generated",
+    "integration-tests-generated",
+    "playwright-tests-generated",
+    "clean-architecture-report",
+    "findings-synthesis"
+  ],
+  "executionFailures": [
+    "playwright"
+  ],
+  "checks": [
+    {
+      "name": "csharp-discovery",
+      "required": true,
+      "exists": true,
+      "path": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/csharp-module-discovery/csharp-module-map.json"
+    },
+    {
+      "name": "csharp-logic",
+      "required": true,
+      "exists": true,
+      "path": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/csharp-logic-understanding/csharp-logic-summary.json"
+    },
+    {
+      "name": "legacy-discovery",
+      "required": true,
+      "exists": true,
+      "path": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/legacy-module-discovery/legacy-module-map.json"
+    },
+    {
+      "name": "legacy-logic",
+      "required": true,
+      "exists": false,
+      "path": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/legacy-logic-understanding/legacy-logic-summary.json"
+    },
+    {
+      "name": "diagram-index",
+      "required": true,
+      "exists": false,
+      "path": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/diagram-generation/diagram-index.json"
+    },
+    {
+      "name": "parity-diff",
+      "required": true,
+      "exists": false,
+      "path": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/parity-analysis/parity-diff.json"
+    },
+    {
+      "name": "preservation-score",
+      "required": true,
+      "exists": false,
+      "path": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/parity-analysis/preservation-score.json"
+    },
+    {
+      "name": "unit-tests-generated",
+      "required": true,
+      "exists": false,
+      "path": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/unit-test-generation/unit-tests.generated.json"
+    },
+    {
+      "name": "integration-tests-generated",
+      "required": true,
+      "exists": false,
+      "path": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/integration-test-generation/integration-tests.generated.json"
+    },
+    {
+      "name": "playwright-tests-generated",
+      "required": true,
+      "exists": false,
+      "path": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/playwright-test-generation/playwright-tests.generated.json"
+    },
+    {
+      "name": "unit-execution-results",
+      "required": true,
+      "exists": true,
+      "path": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-unit/unit-test-results.json"
+    },
+    {
+      "name": "integration-execution-results",
+      "required": true,
+      "exists": true,
+      "path": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-integration/integration-test-results.json"
+    },
+    {
+      "name": "playwright-execution-results",
+      "required": true,
+      "exists": true,
+      "path": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-playwright/playwright-results.json"
+    },
+    {
+      "name": "clean-architecture-report",
+      "required": true,
+      "exists": false,
+      "path": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/clean-architecture-assessment/clean-architecture-report.json"
+    },
+    {
+      "name": "findings-synthesis",
+      "required": true,
+      "exists": false,
+      "path": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/findings-synthesis/findings-synthesis.json"
+    }
+  ]
+}

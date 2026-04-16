@@ -1,0 +1,42 @@
+{
+  "stage": "functional-parity-and-sql-table-comparison",
+  "stageIndex": 6,
+  "stageTitle": "6. Functional Parity + SQL/Table",
+  "stageObjective": "Compare logic and data usage between legacy and converted modules and flag behavior drift.",
+  "status": "failed",
+  "skills": [
+    {
+      "skill": "parity-analysis",
+      "stage": "functional-parity-and-sql-table-comparison",
+      "returnCode": 1,
+      "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/parity-analysis/result.json",
+      "stderr": "",
+      "status": "failed",
+      "reused": false,
+      "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/parity-analysis/result.json",
+      "summary": "strictAIGeneration=true and provider mode is copilot, but MATE_COPILOT_CLAUDE_COMMAND is not configured.",
+      "artifacts": [],
+      "metrics": {},
+      "findings": [
+        {
+          "type": "StrictAIUnavailable",
+          "message": "strictAIGeneration=true and provider mode is copilot, but MATE_COPILOT_CLAUDE_COMMAND is not configured."
+        }
+      ]
+    }
+  ],
+  "skillCount": 1,
+  "skillsFailed": 1,
+  "reusedSkills": 0,
+  "contextFile": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/orchestration/stage-06-context.json",
+  "requiredEvidence": [
+    {
+      "path": "parity-analysis/parity-diff.json",
+      "exists": false
+    },
+    {
+      "path": "parity-analysis/preservation-score.json",
+      "exists": false
+    }
+  ]
+}

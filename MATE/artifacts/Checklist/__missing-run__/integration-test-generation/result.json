@@ -1,0 +1,12 @@
+{
+  "skillName": "integration-test-generation",
+  "status": "passed",
+  "startedAt": "2026-04-15T15:52:50.499137Z",
+  "endedAt": "2026-04-15T15:52:50.499319Z",
+  "summary": "integration-test-generation scaffold executed.",
+  "metrics": {},
+  "artifacts": [
+    "MATE/artifacts/Checklist/__missing-run__/integration-test-generation/result.json"
+  ],
+  "resultContractVersion": "1.0"
+}

@@ -1,0 +1,34 @@
+{
+  "skillName": "module-discovery",
+  "stage": "java-discovery",
+  "moduleName": "Login",
+  "runId": "run-login-20260416-095044",
+  "status": "passed",
+  "startedAt": "2026-04-16T01:55:32.070181Z",
+  "endedAt": "2026-04-16T01:55:32.113501Z",
+  "summary": "Discovery completed for Login: assets=31, routes=2, dbTouchpoints=0.",
+  "metrics": {
+    "totalAssets": 31,
+    "javaFiles": 1,
+    "jspFiles": 2,
+    "jsFiles": 0,
+    "configFiles": 6,
+    "urls": 2,
+    "dbTouchpoints": 0,
+    "confidence": 0.92
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/module-discovery/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/module-discovery/discovery-map.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/module-discovery/discovery-evidence.json"
+  ],
+  "findings": [],
+  "recommendations": [],
+  "resultContractVersion": "2.0",
+  "provenanceSummary": {
+    "scenarioSources": [
+      "code-evidence"
+    ],
+    "confidence": 0.92
+  }
+}

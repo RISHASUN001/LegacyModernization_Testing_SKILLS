@@ -45,35 +45,13 @@ public sealed class DashboardController : Controller
 
     [HttpPost("run-input-builder")]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> RunInputBuilder(RunInputDraftDto draft, string submitAction, CancellationToken cancellationToken)
+    public IActionResult RunInputBuilder(RunInputDraftDto draft, string submitAction, CancellationToken cancellationToken)
     {
-        draft.SelectedSkills ??= [];
-        var generated = await _dashboard.GetRunInputBuilderAsync(cancellationToken);
-
         var rebuilt = new RunInputBuilderPageDto
         {
             Draft = draft,
-            AvailableSkills = generated.AvailableSkills,
             GeneratedJson = BuildJsonPreview(draft)
         };
-
-        if (string.Equals(submitAction, "save", StringComparison.OrdinalIgnoreCase))
-        {
-            var savedPath = await _dashboard.SaveRunInputAsync(draft, cancellationToken);
-            rebuilt = new RunInputBuilderPageDto
-            {
-                Draft = rebuilt.Draft,
-                AvailableSkills = rebuilt.AvailableSkills,
-                GeneratedJson = rebuilt.GeneratedJson,
-                SavedPath = savedPath
-            };
-
-            return View("RunInputBuilder", new RunInputBuilderFormModel
-            {
-                Page = rebuilt,
-                Message = $"Run input saved to {savedPath}"
-            });
-        }
 
         return View("RunInputBuilder", new RunInputBuilderFormModel { Page = rebuilt });
     }
@@ -97,6 +75,43 @@ public sealed class DashboardController : Controller
         }
 
         return View("Pipeline", model);
+    }
+
+    [HttpPost("pipeline/{moduleName}/{runId}/playwright-inputs")]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> SavePlaywrightInputs(string moduleName, string runId, [FromForm] string? inputOverridesJson, CancellationToken cancellationToken)
+    {
+        await _metadataSync.SyncAsync(cancellationToken);
+
+        var raw = (inputOverridesJson ?? string.Empty).Trim();
+        if (string.IsNullOrWhiteSpace(raw))
+        {
+            TempData["PipelineMessage"] = "Playwright input overrides cleared (empty payload).";
+            return RedirectToAction("Pipeline", new { moduleName, runId });
+        }
+
+        try
+        {
+            using var _ = System.Text.Json.JsonDocument.Parse(raw);
+        }
+        catch
+        {
+            TempData["PipelineMessage"] = "Invalid JSON. Provide a valid JSON payload for Playwright input overrides.";
+            return RedirectToAction("Pipeline", new { moduleName, runId });
+        }
+
+        var outputPath = Path.GetFullPath(Path.Combine(_paths.ArtifactsRoot, moduleName, runId, "playwright-browser-verification", "user-input-overrides.json"));
+        var rootPath = Path.GetFullPath(_paths.ArtifactsRoot);
+        if (!outputPath.StartsWith(rootPath, StringComparison.Ordinal))
+        {
+            return BadRequest("Invalid output path for Playwright input overrides.");
+        }
+
+        Directory.CreateDirectory(Path.GetDirectoryName(outputPath)!);
+        await System.IO.File.WriteAllTextAsync(outputPath, raw, cancellationToken);
+
+        TempData["PipelineMessage"] = "Playwright input overrides saved. Re-run pipeline (or Playwright stage) to apply them.";
+        return RedirectToAction("Pipeline", new { moduleName, runId });
     }
 
     [HttpGet("findings")]
@@ -156,46 +171,70 @@ public sealed class DashboardController : Controller
         draft ??= new RunInputDraftDto();
         var baseUrl = NormalizeBaseUrlForRunInput((draft.BaseUrl ?? string.Empty).Trim());
         var normalizedBaseUrl = baseUrl.TrimEnd('/');
-        var testApiEndpoint = string.IsNullOrWhiteSpace(normalizedBaseUrl)
-            ? string.Empty
-            : $"{normalizedBaseUrl}/api/test";
 
-        var knownUrls = ResolveKnownUrls(SplitLines(draft.KnownUrlsText), normalizedBaseUrl);
+        var workflowNames = SplitList(draft.WorkflowNamesText);
+        var convertedRoots = SplitList(draft.ConvertedRootsText);
+        var legacyBackendRoots = SplitList(draft.LegacyBackendRootsText);
+        var legacyFrontendRoots = SplitList(draft.LegacyFrontendRootsText);
+
+        if (convertedRoots.Count == 0 && !string.IsNullOrWhiteSpace(draft.ConvertedSourceRoot))
+        {
+            convertedRoots.Add(draft.ConvertedSourceRoot.Trim());
+        }
+
+        if (legacyBackendRoots.Count == 0)
+        {
+            var fallbackBackend = string.IsNullOrWhiteSpace(draft.LegacyBackendRoot)
+                ? draft.LegacySourceRoot
+                : draft.LegacyBackendRoot;
+            if (!string.IsNullOrWhiteSpace(fallbackBackend))
+            {
+                legacyBackendRoots.Add(fallbackBackend.Trim());
+            }
+        }
+
+        if (legacyFrontendRoots.Count == 0 && !string.IsNullOrWhiteSpace(draft.LegacyFrontendRoot))
+        {
+            legacyFrontendRoots.Add(draft.LegacyFrontendRoot.Trim());
+        }
+
+        var startUrl = ResolveTargetUrl((draft.ModuleStartUrl ?? string.Empty).Trim(), normalizedBaseUrl);
+
+        var dotnetTestTarget = string.IsNullOrWhiteSpace(draft.DotnetTestTarget)
+            ? (draft.ConvertedModuleRoot ?? string.Empty).Trim()
+            : draft.DotnetTestTarget.Trim();
 
         var payload = new
         {
             runId = string.IsNullOrWhiteSpace(draft.RunId) ? "run-001" : draft.RunId.Trim(),
             moduleName = (draft.ModuleName ?? string.Empty).Trim(),
-            legacySourceRoot = (draft.LegacySourceRoot ?? string.Empty).Trim(),
-            convertedSourceRoot = (draft.ConvertedSourceRoot ?? string.Empty).Trim(),
+            workflowNames,
+            convertedRoots,
+            legacyBackendRoots,
+            legacyFrontendRoots,
             baseUrl,
-            testApiEndpoint,
-            targetUrl = ResolveTargetUrl((draft.TargetUrl ?? string.Empty).Trim(), normalizedBaseUrl),
+            startUrl,
+            dotnetTestTarget,
             strictModuleOnly = draft.StrictModuleOnly,
-            allowedCrossModules = SplitLines(draft.AllowedCrossModulesText),
-            architecturePolicy = NormalizeArchitecturePolicy((draft.ArchitecturePolicy ?? string.Empty).Trim()),
-            generateModuleClaudeMd = draft.GenerateModuleClaudeMd,
-            brsPath = (draft.BrsPath ?? string.Empty).Trim(),
-            moduleHints = new
-            {
-                relatedFolders = SplitLines(draft.RelatedFoldersText),
-                knownUrls,
-                keywords = SplitLines(draft.KeywordsText),
-                scopeHint = NormalizeScopeHint((draft.ModuleScopeHint ?? string.Empty).Trim())
-            },
-            testCommands = new
-            {
-                unit = (draft.UnitCommand ?? string.Empty).Trim(),
-                integration = (draft.IntegrationCommand ?? string.Empty).Trim(),
-                api = (draft.ApiCommand ?? string.Empty).Trim(),
-                e2e = (draft.E2eCommand ?? string.Empty).Trim(),
-                edgeCase = (draft.EdgeCaseCommand ?? string.Empty).Trim(),
-                playwright = (draft.PlaywrightCommand ?? string.Empty).Trim()
-            },
-            selectedSkills = draft.SelectedSkills ?? []
+            strictAIGeneration = draft.StrictAIGeneration,
+            enableUserInputPrompting = draft.EnableUserInputPrompting,
+            keywords = SplitList(draft.KeywordsText),
+            controllerHints = SplitList(draft.ControllerActionHintsText),
+            viewHints = SplitList(draft.JspFolderHintsText),
+            expectedEndUrls = ResolveKnownUrls(SplitList(draft.ExpectedTerminalUrlsText), normalizedBaseUrl)
         };
 
         return System.Text.Json.JsonSerializer.Serialize(payload, new System.Text.Json.JsonSerializerOptions { WriteIndented = true });
+    }
+
+    private static List<string> SplitList(string? input)
+    {
+        return (input ?? string.Empty)
+            .Split(new[] { "\r\n", "\n", "\r", "," }, StringSplitOptions.RemoveEmptyEntries)
+            .Select(static value => value.Trim())
+            .Where(static value => !string.IsNullOrWhiteSpace(value))
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .ToList();
     }
 
     private static List<string> SplitLines(string? input)
@@ -311,6 +350,7 @@ public sealed class DashboardController : Controller
             ".svg" => "image/svg+xml",
             ".json" => "application/json",
             ".txt" or ".log" => "text/plain",
+            ".ts" => "text/plain",
             _ => "application/octet-stream"
         };
     }

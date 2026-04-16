@@ -4,7 +4,31 @@
 }
 
 <h2 class="mb-1">Run Input Builder</h2>
-<p class="text-muted">Generate `module-run-input.json` for external Continue.dev/Claude skill execution. Test API endpoint is auto-derived from Base URL as <code>{baseUrl}/api/test</code>.</p>
+<p class="text-muted">Generate run-input JSON for the 10-stage modernization pipeline (discovery -> logic -> diagrams -> parity -> test generation -> execution -> findings).</p>
+
+<div class="alert alert-info py-2">
+    <strong>Execution model:</strong> this builder creates JSON only. Skill selection is disabled; pipeline skills are resolved by orchestrator stage contracts.
+    Copy the JSON and invoke from Copilot/Claude when needed.
+</div>
+
+<div class="help-grid mb-3">
+    <div class="help-item">
+        <div class="summary-label">Required</div>
+        <div class="small">moduleName, workflowNames, converted/legacy roots, baseUrl, startUrl, dotnetTestTarget</div>
+    </div>
+    <div class="help-item">
+        <div class="summary-label">Boundary</div>
+        <div class="small">module start URL defines route scope for discovery and tests</div>
+    </div>
+    <div class="help-item">
+        <div class="summary-label">Strict Mode</div>
+        <div class="small">hints assist naming only; code evidence decides inclusion</div>
+    </div>
+    <div class="help-item">
+        <div class="summary-label">Legacy Mapping</div>
+        <div class="small">backend/frontend roots keep Java and JSP mapping bounded</div>
+    </div>
+</div>
 
 @if (!string.IsNullOrWhiteSpace(Model.Message))
 {
@@ -29,14 +53,20 @@
         <div class="col-md-4">
             <label class="form-label">Base URL</label>
             <input class="form-control" name="BaseUrl" id="baseUrlInput" value="@Model.Page.Draft.BaseUrl" placeholder="http://localhost:5001" />
-            <div class="form-text">Used for E2E/Playwright reachability and auto-built Test API endpoint.</div>
+            <div class="form-text">Used for E2E, Playwright, and DevTools route probing against the live local app.</div>
         </div>
-        <div class="col-md-4">
-            <label class="form-label">Derived Test API Endpoint</label>
-            <input class="form-control" id="derivedTestApiEndpoint" value="@($"{(Model.Page.Draft.BaseUrl ?? string.Empty).TrimEnd('/')}/api/test")" readonly />
-            <div class="form-text">Auto-derived from Base URL at preview/save time and shown live here.</div>
+        <div class="col-md-12">
+            <label class="form-label">workflowNames[] (comma/newline separated)</label>
+            <textarea class="form-control" rows="2" name="WorkflowNamesText" placeholder="Login&#10;ForgotPassword">@Model.Page.Draft.WorkflowNamesText</textarea>
         </div>
-
+        <div class="col-md-6">
+            <label class="form-label">convertedRoots[] (comma/newline separated)</label>
+            <textarea class="form-control" rows="2" name="ConvertedRootsText" placeholder="/Users/risha/Documents/Buildathon/src">@Model.Page.Draft.ConvertedRootsText</textarea>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">dotnetTestTarget</label>
+            <input class="form-control" name="DotnetTestTarget" value="@Model.Page.Draft.DotnetTestTarget" placeholder="/Users/risha/Documents/Buildathon/LegacyModernization.slnx" />
+        </div>
         <div class="col-md-6">
             <label class="form-label">Legacy Source Root</label>
             <input class="form-control" name="LegacySourceRoot" value="@Model.Page.Draft.LegacySourceRoot" />
@@ -44,6 +74,46 @@
         <div class="col-md-6">
             <label class="form-label">Converted Source Root</label>
             <input class="form-control" name="ConvertedSourceRoot" value="@Model.Page.Draft.ConvertedSourceRoot" />
+        </div>
+
+        <div class="col-md-6">
+            <label class="form-label">legacyBackendRoots[] (comma/newline separated)</label>
+            <textarea class="form-control" rows="2" name="LegacyBackendRootsText" placeholder="/Users/risha/Documents/Buildathon/samples/legacy-java-app/src">@Model.Page.Draft.LegacyBackendRootsText</textarea>
+            <div class="form-text">Legacy Backend Root fallback still supported below.</div>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">legacyFrontendRoots[] (comma/newline separated)</label>
+            <textarea class="form-control" rows="2" name="LegacyFrontendRootsText" placeholder="/Users/risha/Documents/Buildathon/samples/legacy-java-app/web">@Model.Page.Draft.LegacyFrontendRootsText</textarea>
+            <div class="form-text">Legacy Frontend Root fallback still supported below.</div>
+        </div>
+
+        <div class="col-md-6">
+            <label class="form-label">Legacy Backend Root fallback (optional)</label>
+            <input class="form-control" name="LegacyBackendRoot" value="@Model.Page.Draft.LegacyBackendRoot" placeholder="/src/edcs" />
+            <div class="form-text">If empty, Legacy Source Root is used.</div>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Legacy Frontend Root fallback (optional)</label>
+            <input class="form-control" name="LegacyFrontendRoot" value="@Model.Page.Draft.LegacyFrontendRoot" placeholder="/src/jsp" />
+        </div>
+
+        <div class="col-md-6">
+            <label class="form-label">Converted Module Root (optional)</label>
+            <input class="form-control" name="ConvertedModuleRoot" value="@Model.Page.Draft.ConvertedModuleRoot" placeholder="Path to module folder/project" />
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Entry Controller Name (optional)</label>
+            <input class="form-control" name="EntryControllerName" value="@Model.Page.Draft.EntryControllerName" placeholder="HomeController" />
+        </div>
+
+        <div class="col-md-6">
+            <label class="form-label">Home/Index URL (optional)</label>
+            <input class="form-control" name="HomeUrl" value="@Model.Page.Draft.HomeUrl" placeholder="/home/index" />
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">startUrl (required boundary)</label>
+            <input class="form-control" name="ModuleStartUrl" value="@Model.Page.Draft.ModuleStartUrl" placeholder="/checklist or http://localhost:5001/checklist" required />
+            <div class="form-text">This is the primary route boundary for module workflow discovery and test generation.</div>
         </div>
 
         <div class="col-md-12">
@@ -64,10 +134,38 @@
             <textarea class="form-control" rows="5" name="KeywordsText">@Model.Page.Draft.KeywordsText</textarea>
         </div>
 
+        <div class="col-md-4">
+            <label class="form-label">Menu Path Hints (optional)</label>
+            <textarea class="form-control" rows="4" name="MenuPathHintsText" placeholder="Home > Menu > Checklist">@Model.Page.Draft.MenuPathHintsText</textarea>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Expected Workflow Names (optional)</label>
+            <textarea class="form-control" rows="4" name="ExpectedWorkflowNamesText" placeholder="Perform Checklist\nChecklist History Report">@Model.Page.Draft.ExpectedWorkflowNamesText</textarea>
+            <div class="form-text">If unknown, leave empty. Workflows are inferred automatically.</div>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Controller/Action Hints (optional)</label>
+            <textarea class="form-control" rows="4" name="ControllerActionHintsText" placeholder="Home/Index\nChecklist/Perform">@Model.Page.Draft.ControllerActionHintsText</textarea>
+        </div>
+
+        <div class="col-md-6">
+            <label class="form-label">Java Package Hints (optional)</label>
+            <textarea class="form-control" rows="3" name="JavaPackageHintsText" placeholder="com.company.checklist">@Model.Page.Draft.JavaPackageHintsText</textarea>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">JSP Folder Hints (optional)</label>
+            <textarea class="form-control" rows="3" name="JspFolderHintsText" placeholder="/checklist\n/reports/checklist">@Model.Page.Draft.JspFolderHintsText</textarea>
+        </div>
+
+        <div class="col-md-12">
+            <label class="form-label">Expected Terminal URLs (optional)</label>
+            <textarea class="form-control" rows="2" name="ExpectedTerminalUrlsText" placeholder="/dashboard\n/checklist/history">@Model.Page.Draft.ExpectedTerminalUrlsText</textarea>
+        </div>
+
         <div class="col-md-6">
             <label class="form-label">Target URL (optional)</label>
             <input class="form-control" name="TargetUrl" value="@Model.Page.Draft.TargetUrl" placeholder="/checklist/perform or http://localhost:5276/checklist/perform" />
-            <div class="form-text">Use this when testing one menu path; skills will focus scope around this route.</div>
+            <div class="form-text">Optional override. If Module Start URL is set, it is used as target boundary.</div>
         </div>
         <div class="col-md-6">
             <label class="form-label">Module Scope Hint (optional, up to 20 words)</label>
@@ -125,11 +223,28 @@
             <div class="form-text">Writes module-only CLAUDE guidance under artifacts for this run.</div>
         </div>
 
+        <div class="col-md-6">
+            <input type="hidden" name="StrictAIGeneration" value="false" />
+            <div class="form-check mt-2">
+                <input class="form-check-input" type="checkbox" name="StrictAIGeneration" value="true" @(Model.Page.Draft.StrictAIGeneration ? "checked" : string.Empty) />
+                <label class="form-check-label">Strict AI-first generation</label>
+            </div>
+            <div class="form-text">Disables fallback test/scenario generation; pipeline fails when evidence is insufficient.</div>
+        </div>
+
+        <div class="col-md-6">
+            <input type="hidden" name="EnableUserInputPrompting" value="false" />
+            <div class="form-check mt-2">
+                <input class="form-check-input" type="checkbox" name="EnableUserInputPrompting" value="true" @(Model.Page.Draft.EnableUserInputPrompting ? "checked" : string.Empty) />
+                <label class="form-check-label">Enable user input prompting</label>
+            </div>
+            <div class="form-text">When enabled, browser/test stages can request missing form input data before execution.</div>
+        </div>
+
         <div class="col-md-12">
             <h3 class="h6 mt-2">Optional Category Commands (for strict preflight command resolution)</h3>
             <div class="alert alert-info py-2 mt-2 mb-0 small">
                 <div><strong>What this is for:</strong> each execution category can run a real command. If blank, skills try auto-detection; if set, preflight is more reliable.</div>
-                <div class="mt-1"><strong>Swagger note:</strong> Swagger/OpenAPI is useful for API docs and manual testing, but this field expects an executable command (for example <code>python3 -m pytest -m api</code> or <code>dotnet test ...</code>).</div>
                 <div class="mt-1">These defaults are starter values; change them to match your repo paths and tooling.</div>
             </div>
         </div>
@@ -143,11 +258,7 @@
             <input class="form-control" name="IntegrationCommand" value="@Model.Page.Draft.IntegrationCommand" />
             <div class="form-text">Runs service + database/infrastructure integration tests.</div>
         </div>
-        <div class="col-md-4">
-            <label class="form-label">API Command</label>
-            <input class="form-control" name="ApiCommand" value="@Model.Page.Draft.ApiCommand" placeholder="python3 -m pytest -m api" />
-            <div class="form-text">Runs API contract tests via executable tool (for example pytest or Newman).</div>
-        </div>
+        <input type="hidden" name="ApiCommand" value="@Model.Page.Draft.ApiCommand" />
         <div class="col-md-4">
             <label class="form-label">E2E Command</label>
             <input class="form-control" name="E2eCommand" value="@Model.Page.Draft.E2eCommand" placeholder="python3 -m pytest -m e2e" />
@@ -164,25 +275,10 @@
             <div class="form-text">Runs browser automation suite used for UI evidence capture.</div>
         </div>
 
-        <div class="col-12">
-            <label class="form-label">Skills to Run</label>
-            <div class="row row-cols-1 row-cols-md-3 g-2">
-                @foreach (var skill in Model.Page.AvailableSkills)
-                {
-                    <div class="col">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="SelectedSkills" value="@skill" @((Model.Page.Draft.SelectedSkills ?? []).Contains(skill) ? "checked" : string.Empty) />
-                            <label class="form-check-label">@skill</label>
-                        </div>
-                    </div>
-                }
-            </div>
-        </div>
     </div>
 
     <div class="mt-3 d-flex flex-wrap gap-2">
         <button class="btn btn-primary" type="submit" name="submitAction" value="preview">Refresh Preview</button>
-        <button class="btn btn-outline-success" type="submit" name="submitAction" value="save">Save JSON</button>
         <button class="btn btn-outline-secondary" type="button" id="copyJsonBtn">Copy JSON</button>
         <button class="btn btn-outline-secondary" type="button" id="downloadJsonBtn">Export JSON</button>
     </div>
@@ -199,8 +295,6 @@
     const preview = document.getElementById('jsonPreview');
     const copy = document.getElementById('copyJsonBtn');
     const download = document.getElementById('downloadJsonBtn');
-    const baseUrlInput = document.getElementById('baseUrlInput');
-    const derivedEndpoint = document.getElementById('derivedTestApiEndpoint');
     const runIdInput = document.getElementById('runIdInput');
     const moduleNameInput = document.getElementById('moduleNameInput');
     const regenRunIdBtn = document.getElementById('regenRunIdBtn');
@@ -233,19 +327,8 @@
         runIdInput.value = makeUniqueRunId();
     };
 
-    const updateDerivedEndpoint = () => {
-        if (!derivedEndpoint) {
-            return;
-        }
-        const base = (baseUrlInput?.value || '').trim().replace(/\/+$/, '');
-        derivedEndpoint.value = base ? `${base}/api/test` : '';
-    };
-
-    baseUrlInput?.addEventListener('input', updateDerivedEndpoint);
-    baseUrlInput?.addEventListener('change', updateDerivedEndpoint);
     regenRunIdBtn?.addEventListener('click', () => ensureRunId(true));
     moduleNameInput?.addEventListener('change', () => ensureRunId(true));
-    updateDerivedEndpoint();
     ensureRunId();
 
     copy?.addEventListener('click', async () => {

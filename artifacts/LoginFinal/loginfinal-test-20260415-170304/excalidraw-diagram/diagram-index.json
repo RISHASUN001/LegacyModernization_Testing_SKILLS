@@ -1,0 +1,42 @@
+{
+  "moduleName": "LoginFinal",
+  "generatedAt": "2026-04-15T09:03:12.449361Z",
+  "items": [
+    {
+      "workflow": "Module - Unified Auth Flow",
+      "workflowId": "unified",
+      "entryPoint": "/Auth/login / /Auth/dashboard",
+      "group": "csharp",
+      "mermaid": "csharp-workflow-unified.mmd",
+      "excalidraw": "csharp-workflow-unified.excalidraw.json",
+      "preview": "previews/csharp-workflow-unified.png",
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "csharp",
+          "consolidated"
+        ],
+        "confidence": 0.75,
+        "unknowns": []
+      }
+    },
+    {
+      "workflow": "Module - Unified Auth Flow",
+      "workflowId": "unified",
+      "entryPoint": "/Auth/login / /Auth/dashboard",
+      "group": "java",
+      "mermaid": "java-workflow-unified.mmd",
+      "excalidraw": "java-workflow-unified.excalidraw.json",
+      "preview": "previews/java-workflow-unified.png",
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "java",
+          "consolidated"
+        ],
+        "confidence": 0.75,
+        "unknowns": []
+      }
+    }
+  ]
+}

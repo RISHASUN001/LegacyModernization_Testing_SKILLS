@@ -1,0 +1,81 @@
+{
+  "items": [
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Infrastructure/Services/DashboardQueryService.cs",
+      "queries": [
+        "SELECT\n    m.name,\n    COUNT(r.id) AS total_runs,\n    COALESCE((SELECT r2.run_id FROM runs r2 WHERE r2.module_id = m.id ORDER BY r2.run_id DESC LIMIT 1), '') AS last_run_id,\n    COALESCE((SELECT r2.status FROM runs r2 WHERE r2.module_id = m.id ORDER BY r2.run_id DESC LIMIT 1), 'unknown') AS last_status,\n    COALESCE((SELECT r2.ended_at FROM runs r2 WHERE r2.module_id = m.id ORDER BY r2.run_id DESC LIMIT 1), '') AS last_updated_at\nFROM modules m\nLEFT JOIN runs r ON r.module_id = m.id\nGROUP BY m.id\nORDER BY m.name;",
+        "SELECT m.name AS module_name, r.run_id, r.status, r.started_at, r.ended_at, r.summary\n    FROM runs r\n    INNER JOIN modules m ON m.id = r.module_id\nORDER BY r.started_at DESC\nLIMIT 20;",
+        "SELECT\n    COUNT(*) AS total_runs,\n    SUM(CASE WHEN LOWER(status)='passed' THEN 1 ELSE 0 END) AS passed_runs,\n    SUM(CASE WHEN LOWER(status)='failed' THEN 1 ELSE 0 END) AS failed_runs\nFROM runs;",
+        "SELECT name, stage, category, purpose, script_entry, summary_output_type, result_contract_version,\nrequired_inputs_json, optional_inputs_json, output_files_json, artifact_folders_json, dependencies_json, skill_markdown\nFROM skills\nORDER BY CASE stage\n    WHEN 'csharp-discovery' THEN 1\n    WHEN 'csharp-logic' THEN 2\n    WHEN 'java-discovery' THEN 3\n    WHEN 'java-logic' THEN 4\n    WHEN 'functional-parity' THEN 5\n    WHEN 'test-plan' THEN 6\n    WHEN 'execution' THEN 7\n    WHEN 'findings' THEN 8\n    WHEN 'iteration-comparison' THEN 9\n    ELSE 99\nEND, name;",
+        "SELECT m.name AS module_name, r.run_id, r.status, r.started_at, r.ended_at, r.summary\nFROM runs r\nINNER JOIN modules m ON m.id = r.module_id\nORDER BY r.started_at DESC;",
+        "SELECT m.name AS module_name, r.run_id, r.status, r.started_at, r.ended_at, r.summary\nFROM runs r\nINNER JOIN modules m ON m.id = r.module_id\nWHERE m.name=@ModuleName\nORDER BY r.started_at DESC;",
+        "SELECT stage,\n       COUNT(1) AS skill_count,\n       SUM(CASE WHEN LOWER(status)='failed' THEN 1 ELSE 0 END) AS failed_skills\nFROM skill_executions\nWHERE run_fk=@RunFk\nGROUP BY stage;",
+        "SELECT m.name AS module_name, r.run_id, f.stage, f.skill_name, f.scenario, f.issue_type, f.message,\n       f.likely_cause, f.evidence, f.severity, f.status, f.confidence, f.resolved_in_run_id,\n       f.resolution_notes, f.affected_files_json\nFROM finding_records f\nINNER JOIN runs r ON r.id = f.run_fk\nINNER JOIN modules m ON m.id = r.module_id\n{whereSql}\nORDER BY r.run_id DESC, f.id DESC;",
+        "SELECT m.name AS module_name, r.run_id, rec.stage, rec.skill_name, rec.message, rec.priority, rec.evidence\nFROM recommendation_records rec\nINNER JOIN runs r ON r.id = rec.run_fk\nINNER JOIN modules m ON m.id = r.module_id\n{whereSql}\nORDER BY r.run_id DESC, rec.id DESC;",
+        "SELECT d.run_id, d.previous_run_id, d.tests_added, d.tests_fixed, d.failures_reduced,\n       d.new_findings_introduced, d.resolved_findings, d.progression_trend\nFROM iteration_deltas d\nINNER JOIN modules m ON m.id = d.module_id\nWHERE m.name=@ModuleName\nORDER BY d.run_id;",
+        "SELECT category, purpose, scenarios_json, total, passed, failed, warnings, new_tests_added,\n       logs_json, artifacts_json, source_skill, stage\nFROM test_category_results\nWHERE run_fk=@RunFk\n    AND LOWER(COALESCE(category, '')) <> 'api'\nORDER BY CASE category\n    WHEN 'Unit' THEN 1\n    WHEN 'Integration' THEN 2\n    WHEN 'E2E' THEN 3\n        WHEN 'Edge Case' THEN 4\n        WHEN 'Playwright / E2E Browser' THEN 5\n        WHEN 'Playwright / Browser Verification' THEN 5\n        WHEN 'DevTools Diagnostics' THEN 6\n    ELSE 99\nEND;",
+        "SELECT status, summary, metrics_json, artifacts_json\nFROM skill_executions\nWHERE run_fk=@RunFk AND skill_name='playwright-browser-verification'\nLIMIT 1;",
+        "SELECT stage, skill_name, scenario, issue_type, message, likely_cause, evidence, severity, status,\n       confidence, resolved_in_run_id, resolution_notes, affected_files_json\nFROM finding_records\nWHERE run_fk=@RunFk\nORDER BY id DESC;",
+        "SELECT stage, skill_name, message, priority, evidence\nFROM recommendation_records\nWHERE run_fk=@RunFk\nORDER BY id DESC;",
+        "SELECT d.previous_run_id, d.tests_added, d.tests_fixed, d.failures_reduced,\n       d.new_findings_introduced, d.resolved_findings, d.progression_trend\nFROM iteration_deltas d\nINNER JOIN modules m ON m.id = d.module_id\nWHERE m.name=@ModuleName AND d.run_id=@RunId\nLIMIT 1;",
+        "SELECT r.id, r.artifact_root, r.status, r.summary, r.started_at, r.ended_at\nFROM runs r\nINNER JOIN modules m ON m.id = r.module_id\nWHERE m.name=@ModuleName AND r.run_id=@RunId\nORDER BY r.id DESC\nLIMIT 1;",
+        "SELECT id, base_url, start_timestamp, end_timestamp, total_scenarios, \n       passed_scenarios, failed_scenarios, viewport_sizes\nFROM browser_devtools_sessions\nWHERE run_fk = @RunFk;",
+        "SELECT level, message, source_file, source_line, timestamp, stack_trace\nFROM browser_console_logs\nWHERE session_fk = @SessionFk\nORDER BY timestamp;",
+        "SELECT method, url, status_code, request_payload, response_payload, \n       response_time_ms, content_type, timestamp\nFROM browser_network_requests\nWHERE session_fk = @SessionFk\nORDER BY timestamp;",
+        "SELECT metric_name, metric_value, target_threshold, meets_threshold, timestamp\nFROM browser_performance_metrics\nWHERE session_fk = @SessionFk\nORDER BY timestamp;",
+        "SELECT issue_type, severity, element_selector, issue_description, recommendation, timestamp\nFROM browser_accessibility_issues\nWHERE session_fk = @SessionFk\nORDER BY timestamp;",
+        "SELECT filename, artifact_path, viewport_width, viewport_height, scenario_context, captured_at\nFROM browser_screenshots\nWHERE session_fk = @SessionFk\nORDER BY captured_at;",
+        "SELECT filename, artifact_path, scenario_context, element_count, captured_at\nFROM browser_dom_snapshots\nWHERE session_fk = @SessionFk\nORDER BY captured_at;",
+        "SELECT name FROM skills WHERE name NOT IN ('legacy-modernization-orchestrator', 'api-test-execution') ORDER BY name;"
+      ],
+      "tables": [
+        "runs",
+        "modules",
+        "skills",
+        "skill_executions",
+        "finding_records",
+        "recommendation_records",
+        "iteration_deltas",
+        "test_category_results",
+        "browser_devtools_sessions",
+        "browser_console_logs",
+        "browser_network_requests",
+        "browser_performance_metrics",
+        "browser_accessibility_issues",
+        "browser_screenshots",
+        "browser_dom_snapshots"
+      ]
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Infrastructure/Services/MetadataSyncService.cs",
+      "queries": [
+        "INSERT INTO skills\n(name, stage, category, script_entry, required_inputs_json, optional_inputs_json, output_files_json, artifact_folders_json, dependencies_json, summary_output_type, result_contract_version, purpose, skill_markdown)\nVALUES\n(@Name, @Stage, @Category, @ScriptEntry, @RequiredInputsJson, @OptionalInputsJson, @OutputFilesJson, @ArtifactFoldersJson, @DependenciesJson, @SummaryOutputType, @ResultContractVersion, @Purpose, @SkillMarkdown);",
+        "INSERT OR IGNORE INTO modules(name, legacy_source_root, converted_source_root, created_at)\nVALUES(@Name, @LegacySourceRoot, @ConvertedSourceRoot, @CreatedAt);",
+        "INSERT INTO runs(module_id, run_id, status, started_at, ended_at, summary, base_url, brs_path, artifact_root, created_at)\nVALUES(@ModuleId, @RunId, @Status, @StartedAt, @EndedAt, @Summary, @BaseUrl, @BrsPath, @ArtifactRoot, @CreatedAt);",
+        "INSERT INTO skill_executions\n(run_fk, skill_name, stage, status, started_at, ended_at, summary, metrics_json, artifacts_json, findings_json, recommendations_json, result_contract_version, result_json)\nVALUES\n(@RunFk, @SkillName, @Stage, @Status, @StartedAt, @EndedAt, @Summary, @MetricsJson, @ArtifactsJson, @FindingsJson, @RecommendationsJson, @ResultContractVersion, @ResultJson);",
+        "INSERT INTO finding_records\n(run_fk, stage, skill_name, scenario, issue_type, message, likely_cause, evidence, severity, status, confidence, affected_files_json, recommendation, resolved_in_run_id, resolution_notes)\nVALUES\n(@RunFk, @Stage, @SkillName, @Scenario, @IssueType, @Message, @LikelyCause, @Evidence, @Severity, @Status, @Confidence, @AffectedFilesJson, @Recommendation, @ResolvedInRunId, @ResolutionNotes);",
+        "INSERT INTO recommendation_records\n(run_fk, stage, skill_name, message, priority, evidence)\nVALUES\n(@RunFk, @Stage, @SkillName, @Message, @Priority, @Evidence);",
+        "INSERT INTO test_category_results\n(run_fk, category, purpose, scenarios_json, total, passed, failed, warnings, new_tests_added, logs_json, artifacts_json, source_skill, stage)\nVALUES\n(@RunFk, @Category, @Purpose, @ScenariosJson, @Total, @Passed, @Failed, @Warnings, @NewTestsAdded, @LogsJson, @ArtifactsJson, @SourceSkill, @Stage);",
+        "INSERT INTO iteration_deltas\n(module_id, run_id, previous_run_id, tests_added, tests_fixed, failures_reduced, new_findings_introduced, resolved_findings, progression_trend, delta_json)\nVALUES\n(@ModuleId, @RunId, @PreviousRunId, @TestsAdded, @TestsFixed, @FailuresReduced, @NewFindingsIntroduced, @ResolvedFindings, @ProgressionTrend, @DeltaJson);",
+        "SELECT id FROM modules WHERE name=@Name LIMIT 1;",
+        "SELECT id FROM runs WHERE module_id=@ModuleId AND run_id=@RunId LIMIT 1;",
+        "SELECT id, name FROM modules ORDER BY name;",
+        "SELECT id, run_id FROM runs WHERE module_id=@ModuleId ORDER BY run_id;",
+        "SELECT COALESCE(SUM(new_tests_added),0) FROM test_category_results WHERE run_fk=@RunFk;",
+        "SELECT COALESCE(SUM(failed),0) FROM test_category_results WHERE run_fk=@RunFk;",
+        "SELECT COUNT(1) FROM finding_records WHERE run_fk=@RunFk AND LOWER(status)='resolved';",
+        "SELECT DISTINCT issue_type FROM finding_records WHERE run_fk=@RunFk;"
+      ],
+      "tables": [
+        "skills",
+        "modules",
+        "runs",
+        "skill_executions",
+        "finding_records",
+        "recommendation_records",
+        "test_category_results",
+        "iteration_deltas"
+      ]
+    }
+  ]
+}

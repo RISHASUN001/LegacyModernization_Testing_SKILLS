@@ -1,0 +1,48 @@
+{
+  "moduleName": "Login",
+  "workflowNames": [
+    "Login"
+  ],
+  "convertedRoots": [
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app"
+  ],
+  "controllers": [
+    "AuthController.cs"
+  ],
+  "views": [
+    "Dashboard.cshtml",
+    "Index.cshtml"
+  ],
+  "services": [
+    "LoginService.cs"
+  ],
+  "repositories": [],
+  "includedFiles": [
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Controllers/AuthController.cs",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Program.cs",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Services/LoginService.cs",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Views/Auth/Dashboard.cshtml",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Views/Auth/Index.cshtml"
+  ],
+  "workflows": [
+    {
+      "workflowName": "Login",
+      "entryRoutes": [
+        "Index",
+        "index",
+        "login"
+      ],
+      "relatedFiles": [
+        "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Controllers/AuthController.cs"
+      ],
+      "controllers": [
+        "AuthController.cs"
+      ],
+      "views": [
+        "Dashboard.cshtml",
+        "Index.cshtml"
+      ]
+    }
+  ],
+  "strictModuleOnly": true
+}

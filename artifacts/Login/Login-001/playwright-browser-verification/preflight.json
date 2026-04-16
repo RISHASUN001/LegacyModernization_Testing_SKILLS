@@ -1,0 +1,44 @@
+{
+  "category": "Playwright / E2E Browser",
+  "baseUrl": {
+    "required": true,
+    "provided": "http://localhost:5001",
+    "normalized": "http://localhost:5001",
+    "ok": true,
+    "reason": ""
+  },
+  "reachability": {
+    "required": true,
+    "ok": true,
+    "statusCode": 200,
+    "reason": "reachable",
+    "path": "/",
+    "url": "http://localhost:5001/"
+  },
+  "commands": {
+    "candidates": [
+      "python3 -m pytest -q /Users/risha/Documents/Buildathon/artifacts/Login/Login-001/playwright-browser-verification/generated-tests/playwright-e2e-browser-generated-tests.py -m playwright",
+      "python3 -m pytest -q /Users/risha/Documents/Buildathon/artifacts/Login/Login-001/playwright-browser-verification/generated-tests/playwright-e2e-browser-generated-tests.py",
+      "pytest -q /Users/risha/Documents/Buildathon/artifacts/Login/Login-001/playwright-browser-verification/generated-tests/playwright-e2e-browser-generated-tests.py -m playwright",
+      "pytest -q /Users/risha/Documents/Buildathon/artifacts/Login/Login-001/playwright-browser-verification/generated-tests/playwright-e2e-browser-generated-tests.py",
+      "python3 -m pytest -m playwright",
+      "python3 -m pytest",
+      "pytest -m playwright",
+      "pytest"
+    ],
+    "available": [
+      "python3 -m pytest -q /Users/risha/Documents/Buildathon/artifacts/Login/Login-001/playwright-browser-verification/generated-tests/playwright-e2e-browser-generated-tests.py -m playwright",
+      "python3 -m pytest -q /Users/risha/Documents/Buildathon/artifacts/Login/Login-001/playwright-browser-verification/generated-tests/playwright-e2e-browser-generated-tests.py",
+      "pytest -q /Users/risha/Documents/Buildathon/artifacts/Login/Login-001/playwright-browser-verification/generated-tests/playwright-e2e-browser-generated-tests.py -m playwright",
+      "pytest -q /Users/risha/Documents/Buildathon/artifacts/Login/Login-001/playwright-browser-verification/generated-tests/playwright-e2e-browser-generated-tests.py",
+      "python3 -m pytest -m playwright",
+      "python3 -m pytest",
+      "pytest -m playwright",
+      "pytest"
+    ],
+    "unavailable": [],
+    "selected": "python3 -m pytest -q /Users/risha/Documents/Buildathon/artifacts/Login/Login-001/playwright-browser-verification/generated-tests/playwright-e2e-browser-generated-tests.py -m playwright",
+    "ok": true
+  },
+  "strictMode": true
+}

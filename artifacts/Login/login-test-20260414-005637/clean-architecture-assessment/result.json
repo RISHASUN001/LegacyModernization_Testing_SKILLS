@@ -1,11 +1,11 @@
 {
   "skillName": "clean-architecture-assessment",
-  "stage": "architecture-review",
+  "stage": "csharp-logic",
   "moduleName": "Login",
   "runId": "login-test-20260414-005637",
   "status": "passed",
-  "startedAt": "2026-04-14T02:40:45.772844Z",
-  "endedAt": "2026-04-14T02:40:45.807499Z",
+  "startedAt": "2026-04-14T16:31:45.556293Z",
+  "endedAt": "2026-04-14T16:31:45.579663Z",
   "summary": "Architecture assessment for Login found 2 issue(s).",
   "metrics": {
     "violations": 2,

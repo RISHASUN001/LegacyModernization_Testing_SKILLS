@@ -1,0 +1,40 @@
+{
+  "stage": "csharp-logic-understanding",
+  "stageIndex": 2,
+  "stageTitle": "2. C# Logic Understanding",
+  "stageObjective": "Use AI to explain workflow branches, validations, and DB touchpoints in the converted C# module.",
+  "status": "passed",
+  "skills": [
+    {
+      "skill": "csharp-logic-understanding",
+      "stage": "csharp-logic-understanding",
+      "returnCode": 0,
+      "stdout": "MATE/artifacts/Checklist/run-local-005/csharp-logic-understanding/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": true,
+      "resultPath": "MATE/artifacts/Checklist/run-local-005/csharp-logic-understanding/result.json",
+      "summary": "Built C# logic understanding for 2 workflows.",
+      "artifacts": [
+        "MATE/artifacts/Checklist/run-local-005/csharp-logic-understanding/csharp-logic-summary.json"
+      ],
+      "metrics": {
+        "workflowCount": 2,
+        "routesAnalyzed": 4,
+        "sqlFilesAnalyzed": 2,
+        "tablesFound": 15
+      },
+      "findings": []
+    }
+  ],
+  "skillCount": 1,
+  "skillsFailed": 0,
+  "reusedSkills": 1,
+  "contextFile": "MATE/artifacts/Checklist/run-local-005/orchestration/stage-02-context.json",
+  "requiredEvidence": [
+    {
+      "path": "csharp-logic-understanding/csharp-logic-summary.json",
+      "exists": true
+    }
+  ]
+}

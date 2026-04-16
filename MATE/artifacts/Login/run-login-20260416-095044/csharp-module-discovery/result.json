@@ -1,0 +1,25 @@
+{
+  "skillName": "csharp-module-discovery",
+  "status": "passed",
+  "summary": "Scoped 5 C# files for module 'Login' and mapped routes, SQL, and tables.",
+  "metrics": {
+    "candidateFiles": 9,
+    "includedFiles": 5,
+    "controllers": 1,
+    "views": 2,
+    "services": 1,
+    "repositories": 0,
+    "routeFiles": 1,
+    "sqlFiles": 0,
+    "tables": 0,
+    "workflowCount": 1
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/csharp-module-discovery/csharp-module-map.json",
+    "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/csharp-module-discovery/controller-route-map.json",
+    "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/csharp-module-discovery/csharp-sql-map.json",
+    "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/csharp-module-discovery/csharp-table-usage.json",
+    "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/csharp-module-discovery/scoped-file-relevance.json"
+  ],
+  "findings": []
+}

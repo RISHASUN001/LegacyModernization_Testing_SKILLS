@@ -1,0 +1,34 @@
+{
+  "items": [
+    {
+      "file": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Controllers/AuthController.cs",
+      "controller": "AuthController",
+      "actions": [
+        {
+          "controller": "AuthController",
+          "action": "Index",
+          "verb": "GET",
+          "route": ""
+        },
+        {
+          "controller": "AuthController",
+          "action": "LoginPost",
+          "verb": "GET",
+          "route": "index"
+        },
+        {
+          "controller": "AuthController",
+          "action": "Dashboard",
+          "verb": "GET",
+          "route": "login"
+        },
+        {
+          "controller": "AuthController",
+          "action": "Logout",
+          "verb": "POST",
+          "route": "login"
+        }
+      ]
+    }
+  ]
+}

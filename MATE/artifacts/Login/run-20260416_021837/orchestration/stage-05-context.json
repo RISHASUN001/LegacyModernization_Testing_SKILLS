@@ -1,0 +1,47 @@
+{
+  "runId": "run-20260416_021837",
+  "moduleName": "Login",
+  "stage": "diagram-generation",
+  "stageIndex": 5,
+  "title": "5. Diagram Generation",
+  "objective": "Generate Mermaid + Excalidraw + preview image artifacts for C# and Java workflows.",
+  "disclosure": {
+    "now": {
+      "inputType": "csharp and java logic summaries",
+      "outputType": "diagram index + diagrams + previews",
+      "skills": [
+        "diagram-generation"
+      ]
+    },
+    "next": {
+      "stage": "functional-parity-and-sql-table-comparison",
+      "title": "6. Functional Parity + SQL/Table",
+      "expectedInputType": "csharp + java logic and sql/table artifacts"
+    }
+  },
+  "contracts": [
+    {
+      "skill": "diagram-generation",
+      "inputs": [
+        "moduleName",
+        "runId",
+        "workflowNames",
+        "strictAIGeneration"
+      ],
+      "outputs": [
+        "diagram-index.json",
+        "csharp-workflow.mmd",
+        "legacy-workflow.mmd",
+        "csharp-workflow.excalidraw.json",
+        "legacy-workflow.excalidraw.json",
+        "previews/csharp-workflow.png",
+        "previews/legacy-workflow.png",
+        "result.json"
+      ],
+      "dependencies": [
+        "csharp-logic-understanding",
+        "legacy-logic-understanding"
+      ]
+    }
+  ]
+}

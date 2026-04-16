@@ -1,0 +1,17 @@
+{
+  "skillName": "diagram-generation",
+  "status": "failed",
+  "startedAt": "2026-04-16T02:13:00.767948Z",
+  "endedAt": "2026-04-16T02:13:00.767955Z",
+  "summary": "strictAIGeneration=true and provider mode is copilot, but MATE_COPILOT_CLAUDE_COMMAND is not configured.",
+  "metrics": {},
+  "artifacts": [],
+  "findings": [
+    {
+      "type": "StrictAIUnavailable",
+      "message": "strictAIGeneration=true and provider mode is copilot, but MATE_COPILOT_CLAUDE_COMMAND is not configured."
+    }
+  ],
+  "recommendations": [],
+  "resultContractVersion": "1.0"
+}

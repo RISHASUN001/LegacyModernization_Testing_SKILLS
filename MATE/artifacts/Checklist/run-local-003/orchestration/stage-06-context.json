@@ -1,0 +1,47 @@
+{
+  "runId": "run-local-003",
+  "moduleName": "Checklist",
+  "stage": "functional-parity-and-sql-table-comparison",
+  "stageIndex": 6,
+  "title": "6. Functional Parity + SQL/Table",
+  "objective": "Compare logic and data usage between legacy and converted modules and flag behavior drift.",
+  "disclosure": {
+    "now": {
+      "inputType": "csharp + java logic and sql/table artifacts",
+      "outputType": "parity diff + sql/table comparison",
+      "skills": [
+        "parity-analysis",
+        "sql-table-comparison"
+      ]
+    },
+    "next": {
+      "stage": "ai-test-generation",
+      "title": "7. AI Test Generation",
+      "expectedInputType": "discovery + logic + parity context"
+    }
+  },
+  "contracts": [
+    {
+      "skill": "parity-analysis",
+      "inputs": [
+        "moduleName",
+        "runId"
+      ],
+      "outputs": [
+        "result.json"
+      ],
+      "dependencies": []
+    },
+    {
+      "skill": "sql-table-comparison",
+      "inputs": [
+        "moduleName",
+        "runId"
+      ],
+      "outputs": [
+        "result.json"
+      ],
+      "dependencies": []
+    }
+  ]
+}

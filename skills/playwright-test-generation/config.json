@@ -1,0 +1,26 @@
+{
+  "name": "playwright-test-generation",
+  "stage": "ai-test-generation",
+  "schemaVersion": "2.2",
+  "aiDriven": true,
+  "inputs": [
+    "moduleName",
+    "runId",
+    "workflowNames",
+    "baseUrl",
+    "startUrl",
+    "enableUserInputPrompting",
+    "strictAIGeneration"
+  ],
+  "outputs": [
+    "playwright-tests.generated.json",
+    "playwright-input-requirements.json",
+    "result.json"
+  ],
+  "dependencies": [
+    "csharp-logic-understanding",
+    "legacy-logic-understanding",
+    "parity-analysis",
+    "diagram-generation"
+  ]
+}

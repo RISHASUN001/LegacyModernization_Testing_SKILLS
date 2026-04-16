@@ -1,0 +1,12 @@
+{
+  "messages": [
+    {
+      "level": "info",
+      "text": "App bootstrapped"
+    },
+    {
+      "level": "warning",
+      "text": "Deprecated API call observed"
+    }
+  ]
+}

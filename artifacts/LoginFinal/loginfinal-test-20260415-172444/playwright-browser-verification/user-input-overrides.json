@@ -1,0 +1,24 @@
+{
+  "scenarios": [
+    {
+      "nameContains": "invalid login",
+      "route": "/login",
+      "fields": [
+        { "selector": "input[name='username']", "value": "bad.user" },
+        { "selector": "input[name='password']", "value": "wrong-pass" }
+      ],
+      "submitSelector": "button[type='submit']",
+      "expectText": "invalid"
+    },
+    {
+      "nameContains": "valid login",
+      "route": "/login",
+      "fields": [
+        { "selector": "input[name='username']", "value": "valid.user" },
+        { "selector": "input[name='password']", "value": "valid-pass" }
+      ],
+      "submitSelector": "button[type='submit']",
+      "expectUrlContains": "/dashboard"
+    }
+  ]
+}

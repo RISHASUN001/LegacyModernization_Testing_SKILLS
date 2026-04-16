@@ -1,0 +1,29 @@
+{
+  "skillName": "java-logic-understanding",
+  "stage": "java-logic",
+  "moduleName": "Login",
+  "runId": "Login-001",
+  "status": "degraded",
+  "startedAt": "2026-04-16T01:03:33.732605Z",
+  "endedAt": "2026-04-16T01:03:33.792050Z",
+  "summary": "Java logic understanding produced 0 workflow summaries.",
+  "metrics": {
+    "workflowCount": 0,
+    "sqlSignatureCount": 0,
+    "importLinkedFiles": 0
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/Login/Login-001/java-logic-understanding/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/Login-001/java-logic-understanding/java-logic-summary.json"
+  ],
+  "findings": [],
+  "recommendations": [],
+  "resultContractVersion": "2.0",
+  "provenanceSummary": {
+    "scenarioSources": [
+      "flow-derived",
+      "code-evidence"
+    ],
+    "confidence": 0.41
+  }
+}

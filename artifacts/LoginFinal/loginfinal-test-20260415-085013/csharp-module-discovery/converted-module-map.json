@@ -1,0 +1,62 @@
+{
+  "moduleName": "LoginFinal",
+  "convertedSourceRoot": "/Users/risha/Documents/Buildathon/samples/legacy-java-app",
+  "convertedModuleRoot": "/Users/risha/Documents/Buildathon/samples/legacy-java-app",
+  "entryControllerName": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Controllers/AuthController.cs",
+  "startUrl": "http://localhost:5001",
+  "menuPathHints": [
+    "Login=>Dashboard"
+  ],
+  "expectedWorkflowNames": [
+    "Successful Login",
+    "Invalid Login"
+  ],
+  "files": {
+    "csharp": [
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Program.cs",
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Controllers/AuthController.cs",
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Views/Auth/Dashboard.cshtml",
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Views/Auth/Index.cshtml",
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Services/LoginService.cs",
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Controllers/AuthController.cs"
+    ],
+    "controllers": [
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Controllers/AuthController.cs",
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Controllers/AuthController.cs"
+    ],
+    "services": [
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Services/LoginService.cs"
+    ],
+    "repositories": [],
+    "dtosModels": [],
+    "views": [
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Views/Auth/Dashboard.cshtml",
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Views/Auth/Index.cshtml"
+    ]
+  },
+  "namespaceEvidence": {
+    "namespaces": [
+      "LegacyModernization.Converted.Controllers",
+      "LegacyModernization.Converted.Services"
+    ],
+    "usingReferences": [
+      "LegacyModernization.Converted.Services",
+      "Microsoft.AspNetCore.Mvc",
+      "System",
+      "System.Collections.Generic"
+    ]
+  },
+  "provenance": {
+    "type": "code-evidence",
+    "sources": [
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Program.cs",
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Controllers/AuthController.cs",
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Views/Auth/Dashboard.cshtml",
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Views/Auth/Index.cshtml",
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Services/LoginService.cs",
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Controllers/AuthController.cs"
+    ],
+    "confidence": 0.81,
+    "unknowns": []
+  }
+}

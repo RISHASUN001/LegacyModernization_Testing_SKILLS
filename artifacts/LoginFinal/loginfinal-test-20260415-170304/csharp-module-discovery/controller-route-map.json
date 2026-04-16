@@ -1,0 +1,44 @@
+{
+  "moduleName": "LoginFinal",
+  "startRoute": "/",
+  "controllers": [
+    {
+      "controller": "AuthController",
+      "file": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Controllers/AuthController.cs",
+      "routes": [
+        "/Auth",
+        "/Auth/dashboard",
+        "/Auth/index",
+        "/Auth/login",
+        "/Auth/logout"
+      ],
+      "provenance": {
+        "type": "code-evidence",
+        "sources": [
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Controllers/AuthController.cs"
+        ],
+        "confidence": 0.9,
+        "unknowns": []
+      }
+    },
+    {
+      "controller": "AuthController",
+      "file": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Controllers/AuthController.cs",
+      "routes": [
+        "/Auth",
+        "/Auth/dashboard",
+        "/Auth/index",
+        "/Auth/login",
+        "/Auth/logout"
+      ],
+      "provenance": {
+        "type": "code-evidence",
+        "sources": [
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Controllers/AuthController.cs"
+        ],
+        "confidence": 0.9,
+        "unknowns": []
+      }
+    }
+  ]
+}

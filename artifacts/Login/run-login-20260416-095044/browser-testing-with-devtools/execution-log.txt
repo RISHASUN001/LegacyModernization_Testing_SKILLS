@@ -1,0 +1,7 @@
+module=Login
+baseUrl=http://localhost:5001
+probedRoutes=2
+degradedMode=False
+consoleMessages=0
+networkFailures=0
+runtimeIssues=0

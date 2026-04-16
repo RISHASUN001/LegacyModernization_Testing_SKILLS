@@ -1,0 +1,48 @@
+{
+  "stage": "java-discovery",
+  "stageIndex": 3,
+  "stageTitle": "3. Java Discovery",
+  "stageObjective": "Locate legacy Java/JSP module files strictly anchored to C# discovery evidence.",
+  "status": "failed",
+  "skills": [
+    {
+      "skill": "legacy-module-discovery",
+      "stage": "java-discovery",
+      "returnCode": 1,
+      "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/legacy-module-discovery/result.json",
+      "stderr": "",
+      "status": "failed",
+      "reused": false,
+      "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/legacy-module-discovery/result.json",
+      "summary": "Input validation failed for legacy discovery.",
+      "artifacts": [],
+      "metrics": {
+        "validationErrors": 2
+      },
+      "findings": [
+        {
+          "type": "InputValidation",
+          "message": "Path does not exist in legacyBackendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/src; Path does not exist in legacyFrontendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/web"
+        }
+      ]
+    }
+  ],
+  "skillCount": 1,
+  "skillsFailed": 1,
+  "reusedSkills": 0,
+  "contextFile": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/orchestration/stage-03-context.json",
+  "requiredEvidence": [
+    {
+      "path": "legacy-module-discovery/legacy-module-map.json",
+      "exists": false
+    },
+    {
+      "path": "legacy-module-discovery/java-sql-map.json",
+      "exists": false
+    },
+    {
+      "path": "legacy-module-discovery/java-table-usage.json",
+      "exists": false
+    }
+  ]
+}

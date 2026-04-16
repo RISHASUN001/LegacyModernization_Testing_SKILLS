@@ -1,0 +1,8 @@
+flowchart TD
+  A["/Auth / /Auth/dashboard / /Auth/index"] --> B["Request Handler"]
+  B --> C{Validation / Rule Check}
+  C -->|VALID| D["Business Action"]
+  C -->|INVALID| E["Validation Error"]
+  D --> F["Data Access"]
+  F --> G["Auth decision completed"]
+  E --> H["Error Response"]

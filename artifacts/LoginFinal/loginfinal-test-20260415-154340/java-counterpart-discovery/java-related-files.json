@@ -1,0 +1,41 @@
+{
+  "moduleName": "LoginFinal",
+  "related": [
+    {
+      "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp",
+      "score": 0.14,
+      "matchedTokens": [
+        "dashboard",
+        "index"
+      ],
+      "packageMatches": [],
+      "importMatches": [],
+      "provenance": {
+        "type": "code-evidence",
+        "sources": [
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp"
+        ],
+        "confidence": 0.3,
+        "unknowns": []
+      }
+    },
+    {
+      "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp",
+      "score": 0.14,
+      "matchedTokens": [
+        "dashboard",
+        "index"
+      ],
+      "packageMatches": [],
+      "importMatches": [],
+      "provenance": {
+        "type": "code-evidence",
+        "sources": [
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp"
+        ],
+        "confidence": 0.3,
+        "unknowns": []
+      }
+    }
+  ]
+}

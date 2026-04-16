@@ -1,0 +1,27 @@
+{
+  "moduleName": "Login",
+  "scopeApplied": {
+    "targetUrl": "",
+    "scopeHint": "",
+    "strictModuleOnly": false
+  },
+  "modulePurpose": "C# functional understanding for module Login.",
+  "workflows": [],
+  "businessRules": [
+    {
+      "rule": "Preserve workflow behavior from C# route to response.",
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "controller-route-map.json"
+        ],
+        "confidence": 0.66,
+        "unknowns": []
+      }
+    }
+  ],
+  "unknowns": [
+    "No C# workflows were available from discovery artifacts."
+  ],
+  "confidence": 0.43
+}

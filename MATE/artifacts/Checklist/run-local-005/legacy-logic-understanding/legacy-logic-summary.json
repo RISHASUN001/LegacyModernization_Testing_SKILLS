@@ -1,0 +1,10 @@
+{
+  "moduleName": "Checklist",
+  "source": "legacy",
+  "provider": "deterministic-fallback",
+  "payload": {
+    "note": "non-strict deterministic fallback",
+    "task": "Generate legacy Java/JSP workflow understanding from the scoped legacy discovery outputs. Be strict to the selected workflows only. Explain likely legacy behavior, JSP/action/DAO flow, validations, DB touchpoints, and functional constraints implied by the selected legacy files and SQL.",
+    "summary": "Generated without Copilot Claude command."
+  }
+}

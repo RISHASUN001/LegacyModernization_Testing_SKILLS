@@ -1,0 +1,42 @@
+{
+  "skillName": "module-documentation",
+  "stage": "java-logic",
+  "moduleName": "LoginFinal",
+  "runId": "loginfinal-test-20260415-172444",
+  "status": "passed",
+  "startedAt": "2026-04-15T09:24:54.522876Z",
+  "endedAt": "2026-04-15T09:24:54.560790Z",
+  "summary": "Module documentation generated for LoginFinal with flows=2, rules=2, unknowns=1.",
+  "metrics": {
+    "sections": 9,
+    "flowsDocumented": 2,
+    "rulesDocumented": 2,
+    "relatedFiles": 6,
+    "claudeArtifactGenerated": 0,
+    "confidence": 0.63
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-172444/module-documentation/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-172444/module-documentation/module-analysis.json"
+  ],
+  "findings": [],
+  "recommendations": [
+    {
+      "message": "Use module-analysis workflows/rules as primary source for scenario and parity mapping.",
+      "priority": "high",
+      "evidence": "Documentation artifact now includes provenance-tagged flows and business rules."
+    }
+  ],
+  "resultContractVersion": "2.0",
+  "provenanceSummary": {
+    "scenarioSources": [
+      "code-evidence",
+      "inferred",
+      "fallback"
+    ],
+    "confidence": 0.63,
+    "unknowns": [
+      "No DB touchpoint extracted; persistence parity must be confirmed with runtime logs."
+    ]
+  }
+}

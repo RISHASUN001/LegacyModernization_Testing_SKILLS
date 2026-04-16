@@ -1,0 +1,35 @@
+{
+  "runId": "loginfinal-current-20260416-040800",
+  "moduleName": "LoginFinal",
+  "workflowNames": [
+    "Successful Login",
+    "Invalid Login"
+  ],
+  "convertedRoots": [
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LegacyModernization.Converted.sln"
+  ],
+  "legacyBackendRoots": [
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app"
+  ],
+  "legacyFrontendRoots": [
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app"
+  ],
+  "baseUrl": "http://localhost:5001",
+  "startUrl": "http://localhost:5001",
+  "dotnetTestTarget": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LegacyModernization.Converted.sln",
+  "strictModuleOnly": false,
+  "strictAIGeneration": false,
+  "enableUserInputPrompting": true,
+  "keywords": [
+    "Login",
+    "Password"
+  ],
+  "controllerHints": [
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Controllers/AuthController.cs"
+  ],
+  "viewHints": [
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/index.jsp"
+  ],
+  "expectedEndUrls": []
+}

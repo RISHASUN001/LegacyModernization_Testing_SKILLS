@@ -1,0 +1,13 @@
+{
+  "moduleName": "Checklist",
+  "category": "playwright",
+  "status": "failed",
+  "total": 0,
+  "passed": 0,
+  "failed": 0,
+  "exitCode": 5,
+  "logPath": "MATE/artifacts/Checklist/run-local-005/test-execution-playwright/playwright.log",
+  "consolePath": "MATE/artifacts/Checklist/run-local-005/test-execution-playwright/console-messages.json",
+  "networkPath": "MATE/artifacts/Checklist/run-local-005/test-execution-playwright/network-requests.json",
+  "screenshotPaths": []
+}

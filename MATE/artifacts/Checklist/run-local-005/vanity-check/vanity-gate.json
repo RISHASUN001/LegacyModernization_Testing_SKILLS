@@ -1,0 +1,9 @@
+{
+  "moduleName": "Checklist",
+  "recommendation": "hold",
+  "summary": "Critical pipeline artifacts are missing.",
+  "missingRequiredCount": 3,
+  "executionFailureCount": 3,
+  "failedAreasCount": 0,
+  "keyFindingsCount": 0
+}

@@ -1,0 +1,36 @@
+{
+  "moduleName": "Login",
+  "source": "csharp",
+  "modulePurpose": "Modernized module analysis for Login.",
+  "workflows": [
+    {
+      "name": "Login",
+      "entryPoint": "index",
+      "likelyRoutes": [
+        "index",
+        "login"
+      ],
+      "controllers": [
+        "AuthController"
+      ],
+      "views": [
+        "Dashboard.cshtml",
+        "Index.cshtml"
+      ],
+      "decisionBranches": [
+        "GET/POST split may exist based on controller actions",
+        "Form submission and result rendering paths should be verified downstream"
+      ],
+      "validations": [
+        "Model binding and criteria validation should be checked from controller/view flow"
+      ],
+      "dbTouchpoints": [],
+      "tables": [],
+      "outcome": "Workflow understanding generated from discovery artifacts; refine with AI provider if configured.",
+      "notes": [
+        "This is a fallback summary structure.",
+        "Use AI provider integration to improve narrative quality if available."
+      ]
+    }
+  ]
+}

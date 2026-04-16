@@ -1,0 +1,29 @@
+command: python3 -m pytest -q /Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-fresh-test-20260415/playwright-browser-verification/generated-tests/playwright-e2e-browser-generated-tests.py -m playwright
+returnCode: 0
+timedOut: False
+durationSeconds: 134.381
+
+--- stdout ---
+....                                                                     [100%]
+=============================== warnings summary ===============================
+../../artifacts/LoginFinal/loginfinal-fresh-test-20260415/playwright-browser-verification/generated-tests/playwright-e2e-browser-generated-tests.py:75
+  /Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-fresh-test-20260415/playwright-browser-verification/generated-tests/playwright-e2e-browser-generated-tests.py:75: PytestUnknownMarkWarning: Unknown pytest.mark.playwright - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.playwright
+
+../../artifacts/LoginFinal/loginfinal-fresh-test-20260415/playwright-browser-verification/generated-tests/playwright-e2e-browser-generated-tests.py:85
+  /Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-fresh-test-20260415/playwright-browser-verification/generated-tests/playwright-e2e-browser-generated-tests.py:85: PytestUnknownMarkWarning: Unknown pytest.mark.playwright - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.playwright
+
+../../artifacts/LoginFinal/loginfinal-fresh-test-20260415/playwright-browser-verification/generated-tests/playwright-e2e-browser-generated-tests.py:95
+  /Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-fresh-test-20260415/playwright-browser-verification/generated-tests/playwright-e2e-browser-generated-tests.py:95: PytestUnknownMarkWarning: Unknown pytest.mark.playwright - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.playwright
+
+../../artifacts/LoginFinal/loginfinal-fresh-test-20260415/playwright-browser-verification/generated-tests/playwright-e2e-browser-generated-tests.py:105
+  /Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-fresh-test-20260415/playwright-browser-verification/generated-tests/playwright-e2e-browser-generated-tests.py:105: PytestUnknownMarkWarning: Unknown pytest.mark.playwright - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.playwright
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+4 passed, 4 warnings in 133.76s (0:02:13)
+
+
+--- stderr ---

@@ -1,0 +1,54 @@
+{
+  "moduleName": "LoginFinal",
+  "runs": [
+    {
+      "runId": "loginfinal-test-20260415-154340",
+      "generatedAt": "2026-04-15T07:47:47.527542Z",
+      "workflowCount": 5,
+      "categoryCount": 7,
+      "suggestedTests": 5,
+      "artifact": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-154340/test-plan-generation/generated-test-plan.json"
+    },
+    {
+      "runId": "loginfinal-test-20260415-085013",
+      "generatedAt": "2026-04-15T08:42:25.801849Z",
+      "workflowCount": 2,
+      "categoryCount": 7,
+      "suggestedTests": 4,
+      "artifact": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-085013/test-plan-generation/generated-test-plan.json"
+    },
+    {
+      "runId": "loginfinal-fresh-test-20260415",
+      "generatedAt": "2026-04-15T08:49:28.906183Z",
+      "workflowCount": 2,
+      "categoryCount": 7,
+      "suggestedTests": 4,
+      "artifact": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-fresh-test-20260415/test-plan-generation/generated-test-plan.json"
+    },
+    {
+      "runId": "loginfinal-test-20260415-165746",
+      "generatedAt": "2026-04-15T08:57:56.743751Z",
+      "workflowCount": 2,
+      "categoryCount": 7,
+      "suggestedTests": 4,
+      "artifact": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-165746/test-plan-generation/generated-test-plan.json"
+    },
+    {
+      "runId": "loginfinal-test-20260415-170304",
+      "generatedAt": "2026-04-15T09:03:24.104120Z",
+      "workflowCount": 2,
+      "categoryCount": 7,
+      "suggestedTests": 4,
+      "artifact": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-170304/test-plan-generation/generated-test-plan.json"
+    },
+    {
+      "runId": "loginfinal-test-20260415-172444",
+      "generatedAt": "2026-04-15T09:24:54.759787Z",
+      "workflowCount": 2,
+      "categoryCount": 7,
+      "suggestedTests": 6,
+      "artifact": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-172444/test-plan-generation/generated-test-plan.json"
+    }
+  ],
+  "lastUpdatedRunId": "loginfinal-test-20260415-172444"
+}

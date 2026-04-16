@@ -1,0 +1,36 @@
+{
+  "runId": "run-login-20260416-095044",
+  "moduleName": "Login",
+  "legacySourceRoot": "/Users/risha/Documents/Buildathon/samples/legacy-java-app",
+  "convertedSourceRoot": "/Users/risha/Documents/Buildathon/samples/legacy-java-app",
+  "baseUrl": "http://localhost:5001",
+  "testApiEndpoint": "http://localhost:5001/api/test",
+  "brsPath": "",
+  "moduleHints": {
+    "relatedFolders": ["/Users/risha/Documents/Buildathon/samples/legacy-java-app"],
+    "knownUrls": ["/", "/dashboard"],
+    "keywords": ["login", "password", "authentication", "session"]
+  },
+  "selectedSkills": [
+    "csharp-module-discovery",
+    "csharp-logic-understanding",
+    "clean-architecture-assessment",
+    "java-counterpart-discovery",
+    "module-discovery",
+    "java-logic-understanding",
+    "legacy-logic-extraction",
+    "module-documentation",
+    "excalidraw-diagram",
+    "parity-verification",
+    "test-plan-generation",
+    "browser-testing-with-devtools",
+    "e2e-test-execution",
+    "edge-case-testing",
+    "integration-test-execution",
+    "playwright-browser-verification",
+    "unit-test-execution",
+    "failure-diagnosis",
+    "lessons-learned",
+    "iteration-comparison"
+  ]
+}

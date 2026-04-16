@@ -1,0 +1,310 @@
+{
+  "items": [
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Dashboard.Web/Controllers/DashboardController.cs",
+      "controller": "DashboardController",
+      "actions": [
+        {
+          "controller": "DashboardController",
+          "action": "Index",
+          "verb": "GET",
+          "route": "/"
+        },
+        {
+          "controller": "DashboardController",
+          "action": "SkillLibrary",
+          "verb": "GET",
+          "route": "home"
+        },
+        {
+          "controller": "DashboardController",
+          "action": "RunInputBuilder",
+          "verb": "GET",
+          "route": "skill-library"
+        },
+        {
+          "controller": "DashboardController",
+          "action": "RunInputBuilder",
+          "verb": "GET",
+          "route": "run-input-builder"
+        },
+        {
+          "controller": "DashboardController",
+          "action": "ModuleRuns",
+          "verb": "POST",
+          "route": "run-input-builder"
+        },
+        {
+          "controller": "DashboardController",
+          "action": "Pipeline",
+          "verb": "GET",
+          "route": "module-runs"
+        },
+        {
+          "controller": "DashboardController",
+          "action": "SavePlaywrightInputs",
+          "verb": "GET",
+          "route": "pipeline/{moduleName}/{runId}"
+        },
+        {
+          "controller": "DashboardController",
+          "action": "Findings",
+          "verb": "POST",
+          "route": "pipeline/{moduleName}/{runId}/playwright-inputs"
+        },
+        {
+          "controller": "DashboardController",
+          "action": "HelpGuide",
+          "verb": "GET",
+          "route": "findings"
+        },
+        {
+          "controller": "DashboardController",
+          "action": "IterationComparison",
+          "verb": "GET",
+          "route": "help-guide"
+        },
+        {
+          "controller": "DashboardController",
+          "action": "ArtifactFile",
+          "verb": "GET",
+          "route": "iteration-comparison/{moduleName}"
+        }
+      ]
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Dashboard.Web/Controllers/TestApiController.cs",
+      "controller": "TestApiController",
+      "actions": [
+        {
+          "controller": "TestApiController",
+          "action": "GetConsoleLogs",
+          "verb": "GET",
+          "route": "console-logs"
+        },
+        {
+          "controller": "TestApiController",
+          "action": "GetNetworkRequests",
+          "verb": "GET",
+          "route": "network-requests"
+        },
+        {
+          "controller": "TestApiController",
+          "action": "GetPerformanceMetrics",
+          "verb": "GET",
+          "route": "performance-metrics"
+        },
+        {
+          "controller": "TestApiController",
+          "action": "GetAccessibilityReport",
+          "verb": "GET",
+          "route": "accessibility-report"
+        },
+        {
+          "controller": "TestApiController",
+          "action": "GetDomStructure",
+          "verb": "GET",
+          "route": "dom-structure"
+        },
+        {
+          "controller": "TestApiController",
+          "action": "HealthCheck",
+          "verb": "GET",
+          "route": "health"
+        },
+        {
+          "controller": "TestApiController",
+          "action": "SubmitForm",
+          "verb": "POST",
+          "route": "form-submit"
+        },
+        {
+          "controller": "TestApiController",
+          "action": "GetInteractionFlows",
+          "verb": "GET",
+          "route": "interaction-flows"
+        },
+        {
+          "controller": "TestApiController",
+          "action": "GetAllTestData",
+          "verb": "GET",
+          "route": "all-data"
+        }
+      ]
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Infrastructure/Services/DashboardQueryService.cs",
+      "controller": "",
+      "actions": [
+        {
+          "controller": "",
+          "action": "GetHomePageAsync",
+          "verb": "",
+          "route": ""
+        },
+        {
+          "controller": "",
+          "action": "GetSkillLibraryAsync",
+          "verb": "",
+          "route": ""
+        },
+        {
+          "controller": "",
+          "action": "GetRunInputBuilderAsync",
+          "verb": "",
+          "route": ""
+        },
+        {
+          "controller": "",
+          "action": "SaveRunInputAsync",
+          "verb": "",
+          "route": ""
+        },
+        {
+          "controller": "",
+          "action": "GetModuleRunsAsync",
+          "verb": "",
+          "route": ""
+        },
+        {
+          "controller": "",
+          "action": "GetRunPipelineAsync",
+          "verb": "",
+          "route": ""
+        },
+        {
+          "controller": "",
+          "action": "GetFindingsAsync",
+          "verb": "",
+          "route": ""
+        },
+        {
+          "controller": "",
+          "action": "GetIterationComparisonAsync",
+          "verb": "",
+          "route": ""
+        },
+        {
+          "controller": "",
+          "action": "BuildDiscoveryStageAsync",
+          "verb": "",
+          "route": ""
+        },
+        {
+          "controller": "",
+          "action": "BuildLogicStageAsync",
+          "verb": "",
+          "route": ""
+        },
+        {
+          "controller": "",
+          "action": "BuildArchitectureStageAsync",
+          "verb": "",
+          "route": ""
+        },
+        {
+          "controller": "",
+          "action": "BuildTestPlanStageAsync",
+          "verb": "",
+          "route": ""
+        },
+        {
+          "controller": "",
+          "action": "BuildExecutionStageAsync",
+          "verb": "",
+          "route": ""
+        },
+        {
+          "controller": "",
+          "action": "BuildPlaywrightEvidenceAsync",
+          "verb": "",
+          "route": ""
+        },
+        {
+          "controller": "",
+          "action": "BuildFindingsStageAsync",
+          "verb": "",
+          "route": ""
+        },
+        {
+          "controller": "",
+          "action": "BuildParityStageAsync",
+          "verb": "",
+          "route": ""
+        },
+        {
+          "controller": "",
+          "action": "BuildKeyLearningsAsync",
+          "verb": "",
+          "route": ""
+        },
+        {
+          "controller": "",
+          "action": "BuildIterationSummaryAsync",
+          "verb": "",
+          "route": ""
+        },
+        {
+          "controller": "",
+          "action": "GetRunRowAsync",
+          "verb": "",
+          "route": ""
+        },
+        {
+          "controller": "",
+          "action": "GetBrowserTestingResultsAsync",
+          "verb": "",
+          "route": ""
+        }
+      ]
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Infrastructure/Services/MetadataSyncService.cs",
+      "controller": "",
+      "actions": [
+        {
+          "controller": "",
+          "action": "SyncAsync",
+          "verb": "",
+          "route": ""
+        },
+        {
+          "controller": "",
+          "action": "LoadSkillsAsync",
+          "verb": "",
+          "route": ""
+        },
+        {
+          "controller": "",
+          "action": "PersistRunsAsync",
+          "verb": "",
+          "route": ""
+        },
+        {
+          "controller": "",
+          "action": "PersistFindingsAsync",
+          "verb": "",
+          "route": ""
+        },
+        {
+          "controller": "",
+          "action": "PersistRecommendationsAsync",
+          "verb": "",
+          "route": ""
+        },
+        {
+          "controller": "",
+          "action": "PersistTestCategoryIfApplicableAsync",
+          "verb": "",
+          "route": ""
+        },
+        {
+          "controller": "",
+          "action": "PersistIterationDeltasAsync",
+          "verb": "",
+          "route": ""
+        }
+      ]
+    }
+  ]
+}

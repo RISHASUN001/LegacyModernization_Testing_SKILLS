@@ -1,0 +1,14 @@
+{
+  "moduleName": "Checklist",
+  "status": "passed",
+  "executedSpecs": 1,
+  "generated": {
+    "moduleName": "Checklist",
+    "checks": [
+      "home page renders",
+      "console has no severe errors",
+      "basic navigation remains available"
+    ],
+    "framework": "playwright"
+  }
+}

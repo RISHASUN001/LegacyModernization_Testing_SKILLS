@@ -1,0 +1,28 @@
+{
+  "name": "csharp-module-discovery",
+  "stage": "csharp-discovery",
+  "schemaVersion": "1.1",
+  "aiDriven": false,
+  "strictAIGenerationCompatible": true,
+  "strictModuleOnlyCompatible": true,
+  "inputs": [
+    "moduleName",
+    "runId",
+    "workflowNames",
+    "convertedRoots",
+    "controllerHints",
+    "viewHints",
+    "keywords",
+    "startUrl",
+    "strictModuleOnly"
+  ],
+  "outputs": [
+    "csharp-module-map.json",
+    "controller-route-map.json",
+    "csharp-sql-map.json",
+    "csharp-table-usage.json",
+    "scoped-file-relevance.json",
+    "result.json"
+  ],
+  "dependencies": []
+}

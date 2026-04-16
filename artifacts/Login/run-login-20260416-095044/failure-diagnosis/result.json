@@ -1,0 +1,292 @@
+{
+  "skillName": "failure-diagnosis",
+  "stage": "findings",
+  "moduleName": "Login",
+  "runId": "run-login-20260416-095044",
+  "status": "passed",
+  "startedAt": "2026-04-16T01:57:54.270245Z",
+  "endedAt": "2026-04-16T01:57:54.275576Z",
+  "summary": "Failure diagnosis generated 2 cluster(s) and 17 scenario-level failures for Login.",
+  "metrics": {
+    "clusters": 2,
+    "scenarioFailures": 17,
+    "highImpact": 17,
+    "quickWins": 0
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/failure-diagnosis/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/failure-diagnosis/diagnosis-report.json"
+  ],
+  "findings": [
+    {
+      "type": "ScenarioFailure",
+      "scenario": "Journey parity: Login flow via /Auth",
+      "message": "Journey parity: Login flow via /Auth failed in skill e2e-test-execution.",
+      "likelyCause": "E2E execution completed with 0 passed and 7 failed scenarios.",
+      "evidence": "skill=e2e-test-execution; logs=/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/execution-log.txt",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.73,
+      "relatedStage": "execution",
+      "relatedSkill": "e2e-test-execution",
+      "affectedFiles": [
+        "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/execution-log.txt"
+      ]
+    },
+    {
+      "type": "ScenarioFailure",
+      "scenario": "Journey parity: Login flow via /Auth/dashboard",
+      "message": "Journey parity: Login flow via /Auth/dashboard failed in skill e2e-test-execution.",
+      "likelyCause": "E2E execution completed with 0 passed and 7 failed scenarios.",
+      "evidence": "skill=e2e-test-execution; logs=/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/execution-log.txt",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.73,
+      "relatedStage": "execution",
+      "relatedSkill": "e2e-test-execution",
+      "affectedFiles": [
+        "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/execution-log.txt"
+      ]
+    },
+    {
+      "type": "ScenarioFailure",
+      "scenario": "Journey parity: Login flow via /Auth/index",
+      "message": "Journey parity: Login flow via /Auth/index failed in skill e2e-test-execution.",
+      "likelyCause": "E2E execution completed with 0 passed and 7 failed scenarios.",
+      "evidence": "skill=e2e-test-execution; logs=/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/execution-log.txt",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.73,
+      "relatedStage": "execution",
+      "relatedSkill": "e2e-test-execution",
+      "affectedFiles": [
+        "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/execution-log.txt"
+      ]
+    },
+    {
+      "type": "ScenarioFailure",
+      "scenario": "E2E robust path: Open login page",
+      "message": "E2E robust path: Open login page failed in skill e2e-test-execution.",
+      "likelyCause": "E2E execution completed with 0 passed and 7 failed scenarios.",
+      "evidence": "skill=e2e-test-execution; logs=/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/execution-log.txt",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.77,
+      "relatedStage": "execution",
+      "relatedSkill": "e2e-test-execution",
+      "affectedFiles": [
+        "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/execution-log.txt"
+      ]
+    },
+    {
+      "type": "ScenarioFailure",
+      "scenario": "E2E robust path: Session timeout returns to login",
+      "message": "E2E robust path: Session timeout returns to login failed in skill e2e-test-execution.",
+      "likelyCause": "E2E execution completed with 0 passed and 7 failed scenarios.",
+      "evidence": "skill=e2e-test-execution; logs=/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/execution-log.txt",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.77,
+      "relatedStage": "execution",
+      "relatedSkill": "e2e-test-execution",
+      "affectedFiles": [
+        "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/execution-log.txt"
+      ]
+    },
+    {
+      "type": "ScenarioFailure",
+      "scenario": "E2E route resilience: /login",
+      "message": "E2E route resilience: /login failed in skill e2e-test-execution.",
+      "likelyCause": "E2E execution completed with 0 passed and 7 failed scenarios.",
+      "evidence": "skill=e2e-test-execution; logs=/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/execution-log.txt",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.77,
+      "relatedStage": "execution",
+      "relatedSkill": "e2e-test-execution",
+      "affectedFiles": [
+        "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/execution-log.txt"
+      ]
+    },
+    {
+      "type": "ScenarioFailure",
+      "scenario": "E2E robustness generated case 1 for Login",
+      "message": "E2E robustness generated case 1 for Login failed in skill e2e-test-execution.",
+      "likelyCause": "E2E execution completed with 0 passed and 7 failed scenarios.",
+      "evidence": "skill=e2e-test-execution; logs=/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/execution-log.txt",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.77,
+      "relatedStage": "execution",
+      "relatedSkill": "e2e-test-execution",
+      "affectedFiles": [
+        "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/execution-log.txt"
+      ]
+    },
+    {
+      "type": "ScenarioFailure",
+      "scenario": "Must-preserve edge behavior: Route and URL behavior parity for user-visible flows",
+      "message": "Must-preserve edge behavior: Route and URL behavior parity for user-visible flows failed in skill edge-case-testing.",
+      "likelyCause": "Edge Case execution failed preflight checks and did not run command execution.",
+      "evidence": "skill=edge-case-testing; logs=/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/execution-log.txt",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.76,
+      "relatedStage": "execution",
+      "relatedSkill": "edge-case-testing",
+      "affectedFiles": [
+        "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/execution-log.txt"
+      ]
+    },
+    {
+      "type": "ScenarioFailure",
+      "scenario": "Must-preserve edge behavior: Validation/error message semantics from legacy behavior",
+      "message": "Must-preserve edge behavior: Validation/error message semantics from legacy behavior failed in skill edge-case-testing.",
+      "likelyCause": "Edge Case execution failed preflight checks and did not run command execution.",
+      "evidence": "skill=edge-case-testing; logs=/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/execution-log.txt",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.76,
+      "relatedStage": "execution",
+      "relatedSkill": "edge-case-testing",
+      "affectedFiles": [
+        "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/execution-log.txt"
+      ]
+    },
+    {
+      "type": "ScenarioFailure",
+      "scenario": "Must-preserve edge behavior: Data mapping compatibility for persistence operations (Dapper case-sensitivity, ViewModel binding)",
+      "message": "Must-preserve edge behavior: Data mapping compatibility for persistence operations (Dapper case-sensitivity, ViewModel binding) failed in skill edge-case-testing.",
+      "likelyCause": "Edge Case execution failed preflight checks and did not run command execution.",
+      "evidence": "skill=edge-case-testing; logs=/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/execution-log.txt",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.76,
+      "relatedStage": "execution",
+      "relatedSkill": "edge-case-testing",
+      "affectedFiles": [
+        "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/execution-log.txt"
+      ]
+    },
+    {
+      "type": "ScenarioFailure",
+      "scenario": "Dapper case-sensitivity and column mapping edge cases",
+      "message": "Dapper case-sensitivity and column mapping edge cases failed in skill edge-case-testing.",
+      "likelyCause": "Edge Case execution failed preflight checks and did not run command execution.",
+      "evidence": "skill=edge-case-testing; logs=/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/execution-log.txt",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.72,
+      "relatedStage": "execution",
+      "relatedSkill": "edge-case-testing",
+      "affectedFiles": [
+        "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/execution-log.txt"
+      ]
+    },
+    {
+      "type": "ScenarioFailure",
+      "scenario": "ViewModel binding and property mapping validation",
+      "message": "ViewModel binding and property mapping validation failed in skill edge-case-testing.",
+      "likelyCause": "Edge Case execution failed preflight checks and did not run command execution.",
+      "evidence": "skill=edge-case-testing; logs=/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/execution-log.txt",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.7,
+      "relatedStage": "execution",
+      "relatedSkill": "edge-case-testing",
+      "affectedFiles": [
+        "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/execution-log.txt"
+      ]
+    },
+    {
+      "type": "ScenarioFailure",
+      "scenario": "Recurring risk regression guard: DIRegistrationMissing",
+      "message": "Recurring risk regression guard: DIRegistrationMissing failed in skill edge-case-testing.",
+      "likelyCause": "Edge Case execution failed preflight checks and did not run command execution.",
+      "evidence": "skill=edge-case-testing; logs=/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/execution-log.txt",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.8,
+      "relatedStage": "execution",
+      "relatedSkill": "edge-case-testing",
+      "affectedFiles": [
+        "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/execution-log.txt"
+      ]
+    },
+    {
+      "type": "ScenarioFailure",
+      "scenario": "Edge resilience: Session/cookie handling and user context preservation across requests",
+      "message": "Edge resilience: Session/cookie handling and user context preservation across requests failed in skill edge-case-testing.",
+      "likelyCause": "Edge Case execution failed preflight checks and did not run command execution.",
+      "evidence": "skill=edge-case-testing; logs=/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/execution-log.txt",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.77,
+      "relatedStage": "execution",
+      "relatedSkill": "edge-case-testing",
+      "affectedFiles": [
+        "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/execution-log.txt"
+      ]
+    },
+    {
+      "type": "ScenarioFailure",
+      "scenario": "Edge retry/timeout behavior: Open login page",
+      "message": "Edge retry/timeout behavior: Open login page failed in skill edge-case-testing.",
+      "likelyCause": "Edge Case execution failed preflight checks and did not run command execution.",
+      "evidence": "skill=edge-case-testing; logs=/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/execution-log.txt",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.77,
+      "relatedStage": "execution",
+      "relatedSkill": "edge-case-testing",
+      "affectedFiles": [
+        "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/execution-log.txt"
+      ]
+    },
+    {
+      "type": "ScenarioFailure",
+      "scenario": "Edge retry/timeout behavior: Session timeout returns to login",
+      "message": "Edge retry/timeout behavior: Session timeout returns to login failed in skill edge-case-testing.",
+      "likelyCause": "Edge Case execution failed preflight checks and did not run command execution.",
+      "evidence": "skill=edge-case-testing; logs=/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/execution-log.txt",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.77,
+      "relatedStage": "execution",
+      "relatedSkill": "edge-case-testing",
+      "affectedFiles": [
+        "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/execution-log.txt"
+      ]
+    },
+    {
+      "type": "ScenarioFailure",
+      "scenario": "Edge Case robustness generated case 1 for Login",
+      "message": "Edge Case robustness generated case 1 for Login failed in skill edge-case-testing.",
+      "likelyCause": "Edge Case execution failed preflight checks and did not run command execution.",
+      "evidence": "skill=edge-case-testing; logs=/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/execution-log.txt",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.77,
+      "relatedStage": "execution",
+      "relatedSkill": "edge-case-testing",
+      "affectedFiles": [
+        "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/execution-log.txt"
+      ]
+    }
+  ],
+  "recommendations": [
+    {
+      "message": "Prioritize scenario-level failures that have concrete console/network/log evidence first.",
+      "priority": "high",
+      "evidence": "scenarioFailures=17; clusters=2"
+    }
+  ],
+  "resultContractVersion": "2.0",
+  "provenanceSummary": {
+    "scenarioSources": [
+      "code-evidence",
+      "inferred"
+    ],
+    "confidence": 0.8
+  }
+}

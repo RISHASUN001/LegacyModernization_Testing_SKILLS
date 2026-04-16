@@ -1,34 +1,97 @@
 {
-  "stage": "test-plan",
-  "stageTitle": "Test Plan",
+  "stage": "java-logic",
+  "stageTitle": "Java Logic Understanding",
   "stageIndex": 4,
-  "status": "passed",
-  "skillCount": 1,
-  "skillsPassed": 1,
-  "skillsFailed": 0,
+  "status": "failed",
+  "skillCount": 4,
+  "skillsPassed": 2,
+  "skillsFailed": 2,
   "skills": [
     {
-      "skill": "test-plan-generation",
-      "stage": "test-plan",
-      "status": "passed",
-      "startedAt": "2026-04-14T02:40:45.816774Z",
-      "endedAt": "2026-04-14T02:40:45.923062Z",
-      "durationSeconds": 0.106,
-      "summary": "Test plan generated for Login with categories=7 and suggestedTests=6.",
+      "skill": "java-logic-understanding",
+      "stage": "java-logic",
+      "status": "degraded",
+      "startedAt": "2026-04-14T16:31:45.787981Z",
+      "endedAt": "2026-04-14T16:31:46.197267Z",
+      "durationSeconds": 0.409,
+      "summary": "Java logic understanding produced 0 workflow summaries.",
       "returnCode": 0,
-      "stdout": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/test-plan-generation/result.json\n",
+      "stdout": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/java-logic-understanding/result.json\n",
       "stderr": "",
       "command": [
         "python3",
-        "/Users/risha/Documents/Buildathon/skills/test-plan-generation/run.py",
+        "/Users/risha/Documents/Buildathon/skills/java-logic-understanding/run.py",
         "--input",
         "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/module-run-input.json",
         "--artifacts-root",
         "/Users/risha/Documents/Buildathon/artifacts"
       ],
-      "resultPath": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/test-plan-generation/result.json"
+      "resultPath": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/java-logic-understanding/result.json"
+    },
+    {
+      "skill": "legacy-logic-extraction",
+      "stage": "java-logic",
+      "status": "passed",
+      "startedAt": "2026-04-14T16:31:46.197286Z",
+      "endedAt": "2026-04-14T16:31:46.346191Z",
+      "durationSeconds": 0.148,
+      "summary": "Logic extraction completed for Login: workflows=2, rules=2, unknowns=1.",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/legacy-logic-extraction/result.json\n",
+      "stderr": "",
+      "command": [
+        "python3",
+        "/Users/risha/Documents/Buildathon/skills/legacy-logic-extraction/run.py",
+        "--input",
+        "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/module-run-input.json",
+        "--artifacts-root",
+        "/Users/risha/Documents/Buildathon/artifacts"
+      ],
+      "resultPath": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/legacy-logic-extraction/result.json"
+    },
+    {
+      "skill": "logic-flow-visualization",
+      "stage": "java-logic",
+      "status": "degraded",
+      "startedAt": "2026-04-14T16:31:46.346218Z",
+      "endedAt": "2026-04-14T16:31:46.399029Z",
+      "durationSeconds": 0.053,
+      "summary": "Generated 0 workflow diagram bundles (Mermaid + Excalidraw + preview).",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/logic-flow-visualization/result.json\n",
+      "stderr": "",
+      "command": [
+        "python3",
+        "/Users/risha/Documents/Buildathon/skills/logic-flow-visualization/run.py",
+        "--input",
+        "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/module-run-input.json",
+        "--artifacts-root",
+        "/Users/risha/Documents/Buildathon/artifacts"
+      ],
+      "resultPath": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/logic-flow-visualization/result.json"
+    },
+    {
+      "skill": "module-documentation",
+      "stage": "java-logic",
+      "status": "passed",
+      "startedAt": "2026-04-14T16:31:46.399050Z",
+      "endedAt": "2026-04-14T16:31:46.477356Z",
+      "durationSeconds": 0.078,
+      "summary": "Module documentation generated for Login with flows=2, rules=2, unknowns=1.",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/module-documentation/result.json\n",
+      "stderr": "",
+      "command": [
+        "python3",
+        "/Users/risha/Documents/Buildathon/skills/module-documentation/run.py",
+        "--input",
+        "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/module-run-input.json",
+        "--artifacts-root",
+        "/Users/risha/Documents/Buildathon/artifacts"
+      ],
+      "resultPath": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/module-documentation/result.json"
     }
   ],
-  "startedAt": "2026-04-14T02:40:45.816774Z",
-  "endedAt": "2026-04-14T02:40:45.923062Z"
+  "startedAt": "2026-04-14T16:31:45.787981Z",
+  "endedAt": "2026-04-14T16:31:46.477356Z"
 }

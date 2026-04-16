@@ -1,0 +1,235 @@
+{
+  "skillName": "playwright-browser-verification",
+  "stage": "execution",
+  "moduleName": "LoginFinal",
+  "runId": "loginfinal-fresh-test-20260415",
+  "status": "passed",
+  "startedAt": "2026-04-15T08:49:31.832158Z",
+  "endedAt": "2026-04-15T08:51:46.280751Z",
+  "summary": "Playwright/browser verification for LoginFinal: 4 passed, 0 failed, runtimeSignals=0, networkSignals=0.",
+  "metrics": {
+    "total": 4,
+    "passed": 4,
+    "failed": 0,
+    "warnings": 4,
+    "newTestsAdded": 4,
+    "scenarios": [
+      {
+        "name": "Playwright business flow: Open login page",
+        "status": "passed",
+        "notes": "Validate browser UX/runtime/network/DOM evidence for migrated module journeys.",
+        "coverage": [
+          "browser-runtime",
+          "flow-journey",
+          "critical-path"
+        ],
+        "generated": true,
+        "generatedFrom": [
+          "flow:Open login page",
+          "route:/login"
+        ],
+        "provenance": {
+          "type": "inferred",
+          "sources": [
+            "artifact:test-plan-generation/test-plan.json",
+            "artifact:module-discovery/discovery-map.json",
+            "artifact:legacy-logic-extraction/logic-summary.json",
+            "artifact:module-documentation/module-analysis.json"
+          ],
+          "confidence": 0.77,
+          "unknowns": []
+        }
+      },
+      {
+        "name": "Playwright business flow: Session timeout returns to login",
+        "status": "passed",
+        "notes": "Validate browser UX/runtime/network/DOM evidence for migrated module journeys.",
+        "coverage": [
+          "browser-runtime",
+          "flow-journey",
+          "critical-path"
+        ],
+        "generated": true,
+        "generatedFrom": [
+          "flow:Session timeout returns to login",
+          "route:/"
+        ],
+        "provenance": {
+          "type": "inferred",
+          "sources": [
+            "artifact:test-plan-generation/test-plan.json",
+            "artifact:module-discovery/discovery-map.json",
+            "artifact:legacy-logic-extraction/logic-summary.json",
+            "artifact:module-documentation/module-analysis.json"
+          ],
+          "confidence": 0.77,
+          "unknowns": []
+        }
+      },
+      {
+        "name": "Playwright generated journey 1 for LoginFinal",
+        "status": "passed",
+        "notes": "Validate browser UX/runtime/network/DOM evidence for migrated module journeys.",
+        "coverage": [
+          "robustness",
+          "fallback"
+        ],
+        "generated": true,
+        "generatedFrom": [
+          "fallback:insufficient-discovery-evidence"
+        ],
+        "provenance": {
+          "type": "inferred",
+          "sources": [
+            "artifact:test-plan-generation/test-plan.json",
+            "artifact:module-discovery/discovery-map.json",
+            "artifact:legacy-logic-extraction/logic-summary.json",
+            "artifact:module-documentation/module-analysis.json"
+          ],
+          "confidence": 0.77,
+          "unknowns": []
+        }
+      },
+      {
+        "name": "Playwright generated journey 2 for LoginFinal",
+        "status": "passed",
+        "notes": "Validate browser UX/runtime/network/DOM evidence for migrated module journeys.",
+        "coverage": [
+          "robustness",
+          "fallback"
+        ],
+        "generated": true,
+        "generatedFrom": [
+          "fallback:insufficient-discovery-evidence"
+        ],
+        "provenance": {
+          "type": "inferred",
+          "sources": [
+            "artifact:test-plan-generation/test-plan.json",
+            "artifact:module-discovery/discovery-map.json",
+            "artifact:legacy-logic-extraction/logic-summary.json",
+            "artifact:module-documentation/module-analysis.json"
+          ],
+          "confidence": 0.77,
+          "unknowns": []
+        }
+      }
+    ],
+    "degradedMode": false,
+    "purpose": "Validate browser UX/runtime/network/DOM evidence for migrated module journeys.",
+    "generatedTestsArtifact": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-fresh-test-20260415/playwright-browser-verification/generated-tests/playwright-e2e-browser-generated-tests.json",
+    "generatedExecutableTest": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/loginfinal-7d280c0f12/loginfinal-fresh-test-20260415/playwright-e2e-browser-generated-tests.py",
+    "generatedExecutableArtifact": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-fresh-test-20260415/playwright-browser-verification/generated-tests/playwright-e2e-browser-generated-tests.py"
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-fresh-test-20260415/playwright-browser-verification/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-fresh-test-20260415/playwright-browser-verification/generated-tests/playwright-e2e-browser-generated-tests.json",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/loginfinal-7d280c0f12/loginfinal-fresh-test-20260415/playwright-e2e-browser-generated-tests.json",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-fresh-test-20260415/playwright-browser-verification/generated-tests/playwright-e2e-browser-generated-tests.py",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/loginfinal-7d280c0f12/loginfinal-fresh-test-20260415/playwright-e2e-browser-generated-tests.py",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-fresh-test-20260415/playwright-browser-verification/preflight.json",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-fresh-test-20260415/playwright-browser-verification/execution-log.txt",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-fresh-test-20260415/playwright-browser-verification/console-logs.json",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-fresh-test-20260415/playwright-browser-verification/network-failures.json",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-fresh-test-20260415/playwright-browser-verification/dom-state.json",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-fresh-test-20260415/playwright-browser-verification/runtime-issues.json",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-fresh-test-20260415/playwright-browser-verification/performance-observations.json",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-fresh-test-20260415/playwright-browser-verification/screenshots/browser-overview.png"
+  ],
+  "findings": [
+    {
+      "type": "BrowserEvidenceUnavailable",
+      "scenario": "Playwright evidence collection",
+      "message": "Playwright execution did not emit runtime/network issue signatures in execution logs.",
+      "likelyCause": "No browser-side errors were emitted or tests did not include log capture hooks.",
+      "evidence": "execution-log.txt had no console/network failure signatures.",
+      "severity": "medium",
+      "status": "open",
+      "confidence": 0.8
+    }
+  ],
+  "recommendations": [
+    {
+      "message": "Review Playwright / E2E Browser logs/artifacts and fix failing scenarios before next iteration.",
+      "priority": "medium",
+      "evidence": "0 failed out of 4 scenarios."
+    },
+    {
+      "message": "Enable explicit Playwright tracing/screenshot capture and structured reporter output for richer diagnostics.",
+      "priority": "medium",
+      "evidence": "No browser failure signatures extracted from execution logs."
+    }
+  ],
+  "resultContractVersion": "2.0",
+  "preflight": {
+    "category": "Playwright / E2E Browser",
+    "baseUrl": {
+      "required": true,
+      "provided": "http://localhost:5001",
+      "normalized": "http://localhost:5001",
+      "ok": true,
+      "reason": ""
+    },
+    "reachability": {
+      "required": true,
+      "ok": true,
+      "statusCode": 200,
+      "reason": "reachable",
+      "path": "/",
+      "url": "http://localhost:5001/"
+    },
+    "commands": {
+      "candidates": [
+        "python3 -m pytest -q /Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-fresh-test-20260415/playwright-browser-verification/generated-tests/playwright-e2e-browser-generated-tests.py -m playwright",
+        "python3 -m pytest -q /Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-fresh-test-20260415/playwright-browser-verification/generated-tests/playwright-e2e-browser-generated-tests.py",
+        "pytest -q /Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-fresh-test-20260415/playwright-browser-verification/generated-tests/playwright-e2e-browser-generated-tests.py -m playwright",
+        "pytest -q /Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-fresh-test-20260415/playwright-browser-verification/generated-tests/playwright-e2e-browser-generated-tests.py",
+        "python3 -m pytest -m playwright",
+        "python3 -m pytest",
+        "pytest -m playwright",
+        "pytest"
+      ],
+      "available": [
+        "python3 -m pytest -q /Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-fresh-test-20260415/playwright-browser-verification/generated-tests/playwright-e2e-browser-generated-tests.py -m playwright",
+        "python3 -m pytest -q /Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-fresh-test-20260415/playwright-browser-verification/generated-tests/playwright-e2e-browser-generated-tests.py",
+        "pytest -q /Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-fresh-test-20260415/playwright-browser-verification/generated-tests/playwright-e2e-browser-generated-tests.py -m playwright",
+        "pytest -q /Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-fresh-test-20260415/playwright-browser-verification/generated-tests/playwright-e2e-browser-generated-tests.py",
+        "python3 -m pytest -m playwright",
+        "python3 -m pytest",
+        "pytest -m playwright",
+        "pytest"
+      ],
+      "unavailable": [],
+      "selected": "python3 -m pytest -q /Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-fresh-test-20260415/playwright-browser-verification/generated-tests/playwright-e2e-browser-generated-tests.py -m playwright",
+      "ok": true
+    },
+    "strictMode": false
+  },
+  "trace": {
+    "command": [
+      "python3",
+      "-m",
+      "pytest",
+      "-q",
+      "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-fresh-test-20260415/playwright-browser-verification/generated-tests/playwright-e2e-browser-generated-tests.py",
+      "-m",
+      "playwright"
+    ],
+    "returnCode": 0,
+    "durationSeconds": 134.381,
+    "cwd": "/Users/risha/Documents/Buildathon/samples/legacy-java-app"
+  },
+  "provenanceSummary": {
+    "scenarioSources": [
+      "inferred",
+      "inferred",
+      "inferred",
+      "inferred"
+    ],
+    "evidenceSources": [
+      "execution-log.txt",
+      "playwright-generated artifacts"
+    ],
+    "confidence": 0.52
+  }
+}

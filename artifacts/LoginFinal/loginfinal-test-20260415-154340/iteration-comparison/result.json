@@ -1,0 +1,132 @@
+{
+  "skillName": "iteration-comparison",
+  "stage": "iteration-comparison",
+  "moduleName": "LoginFinal",
+  "runId": "loginfinal-test-20260415-154340",
+  "status": "passed",
+  "startedAt": "2026-04-15T07:50:06.501164Z",
+  "endedAt": "2026-04-15T07:50:06.503567Z",
+  "summary": "Iteration comparison for LoginFinal: prev=none, trend=baseline, failuresReduced=0, resolvedFindings=0.",
+  "metrics": {
+    "moduleName": "LoginFinal",
+    "runId": "loginfinal-test-20260415-154340",
+    "previousRunId": "",
+    "testsAdded": 5,
+    "testsFixed": 0,
+    "failuresReduced": 0,
+    "newFindingsIntroduced": 3,
+    "resolvedFindings": 0,
+    "progressionTrend": "baseline",
+    "categoryDelta": {
+      "browser-testing-with-devtools": {
+        "previousFailed": 0,
+        "currentFailed": 0,
+        "failuresReduced": 0
+      },
+      "clean-architecture-assessment": {
+        "previousFailed": 0,
+        "currentFailed": 0,
+        "failuresReduced": 0
+      },
+      "csharp-logic-understanding": {
+        "previousFailed": 0,
+        "currentFailed": 0,
+        "failuresReduced": 0
+      },
+      "csharp-module-discovery": {
+        "previousFailed": 0,
+        "currentFailed": 0,
+        "failuresReduced": 0
+      },
+      "e2e-test-execution": {
+        "previousFailed": 0,
+        "currentFailed": 0,
+        "failuresReduced": 0
+      },
+      "edge-case-testing": {
+        "previousFailed": 0,
+        "currentFailed": 0,
+        "failuresReduced": 0
+      },
+      "failure-diagnosis": {
+        "previousFailed": 0,
+        "currentFailed": 0,
+        "failuresReduced": 0
+      },
+      "integration-test-execution": {
+        "previousFailed": 0,
+        "currentFailed": 0,
+        "failuresReduced": 0
+      },
+      "java-counterpart-discovery": {
+        "previousFailed": 0,
+        "currentFailed": 0,
+        "failuresReduced": 0
+      },
+      "java-logic-understanding": {
+        "previousFailed": 0,
+        "currentFailed": 0,
+        "failuresReduced": 0
+      },
+      "legacy-logic-extraction": {
+        "previousFailed": 0,
+        "currentFailed": 0,
+        "failuresReduced": 0
+      },
+      "lessons-learned": {
+        "previousFailed": 0,
+        "currentFailed": 0,
+        "failuresReduced": 0
+      },
+      "module-discovery": {
+        "previousFailed": 0,
+        "currentFailed": 0,
+        "failuresReduced": 0
+      },
+      "module-documentation": {
+        "previousFailed": 0,
+        "currentFailed": 0,
+        "failuresReduced": 0
+      },
+      "parity-verification": {
+        "previousFailed": 0,
+        "currentFailed": 0,
+        "failuresReduced": 0
+      },
+      "playwright-browser-verification": {
+        "previousFailed": 0,
+        "currentFailed": 0,
+        "failuresReduced": 0
+      },
+      "test-plan-generation": {
+        "previousFailed": 0,
+        "currentFailed": 0,
+        "failuresReduced": 0
+      },
+      "unit-test-execution": {
+        "previousFailed": 0,
+        "currentFailed": 0,
+        "failuresReduced": 0
+      }
+    }
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-154340/iteration-comparison/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-154340/iteration-comparison/iteration-delta.json"
+  ],
+  "findings": [],
+  "recommendations": [
+    {
+      "message": "Use categoryDelta to target recurring failing categories first in next run.",
+      "priority": "medium",
+      "evidence": "trend=baseline; categoryDeltaCount=18"
+    }
+  ],
+  "resultContractVersion": "2.0",
+  "provenanceSummary": {
+    "scenarioSources": [
+      "code-evidence"
+    ],
+    "confidence": 0.65
+  }
+}

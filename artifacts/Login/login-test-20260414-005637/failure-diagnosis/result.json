@@ -4,25 +4,257 @@
   "moduleName": "Login",
   "runId": "login-test-20260414-005637",
   "status": "passed",
-  "startedAt": "2026-04-14T02:40:52.449072Z",
-  "endedAt": "2026-04-14T02:40:52.456201Z",
-  "summary": "Failure diagnosis generated 0 cluster(s) and 0 scenario-level failures for Login.",
+  "startedAt": "2026-04-14T16:31:50.131318Z",
+  "endedAt": "2026-04-14T16:31:50.133244Z",
+  "summary": "Failure diagnosis generated 5 cluster(s) and 15 scenario-level failures for Login.",
   "metrics": {
-    "clusters": 0,
-    "scenarioFailures": 0,
-    "highImpact": 0,
+    "clusters": 5,
+    "scenarioFailures": 15,
+    "highImpact": 15,
     "quickWins": 0
   },
   "artifacts": [
     "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/failure-diagnosis/result.json",
     "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/failure-diagnosis/diagnosis-report.json"
   ],
-  "findings": [],
+  "findings": [
+    {
+      "type": "ScenarioFailure",
+      "scenario": "logic-flow-visualization",
+      "message": "logic-flow-visualization failed in skill logic-flow-visualization.",
+      "likelyCause": "Generated 0 workflow diagram bundles (Mermaid + Excalidraw + preview).",
+      "evidence": "skill=logic-flow-visualization; logs=none",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.65,
+      "relatedStage": "java-logic",
+      "relatedSkill": "logic-flow-visualization",
+      "affectedFiles": []
+    },
+    {
+      "type": "ScenarioFailure",
+      "scenario": "Journey parity: Open login page",
+      "message": "Journey parity: Open login page failed in skill e2e-test-execution.",
+      "likelyCause": "E2E execution completed with 0 passed and 6 failed scenarios.",
+      "evidence": "skill=e2e-test-execution; logs=/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/execution-log.txt",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.73,
+      "relatedStage": "execution",
+      "relatedSkill": "e2e-test-execution",
+      "affectedFiles": [
+        "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/execution-log.txt"
+      ]
+    },
+    {
+      "type": "ScenarioFailure",
+      "scenario": "Journey parity: Session timeout returns to login",
+      "message": "Journey parity: Session timeout returns to login failed in skill e2e-test-execution.",
+      "likelyCause": "E2E execution completed with 0 passed and 6 failed scenarios.",
+      "evidence": "skill=e2e-test-execution; logs=/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/execution-log.txt",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.73,
+      "relatedStage": "execution",
+      "relatedSkill": "e2e-test-execution",
+      "affectedFiles": [
+        "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/execution-log.txt"
+      ]
+    },
+    {
+      "type": "ScenarioFailure",
+      "scenario": "E2E route resilience: /login",
+      "message": "E2E route resilience: /login failed in skill e2e-test-execution.",
+      "likelyCause": "E2E execution completed with 0 passed and 6 failed scenarios.",
+      "evidence": "skill=e2e-test-execution; logs=/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/execution-log.txt",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.77,
+      "relatedStage": "execution",
+      "relatedSkill": "e2e-test-execution",
+      "affectedFiles": [
+        "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/execution-log.txt"
+      ]
+    },
+    {
+      "type": "ScenarioFailure",
+      "scenario": "E2E robustness generated case 1 for Login",
+      "message": "E2E robustness generated case 1 for Login failed in skill e2e-test-execution.",
+      "likelyCause": "E2E execution completed with 0 passed and 6 failed scenarios.",
+      "evidence": "skill=e2e-test-execution; logs=/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/execution-log.txt",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.77,
+      "relatedStage": "execution",
+      "relatedSkill": "e2e-test-execution",
+      "affectedFiles": [
+        "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/execution-log.txt"
+      ]
+    },
+    {
+      "type": "ScenarioFailure",
+      "scenario": "E2E robustness generated case 2 for Login",
+      "message": "E2E robustness generated case 2 for Login failed in skill e2e-test-execution.",
+      "likelyCause": "E2E execution completed with 0 passed and 6 failed scenarios.",
+      "evidence": "skill=e2e-test-execution; logs=/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/execution-log.txt",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.77,
+      "relatedStage": "execution",
+      "relatedSkill": "e2e-test-execution",
+      "affectedFiles": [
+        "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/execution-log.txt"
+      ]
+    },
+    {
+      "type": "ScenarioFailure",
+      "scenario": "E2E robustness generated case 3 for Login",
+      "message": "E2E robustness generated case 3 for Login failed in skill e2e-test-execution.",
+      "likelyCause": "E2E execution completed with 0 passed and 6 failed scenarios.",
+      "evidence": "skill=e2e-test-execution; logs=/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/execution-log.txt",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.77,
+      "relatedStage": "execution",
+      "relatedSkill": "e2e-test-execution",
+      "affectedFiles": [
+        "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/execution-log.txt"
+      ]
+    },
+    {
+      "type": "ScenarioFailure",
+      "scenario": "Browser runtime validation for Open login page",
+      "message": "Browser runtime validation for Open login page failed in skill playwright-browser-verification.",
+      "likelyCause": "Playwright/browser verification for Login: 0 passed, 6 failed, runtimeSignals=0, networkSignals=0.",
+      "evidence": "skill=playwright-browser-verification; logs=/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/execution-log.txt, /Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/console-logs.json",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.72,
+      "relatedStage": "execution",
+      "relatedSkill": "playwright-browser-verification",
+      "affectedFiles": [
+        "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/execution-log.txt",
+        "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/console-logs.json",
+        "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/network-failures.json"
+      ]
+    },
+    {
+      "type": "ScenarioFailure",
+      "scenario": "Browser runtime validation for Session timeout returns to login",
+      "message": "Browser runtime validation for Session timeout returns to login failed in skill playwright-browser-verification.",
+      "likelyCause": "Playwright/browser verification for Login: 0 passed, 6 failed, runtimeSignals=0, networkSignals=0.",
+      "evidence": "skill=playwright-browser-verification; logs=/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/execution-log.txt, /Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/console-logs.json",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.72,
+      "relatedStage": "execution",
+      "relatedSkill": "playwright-browser-verification",
+      "affectedFiles": [
+        "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/execution-log.txt",
+        "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/console-logs.json",
+        "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/network-failures.json"
+      ]
+    },
+    {
+      "type": "ScenarioFailure",
+      "scenario": "Playwright / E2E Browser robustness generated case 1 for Login",
+      "message": "Playwright / E2E Browser robustness generated case 1 for Login failed in skill playwright-browser-verification.",
+      "likelyCause": "Playwright/browser verification for Login: 0 passed, 6 failed, runtimeSignals=0, networkSignals=0.",
+      "evidence": "skill=playwright-browser-verification; logs=/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/execution-log.txt, /Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/console-logs.json",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.77,
+      "relatedStage": "execution",
+      "relatedSkill": "playwright-browser-verification",
+      "affectedFiles": [
+        "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/execution-log.txt",
+        "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/console-logs.json",
+        "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/network-failures.json"
+      ]
+    },
+    {
+      "type": "ScenarioFailure",
+      "scenario": "Playwright / E2E Browser robustness generated case 2 for Login",
+      "message": "Playwright / E2E Browser robustness generated case 2 for Login failed in skill playwright-browser-verification.",
+      "likelyCause": "Playwright/browser verification for Login: 0 passed, 6 failed, runtimeSignals=0, networkSignals=0.",
+      "evidence": "skill=playwright-browser-verification; logs=/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/execution-log.txt, /Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/console-logs.json",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.77,
+      "relatedStage": "execution",
+      "relatedSkill": "playwright-browser-verification",
+      "affectedFiles": [
+        "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/execution-log.txt",
+        "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/console-logs.json",
+        "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/network-failures.json"
+      ]
+    },
+    {
+      "type": "ScenarioFailure",
+      "scenario": "Playwright / E2E Browser robustness generated case 3 for Login",
+      "message": "Playwright / E2E Browser robustness generated case 3 for Login failed in skill playwright-browser-verification.",
+      "likelyCause": "Playwright/browser verification for Login: 0 passed, 6 failed, runtimeSignals=0, networkSignals=0.",
+      "evidence": "skill=playwright-browser-verification; logs=/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/execution-log.txt, /Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/console-logs.json",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.77,
+      "relatedStage": "execution",
+      "relatedSkill": "playwright-browser-verification",
+      "affectedFiles": [
+        "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/execution-log.txt",
+        "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/console-logs.json",
+        "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/network-failures.json"
+      ]
+    },
+    {
+      "type": "ScenarioFailure",
+      "scenario": "Playwright / E2E Browser robustness generated case 4 for Login",
+      "message": "Playwright / E2E Browser robustness generated case 4 for Login failed in skill playwright-browser-verification.",
+      "likelyCause": "Playwright/browser verification for Login: 0 passed, 6 failed, runtimeSignals=0, networkSignals=0.",
+      "evidence": "skill=playwright-browser-verification; logs=/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/execution-log.txt, /Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/console-logs.json",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.77,
+      "relatedStage": "execution",
+      "relatedSkill": "playwright-browser-verification",
+      "affectedFiles": [
+        "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/execution-log.txt",
+        "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/console-logs.json",
+        "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/network-failures.json"
+      ]
+    },
+    {
+      "type": "ScenarioFailure",
+      "scenario": "java-logic-understanding",
+      "message": "java-logic-understanding failed in skill java-logic-understanding.",
+      "likelyCause": "Java logic understanding produced 0 workflow summaries.",
+      "evidence": "skill=java-logic-understanding; logs=none",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.65,
+      "relatedStage": "java-logic",
+      "relatedSkill": "java-logic-understanding",
+      "affectedFiles": []
+    },
+    {
+      "type": "ScenarioFailure",
+      "scenario": "csharp-logic-understanding",
+      "message": "csharp-logic-understanding failed in skill csharp-logic-understanding.",
+      "likelyCause": "C# logic understanding produced 0 workflow summaries.",
+      "evidence": "skill=csharp-logic-understanding; logs=none",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.65,
+      "relatedStage": "csharp-logic",
+      "relatedSkill": "csharp-logic-understanding",
+      "affectedFiles": []
+    }
+  ],
   "recommendations": [
     {
       "message": "Prioritize scenario-level failures that have concrete console/network/log evidence first.",
-      "priority": "low",
-      "evidence": "scenarioFailures=0; clusters=0"
+      "priority": "high",
+      "evidence": "scenarioFailures=15; clusters=5"
     }
   ],
   "resultContractVersion": "2.0",
@@ -31,6 +263,6 @@
       "code-evidence",
       "inferred"
     ],
-    "confidence": 0.6
+    "confidence": 0.8
   }
 }

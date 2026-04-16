@@ -1,0 +1,30 @@
+{
+  "category": "Unit",
+  "baseUrl": {
+    "required": false,
+    "provided": "http://localhost:5001",
+    "normalized": "",
+    "ok": true,
+    "reason": "not-required"
+  },
+  "reachability": {
+    "required": false,
+    "ok": true,
+    "statusCode": 0,
+    "reason": "not-required",
+    "path": "/",
+    "url": ""
+  },
+  "commands": {
+    "candidates": [
+      "dotnet test /Users/risha/Documents/Buildathon/samples/legacy-java-app/LegacyModernization.Converted.csproj --nologo --verbosity minimal"
+    ],
+    "available": [
+      "dotnet test /Users/risha/Documents/Buildathon/samples/legacy-java-app/LegacyModernization.Converted.csproj --nologo --verbosity minimal"
+    ],
+    "unavailable": [],
+    "selected": "dotnet test /Users/risha/Documents/Buildathon/samples/legacy-java-app/LegacyModernization.Converted.csproj --nologo --verbosity minimal",
+    "ok": true
+  },
+  "strictMode": true
+}

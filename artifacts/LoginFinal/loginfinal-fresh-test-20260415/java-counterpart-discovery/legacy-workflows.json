@@ -1,0 +1,41 @@
+{
+  "moduleName": "LoginFinal",
+  "workflows": [
+    {
+      "workflowId": "java-workflow-01",
+      "name": "Successful Login",
+      "entryHint": "/Auth/login",
+      "relatedFiles": [
+        "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java",
+        "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java"
+      ],
+      "provenance": {
+        "type": "flow-derived",
+        "sources": [
+          "csharp-logic-summary.json"
+        ],
+        "confidence": 0.68,
+        "unknowns": []
+      }
+    },
+    {
+      "workflowId": "java-workflow-02",
+      "name": "Invalid Login",
+      "entryHint": "/Auth/dashboard",
+      "relatedFiles": [
+        "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java",
+        "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java",
+        "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp",
+        "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp"
+      ],
+      "provenance": {
+        "type": "flow-derived",
+        "sources": [
+          "csharp-logic-summary.json"
+        ],
+        "confidence": 0.68,
+        "unknowns": []
+      }
+    }
+  ]
+}

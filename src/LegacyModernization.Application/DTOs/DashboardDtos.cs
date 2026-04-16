@@ -53,7 +53,6 @@ public sealed class SkillLibraryItemDto
 public sealed class RunInputBuilderPageDto
 {
     public RunInputDraftDto Draft { get; init; } = new();
-    public List<string> AvailableSkills { get; init; } = [];
     public string GeneratedJson { get; init; } = string.Empty;
     public string? SavedPath { get; init; }
 }
@@ -63,16 +62,34 @@ public sealed class RunInputDraftDto
     public string RunId { get; set; } = "run-001";
     public string ModuleName { get; set; } = string.Empty;
     public string LegacySourceRoot { get; set; } = string.Empty;
+    public string LegacyBackendRoot { get; set; } = string.Empty;
+    public string LegacyFrontendRoot { get; set; } = string.Empty;
     public string ConvertedSourceRoot { get; set; } = string.Empty;
+    public string ConvertedModuleRoot { get; set; } = string.Empty;
+    public string EntryControllerName { get; set; } = string.Empty;
+    public string HomeUrl { get; set; } = string.Empty;
+    public string ModuleStartUrl { get; set; } = string.Empty;
     public string BaseUrl { get; set; } = "http://localhost:5276";
-    public string TestApiEndpoint { get; set; } = "http://localhost:5276/api/test";
+    public string DotnetTestTarget { get; set; } = string.Empty;
     public string BrsPath { get; set; } = string.Empty;
+    public string WorkflowNamesText { get; set; } = string.Empty;
+    public string ConvertedRootsText { get; set; } = string.Empty;
+    public string LegacyBackendRootsText { get; set; } = string.Empty;
+    public string LegacyFrontendRootsText { get; set; } = string.Empty;
     public string RelatedFoldersText { get; set; } = string.Empty;
     public string KnownUrlsText { get; set; } = string.Empty;
     public string KeywordsText { get; set; } = string.Empty;
+    public string MenuPathHintsText { get; set; } = string.Empty;
+    public string ExpectedWorkflowNamesText { get; set; } = string.Empty;
+    public string ControllerActionHintsText { get; set; } = string.Empty;
+    public string JavaPackageHintsText { get; set; } = string.Empty;
+    public string JspFolderHintsText { get; set; } = string.Empty;
+    public string ExpectedTerminalUrlsText { get; set; } = string.Empty;
     public string ModuleScopeHint { get; set; } = string.Empty;
     public string TargetUrl { get; set; } = string.Empty;
-    public bool StrictModuleOnly { get; set; }
+    public bool StrictModuleOnly { get; set; } = true;
+    public bool StrictAIGeneration { get; set; }
+    public bool EnableUserInputPrompting { get; set; } = true;
     public string AllowedCrossModulesText { get; set; } = string.Empty;
     public string ArchitecturePolicy { get; set; } = "module-first";
     public bool GenerateModuleClaudeMd { get; set; } = true;
@@ -82,7 +99,6 @@ public sealed class RunInputDraftDto
     public string E2eCommand { get; set; } = "python3 -m pytest -m e2e";
     public string EdgeCaseCommand { get; set; } = "dotnet test --nologo --verbosity minimal";
     public string PlaywrightCommand { get; set; } = "python3 -m pytest -m playwright";
-    public List<string> SelectedSkills { get; set; } = [];
 }
 
 public sealed class ModuleRunsPageDto
@@ -120,9 +136,22 @@ public sealed class ParityStageDto
     public double Confidence { get; init; }
     public List<ParityCheckDto> Checks { get; init; } = [];
     public SqlParityDto SqlParity { get; init; } = new();
+    public List<WorkflowParityDto> WorkflowParity { get; init; } = [];
     public DependencyParityDto DependencyParity { get; init; } = new();
     public List<string> Gaps { get; init; } = [];
     public string SourceArtifactPath { get; init; } = string.Empty;
+}
+
+public sealed class WorkflowParityDto
+{
+    public string WorkflowName { get; init; } = string.Empty;
+    public string Status { get; init; } = string.Empty;
+    public double PreservationScore { get; init; }
+    public string CsharpEntryPoint { get; init; } = string.Empty;
+    public string JavaWorkflowName { get; init; } = string.Empty;
+    public string JavaEntryPoint { get; init; } = string.Empty;
+    public string ProvenanceType { get; init; } = string.Empty;
+    public double Confidence { get; init; }
 }
 
 public sealed class DependencyParityDto
@@ -201,6 +230,12 @@ public sealed class DiscoveryStageDto
     public List<ProvenancedValueDto> DbTouchpointDetails { get; init; } = [];
     public List<ProvenancedValueDto> EntrypointHints { get; init; } = [];
     public ScopeContextDto ScopeContext { get; init; } = new();
+    public int ConvertedWorkflowCount { get; init; }
+    public int ConvertedControllerCount { get; init; }
+    public int ConvertedSqlSignatureCount { get; init; }
+    public int ConvertedTableCount { get; init; }
+    public List<string> ConvertedRoutes { get; init; } = [];
+    public string ConvertedSourceArtifactPath { get; init; } = string.Empty;
     public double Confidence { get; init; }
     public string SourceArtifactPath { get; init; } = string.Empty;
 }
@@ -245,7 +280,23 @@ public sealed class ArchitectureReviewStageDto
     public string ArchitecturePolicy { get; init; } = string.Empty;
     public double Confidence { get; init; }
     public List<string> RecommendedStructure { get; init; } = [];
+    public int JavaRelatedFileCount { get; init; }
+    public int JavaExcludedFileCount { get; init; }
+    public int JavaWorkflowCount { get; init; }
+    public int JavaSqlSignatureCount { get; init; }
+    public List<string> JavaRelatedFileSamples { get; init; } = [];
+    public List<string> JavaExclusionSamples { get; init; } = [];
+    public List<DiagramBundleDto> DiagramBundles { get; init; } = [];
     public string SourceArtifactPath { get; init; } = string.Empty;
+}
+
+public sealed class DiagramBundleDto
+{
+    public string Workflow { get; init; } = string.Empty;
+    public string Group { get; init; } = string.Empty;
+    public string MermaidPath { get; init; } = string.Empty;
+    public string ExcalidrawPath { get; init; } = string.Empty;
+    public string PreviewPath { get; init; } = string.Empty;
 }
 
 public sealed class ArchitectureIssueDto
@@ -260,10 +311,20 @@ public sealed class TestPlanStageDto
     public List<string> ExistingTestsFound { get; init; } = [];
     public List<string> NewTestsSuggested { get; init; } = [];
     public List<TestCategoryPlanDto> TestCategories { get; init; } = [];
+    public List<WorkflowLaneDto> WorkflowLanes { get; init; } = [];
     public string CoverageSummary { get; init; } = string.Empty;
     public ScopeAppliedDto ScopeApplied { get; init; } = new();
     public double Confidence { get; init; }
     public string SourceArtifactPath { get; init; } = string.Empty;
+}
+
+public sealed class WorkflowLaneDto
+{
+    public string WorkflowName { get; init; } = string.Empty;
+    public string EntryRoute { get; init; } = string.Empty;
+    public List<string> Categories { get; init; } = [];
+    public string ProvenanceType { get; init; } = string.Empty;
+    public double Confidence { get; init; }
 }
 
 public sealed class TestCategoryPlanDto
@@ -302,11 +363,17 @@ public sealed class PlaywrightEvidenceDto
 {
     public string Status { get; init; } = "unknown";
     public string Summary { get; init; } = string.Empty;
-    public string TestApiEndpoint { get; init; } = string.Empty;
-    public string TestApiStatus { get; init; } = "unknown";
-    public string TestApiReason { get; init; } = string.Empty;
-    public string TestApiSource { get; init; } = string.Empty;
-    public bool TestApiAutoProvisioned { get; init; }
+    public string ExecutionCommand { get; init; } = string.Empty;
+    public string ExecutionWorkingDirectory { get; init; } = string.Empty;
+    public int? ExecutionReturnCode { get; init; }
+    public string ExecutionLogPath { get; init; } = string.Empty;
+    public string GeneratedTestsArtifact { get; init; } = string.Empty;
+    public string GeneratedExecutableTest { get; init; } = string.Empty;
+    public string GeneratedExecutableArtifact { get; init; } = string.Empty;
+    public string InputOverridesPath { get; init; } = string.Empty;
+    public string InputOverridesJson { get; init; } = string.Empty;
+    public bool InputOverridesRecommended { get; init; }
+    public List<string> FailureSnippets { get; init; } = [];
     public List<PlaywrightScenarioDto> Scenarios { get; init; } = [];
     public List<string> ConsoleErrors { get; init; } = [];
     public List<string> ConsoleWarnings { get; init; } = [];
@@ -323,6 +390,13 @@ public sealed class PlaywrightScenarioDto
     public string Name { get; init; } = string.Empty;
     public string Status { get; init; } = string.Empty;
     public string Notes { get; init; } = string.Empty;
+    public string? WorkflowName { get; init; }
+    public string? TargetRoute { get; init; }
+    public List<string> Coverage { get; init; } = [];
+    public bool Generated { get; init; }
+    public List<string> GeneratedFrom { get; init; } = [];
+    public string? ProvenanceType { get; init; }
+    public double Confidence { get; init; }
 }
 
 public sealed class FindingsStageDto

@@ -1,0 +1,82 @@
+{
+  "runId": "loginfinal-test-20260415-085013",
+  "moduleName": "LoginFinal",
+  "legacySourceRoot": "/Users/risha/Documents/Buildathon/samples/legacy-java-app",
+  "legacyBackendRoot": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java",
+  "legacyFrontendRoot": "/Users/risha/Documents/Buildathon/samples/legacy-java-app",
+  "convertedSourceRoot": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LegacyModernization.Converted.sln",
+  "convertedModuleRoot": "/Users/risha/Documents/Buildathon/samples/legacy-java-app",
+  "entryControllerName": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Controllers/AuthController.cs",
+  "homeUrl": "",
+  "moduleStartUrl": "http://localhost:5001",
+  "baseUrl": "http://localhost:5001",
+  "targetUrl": "http://localhost:5001",
+  "expectedTerminalUrls": [],
+  "strictModuleOnly": false,
+  "allowedCrossModules": [],
+  "architecturePolicy": "module-first",
+  "generateModuleClaudeMd": false,
+  "brsPath": "",
+  "moduleHints": {
+    "relatedFolders": [
+      "/Users/risha/Documents/Buildathon/.CLAUDE_AUTO_INVOKE.md",
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app"
+    ],
+    "knownUrls": [
+      "http://localhost:5001",
+      "http://localhost:5001/dashboard"
+    ],
+    "keywords": [
+      "Login",
+      "Password"
+    ],
+    "menuPathHints": [
+      "Login=>Dashboard"
+    ],
+    "expectedWorkflowNames": [
+      "Successful Login",
+      "Invalid Login"
+    ],
+    "controllerActionHints": [
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Controllers/AuthController.cs"
+    ],
+    "javaPackageHints": [
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java"
+    ],
+    "jspFolderHints": [
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp",
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app/index.jsp"
+    ],
+    "scopeHint": ""
+  },
+  "testCommands": {
+    "unit": "dotnet test --nologo --verbosity minimal",
+    "integration": "dotnet test --nologo --verbosity minimal",
+    "api": "python3 -m pytest -m api",
+    "e2e": "python3 -m pytest -m e2e",
+    "edgeCase": "dotnet test --nologo --verbosity minimal",
+    "playwright": "python3 -m pytest -m playwright"
+  },
+  "selectedSkills": [
+    "browser-testing-with-devtools",
+    "clean-architecture-assessment",
+    "csharp-logic-understanding",
+    "csharp-module-discovery",
+    "e2e-test-execution",
+    "edge-case-testing",
+    "failure-diagnosis",
+    "integration-test-execution",
+    "iteration-comparison",
+    "java-counterpart-discovery",
+    "java-logic-understanding",
+    "legacy-logic-extraction",
+    "lessons-learned",
+    "logic-flow-visualization",
+    "module-discovery",
+    "module-documentation",
+    "parity-verification",
+    "playwright-browser-verification",
+    "test-plan-generation",
+    "unit-test-execution"
+  ]
+}

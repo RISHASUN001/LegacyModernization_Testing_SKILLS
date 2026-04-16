@@ -3,20 +3,20 @@
   "stage": "execution",
   "moduleName": "Login",
   "runId": "login-test-20260414-005637",
-  "status": "passed",
-  "startedAt": "2026-04-14T02:40:47.595566Z",
-  "endedAt": "2026-04-14T02:40:48.279771Z",
-  "summary": "E2E execution completed with 6 passed and 0 failed scenarios.",
+  "status": "failed",
+  "startedAt": "2026-04-14T16:31:46.816605Z",
+  "endedAt": "2026-04-14T16:31:47.365146Z",
+  "summary": "E2E execution completed with 0 passed and 6 failed scenarios.",
   "metrics": {
     "total": 6,
-    "passed": 6,
-    "failed": 0,
+    "passed": 0,
+    "failed": 6,
     "warnings": 1,
     "newTestsAdded": 4,
     "scenarios": [
       {
         "name": "Journey parity: Open login page",
-        "status": "passed",
+        "status": "failed",
         "notes": "Validate full critical journeys from browser entrypoint to backend persistence.",
         "coverage": [
           "critical-path",
@@ -35,7 +35,7 @@
       },
       {
         "name": "Journey parity: Session timeout returns to login",
-        "status": "passed",
+        "status": "failed",
         "notes": "Validate full critical journeys from browser entrypoint to backend persistence.",
         "coverage": [
           "critical-path",
@@ -54,7 +54,7 @@
       },
       {
         "name": "E2E route resilience: /login",
-        "status": "passed",
+        "status": "failed",
         "notes": "Validate full critical journeys from browser entrypoint to backend persistence.",
         "coverage": [
           "navigation",
@@ -78,7 +78,7 @@
       },
       {
         "name": "E2E robustness generated case 1 for Login",
-        "status": "passed",
+        "status": "failed",
         "notes": "Validate full critical journeys from browser entrypoint to backend persistence.",
         "coverage": [
           "robustness",
@@ -102,7 +102,7 @@
       },
       {
         "name": "E2E robustness generated case 2 for Login",
-        "status": "passed",
+        "status": "failed",
         "notes": "Validate full critical journeys from browser entrypoint to backend persistence.",
         "coverage": [
           "robustness",
@@ -126,7 +126,7 @@
       },
       {
         "name": "E2E robustness generated case 3 for Login",
-        "status": "passed",
+        "status": "failed",
         "notes": "Validate full critical journeys from browser entrypoint to backend persistence.",
         "coverage": [
           "robustness",
@@ -160,30 +160,30 @@
     "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/preflight.json",
     "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/execution-log.txt",
     "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/e2e-scenarios.json",
-    "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/screenshots/e2e-success.png"
+    "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/screenshots/e2e-failure.png"
   ],
   "findings": [
     {
-      "type": "NoTestsCollected",
+      "type": "TestCategoryFailure",
       "scenario": "E2E",
-      "message": "No runnable E2E tests were collected in this run; treated as non-blocking baseline.",
-      "likelyCause": "Fresh module or markers/projects not yet created.",
-      "evidence": "Execution output indicates zero tests collected.",
-      "severity": "low",
+      "message": "E2E test command returned non-zero exit code or failing test counts.",
+      "likelyCause": "Failing tests or runtime/tooling issue.",
+      "evidence": "returnCode=5",
+      "severity": "high",
       "status": "open",
-      "confidence": 0.95
+      "confidence": 0.82
     }
   ],
   "recommendations": [
     {
       "message": "Review E2E logs/artifacts and fix failing scenarios before next iteration.",
-      "priority": "medium",
-      "evidence": "0 failed out of 6 scenarios."
+      "priority": "high",
+      "evidence": "6 failed out of 6 scenarios."
     },
     {
-      "message": "Add concrete E2E tests (or refine command/markers) to move from baseline to executable coverage.",
-      "priority": "medium",
-      "evidence": "No tests were collected by the execution command."
+      "message": "Review execution logs, isolate first failing scenario, and map to legacy parity expectations.",
+      "priority": "high",
+      "evidence": "No specific signature matched; generic failure fallback applied."
     }
   ],
   "resultContractVersion": "2.0",
@@ -228,7 +228,7 @@
       "e2e"
     ],
     "returnCode": 5,
-    "durationSeconds": 0.647,
+    "durationSeconds": 0.529,
     "cwd": "/Users/risha/Documents/Buildathon/samples/legacy-java-app"
   },
   "provenanceSummary": {

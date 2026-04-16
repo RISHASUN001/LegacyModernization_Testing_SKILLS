@@ -1,0 +1,55 @@
+{
+  "stage": "csharp-logic",
+  "stageTitle": "C# Logic Understanding",
+  "stageIndex": 2,
+  "status": "passed",
+  "skillCount": 2,
+  "skillsPassed": 2,
+  "skillsFailed": 0,
+  "skills": [
+    {
+      "skill": "clean-architecture-assessment",
+      "stage": "csharp-logic",
+      "status": "passed",
+      "startedAt": "2026-04-15T07:47:46.666148Z",
+      "endedAt": "2026-04-15T07:47:46.770162Z",
+      "durationSeconds": 0.104,
+      "summary": "Architecture assessment for LoginFinal found 1 issue(s).",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-154340/clean-architecture-assessment/result.json\n",
+      "stderr": "",
+      "command": [
+        "python3",
+        "/Users/risha/Documents/Buildathon/skills/clean-architecture-assessment/run.py",
+        "--input",
+        "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-154340/module-run-input.json",
+        "--artifacts-root",
+        "/Users/risha/Documents/Buildathon/artifacts"
+      ],
+      "resultPath": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-154340/clean-architecture-assessment/result.json"
+    },
+    {
+      "skill": "csharp-logic-understanding",
+      "stage": "csharp-logic",
+      "status": "passed",
+      "startedAt": "2026-04-15T07:47:46.770188Z",
+      "endedAt": "2026-04-15T07:47:46.866771Z",
+      "durationSeconds": 0.096,
+      "summary": "C# logic understanding produced 5 workflow summaries.",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-154340/csharp-logic-understanding/result.json\n",
+      "stderr": "",
+      "command": [
+        "python3",
+        "/Users/risha/Documents/Buildathon/skills/csharp-logic-understanding/run.py",
+        "--input",
+        "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-154340/module-run-input.json",
+        "--artifacts-root",
+        "/Users/risha/Documents/Buildathon/artifacts"
+      ],
+      "resultPath": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-154340/csharp-logic-understanding/result.json"
+    }
+  ],
+  "startedAt": "2026-04-15T07:47:46.666148Z",
+  "endedAt": "2026-04-15T07:47:46.866771Z"
+}

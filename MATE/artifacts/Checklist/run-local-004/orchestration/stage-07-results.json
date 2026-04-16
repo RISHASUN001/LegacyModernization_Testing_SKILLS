@@ -1,0 +1,114 @@
+{
+  "stage": "ai-test-generation",
+  "stageIndex": 7,
+  "stageTitle": "7. AI Test Generation",
+  "stageObjective": "Generate workflow-specific unit, integration, E2E, playwright, and edge tests.",
+  "status": "passed",
+  "skills": [
+    {
+      "skill": "e2e-test-generation",
+      "stage": "ai-test-generation",
+      "returnCode": 0,
+      "stdout": "MATE/artifacts/Checklist/run-local-004/e2e-test-generation/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": false,
+      "resultPath": "MATE/artifacts/Checklist/run-local-004/e2e-test-generation/result.json",
+      "summary": "Generated 0 E2E test draft(s).",
+      "artifacts": [
+        "MATE/artifacts/Checklist/run-local-004/e2e-test-generation/e2e-tests.generated.json"
+      ],
+      "metrics": {
+        "generatedCount": 0,
+        "aiUsed": false
+      },
+      "findings": []
+    },
+    {
+      "skill": "edge-test-generation",
+      "stage": "ai-test-generation",
+      "returnCode": 0,
+      "stdout": "MATE/artifacts/Checklist/run-local-004/edge-test-generation/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": false,
+      "resultPath": "MATE/artifacts/Checklist/run-local-004/edge-test-generation/result.json",
+      "summary": "Generated 5 edge test draft(s).",
+      "artifacts": [
+        "MATE/artifacts/Checklist/run-local-004/edge-test-generation/edge-tests.generated.json",
+        "MATE/artifacts/Checklist/run-local-004/edge-test-generation/NullInput.cs",
+        "MATE/artifacts/Checklist/run-local-004/edge-test-generation/BoundaryMin.cs",
+        "MATE/artifacts/Checklist/run-local-004/edge-test-generation/BoundaryMax.cs",
+        "MATE/artifacts/Checklist/run-local-004/edge-test-generation/Concurrency.cs",
+        "MATE/artifacts/Checklist/run-local-004/edge-test-generation/DuplicateSubmission.cs"
+      ],
+      "metrics": {
+        "generatedCount": 5,
+        "aiUsed": false
+      },
+      "findings": []
+    },
+    {
+      "skill": "integration-test-generation",
+      "stage": "ai-test-generation",
+      "returnCode": 0,
+      "stdout": "MATE/artifacts/Checklist/run-local-004/integration-test-generation/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": false,
+      "resultPath": "MATE/artifacts/Checklist/run-local-004/integration-test-generation/result.json",
+      "summary": "Generated 0 integration test draft(s).",
+      "artifacts": [
+        "MATE/artifacts/Checklist/run-local-004/integration-test-generation/integration-tests.generated.json"
+      ],
+      "metrics": {
+        "generatedCount": 0,
+        "aiUsed": false
+      },
+      "findings": []
+    },
+    {
+      "skill": "playwright-test-generation",
+      "stage": "ai-test-generation",
+      "returnCode": 0,
+      "stdout": "MATE/artifacts/Checklist/run-local-004/playwright-test-generation/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": false,
+      "resultPath": "MATE/artifacts/Checklist/run-local-004/playwright-test-generation/result.json",
+      "summary": "Playwright verification test draft created.",
+      "artifacts": [
+        "MATE/artifacts/Checklist/run-local-004/playwright-test-generation/browser-verification.spec.ts",
+        "MATE/artifacts/Checklist/run-local-004/playwright-test-generation/playwright-tests.generated.json"
+      ],
+      "metrics": {
+        "generatedCount": 1
+      },
+      "findings": []
+    },
+    {
+      "skill": "unit-test-generation",
+      "stage": "ai-test-generation",
+      "returnCode": 0,
+      "stdout": "MATE/artifacts/Checklist/run-local-004/unit-test-generation/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": false,
+      "resultPath": "MATE/artifacts/Checklist/run-local-004/unit-test-generation/result.json",
+      "summary": "Generated 0 unit test draft(s).",
+      "artifacts": [
+        "MATE/artifacts/Checklist/run-local-004/unit-test-generation/unit-tests.generated.json"
+      ],
+      "metrics": {
+        "generatedCount": 0,
+        "aiUsed": false
+      },
+      "findings": []
+    }
+  ],
+  "skillCount": 5,
+  "skillsFailed": 0,
+  "reusedSkills": 0,
+  "contextFile": "MATE/artifacts/Checklist/run-local-004/orchestration/stage-07-context.json",
+  "requiredEvidence": []
+}

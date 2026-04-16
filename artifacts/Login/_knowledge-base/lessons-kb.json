@@ -1,10 +1,14 @@
 {
   "moduleName": "Login",
-  "updatedAt": "2026-04-14T02:40:52.632164Z",
-  "latestRunId": "login-test-20260414-005637",
+  "updatedAt": "2026-04-16T01:57:54.349022Z",
+  "latestRunId": "run-login-20260416-095044",
   "recurringSignatures": [
+    "DapperCaseSensitivity",
     "NamespaceFolderMismatch",
-    "DIRegistrationMissing"
+    "DIRegistrationMissing",
+    "SessionHandlingPitfall",
+    "RouteAssumptionMismatch",
+    "ViewModelBindingMismatch"
   ],
   "knownPitfalls": [
     "DIRegistrationMissing",
@@ -20,25 +24,55 @@
       "runId": "login-test-20260414-005637",
       "resolvedCount": 0,
       "recurringCount": 0,
-      "newCount": 6
-    },
-    {
-      "runId": "login-test-20260414-005637",
-      "resolvedCount": 0,
-      "recurringCount": 0,
-      "newCount": 34
-    },
-    {
-      "runId": "login-test-20260414-005637",
-      "resolvedCount": 0,
-      "recurringCount": 0,
-      "newCount": 35
-    },
-    {
-      "runId": "login-test-20260414-005637",
-      "resolvedCount": 0,
-      "recurringCount": 0,
       "newCount": 7
+    },
+    {
+      "runId": "login-test-20260414-005637",
+      "resolvedCount": 0,
+      "recurringCount": 0,
+      "newCount": 10
+    },
+    {
+      "runId": "login-test-20260414-005637",
+      "resolvedCount": 0,
+      "recurringCount": 0,
+      "newCount": 27
+    },
+    {
+      "runId": "login-test-20260414-005637",
+      "resolvedCount": 0,
+      "recurringCount": 0,
+      "newCount": 28
+    },
+    {
+      "runId": "login-test-20260414-005637",
+      "resolvedCount": 0,
+      "recurringCount": 0,
+      "newCount": 23
+    },
+    {
+      "runId": "login-test-20260414-005637",
+      "resolvedCount": 0,
+      "recurringCount": 0,
+      "newCount": 29
+    },
+    {
+      "runId": "login-test-20260414-005637",
+      "resolvedCount": 0,
+      "recurringCount": 0,
+      "newCount": 20
+    },
+    {
+      "runId": "run-login-20260416-095044",
+      "resolvedCount": 0,
+      "recurringCount": 0,
+      "newCount": 22
+    },
+    {
+      "runId": "run-login-20260416-095044",
+      "resolvedCount": 0,
+      "recurringCount": 0,
+      "newCount": 21
     }
   ]
 }

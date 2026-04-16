@@ -1,0 +1,84 @@
+{
+  "stage": "test-execution",
+  "stageIndex": 8,
+  "stageTitle": "8. Test Execution",
+  "stageObjective": "Execute generated tests and capture logs, failures, console, network, and screenshots.",
+  "status": "failed",
+  "skills": [
+    {
+      "skill": "test-execution-integration",
+      "stage": "test-execution",
+      "returnCode": 1,
+      "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/test-execution-integration/result.json",
+      "stderr": "",
+      "status": "failed",
+      "reused": false,
+      "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/test-execution-integration/result.json",
+      "summary": "Input validation failed.",
+      "artifacts": [],
+      "metrics": {},
+      "findings": [
+        {
+          "type": "InputValidation",
+          "message": "Path does not exist in legacyBackendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/src; Path does not exist in legacyFrontendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/web"
+        }
+      ]
+    },
+    {
+      "skill": "test-execution-playwright",
+      "stage": "test-execution",
+      "returnCode": 1,
+      "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/test-execution-playwright/result.json",
+      "stderr": "",
+      "status": "failed",
+      "reused": false,
+      "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/test-execution-playwright/result.json",
+      "summary": "Input validation failed.",
+      "artifacts": [],
+      "metrics": {},
+      "findings": [
+        {
+          "type": "InputValidation",
+          "message": "Path does not exist in legacyBackendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/src; Path does not exist in legacyFrontendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/web"
+        }
+      ]
+    },
+    {
+      "skill": "test-execution-unit",
+      "stage": "test-execution",
+      "returnCode": 1,
+      "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/test-execution-unit/result.json",
+      "stderr": "",
+      "status": "failed",
+      "reused": false,
+      "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/test-execution-unit/result.json",
+      "summary": "Input validation failed.",
+      "artifacts": [],
+      "metrics": {},
+      "findings": [
+        {
+          "type": "InputValidation",
+          "message": "Path does not exist in legacyBackendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/src; Path does not exist in legacyFrontendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/web"
+        }
+      ]
+    }
+  ],
+  "skillCount": 3,
+  "skillsFailed": 3,
+  "reusedSkills": 0,
+  "contextFile": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/orchestration/stage-08-context.json",
+  "requiredEvidence": [
+    {
+      "path": "test-execution-unit/unit-test-results.json",
+      "exists": false
+    },
+    {
+      "path": "test-execution-integration/integration-test-results.json",
+      "exists": false
+    },
+    {
+      "path": "test-execution-playwright/playwright-results.json",
+      "exists": false
+    }
+  ]
+}

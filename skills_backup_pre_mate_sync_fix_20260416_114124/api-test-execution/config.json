@@ -1,0 +1,37 @@
+{
+  "name": "api-test-execution",
+  "stage": "execution",
+  "category": "testing",
+  "purpose": "Execute API contract and behavior tests against converted endpoints.",
+  "scriptEntry": "run.py",
+  "requiredInputs": [
+    "moduleName",
+    "baseUrl"
+  ],
+  "optionalInputs": [
+    "authToken"
+  ],
+  "outputFiles": [
+    "result.json",
+    "preflight.json",
+    "execution-log.txt"
+  ],
+  "artifactFolders": [
+    "artifacts/{module}/{runId}/api-test-execution/"
+  ],
+  "dependencies": [
+    "test-plan-generation"
+  ],
+  "summaryOutputType": "test-category-result",
+  "resultContractVersion": "2.0",
+  "externalDependencies": [],
+  "execution": {
+    "primaryCommand": "python run.py --input <module-run-input.json> --artifacts-root <artifacts-root>",
+    "timeoutNotes": "Real-first graceful execution. Writes result.json even on degraded/failure paths.",
+    "realCommandHints": [
+      "newman run <collection.json>",
+      "dotnet test <ApiTests.csproj>",
+      "testCommands.api from run input"
+    ]
+  }
+}

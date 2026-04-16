@@ -1,0 +1,36 @@
+{
+  "name": "legacy-logic-extraction",
+  "stage": "java-logic",
+  "category": "analysis",
+  "purpose": "Extract module purpose, logic flows, rules, dependencies, and preservation constraints from legacy sources.",
+  "scriptEntry": "run.py",
+  "requiredInputs": [
+    "moduleName",
+    "legacySourceRoot"
+  ],
+  "optionalInputs": [
+    "brsPath",
+    "moduleHints.keywords"
+  ],
+  "outputFiles": [
+    "result.json",
+    "logic-summary.json"
+  ],
+  "artifactFolders": [
+    "artifacts/{module}/{runId}/legacy-logic-extraction/"
+  ],
+  "dependencies": [
+    "module-discovery"
+  ],
+  "moduleProfilesFile": "module-profiles.json",
+  "summaryOutputType": "logic-summary",
+  "resultContractVersion": "2.0",
+  "externalDependencies": [],
+  "execution": {
+    "primaryCommand": "python run.py --input <module-run-input.json> --artifacts-root <artifacts-root>",
+    "timeoutNotes": "Real-first graceful execution. Writes result.json even on degraded/failure paths.",
+    "realCommandHints": [
+      "python run.py --input <module-run-input.json> --artifacts-root <artifacts-root>"
+    ]
+  }
+}

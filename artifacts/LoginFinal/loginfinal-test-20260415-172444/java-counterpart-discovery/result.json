@@ -1,0 +1,36 @@
+{
+  "skillName": "java-counterpart-discovery",
+  "stage": "java-discovery",
+  "moduleName": "LoginFinal",
+  "runId": "loginfinal-test-20260415-172444",
+  "status": "passed",
+  "startedAt": "2026-04-15T09:24:48.253263Z",
+  "endedAt": "2026-04-15T09:24:48.294331Z",
+  "summary": "Java counterpart discovery selected 4 files and mapped 2 legacy workflows.",
+  "metrics": {
+    "relatedFiles": 4,
+    "excludedFiles": 2,
+    "legacyWorkflows": 2,
+    "sqlSignatures": 0,
+    "tables": 0
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-172444/java-counterpart-discovery/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-172444/java-counterpart-discovery/legacy-module-map.json",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-172444/java-counterpart-discovery/legacy-workflows.json",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-172444/java-counterpart-discovery/java-sql-map.json",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-172444/java-counterpart-discovery/java-table-usage.json",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-172444/java-counterpart-discovery/java-related-files.json",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-172444/java-counterpart-discovery/java-exclusions.json"
+  ],
+  "findings": [],
+  "recommendations": [],
+  "resultContractVersion": "2.0",
+  "provenanceSummary": {
+    "scenarioSources": [
+      "code-evidence",
+      "flow-derived"
+    ],
+    "confidence": 0.7
+  }
+}

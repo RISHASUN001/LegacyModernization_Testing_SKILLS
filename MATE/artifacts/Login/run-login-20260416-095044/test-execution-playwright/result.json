@@ -1,0 +1,29 @@
+{
+  "skillName": "test-execution-playwright",
+  "status": "failed",
+  "startedAt": "2026-04-16T02:14:20.481897Z",
+  "endedAt": "2026-04-16T02:14:20.481927Z",
+  "summary": "Playwright pytest execution completed with exit code 5.",
+  "metrics": {
+    "total": 0,
+    "testsCopied": 0,
+    "exitCode": 5,
+    "screenshots": 0
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-playwright/playwright.log",
+    "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-playwright/console-messages.json",
+    "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-playwright/network-requests.json",
+    "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-playwright/playwright-results.json",
+    "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-playwright/playwright-execution-manifest.json"
+  ],
+  "findings": [
+    {
+      "type": "PlaywrightExecutionFailure",
+      "message": "pytest returned non-zero exit code.",
+      "evidence": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-playwright/playwright.log"
+    }
+  ],
+  "recommendations": [],
+  "resultContractVersion": "1.0"
+}

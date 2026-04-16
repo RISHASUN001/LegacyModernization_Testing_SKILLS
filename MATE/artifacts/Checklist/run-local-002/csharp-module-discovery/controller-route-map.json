@@ -1,0 +1,67 @@
+{
+  "items": [
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Dashboard.Web/Controllers/DashboardController.cs",
+      "routes": [
+        "/",
+        "artifacts/file",
+        "findings",
+        "help-guide",
+        "home",
+        "iteration-comparison/{moduleName}",
+        "module-runs",
+        "pipeline/{moduleName}/{runId}",
+        "pipeline/{moduleName}/{runId}/playwright-inputs",
+        "run-input-builder",
+        "skill-library"
+      ]
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Dashboard.Web/Controllers/TestApiController.cs",
+      "routes": [
+        "accessibility-report",
+        "all-data",
+        "api/test",
+        "console-logs",
+        "dom-structure",
+        "form-submit",
+        "health",
+        "interaction-flows",
+        "network-requests",
+        "performance-metrics"
+      ]
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Dashboard.Web/Views/Dashboard/Index.cshtml",
+      "routes": [
+        "ModuleRuns",
+        "Pipeline",
+        "RunInputBuilder"
+      ]
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Dashboard.Web/Views/Dashboard/ModuleRuns.cshtml",
+      "routes": [
+        "Pipeline"
+      ]
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Dashboard.Web/Views/Dashboard/Pipeline.cshtml",
+      "routes": [
+        "IterationComparison",
+        "SavePlaywrightInputs"
+      ]
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Dashboard.Web/Views/Shared/_Layout.cshtml",
+      "routes": [
+        "Findings",
+        "HelpGuide",
+        "Index",
+        "ModuleRuns",
+        "RunInputBuilder",
+        "SkillLibrary"
+      ]
+    }
+  ]
+}

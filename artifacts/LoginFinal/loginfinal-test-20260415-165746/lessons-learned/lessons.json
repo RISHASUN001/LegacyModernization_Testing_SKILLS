@@ -1,0 +1,51 @@
+{
+  "moduleName": "LoginFinal",
+  "runId": "loginfinal-test-20260415-165746",
+  "previousRunId": "loginfinal-test-20260415-163500",
+  "resolvedIssues": [],
+  "recurringIssues": [],
+  "newIssues": [
+    "ArchitectureIssuesDetected::Clean architecture review::Detected 1 architecture issue(s), including 1 high-severity issue(s).",
+    "BrowserEvidenceUnavailable::Playwright evidence collection::Playwright execution did not emit runtime/network issue signatures in execution logs.",
+    "NoTestsCollected::E2E::No runnable E2E tests were collected in this run; treated as non-blocking baseline.",
+    "ScenarioFailure::excalidraw-diagram::excalidraw-diagram failed in skill excalidraw-diagram.",
+    "SkillExecutionError::Skill callback execution::'SkillContext' object has no attribute 'finished_at'"
+  ],
+  "knowledgeUpdates": [
+    {
+      "signature": "ArchitectureIssuesDetected::Clean architecture review::Detected 1 architecture issue(s), including 1 high-severity issue(s).",
+      "stage": "csharp-logic",
+      "skill": "clean-architecture-assessment",
+      "message": "Detected 1 architecture issue(s), including 1 high-severity issue(s).",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "BrowserEvidenceUnavailable::Playwright evidence collection::Playwright execution did not emit runtime/network issue signatures in execution logs.",
+      "stage": "execution",
+      "skill": "playwright-browser-verification",
+      "message": "Playwright execution did not emit runtime/network issue signatures in execution logs.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "NoTestsCollected::E2E::No runnable E2E tests were collected in this run; treated as non-blocking baseline.",
+      "stage": "execution",
+      "skill": "e2e-test-execution",
+      "message": "No runnable E2E tests were collected in this run; treated as non-blocking baseline.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "ScenarioFailure::excalidraw-diagram::excalidraw-diagram failed in skill excalidraw-diagram.",
+      "stage": "findings",
+      "skill": "failure-diagnosis",
+      "message": "excalidraw-diagram failed in skill excalidraw-diagram.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "SkillExecutionError::Skill callback execution::'SkillContext' object has no attribute 'finished_at'",
+      "stage": "visualization",
+      "skill": "excalidraw-diagram",
+      "message": "'SkillContext' object has no attribute 'finished_at'",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    }
+  ]
+}

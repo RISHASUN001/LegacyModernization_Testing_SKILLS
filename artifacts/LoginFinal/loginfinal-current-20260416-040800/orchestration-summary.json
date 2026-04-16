@@ -1,0 +1,495 @@
+{
+  "runId": "loginfinal-current-20260416-040800",
+  "moduleName": "LoginFinal",
+  "status": "passed",
+  "startedAt": "2026-04-16T04:13:01.846098Z",
+  "endedAt": "2026-04-16T04:13:12.474270Z",
+  "selectedSkills": [
+    "csharp-module-discovery",
+    "csharp-logic-understanding",
+    "legacy-module-discovery",
+    "legacy-logic-understanding",
+    "diagram-generation",
+    "parity-analysis",
+    "edge-test-generation",
+    "integration-test-generation",
+    "playwright-test-generation",
+    "unit-test-generation",
+    "test-execution-integration",
+    "test-execution-playwright",
+    "test-execution-unit",
+    "clean-architecture-assessment",
+    "findings-synthesis",
+    "vanity-check"
+  ],
+  "stages": [
+    {
+      "stage": "csharp-discovery",
+      "stageTitle": "1. C# Discovery",
+      "stageIndex": 1,
+      "status": "passed",
+      "skillCount": 1,
+      "skillsPassed": 1,
+      "skillsFailed": 0,
+      "skills": [
+        {
+          "skill": "csharp-module-discovery",
+          "stage": "csharp-discovery",
+          "status": "passed",
+          "startedAt": "2026-04-16T04:13:01.846489Z",
+          "endedAt": "2026-04-16T04:13:01.921061Z",
+          "durationSeconds": 0.074,
+          "summary": "Scoped 6 C# files for module 'LoginFinal' and mapped routes, SQL, and tables.",
+          "returnCode": 0,
+          "stdout": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/csharp-module-discovery/result.json\n",
+          "stderr": "",
+          "command": [
+            "python3",
+            "/Users/risha/Documents/Buildathon/skills/csharp-module-discovery/run.py",
+            "--input",
+            "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/module-run-input.json",
+            "--artifacts-root",
+            "/Users/risha/Documents/Buildathon/artifacts"
+          ],
+          "resultPath": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/csharp-module-discovery/result.json"
+        }
+      ],
+      "startedAt": "2026-04-16T04:13:01.846489Z",
+      "endedAt": "2026-04-16T04:13:01.921061Z"
+    },
+    {
+      "stage": "csharp-logic-understanding",
+      "stageTitle": "2. C# Logic Understanding",
+      "stageIndex": 2,
+      "status": "passed",
+      "skillCount": 1,
+      "skillsPassed": 1,
+      "skillsFailed": 0,
+      "skills": [
+        {
+          "skill": "csharp-logic-understanding",
+          "stage": "csharp-logic-understanding",
+          "status": "passed",
+          "startedAt": "2026-04-16T04:13:01.921594Z",
+          "endedAt": "2026-04-16T04:13:01.979670Z",
+          "durationSeconds": 0.058,
+          "summary": "Built C# logic understanding for 2 workflows.",
+          "returnCode": 0,
+          "stdout": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/csharp-logic-understanding/result.json\n",
+          "stderr": "",
+          "command": [
+            "python3",
+            "/Users/risha/Documents/Buildathon/skills/csharp-logic-understanding/run.py",
+            "--input",
+            "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/module-run-input.json",
+            "--artifacts-root",
+            "/Users/risha/Documents/Buildathon/artifacts"
+          ],
+          "resultPath": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/csharp-logic-understanding/result.json"
+        }
+      ],
+      "startedAt": "2026-04-16T04:13:01.921594Z",
+      "endedAt": "2026-04-16T04:13:01.979670Z"
+    },
+    {
+      "stage": "java-discovery",
+      "stageTitle": "3. Java Discovery",
+      "stageIndex": 3,
+      "status": "passed",
+      "skillCount": 1,
+      "skillsPassed": 1,
+      "skillsFailed": 0,
+      "skills": [
+        {
+          "skill": "legacy-module-discovery",
+          "stage": "java-discovery",
+          "status": "passed",
+          "startedAt": "2026-04-16T04:13:01.980188Z",
+          "endedAt": "2026-04-16T04:13:02.060393Z",
+          "durationSeconds": 0.08,
+          "summary": "Legacy discovery selected 3 anchored files from 3 candidates for workflow-scoped analysis.",
+          "returnCode": 0,
+          "stdout": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/legacy-module-discovery/result.json\n",
+          "stderr": "",
+          "command": [
+            "python3",
+            "/Users/risha/Documents/Buildathon/skills/legacy-module-discovery/run.py",
+            "--input",
+            "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/module-run-input.json",
+            "--artifacts-root",
+            "/Users/risha/Documents/Buildathon/artifacts"
+          ],
+          "resultPath": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/legacy-module-discovery/result.json"
+        }
+      ],
+      "startedAt": "2026-04-16T04:13:01.980188Z",
+      "endedAt": "2026-04-16T04:13:02.060393Z"
+    },
+    {
+      "stage": "legacy-logic-understanding",
+      "stageTitle": "4. Legacy Logic Understanding",
+      "stageIndex": 4,
+      "status": "passed",
+      "skillCount": 1,
+      "skillsPassed": 1,
+      "skillsFailed": 0,
+      "skills": [
+        {
+          "skill": "legacy-logic-understanding",
+          "stage": "legacy-logic-understanding",
+          "status": "passed",
+          "startedAt": "2026-04-16T04:13:02.060854Z",
+          "endedAt": "2026-04-16T04:13:02.123333Z",
+          "durationSeconds": 0.062,
+          "summary": "Generated legacy logic understanding for 2 workflows.",
+          "returnCode": 0,
+          "stdout": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/legacy-logic-understanding/result.json\n",
+          "stderr": "",
+          "command": [
+            "python3",
+            "/Users/risha/Documents/Buildathon/skills/legacy-logic-understanding/run.py",
+            "--input",
+            "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/module-run-input.json",
+            "--artifacts-root",
+            "/Users/risha/Documents/Buildathon/artifacts"
+          ],
+          "resultPath": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/legacy-logic-understanding/result.json"
+        }
+      ],
+      "startedAt": "2026-04-16T04:13:02.060854Z",
+      "endedAt": "2026-04-16T04:13:02.123333Z"
+    },
+    {
+      "stage": "diagram-generation",
+      "stageTitle": "5. Diagram Generation",
+      "stageIndex": 5,
+      "status": "passed",
+      "skillCount": 1,
+      "skillsPassed": 1,
+      "skillsFailed": 0,
+      "skills": [
+        {
+          "skill": "diagram-generation",
+          "stage": "diagram-generation",
+          "status": "passed",
+          "startedAt": "2026-04-16T04:13:02.123842Z",
+          "endedAt": "2026-04-16T04:13:06.913969Z",
+          "durationSeconds": 4.79,
+          "summary": "Generated Mermaid + Excalidraw + PNG workflow diagrams for C# and legacy business flows.",
+          "returnCode": 0,
+          "stdout": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/diagram-generation/result.json\n",
+          "stderr": "",
+          "command": [
+            "python3",
+            "/Users/risha/Documents/Buildathon/skills/diagram-generation/run.py",
+            "--input",
+            "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/module-run-input.json",
+            "--artifacts-root",
+            "/Users/risha/Documents/Buildathon/artifacts"
+          ],
+          "resultPath": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/diagram-generation/result.json"
+        }
+      ],
+      "startedAt": "2026-04-16T04:13:02.123842Z",
+      "endedAt": "2026-04-16T04:13:06.913969Z"
+    },
+    {
+      "stage": "functional-parity-and-sql-table-comparison",
+      "stageTitle": "6. Functional Parity",
+      "stageIndex": 6,
+      "status": "passed",
+      "skillCount": 1,
+      "skillsPassed": 1,
+      "skillsFailed": 0,
+      "skills": [
+        {
+          "skill": "parity-analysis",
+          "stage": "functional-parity-and-sql-table-comparison",
+          "status": "passed",
+          "startedAt": "2026-04-16T04:13:06.914519Z",
+          "endedAt": "2026-04-16T04:13:06.975674Z",
+          "durationSeconds": 0.061,
+          "summary": "Functional parity analysis completed with score 50%.",
+          "returnCode": 0,
+          "stdout": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/parity-analysis/result.json\n",
+          "stderr": "",
+          "command": [
+            "python3",
+            "/Users/risha/Documents/Buildathon/skills/parity-analysis/run.py",
+            "--input",
+            "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/module-run-input.json",
+            "--artifacts-root",
+            "/Users/risha/Documents/Buildathon/artifacts"
+          ],
+          "resultPath": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/parity-analysis/result.json"
+        }
+      ],
+      "startedAt": "2026-04-16T04:13:06.914519Z",
+      "endedAt": "2026-04-16T04:13:06.975674Z"
+    },
+    {
+      "stage": "ai-test-generation",
+      "stageTitle": "7. AI Test Generation",
+      "stageIndex": 7,
+      "status": "passed",
+      "skillCount": 4,
+      "skillsPassed": 4,
+      "skillsFailed": 0,
+      "skills": [
+        {
+          "skill": "edge-test-generation",
+          "stage": "ai-test-generation",
+          "status": "passed",
+          "startedAt": "2026-04-16T04:13:06.976196Z",
+          "endedAt": "2026-04-16T04:13:07.020378Z",
+          "durationSeconds": 0.044,
+          "summary": "edge-test-generation scaffold executed.",
+          "returnCode": 0,
+          "stdout": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/edge-test-generation/result.json\n",
+          "stderr": "",
+          "command": [
+            "python3",
+            "/Users/risha/Documents/Buildathon/skills/edge-test-generation/run.py",
+            "--input",
+            "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/module-run-input.json",
+            "--artifacts-root",
+            "/Users/risha/Documents/Buildathon/artifacts"
+          ],
+          "resultPath": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/edge-test-generation/result.json"
+        },
+        {
+          "skill": "integration-test-generation",
+          "stage": "ai-test-generation",
+          "status": "passed",
+          "startedAt": "2026-04-16T04:13:07.020395Z",
+          "endedAt": "2026-04-16T04:13:07.064323Z",
+          "durationSeconds": 0.044,
+          "summary": "integration-test-generation scaffold executed.",
+          "returnCode": 0,
+          "stdout": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/integration-test-generation/result.json\n",
+          "stderr": "",
+          "command": [
+            "python3",
+            "/Users/risha/Documents/Buildathon/skills/integration-test-generation/run.py",
+            "--input",
+            "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/module-run-input.json",
+            "--artifacts-root",
+            "/Users/risha/Documents/Buildathon/artifacts"
+          ],
+          "resultPath": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/integration-test-generation/result.json"
+        },
+        {
+          "skill": "playwright-test-generation",
+          "stage": "ai-test-generation",
+          "status": "passed",
+          "startedAt": "2026-04-16T04:13:07.064343Z",
+          "endedAt": "2026-04-16T04:13:07.131486Z",
+          "durationSeconds": 0.067,
+          "summary": "Generated 2 Python Playwright test(s).",
+          "returnCode": 0,
+          "stdout": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/playwright-test-generation/result.json\n",
+          "stderr": "",
+          "command": [
+            "python3",
+            "/Users/risha/Documents/Buildathon/skills/playwright-test-generation/run.py",
+            "--input",
+            "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/module-run-input.json",
+            "--artifacts-root",
+            "/Users/risha/Documents/Buildathon/artifacts"
+          ],
+          "resultPath": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/playwright-test-generation/result.json"
+        },
+        {
+          "skill": "unit-test-generation",
+          "stage": "ai-test-generation",
+          "status": "passed",
+          "startedAt": "2026-04-16T04:13:07.131507Z",
+          "endedAt": "2026-04-16T04:13:07.175361Z",
+          "durationSeconds": 0.044,
+          "summary": "unit-test-generation scaffold executed.",
+          "returnCode": 0,
+          "stdout": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/unit-test-generation/result.json\n",
+          "stderr": "",
+          "command": [
+            "python3",
+            "/Users/risha/Documents/Buildathon/skills/unit-test-generation/run.py",
+            "--input",
+            "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/module-run-input.json",
+            "--artifacts-root",
+            "/Users/risha/Documents/Buildathon/artifacts"
+          ],
+          "resultPath": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/unit-test-generation/result.json"
+        }
+      ],
+      "startedAt": "2026-04-16T04:13:06.976196Z",
+      "endedAt": "2026-04-16T04:13:07.175361Z"
+    },
+    {
+      "stage": "test-execution",
+      "stageTitle": "8. Test Execution",
+      "stageIndex": 8,
+      "status": "passed",
+      "skillCount": 3,
+      "skillsPassed": 3,
+      "skillsFailed": 0,
+      "skills": [
+        {
+          "skill": "test-execution-integration",
+          "stage": "test-execution",
+          "status": "passed",
+          "startedAt": "2026-04-16T04:13:07.175930Z",
+          "endedAt": "2026-04-16T04:13:08.191238Z",
+          "durationSeconds": 1.015,
+          "summary": "Integration test execution completed with exit code 0.",
+          "returnCode": 0,
+          "stdout": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/test-execution-integration/result.json\n",
+          "stderr": "",
+          "command": [
+            "python3",
+            "/Users/risha/Documents/Buildathon/skills/test-execution-integration/run.py",
+            "--input",
+            "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/module-run-input.json",
+            "--artifacts-root",
+            "/Users/risha/Documents/Buildathon/artifacts"
+          ],
+          "resultPath": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/test-execution-integration/result.json"
+        },
+        {
+          "skill": "test-execution-playwright",
+          "stage": "test-execution",
+          "status": "passed",
+          "startedAt": "2026-04-16T04:13:08.191271Z",
+          "endedAt": "2026-04-16T04:13:11.477316Z",
+          "durationSeconds": 3.286,
+          "summary": "Playwright pytest execution completed with exit code 0.",
+          "returnCode": 0,
+          "stdout": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/test-execution-playwright/result.json\n",
+          "stderr": "",
+          "command": [
+            "python3",
+            "/Users/risha/Documents/Buildathon/skills/test-execution-playwright/run.py",
+            "--input",
+            "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/module-run-input.json",
+            "--artifacts-root",
+            "/Users/risha/Documents/Buildathon/artifacts"
+          ],
+          "resultPath": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/test-execution-playwright/result.json"
+        },
+        {
+          "skill": "test-execution-unit",
+          "stage": "test-execution",
+          "status": "passed",
+          "startedAt": "2026-04-16T04:13:11.477345Z",
+          "endedAt": "2026-04-16T04:13:12.280658Z",
+          "durationSeconds": 0.803,
+          "summary": "Unit test execution completed with exit code 0.",
+          "returnCode": 0,
+          "stdout": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/test-execution-unit/result.json\n",
+          "stderr": "",
+          "command": [
+            "python3",
+            "/Users/risha/Documents/Buildathon/skills/test-execution-unit/run.py",
+            "--input",
+            "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/module-run-input.json",
+            "--artifacts-root",
+            "/Users/risha/Documents/Buildathon/artifacts"
+          ],
+          "resultPath": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/test-execution-unit/result.json"
+        }
+      ],
+      "startedAt": "2026-04-16T04:13:07.175930Z",
+      "endedAt": "2026-04-16T04:13:12.280658Z"
+    },
+    {
+      "stage": "clean-architecture-and-findings",
+      "stageTitle": "9. Clean Architecture and Findings",
+      "stageIndex": 9,
+      "status": "passed",
+      "skillCount": 2,
+      "skillsPassed": 2,
+      "skillsFailed": 0,
+      "skills": [
+        {
+          "skill": "clean-architecture-assessment",
+          "stage": "clean-architecture-and-findings",
+          "status": "passed",
+          "startedAt": "2026-04-16T04:13:12.281217Z",
+          "endedAt": "2026-04-16T04:13:12.346618Z",
+          "durationSeconds": 0.065,
+          "summary": "Clean architecture assessment completed.",
+          "returnCode": 0,
+          "stdout": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/clean-architecture-assessment/result.json\n",
+          "stderr": "",
+          "command": [
+            "python3",
+            "/Users/risha/Documents/Buildathon/skills/clean-architecture-assessment/run.py",
+            "--input",
+            "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/module-run-input.json",
+            "--artifacts-root",
+            "/Users/risha/Documents/Buildathon/artifacts"
+          ],
+          "resultPath": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/clean-architecture-assessment/result.json"
+        },
+        {
+          "skill": "findings-synthesis",
+          "stage": "clean-architecture-and-findings",
+          "status": "passed",
+          "startedAt": "2026-04-16T04:13:12.346638Z",
+          "endedAt": "2026-04-16T04:13:12.412619Z",
+          "durationSeconds": 0.066,
+          "summary": "Synthesized findings for module LoginFinal.",
+          "returnCode": 0,
+          "stdout": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/findings-synthesis/result.json\n",
+          "stderr": "",
+          "command": [
+            "python3",
+            "/Users/risha/Documents/Buildathon/skills/findings-synthesis/run.py",
+            "--input",
+            "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/module-run-input.json",
+            "--artifacts-root",
+            "/Users/risha/Documents/Buildathon/artifacts"
+          ],
+          "resultPath": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/findings-synthesis/result.json"
+        }
+      ],
+      "startedAt": "2026-04-16T04:13:12.281217Z",
+      "endedAt": "2026-04-16T04:13:12.412619Z"
+    },
+    {
+      "stage": "pipeline-vanity-check",
+      "stageTitle": "10. Pipeline Vanity Check",
+      "stageIndex": 10,
+      "status": "passed",
+      "skillCount": 1,
+      "skillsPassed": 1,
+      "skillsFailed": 0,
+      "skills": [
+        {
+          "skill": "vanity-check",
+          "stage": "pipeline-vanity-check",
+          "status": "passed",
+          "startedAt": "2026-04-16T04:13:12.413112Z",
+          "endedAt": "2026-04-16T04:13:12.473866Z",
+          "durationSeconds": 0.06,
+          "summary": "Vanity check completed. Recommendation: hold.",
+          "returnCode": 0,
+          "stdout": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/vanity-check/result.json\n",
+          "stderr": "",
+          "command": [
+            "python3",
+            "/Users/risha/Documents/Buildathon/skills/vanity-check/run.py",
+            "--input",
+            "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/module-run-input.json",
+            "--artifacts-root",
+            "/Users/risha/Documents/Buildathon/artifacts"
+          ],
+          "resultPath": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/vanity-check/result.json"
+        }
+      ],
+      "startedAt": "2026-04-16T04:13:12.413112Z",
+      "endedAt": "2026-04-16T04:13:12.473866Z"
+    }
+  ],
+  "failedSkills": [],
+  "artifactsRoot": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800"
+}

@@ -1,0 +1,132 @@
+{
+  "items": [
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Dashboard.Web/Controllers/DashboardController.cs",
+      "queries": [
+        ".Select(static value => value.Trim())"
+      ],
+      "tables": []
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Dashboard.Web/Views/Dashboard/RunInputBuilder.cshtml",
+      "queries": [
+        "<select class=\"form-select\" name=\"ArchitecturePolicy\">",
+        "</select>"
+      ],
+      "tables": []
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Infrastructure/Services/DashboardQueryService.cs",
+      "queries": [
+        "SELECT",
+        "COALESCE((SELECT r2.run_id FROM runs r2 WHERE r2.module_id = m.id ORDER BY r2.run_id DESC LIMIT 1), '') AS last_run_id,",
+        "COALESCE((SELECT r2.status FROM runs r2 WHERE r2.module_id = m.id ORDER BY r2.run_id DESC LIMIT 1), 'unknown') AS last_status,",
+        "COALESCE((SELECT r2.ended_at FROM runs r2 WHERE r2.module_id = m.id ORDER BY r2.run_id DESC LIMIT 1), '') AS last_updated_at",
+        "SELECT m.name AS module_name, r.run_id, r.status, r.started_at, r.ended_at, r.summary",
+        "SELECT",
+        "Modules = moduleRows.Select(static row => new ModuleSummaryDto",
+        "LatestRuns = latestRuns.Select(static row => new RunSummaryDto",
+        "SELECT name, stage, category, purpose, script_entry, summary_output_type, result_contract_version,",
+        "Skills = rows.Select(static row => new SkillLibraryItemDto",
+        "\"SELECT name FROM skills WHERE name NOT IN ('legacy-modernization-orchestrator', 'api-test-execution') ORDER BY name;\",",
+        "var skillNames = skills.Select(static s => s.GetString(\"name\")).Where(static s => !string.IsNullOrWhiteSpace(s)).ToList();",
+        "SELECT m.name AS module_name, r.run_id, r.status, r.started_at, r.ended_at, r.summary",
+        "SELECT m.name AS module_name, r.run_id, r.status, r.started_at, r.ended_at, r.summary",
+        "Runs = runs.Select(static r => new RunSummaryDto",
+        "SELECT stage,",
+        "var stageStatuses = StageOrder.Select(stage =>",
+        "SELECT m.name AS module_name, r.run_id, f.stage, f.skill_name, f.scenario, f.issue_type, f.message,",
+        "SELECT m.name AS module_name, r.run_id, rec.stage, rec.skill_name, rec.message, rec.priority, rec.evidence",
+        "Findings = findingRows.Select(static row => new FindingDto",
+        "Recommendations = recommendationRows.Select(static row => new RecommendationDto",
+        "SELECT d.run_id, d.previous_run_id, d.tests_added, d.tests_fixed, d.failures_reduced,",
+        "Iterations = rows.Select(static row => new IterationPointDto",
+        ".Select(static x => x as JsonObject)",
+        ".Select(static x => x![\"path\"]?.GetValue<string>() ?? string.Empty)",
+        ".Select(static x => x as JsonObject)",
+        ".Select(static x => new DiagramBundleDto",
+        ".Select(static w => w as JsonObject)",
+        ".Select(w => new WorkflowLaneDto",
+        "Categories = (w[\"categories\"] as JsonArray)?.Select(static c => c?.GetValue<string>() ?? string.Empty)",
+        ".Select(w => new WorkflowLaneDto",
+        "SELECT category, purpose, scenarios_json, total, passed, failed, warnings, new_tests_added,",
+        "var categories = rows.Select(static row => {",
+        "ScenariosCovered = scenarioDetails.Select(static s => s.Name).Where(static s => !string.IsNullOrWhiteSpace(s)).ToList(),",
+        "SELECT status, summary, metrics_json, artifacts_json",
+        ".Select(static item => item as JsonObject)",
+        ".Select(item =>",
+        ".Select(static c => c?.GetValue<string>() ?? string.Empty)",
+        ".Select(static gf => gf?.GetValue<string>() ?? string.Empty)",
+        ".Select(static token => token?.GetValue<string>() ?? string.Empty)",
+        ".Select(static item => item as JsonObject)",
+        ".Select(static item => ToFindingSnippet(item!))",
+        "var needInputKeywords = new[] { \"login\", \"invalid\", \"valid\", \"form\", \"dropdown\", \"select\", \"checklist\", \"report\", \"submit\" };",
+        ".Select(path => NormalizeArtifactPath(artifactRoot, path))",
+        "SELECT stage, skill_name, scenario, issue_type, message, likely_cause, evidence, severity, status,",
+        "SELECT stage, skill_name, message, priority, evidence",
+        "var findingDtos = findings.Select(row => new FindingDto",
+        "var recommendationDtos = recommendations.Select(row => new RecommendationDto",
+        ".Select(static w => w as JsonObject)",
+        ".Select(static w =>",
+        ".Select(static g => g",
+        ".Select(static g => g.First())",
+        "SELECT d.previous_run_id, d.tests_added, d.tests_fixed, d.failures_reduced,",
+        "SELECT r.id, r.artifact_root, r.status, r.summary, r.started_at, r.ended_at",
+        ".Select(static item =>",
+        ".Select(static item => item.Trim())",
+        ".Select(static item => item as JsonObject)",
+        ".Select(static item => new ArchitectureIssueDto",
+        ".Select(static item =>",
+        "SELECT id, base_url, start_timestamp, end_timestamp, total_scenarios,",
+        "Sessions = sessionsRows.Select(static row => new BrowserSessionDto",
+        "SELECT level, message, source_file, source_line, timestamp, stack_trace",
+        "results.ConsoleLogs.AddRange(logsRows.Select(static row => new BrowserConsoleLogDto",
+        "SELECT method, url, status_code, request_payload, response_payload,",
+        "results.NetworkRequests.AddRange(requestsRows.Select(static row => new BrowserNetworkRequestDto",
+        "SELECT metric_name, metric_value, target_threshold, meets_threshold, timestamp",
+        "results.PerformanceMetrics.AddRange(metricsRows.Select(static row => new BrowserPerformanceMetricDto",
+        "SELECT issue_type, severity, element_selector, issue_description, recommendation, timestamp",
+        "results.AccessibilityIssues.AddRange(issuesRows.Select(static row => new BrowserAccessibilityIssueDto",
+        "SELECT filename, artifact_path, viewport_width, viewport_height, scenario_context, captured_at",
+        "results.Screenshots.AddRange(screenshotsRows.Select(static row => new BrowserScreenshotDto",
+        "SELECT filename, artifact_path, scenario_context, element_count, captured_at",
+        "results.DomSnapshots.AddRange(snapshotsRows.Select(static row => new BrowserDomSnapshotDto"
+      ],
+      "tables": [
+        "runs",
+        "skills"
+      ]
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Infrastructure/Services/MetadataSyncService.cs",
+      "queries": [
+        "INSERT INTO skills",
+        "INSERT OR IGNORE INTO modules(name, legacy_source_root, converted_source_root, created_at)",
+        "const string selectModuleSql = \"SELECT id FROM modules WHERE name=@Name LIMIT 1;\";",
+        "INSERT INTO runs(module_id, run_id, status, started_at, ended_at, summary, base_url, brs_path, artifact_root, created_at)",
+        "const string selectRunSql = \"SELECT id FROM runs WHERE module_id=@ModuleId AND run_id=@RunId LIMIT 1;\";",
+        "INSERT INTO skill_executions",
+        "INSERT INTO finding_records",
+        "INSERT INTO recommendation_records",
+        "INSERT INTO test_category_results",
+        "var modules = await QueryRowsAsync(connection, \"SELECT id, name FROM modules ORDER BY name;\", null, transaction, cancellationToken);",
+        "var runs = await QueryRowsAsync(connection, \"SELECT id, run_id FROM runs WHERE module_id=@ModuleId ORDER BY run_id;\", new { ModuleId = moduleId }, transaction, cancellationToken);",
+        "var testsAdded = (await connection.ExecuteScalarAsync<long?>(new CommandDefinition(\"SELECT COALESCE(SUM(new_tests_added),0) FROM test_category_results WHERE run_fk=@RunFk;\", new { RunFk = runFk }, transaction, cancellationToken: cancellationToken))) ?? 0;",
+        "var totalFailed = (int)((await connection.ExecuteScalarAsync<long?>(new CommandDefinition(\"SELECT COALESCE(SUM(failed),0) FROM test_category_results WHERE run_fk=@RunFk;\", new { RunFk = runFk }, transaction, cancellationToken: cancellationToken))) ?? 0);",
+        "var resolvedFindings = (await connection.ExecuteScalarAsync<long?>(new CommandDefinition(\"SELECT COUNT(1) FROM finding_records WHERE run_fk=@RunFk AND LOWER(status)='resolved';\", new { RunFk = runFk }, transaction, cancellationToken: cancellationToken))) ?? 0;",
+        "var currentTypeRows = await QueryRowsAsync(connection, \"SELECT DISTINCT issue_type FROM finding_records WHERE run_fk=@RunFk;\", new { RunFk = runFk }, transaction, cancellationToken);",
+        "INSERT INTO iteration_deltas"
+      ],
+      "tables": [
+        "finding_records",
+        "iteration_deltas",
+        "modules",
+        "recommendation_records",
+        "runs",
+        "skill_executions",
+        "skills",
+        "test_category_results"
+      ]
+    }
+  ]
+}

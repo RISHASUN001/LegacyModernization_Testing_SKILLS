@@ -1,0 +1,36 @@
+{
+  "name": "edge-case-testing",
+  "stage": "execution",
+  "category": "testing",
+  "purpose": "Execute rare-condition test scenarios for resilience and correctness under non-happy paths.",
+  "scriptEntry": "run.py",
+  "requiredInputs": [
+    "moduleName",
+    "baseUrl"
+  ],
+  "optionalInputs": [
+    "moduleHints.keywords"
+  ],
+  "outputFiles": [
+    "result.json",
+    "preflight.json",
+    "execution-log.txt",
+    "edge-case-matrix.json"
+  ],
+  "artifactFolders": [
+    "artifacts/{module}/{runId}/edge-case-testing/"
+  ],
+  "dependencies": [
+    "test-plan-generation"
+  ],
+  "summaryOutputType": "test-category-result",
+  "resultContractVersion": "2.0",
+  "externalDependencies": [],
+  "execution": {
+    "primaryCommand": "python run.py --input <module-run-input.json> --artifacts-root <artifacts-root>",
+    "timeoutNotes": "Real-first graceful execution. Writes result.json even on degraded/failure paths.",
+    "realCommandHints": [
+      "testCommands.edgeCase from run input"
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "skillName": "unit-test-generation",
+  "status": "passed",
+  "startedAt": "2026-04-15T15:52:50.592394Z",
+  "endedAt": "2026-04-15T15:52:50.592578Z",
+  "summary": "unit-test-generation scaffold executed.",
+  "metrics": {},
+  "artifacts": [
+    "MATE/artifacts/Checklist/__missing-run__/unit-test-generation/result.json"
+  ],
+  "resultContractVersion": "1.0"
+}

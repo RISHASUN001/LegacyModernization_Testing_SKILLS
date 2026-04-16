@@ -1,0 +1,15 @@
+{
+  "moduleName": "Checklist",
+  "category": "integration",
+  "status": "failed",
+  "testsDiscovered": 0,
+  "testsCopied": 0,
+  "command": [
+    "dotnet",
+    "test",
+    "net8.0",
+    "--logger",
+    "trx"
+  ],
+  "items": []
+}

@@ -6,61 +6,165 @@
   "recurringIssues": [],
   "newIssues": [
     "ArchitectureIssuesDetected::Clean architecture review::Detected 2 architecture issue(s), including 1 high-severity issue(s).",
-    "BrowserEvidenceUnavailable::Playwright evidence collection::No browser evidence returned from http://127.0.0.1:5000/api/test endpoints.",
-    "EnvironmentDependencyMissing::DevTools diagnostics API health check::Required endpoint unavailable: http://127.0.0.1:5000/api/test/health",
-    "NoTestsCollected::API::No runnable API tests were collected in this run; treated as non-blocking baseline.",
-    "NoTestsCollected::E2E::No runnable E2E tests were collected in this run; treated as non-blocking baseline.",
-    "NoTestsCollected::Playwright / E2E Browser::No runnable Playwright / E2E Browser tests were collected in this run; treated as non-blocking baseline.",
-    "ParityGap::Legacy vs converted behavior parity::Parity score for Login is 29 with 5 failing checks."
+    "BrowserEvidenceUnavailable::Playwright evidence collection::Playwright execution did not emit runtime/network issue signatures in execution logs.",
+    "MissingControllerEvidence::C# module discovery::No controllers were discovered in scoped C# files.",
+    "ScenarioFailure::Browser runtime validation for Open login page::Browser runtime validation for Open login page failed in skill playwright-browser-verification.",
+    "ScenarioFailure::Browser runtime validation for Session timeout returns to login::Browser runtime validation for Session timeout returns to login failed in skill playwright-browser-verification.",
+    "ScenarioFailure::E2E robustness generated case 1 for Login::E2E robustness generated case 1 for Login failed in skill e2e-test-execution.",
+    "ScenarioFailure::E2E robustness generated case 2 for Login::E2E robustness generated case 2 for Login failed in skill e2e-test-execution.",
+    "ScenarioFailure::E2E robustness generated case 3 for Login::E2E robustness generated case 3 for Login failed in skill e2e-test-execution.",
+    "ScenarioFailure::E2E route resilience: /login::E2E route resilience: /login failed in skill e2e-test-execution.",
+    "ScenarioFailure::Journey parity: Open login page::Journey parity: Open login page failed in skill e2e-test-execution.",
+    "ScenarioFailure::Journey parity: Session timeout returns to login::Journey parity: Session timeout returns to login failed in skill e2e-test-execution.",
+    "ScenarioFailure::Playwright / E2E Browser robustness generated case 1 for Login::Playwright / E2E Browser robustness generated case 1 for Login failed in skill playwright-browser-verification.",
+    "ScenarioFailure::Playwright / E2E Browser robustness generated case 2 for Login::Playwright / E2E Browser robustness generated case 2 for Login failed in skill playwright-browser-verification.",
+    "ScenarioFailure::Playwright / E2E Browser robustness generated case 3 for Login::Playwright / E2E Browser robustness generated case 3 for Login failed in skill playwright-browser-verification.",
+    "ScenarioFailure::Playwright / E2E Browser robustness generated case 4 for Login::Playwright / E2E Browser robustness generated case 4 for Login failed in skill playwright-browser-verification.",
+    "ScenarioFailure::csharp-logic-understanding::csharp-logic-understanding failed in skill csharp-logic-understanding.",
+    "ScenarioFailure::java-logic-understanding::java-logic-understanding failed in skill java-logic-understanding.",
+    "ScenarioFailure::logic-flow-visualization::logic-flow-visualization failed in skill logic-flow-visualization.",
+    "TestCategoryFailure::E2E::E2E test command returned non-zero exit code or failing test counts.",
+    "TestCategoryFailure::Playwright / E2E Browser::Playwright / E2E Browser test command returned non-zero exit code or failing test counts."
   ],
   "knowledgeUpdates": [
     {
       "signature": "ArchitectureIssuesDetected::Clean architecture review::Detected 2 architecture issue(s), including 1 high-severity issue(s).",
-      "stage": "architecture-review",
+      "stage": "csharp-logic",
       "skill": "clean-architecture-assessment",
       "message": "Detected 2 architecture issue(s), including 1 high-severity issue(s).",
       "recommendedGuard": "Add targeted regression scenario in next test plan."
     },
     {
-      "signature": "BrowserEvidenceUnavailable::Playwright evidence collection::No browser evidence returned from http://127.0.0.1:5000/api/test endpoints.",
+      "signature": "BrowserEvidenceUnavailable::Playwright evidence collection::Playwright execution did not emit runtime/network issue signatures in execution logs.",
       "stage": "execution",
       "skill": "playwright-browser-verification",
-      "message": "No browser evidence returned from http://127.0.0.1:5000/api/test endpoints.",
+      "message": "Playwright execution did not emit runtime/network issue signatures in execution logs.",
       "recommendedGuard": "Add targeted regression scenario in next test plan."
     },
     {
-      "signature": "EnvironmentDependencyMissing::DevTools diagnostics API health check::Required endpoint unavailable: http://127.0.0.1:5000/api/test/health",
-      "stage": "execution",
-      "skill": "browser-testing-with-devtools",
-      "message": "Required endpoint unavailable: http://127.0.0.1:5000/api/test/health",
+      "signature": "MissingControllerEvidence::C# module discovery::No controllers were discovered in scoped C# files.",
+      "stage": "csharp-discovery",
+      "skill": "csharp-module-discovery",
+      "message": "No controllers were discovered in scoped C# files.",
       "recommendedGuard": "Add targeted regression scenario in next test plan."
     },
     {
-      "signature": "NoTestsCollected::API::No runnable API tests were collected in this run; treated as non-blocking baseline.",
-      "stage": "execution",
-      "skill": "api-test-execution",
-      "message": "No runnable API tests were collected in this run; treated as non-blocking baseline.",
+      "signature": "ScenarioFailure::Browser runtime validation for Open login page::Browser runtime validation for Open login page failed in skill playwright-browser-verification.",
+      "stage": "findings",
+      "skill": "failure-diagnosis",
+      "message": "Browser runtime validation for Open login page failed in skill playwright-browser-verification.",
       "recommendedGuard": "Add targeted regression scenario in next test plan."
     },
     {
-      "signature": "NoTestsCollected::E2E::No runnable E2E tests were collected in this run; treated as non-blocking baseline.",
+      "signature": "ScenarioFailure::Browser runtime validation for Session timeout returns to login::Browser runtime validation for Session timeout returns to login failed in skill playwright-browser-verification.",
+      "stage": "findings",
+      "skill": "failure-diagnosis",
+      "message": "Browser runtime validation for Session timeout returns to login failed in skill playwright-browser-verification.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "ScenarioFailure::E2E robustness generated case 1 for Login::E2E robustness generated case 1 for Login failed in skill e2e-test-execution.",
+      "stage": "findings",
+      "skill": "failure-diagnosis",
+      "message": "E2E robustness generated case 1 for Login failed in skill e2e-test-execution.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "ScenarioFailure::E2E robustness generated case 2 for Login::E2E robustness generated case 2 for Login failed in skill e2e-test-execution.",
+      "stage": "findings",
+      "skill": "failure-diagnosis",
+      "message": "E2E robustness generated case 2 for Login failed in skill e2e-test-execution.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "ScenarioFailure::E2E robustness generated case 3 for Login::E2E robustness generated case 3 for Login failed in skill e2e-test-execution.",
+      "stage": "findings",
+      "skill": "failure-diagnosis",
+      "message": "E2E robustness generated case 3 for Login failed in skill e2e-test-execution.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "ScenarioFailure::E2E route resilience: /login::E2E route resilience: /login failed in skill e2e-test-execution.",
+      "stage": "findings",
+      "skill": "failure-diagnosis",
+      "message": "E2E route resilience: /login failed in skill e2e-test-execution.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "ScenarioFailure::Journey parity: Open login page::Journey parity: Open login page failed in skill e2e-test-execution.",
+      "stage": "findings",
+      "skill": "failure-diagnosis",
+      "message": "Journey parity: Open login page failed in skill e2e-test-execution.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "ScenarioFailure::Journey parity: Session timeout returns to login::Journey parity: Session timeout returns to login failed in skill e2e-test-execution.",
+      "stage": "findings",
+      "skill": "failure-diagnosis",
+      "message": "Journey parity: Session timeout returns to login failed in skill e2e-test-execution.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "ScenarioFailure::Playwright / E2E Browser robustness generated case 1 for Login::Playwright / E2E Browser robustness generated case 1 for Login failed in skill playwright-browser-verification.",
+      "stage": "findings",
+      "skill": "failure-diagnosis",
+      "message": "Playwright / E2E Browser robustness generated case 1 for Login failed in skill playwright-browser-verification.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "ScenarioFailure::Playwright / E2E Browser robustness generated case 2 for Login::Playwright / E2E Browser robustness generated case 2 for Login failed in skill playwright-browser-verification.",
+      "stage": "findings",
+      "skill": "failure-diagnosis",
+      "message": "Playwright / E2E Browser robustness generated case 2 for Login failed in skill playwright-browser-verification.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "ScenarioFailure::Playwright / E2E Browser robustness generated case 3 for Login::Playwright / E2E Browser robustness generated case 3 for Login failed in skill playwright-browser-verification.",
+      "stage": "findings",
+      "skill": "failure-diagnosis",
+      "message": "Playwright / E2E Browser robustness generated case 3 for Login failed in skill playwright-browser-verification.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "ScenarioFailure::Playwright / E2E Browser robustness generated case 4 for Login::Playwright / E2E Browser robustness generated case 4 for Login failed in skill playwright-browser-verification.",
+      "stage": "findings",
+      "skill": "failure-diagnosis",
+      "message": "Playwright / E2E Browser robustness generated case 4 for Login failed in skill playwright-browser-verification.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "ScenarioFailure::csharp-logic-understanding::csharp-logic-understanding failed in skill csharp-logic-understanding.",
+      "stage": "findings",
+      "skill": "failure-diagnosis",
+      "message": "csharp-logic-understanding failed in skill csharp-logic-understanding.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "ScenarioFailure::java-logic-understanding::java-logic-understanding failed in skill java-logic-understanding.",
+      "stage": "findings",
+      "skill": "failure-diagnosis",
+      "message": "java-logic-understanding failed in skill java-logic-understanding.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "ScenarioFailure::logic-flow-visualization::logic-flow-visualization failed in skill logic-flow-visualization.",
+      "stage": "findings",
+      "skill": "failure-diagnosis",
+      "message": "logic-flow-visualization failed in skill logic-flow-visualization.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "TestCategoryFailure::E2E::E2E test command returned non-zero exit code or failing test counts.",
       "stage": "execution",
       "skill": "e2e-test-execution",
-      "message": "No runnable E2E tests were collected in this run; treated as non-blocking baseline.",
+      "message": "E2E test command returned non-zero exit code or failing test counts.",
       "recommendedGuard": "Add targeted regression scenario in next test plan."
     },
     {
-      "signature": "NoTestsCollected::Playwright / E2E Browser::No runnable Playwright / E2E Browser tests were collected in this run; treated as non-blocking baseline.",
+      "signature": "TestCategoryFailure::Playwright / E2E Browser::Playwright / E2E Browser test command returned non-zero exit code or failing test counts.",
       "stage": "execution",
       "skill": "playwright-browser-verification",
-      "message": "No runnable Playwright / E2E Browser tests were collected in this run; treated as non-blocking baseline.",
-      "recommendedGuard": "Add targeted regression scenario in next test plan."
-    },
-    {
-      "signature": "ParityGap::Legacy vs converted behavior parity::Parity score for Login is 29 with 5 failing checks.",
-      "stage": "findings",
-      "skill": "parity-verification",
-      "message": "Parity score for Login is 29 with 5 failing checks.",
+      "message": "Playwright / E2E Browser test command returned non-zero exit code or failing test counts.",
       "recommendedGuard": "Add targeted regression scenario in next test plan."
     }
   ]

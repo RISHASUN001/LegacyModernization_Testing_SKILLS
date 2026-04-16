@@ -1,0 +1,52 @@
+{
+  "runId": "run-20260416_021837",
+  "moduleName": "Login",
+  "stage": "pipeline-vanity-check",
+  "stageIndex": 10,
+  "title": "10. Pipeline Vanity Check",
+  "objective": "Verify stage completeness, required evidence presence, and final recommendation.",
+  "disclosure": {
+    "now": {
+      "inputType": "all stage artifacts",
+      "outputType": "vanity gate decision + completeness report",
+      "skills": [
+        "vanity-check"
+      ]
+    },
+    "next": {
+      "stage": null,
+      "title": null,
+      "expectedInputType": "n/a"
+    }
+  },
+  "contracts": [
+    {
+      "skill": "vanity-check",
+      "inputs": [
+        "moduleName",
+        "runId"
+      ],
+      "outputs": [
+        "vanity-gate.json",
+        "pipeline-completeness-report.json",
+        "result.json"
+      ],
+      "dependencies": [
+        "csharp-module-discovery",
+        "csharp-logic-understanding",
+        "legacy-module-discovery",
+        "legacy-logic-understanding",
+        "diagram-generation",
+        "parity-analysis",
+        "unit-test-generation",
+        "integration-test-generation",
+        "playwright-test-generation",
+        "test-execution-unit",
+        "test-execution-integration",
+        "test-execution-playwright",
+        "clean-architecture-assessment",
+        "findings-synthesis"
+      ]
+    }
+  ]
+}

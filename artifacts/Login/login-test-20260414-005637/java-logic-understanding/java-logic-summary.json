@@ -1,0 +1,22 @@
+{
+  "moduleName": "Login",
+  "modulePurpose": "Legacy Java logic understanding for module Login.",
+  "workflows": [],
+  "businessRules": [
+    {
+      "rule": "Legacy flow intent must remain preserved in converted module.",
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "legacy-workflows.json"
+        ],
+        "confidence": 0.64,
+        "unknowns": []
+      }
+    }
+  ],
+  "unknowns": [
+    "No legacy workflow counterparts available from discovery artifacts."
+  ],
+  "confidence": 0.41
+}

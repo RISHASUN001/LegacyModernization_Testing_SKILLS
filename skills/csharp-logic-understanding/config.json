@@ -1,0 +1,23 @@
+{
+  "name": "csharp-logic-understanding",
+  "stage": "csharp-logic-understanding",
+  "schemaVersion": "1.1",
+  "aiDriven": true,
+  "strictAIGenerationCompatible": true,
+  "strictModuleOnlyCompatible": true,
+  "inputs": [
+    "moduleName",
+    "runId",
+    "workflowNames",
+    "startUrl",
+    "expectedEndUrls",
+    "strictAIGeneration"
+  ],
+  "outputs": [
+    "csharp-logic-summary.json",
+    "result.json"
+  ],
+  "dependencies": [
+    "csharp-module-discovery"
+  ]
+}

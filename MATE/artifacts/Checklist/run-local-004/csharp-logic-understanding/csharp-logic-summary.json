@@ -1,0 +1,10 @@
+{
+  "moduleName": "Checklist",
+  "source": "csharp",
+  "provider": "deterministic-fallback",
+  "payload": {
+    "note": "non-strict deterministic fallback",
+    "task": "Generate C# workflow and logic understanding from discovery evidence.",
+    "summary": "Generated without Copilot Claude command."
+  }
+}

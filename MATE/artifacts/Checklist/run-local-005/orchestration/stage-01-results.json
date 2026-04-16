@@ -1,0 +1,62 @@
+{
+  "stage": "csharp-discovery",
+  "stageIndex": 1,
+  "stageTitle": "1. C# Discovery",
+  "stageObjective": "Discover converted module controllers, routes, views, services, repositories, SQL, and tables.",
+  "status": "passed",
+  "skills": [
+    {
+      "skill": "csharp-module-discovery",
+      "stage": "csharp-discovery",
+      "returnCode": 0,
+      "stdout": "MATE/artifacts/Checklist/run-local-005/csharp-module-discovery/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": true,
+      "resultPath": "MATE/artifacts/Checklist/run-local-005/csharp-module-discovery/result.json",
+      "summary": "Scoped 20 C# files for module 'Checklist' and mapped routes, SQL, and tables.",
+      "artifacts": [
+        "MATE/artifacts/Checklist/run-local-005/csharp-module-discovery/csharp-module-map.json",
+        "MATE/artifacts/Checklist/run-local-005/csharp-module-discovery/controller-route-map.json",
+        "MATE/artifacts/Checklist/run-local-005/csharp-module-discovery/csharp-sql-map.json",
+        "MATE/artifacts/Checklist/run-local-005/csharp-module-discovery/csharp-table-usage.json",
+        "MATE/artifacts/Checklist/run-local-005/csharp-module-discovery/scoped-file-relevance.json"
+      ],
+      "metrics": {
+        "candidateFiles": 41,
+        "includedFiles": 20,
+        "controllers": 2,
+        "views": 13,
+        "services": 4,
+        "repositories": 0,
+        "routeFiles": 4,
+        "sqlFiles": 2,
+        "tables": 15,
+        "workflowCount": 2
+      },
+      "findings": []
+    }
+  ],
+  "skillCount": 1,
+  "skillsFailed": 0,
+  "reusedSkills": 1,
+  "contextFile": "MATE/artifacts/Checklist/run-local-005/orchestration/stage-01-context.json",
+  "requiredEvidence": [
+    {
+      "path": "csharp-module-discovery/csharp-module-map.json",
+      "exists": true
+    },
+    {
+      "path": "csharp-module-discovery/controller-route-map.json",
+      "exists": true
+    },
+    {
+      "path": "csharp-module-discovery/csharp-sql-map.json",
+      "exists": true
+    },
+    {
+      "path": "csharp-module-discovery/csharp-table-usage.json",
+      "exists": true
+    }
+  ]
+}

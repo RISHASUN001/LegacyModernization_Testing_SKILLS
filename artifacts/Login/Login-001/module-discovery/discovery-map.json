@@ -1,0 +1,582 @@
+{
+  "moduleName": "Login",
+  "roots": [
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app"
+  ],
+  "hintPaths": [
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/index.jsp",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/index.jsp"
+  ],
+  "terms": [
+    "login",
+    "password",
+    "authentication",
+    "session"
+  ],
+  "scopeContext": {
+    "strictModuleOnly": false,
+    "scopeHint": "",
+    "targetUrlPath": "",
+    "allowedCrossModules": [],
+    "scopeTokens": []
+  },
+  "totalSelectedFiles": 104,
+  "assetCounts": {
+    "java": 2,
+    "jsp": 4,
+    "js": 0,
+    "config": 12,
+    "csharp": 2,
+    "test": 0,
+    "other": 14,
+    "total": 34,
+    "urls": 1,
+    "dbTouchpoints": 0
+  },
+  "filesByType": {
+    "java": [
+      {
+        "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java",
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java"
+          ],
+          "confidence": 0.9,
+          "unknowns": []
+        }
+      },
+      {
+        "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java",
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java"
+          ],
+          "confidence": 0.9,
+          "unknowns": []
+        }
+      }
+    ],
+    "jsp": [
+      {
+        "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp",
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp"
+          ],
+          "confidence": 0.86,
+          "unknowns": []
+        }
+      },
+      {
+        "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp",
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp"
+          ],
+          "confidence": 0.86,
+          "unknowns": []
+        }
+      },
+      {
+        "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/index.jsp",
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "/Users/risha/Documents/Buildathon/samples/legacy-java-app/index.jsp"
+          ],
+          "confidence": 0.86,
+          "unknowns": []
+        }
+      },
+      {
+        "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/index.jsp",
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "/Users/risha/Documents/Buildathon/samples/legacy-java-app/index.jsp"
+          ],
+          "confidence": 0.86,
+          "unknowns": []
+        }
+      }
+    ],
+    "js": [],
+    "config": [
+      {
+        "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login/e2e-generated-tests.json",
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login/e2e-generated-tests.json"
+          ],
+          "confidence": 0.83,
+          "unknowns": []
+        }
+      },
+      {
+        "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login/unit-generated-tests.json",
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login/unit-generated-tests.json"
+          ],
+          "confidence": 0.83,
+          "unknowns": []
+        }
+      },
+      {
+        "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login/edge-case-generated-tests.json",
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login/edge-case-generated-tests.json"
+          ],
+          "confidence": 0.83,
+          "unknowns": []
+        }
+      },
+      {
+        "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login/integration-generated-tests.json",
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login/integration-generated-tests.json"
+          ],
+          "confidence": 0.83,
+          "unknowns": []
+        }
+      },
+      {
+        "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login/api-generated-tests.json",
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login/api-generated-tests.json"
+          ],
+          "confidence": 0.83,
+          "unknowns": []
+        }
+      },
+      {
+        "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login/playwright-e2e-browser-generated-tests.json",
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login/playwright-e2e-browser-generated-tests.json"
+          ],
+          "confidence": 0.83,
+          "unknowns": []
+        }
+      },
+      {
+        "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login/e2e-generated-tests.json",
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login/e2e-generated-tests.json"
+          ],
+          "confidence": 0.83,
+          "unknowns": []
+        }
+      },
+      {
+        "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login/unit-generated-tests.json",
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login/unit-generated-tests.json"
+          ],
+          "confidence": 0.83,
+          "unknowns": []
+        }
+      },
+      {
+        "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login/edge-case-generated-tests.json",
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login/edge-case-generated-tests.json"
+          ],
+          "confidence": 0.83,
+          "unknowns": []
+        }
+      },
+      {
+        "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login/integration-generated-tests.json",
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login/integration-generated-tests.json"
+          ],
+          "confidence": 0.83,
+          "unknowns": []
+        }
+      },
+      {
+        "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login/api-generated-tests.json",
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login/api-generated-tests.json"
+          ],
+          "confidence": 0.83,
+          "unknowns": []
+        }
+      },
+      {
+        "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login/playwright-e2e-browser-generated-tests.json",
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login/playwright-e2e-browser-generated-tests.json"
+          ],
+          "confidence": 0.83,
+          "unknowns": []
+        }
+      }
+    ],
+    "csharp": [
+      {
+        "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Services/LoginService.cs",
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Services/LoginService.cs"
+          ],
+          "confidence": 0.8,
+          "unknowns": []
+        }
+      },
+      {
+        "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Services/LoginService.cs",
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Services/LoginService.cs"
+          ],
+          "confidence": 0.8,
+          "unknowns": []
+        }
+      }
+    ],
+    "test": [],
+    "other": [
+      {
+        "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/loginfinal-7d280c0f12/loginfinal-test-20260415-085013/playwright-e2e-browser-generated-tests.py",
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/loginfinal-7d280c0f12/loginfinal-test-20260415-085013/playwright-e2e-browser-generated-tests.py"
+          ],
+          "confidence": 0.6,
+          "unknowns": []
+        }
+      },
+      {
+        "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/loginfinal-7d280c0f12/loginfinal-test-20260415-170304/playwright-e2e-browser-generated-tests.py",
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/loginfinal-7d280c0f12/loginfinal-test-20260415-170304/playwright-e2e-browser-generated-tests.py"
+          ],
+          "confidence": 0.6,
+          "unknowns": []
+        }
+      },
+      {
+        "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/loginfinal-7d280c0f12/loginfinal-fresh-test-20260415/playwright-e2e-browser-generated-tests.py",
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/loginfinal-7d280c0f12/loginfinal-fresh-test-20260415/playwright-e2e-browser-generated-tests.py"
+          ],
+          "confidence": 0.6,
+          "unknowns": []
+        }
+      },
+      {
+        "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/loginfinal-7d280c0f12/loginfinal-test-20260415-165746/playwright-e2e-browser-generated-tests.py",
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/loginfinal-7d280c0f12/loginfinal-test-20260415-165746/playwright-e2e-browser-generated-tests.py"
+          ],
+          "confidence": 0.6,
+          "unknowns": []
+        }
+      },
+      {
+        "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/loginfinal-7d280c0f12/loginfinal-test-20260415-154340/playwright-e2e-browser-generated-tests.py",
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/loginfinal-7d280c0f12/loginfinal-test-20260415-154340/playwright-e2e-browser-generated-tests.py"
+          ],
+          "confidence": 0.6,
+          "unknowns": []
+        }
+      },
+      {
+        "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/loginfinal-7d280c0f12/loginfinal-test-20260415-172444/playwright-e2e-browser-generated-tests.py",
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/loginfinal-7d280c0f12/loginfinal-test-20260415-172444/playwright-e2e-browser-generated-tests.py"
+          ],
+          "confidence": 0.6,
+          "unknowns": []
+        }
+      },
+      {
+        "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/loginmodulefinal-a63ccce056/loginmodulefinal-test-20260415-095557/playwright-e2e-browser-generated-tests.py",
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/loginmodulefinal-a63ccce056/loginmodulefinal-test-20260415-095557/playwright-e2e-browser-generated-tests.py"
+          ],
+          "confidence": 0.6,
+          "unknowns": []
+        }
+      },
+      {
+        "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/loginfinal-7d280c0f12/loginfinal-test-20260415-085013/playwright-e2e-browser-generated-tests.py",
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/loginfinal-7d280c0f12/loginfinal-test-20260415-085013/playwright-e2e-browser-generated-tests.py"
+          ],
+          "confidence": 0.6,
+          "unknowns": []
+        }
+      },
+      {
+        "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/loginfinal-7d280c0f12/loginfinal-test-20260415-170304/playwright-e2e-browser-generated-tests.py",
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/loginfinal-7d280c0f12/loginfinal-test-20260415-170304/playwright-e2e-browser-generated-tests.py"
+          ],
+          "confidence": 0.6,
+          "unknowns": []
+        }
+      },
+      {
+        "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/loginfinal-7d280c0f12/loginfinal-fresh-test-20260415/playwright-e2e-browser-generated-tests.py",
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/loginfinal-7d280c0f12/loginfinal-fresh-test-20260415/playwright-e2e-browser-generated-tests.py"
+          ],
+          "confidence": 0.6,
+          "unknowns": []
+        }
+      },
+      {
+        "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/loginfinal-7d280c0f12/loginfinal-test-20260415-165746/playwright-e2e-browser-generated-tests.py",
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/loginfinal-7d280c0f12/loginfinal-test-20260415-165746/playwright-e2e-browser-generated-tests.py"
+          ],
+          "confidence": 0.6,
+          "unknowns": []
+        }
+      },
+      {
+        "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/loginfinal-7d280c0f12/loginfinal-test-20260415-154340/playwright-e2e-browser-generated-tests.py",
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/loginfinal-7d280c0f12/loginfinal-test-20260415-154340/playwright-e2e-browser-generated-tests.py"
+          ],
+          "confidence": 0.6,
+          "unknowns": []
+        }
+      },
+      {
+        "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/loginfinal-7d280c0f12/loginfinal-test-20260415-172444/playwright-e2e-browser-generated-tests.py",
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/loginfinal-7d280c0f12/loginfinal-test-20260415-172444/playwright-e2e-browser-generated-tests.py"
+          ],
+          "confidence": 0.6,
+          "unknowns": []
+        }
+      },
+      {
+        "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/loginmodulefinal-a63ccce056/loginmodulefinal-test-20260415-095557/playwright-e2e-browser-generated-tests.py",
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/loginmodulefinal-a63ccce056/loginmodulefinal-test-20260415-095557/playwright-e2e-browser-generated-tests.py"
+          ],
+          "confidence": 0.6,
+          "unknowns": []
+        }
+      }
+    ]
+  },
+  "routeCandidates": [
+    {
+      "route": "/login",
+      "normalizedRoute": "/login",
+      "provenance": {
+        "type": "code-evidence",
+        "sources": [
+          "url-extraction"
+        ],
+        "confidence": 0.82,
+        "unknowns": [
+          "Route extension/type could not be inferred"
+        ]
+      }
+    }
+  ],
+  "dbTouchpointsDetailed": [],
+  "entrypointHints": [
+    {
+      "kind": "route",
+      "value": "/login",
+      "provenance": {
+        "type": "code-evidence",
+        "sources": [
+          "url-extraction"
+        ],
+        "confidence": 0.82,
+        "unknowns": []
+      }
+    },
+    {
+      "kind": "code-entrypoint",
+      "value": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java",
+      "provenance": {
+        "type": "code-evidence",
+        "sources": [
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java"
+        ],
+        "confidence": 0.88,
+        "unknowns": []
+      }
+    },
+    {
+      "kind": "code-entrypoint",
+      "value": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java",
+      "provenance": {
+        "type": "code-evidence",
+        "sources": [
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java"
+        ],
+        "confidence": 0.88,
+        "unknowns": []
+      }
+    },
+    {
+      "kind": "view-entrypoint",
+      "value": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/index.jsp",
+      "provenance": {
+        "type": "code-evidence",
+        "sources": [
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/index.jsp"
+        ],
+        "confidence": 0.76,
+        "unknowns": []
+      }
+    },
+    {
+      "kind": "view-entrypoint",
+      "value": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/index.jsp",
+      "provenance": {
+        "type": "code-evidence",
+        "sources": [
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/index.jsp"
+        ],
+        "confidence": 0.76,
+        "unknowns": []
+      }
+    }
+  ],
+  "confidence": 0.92,
+  "provenance": {
+    "type": "code-evidence",
+    "sources": [
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app",
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java",
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp",
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app/index.jsp"
+    ],
+    "confidence": 0.92,
+    "unknowns": []
+  },
+  "javaFiles": [
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java"
+  ],
+  "jspFiles": [
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/index.jsp",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/index.jsp"
+  ],
+  "jsFiles": [],
+  "configFiles": [
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login/e2e-generated-tests.json",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login/unit-generated-tests.json",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login/edge-case-generated-tests.json",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login/integration-generated-tests.json",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login/api-generated-tests.json",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login/playwright-e2e-browser-generated-tests.json",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login/e2e-generated-tests.json",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login/unit-generated-tests.json",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login/edge-case-generated-tests.json",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login/integration-generated-tests.json",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login/api-generated-tests.json",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login/playwright-e2e-browser-generated-tests.json"
+  ],
+  "csharpFiles": [
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Services/LoginService.cs",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Services/LoginService.cs"
+  ],
+  "testFiles": [],
+  "otherFiles": [
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/loginfinal-7d280c0f12/loginfinal-test-20260415-085013/playwright-e2e-browser-generated-tests.py",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/loginfinal-7d280c0f12/loginfinal-test-20260415-170304/playwright-e2e-browser-generated-tests.py",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/loginfinal-7d280c0f12/loginfinal-fresh-test-20260415/playwright-e2e-browser-generated-tests.py",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/loginfinal-7d280c0f12/loginfinal-test-20260415-165746/playwright-e2e-browser-generated-tests.py",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/loginfinal-7d280c0f12/loginfinal-test-20260415-154340/playwright-e2e-browser-generated-tests.py",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/loginfinal-7d280c0f12/loginfinal-test-20260415-172444/playwright-e2e-browser-generated-tests.py",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/loginmodulefinal-a63ccce056/loginmodulefinal-test-20260415-095557/playwright-e2e-browser-generated-tests.py",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/loginfinal-7d280c0f12/loginfinal-test-20260415-085013/playwright-e2e-browser-generated-tests.py",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/loginfinal-7d280c0f12/loginfinal-test-20260415-170304/playwright-e2e-browser-generated-tests.py",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/loginfinal-7d280c0f12/loginfinal-fresh-test-20260415/playwright-e2e-browser-generated-tests.py",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/loginfinal-7d280c0f12/loginfinal-test-20260415-165746/playwright-e2e-browser-generated-tests.py",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/loginfinal-7d280c0f12/loginfinal-test-20260415-154340/playwright-e2e-browser-generated-tests.py",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/loginfinal-7d280c0f12/loginfinal-test-20260415-172444/playwright-e2e-browser-generated-tests.py",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/loginmodulefinal-a63ccce056/loginmodulefinal-test-20260415-095557/playwright-e2e-browser-generated-tests.py"
+  ],
+  "urls": [
+    "/login"
+  ],
+  "dbTouchpoints": [],
+  "evidenceFiles": [
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/index.jsp",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login/e2e-generated-tests.json",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login/unit-generated-tests.json",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login/edge-case-generated-tests.json",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login/integration-generated-tests.json",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login/api-generated-tests.json",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login/playwright-e2e-browser-generated-tests.json",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Services/LoginService.cs"
+  ]
+}

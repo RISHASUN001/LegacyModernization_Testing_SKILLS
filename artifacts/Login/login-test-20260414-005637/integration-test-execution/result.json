@@ -4,8 +4,8 @@
   "moduleName": "Login",
   "runId": "login-test-20260414-005637",
   "status": "passed",
-  "startedAt": "2026-04-14T02:40:49.372500Z",
-  "endedAt": "2026-04-14T02:40:50.633324Z",
+  "startedAt": "2026-04-14T16:31:48.333407Z",
+  "endedAt": "2026-04-14T16:31:48.780616Z",
   "summary": "Integration execution completed with 6 passed and 0 failed scenarios.",
   "metrics": {
     "total": 6,
@@ -210,7 +210,7 @@
       "minimal"
     ],
     "returnCode": 0,
-    "durationSeconds": 1.256,
+    "durationSeconds": 0.445,
     "cwd": "/Users/risha/Documents/Buildathon/samples/legacy-java-app"
   },
   "provenanceSummary": {

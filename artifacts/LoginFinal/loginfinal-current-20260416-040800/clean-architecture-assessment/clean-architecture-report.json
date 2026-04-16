@@ -1,0 +1,12 @@
+{
+  "note": "non-strict deterministic fallback",
+  "task": "Assess this modernized C# module against a small set of clean architecture expectations. Return JSON with overallStatus, score, summary, checks, strengths, warnings, recommendations. Keep it concise and evidence-based.",
+  "summary": "Generated without Copilot Claude command.",
+  "moduleName": "LoginFinal",
+  "score": 0,
+  "overallStatus": "warning",
+  "checks": [],
+  "strengths": [],
+  "warnings": [],
+  "recommendations": []
+}

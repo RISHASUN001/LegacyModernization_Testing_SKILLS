@@ -1,0 +1,30 @@
+{
+  "skillName": "csharp-logic-understanding",
+  "stage": "csharp-logic",
+  "moduleName": "LoginFinal",
+  "runId": "loginfinal-test-20260415-154340",
+  "status": "passed",
+  "startedAt": "2026-04-15T07:47:46.834363Z",
+  "endedAt": "2026-04-15T07:47:46.856877Z",
+  "summary": "C# logic understanding produced 5 workflow summaries.",
+  "metrics": {
+    "workflowCount": 5,
+    "controllerCount": 1,
+    "sqlSignatureCount": 0,
+    "importLinkedFiles": 5
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-154340/csharp-logic-understanding/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-154340/csharp-logic-understanding/csharp-logic-summary.json"
+  ],
+  "findings": [],
+  "recommendations": [],
+  "resultContractVersion": "2.0",
+  "provenanceSummary": {
+    "scenarioSources": [
+      "flow-derived",
+      "code-evidence"
+    ],
+    "confidence": 0.78
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "stage": "pipeline-vanity-check",
+  "stageIndex": 10,
+  "stageTitle": "10. Pipeline Vanity Check",
+  "stageObjective": "Verify stage completeness, required evidence presence, and final recommendation.",
+  "status": "passed",
+  "skills": [
+    {
+      "skill": "vanity-check",
+      "stage": "pipeline-vanity-check",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/vanity-check/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": false,
+      "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/vanity-check/result.json",
+      "summary": "Vanity check completed. Recommendation: hold.",
+      "artifacts": [
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/vanity-check/vanity-gate.json",
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/vanity-check/pipeline-completeness-report.json"
+      ],
+      "metrics": {
+        "checks": 15,
+        "presentChecks": 6,
+        "missingRequired": 9,
+        "executionFailures": 1
+      },
+      "findings": [
+        {
+          "type": "VanityGate",
+          "message": "Recommendation is hold.",
+          "severity": "high"
+        }
+      ]
+    }
+  ],
+  "skillCount": 1,
+  "skillsFailed": 0,
+  "reusedSkills": 0,
+  "contextFile": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/orchestration/stage-10-context.json",
+  "requiredEvidence": [
+    {
+      "path": "vanity-check/vanity-gate.json",
+      "exists": true
+    },
+    {
+      "path": "vanity-check/pipeline-completeness-report.json",
+      "exists": true
+    }
+  ]
+}

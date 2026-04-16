@@ -1,0 +1,28 @@
+{
+  "name": "java-logic-understanding",
+  "stage": "java-logic",
+  "category": "analysis",
+  "purpose": "Generate workflow-level Java legacy logic understanding from counterpart discovery outputs.",
+  "scriptEntry": "run.py",
+  "requiredInputs": [
+    "moduleName",
+    "legacySourceRoot"
+  ],
+  "optionalInputs": [
+    "legacyBackendRoot",
+    "legacyFrontendRoot"
+  ],
+  "outputFiles": [
+    "result.json",
+    "java-logic-summary.json"
+  ],
+  "artifactFolders": [
+    "artifacts/{module}/{runId}/java-logic-understanding/"
+  ],
+  "dependencies": [
+    "java-counterpart-discovery"
+  ],
+  "summaryOutputType": "java-logic-summary",
+  "resultContractVersion": "2.0",
+  "externalDependencies": []
+}

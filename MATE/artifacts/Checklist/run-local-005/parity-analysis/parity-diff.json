@@ -1,0 +1,7 @@
+{
+  "moduleName": "Checklist",
+  "provider": "deterministic-fallback",
+  "overallParityScore": 0,
+  "majorFindings": [],
+  "workflows": []
+}

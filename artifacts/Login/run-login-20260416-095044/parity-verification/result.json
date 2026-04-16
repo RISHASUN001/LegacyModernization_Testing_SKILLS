@@ -1,0 +1,49 @@
+{
+  "skillName": "parity-verification",
+  "stage": "functional-parity",
+  "moduleName": "Login",
+  "runId": "run-login-20260416-095044",
+  "status": "passed",
+  "startedAt": "2026-04-16T01:55:37.245022Z",
+  "endedAt": "2026-04-16T01:55:37.302719Z",
+  "summary": "Parity verification for Login: score=100, failedChecks=0.",
+  "metrics": {
+    "total": 7,
+    "passed": 7,
+    "failed": 0,
+    "warnings": 1,
+    "newTestsAdded": 0,
+    "parityScore": 100,
+    "matchedQueries": 0,
+    "legacyQueries": 0,
+    "modulePreservationScore": 82
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/parity-verification/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/parity-verification/parity-diff.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/parity-verification/functional-parity-map.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/parity-verification/workflow-parity-summary.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/parity-verification/sql-parity-map.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/parity-verification/table-parity-map.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/parity-verification/preservation-score.json"
+  ],
+  "findings": [],
+  "recommendations": [
+    {
+      "message": "Close failed parity checks by aligning execution failures to must-preserve behavior requirements.",
+      "priority": "medium",
+      "evidence": "parityScore=100; failedChecks=0"
+    }
+  ],
+  "resultContractVersion": "2.0",
+  "provenanceSummary": {
+    "scenarioSources": [
+      "code-evidence",
+      "fallback"
+    ],
+    "confidence": 0.81,
+    "unknowns": [
+      "No DB touchpoint evidence; persistence parity validation confidence reduced."
+    ]
+  }
+}

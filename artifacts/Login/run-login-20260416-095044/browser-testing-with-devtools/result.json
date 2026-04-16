@@ -1,0 +1,102 @@
+{
+  "skillName": "browser-testing-with-devtools",
+  "stage": "execution",
+  "moduleName": "Login",
+  "runId": "run-login-20260416-095044",
+  "status": "passed",
+  "startedAt": "2026-04-16T01:55:37.524818Z",
+  "endedAt": "2026-04-16T01:55:37.594172Z",
+  "summary": "DevTools diagnostics for Login: consoleErrors=0, networkFailures=0, probedRoutes=2.",
+  "metrics": {
+    "total": 6,
+    "passed": 6,
+    "failed": 0,
+    "warnings": 0,
+    "newTestsAdded": 0,
+    "degradedMode": false,
+    "scenarios": [
+      {
+        "name": "Collect console error and warning evidence",
+        "status": "passed",
+        "notes": "Runtime log scan from Playwright execution output.",
+        "coverage": [
+          "console",
+          "runtime"
+        ],
+        "generated": false,
+        "generatedFrom": [],
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "playwright-browser-verification/execution-log.txt"
+          ],
+          "confidence": 0.78,
+          "unknowns": []
+        }
+      },
+      {
+        "name": "Collect failed request and route latency evidence",
+        "status": "passed",
+        "notes": "Route probe diagnostics against module boundary routes.",
+        "coverage": [
+          "network",
+          "route-probe"
+        ],
+        "generated": false,
+        "generatedFrom": [],
+        "provenance": {
+          "type": "code-evidence",
+          "sources": [
+            "network-failures.json",
+            "performance-observations.json"
+          ],
+          "confidence": 0.79,
+          "unknowns": []
+        }
+      }
+    ]
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/browser-testing-with-devtools/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/browser-testing-with-devtools/preflight.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/browser-testing-with-devtools/console-logs.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/browser-testing-with-devtools/network-failures.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/browser-testing-with-devtools/dom-state.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/browser-testing-with-devtools/runtime-issues.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/browser-testing-with-devtools/performance-observations.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/browser-testing-with-devtools/execution-log.txt"
+  ],
+  "findings": [],
+  "recommendations": [
+    {
+      "message": "Keep moduleStartUrl and expectedTerminalUrls updated for stronger route-probe diagnostics.",
+      "priority": "medium",
+      "evidence": "probedRoutes=2"
+    }
+  ],
+  "resultContractVersion": "2.0",
+  "preflight": {
+    "category": "DevTools Diagnostics",
+    "baseUrl": {
+      "required": true,
+      "provided": "http://localhost:5001",
+      "normalized": "http://localhost:5001",
+      "ok": true,
+      "reason": "ok"
+    },
+    "reachability": {
+      "required": true,
+      "url": "http://localhost:5001",
+      "ok": true,
+      "statusCode": 200,
+      "reason": "reachable"
+    },
+    "strictMode": true
+  },
+  "provenanceSummary": {
+    "scenarioSources": [
+      "code-evidence"
+    ],
+    "confidence": 0.76
+  }
+}

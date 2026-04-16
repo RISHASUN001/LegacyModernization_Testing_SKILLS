@@ -1,11 +1,11 @@
 {
   "skillName": "parity-verification",
-  "stage": "findings",
+  "stage": "functional-parity",
   "moduleName": "Login",
   "runId": "login-test-20260414-005637",
   "status": "passed",
-  "startedAt": "2026-04-14T02:40:52.759185Z",
-  "endedAt": "2026-04-14T02:40:52.815196Z",
+  "startedAt": "2026-04-14T16:31:46.516612Z",
+  "endedAt": "2026-04-14T16:31:46.550881Z",
   "summary": "Parity verification for Login: score=100, failedChecks=0.",
   "metrics": {
     "total": 7,
@@ -15,11 +15,17 @@
     "newTestsAdded": 0,
     "parityScore": 100,
     "matchedQueries": 0,
-    "legacyQueries": 0
+    "legacyQueries": 0,
+    "modulePreservationScore": 100
   },
   "artifacts": [
     "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/parity-verification/result.json",
-    "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/parity-verification/parity-diff.json"
+    "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/parity-verification/parity-diff.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/parity-verification/functional-parity-map.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/parity-verification/workflow-parity-summary.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/parity-verification/sql-parity-map.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/parity-verification/table-parity-map.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/parity-verification/preservation-score.json"
   ],
   "findings": [],
   "recommendations": [

@@ -1,0 +1,47 @@
+{
+  "moduleName": "LoginFinal",
+  "runId": "loginfinal-test-20260415-170304",
+  "totalSkillResults": 17,
+  "failedSkillResults": 1,
+  "clusters": [
+    {
+      "name": "excalidraw-diagram failure cluster",
+      "likelyCause": "Skill execution failed: name 'now_iso' is not defined",
+      "affectedSkills": [
+        "excalidraw-diagram"
+      ],
+      "failedScenarios": [
+        "excalidraw-diagram"
+      ],
+      "evidenceArtifacts": []
+    }
+  ],
+  "scenarioFailures": [
+    {
+      "skill": "excalidraw-diagram",
+      "scenario": "excalidraw-diagram",
+      "likelyCause": "Skill execution failed: name 'now_iso' is not defined",
+      "evidence": {
+        "resultSummary": "Skill execution failed: name 'now_iso' is not defined",
+        "logs": [],
+        "artifacts": [
+          "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-170304/excalidraw-diagram/result.json",
+          "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-170304/excalidraw-diagram/csharp-workflow-unified.mmd",
+          "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-170304/excalidraw-diagram/csharp-workflow-unified.excalidraw.json",
+          "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-170304/excalidraw-diagram/previews/csharp-workflow-unified.png",
+          "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-170304/excalidraw-diagram/java-workflow-unified.mmd",
+          "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-170304/excalidraw-diagram/java-workflow-unified.excalidraw.json",
+          "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-170304/excalidraw-diagram/previews/java-workflow-unified.png",
+          "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-170304/excalidraw-diagram/diagram-index.json"
+        ]
+      },
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:excalidraw-diagram/result.json"
+        ],
+        "confidence": 0.65
+      }
+    }
+  ]
+}

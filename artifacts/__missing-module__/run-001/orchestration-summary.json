@@ -2,14 +2,17 @@
   "runId": "run-001",
   "moduleName": "<ModuleName>",
   "status": "failed",
-  "startedAt": "2026-04-13T10:26:39.786488Z",
-  "endedAt": "2026-04-13T10:26:39.786580Z",
+  "startedAt": "2026-04-15T08:39:40.511620Z",
+  "endedAt": "2026-04-15T08:39:40.512112Z",
   "selectedSkills": [],
   "stages": [],
   "failedSkills": [],
   "artifactsRoot": "/Users/risha/Documents/Buildathon/artifacts/__missing-module__/run-001",
   "statusReason": "input-validation-failed",
   "missingRequiredInputs": [
-    "moduleName"
+    "moduleName",
+    "legacySourceRoot (must be an existing directory)",
+    "convertedSourceRoot (must be an existing directory)",
+    "convertedModuleRoot (must be an existing directory)"
   ]
 }

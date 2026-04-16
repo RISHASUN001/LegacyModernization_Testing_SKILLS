@@ -1,9 +1,19 @@
 @model FindingsPageDto
 @{
     ViewData["Title"] = "Findings";
+    var total = Model.Findings.Count;
+    var open = Model.Findings.Count(static x => string.Equals(x.Status, "open", StringComparison.OrdinalIgnoreCase));
+    var high = Model.Findings.Count(static x => string.Equals(x.Severity, "high", StringComparison.OrdinalIgnoreCase));
 }
 
-<h2 class="mb-2">Findings & Recommendations</h2>
+<h2 class="mb-2">Findings</h2>
+
+<div class="findings-summary-strip mb-3">
+    <span class="badge text-bg-light border">total @total</span>
+    <span class="badge text-bg-light border">open @open</span>
+    <span class="badge text-bg-light border">high @high</span>
+    <span class="badge text-bg-light border">recommendations @Model.Recommendations.Count</span>
+</div>
 
 <form method="get" class="panel-card p-3 mb-3">
     <div class="row g-2 align-items-end">
@@ -24,14 +34,14 @@
 <div class="row g-3">
     <div class="col-lg-8">
         <div class="panel-card p-3 h-100">
-            <h3 class="h6">Findings</h3>
+            <h3 class="h6">Evidence Matrix</h3>
             <table class="table table-sm align-middle mb-0">
                 <thead>
                     <tr>
-                        <th>Module/Run</th>
+                        <th>Run</th>
                         <th>Stage</th>
-                        <th>Type</th>
-                        <th>Likely Cause</th>
+                        <th>Issue</th>
+                        <th>Cause</th>
                         <th>Status</th>
                     </tr>
                 </thead>
@@ -39,12 +49,16 @@
                 @foreach (var finding in Model.Findings)
                 {
                     <tr>
-                        <td>@finding.ModuleName / @finding.RunId</td>
+                        <td><code>@finding.ModuleName/@finding.RunId</code></td>
                         <td>@finding.Stage</td>
                         <td>
                             <div><strong>@finding.FindingType</strong></div>
                             <div class="small text-muted">@finding.Message</div>
-                            <div class="small text-muted">source: @finding.ProvenanceType | conf: @finding.Confidence.ToString("0.00")</div>
+                            <details class="findings-details mt-1">
+                                <summary class="small">evidence</summary>
+                                <div class="small text-muted">@finding.Evidence</div>
+                                <div class="small text-muted">@finding.ProvenanceType | conf @finding.Confidence.ToString("0.00")</div>
+                            </details>
                         </td>
                         <td>@finding.LikelyCause</td>
                         <td>
@@ -63,10 +77,13 @@
     <div class="col-lg-4">
         <div class="panel-card p-3 h-100">
             <h3 class="h6">Recommendations</h3>
-            <ul>
+            <ul class="mb-0">
                 @foreach (var rec in Model.Recommendations)
                 {
-                    <li><strong>@rec.Priority</strong> - @rec.Message <div class="small text-muted">@rec.Stage / @rec.SkillName / @rec.ProvenanceType</div></li>
+                    <li class="mb-2">
+                        <strong>@rec.Priority</strong> @rec.Message
+                        <div class="small text-muted">@rec.Stage / @rec.SkillName / @rec.ProvenanceType</div>
+                    </li>
                 }
             </ul>
         </div>

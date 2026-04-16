@@ -1,0 +1,97 @@
+{
+  "stage": "java-logic",
+  "stageTitle": "Java Logic Understanding",
+  "stageIndex": 4,
+  "status": "failed",
+  "skillCount": 4,
+  "skillsPassed": 3,
+  "skillsFailed": 1,
+  "skills": [
+    {
+      "skill": "excalidraw-diagram",
+      "stage": "java-logic",
+      "status": "failed",
+      "startedAt": "2026-04-15T09:03:12.383089Z",
+      "endedAt": "2026-04-15T09:03:23.582651Z",
+      "durationSeconds": 11.199,
+      "summary": "Skill execution failed: name 'now_iso' is not defined",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-170304/excalidraw-diagram/result.json\n",
+      "stderr": "",
+      "command": [
+        "python3",
+        "/Users/risha/Documents/Buildathon/skills/excalidraw/run.py",
+        "--input",
+        "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-170304/module-run-input.json",
+        "--artifacts-root",
+        "/Users/risha/Documents/Buildathon/artifacts"
+      ],
+      "resultPath": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-170304/excalidraw-diagram/result.json"
+    },
+    {
+      "skill": "java-logic-understanding",
+      "stage": "java-logic",
+      "status": "passed",
+      "startedAt": "2026-04-15T09:03:23.582678Z",
+      "endedAt": "2026-04-15T09:03:23.699870Z",
+      "durationSeconds": 0.117,
+      "summary": "Java logic understanding produced 2 workflow summaries.",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-170304/java-logic-understanding/result.json\n",
+      "stderr": "",
+      "command": [
+        "python3",
+        "/Users/risha/Documents/Buildathon/skills/java-logic-understanding/run.py",
+        "--input",
+        "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-170304/module-run-input.json",
+        "--artifacts-root",
+        "/Users/risha/Documents/Buildathon/artifacts"
+      ],
+      "resultPath": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-170304/java-logic-understanding/result.json"
+    },
+    {
+      "skill": "legacy-logic-extraction",
+      "stage": "java-logic",
+      "status": "passed",
+      "startedAt": "2026-04-15T09:03:23.699889Z",
+      "endedAt": "2026-04-15T09:03:23.808686Z",
+      "durationSeconds": 0.109,
+      "summary": "Logic extraction completed for LoginFinal: workflows=2, rules=2, unknowns=1.",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-170304/legacy-logic-extraction/result.json\n",
+      "stderr": "",
+      "command": [
+        "python3",
+        "/Users/risha/Documents/Buildathon/skills/legacy-logic-extraction/run.py",
+        "--input",
+        "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-170304/module-run-input.json",
+        "--artifacts-root",
+        "/Users/risha/Documents/Buildathon/artifacts"
+      ],
+      "resultPath": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-170304/legacy-logic-extraction/result.json"
+    },
+    {
+      "skill": "module-documentation",
+      "stage": "java-logic",
+      "status": "passed",
+      "startedAt": "2026-04-15T09:03:23.808707Z",
+      "endedAt": "2026-04-15T09:03:23.914934Z",
+      "durationSeconds": 0.106,
+      "summary": "Module documentation generated for LoginFinal with flows=2, rules=2, unknowns=1.",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-170304/module-documentation/result.json\n",
+      "stderr": "",
+      "command": [
+        "python3",
+        "/Users/risha/Documents/Buildathon/skills/module-documentation/run.py",
+        "--input",
+        "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-170304/module-run-input.json",
+        "--artifacts-root",
+        "/Users/risha/Documents/Buildathon/artifacts"
+      ],
+      "resultPath": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-170304/module-documentation/result.json"
+    }
+  ],
+  "startedAt": "2026-04-15T09:03:12.383089Z",
+  "endedAt": "2026-04-15T09:03:23.914934Z"
+}

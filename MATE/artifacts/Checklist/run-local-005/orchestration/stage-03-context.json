@@ -1,0 +1,47 @@
+{
+  "runId": "run-local-005",
+  "moduleName": "Checklist",
+  "stage": "java-discovery",
+  "stageIndex": 3,
+  "title": "3. Java Discovery",
+  "objective": "Locate legacy Java/JSP module files strictly anchored to C# discovery evidence.",
+  "disclosure": {
+    "now": {
+      "inputType": "csharp discovery anchors + legacy roots",
+      "outputType": "legacy-module-map + java sql/table maps",
+      "skills": [
+        "legacy-module-discovery"
+      ]
+    },
+    "next": {
+      "stage": "java-logic-understanding",
+      "title": "4. Java Logic Understanding",
+      "expectedInputType": "legacy discovery artifacts"
+    }
+  },
+  "contracts": [
+    {
+      "skill": "legacy-module-discovery",
+      "inputs": [
+        "moduleName",
+        "runId",
+        "workflowNames",
+        "legacyBackendRoots",
+        "legacyFrontendRoots",
+        "strictModuleOnly",
+        "keywords",
+        "startUrl"
+      ],
+      "outputs": [
+        "legacy-module-map.json",
+        "java-sql-map.json",
+        "java-table-usage.json",
+        "legacy-scoped-file-relevance.json",
+        "result.json"
+      ],
+      "dependencies": [
+        "csharp-module-discovery"
+      ]
+    }
+  ]
+}

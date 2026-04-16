@@ -1,0 +1,10 @@
+{
+  "moduleName": "Checklist",
+  "category": "unit",
+  "status": "failed",
+  "total": 0,
+  "passed": 0,
+  "failed": 0,
+  "exitCode": 1,
+  "logPath": "MATE/artifacts/Checklist/run-local-005/test-execution-unit/unit-test.log"
+}

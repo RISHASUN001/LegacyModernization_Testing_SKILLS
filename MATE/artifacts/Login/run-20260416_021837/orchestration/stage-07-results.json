@@ -1,0 +1,98 @@
+{
+  "stage": "ai-test-generation",
+  "stageIndex": 7,
+  "stageTitle": "7. AI Test Generation",
+  "stageObjective": "Generate workflow-specific unit, integration, playwright, and edge tests.",
+  "status": "failed",
+  "skills": [
+    {
+      "skill": "edge-test-generation",
+      "stage": "ai-test-generation",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/edge-test-generation/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": false,
+      "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/edge-test-generation/result.json",
+      "summary": "edge-test-generation scaffold executed.",
+      "artifacts": [
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/edge-test-generation/result.json"
+      ],
+      "metrics": {},
+      "findings": []
+    },
+    {
+      "skill": "integration-test-generation",
+      "stage": "ai-test-generation",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/integration-test-generation/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": false,
+      "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/integration-test-generation/result.json",
+      "summary": "integration-test-generation scaffold executed.",
+      "artifacts": [
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/integration-test-generation/result.json"
+      ],
+      "metrics": {},
+      "findings": []
+    },
+    {
+      "skill": "playwright-test-generation",
+      "stage": "ai-test-generation",
+      "returnCode": 1,
+      "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/playwright-test-generation/result.json",
+      "stderr": "",
+      "status": "failed",
+      "reused": false,
+      "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/playwright-test-generation/result.json",
+      "summary": "Input validation failed.",
+      "artifacts": [],
+      "metrics": {},
+      "findings": [
+        {
+          "type": "InputValidation",
+          "message": "Path does not exist in legacyBackendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/src; Path does not exist in legacyFrontendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/web"
+        }
+      ]
+    },
+    {
+      "skill": "unit-test-generation",
+      "stage": "ai-test-generation",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/unit-test-generation/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": false,
+      "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/unit-test-generation/result.json",
+      "summary": "unit-test-generation scaffold executed.",
+      "artifacts": [
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/unit-test-generation/result.json"
+      ],
+      "metrics": {},
+      "findings": []
+    }
+  ],
+  "skillCount": 4,
+  "skillsFailed": 1,
+  "reusedSkills": 0,
+  "contextFile": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/orchestration/stage-07-context.json",
+  "requiredEvidence": [
+    {
+      "path": "unit-test-generation/unit-tests.generated.json",
+      "exists": false
+    },
+    {
+      "path": "integration-test-generation/integration-tests.generated.json",
+      "exists": false
+    },
+    {
+      "path": "playwright-test-generation/playwright-tests.generated.json",
+      "exists": false
+    },
+    {
+      "path": "edge-test-generation/edge-tests.generated.json",
+      "exists": false
+    }
+  ]
+}

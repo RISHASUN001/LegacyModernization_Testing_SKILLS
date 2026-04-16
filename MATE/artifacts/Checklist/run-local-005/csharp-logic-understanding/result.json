@@ -1,0 +1,15 @@
+{
+  "skillName": "csharp-logic-understanding",
+  "status": "passed",
+  "summary": "Built C# logic understanding for 2 workflows.",
+  "metrics": {
+    "workflowCount": 2,
+    "routesAnalyzed": 4,
+    "sqlFilesAnalyzed": 2,
+    "tablesFound": 15
+  },
+  "artifacts": [
+    "MATE/artifacts/Checklist/run-local-005/csharp-logic-understanding/csharp-logic-summary.json"
+  ],
+  "findings": []
+}

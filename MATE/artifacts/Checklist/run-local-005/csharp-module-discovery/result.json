@@ -1,0 +1,25 @@
+{
+  "skillName": "csharp-module-discovery",
+  "status": "passed",
+  "summary": "Scoped 20 C# files for module 'Checklist' and mapped routes, SQL, and tables.",
+  "metrics": {
+    "candidateFiles": 41,
+    "includedFiles": 20,
+    "controllers": 2,
+    "views": 13,
+    "services": 4,
+    "repositories": 0,
+    "routeFiles": 4,
+    "sqlFiles": 2,
+    "tables": 15,
+    "workflowCount": 2
+  },
+  "artifacts": [
+    "MATE/artifacts/Checklist/run-local-005/csharp-module-discovery/csharp-module-map.json",
+    "MATE/artifacts/Checklist/run-local-005/csharp-module-discovery/controller-route-map.json",
+    "MATE/artifacts/Checklist/run-local-005/csharp-module-discovery/csharp-sql-map.json",
+    "MATE/artifacts/Checklist/run-local-005/csharp-module-discovery/csharp-table-usage.json",
+    "MATE/artifacts/Checklist/run-local-005/csharp-module-discovery/scoped-file-relevance.json"
+  ],
+  "findings": []
+}

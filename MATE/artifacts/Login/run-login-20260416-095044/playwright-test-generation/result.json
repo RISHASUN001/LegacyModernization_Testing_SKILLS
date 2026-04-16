@@ -1,0 +1,17 @@
+{
+  "skillName": "playwright-test-generation",
+  "status": "failed",
+  "startedAt": "2026-04-16T02:14:19.570130Z",
+  "endedAt": "2026-04-16T02:14:19.570137Z",
+  "summary": "Playwright generation failed: strictAIGeneration=true and provider mode is copilot, but MATE_COPILOT_CLAUDE_COMMAND is not configured.",
+  "metrics": {},
+  "artifacts": [],
+  "findings": [
+    {
+      "type": "PlaywrightGenerationError",
+      "message": "strictAIGeneration=true and provider mode is copilot, but MATE_COPILOT_CLAUDE_COMMAND is not configured."
+    }
+  ],
+  "recommendations": [],
+  "resultContractVersion": "1.0"
+}

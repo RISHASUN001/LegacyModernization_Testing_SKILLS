@@ -1,0 +1,14 @@
+{
+  "moduleName": "LoginFinal",
+  "moduleScore": 100,
+  "workflowScores": [
+    {
+      "workflowName": "Successful Login",
+      "score": 1.0
+    },
+    {
+      "workflowName": "Invalid Login",
+      "score": 1.0
+    }
+  ]
+}

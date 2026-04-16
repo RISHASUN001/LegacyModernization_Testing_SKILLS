@@ -1,0 +1,23 @@
+{
+  "skillName": "vanity-check",
+  "status": "passed",
+  "startedAt": "2026-04-15T16:20:45.688424Z",
+  "endedAt": "2026-04-15T16:20:45.688432Z",
+  "summary": "Vanity gate completed. Recommendation: ship-with-confidence.",
+  "metrics": {
+    "findings": 0,
+    "blockers": 0
+  },
+  "artifacts": [
+    "MATE/artifacts/Checklist/run-local-001/vanity-check/vanity-gate.json"
+  ],
+  "findings": [
+    {
+      "type": "VanityGate",
+      "message": "Recommendation is ship-with-confidence.",
+      "severity": "low"
+    }
+  ],
+  "recommendations": [],
+  "resultContractVersion": "1.0"
+}

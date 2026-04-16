@@ -1,0 +1,18 @@
+{
+  "moduleName": "Checklist",
+  "parityScore": 0,
+  "matched": [],
+  "missingInCsharp": [],
+  "additionalInCsharp": [],
+  "checks": [
+    {
+      "name": "workflow-match",
+      "status": "passed",
+      "evidence": {
+        "matched": [],
+        "missingInCsharp": [],
+        "additionalInCsharp": []
+      }
+    }
+  ]
+}

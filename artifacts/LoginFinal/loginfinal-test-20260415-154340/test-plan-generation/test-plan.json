@@ -1,0 +1,370 @@
+{
+  "moduleName": "LoginFinal",
+  "existingTestsFound": {
+    "totalFiles": 0,
+    "unit": 0,
+    "integration": 0,
+    "api": 0,
+    "e2e": 0,
+    "sampleFiles": [],
+    "provenance": {
+      "type": "code-evidence",
+      "sources": [],
+      "confidence": 0.4,
+      "unknowns": []
+    }
+  },
+  "newTestsSuggested": [
+    "Add parity scenario for workflow: LoginFinal flow via /Auth",
+    "Add parity scenario for workflow: LoginFinal flow via /Auth/dashboard",
+    "Add parity scenario for workflow: LoginFinal flow via /Auth/index",
+    "Add parity scenario for workflow: LoginFinal flow via /Auth/login",
+    "Add parity scenario for workflow: LoginFinal flow via /Auth/logout"
+  ],
+  "testCategories": [
+    {
+      "category": "Unit",
+      "purpose": "Validate module business rules and validators in isolation.",
+      "scenarios": [
+        {
+          "name": "Rule guard: If credentials are invalid, stay on login page and show validation message",
+          "coverage": [
+            "rule-validation"
+          ],
+          "provenance": {
+            "type": "flow-derived",
+            "sources": [
+              "artifact:legacy-logic-extraction/logic-summary.json"
+            ],
+            "confidence": 0.78,
+            "unknowns": []
+          }
+        },
+        {
+          "name": "Rule guard: If session is expired, protected routes redirect to login",
+          "coverage": [
+            "rule-validation"
+          ],
+          "provenance": {
+            "type": "flow-derived",
+            "sources": [
+              "artifact:legacy-logic-extraction/logic-summary.json"
+            ],
+            "confidence": 0.78,
+            "unknowns": []
+          }
+        }
+      ]
+    },
+    {
+      "category": "Integration",
+      "purpose": "Validate cross-layer orchestration, persistence contracts, and transaction behavior.",
+      "scenarios": [
+        {
+          "name": "Integration flow parity: LoginFinal flow via /Auth",
+          "coverage": [
+            "service-repository",
+            "transaction"
+          ],
+          "provenance": {
+            "type": "flow-derived",
+            "sources": [
+              "artifact:legacy-logic-extraction/logic-summary.json"
+            ],
+            "confidence": 0.75,
+            "unknowns": []
+          }
+        },
+        {
+          "name": "Integration flow parity: LoginFinal flow via /Auth/dashboard",
+          "coverage": [
+            "service-repository",
+            "transaction"
+          ],
+          "provenance": {
+            "type": "flow-derived",
+            "sources": [
+              "artifact:legacy-logic-extraction/logic-summary.json"
+            ],
+            "confidence": 0.75,
+            "unknowns": []
+          }
+        },
+        {
+          "name": "Integration flow parity: LoginFinal flow via /Auth/index",
+          "coverage": [
+            "service-repository",
+            "transaction"
+          ],
+          "provenance": {
+            "type": "flow-derived",
+            "sources": [
+              "artifact:legacy-logic-extraction/logic-summary.json"
+            ],
+            "confidence": 0.75,
+            "unknowns": []
+          }
+        }
+      ]
+    },
+    {
+      "category": "Route/Form Tests",
+      "purpose": "Validate MVC route + form-post behavior, model binding, and response correctness.",
+      "scenarios": [
+        {
+          "name": "Route/form contract: /login",
+          "coverage": [
+            "http-route",
+            "form-post",
+            "model-binding"
+          ],
+          "provenance": {
+            "type": "code-evidence",
+            "sources": [
+              "artifact:module-discovery/discovery-map.json"
+            ],
+            "confidence": 0.81,
+            "unknowns": []
+          }
+        }
+      ]
+    },
+    {
+      "category": "E2E",
+      "purpose": "Validate full critical journeys from browser entrypoint to backend persistence.",
+      "scenarios": [
+        {
+          "name": "Journey parity: LoginFinal flow via /Auth",
+          "coverage": [
+            "critical-path",
+            "ui-api-db"
+          ],
+          "provenance": {
+            "type": "flow-derived",
+            "sources": [
+              "artifact:module-documentation/module-analysis.json"
+            ],
+            "confidence": 0.73,
+            "unknowns": []
+          }
+        },
+        {
+          "name": "Journey parity: LoginFinal flow via /Auth/dashboard",
+          "coverage": [
+            "critical-path",
+            "ui-api-db"
+          ],
+          "provenance": {
+            "type": "flow-derived",
+            "sources": [
+              "artifact:module-documentation/module-analysis.json"
+            ],
+            "confidence": 0.73,
+            "unknowns": []
+          }
+        },
+        {
+          "name": "Journey parity: LoginFinal flow via /Auth/index",
+          "coverage": [
+            "critical-path",
+            "ui-api-db"
+          ],
+          "provenance": {
+            "type": "flow-derived",
+            "sources": [
+              "artifact:module-documentation/module-analysis.json"
+            ],
+            "confidence": 0.73,
+            "unknowns": []
+          }
+        }
+      ]
+    },
+    {
+      "category": "Edge Case",
+      "purpose": "Validate boundary conditions, Dapper case-sensitivity, ViewModel binding, retries, and low-frequency high-impact paths.",
+      "scenarios": [
+        {
+          "name": "Must-preserve edge behavior: Route and URL behavior parity for user-visible flows",
+          "coverage": [
+            "edge-case",
+            "resilience",
+            "dapper-case-sensitivity",
+            "viewmodel-binding"
+          ],
+          "provenance": {
+            "type": "risk-derived",
+            "sources": [
+              "artifact:legacy-logic-extraction/logic-summary.json"
+            ],
+            "confidence": 0.76,
+            "unknowns": []
+          }
+        },
+        {
+          "name": "Must-preserve edge behavior: Validation/error message semantics from legacy behavior",
+          "coverage": [
+            "edge-case",
+            "resilience",
+            "dapper-case-sensitivity",
+            "viewmodel-binding"
+          ],
+          "provenance": {
+            "type": "risk-derived",
+            "sources": [
+              "artifact:legacy-logic-extraction/logic-summary.json"
+            ],
+            "confidence": 0.76,
+            "unknowns": []
+          }
+        },
+        {
+          "name": "Must-preserve edge behavior: Data mapping compatibility for persistence operations (Dapper case-sensitivity, ViewModel binding)",
+          "coverage": [
+            "edge-case",
+            "resilience",
+            "dapper-case-sensitivity",
+            "viewmodel-binding"
+          ],
+          "provenance": {
+            "type": "risk-derived",
+            "sources": [
+              "artifact:legacy-logic-extraction/logic-summary.json"
+            ],
+            "confidence": 0.76,
+            "unknowns": []
+          }
+        },
+        {
+          "name": "Dapper case-sensitivity and column mapping edge cases",
+          "coverage": [
+            "dapper",
+            "orm",
+            "case-sensitivity"
+          ],
+          "provenance": {
+            "type": "risk-derived",
+            "sources": [
+              "artifact:legacy-logic-extraction/logic-summary.json"
+            ],
+            "confidence": 0.72,
+            "unknowns": []
+          }
+        },
+        {
+          "name": "ViewModel binding and property mapping validation",
+          "coverage": [
+            "viewmodel",
+            "binding",
+            "dto-mapping"
+          ],
+          "provenance": {
+            "type": "risk-derived",
+            "sources": [
+              "artifact:legacy-logic-extraction/logic-summary.json"
+            ],
+            "confidence": 0.7,
+            "unknowns": []
+          }
+        }
+      ]
+    },
+    {
+      "category": "Playwright / E2E Browser",
+      "purpose": "Validate browser UX/runtime/network/DOM evidence for migrated module journeys.",
+      "scenarios": [
+        {
+          "name": "Browser runtime validation for LoginFinal flow via /Auth",
+          "coverage": [
+            "browser-runtime",
+            "network",
+            "dom"
+          ],
+          "provenance": {
+            "type": "flow-derived",
+            "sources": [
+              "artifact:legacy-logic-extraction/logic-summary.json",
+              "artifact:module-discovery/discovery-map.json"
+            ],
+            "confidence": 0.72,
+            "unknowns": []
+          }
+        },
+        {
+          "name": "Browser runtime validation for LoginFinal flow via /Auth/dashboard",
+          "coverage": [
+            "browser-runtime",
+            "network",
+            "dom"
+          ],
+          "provenance": {
+            "type": "flow-derived",
+            "sources": [
+              "artifact:legacy-logic-extraction/logic-summary.json",
+              "artifact:module-discovery/discovery-map.json"
+            ],
+            "confidence": 0.72,
+            "unknowns": []
+          }
+        }
+      ]
+    },
+    {
+      "category": "DevTools Diagnostics",
+      "purpose": "Inspect console, network, runtime, DOM state, and performance evidence for root-cause diagnostics.",
+      "scenarios": [
+        {
+          "name": "Collect console error/warning evidence",
+          "coverage": [
+            "console"
+          ],
+          "provenance": {
+            "type": "flow-derived",
+            "sources": [
+              "artifact:playwright-browser-verification/result.json"
+            ],
+            "confidence": 0.68,
+            "unknowns": []
+          }
+        },
+        {
+          "name": "Collect failed request evidence and latency outliers",
+          "coverage": [
+            "network",
+            "performance"
+          ],
+          "provenance": {
+            "type": "flow-derived",
+            "sources": [
+              "artifact:playwright-browser-verification/result.json"
+            ],
+            "confidence": 0.68,
+            "unknowns": []
+          }
+        }
+      ]
+    }
+  ],
+  "coverageSummary": "Estimated coverage baseline for LoginFinal: 34%.",
+  "scopeApplied": {
+    "scopeTerms": [
+      "5001",
+      "browser",
+      "button",
+      "dashboard",
+      "devtools",
+      "http",
+      "localhost",
+      "login",
+      "py",
+      "runner",
+      "test",
+      "testing",
+      "to",
+      "with"
+    ],
+    "targetUrl": "http://localhost:5001",
+    "scopeHint": "To test login"
+  },
+  "confidence": 0.82
+}

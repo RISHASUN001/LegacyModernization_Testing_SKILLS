@@ -1,0 +1,59 @@
+{
+  "stage": "functional-parity-and-sql-table-comparison",
+  "stageIndex": 6,
+  "stageTitle": "6. Functional Parity + SQL/Table",
+  "stageObjective": "Compare logic and data usage between legacy and converted modules and flag behavior drift.",
+  "status": "passed",
+  "skills": [
+    {
+      "skill": "parity-analysis",
+      "stage": "functional-parity-and-sql-table-comparison",
+      "returnCode": 0,
+      "stdout": "MATE/artifacts/Checklist/run-local-004/parity-analysis/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": false,
+      "resultPath": "MATE/artifacts/Checklist/run-local-004/parity-analysis/result.json",
+      "summary": "Parity analysis completed with score 0%.",
+      "artifacts": [
+        "MATE/artifacts/Checklist/run-local-004/parity-analysis/parity-diff.json",
+        "MATE/artifacts/Checklist/run-local-004/parity-analysis/workflow-parity-summary.json"
+      ],
+      "metrics": {
+        "parityScore": 0,
+        "matched": 0,
+        "missingInCsharp": 0,
+        "additionalInCsharp": 0
+      },
+      "findings": []
+    },
+    {
+      "skill": "sql-table-comparison",
+      "stage": "functional-parity-and-sql-table-comparison",
+      "returnCode": 0,
+      "stdout": "MATE/artifacts/Checklist/run-local-004/sql-table-comparison/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": false,
+      "resultPath": "MATE/artifacts/Checklist/run-local-004/sql-table-comparison/result.json",
+      "summary": "SQL/table comparison complete.",
+      "artifacts": [
+        "MATE/artifacts/Checklist/run-local-004/sql-table-comparison/sql-table-compare.json"
+      ],
+      "metrics": {
+        "tableCoverage": 0.0,
+        "commonTables": 0,
+        "missingTables": 0,
+        "additionalTables": 8,
+        "csharpQueryCount": 0,
+        "legacyQueryCount": 0
+      },
+      "findings": []
+    }
+  ],
+  "skillCount": 2,
+  "skillsFailed": 0,
+  "reusedSkills": 0,
+  "contextFile": "MATE/artifacts/Checklist/run-local-004/orchestration/stage-06-context.json",
+  "requiredEvidence": []
+}

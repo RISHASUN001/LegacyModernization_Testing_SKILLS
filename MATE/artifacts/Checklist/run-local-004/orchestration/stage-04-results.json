@@ -1,0 +1,33 @@
+{
+  "stage": "java-logic-understanding",
+  "stageIndex": 4,
+  "stageTitle": "4. Java Logic Understanding",
+  "stageObjective": "Use AI to explain expected legacy behavior and business workflow outcomes.",
+  "status": "passed",
+  "skills": [
+    {
+      "skill": "legacy-logic-understanding",
+      "stage": "java-logic-understanding",
+      "returnCode": 0,
+      "stdout": "MATE/artifacts/Checklist/run-local-004/legacy-logic-understanding/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": false,
+      "resultPath": "MATE/artifacts/Checklist/run-local-004/legacy-logic-understanding/result.json",
+      "summary": "Generated legacy logic understanding for 2 workflows.",
+      "artifacts": [
+        "MATE/artifacts/Checklist/run-local-004/legacy-logic-understanding/legacy-logic-summary.json"
+      ],
+      "metrics": {
+        "workflowCount": 2,
+        "provider": "deterministic-fallback"
+      },
+      "findings": []
+    }
+  ],
+  "skillCount": 1,
+  "skillsFailed": 0,
+  "reusedSkills": 0,
+  "contextFile": "MATE/artifacts/Checklist/run-local-004/orchestration/stage-04-context.json",
+  "requiredEvidence": []
+}

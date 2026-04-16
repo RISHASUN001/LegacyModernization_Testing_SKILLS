@@ -4,14 +4,14 @@
   "moduleName": "Login",
   "runId": "login-test-20260414-005637",
   "status": "passed",
-  "startedAt": "2026-04-14T02:40:52.632164Z",
-  "endedAt": "2026-04-14T02:40:52.637676Z",
-  "summary": "Lessons synthesized for Login: resolved=0, recurring=0, new=7.",
+  "startedAt": "2026-04-14T16:31:50.175651Z",
+  "endedAt": "2026-04-14T16:31:50.177313Z",
+  "summary": "Lessons synthesized for Login: resolved=0, recurring=0, new=20.",
   "metrics": {
     "resolved": 0,
     "recurring": 0,
-    "new": 7,
-    "kbRecurringSignatures": 2
+    "new": 20,
+    "kbRecurringSignatures": 4
   },
   "artifacts": [
     "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/lessons-learned/result.json",
@@ -24,7 +24,7 @@
     {
       "message": "Use recurring lesson signatures to generate mandatory regression scenarios in next run.",
       "priority": "medium",
-      "evidence": "recurring=0, resolved=0, new=7"
+      "evidence": "recurring=0, resolved=0, new=20"
     }
   ],
   "resultContractVersion": "2.0",

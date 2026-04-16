@@ -1,0 +1,24 @@
+{
+  "moduleName": "Checklist",
+  "tables": {
+    "common": [],
+    "missingInCsharp": [],
+    "additionalInCsharp": [
+      "finding_records",
+      "iteration_deltas",
+      "modules",
+      "recommendation_records",
+      "runs",
+      "skill_executions",
+      "skills",
+      "test_category_results"
+    ]
+  },
+  "sql": {
+    "csharpQueryCount": 0,
+    "legacyQueryCount": 0
+  },
+  "coverage": {
+    "tableCoverage": 0.0
+  }
+}

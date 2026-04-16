@@ -1,0 +1,19 @@
+{
+  "tables": [
+    "runs",
+    "modules",
+    "skills",
+    "skill_executions",
+    "finding_records",
+    "recommendation_records",
+    "iteration_deltas",
+    "test_category_results",
+    "browser_devtools_sessions",
+    "browser_console_logs",
+    "browser_network_requests",
+    "browser_performance_metrics",
+    "browser_accessibility_issues",
+    "browser_screenshots",
+    "browser_dom_snapshots"
+  ]
+}

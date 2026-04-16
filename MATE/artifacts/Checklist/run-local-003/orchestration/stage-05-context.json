@@ -1,0 +1,35 @@
+{
+  "runId": "run-local-003",
+  "moduleName": "Checklist",
+  "stage": "diagram-generation",
+  "stageIndex": 5,
+  "title": "5. Diagram Generation",
+  "objective": "Generate mermaid + excalidraw + preview image artifacts for C# and Java workflows.",
+  "disclosure": {
+    "now": {
+      "inputType": "csharp and java logic summaries",
+      "outputType": "diagram index + diagrams + previews",
+      "skills": [
+        "diagram-generation"
+      ]
+    },
+    "next": {
+      "stage": "functional-parity-and-sql-table-comparison",
+      "title": "6. Functional Parity + SQL/Table",
+      "expectedInputType": "csharp + java logic and sql/table artifacts"
+    }
+  },
+  "contracts": [
+    {
+      "skill": "diagram-generation",
+      "inputs": [
+        "moduleName",
+        "runId"
+      ],
+      "outputs": [
+        "result.json"
+      ],
+      "dependencies": []
+    }
+  ]
+}

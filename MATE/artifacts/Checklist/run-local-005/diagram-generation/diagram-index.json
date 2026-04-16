@@ -1,0 +1,21 @@
+{
+  "moduleName": "Checklist",
+  "items": [
+    {
+      "workflow": "C# Unified",
+      "group": "csharp",
+      "mermaid": "csharp-workflow.mmd",
+      "excalidraw": "csharp-workflow.excalidraw.json",
+      "preview": "previews/csharp-workflow.png",
+      "provider": "deterministic-fallback"
+    },
+    {
+      "workflow": "Legacy Unified",
+      "group": "legacy",
+      "mermaid": "legacy-workflow.mmd",
+      "excalidraw": "legacy-workflow.excalidraw.json",
+      "preview": "previews/legacy-workflow.png",
+      "provider": "deterministic-fallback"
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "moduleName": "Login",
+  "excluded": [
+    {
+      "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java",
+      "reason": "low-evidence-score",
+      "score": 0.095,
+      "matchedTokens": [
+        "login"
+      ],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java"
+        ],
+        "confidence": 0.5,
+        "unknowns": []
+      }
+    },
+    {
+      "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java",
+      "reason": "low-evidence-score",
+      "score": 0.095,
+      "matchedTokens": [
+        "login"
+      ],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java"
+        ],
+        "confidence": 0.5,
+        "unknowns": []
+      }
+    },
+    {
+      "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp",
+      "reason": "low-evidence-score",
+      "score": 0.0,
+      "matchedTokens": [],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp"
+        ],
+        "confidence": 0.5,
+        "unknowns": []
+      }
+    },
+    {
+      "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp",
+      "reason": "low-evidence-score",
+      "score": 0.0,
+      "matchedTokens": [],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp"
+        ],
+        "confidence": 0.5,
+        "unknowns": []
+      }
+    },
+    {
+      "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/index.jsp",
+      "reason": "low-evidence-score",
+      "score": 0.095,
+      "matchedTokens": [
+        "login"
+      ],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/index.jsp"
+        ],
+        "confidence": 0.5,
+        "unknowns": []
+      }
+    },
+    {
+      "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/index.jsp",
+      "reason": "low-evidence-score",
+      "score": 0.095,
+      "matchedTokens": [
+        "login"
+      ],
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/index.jsp"
+        ],
+        "confidence": 0.5,
+        "unknowns": []
+      }
+    }
+  ]
+}

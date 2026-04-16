@@ -1,0 +1,66 @@
+{
+  "stage": "clean-architecture-and-findings",
+  "stageIndex": 9,
+  "stageTitle": "9. Clean Architecture + Findings",
+  "stageObjective": "Assess C# architecture and synthesize findings/recommendations across the full run.",
+  "status": "passed",
+  "skills": [
+    {
+      "skill": "clean-architecture-assessment",
+      "stage": "clean-architecture-and-findings",
+      "returnCode": 0,
+      "stdout": "MATE/artifacts/Checklist/run-local-005/clean-architecture-assessment/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": true,
+      "resultPath": "MATE/artifacts/Checklist/run-local-005/clean-architecture-assessment/result.json",
+      "summary": "Clean architecture assessment completed.",
+      "artifacts": [
+        "MATE/artifacts/Checklist/run-local-005/clean-architecture-assessment/clean-architecture-report.json",
+        "MATE/artifacts/Checklist/run-local-005/clean-architecture-assessment/clean-architecture-summary.md"
+      ],
+      "metrics": {
+        "score": 0,
+        "checks": 0,
+        "warnings": 0
+      },
+      "findings": []
+    },
+    {
+      "skill": "findings-synthesis",
+      "stage": "clean-architecture-and-findings",
+      "returnCode": 0,
+      "stdout": "MATE/artifacts/Checklist/run-local-005/findings-synthesis/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": true,
+      "resultPath": "MATE/artifacts/Checklist/run-local-005/findings-synthesis/result.json",
+      "summary": "Synthesized findings for module Checklist.",
+      "artifacts": [
+        "MATE/artifacts/Checklist/run-local-005/findings-synthesis/findings-synthesis.json",
+        "MATE/artifacts/Checklist/run-local-005/findings-synthesis/findings-dashboard.json",
+        "MATE/artifacts/Checklist/run-local-005/findings-synthesis/findings-summary.md"
+      ],
+      "metrics": {
+        "preservationScore": 0,
+        "keyFindings": 0,
+        "failedAreas": 0
+      },
+      "findings": []
+    }
+  ],
+  "skillCount": 2,
+  "skillsFailed": 0,
+  "reusedSkills": 2,
+  "contextFile": "MATE/artifacts/Checklist/run-local-005/orchestration/stage-09-context.json",
+  "requiredEvidence": [
+    {
+      "path": "clean-architecture-assessment/clean-architecture-report.json",
+      "exists": true
+    },
+    {
+      "path": "findings-synthesis/findings-synthesis.json",
+      "exists": true
+    }
+  ]
+}

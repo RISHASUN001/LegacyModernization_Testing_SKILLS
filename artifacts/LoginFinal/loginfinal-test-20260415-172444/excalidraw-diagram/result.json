@@ -1,0 +1,40 @@
+{
+  "skillName": "excalidraw-diagram",
+  "stage": "java-logic",
+  "moduleName": "LoginFinal",
+  "runId": "loginfinal-test-20260415-172444",
+  "status": "passed",
+  "startedAt": "2026-04-15T09:24:48.486164Z",
+  "endedAt": "2026-04-15T09:24:54.222031Z",
+  "summary": "Generated 2 consolidated workflow diagrams (Mermaid + Excalidraw + preview PNG).",
+  "metrics": {
+    "diagramBundles": 2,
+    "csharpWorkflows": 2,
+    "javaWorkflows": 2,
+    "mermaidFiles": 2,
+    "excalidrawFiles": 2,
+    "previewPNGs": 2
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-172444/excalidraw-diagram/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-172444/excalidraw-diagram/csharp-workflow-unified.mmd",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-172444/excalidraw-diagram/csharp-workflow-unified.excalidraw.json",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-172444/excalidraw-diagram/previews/csharp-workflow-unified.png",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-172444/excalidraw-diagram/java-workflow-unified.mmd",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-172444/excalidraw-diagram/java-workflow-unified.excalidraw.json",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-172444/excalidraw-diagram/previews/java-workflow-unified.png",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-172444/excalidraw-diagram/diagram-index.json"
+  ],
+  "findings": [],
+  "recommendations": [
+    "Diagrams show all conditional branches and pivots in single consolidated view per language",
+    "Use Excalidraw JSON for editing or PNG for readonly dashboard viewing"
+  ],
+  "resultContractVersion": "2.0",
+  "provenanceSummary": {
+    "scenarioSources": [
+      "excalidraw-generated"
+    ],
+    "confidence": 0.7
+  }
+}

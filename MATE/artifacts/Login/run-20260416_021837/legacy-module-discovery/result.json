@@ -1,0 +1,19 @@
+{
+  "skillName": "legacy-module-discovery",
+  "status": "failed",
+  "startedAt": "2026-04-16T02:18:37.856942Z",
+  "endedAt": "2026-04-16T02:18:37.856949Z",
+  "summary": "Input validation failed for legacy discovery.",
+  "metrics": {
+    "validationErrors": 2
+  },
+  "artifacts": [],
+  "findings": [
+    {
+      "type": "InputValidation",
+      "message": "Path does not exist in legacyBackendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/src; Path does not exist in legacyFrontendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/web"
+    }
+  ],
+  "recommendations": [],
+  "resultContractVersion": "1.0"
+}

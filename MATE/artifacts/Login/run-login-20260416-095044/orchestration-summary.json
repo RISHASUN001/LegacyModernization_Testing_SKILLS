@@ -1,0 +1,988 @@
+{
+  "schemaVersion": "2.1",
+  "runId": "run-login-20260416-095044",
+  "moduleName": "Login",
+  "effectiveRoots": {
+    "inputPath": "/Users/risha/Documents/Buildathon/MATE/run-inputs/run-input.Login.20260416_021300.json",
+    "skillsRoot": "/Users/risha/Documents/Buildathon/MATE/skills",
+    "artifactsRoot": "/Users/risha/Documents/Buildathon/MATE/artifacts"
+  },
+  "startedAt": "2026-04-16T02:14:19.384575Z",
+  "endedAt": "2026-04-16T02:14:21.526136Z",
+  "status": "failed",
+  "summary": "MATE orchestration completed with stage contracts, evidence tracking, and rerun support.",
+  "stages": [
+    {
+      "stage": "csharp-discovery",
+      "stageIndex": 1,
+      "stageTitle": "1. C# Discovery",
+      "stageObjective": "Discover converted module controllers, routes, views, services, repositories, SQL, and tables.",
+      "status": "passed",
+      "skills": [
+        {
+          "skill": "csharp-module-discovery",
+          "stage": "csharp-discovery",
+          "returnCode": 0,
+          "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/csharp-module-discovery/result.json",
+          "stderr": "",
+          "status": "passed",
+          "reused": true,
+          "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/csharp-module-discovery/result.json",
+          "summary": "Scoped 5 C# files for module 'Login' and mapped routes, SQL, and tables.",
+          "artifacts": [
+            "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/csharp-module-discovery/csharp-module-map.json",
+            "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/csharp-module-discovery/controller-route-map.json",
+            "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/csharp-module-discovery/csharp-sql-map.json",
+            "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/csharp-module-discovery/csharp-table-usage.json",
+            "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/csharp-module-discovery/scoped-file-relevance.json"
+          ],
+          "metrics": {
+            "candidateFiles": 9,
+            "includedFiles": 5,
+            "controllers": 1,
+            "views": 2,
+            "services": 1,
+            "repositories": 0,
+            "routeFiles": 1,
+            "sqlFiles": 0,
+            "tables": 0,
+            "workflowCount": 1
+          },
+          "findings": []
+        }
+      ],
+      "skillCount": 1,
+      "skillsFailed": 0,
+      "reusedSkills": 1,
+      "contextFile": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/orchestration/stage-01-context.json",
+      "requiredEvidence": [
+        {
+          "path": "csharp-module-discovery/csharp-module-map.json",
+          "exists": true
+        },
+        {
+          "path": "csharp-module-discovery/controller-route-map.json",
+          "exists": true
+        },
+        {
+          "path": "csharp-module-discovery/csharp-sql-map.json",
+          "exists": true
+        },
+        {
+          "path": "csharp-module-discovery/csharp-table-usage.json",
+          "exists": true
+        }
+      ]
+    },
+    {
+      "stage": "csharp-logic-understanding",
+      "stageIndex": 2,
+      "stageTitle": "2. C# Logic Understanding",
+      "stageObjective": "Use AI to explain workflow branches, validations, and DB touchpoints in the converted C# module.",
+      "status": "passed",
+      "skills": [
+        {
+          "skill": "csharp-logic-understanding",
+          "stage": "csharp-logic-understanding",
+          "returnCode": 0,
+          "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/csharp-logic-understanding/result.json",
+          "stderr": "",
+          "status": "passed",
+          "reused": true,
+          "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/csharp-logic-understanding/result.json",
+          "summary": "Built C# logic understanding for 1 workflows.",
+          "artifacts": [
+            "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/csharp-logic-understanding/csharp-logic-summary.json"
+          ],
+          "metrics": {
+            "workflowCount": 1,
+            "routesAnalyzed": 1,
+            "sqlFilesAnalyzed": 0,
+            "tablesFound": 0
+          },
+          "findings": []
+        }
+      ],
+      "skillCount": 1,
+      "skillsFailed": 0,
+      "reusedSkills": 1,
+      "contextFile": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/orchestration/stage-02-context.json",
+      "requiredEvidence": [
+        {
+          "path": "csharp-logic-understanding/csharp-logic-summary.json",
+          "exists": true
+        }
+      ]
+    },
+    {
+      "stage": "java-discovery",
+      "stageIndex": 3,
+      "stageTitle": "3. Java Discovery",
+      "stageObjective": "Locate legacy Java/JSP module files strictly anchored to C# discovery evidence.",
+      "status": "passed",
+      "skills": [
+        {
+          "skill": "legacy-module-discovery",
+          "stage": "java-discovery",
+          "returnCode": 0,
+          "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/legacy-module-discovery/result.json",
+          "stderr": "",
+          "status": "passed",
+          "reused": true,
+          "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/legacy-module-discovery/result.json",
+          "summary": "Legacy discovery selected 0 anchored files from 0 candidates for workflow-scoped analysis.",
+          "artifacts": [
+            "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/legacy-module-discovery/legacy-module-map.json",
+            "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/legacy-module-discovery/java-sql-map.json",
+            "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/legacy-module-discovery/java-table-usage.json",
+            "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/legacy-module-discovery/legacy-scoped-file-relevance.json"
+          ],
+          "metrics": {
+            "legacyCandidates": 0,
+            "selectedLegacyFiles": 0,
+            "sqlFiles": 0,
+            "tables": 0,
+            "anchorTokens": 71,
+            "workflowCount": 1,
+            "backendFiles": 0,
+            "frontendFiles": 0
+          },
+          "findings": []
+        }
+      ],
+      "skillCount": 1,
+      "skillsFailed": 0,
+      "reusedSkills": 1,
+      "contextFile": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/orchestration/stage-03-context.json",
+      "requiredEvidence": [
+        {
+          "path": "legacy-module-discovery/legacy-module-map.json",
+          "exists": true
+        },
+        {
+          "path": "legacy-module-discovery/java-sql-map.json",
+          "exists": true
+        },
+        {
+          "path": "legacy-module-discovery/java-table-usage.json",
+          "exists": true
+        }
+      ]
+    },
+    {
+      "stage": "java-logic-understanding",
+      "stageIndex": 4,
+      "stageTitle": "4. Java Logic Understanding",
+      "stageObjective": "Use AI to explain expected legacy behavior and business workflow outcomes.",
+      "status": "passed",
+      "skills": [
+        {
+          "skill": "legacy-logic-understanding",
+          "stage": "java-logic-understanding",
+          "returnCode": 0,
+          "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/legacy-logic-understanding/result.json",
+          "stderr": "",
+          "status": "passed",
+          "reused": true,
+          "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/legacy-logic-understanding/result.json",
+          "summary": "strictAIGeneration=true and provider mode is copilot, but MATE_COPILOT_CLAUDE_COMMAND is not configured.",
+          "artifacts": [],
+          "metrics": {},
+          "findings": [
+            {
+              "type": "StrictAIUnavailable",
+              "message": "strictAIGeneration=true and provider mode is copilot, but MATE_COPILOT_CLAUDE_COMMAND is not configured."
+            }
+          ]
+        }
+      ],
+      "skillCount": 1,
+      "skillsFailed": 0,
+      "reusedSkills": 1,
+      "contextFile": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/orchestration/stage-04-context.json",
+      "requiredEvidence": [
+        {
+          "path": "legacy-logic-understanding/legacy-logic-summary.json",
+          "exists": false
+        }
+      ]
+    },
+    {
+      "stage": "diagram-generation",
+      "stageIndex": 5,
+      "stageTitle": "5. Diagram Generation",
+      "stageObjective": "Generate Mermaid + Excalidraw + preview image artifacts for C# and Java workflows.",
+      "status": "passed",
+      "skills": [
+        {
+          "skill": "diagram-generation",
+          "stage": "diagram-generation",
+          "returnCode": 0,
+          "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/diagram-generation/result.json",
+          "stderr": "",
+          "status": "passed",
+          "reused": true,
+          "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/diagram-generation/result.json",
+          "summary": "strictAIGeneration=true and provider mode is copilot, but MATE_COPILOT_CLAUDE_COMMAND is not configured.",
+          "artifacts": [],
+          "metrics": {},
+          "findings": [
+            {
+              "type": "StrictAIUnavailable",
+              "message": "strictAIGeneration=true and provider mode is copilot, but MATE_COPILOT_CLAUDE_COMMAND is not configured."
+            }
+          ]
+        }
+      ],
+      "skillCount": 1,
+      "skillsFailed": 0,
+      "reusedSkills": 1,
+      "contextFile": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/orchestration/stage-05-context.json",
+      "requiredEvidence": [
+        {
+          "path": "diagram-generation/diagram-index.json",
+          "exists": false
+        },
+        {
+          "path": "diagram-generation/csharp-workflow.excalidraw.json",
+          "exists": false
+        },
+        {
+          "path": "diagram-generation/legacy-workflow.excalidraw.json",
+          "exists": false
+        }
+      ]
+    },
+    {
+      "stage": "functional-parity-and-sql-table-comparison",
+      "stageIndex": 6,
+      "stageTitle": "6. Functional Parity + SQL/Table",
+      "stageObjective": "Compare logic and data usage between legacy and converted modules and flag behavior drift.",
+      "status": "failed",
+      "skills": [
+        {
+          "skill": "parity-analysis",
+          "stage": "functional-parity-and-sql-table-comparison",
+          "returnCode": 1,
+          "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/parity-analysis/result.json",
+          "stderr": "",
+          "status": "failed",
+          "reused": false,
+          "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/parity-analysis/result.json",
+          "summary": "strictAIGeneration=true and provider mode is copilot, but MATE_COPILOT_CLAUDE_COMMAND is not configured.",
+          "artifacts": [],
+          "metrics": {},
+          "findings": [
+            {
+              "type": "StrictAIUnavailable",
+              "message": "strictAIGeneration=true and provider mode is copilot, but MATE_COPILOT_CLAUDE_COMMAND is not configured."
+            }
+          ]
+        }
+      ],
+      "skillCount": 1,
+      "skillsFailed": 1,
+      "reusedSkills": 0,
+      "contextFile": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/orchestration/stage-06-context.json",
+      "requiredEvidence": [
+        {
+          "path": "parity-analysis/parity-diff.json",
+          "exists": false
+        },
+        {
+          "path": "parity-analysis/preservation-score.json",
+          "exists": false
+        }
+      ]
+    },
+    {
+      "stage": "ai-test-generation",
+      "stageIndex": 7,
+      "stageTitle": "7. AI Test Generation",
+      "stageObjective": "Generate workflow-specific unit, integration, playwright, and edge tests.",
+      "status": "failed",
+      "skills": [
+        {
+          "skill": "edge-test-generation",
+          "stage": "ai-test-generation",
+          "returnCode": 0,
+          "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/edge-test-generation/result.json",
+          "stderr": "",
+          "status": "passed",
+          "reused": false,
+          "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/edge-test-generation/result.json",
+          "summary": "edge-test-generation scaffold executed.",
+          "artifacts": [
+            "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/edge-test-generation/result.json"
+          ],
+          "metrics": {},
+          "findings": []
+        },
+        {
+          "skill": "integration-test-generation",
+          "stage": "ai-test-generation",
+          "returnCode": 0,
+          "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/integration-test-generation/result.json",
+          "stderr": "",
+          "status": "passed",
+          "reused": true,
+          "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/integration-test-generation/result.json",
+          "summary": "integration-test-generation scaffold executed.",
+          "artifacts": [
+            "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/integration-test-generation/result.json"
+          ],
+          "metrics": {},
+          "findings": []
+        },
+        {
+          "skill": "playwright-test-generation",
+          "stage": "ai-test-generation",
+          "returnCode": 1,
+          "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/playwright-test-generation/result.json",
+          "stderr": "",
+          "status": "failed",
+          "reused": false,
+          "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/playwright-test-generation/result.json",
+          "summary": "Playwright generation failed: strictAIGeneration=true and provider mode is copilot, but MATE_COPILOT_CLAUDE_COMMAND is not configured.",
+          "artifacts": [],
+          "metrics": {},
+          "findings": [
+            {
+              "type": "PlaywrightGenerationError",
+              "message": "strictAIGeneration=true and provider mode is copilot, but MATE_COPILOT_CLAUDE_COMMAND is not configured."
+            }
+          ]
+        },
+        {
+          "skill": "unit-test-generation",
+          "stage": "ai-test-generation",
+          "returnCode": 0,
+          "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/unit-test-generation/result.json",
+          "stderr": "",
+          "status": "passed",
+          "reused": false,
+          "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/unit-test-generation/result.json",
+          "summary": "unit-test-generation scaffold executed.",
+          "artifacts": [
+            "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/unit-test-generation/result.json"
+          ],
+          "metrics": {},
+          "findings": []
+        }
+      ],
+      "skillCount": 4,
+      "skillsFailed": 1,
+      "reusedSkills": 1,
+      "contextFile": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/orchestration/stage-07-context.json",
+      "requiredEvidence": [
+        {
+          "path": "unit-test-generation/unit-tests.generated.json",
+          "exists": false
+        },
+        {
+          "path": "integration-test-generation/integration-tests.generated.json",
+          "exists": false
+        },
+        {
+          "path": "playwright-test-generation/playwright-tests.generated.json",
+          "exists": false
+        },
+        {
+          "path": "edge-test-generation/edge-tests.generated.json",
+          "exists": false
+        }
+      ]
+    },
+    {
+      "stage": "test-execution",
+      "stageIndex": 8,
+      "stageTitle": "8. Test Execution",
+      "stageObjective": "Execute generated tests and capture logs, failures, console, network, and screenshots.",
+      "status": "failed",
+      "skills": [
+        {
+          "skill": "test-execution-integration",
+          "stage": "test-execution",
+          "returnCode": 0,
+          "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-integration/result.json",
+          "stderr": "",
+          "status": "passed",
+          "reused": true,
+          "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-integration/result.json",
+          "summary": "Integration test execution completed with exit code 0.",
+          "artifacts": [
+            "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-integration/integration-test.log",
+            "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-integration/integration-test-results.json",
+            "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-integration/integration-test-execution-manifest.json"
+          ],
+          "metrics": {
+            "total": 0,
+            "testsCopied": 0,
+            "exitCode": 0
+          },
+          "findings": []
+        },
+        {
+          "skill": "test-execution-playwright",
+          "stage": "test-execution",
+          "returnCode": 1,
+          "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-playwright/result.json",
+          "stderr": "",
+          "status": "failed",
+          "reused": false,
+          "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-playwright/result.json",
+          "summary": "Playwright pytest execution completed with exit code 5.",
+          "artifacts": [
+            "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-playwright/playwright.log",
+            "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-playwright/console-messages.json",
+            "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-playwright/network-requests.json",
+            "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-playwright/playwright-results.json",
+            "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-playwright/playwright-execution-manifest.json"
+          ],
+          "metrics": {
+            "total": 0,
+            "testsCopied": 0,
+            "exitCode": 5,
+            "screenshots": 0
+          },
+          "findings": [
+            {
+              "type": "PlaywrightExecutionFailure",
+              "message": "pytest returned non-zero exit code.",
+              "evidence": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-playwright/playwright.log"
+            }
+          ]
+        },
+        {
+          "skill": "test-execution-unit",
+          "stage": "test-execution",
+          "returnCode": 0,
+          "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-unit/result.json",
+          "stderr": "",
+          "status": "passed",
+          "reused": false,
+          "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-unit/result.json",
+          "summary": "Unit test execution completed with exit code 0.",
+          "artifacts": [
+            "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-unit/unit-test.log",
+            "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-unit/unit-test-results.json",
+            "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-unit/unit-test-execution-manifest.json"
+          ],
+          "metrics": {
+            "total": 0,
+            "testsCopied": 0,
+            "exitCode": 0
+          },
+          "findings": []
+        }
+      ],
+      "skillCount": 3,
+      "skillsFailed": 1,
+      "reusedSkills": 1,
+      "contextFile": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/orchestration/stage-08-context.json",
+      "requiredEvidence": [
+        {
+          "path": "test-execution-unit/unit-test-results.json",
+          "exists": true
+        },
+        {
+          "path": "test-execution-integration/integration-test-results.json",
+          "exists": true
+        },
+        {
+          "path": "test-execution-playwright/playwright-results.json",
+          "exists": true
+        }
+      ]
+    },
+    {
+      "stage": "clean-architecture-and-findings",
+      "stageIndex": 9,
+      "stageTitle": "9. Clean Architecture + Findings",
+      "stageObjective": "Assess C# architecture and synthesize findings/recommendations across the full run.",
+      "status": "failed",
+      "skills": [
+        {
+          "skill": "clean-architecture-assessment",
+          "stage": "clean-architecture-and-findings",
+          "returnCode": 1,
+          "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/clean-architecture-assessment/result.json",
+          "stderr": "",
+          "status": "failed",
+          "reused": false,
+          "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/clean-architecture-assessment/result.json",
+          "summary": "Clean architecture assessment failed: strictAIGeneration=true and provider mode is copilot, but MATE_COPILOT_CLAUDE_COMMAND is not configured.",
+          "artifacts": [],
+          "metrics": {},
+          "findings": [
+            {
+              "type": "CleanArchitectureAssessmentError",
+              "message": "strictAIGeneration=true and provider mode is copilot, but MATE_COPILOT_CLAUDE_COMMAND is not configured."
+            }
+          ]
+        },
+        {
+          "skill": "findings-synthesis",
+          "stage": "clean-architecture-and-findings",
+          "returnCode": 1,
+          "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/findings-synthesis/result.json",
+          "stderr": "",
+          "status": "failed",
+          "reused": false,
+          "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/findings-synthesis/result.json",
+          "summary": "Findings synthesis failed: strictAIGeneration=true and provider mode is copilot, but MATE_COPILOT_CLAUDE_COMMAND is not configured.",
+          "artifacts": [],
+          "metrics": {},
+          "findings": [
+            {
+              "type": "FindingsSynthesisError",
+              "message": "strictAIGeneration=true and provider mode is copilot, but MATE_COPILOT_CLAUDE_COMMAND is not configured."
+            }
+          ]
+        }
+      ],
+      "skillCount": 2,
+      "skillsFailed": 2,
+      "reusedSkills": 0,
+      "contextFile": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/orchestration/stage-09-context.json",
+      "requiredEvidence": [
+        {
+          "path": "clean-architecture-assessment/clean-architecture-report.json",
+          "exists": false
+        },
+        {
+          "path": "findings-synthesis/findings-synthesis.json",
+          "exists": false
+        }
+      ]
+    },
+    {
+      "stage": "pipeline-vanity-check",
+      "stageIndex": 10,
+      "stageTitle": "10. Pipeline Vanity Check",
+      "stageObjective": "Verify stage completeness, required evidence presence, and final recommendation.",
+      "status": "passed",
+      "skills": [
+        {
+          "skill": "vanity-check",
+          "stage": "pipeline-vanity-check",
+          "returnCode": 0,
+          "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/vanity-check/result.json",
+          "stderr": "",
+          "status": "passed",
+          "reused": false,
+          "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/vanity-check/result.json",
+          "summary": "Vanity check completed. Recommendation: hold.",
+          "artifacts": [
+            "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/vanity-check/vanity-gate.json",
+            "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/vanity-check/pipeline-completeness-report.json"
+          ],
+          "metrics": {
+            "checks": 15,
+            "presentChecks": 6,
+            "missingRequired": 9,
+            "executionFailures": 1
+          },
+          "findings": [
+            {
+              "type": "VanityGate",
+              "message": "Recommendation is hold.",
+              "severity": "high"
+            }
+          ]
+        }
+      ],
+      "skillCount": 1,
+      "skillsFailed": 0,
+      "reusedSkills": 0,
+      "contextFile": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/orchestration/stage-10-context.json",
+      "requiredEvidence": [
+        {
+          "path": "vanity-check/vanity-gate.json",
+          "exists": true
+        },
+        {
+          "path": "vanity-check/pipeline-completeness-report.json",
+          "exists": true
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "skill": "csharp-module-discovery",
+      "stage": "csharp-discovery",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/csharp-module-discovery/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": true,
+      "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/csharp-module-discovery/result.json",
+      "summary": "Scoped 5 C# files for module 'Login' and mapped routes, SQL, and tables.",
+      "artifacts": [
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/csharp-module-discovery/csharp-module-map.json",
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/csharp-module-discovery/controller-route-map.json",
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/csharp-module-discovery/csharp-sql-map.json",
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/csharp-module-discovery/csharp-table-usage.json",
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/csharp-module-discovery/scoped-file-relevance.json"
+      ],
+      "metrics": {
+        "candidateFiles": 9,
+        "includedFiles": 5,
+        "controllers": 1,
+        "views": 2,
+        "services": 1,
+        "repositories": 0,
+        "routeFiles": 1,
+        "sqlFiles": 0,
+        "tables": 0,
+        "workflowCount": 1
+      },
+      "findings": []
+    },
+    {
+      "skill": "csharp-logic-understanding",
+      "stage": "csharp-logic-understanding",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/csharp-logic-understanding/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": true,
+      "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/csharp-logic-understanding/result.json",
+      "summary": "Built C# logic understanding for 1 workflows.",
+      "artifacts": [
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/csharp-logic-understanding/csharp-logic-summary.json"
+      ],
+      "metrics": {
+        "workflowCount": 1,
+        "routesAnalyzed": 1,
+        "sqlFilesAnalyzed": 0,
+        "tablesFound": 0
+      },
+      "findings": []
+    },
+    {
+      "skill": "legacy-module-discovery",
+      "stage": "java-discovery",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/legacy-module-discovery/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": true,
+      "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/legacy-module-discovery/result.json",
+      "summary": "Legacy discovery selected 0 anchored files from 0 candidates for workflow-scoped analysis.",
+      "artifacts": [
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/legacy-module-discovery/legacy-module-map.json",
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/legacy-module-discovery/java-sql-map.json",
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/legacy-module-discovery/java-table-usage.json",
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/legacy-module-discovery/legacy-scoped-file-relevance.json"
+      ],
+      "metrics": {
+        "legacyCandidates": 0,
+        "selectedLegacyFiles": 0,
+        "sqlFiles": 0,
+        "tables": 0,
+        "anchorTokens": 71,
+        "workflowCount": 1,
+        "backendFiles": 0,
+        "frontendFiles": 0
+      },
+      "findings": []
+    },
+    {
+      "skill": "legacy-logic-understanding",
+      "stage": "java-logic-understanding",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/legacy-logic-understanding/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": true,
+      "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/legacy-logic-understanding/result.json",
+      "summary": "strictAIGeneration=true and provider mode is copilot, but MATE_COPILOT_CLAUDE_COMMAND is not configured.",
+      "artifacts": [],
+      "metrics": {},
+      "findings": [
+        {
+          "type": "StrictAIUnavailable",
+          "message": "strictAIGeneration=true and provider mode is copilot, but MATE_COPILOT_CLAUDE_COMMAND is not configured."
+        }
+      ]
+    },
+    {
+      "skill": "diagram-generation",
+      "stage": "diagram-generation",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/diagram-generation/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": true,
+      "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/diagram-generation/result.json",
+      "summary": "strictAIGeneration=true and provider mode is copilot, but MATE_COPILOT_CLAUDE_COMMAND is not configured.",
+      "artifacts": [],
+      "metrics": {},
+      "findings": [
+        {
+          "type": "StrictAIUnavailable",
+          "message": "strictAIGeneration=true and provider mode is copilot, but MATE_COPILOT_CLAUDE_COMMAND is not configured."
+        }
+      ]
+    },
+    {
+      "skill": "parity-analysis",
+      "stage": "functional-parity-and-sql-table-comparison",
+      "returnCode": 1,
+      "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/parity-analysis/result.json",
+      "stderr": "",
+      "status": "failed",
+      "reused": false,
+      "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/parity-analysis/result.json",
+      "summary": "strictAIGeneration=true and provider mode is copilot, but MATE_COPILOT_CLAUDE_COMMAND is not configured.",
+      "artifacts": [],
+      "metrics": {},
+      "findings": [
+        {
+          "type": "StrictAIUnavailable",
+          "message": "strictAIGeneration=true and provider mode is copilot, but MATE_COPILOT_CLAUDE_COMMAND is not configured."
+        }
+      ]
+    },
+    {
+      "skill": "edge-test-generation",
+      "stage": "ai-test-generation",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/edge-test-generation/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": false,
+      "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/edge-test-generation/result.json",
+      "summary": "edge-test-generation scaffold executed.",
+      "artifacts": [
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/edge-test-generation/result.json"
+      ],
+      "metrics": {},
+      "findings": []
+    },
+    {
+      "skill": "integration-test-generation",
+      "stage": "ai-test-generation",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/integration-test-generation/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": true,
+      "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/integration-test-generation/result.json",
+      "summary": "integration-test-generation scaffold executed.",
+      "artifacts": [
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/integration-test-generation/result.json"
+      ],
+      "metrics": {},
+      "findings": []
+    },
+    {
+      "skill": "playwright-test-generation",
+      "stage": "ai-test-generation",
+      "returnCode": 1,
+      "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/playwright-test-generation/result.json",
+      "stderr": "",
+      "status": "failed",
+      "reused": false,
+      "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/playwright-test-generation/result.json",
+      "summary": "Playwright generation failed: strictAIGeneration=true and provider mode is copilot, but MATE_COPILOT_CLAUDE_COMMAND is not configured.",
+      "artifacts": [],
+      "metrics": {},
+      "findings": [
+        {
+          "type": "PlaywrightGenerationError",
+          "message": "strictAIGeneration=true and provider mode is copilot, but MATE_COPILOT_CLAUDE_COMMAND is not configured."
+        }
+      ]
+    },
+    {
+      "skill": "unit-test-generation",
+      "stage": "ai-test-generation",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/unit-test-generation/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": false,
+      "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/unit-test-generation/result.json",
+      "summary": "unit-test-generation scaffold executed.",
+      "artifacts": [
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/unit-test-generation/result.json"
+      ],
+      "metrics": {},
+      "findings": []
+    },
+    {
+      "skill": "test-execution-integration",
+      "stage": "test-execution",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-integration/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": true,
+      "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-integration/result.json",
+      "summary": "Integration test execution completed with exit code 0.",
+      "artifacts": [
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-integration/integration-test.log",
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-integration/integration-test-results.json",
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-integration/integration-test-execution-manifest.json"
+      ],
+      "metrics": {
+        "total": 0,
+        "testsCopied": 0,
+        "exitCode": 0
+      },
+      "findings": []
+    },
+    {
+      "skill": "test-execution-playwright",
+      "stage": "test-execution",
+      "returnCode": 1,
+      "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-playwright/result.json",
+      "stderr": "",
+      "status": "failed",
+      "reused": false,
+      "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-playwright/result.json",
+      "summary": "Playwright pytest execution completed with exit code 5.",
+      "artifacts": [
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-playwright/playwright.log",
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-playwright/console-messages.json",
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-playwright/network-requests.json",
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-playwright/playwright-results.json",
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-playwright/playwright-execution-manifest.json"
+      ],
+      "metrics": {
+        "total": 0,
+        "testsCopied": 0,
+        "exitCode": 5,
+        "screenshots": 0
+      },
+      "findings": [
+        {
+          "type": "PlaywrightExecutionFailure",
+          "message": "pytest returned non-zero exit code.",
+          "evidence": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-playwright/playwright.log"
+        }
+      ]
+    },
+    {
+      "skill": "test-execution-unit",
+      "stage": "test-execution",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-unit/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": false,
+      "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-unit/result.json",
+      "summary": "Unit test execution completed with exit code 0.",
+      "artifacts": [
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-unit/unit-test.log",
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-unit/unit-test-results.json",
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-unit/unit-test-execution-manifest.json"
+      ],
+      "metrics": {
+        "total": 0,
+        "testsCopied": 0,
+        "exitCode": 0
+      },
+      "findings": []
+    },
+    {
+      "skill": "clean-architecture-assessment",
+      "stage": "clean-architecture-and-findings",
+      "returnCode": 1,
+      "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/clean-architecture-assessment/result.json",
+      "stderr": "",
+      "status": "failed",
+      "reused": false,
+      "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/clean-architecture-assessment/result.json",
+      "summary": "Clean architecture assessment failed: strictAIGeneration=true and provider mode is copilot, but MATE_COPILOT_CLAUDE_COMMAND is not configured.",
+      "artifacts": [],
+      "metrics": {},
+      "findings": [
+        {
+          "type": "CleanArchitectureAssessmentError",
+          "message": "strictAIGeneration=true and provider mode is copilot, but MATE_COPILOT_CLAUDE_COMMAND is not configured."
+        }
+      ]
+    },
+    {
+      "skill": "findings-synthesis",
+      "stage": "clean-architecture-and-findings",
+      "returnCode": 1,
+      "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/findings-synthesis/result.json",
+      "stderr": "",
+      "status": "failed",
+      "reused": false,
+      "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/findings-synthesis/result.json",
+      "summary": "Findings synthesis failed: strictAIGeneration=true and provider mode is copilot, but MATE_COPILOT_CLAUDE_COMMAND is not configured.",
+      "artifacts": [],
+      "metrics": {},
+      "findings": [
+        {
+          "type": "FindingsSynthesisError",
+          "message": "strictAIGeneration=true and provider mode is copilot, but MATE_COPILOT_CLAUDE_COMMAND is not configured."
+        }
+      ]
+    },
+    {
+      "skill": "vanity-check",
+      "stage": "pipeline-vanity-check",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/vanity-check/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": false,
+      "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/vanity-check/result.json",
+      "summary": "Vanity check completed. Recommendation: hold.",
+      "artifacts": [
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/vanity-check/vanity-gate.json",
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/vanity-check/pipeline-completeness-report.json"
+      ],
+      "metrics": {
+        "checks": 15,
+        "presentChecks": 6,
+        "missingRequired": 9,
+        "executionFailures": 1
+      },
+      "findings": [
+        {
+          "type": "VanityGate",
+          "message": "Recommendation is hold.",
+          "severity": "high"
+        }
+      ]
+    }
+  ],
+  "stageEvidenceIndex": {
+    "csharp-discovery": [
+      "csharp-module-discovery/csharp-module-map.json",
+      "csharp-module-discovery/controller-route-map.json",
+      "csharp-module-discovery/csharp-sql-map.json",
+      "csharp-module-discovery/csharp-table-usage.json"
+    ],
+    "csharp-logic-understanding": [
+      "csharp-logic-understanding/csharp-logic-summary.json"
+    ],
+    "java-discovery": [
+      "legacy-module-discovery/legacy-module-map.json",
+      "legacy-module-discovery/java-sql-map.json",
+      "legacy-module-discovery/java-table-usage.json"
+    ],
+    "java-logic-understanding": [],
+    "diagram-generation": [],
+    "functional-parity-and-sql-table-comparison": [],
+    "ai-test-generation": [],
+    "test-execution": [
+      "test-execution-unit/unit-test-results.json",
+      "test-execution-integration/integration-test-results.json",
+      "test-execution-playwright/playwright-results.json"
+    ],
+    "clean-architecture-and-findings": [],
+    "pipeline-vanity-check": [
+      "vanity-check/vanity-gate.json",
+      "vanity-check/pipeline-completeness-report.json"
+    ]
+  }
+}

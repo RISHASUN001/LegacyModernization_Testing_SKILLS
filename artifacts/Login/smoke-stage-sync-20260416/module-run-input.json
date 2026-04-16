@@ -1,0 +1,27 @@
+{
+  "runId": "smoke-stage-sync-20260416",
+  "moduleName": "Login",
+  "workflowNames": [
+    "Login"
+  ],
+  "convertedRoots": [
+    "/Users/risha/Documents/Buildathon/src"
+  ],
+  "legacyBackendRoots": [
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app"
+  ],
+  "legacyFrontendRoots": [
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app"
+  ],
+  "baseUrl": "http://localhost:5001",
+  "startUrl": "http://localhost:5001",
+  "dotnetTestTarget": "/Users/risha/Documents/Buildathon/src",
+  "strictModuleOnly": true,
+  "strictAIGeneration": false,
+  "enableUserInputPrompting": true,
+  "keywords": [],
+  "controllerHints": [],
+  "viewHints": [],
+  "expectedEndUrls": [],
+  "selectedSkills": []
+}

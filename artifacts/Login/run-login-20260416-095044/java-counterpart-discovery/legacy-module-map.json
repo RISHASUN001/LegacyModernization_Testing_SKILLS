@@ -1,0 +1,17 @@
+{
+  "moduleName": "Login",
+  "legacyBackendRoot": "/Users/risha/Documents/Buildathon/samples/legacy-java-app",
+  "legacyFrontendRoot": "",
+  "relatedFileCount": 1,
+  "relatedFiles": [
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp"
+  ],
+  "provenance": {
+    "type": "code-evidence",
+    "sources": [
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp"
+    ],
+    "confidence": 0.7,
+    "unknowns": []
+  }
+}

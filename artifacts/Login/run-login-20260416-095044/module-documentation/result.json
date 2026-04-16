@@ -1,0 +1,43 @@
+{
+  "skillName": "module-documentation",
+  "stage": "java-logic",
+  "moduleName": "Login",
+  "runId": "run-login-20260416-095044",
+  "status": "passed",
+  "startedAt": "2026-04-16T01:55:37.126058Z",
+  "endedAt": "2026-04-16T01:55:37.171140Z",
+  "summary": "Module documentation generated for Login with flows=2, rules=2, unknowns=1.",
+  "metrics": {
+    "sections": 9,
+    "flowsDocumented": 2,
+    "rulesDocumented": 2,
+    "relatedFiles": 3,
+    "claudeArtifactGenerated": 1,
+    "confidence": 0.63
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/module-documentation/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/module-documentation/module-analysis.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/CLAUDE.md"
+  ],
+  "findings": [],
+  "recommendations": [
+    {
+      "message": "Use module-analysis workflows/rules as primary source for scenario and parity mapping.",
+      "priority": "high",
+      "evidence": "Documentation artifact now includes provenance-tagged flows and business rules."
+    }
+  ],
+  "resultContractVersion": "2.0",
+  "provenanceSummary": {
+    "scenarioSources": [
+      "code-evidence",
+      "inferred",
+      "fallback"
+    ],
+    "confidence": 0.63,
+    "unknowns": [
+      "No DB touchpoint extracted; persistence parity must be confirmed with runtime logs."
+    ]
+  }
+}

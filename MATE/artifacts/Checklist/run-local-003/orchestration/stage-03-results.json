@@ -1,0 +1,51 @@
+{
+  "stage": "java-discovery",
+  "stageIndex": 3,
+  "stageTitle": "3. Java Discovery",
+  "stageObjective": "Locate legacy Java/JSP module files strictly anchored to C# discovery evidence.",
+  "status": "passed",
+  "skills": [
+    {
+      "skill": "legacy-module-discovery",
+      "stage": "java-discovery",
+      "returnCode": 0,
+      "stdout": "MATE/artifacts/Checklist/run-local-003/legacy-module-discovery/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": false,
+      "resultPath": "MATE/artifacts/Checklist/run-local-003/legacy-module-discovery/result.json",
+      "summary": "Legacy discovery selected 0 anchored files from 0 candidates.",
+      "artifacts": [
+        "MATE/artifacts/Checklist/run-local-003/legacy-module-discovery/legacy-module-map.json",
+        "MATE/artifacts/Checklist/run-local-003/legacy-module-discovery/java-sql-map.json",
+        "MATE/artifacts/Checklist/run-local-003/legacy-module-discovery/java-table-usage.json"
+      ],
+      "metrics": {
+        "legacyCandidates": 0,
+        "selectedLegacyFiles": 0,
+        "sqlFiles": 0,
+        "tables": 0,
+        "anchorTokens": 285
+      },
+      "findings": []
+    }
+  ],
+  "skillCount": 1,
+  "skillsFailed": 0,
+  "reusedSkills": 0,
+  "contextFile": "MATE/artifacts/Checklist/run-local-003/orchestration/stage-03-context.json",
+  "requiredEvidence": [
+    {
+      "path": "legacy-module-discovery/legacy-module-map.json",
+      "exists": true
+    },
+    {
+      "path": "legacy-module-discovery/java-sql-map.json",
+      "exists": true
+    },
+    {
+      "path": "legacy-module-discovery/java-table-usage.json",
+      "exists": true
+    }
+  ]
+}

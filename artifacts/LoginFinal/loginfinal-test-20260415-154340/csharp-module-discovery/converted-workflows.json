@@ -1,0 +1,90 @@
+{
+  "moduleName": "LoginFinal",
+  "workflows": [
+    {
+      "workflowId": "csharp-workflow-01",
+      "name": "LoginFinal flow via /Auth",
+      "entryRoute": "/Auth",
+      "menuPathHint": "",
+      "controllerCandidates": [
+        "AuthController"
+      ],
+      "provenance": {
+        "type": "flow-derived",
+        "sources": [
+          "controller-route-map.json"
+        ],
+        "confidence": 0.72,
+        "unknowns": []
+      }
+    },
+    {
+      "workflowId": "csharp-workflow-02",
+      "name": "LoginFinal flow via /Auth/dashboard",
+      "entryRoute": "/Auth/dashboard",
+      "menuPathHint": "",
+      "controllerCandidates": [
+        "AuthController"
+      ],
+      "provenance": {
+        "type": "flow-derived",
+        "sources": [
+          "controller-route-map.json"
+        ],
+        "confidence": 0.72,
+        "unknowns": []
+      }
+    },
+    {
+      "workflowId": "csharp-workflow-03",
+      "name": "LoginFinal flow via /Auth/index",
+      "entryRoute": "/Auth/index",
+      "menuPathHint": "",
+      "controllerCandidates": [
+        "AuthController"
+      ],
+      "provenance": {
+        "type": "flow-derived",
+        "sources": [
+          "controller-route-map.json"
+        ],
+        "confidence": 0.72,
+        "unknowns": []
+      }
+    },
+    {
+      "workflowId": "csharp-workflow-04",
+      "name": "LoginFinal flow via /Auth/login",
+      "entryRoute": "/Auth/login",
+      "menuPathHint": "",
+      "controllerCandidates": [
+        "AuthController"
+      ],
+      "provenance": {
+        "type": "flow-derived",
+        "sources": [
+          "controller-route-map.json"
+        ],
+        "confidence": 0.72,
+        "unknowns": []
+      }
+    },
+    {
+      "workflowId": "csharp-workflow-05",
+      "name": "LoginFinal flow via /Auth/logout",
+      "entryRoute": "/Auth/logout",
+      "menuPathHint": "",
+      "controllerCandidates": [
+        "AuthController"
+      ],
+      "provenance": {
+        "type": "flow-derived",
+        "sources": [
+          "controller-route-map.json"
+        ],
+        "confidence": 0.72,
+        "unknowns": []
+      }
+    }
+  ]
+}

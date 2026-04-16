@@ -1,0 +1,11 @@
+{
+  "moduleName": "LoginFinal",
+  "comparison": {
+    "legacyTables": [],
+    "csharpTables": [],
+    "matchingTables": [],
+    "missingInCsharp": [],
+    "additionalInCsharp": [],
+    "sqlDifferences": []
+  }
+}

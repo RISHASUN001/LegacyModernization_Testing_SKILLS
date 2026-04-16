@@ -4,8 +4,8 @@
   "moduleName": "Login",
   "runId": "login-test-20260414-005637",
   "status": "passed",
-  "startedAt": "2026-04-14T02:40:52.899321Z",
-  "endedAt": "2026-04-14T02:40:52.902227Z",
+  "startedAt": "2026-04-14T16:31:50.220684Z",
+  "endedAt": "2026-04-14T16:31:50.222156Z",
   "summary": "Iteration comparison for Login: prev=none, trend=baseline, failuresReduced=0, resolvedFindings=0.",
   "metrics": {
     "moduleName": "Login",
@@ -14,15 +14,10 @@
     "testsAdded": 6,
     "testsFixed": 0,
     "failuresReduced": 0,
-    "newFindingsIntroduced": 6,
+    "newFindingsIntroduced": 20,
     "resolvedFindings": 0,
     "progressionTrend": "baseline",
     "categoryDelta": {
-      "api-test-execution": {
-        "previousFailed": 0,
-        "currentFailed": 0,
-        "failuresReduced": 0
-      },
       "browser-testing-with-devtools": {
         "previousFailed": 0,
         "currentFailed": 0,
@@ -33,9 +28,19 @@
         "currentFailed": 0,
         "failuresReduced": 0
       },
-      "e2e-test-execution": {
+      "csharp-logic-understanding": {
         "previousFailed": 0,
         "currentFailed": 0,
+        "failuresReduced": 0
+      },
+      "csharp-module-discovery": {
+        "previousFailed": 0,
+        "currentFailed": 0,
+        "failuresReduced": 0
+      },
+      "e2e-test-execution": {
+        "previousFailed": 0,
+        "currentFailed": 6,
         "failuresReduced": 0
       },
       "edge-case-testing": {
@@ -53,7 +58,12 @@
         "currentFailed": 0,
         "failuresReduced": 0
       },
-      "iteration-comparison": {
+      "java-counterpart-discovery": {
+        "previousFailed": 0,
+        "currentFailed": 0,
+        "failuresReduced": 0
+      },
+      "java-logic-understanding": {
         "previousFailed": 0,
         "currentFailed": 0,
         "failuresReduced": 0
@@ -64,6 +74,11 @@
         "failuresReduced": 0
       },
       "lessons-learned": {
+        "previousFailed": 0,
+        "currentFailed": 0,
+        "failuresReduced": 0
+      },
+      "logic-flow-visualization": {
         "previousFailed": 0,
         "currentFailed": 0,
         "failuresReduced": 0
@@ -85,7 +100,7 @@
       },
       "playwright-browser-verification": {
         "previousFailed": 0,
-        "currentFailed": 0,
+        "currentFailed": 6,
         "failuresReduced": 0
       },
       "test-plan-generation": {
@@ -109,7 +124,7 @@
     {
       "message": "Use categoryDelta to target recurring failing categories first in next run.",
       "priority": "medium",
-      "evidence": "trend=baseline; categoryDeltaCount=16"
+      "evidence": "trend=baseline; categoryDeltaCount=19"
     }
   ],
   "resultContractVersion": "2.0",

@@ -1,0 +1,94 @@
+{
+  "runId": "run-login-20260416-095044",
+  "moduleName": "Login",
+  "stage": "ai-test-generation",
+  "stageIndex": 7,
+  "title": "7. AI Test Generation",
+  "objective": "Generate workflow-specific unit, integration, playwright, and edge tests.",
+  "disclosure": {
+    "now": {
+      "inputType": "discovery + logic + parity context",
+      "outputType": "generated test code and indexes",
+      "skills": [
+        "edge-test-generation",
+        "integration-test-generation",
+        "playwright-test-generation",
+        "unit-test-generation"
+      ]
+    },
+    "next": {
+      "stage": "test-execution",
+      "title": "8. Test Execution",
+      "expectedInputType": "generated tests + runtime environment"
+    }
+  },
+  "contracts": [
+    {
+      "skill": "edge-test-generation",
+      "inputs": [
+        "moduleName"
+      ],
+      "outputs": [
+        "edge-tests.generated.json",
+        "result.json"
+      ],
+      "dependencies": [
+        "parity-analysis"
+      ]
+    },
+    {
+      "skill": "integration-test-generation",
+      "inputs": [
+        "moduleName",
+        "runId"
+      ],
+      "outputs": [
+        "integration-tests.generated.json",
+        "result.json"
+      ],
+      "dependencies": [
+        "csharp-module-discovery",
+        "csharp-logic-understanding"
+      ]
+    },
+    {
+      "skill": "playwright-test-generation",
+      "inputs": [
+        "moduleName",
+        "runId",
+        "workflowNames",
+        "baseUrl",
+        "startUrl",
+        "enableUserInputPrompting",
+        "strictAIGeneration"
+      ],
+      "outputs": [
+        "playwright-tests.generated.json",
+        "playwright-input-requirements.json",
+        "result.json"
+      ],
+      "dependencies": [
+        "csharp-logic-understanding",
+        "legacy-logic-understanding",
+        "parity-analysis",
+        "diagram-generation"
+      ]
+    },
+    {
+      "skill": "unit-test-generation",
+      "inputs": [
+        "moduleName",
+        "runId",
+        "strictAIGeneration"
+      ],
+      "outputs": [
+        "unit-tests.generated.json",
+        "result.json"
+      ],
+      "dependencies": [
+        "csharp-logic-understanding",
+        "parity-analysis"
+      ]
+    }
+  ]
+}

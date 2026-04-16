@@ -1,0 +1,19 @@
+{
+  "moduleName": "LoginFinal",
+  "legacyBackendRoot": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java",
+  "legacyFrontendRoot": "/Users/risha/Documents/Buildathon/samples/legacy-java-app",
+  "relatedFileCount": 2,
+  "relatedFiles": [
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp"
+  ],
+  "provenance": {
+    "type": "code-evidence",
+    "sources": [
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp",
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp"
+    ],
+    "confidence": 0.7,
+    "unknowns": []
+  }
+}

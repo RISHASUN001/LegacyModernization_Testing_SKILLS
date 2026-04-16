@@ -1,0 +1,13 @@
+{
+  "moduleName": "Login",
+  "policy": "module-first",
+  "layers": {
+    "controllers": 1,
+    "services": 1,
+    "repositories": 0,
+    "dtos_models": 0,
+    "views": 2
+  },
+  "issues": [],
+  "confidence": 0.74
+}

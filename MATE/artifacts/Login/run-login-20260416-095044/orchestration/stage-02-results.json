@@ -1,0 +1,40 @@
+{
+  "stage": "csharp-logic-understanding",
+  "stageIndex": 2,
+  "stageTitle": "2. C# Logic Understanding",
+  "stageObjective": "Use AI to explain workflow branches, validations, and DB touchpoints in the converted C# module.",
+  "status": "passed",
+  "skills": [
+    {
+      "skill": "csharp-logic-understanding",
+      "stage": "csharp-logic-understanding",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/csharp-logic-understanding/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": true,
+      "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/csharp-logic-understanding/result.json",
+      "summary": "Built C# logic understanding for 1 workflows.",
+      "artifacts": [
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/csharp-logic-understanding/csharp-logic-summary.json"
+      ],
+      "metrics": {
+        "workflowCount": 1,
+        "routesAnalyzed": 1,
+        "sqlFilesAnalyzed": 0,
+        "tablesFound": 0
+      },
+      "findings": []
+    }
+  ],
+  "skillCount": 1,
+  "skillsFailed": 0,
+  "reusedSkills": 1,
+  "contextFile": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/orchestration/stage-02-context.json",
+  "requiredEvidence": [
+    {
+      "path": "csharp-logic-understanding/csharp-logic-summary.json",
+      "exists": true
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "runId": "run-login-20260416-095044",
+  "moduleName": "Login",
+  "stage": "clean-architecture-and-findings",
+  "stageIndex": 9,
+  "title": "9. Clean Architecture + Findings",
+  "objective": "Assess C# architecture and synthesize findings/recommendations across the full run.",
+  "disclosure": {
+    "now": {
+      "inputType": "csharp artifacts + execution outcomes + parity",
+      "outputType": "architecture report + synthesized findings",
+      "skills": [
+        "clean-architecture-assessment",
+        "findings-synthesis"
+      ]
+    },
+    "next": {
+      "stage": "pipeline-vanity-check",
+      "title": "10. Pipeline Vanity Check",
+      "expectedInputType": "all stage artifacts"
+    }
+  },
+  "contracts": [
+    {
+      "skill": "clean-architecture-assessment",
+      "inputs": [
+        "moduleName",
+        "runId",
+        "strictAIGeneration"
+      ],
+      "outputs": [
+        "clean-architecture-report.json",
+        "clean-architecture-summary.md",
+        "result.json"
+      ],
+      "dependencies": [
+        "csharp-module-discovery",
+        "csharp-logic-understanding",
+        "parity-analysis"
+      ]
+    },
+    {
+      "skill": "findings-synthesis",
+      "inputs": [
+        "moduleName",
+        "runId",
+        "strictAIGeneration"
+      ],
+      "outputs": [
+        "findings-synthesis.json",
+        "findings-summary.md",
+        "findings-dashboard.json",
+        "result.json"
+      ],
+      "dependencies": [
+        "clean-architecture-assessment",
+        "test-execution-unit",
+        "test-execution-integration",
+        "test-execution-playwright",
+        "parity-analysis"
+      ]
+    }
+  ]
+}

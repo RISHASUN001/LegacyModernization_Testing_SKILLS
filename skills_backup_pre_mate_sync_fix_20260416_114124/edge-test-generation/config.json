@@ -1,0 +1,9 @@
+{
+  "name": "edge-test-generation",
+  "stage": "ai-test-generation",
+  "schemaVersion": "2.0",
+  "aiDriven": true,
+  "inputs": ["moduleName"],
+  "outputs": ["edge-tests.generated.json", "result.json"],
+  "dependencies": ["parity-analysis"]
+}

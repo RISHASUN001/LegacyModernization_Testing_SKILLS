@@ -1,0 +1,59 @@
+{
+  "runId": "run-local-003",
+  "moduleName": "Checklist",
+  "stage": "test-execution",
+  "stageIndex": 8,
+  "title": "8. Test Execution",
+  "objective": "Execute generated tests and capture logs, failures, console, network, and screenshots.",
+  "disclosure": {
+    "now": {
+      "inputType": "generated tests + runtime environment",
+      "outputType": "execution logs + result summaries + evidence artifacts",
+      "skills": [
+        "test-execution-integration",
+        "test-execution-playwright",
+        "test-execution-unit"
+      ]
+    },
+    "next": {
+      "stage": "clean-architecture-and-findings",
+      "title": "9. Clean Architecture + Findings",
+      "expectedInputType": "csharp artifacts + execution outcomes"
+    }
+  },
+  "contracts": [
+    {
+      "skill": "test-execution-integration",
+      "inputs": [
+        "moduleName",
+        "runId"
+      ],
+      "outputs": [
+        "result.json"
+      ],
+      "dependencies": []
+    },
+    {
+      "skill": "test-execution-playwright",
+      "inputs": [
+        "moduleName",
+        "runId"
+      ],
+      "outputs": [
+        "result.json"
+      ],
+      "dependencies": []
+    },
+    {
+      "skill": "test-execution-unit",
+      "inputs": [
+        "moduleName",
+        "runId"
+      ],
+      "outputs": [
+        "result.json"
+      ],
+      "dependencies": []
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "stage": "test-execution",
+  "stageIndex": 8,
+  "stageTitle": "8. Test Execution",
+  "stageObjective": "Execute generated tests and capture logs, failures, console, network, and screenshots.",
+  "status": "failed",
+  "skills": [
+    {
+      "skill": "test-execution-integration",
+      "stage": "test-execution",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-integration/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": true,
+      "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-integration/result.json",
+      "summary": "Integration test execution completed with exit code 0.",
+      "artifacts": [
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-integration/integration-test.log",
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-integration/integration-test-results.json",
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-integration/integration-test-execution-manifest.json"
+      ],
+      "metrics": {
+        "total": 0,
+        "testsCopied": 0,
+        "exitCode": 0
+      },
+      "findings": []
+    },
+    {
+      "skill": "test-execution-playwright",
+      "stage": "test-execution",
+      "returnCode": 1,
+      "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-playwright/result.json",
+      "stderr": "",
+      "status": "failed",
+      "reused": false,
+      "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-playwright/result.json",
+      "summary": "Playwright pytest execution completed with exit code 5.",
+      "artifacts": [
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-playwright/playwright.log",
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-playwright/console-messages.json",
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-playwright/network-requests.json",
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-playwright/playwright-results.json",
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-playwright/playwright-execution-manifest.json"
+      ],
+      "metrics": {
+        "total": 0,
+        "testsCopied": 0,
+        "exitCode": 5,
+        "screenshots": 0
+      },
+      "findings": [
+        {
+          "type": "PlaywrightExecutionFailure",
+          "message": "pytest returned non-zero exit code.",
+          "evidence": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-playwright/playwright.log"
+        }
+      ]
+    },
+    {
+      "skill": "test-execution-unit",
+      "stage": "test-execution",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-unit/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": false,
+      "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-unit/result.json",
+      "summary": "Unit test execution completed with exit code 0.",
+      "artifacts": [
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-unit/unit-test.log",
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-unit/unit-test-results.json",
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/test-execution-unit/unit-test-execution-manifest.json"
+      ],
+      "metrics": {
+        "total": 0,
+        "testsCopied": 0,
+        "exitCode": 0
+      },
+      "findings": []
+    }
+  ],
+  "skillCount": 3,
+  "skillsFailed": 1,
+  "reusedSkills": 1,
+  "contextFile": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/orchestration/stage-08-context.json",
+  "requiredEvidence": [
+    {
+      "path": "test-execution-unit/unit-test-results.json",
+      "exists": true
+    },
+    {
+      "path": "test-execution-integration/integration-test-results.json",
+      "exists": true
+    },
+    {
+      "path": "test-execution-playwright/playwright-results.json",
+      "exists": true
+    }
+  ]
+}

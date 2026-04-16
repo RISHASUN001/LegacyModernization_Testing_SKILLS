@@ -1,0 +1,55 @@
+{
+  "stage": "java-discovery",
+  "stageTitle": "Java Discovery",
+  "stageIndex": 3,
+  "status": "passed",
+  "skillCount": 2,
+  "skillsPassed": 2,
+  "skillsFailed": 0,
+  "skills": [
+    {
+      "skill": "java-counterpart-discovery",
+      "stage": "java-discovery",
+      "status": "passed",
+      "startedAt": "2026-04-15T08:42:25.126186Z",
+      "endedAt": "2026-04-15T08:42:25.231907Z",
+      "durationSeconds": 0.105,
+      "summary": "Java counterpart discovery selected 4 files and mapped 2 legacy workflows.",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-085013/java-counterpart-discovery/result.json\n",
+      "stderr": "",
+      "command": [
+        "python3",
+        "/Users/risha/Documents/Buildathon/skills/java-counterpart-discovery/run.py",
+        "--input",
+        "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-085013/module-run-input.json",
+        "--artifacts-root",
+        "/Users/risha/Documents/Buildathon/artifacts"
+      ],
+      "resultPath": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-085013/java-counterpart-discovery/result.json"
+    },
+    {
+      "skill": "module-discovery",
+      "stage": "java-discovery",
+      "status": "passed",
+      "startedAt": "2026-04-15T08:42:25.231927Z",
+      "endedAt": "2026-04-15T08:42:25.332006Z",
+      "durationSeconds": 0.1,
+      "summary": "Discovery completed for LoginFinal: assets=24, routes=2, dbTouchpoints=0.",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-085013/module-discovery/result.json\n",
+      "stderr": "",
+      "command": [
+        "python3",
+        "/Users/risha/Documents/Buildathon/skills/module-discovery/run.py",
+        "--input",
+        "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-085013/module-run-input.json",
+        "--artifacts-root",
+        "/Users/risha/Documents/Buildathon/artifacts"
+      ],
+      "resultPath": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-085013/module-discovery/result.json"
+    }
+  ],
+  "startedAt": "2026-04-15T08:42:25.126186Z",
+  "endedAt": "2026-04-15T08:42:25.332006Z"
+}

@@ -1,0 +1,79 @@
+{
+  "moduleName": "LoginFinal",
+  "related": [
+    {
+      "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java",
+      "score": 0.167,
+      "matchedTokens": [
+        "dashboard",
+        "invalid",
+        "login",
+        "successful"
+      ],
+      "packageMatches": [],
+      "importMatches": [],
+      "provenance": {
+        "type": "code-evidence",
+        "sources": [
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java"
+        ],
+        "confidence": 0.3,
+        "unknowns": []
+      }
+    },
+    {
+      "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java",
+      "score": 0.167,
+      "matchedTokens": [
+        "dashboard",
+        "invalid",
+        "login",
+        "successful"
+      ],
+      "packageMatches": [],
+      "importMatches": [],
+      "provenance": {
+        "type": "code-evidence",
+        "sources": [
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java"
+        ],
+        "confidence": 0.3,
+        "unknowns": []
+      }
+    },
+    {
+      "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp",
+      "score": 0.125,
+      "matchedTokens": [
+        "dashboard"
+      ],
+      "packageMatches": [],
+      "importMatches": [],
+      "provenance": {
+        "type": "code-evidence",
+        "sources": [
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp"
+        ],
+        "confidence": 0.3,
+        "unknowns": []
+      }
+    },
+    {
+      "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp",
+      "score": 0.125,
+      "matchedTokens": [
+        "dashboard"
+      ],
+      "packageMatches": [],
+      "importMatches": [],
+      "provenance": {
+        "type": "code-evidence",
+        "sources": [
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp"
+        ],
+        "confidence": 0.3,
+        "unknowns": []
+      }
+    }
+  ]
+}

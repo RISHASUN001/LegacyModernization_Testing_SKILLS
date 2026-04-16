@@ -1,0 +1,26 @@
+{
+  "skillName": "vanity-check",
+  "status": "passed",
+  "startedAt": "2026-04-16T02:14:21.517858Z",
+  "endedAt": "2026-04-16T02:14:21.517866Z",
+  "summary": "Vanity check completed. Recommendation: hold.",
+  "metrics": {
+    "checks": 15,
+    "presentChecks": 6,
+    "missingRequired": 9,
+    "executionFailures": 1
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/vanity-check/vanity-gate.json",
+    "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/vanity-check/pipeline-completeness-report.json"
+  ],
+  "findings": [
+    {
+      "type": "VanityGate",
+      "message": "Recommendation is hold.",
+      "severity": "high"
+    }
+  ],
+  "recommendations": [],
+  "resultContractVersion": "1.0"
+}

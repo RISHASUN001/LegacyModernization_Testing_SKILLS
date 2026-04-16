@@ -1,0 +1,13 @@
+{
+  "moduleName": "LoginFinal",
+  "category": "playwright",
+  "status": "passed",
+  "total": 2,
+  "passed": 2,
+  "failed": 0,
+  "exitCode": 0,
+  "logPath": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/test-execution-playwright/playwright.log",
+  "consolePath": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/test-execution-playwright/console-messages.json",
+  "networkPath": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/test-execution-playwright/network-requests.json",
+  "screenshotPaths": []
+}

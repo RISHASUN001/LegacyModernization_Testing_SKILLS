@@ -1,0 +1,20 @@
+{
+  "moduleName": "LoginFinal",
+  "overallParityScore": 50,
+  "workflowScores": [
+    {
+      "workflowName": "Successful Login",
+      "preservationScore": 0.5,
+      "status": "partial"
+    },
+    {
+      "workflowName": "Invalid Login",
+      "preservationScore": 0.5,
+      "status": "partial"
+    }
+  ],
+  "scoringRationale": [
+    "Preservation score based on matching tables and workflow coverage",
+    "Analysis derived from discovery outputs and logic understanding"
+  ]
+}

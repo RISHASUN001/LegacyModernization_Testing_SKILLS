@@ -1,0 +1,46 @@
+{
+  "runId": "run-login-20260416-095044",
+  "moduleName": "Login",
+  "stage": "functional-parity-and-sql-table-comparison",
+  "stageIndex": 6,
+  "title": "6. Functional Parity + SQL/Table",
+  "objective": "Compare logic and data usage between legacy and converted modules and flag behavior drift.",
+  "disclosure": {
+    "now": {
+      "inputType": "csharp + java logic and sql/table artifacts",
+      "outputType": "parity diff + sql/table comparison",
+      "skills": [
+        "parity-analysis"
+      ]
+    },
+    "next": {
+      "stage": "ai-test-generation",
+      "title": "7. AI Test Generation",
+      "expectedInputType": "discovery + logic + parity context"
+    }
+  },
+  "contracts": [
+    {
+      "skill": "parity-analysis",
+      "inputs": [
+        "moduleName",
+        "runId",
+        "workflowNames",
+        "strictAIGeneration"
+      ],
+      "outputs": [
+        "parity-diff.json",
+        "workflow-parity-summary.json",
+        "sql-table-parity.json",
+        "preservation-score.json",
+        "result.json"
+      ],
+      "dependencies": [
+        "csharp-logic-understanding",
+        "legacy-logic-understanding",
+        "csharp-module-discovery",
+        "legacy-module-discovery"
+      ]
+    }
+  ]
+}

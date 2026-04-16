@@ -1,0 +1,48 @@
+{
+  "skillName": "excalidraw-diagram",
+  "stage": "visualization",
+  "moduleName": "LoginFinal",
+  "runId": "loginfinal-test-20260415-165746",
+  "status": "failed",
+  "startedAt": "2026-04-15T08:57:50.602499Z",
+  "endedAt": "2026-04-15T08:57:56.230081Z",
+  "summary": "Skill execution failed: 'SkillContext' object has no attribute 'finished_at'",
+  "metrics": {
+    "degradedMode": false
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-165746/excalidraw-diagram/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-165746/excalidraw-diagram/csharp-workflow-unified.mmd",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-165746/excalidraw-diagram/csharp-workflow-unified.excalidraw.json",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-165746/excalidraw-diagram/previews/csharp-workflow-unified.png",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-165746/excalidraw-diagram/java-workflow-unified.mmd",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-165746/excalidraw-diagram/java-workflow-unified.excalidraw.json",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-165746/excalidraw-diagram/previews/java-workflow-unified.png",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-165746/excalidraw-diagram/diagram-index.json"
+  ],
+  "findings": [
+    {
+      "type": "SkillExecutionError",
+      "scenario": "Skill callback execution",
+      "message": "'SkillContext' object has no attribute 'finished_at'",
+      "likelyCause": "Unhandled exception in skill script.",
+      "evidence": "Runtime exception captured by shared skill runtime.",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.9
+    }
+  ],
+  "recommendations": [
+    {
+      "message": "Inspect skill script and rerun with valid inputs.",
+      "priority": "high",
+      "evidence": "Shared runtime error handling path executed."
+    }
+  ],
+  "resultContractVersion": "2.0",
+  "statusReason": "exception",
+  "trace": {
+    "exception": "'SkillContext' object has no attribute 'finished_at'",
+    "script": "/Users/risha/Documents/Buildathon/skills/excalidraw/run.py"
+  }
+}

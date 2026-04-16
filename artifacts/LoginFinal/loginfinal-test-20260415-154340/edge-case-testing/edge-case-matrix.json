@@ -1,0 +1,204 @@
+[
+  {
+    "name": "Must-preserve edge behavior: Route and URL behavior parity for user-visible flows",
+    "status": "passed",
+    "notes": "Validate boundary conditions, Dapper case-sensitivity, ViewModel binding, retries, and low-frequency high-impact paths.",
+    "coverage": [
+      "edge-case",
+      "resilience",
+      "dapper-case-sensitivity",
+      "viewmodel-binding"
+    ],
+    "generated": false,
+    "generatedFrom": [],
+    "provenance": {
+      "type": "risk-derived",
+      "sources": [
+        "artifact:legacy-logic-extraction/logic-summary.json"
+      ],
+      "confidence": 0.76,
+      "unknowns": []
+    }
+  },
+  {
+    "name": "Must-preserve edge behavior: Validation/error message semantics from legacy behavior",
+    "status": "passed",
+    "notes": "Validate boundary conditions, Dapper case-sensitivity, ViewModel binding, retries, and low-frequency high-impact paths.",
+    "coverage": [
+      "edge-case",
+      "resilience",
+      "dapper-case-sensitivity",
+      "viewmodel-binding"
+    ],
+    "generated": false,
+    "generatedFrom": [],
+    "provenance": {
+      "type": "risk-derived",
+      "sources": [
+        "artifact:legacy-logic-extraction/logic-summary.json"
+      ],
+      "confidence": 0.76,
+      "unknowns": []
+    }
+  },
+  {
+    "name": "Must-preserve edge behavior: Data mapping compatibility for persistence operations (Dapper case-sensitivity, ViewModel binding)",
+    "status": "passed",
+    "notes": "Validate boundary conditions, Dapper case-sensitivity, ViewModel binding, retries, and low-frequency high-impact paths.",
+    "coverage": [
+      "edge-case",
+      "resilience",
+      "dapper-case-sensitivity",
+      "viewmodel-binding"
+    ],
+    "generated": false,
+    "generatedFrom": [],
+    "provenance": {
+      "type": "risk-derived",
+      "sources": [
+        "artifact:legacy-logic-extraction/logic-summary.json"
+      ],
+      "confidence": 0.76,
+      "unknowns": []
+    }
+  },
+  {
+    "name": "Dapper case-sensitivity and column mapping edge cases",
+    "status": "passed",
+    "notes": "Validate boundary conditions, Dapper case-sensitivity, ViewModel binding, retries, and low-frequency high-impact paths.",
+    "coverage": [
+      "dapper",
+      "orm",
+      "case-sensitivity"
+    ],
+    "generated": false,
+    "generatedFrom": [],
+    "provenance": {
+      "type": "risk-derived",
+      "sources": [
+        "artifact:legacy-logic-extraction/logic-summary.json"
+      ],
+      "confidence": 0.72,
+      "unknowns": []
+    }
+  },
+  {
+    "name": "ViewModel binding and property mapping validation",
+    "status": "passed",
+    "notes": "Validate boundary conditions, Dapper case-sensitivity, ViewModel binding, retries, and low-frequency high-impact paths.",
+    "coverage": [
+      "viewmodel",
+      "binding",
+      "dto-mapping"
+    ],
+    "generated": false,
+    "generatedFrom": [],
+    "provenance": {
+      "type": "risk-derived",
+      "sources": [
+        "artifact:legacy-logic-extraction/logic-summary.json"
+      ],
+      "confidence": 0.7,
+      "unknowns": []
+    }
+  },
+  {
+    "name": "Edge resilience: Session/cookie handling and user context preservation across requests",
+    "status": "passed",
+    "notes": "Validate boundary conditions, Dapper case-sensitivity, ViewModel binding, retries, and low-frequency high-impact paths.",
+    "coverage": [
+      "edge-case",
+      "recovery",
+      "resilience"
+    ],
+    "generated": true,
+    "generatedFrom": [
+      "preserve:Session/cookie handling and user context preservation across requests"
+    ],
+    "provenance": {
+      "type": "inferred",
+      "sources": [
+        "artifact:test-plan-generation/test-plan.json",
+        "artifact:module-discovery/discovery-map.json",
+        "artifact:legacy-logic-extraction/logic-summary.json",
+        "artifact:module-documentation/module-analysis.json"
+      ],
+      "confidence": 0.77,
+      "unknowns": []
+    }
+  },
+  {
+    "name": "Edge retry/timeout behavior: Open login page",
+    "status": "passed",
+    "notes": "Validate boundary conditions, Dapper case-sensitivity, ViewModel binding, retries, and low-frequency high-impact paths.",
+    "coverage": [
+      "retry",
+      "timeout",
+      "idempotency"
+    ],
+    "generated": true,
+    "generatedFrom": [
+      "flow:Open login page"
+    ],
+    "provenance": {
+      "type": "inferred",
+      "sources": [
+        "artifact:test-plan-generation/test-plan.json",
+        "artifact:module-discovery/discovery-map.json",
+        "artifact:legacy-logic-extraction/logic-summary.json",
+        "artifact:module-documentation/module-analysis.json"
+      ],
+      "confidence": 0.77,
+      "unknowns": []
+    }
+  },
+  {
+    "name": "Edge retry/timeout behavior: Session timeout returns to login",
+    "status": "passed",
+    "notes": "Validate boundary conditions, Dapper case-sensitivity, ViewModel binding, retries, and low-frequency high-impact paths.",
+    "coverage": [
+      "retry",
+      "timeout",
+      "idempotency"
+    ],
+    "generated": true,
+    "generatedFrom": [
+      "flow:Session timeout returns to login"
+    ],
+    "provenance": {
+      "type": "inferred",
+      "sources": [
+        "artifact:test-plan-generation/test-plan.json",
+        "artifact:module-discovery/discovery-map.json",
+        "artifact:legacy-logic-extraction/logic-summary.json",
+        "artifact:module-documentation/module-analysis.json"
+      ],
+      "confidence": 0.77,
+      "unknowns": []
+    }
+  },
+  {
+    "name": "Edge Case robustness generated case 1 for LoginFinal",
+    "status": "passed",
+    "notes": "Validate boundary conditions, Dapper case-sensitivity, ViewModel binding, retries, and low-frequency high-impact paths.",
+    "coverage": [
+      "robustness",
+      "fallback"
+    ],
+    "generated": true,
+    "generatedFrom": [
+      "fallback:insufficient-discovery-evidence"
+    ],
+    "provenance": {
+      "type": "inferred",
+      "sources": [
+        "artifact:test-plan-generation/test-plan.json",
+        "artifact:module-discovery/discovery-map.json",
+        "artifact:legacy-logic-extraction/logic-summary.json",
+        "artifact:module-documentation/module-analysis.json"
+      ],
+      "confidence": 0.77,
+      "unknowns": []
+    }
+  }
+]

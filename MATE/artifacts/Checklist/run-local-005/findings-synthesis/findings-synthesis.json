@@ -1,0 +1,13 @@
+{
+  "note": "non-strict deterministic fallback",
+  "task": "Synthesize the final findings for this module. Return JSON with moduleName, overallStatus, summary, preservationScore, keyFindings, failedAreas, likelyCauses, recommendedFixes, nextTests. Keep it concise and dashboard-friendly.",
+  "summary": "Generated without Copilot Claude command.",
+  "moduleName": "Checklist",
+  "overallStatus": "warning",
+  "preservationScore": 0,
+  "keyFindings": [],
+  "failedAreas": [],
+  "likelyCauses": [],
+  "recommendedFixes": [],
+  "nextTests": []
+}

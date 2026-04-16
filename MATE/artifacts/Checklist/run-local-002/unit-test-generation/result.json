@@ -1,0 +1,17 @@
+{
+  "skillName": "unit-test-generation",
+  "status": "passed",
+  "startedAt": "2026-04-15T16:21:30.956085Z",
+  "endedAt": "2026-04-15T16:21:30.956094Z",
+  "summary": "Generated 0 unit test draft(s).",
+  "metrics": {
+    "generatedCount": 0,
+    "aiUsed": false
+  },
+  "artifacts": [
+    "MATE/artifacts/Checklist/run-local-002/unit-test-generation/unit-tests.generated.json"
+  ],
+  "findings": [],
+  "recommendations": [],
+  "resultContractVersion": "1.0"
+}

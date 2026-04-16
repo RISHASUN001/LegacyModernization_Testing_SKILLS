@@ -1,0 +1,113 @@
+{
+  "moduleName": "Checklist",
+  "workflowNames": [
+    "Perform Checklist",
+    "Checklist Reports"
+  ],
+  "convertedRoots": [
+    "/Users/risha/Documents/Buildathon/src"
+  ],
+  "controllers": [
+    "DashboardController.cs",
+    "TestApiController.cs"
+  ],
+  "views": [
+    "Error.cshtml",
+    "Findings.cshtml",
+    "HelpGuide.cshtml",
+    "Index.cshtml",
+    "IterationComparison.cshtml",
+    "ModuleRuns.cshtml",
+    "Pipeline.cshtml",
+    "RunInputBuilder.cshtml",
+    "SkillLibrary.cshtml",
+    "_Layout.cshtml",
+    "_ValidationScriptsPartial.cshtml",
+    "_ViewImports.cshtml",
+    "_ViewStart.cshtml"
+  ],
+  "services": [
+    "DashboardQueryService.cs",
+    "IDashboardQueryService.cs",
+    "IMetadataSyncService.cs",
+    "MetadataSyncService.cs"
+  ],
+  "repositories": [],
+  "workflows": [
+    {
+      "workflowName": "Perform Checklist",
+      "entryRoutes": [
+        "performance-metrics"
+      ],
+      "controllers": [
+        "DashboardController.cs",
+        "TestApiController.cs"
+      ],
+      "views": [
+        "Error.cshtml",
+        "Findings.cshtml",
+        "HelpGuide.cshtml",
+        "Index.cshtml",
+        "IterationComparison.cshtml",
+        "ModuleRuns.cshtml",
+        "Pipeline.cshtml",
+        "RunInputBuilder.cshtml",
+        "SkillLibrary.cshtml",
+        "_Layout.cshtml",
+        "_ValidationScriptsPartial.cshtml",
+        "_ViewImports.cshtml",
+        "_ViewStart.cshtml"
+      ],
+      "serviceHints": [
+        "DashboardQueryService.cs",
+        "IDashboardQueryService.cs",
+        "IMetadataSyncService.cs",
+        "MetadataSyncService.cs"
+      ],
+      "repositoryHints": [],
+      "controllerHints": [
+        "ChecklistController"
+      ],
+      "viewHints": [
+        "Checklist/Index"
+      ]
+    },
+    {
+      "workflowName": "Checklist Reports",
+      "entryRoutes": [],
+      "controllers": [
+        "DashboardController.cs",
+        "TestApiController.cs"
+      ],
+      "views": [
+        "Error.cshtml",
+        "Findings.cshtml",
+        "HelpGuide.cshtml",
+        "Index.cshtml",
+        "IterationComparison.cshtml",
+        "ModuleRuns.cshtml",
+        "Pipeline.cshtml",
+        "RunInputBuilder.cshtml",
+        "SkillLibrary.cshtml",
+        "_Layout.cshtml",
+        "_ValidationScriptsPartial.cshtml",
+        "_ViewImports.cshtml",
+        "_ViewStart.cshtml"
+      ],
+      "serviceHints": [
+        "DashboardQueryService.cs",
+        "IDashboardQueryService.cs",
+        "IMetadataSyncService.cs",
+        "MetadataSyncService.cs"
+      ],
+      "repositoryHints": [],
+      "controllerHints": [
+        "ChecklistController"
+      ],
+      "viewHints": [
+        "Checklist/Index"
+      ]
+    }
+  ],
+  "strictModuleOnly": true
+}

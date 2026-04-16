@@ -1,0 +1,64 @@
+{
+  "moduleName": "Login",
+  "source": "csharp",
+  "modulePurpose": "Modernized module analysis for Login.",
+  "workflows": [
+    {
+      "name": "Login",
+      "entryPoint": "",
+      "likelyRoutes": [],
+      "controllers": [
+        "DashboardController.cs",
+        "TestApiController.cs"
+      ],
+      "views": [
+        "Findings.cshtml",
+        "HelpGuide.cshtml",
+        "Index.cshtml",
+        "IterationComparison.cshtml",
+        "ModuleRuns.cshtml",
+        "Pipeline.cshtml",
+        "RunInputBuilder.cshtml",
+        "SkillLibrary.cshtml",
+        "Error.cshtml",
+        "_Layout.cshtml",
+        "_ValidationScriptsPartial.cshtml",
+        "_ViewImports.cshtml",
+        "_ViewStart.cshtml"
+      ],
+      "decisionBranches": [
+        "GET/POST split may exist based on controller actions",
+        "Form submission and result rendering paths should be verified downstream"
+      ],
+      "validations": [
+        "Model binding and criteria validation should be checked from controller/view flow"
+      ],
+      "dbTouchpoints": [
+        "/Users/risha/Documents/Buildathon/src/LegacyModernization.Infrastructure/Services/DashboardQueryService.cs",
+        "/Users/risha/Documents/Buildathon/src/LegacyModernization.Infrastructure/Services/MetadataSyncService.cs"
+      ],
+      "tables": [
+        "runs",
+        "modules",
+        "skills",
+        "skill_executions",
+        "finding_records",
+        "recommendation_records",
+        "iteration_deltas",
+        "test_category_results",
+        "browser_devtools_sessions",
+        "browser_console_logs",
+        "browser_network_requests",
+        "browser_performance_metrics",
+        "browser_accessibility_issues",
+        "browser_screenshots",
+        "browser_dom_snapshots"
+      ],
+      "outcome": "Workflow understanding generated from discovery artifacts; refine with AI provider if configured.",
+      "notes": [
+        "This is a fallback summary structure.",
+        "Use AI provider integration to improve narrative quality if available."
+      ]
+    }
+  ]
+}

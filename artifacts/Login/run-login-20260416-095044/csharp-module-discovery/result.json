@@ -1,0 +1,39 @@
+{
+  "skillName": "csharp-module-discovery",
+  "stage": "csharp-discovery",
+  "moduleName": "Login",
+  "runId": "run-login-20260416-095044",
+  "status": "passed",
+  "startedAt": "2026-04-16T01:55:31.581518Z",
+  "endedAt": "2026-04-16T01:55:31.639159Z",
+  "summary": "C# module discovery produced 1 controllers, 5 evidence-based workflows, and 0 SQL signatures.",
+  "metrics": {
+    "controllers": 1,
+    "workflows": 5,
+    "services": 1,
+    "repositories": 0,
+    "sqlSignatures": 0,
+    "tables": 0,
+    "namespaces": 2
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/csharp-module-discovery/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/csharp-module-discovery/converted-module-map.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/csharp-module-discovery/converted-workflows.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/csharp-module-discovery/controller-route-map.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/csharp-module-discovery/csharp-sql-map.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/csharp-module-discovery/csharp-table-usage.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/csharp-module-discovery/csharp-namespace-usage.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/csharp-module-discovery/csharp-clean-architecture-scan.json"
+  ],
+  "findings": [],
+  "recommendations": [],
+  "resultContractVersion": "2.0",
+  "provenanceSummary": {
+    "scenarioSources": [
+      "code-evidence",
+      "flow-derived"
+    ],
+    "confidence": 0.81
+  }
+}

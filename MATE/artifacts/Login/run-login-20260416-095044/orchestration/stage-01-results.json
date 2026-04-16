@@ -1,0 +1,62 @@
+{
+  "stage": "csharp-discovery",
+  "stageIndex": 1,
+  "stageTitle": "1. C# Discovery",
+  "stageObjective": "Discover converted module controllers, routes, views, services, repositories, SQL, and tables.",
+  "status": "passed",
+  "skills": [
+    {
+      "skill": "csharp-module-discovery",
+      "stage": "csharp-discovery",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/csharp-module-discovery/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": true,
+      "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/csharp-module-discovery/result.json",
+      "summary": "Scoped 5 C# files for module 'Login' and mapped routes, SQL, and tables.",
+      "artifacts": [
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/csharp-module-discovery/csharp-module-map.json",
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/csharp-module-discovery/controller-route-map.json",
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/csharp-module-discovery/csharp-sql-map.json",
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/csharp-module-discovery/csharp-table-usage.json",
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/csharp-module-discovery/scoped-file-relevance.json"
+      ],
+      "metrics": {
+        "candidateFiles": 9,
+        "includedFiles": 5,
+        "controllers": 1,
+        "views": 2,
+        "services": 1,
+        "repositories": 0,
+        "routeFiles": 1,
+        "sqlFiles": 0,
+        "tables": 0,
+        "workflowCount": 1
+      },
+      "findings": []
+    }
+  ],
+  "skillCount": 1,
+  "skillsFailed": 0,
+  "reusedSkills": 1,
+  "contextFile": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/orchestration/stage-01-context.json",
+  "requiredEvidence": [
+    {
+      "path": "csharp-module-discovery/csharp-module-map.json",
+      "exists": true
+    },
+    {
+      "path": "csharp-module-discovery/controller-route-map.json",
+      "exists": true
+    },
+    {
+      "path": "csharp-module-discovery/csharp-sql-map.json",
+      "exists": true
+    },
+    {
+      "path": "csharp-module-discovery/csharp-table-usage.json",
+      "exists": true
+    }
+  ]
+}

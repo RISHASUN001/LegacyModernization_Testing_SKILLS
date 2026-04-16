@@ -1,0 +1,21 @@
+{
+  "skillName": "sql-table-comparison",
+  "status": "passed",
+  "startedAt": "2026-04-15T16:34:33.505486Z",
+  "endedAt": "2026-04-15T16:34:33.505493Z",
+  "summary": "SQL/table comparison complete.",
+  "metrics": {
+    "tableCoverage": 0.0,
+    "commonTables": 0,
+    "missingTables": 0,
+    "additionalTables": 8,
+    "csharpQueryCount": 0,
+    "legacyQueryCount": 0
+  },
+  "artifacts": [
+    "MATE/artifacts/Checklist/run-local-003/sql-table-comparison/sql-table-compare.json"
+  ],
+  "findings": [],
+  "recommendations": [],
+  "resultContractVersion": "1.0"
+}

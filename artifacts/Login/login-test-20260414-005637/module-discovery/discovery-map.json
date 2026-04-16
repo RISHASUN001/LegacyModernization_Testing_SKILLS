@@ -20,7 +20,7 @@
     "allowedCrossModules": [],
     "scopeTokens": []
   },
-  "totalSelectedFiles": 42,
+  "totalSelectedFiles": 60,
   "assetCounts": {
     "java": 1,
     "jsp": 2,
@@ -30,7 +30,7 @@
     "test": 0,
     "other": 10,
     "total": 24,
-    "urls": 1,
+    "urls": 2,
     "dbTouchpoints": 0
   },
   "filesByType": {
@@ -313,6 +313,20 @@
   },
   "routeCandidates": [
     {
+      "route": "/dashboard",
+      "normalizedRoute": "/dashboard",
+      "provenance": {
+        "type": "code-evidence",
+        "sources": [
+          "url-extraction"
+        ],
+        "confidence": 0.82,
+        "unknowns": [
+          "Route extension/type could not be inferred"
+        ]
+      }
+    },
+    {
       "route": "/login",
       "normalizedRoute": "/login",
       "provenance": {
@@ -346,6 +360,20 @@
     {
       "kind": "route",
       "value": "/Views/Auth/Index.cshtml",
+      "provenance": {
+        "type": "code-evidence",
+        "sources": [
+          "url-extraction"
+        ],
+        "confidence": 0.66,
+        "unknowns": [
+          "Route may be shared across modules"
+        ]
+      }
+    },
+    {
+      "kind": "route",
+      "value": "/dashboard",
       "provenance": {
         "type": "code-evidence",
         "sources": [
@@ -442,6 +470,7 @@
     "/Users/risha/Documents/Buildathon/samples/legacy-java-app/.pytest_cache/v/cache/nodeids"
   ],
   "urls": [
+    "/dashboard",
     "/login"
   ],
   "dbTouchpoints": [],

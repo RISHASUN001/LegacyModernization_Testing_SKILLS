@@ -1,0 +1,34 @@
+{
+  "stage": "iteration-comparison",
+  "stageTitle": "Iteration Comparison",
+  "stageIndex": 9,
+  "status": "passed",
+  "skillCount": 1,
+  "skillsPassed": 1,
+  "skillsFailed": 0,
+  "skills": [
+    {
+      "skill": "iteration-comparison",
+      "stage": "iteration-comparison",
+      "status": "passed",
+      "startedAt": "2026-04-15T09:05:41.959635Z",
+      "endedAt": "2026-04-15T09:05:42.037197Z",
+      "durationSeconds": 0.077,
+      "summary": "Iteration comparison for LoginFinal: prev=loginfinal-test-20260415-165746, trend=stable, failuresReduced=0, resolvedFindings=1.",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-170304/iteration-comparison/result.json\n",
+      "stderr": "",
+      "command": [
+        "python3",
+        "/Users/risha/Documents/Buildathon/skills/iteration-comparison/run.py",
+        "--input",
+        "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-170304/module-run-input.json",
+        "--artifacts-root",
+        "/Users/risha/Documents/Buildathon/artifacts"
+      ],
+      "resultPath": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-170304/iteration-comparison/result.json"
+    }
+  ],
+  "startedAt": "2026-04-15T09:05:41.959635Z",
+  "endedAt": "2026-04-15T09:05:42.037197Z"
+}

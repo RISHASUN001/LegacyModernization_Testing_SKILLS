@@ -1,0 +1,17 @@
+{
+  "skillName": "findings-synthesis",
+  "status": "failed",
+  "startedAt": "2026-04-16T02:14:21.454351Z",
+  "endedAt": "2026-04-16T02:14:21.454358Z",
+  "summary": "Findings synthesis failed: strictAIGeneration=true and provider mode is copilot, but MATE_COPILOT_CLAUDE_COMMAND is not configured.",
+  "metrics": {},
+  "artifacts": [],
+  "findings": [
+    {
+      "type": "FindingsSynthesisError",
+      "message": "strictAIGeneration=true and provider mode is copilot, but MATE_COPILOT_CLAUDE_COMMAND is not configured."
+    }
+  ],
+  "recommendations": [],
+  "resultContractVersion": "1.0"
+}

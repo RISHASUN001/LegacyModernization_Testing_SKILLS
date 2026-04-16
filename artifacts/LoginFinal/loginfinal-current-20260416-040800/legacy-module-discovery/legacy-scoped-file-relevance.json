@@ -1,0 +1,90 @@
+{
+  "items": [
+    {
+      "file": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/index.jsp",
+      "basename": "index.jsp",
+      "type": "jsp",
+      "score": 15,
+      "confidence": "high",
+      "included": true,
+      "reasons": [
+        "content matched token 'legacy'",
+        "content matched token 'login'",
+        "content matched token 'java'",
+        "content matched token 'app'",
+        "content matched token 'post'",
+        "content matched token 'view'",
+        "content matched token 'items'",
+        "content matched token 'get'",
+        "content matched token 'action'",
+        "name matched token 'index'",
+        "content matched token 'auth'",
+        "content matched token 'content'",
+        "content matched token 'name'",
+        "content matched token 'password'",
+        "content matched token 'dashboard'",
+        "legacy file type 'jsp'"
+      ],
+      "workflowNames": [
+        "Successful Login",
+        "Invalid Login"
+      ]
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java",
+      "basename": "LoginServlet.java",
+      "type": "java",
+      "score": 14,
+      "confidence": "high",
+      "included": true,
+      "reasons": [
+        "content matched token 'legacy'",
+        "name matched token 'login'",
+        "name matched token 'java'",
+        "content matched token 'app'",
+        "content matched token 'post'",
+        "content matched token 'get'",
+        "content matched token 'index'",
+        "content matched token 'invalid'",
+        "content matched token 'successful'",
+        "content matched token 'http'",
+        "content matched token 'auth'",
+        "content matched token 'name'",
+        "content matched token 'password'",
+        "content matched token 'dashboard'",
+        "legacy file type 'java'"
+      ],
+      "workflowNames": [
+        "Successful Login",
+        "Invalid Login"
+      ]
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp",
+      "basename": "dashboard.jsp",
+      "type": "jsp",
+      "score": 12,
+      "confidence": "high",
+      "included": true,
+      "reasons": [
+        "content matched token 'legacy'",
+        "content matched token 'java'",
+        "content matched token 'app'",
+        "content matched token 'view'",
+        "content matched token 'get'",
+        "content matched token 'action'",
+        "content matched token 'index'",
+        "content matched token 'logout'",
+        "content matched token 'content'",
+        "content matched token 'name'",
+        "name matched token 'dashboard'",
+        "content matched token 'users'",
+        "legacy file type 'jsp'"
+      ],
+      "workflowNames": [
+        "Successful Login",
+        "Invalid Login"
+      ]
+    }
+  ]
+}

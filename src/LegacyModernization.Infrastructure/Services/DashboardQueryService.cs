@@ -14,25 +14,43 @@ public sealed class DashboardQueryService : IDashboardQueryService
 {
     private static readonly string[] StageOrder =
     [
-        "discovery",
-        "logic-understanding",
-        "architecture-review",
-        "test-plan",
-        "execution",
-        "findings",
-        "iteration-comparison"
+        "csharp-discovery",
+        "csharp-logic-understanding",
+        "java-discovery",
+        "legacy-logic-understanding",
+        "diagram-generation",
+        "functional-parity-and-sql-table-comparison",
+        "ai-test-generation",
+        "test-execution",
+        "clean-architecture-and-findings",
+        "pipeline-vanity-check"
     ];
 
     private static readonly Dictionary<string, string> StageTitleMap = new(StringComparer.OrdinalIgnoreCase)
     {
-        ["discovery"] = "Discovery",
-        ["logic-understanding"] = "Logic Understanding",
-        ["architecture-review"] = "Architecture Review",
-        ["test-plan"] = "Test Plan",
-        ["execution"] = "Execution",
-        ["findings"] = "Findings",
-        ["iteration-comparison"] = "Iteration Comparison"
+        ["csharp-discovery"] = "1. C# Discovery",
+        ["csharp-logic-understanding"] = "2. C# Logic Understanding",
+        ["java-discovery"] = "3. Java Discovery",
+        ["legacy-logic-understanding"] = "4. Legacy Logic Understanding",
+        ["diagram-generation"] = "5. Diagram Generation",
+        ["functional-parity-and-sql-table-comparison"] = "6. Functional Parity",
+        ["ai-test-generation"] = "7. AI Test Generation",
+        ["test-execution"] = "8. Test Execution",
+        ["clean-architecture-and-findings"] = "9. Clean Architecture and Findings",
+        ["pipeline-vanity-check"] = "10. Pipeline Vanity Check"
     };
+
+    private static bool IsApiCategory(string? category)
+    {
+        if (string.IsNullOrWhiteSpace(category))
+        {
+            return false;
+        }
+
+        return string.Equals(category.Trim(), "API", StringComparison.OrdinalIgnoreCase)
+            || string.Equals(category.Trim(), "Api", StringComparison.OrdinalIgnoreCase)
+            || category.Trim().StartsWith("API ", StringComparison.OrdinalIgnoreCase);
+    }
 
     private readonly ISqliteConnectionFactory _connectionFactory;
     private readonly PlatformPathsOptions _paths;
@@ -60,9 +78,9 @@ GROUP BY m.id
 ORDER BY m.name;", null, cancellationToken);
 
         var latestRuns = await QueryRowsAsync(connection, @"
-SELECT m.name AS module_name, r.run_id, r.status, r.started_at, r.ended_at, r.summary
-FROM runs r
-INNER JOIN modules m ON m.id = r.module_id
+    SELECT m.name AS module_name, r.run_id, r.status, r.started_at, r.ended_at, r.summary
+    FROM runs r
+    INNER JOIN modules m ON m.id = r.module_id
 ORDER BY r.started_at DESC
 LIMIT 20;", null, cancellationToken);
 
@@ -109,13 +127,16 @@ SELECT name, stage, category, purpose, script_entry, summary_output_type, result
 required_inputs_json, optional_inputs_json, output_files_json, artifact_folders_json, dependencies_json, skill_markdown
 FROM skills
 ORDER BY CASE stage
-    WHEN 'discovery' THEN 1
-    WHEN 'logic-understanding' THEN 2
-    WHEN 'architecture-review' THEN 3
-    WHEN 'test-plan' THEN 4
-    WHEN 'execution' THEN 5
-    WHEN 'findings' THEN 6
-    WHEN 'iteration-comparison' THEN 7
+    WHEN 'csharp-discovery' THEN 1
+    WHEN 'csharp-logic-understanding' THEN 2
+    WHEN 'java-discovery' THEN 3
+    WHEN 'legacy-logic-understanding' THEN 4
+    WHEN 'diagram-generation' THEN 5
+    WHEN 'functional-parity-and-sql-table-comparison' THEN 6
+    WHEN 'ai-test-generation' THEN 7
+    WHEN 'test-execution' THEN 8
+    WHEN 'clean-architecture-and-findings' THEN 9
+    WHEN 'pipeline-vanity-check' THEN 10
     ELSE 99
 END, name;", null, cancellationToken);
 
@@ -140,24 +161,15 @@ END, name;", null, cancellationToken);
         };
     }
 
-    public async Task<RunInputBuilderPageDto> GetRunInputBuilderAsync(CancellationToken cancellationToken = default)
+    public Task<RunInputBuilderPageDto> GetRunInputBuilderAsync(CancellationToken cancellationToken = default)
     {
-        await using var connection = await _connectionFactory.CreateOpenConnectionAsync(cancellationToken);
+        var draft = new RunInputDraftDto { StrictModuleOnly = true, EnableUserInputPrompting = true };
 
-        var skills = await QueryRowsAsync(
-            connection,
-            "SELECT name FROM skills WHERE name <> 'legacy-modernization-orchestrator' ORDER BY name;",
-            null,
-            cancellationToken);
-        var skillNames = skills.Select(static s => s.GetString("name")).Where(static s => !string.IsNullOrWhiteSpace(s)).ToList();
-        var draft = new RunInputDraftDto { SelectedSkills = skillNames };
-
-        return new RunInputBuilderPageDto
+        return Task.FromResult(new RunInputBuilderPageDto
         {
             Draft = draft,
-            AvailableSkills = skillNames,
             GeneratedJson = BuildRunInputJson(draft)
-        };
+        });
     }
 
     public async Task<string> SaveRunInputAsync(RunInputDraftDto draft, CancellationToken cancellationToken = default)
@@ -236,13 +248,31 @@ WHERE run_fk=@RunFk
 GROUP BY stage;", new { RunFk = runFk }, cancellationToken);
 
         var stageLookup = stageRows.ToDictionary(static r => r.GetString("stage"), static r => r, StringComparer.OrdinalIgnoreCase);
+        var summaryStageLookup = await LoadOrchestrationSummaryStagesAsync(artifactRoot, cancellationToken);
 
         var stageStatuses = StageOrder.Select(stage =>
         {
+            var normalizedStage = NormalizeStageId(stage);
+            var hasSummary = summaryStageLookup.TryGetValue(normalizedStage, out var summaryStage);
+
             stageLookup.TryGetValue(stage, out var found);
-            var failed = found?.GetInt("failed_skills") ?? 0;
-            var count = found?.GetInt("skill_count") ?? 0;
-            var status = count == 0 ? "unknown" : failed > 0 ? "failed" : "passed";
+            if (found is null && !string.Equals(stage, normalizedStage, StringComparison.OrdinalIgnoreCase))
+            {
+                stageLookup.TryGetValue(normalizedStage, out found);
+            }
+
+            var failed = hasSummary
+                ? summaryStage!.FailedSkills
+                : found?.GetInt("failed_skills") ?? 0;
+
+            var count = hasSummary
+                ? summaryStage!.SkillCount
+                : found?.GetInt("skill_count") ?? 0;
+
+            var status = hasSummary
+                ? summaryStage!.Status
+                : count == 0 ? "unknown" : failed > 0 ? "failed" : "passed";
+
             return new StageStatusDto
             {
                 StageId = stage,
@@ -282,6 +312,72 @@ GROUP BY stage;", new { RunFk = runFk }, cancellationToken);
             KeyLearnings = keyLearnings,
             IterationComparison = iteration
         };
+    }
+
+    private static string NormalizeStageId(string? stage)
+    {
+        if (string.IsNullOrWhiteSpace(stage))
+        {
+            return string.Empty;
+        }
+
+        return stage.Equals("java-logic-understanding", StringComparison.OrdinalIgnoreCase)
+            ? "legacy-logic-understanding"
+            : stage;
+    }
+
+    private sealed record SummaryStageSnapshot(string Status, int SkillCount, int FailedSkills);
+
+    private static async Task<Dictionary<string, SummaryStageSnapshot>> LoadOrchestrationSummaryStagesAsync(
+        string artifactRoot,
+        CancellationToken cancellationToken)
+    {
+        var summaryPath = Path.Combine(artifactRoot, "orchestration-summary.json");
+        if (!File.Exists(summaryPath))
+        {
+            return new Dictionary<string, SummaryStageSnapshot>(StringComparer.OrdinalIgnoreCase);
+        }
+
+        try
+        {
+            var node = JsonNode.Parse(await File.ReadAllTextAsync(summaryPath, cancellationToken)) as JsonObject;
+            if (node?["stages"] is not JsonArray stages)
+            {
+                return new Dictionary<string, SummaryStageSnapshot>(StringComparer.OrdinalIgnoreCase);
+            }
+
+            var map = new Dictionary<string, SummaryStageSnapshot>(StringComparer.OrdinalIgnoreCase);
+            foreach (var item in stages)
+            {
+                if (item is not JsonObject stageNode)
+                {
+                    continue;
+                }
+
+                var stageId = NormalizeStageId(stageNode["stage"]?.GetValue<string>() ?? string.Empty);
+                if (string.IsNullOrWhiteSpace(stageId))
+                {
+                    continue;
+                }
+
+                var status = stageNode["status"]?.GetValue<string>() ?? "unknown";
+                var skillCount = stageNode["skillCount"]?.GetValue<int>()
+                    ?? (stageNode["skills"] as JsonArray)?.Count
+                    ?? 0;
+                var failedSkills = stageNode["skillsFailed"]?.GetValue<int>()
+                    ?? (stageNode["skills"] as JsonArray)?.Count(static s =>
+                        !string.Equals((s as JsonObject)?["status"]?.GetValue<string>(), "passed", StringComparison.OrdinalIgnoreCase))
+                    ?? 0;
+
+                map[stageId] = new SummaryStageSnapshot(status, skillCount, failedSkills);
+            }
+
+            return map;
+        }
+        catch
+        {
+            return new Dictionary<string, SummaryStageSnapshot>(StringComparer.OrdinalIgnoreCase);
+        }
     }
 
     public async Task<FindingsPageDto> GetFindingsAsync(string? moduleName, string? runId, CancellationToken cancellationToken = default)
@@ -397,9 +493,74 @@ ORDER BY d.run_id;", new { ModuleName = moduleName }, cancellationToken);
     private async Task<DiscoveryStageDto> BuildDiscoveryStageAsync(string artifactRoot, CancellationToken cancellationToken)
     {
         var path = Path.Combine(artifactRoot, "module-discovery", "discovery-map.json");
+        var csharpModulePath = Path.Combine(artifactRoot, "csharp-module-discovery", "converted-module-map.json");
+        var csharpWorkflowsPath = Path.Combine(artifactRoot, "csharp-module-discovery", "converted-workflows.json");
+        var csharpRoutePath = Path.Combine(artifactRoot, "csharp-module-discovery", "controller-route-map.json");
+        var csharpSqlPath = Path.Combine(artifactRoot, "csharp-module-discovery", "csharp-sql-map.json");
+        var csharpTablePath = Path.Combine(artifactRoot, "csharp-module-discovery", "csharp-table-usage.json");
+
+        var csharpWorkflowCount = 0;
+        var csharpControllerCount = 0;
+        var csharpSqlSignatureCount = 0;
+        var csharpTableCount = 0;
+        var csharpRoutes = new List<string>();
+
+        if (File.Exists(csharpWorkflowsPath))
+        {
+            var csharpWorkflowsNode = JsonNode.Parse(await File.ReadAllTextAsync(csharpWorkflowsPath, cancellationToken)) as JsonObject;
+            csharpWorkflowCount = (csharpWorkflowsNode?["workflows"] as JsonArray)?.Count ?? 0;
+        }
+
+        if (File.Exists(csharpRoutePath))
+        {
+            var routeNode = JsonNode.Parse(await File.ReadAllTextAsync(csharpRoutePath, cancellationToken)) as JsonObject;
+            var controllers = routeNode?["controllers"] as JsonArray;
+            csharpControllerCount = controllers?.Count ?? 0;
+            if (controllers is not null)
+            {
+                foreach (var item in controllers)
+                {
+                    if (item is not JsonObject obj || obj["routes"] is not JsonArray routes)
+                    {
+                        continue;
+                    }
+
+                    foreach (var route in routes)
+                    {
+                        var value = route?.GetValue<string>() ?? string.Empty;
+                        if (!string.IsNullOrWhiteSpace(value))
+                        {
+                            csharpRoutes.Add(value);
+                        }
+                    }
+                }
+            }
+        }
+
+        if (File.Exists(csharpSqlPath))
+        {
+            var sqlNode = JsonNode.Parse(await File.ReadAllTextAsync(csharpSqlPath, cancellationToken)) as JsonObject;
+            csharpSqlSignatureCount = (sqlNode?["queries"] as JsonArray)?.Count ?? 0;
+        }
+
+        if (File.Exists(csharpTablePath))
+        {
+            var tableNode = JsonNode.Parse(await File.ReadAllTextAsync(csharpTablePath, cancellationToken)) as JsonObject;
+            csharpTableCount = (tableNode?["tables"] as JsonArray)?.Count ?? 0;
+        }
+
         if (!File.Exists(path))
         {
-            return new DiscoveryStageDto { SourceArtifactPath = path };
+            return new DiscoveryStageDto
+            {
+                ConvertedWorkflowCount = csharpWorkflowCount,
+                ConvertedControllerCount = csharpControllerCount,
+                ConvertedSqlSignatureCount = csharpSqlSignatureCount,
+                ConvertedTableCount = csharpTableCount,
+                ConvertedRoutes = csharpRoutes.Distinct(StringComparer.OrdinalIgnoreCase).Take(20).ToList(),
+                ConvertedSourceArtifactPath = File.Exists(csharpModulePath) ? csharpModulePath : string.Empty,
+                SourceArtifactPath = path
+            };
         }
 
         var node = JsonNode.Parse(await File.ReadAllTextAsync(path, cancellationToken)) as JsonObject;
@@ -420,6 +581,12 @@ ORDER BY d.run_id;", new { ModuleName = moduleName }, cancellationToken);
             DbTouchpointDetails = ParseNamedProvenancedDetails(node["dbTouchpointsDetailed"], "name"),
             EntrypointHints = ParseNamedProvenancedDetails(node["entrypointHints"], "value"),
             ScopeContext = ParseScopeContext(node["scopeContext"]),
+            ConvertedWorkflowCount = csharpWorkflowCount,
+            ConvertedControllerCount = csharpControllerCount,
+            ConvertedSqlSignatureCount = csharpSqlSignatureCount,
+            ConvertedTableCount = csharpTableCount,
+            ConvertedRoutes = csharpRoutes.Distinct(StringComparer.OrdinalIgnoreCase).Take(20).ToList(),
+            ConvertedSourceArtifactPath = File.Exists(csharpModulePath) ? csharpModulePath : string.Empty,
             Confidence = ParseDouble(node["confidence"], 0),
             SourceArtifactPath = path
         };
@@ -473,9 +640,122 @@ ORDER BY d.run_id;", new { ModuleName = moduleName }, cancellationToken);
     private async Task<ArchitectureReviewStageDto> BuildArchitectureStageAsync(string artifactRoot, CancellationToken cancellationToken)
     {
         var path = Path.Combine(artifactRoot, "clean-architecture-assessment", "architecture-review.json");
+        var legacyModulePath = Path.Combine(artifactRoot, "java-counterpart-discovery", "legacy-module-map.json");
+        var legacyWorkflowsPath = Path.Combine(artifactRoot, "java-counterpart-discovery", "legacy-workflows.json");
+        var javaSqlPath = Path.Combine(artifactRoot, "java-counterpart-discovery", "java-sql-map.json");
+        var javaExclusionsPath = Path.Combine(artifactRoot, "java-counterpart-discovery", "java-exclusions.json");
+        // Prefer current skill output folder, then try compatibility fallbacks.
+        var diagramFolderName = "excalidraw-diagram";
+        var diagramIndexPath = Path.Combine(artifactRoot, diagramFolderName, "diagram-index.json");
+        if (!File.Exists(diagramIndexPath))
+        {
+            diagramFolderName = "excalidraw";
+            diagramIndexPath = Path.Combine(artifactRoot, diagramFolderName, "diagram-index.json");
+        }
+        if (!File.Exists(diagramIndexPath))
+        {
+            diagramFolderName = "logic-flow-visualization";
+            diagramIndexPath = Path.Combine(artifactRoot, diagramFolderName, "diagram-index.json");
+        }
+
+        var javaRelatedFileCount = 0;
+        var javaWorkflowCount = 0;
+        var javaSqlSignatureCount = 0;
+        var javaExclusionCount = 0;
+        var javaRelatedSamples = new List<string>();
+        var javaExclusionSamples = new List<string>();
+        var diagramBundles = new List<DiagramBundleDto>();
+
+        if (File.Exists(legacyModulePath))
+        {
+            var legacyNode = JsonNode.Parse(await File.ReadAllTextAsync(legacyModulePath, cancellationToken)) as JsonObject;
+            javaRelatedFileCount = legacyNode?["relatedFileCount"]?.GetValue<int>() ?? 0;
+            javaRelatedSamples = ParseStringArray(legacyNode?["relatedFiles"]?.ToJsonString() ?? "[]").Take(12).ToList();
+        }
+
+        if (File.Exists(legacyWorkflowsPath))
+        {
+            var workflowNode = JsonNode.Parse(await File.ReadAllTextAsync(legacyWorkflowsPath, cancellationToken)) as JsonObject;
+            javaWorkflowCount = (workflowNode?["workflows"] as JsonArray)?.Count ?? 0;
+        }
+
+        if (File.Exists(javaSqlPath))
+        {
+            var sqlNode = JsonNode.Parse(await File.ReadAllTextAsync(javaSqlPath, cancellationToken)) as JsonObject;
+            javaSqlSignatureCount = (sqlNode?["queries"] as JsonArray)?.Count ?? 0;
+        }
+
+        if (File.Exists(javaExclusionsPath))
+        {
+            var exclusionNode = JsonNode.Parse(await File.ReadAllTextAsync(javaExclusionsPath, cancellationToken)) as JsonObject;
+            var exclusions = exclusionNode?["excluded"] as JsonArray;
+            javaExclusionCount = exclusions?.Count ?? 0;
+            if (exclusions is not null)
+            {
+                javaExclusionSamples = exclusions
+                    .Select(static x => x as JsonObject)
+                    .Where(static x => x is not null)
+                    .Select(static x => x!["path"]?.GetValue<string>() ?? string.Empty)
+                    .Where(static x => !string.IsNullOrWhiteSpace(x))
+                    .Take(12)
+                    .ToList();
+            }
+        }
+
+        if (File.Exists(diagramIndexPath))
+        {
+            var diagramNode = JsonNode.Parse(await File.ReadAllTextAsync(diagramIndexPath, cancellationToken)) as JsonObject;
+            if (diagramNode?["items"] is JsonArray items)
+            {
+                diagramBundles = items
+                    .Select(static x => x as JsonObject)
+                    .Where(static x => x is not null)
+                    .Select(static x => new DiagramBundleDto
+                    {
+                        Workflow = x!["workflow"]?.GetValue<string>() ?? string.Empty,
+                        Group = x["group"]?.GetValue<string>() ?? string.Empty,
+                        MermaidPath = x["mermaid"]?.GetValue<string>() ?? string.Empty,
+                        ExcalidrawPath = x["excalidraw"]?.GetValue<string>() ?? string.Empty,
+                        PreviewPath = x["preview"]?.GetValue<string>() ?? string.Empty,
+                    })
+                    .Where(static x => !string.IsNullOrWhiteSpace(x.Workflow))
+                    .Take(40)
+                    .ToList();
+
+                for (var i = 0; i < diagramBundles.Count; i++)
+                {
+                    var item = diagramBundles[i];
+                    diagramBundles[i] = new DiagramBundleDto
+                    {
+                        Workflow = item.Workflow,
+                        Group = item.Group,
+                        MermaidPath = string.IsNullOrWhiteSpace(item.MermaidPath)
+                            ? string.Empty
+                            : Path.Combine(artifactRoot, diagramFolderName, item.MermaidPath),
+                        ExcalidrawPath = string.IsNullOrWhiteSpace(item.ExcalidrawPath)
+                            ? string.Empty
+                            : Path.Combine(artifactRoot, diagramFolderName, item.ExcalidrawPath),
+                        PreviewPath = string.IsNullOrWhiteSpace(item.PreviewPath)
+                            ? string.Empty
+                            : Path.Combine(artifactRoot, diagramFolderName, item.PreviewPath)
+                    };
+                }
+            }
+        }
+
         if (!File.Exists(path))
         {
-            return new ArchitectureReviewStageDto { SourceArtifactPath = path };
+            return new ArchitectureReviewStageDto
+            {
+                JavaRelatedFileCount = javaRelatedFileCount,
+                JavaExcludedFileCount = javaExclusionCount,
+                JavaWorkflowCount = javaWorkflowCount,
+                JavaSqlSignatureCount = javaSqlSignatureCount,
+                JavaRelatedFileSamples = javaRelatedSamples,
+                JavaExclusionSamples = javaExclusionSamples,
+                DiagramBundles = diagramBundles,
+                SourceArtifactPath = path
+            };
         }
 
         var node = JsonNode.Parse(await File.ReadAllTextAsync(path, cancellationToken)) as JsonObject;
@@ -493,6 +773,13 @@ ORDER BY d.run_id;", new { ModuleName = moduleName }, cancellationToken);
             ArchitecturePolicy = node["architecturePolicy"]?.GetValue<string>() ?? "module-first",
             Confidence = ParseDouble(node["confidence"], 0),
             RecommendedStructure = ParseStringArray(node["recommendedStructure"]?.ToJsonString() ?? "[]"),
+            JavaRelatedFileCount = javaRelatedFileCount,
+            JavaExcludedFileCount = javaExclusionCount,
+            JavaWorkflowCount = javaWorkflowCount,
+            JavaSqlSignatureCount = javaSqlSignatureCount,
+            JavaRelatedFileSamples = javaRelatedSamples,
+            JavaExclusionSamples = javaExclusionSamples,
+            DiagramBundles = diagramBundles,
             SourceArtifactPath = path
         };
     }
@@ -545,11 +832,44 @@ ORDER BY d.run_id;", new { ModuleName = moduleName }, cancellationToken);
             existingTestsFound = ParseStringArray(node["existingTestsFound"]?.ToJsonString() ?? "[]");
         }
 
+        var workflowLanes = new List<WorkflowLaneDto>();
+        var workflowMapPath = Path.Combine(artifactRoot, "test-plan-generation", "workflow-test-map.json");
+        if (File.Exists(workflowMapPath))
+        {
+            var workflowMapNode = JsonNode.Parse(await File.ReadAllTextAsync(workflowMapPath, cancellationToken)) as JsonObject;
+            if (workflowMapNode?["workflows"] is JsonArray workflows)
+            {
+                workflowLanes = workflows
+                    .Select(static w => w as JsonObject)
+                    .Where(static w => w is not null)
+                    .Select(w => new WorkflowLaneDto
+                    {
+                        WorkflowName = w!["workflowName"]?.GetValue<string>() ?? string.Empty,
+                        EntryRoute = w["entryRoute"]?.GetValue<string>() ?? string.Empty,
+                        Categories = (w["categories"] as JsonArray)?.Select(static c => c?.GetValue<string>() ?? string.Empty)
+                            .Where(static c => !string.IsNullOrWhiteSpace(c)).ToList() ?? [],
+                        ProvenanceType = (w["provenance"] as JsonObject)?["type"]?.GetValue<string>() ?? string.Empty,
+                        Confidence = ParseDouble((w["provenance"] as JsonObject)?["confidence"], 0)
+                    })
+                    .Select(w => new WorkflowLaneDto
+                    {
+                        WorkflowName = w.WorkflowName,
+                        EntryRoute = w.EntryRoute,
+                        Categories = w.Categories.Where(c => !IsApiCategory(c)).ToList(),
+                        ProvenanceType = w.ProvenanceType,
+                        Confidence = w.Confidence
+                    })
+                    .Where(static w => !string.IsNullOrWhiteSpace(w.WorkflowName))
+                    .ToList();
+            }
+        }
+
         return new TestPlanStageDto
         {
             ExistingTestsFound = existingTestsFound,
             NewTestsSuggested = ParseStringArray(node["newTestsSuggested"]?.ToJsonString() ?? "[]"),
             TestCategories = categoryItems,
+            WorkflowLanes = workflowLanes,
             CoverageSummary = node["coverageSummary"]?.GetValue<string>() ?? string.Empty,
             ScopeApplied = ParseScopeApplied(node["scopeApplied"]),
             Confidence = ParseDouble(node["confidence"], 0),
@@ -564,15 +884,15 @@ SELECT category, purpose, scenarios_json, total, passed, failed, warnings, new_t
        logs_json, artifacts_json, source_skill, stage
 FROM test_category_results
 WHERE run_fk=@RunFk
+    AND LOWER(COALESCE(category, '')) <> 'api'
 ORDER BY CASE category
     WHEN 'Unit' THEN 1
     WHEN 'Integration' THEN 2
     WHEN 'E2E' THEN 3
-    WHEN 'API' THEN 4
-    WHEN 'Edge Case' THEN 5
-    WHEN 'Playwright / E2E Browser' THEN 6
-    WHEN 'Playwright / Browser Verification' THEN 6
-    WHEN 'DevTools Diagnostics' THEN 7
+        WHEN 'Edge Case' THEN 4
+        WHEN 'Playwright / E2E Browser' THEN 5
+        WHEN 'Playwright / Browser Verification' THEN 5
+        WHEN 'DevTools Diagnostics' THEN 6
     ELSE 99
 END;", new { RunFk = runFk }, cancellationToken);
 
@@ -622,17 +942,106 @@ LIMIT 1;", new { RunFk = runFk }, cancellationToken)).FirstOrDefault();
         }
 
         var metrics = JsonNode.Parse(row.GetString("metrics_json")) as JsonObject;
+        var generatedTestsArtifact = metrics?["generatedTestsArtifact"]?.GetValue<string>() ?? string.Empty;
+        var generatedExecutableTest = metrics?["generatedExecutableTest"]?.GetValue<string>() ?? string.Empty;
+        var generatedExecutableArtifact = metrics?["generatedExecutableArtifact"]?.GetValue<string>() ?? string.Empty;
+
+        generatedTestsArtifact = NormalizeArtifactPath(artifactRoot, generatedTestsArtifact);
+        generatedExecutableTest = NormalizeArtifactPath(artifactRoot, generatedExecutableTest);
+        generatedExecutableArtifact = NormalizeArtifactPath(artifactRoot, generatedExecutableArtifact);
         var scenarios = new List<PlaywrightScenarioDto>();
+        
+        // Try to load generated tests blueprint for rich metadata
+        var generatedTestsBlueprint = new Dictionary<string, JsonObject>();
+        if (!string.IsNullOrWhiteSpace(generatedTestsArtifact))
+        {
+            var blueprintPath = Path.Combine(artifactRoot, generatedTestsArtifact);
+            var blueprintNode = await ReadJsonObjectFileAsync(blueprintPath, cancellationToken);
+            if (blueprintNode?["generatedTests"] is JsonArray generatedTestsArray)
+            {
+                foreach (var test in generatedTestsArray.OfType<JsonObject>())
+                {
+                    var testName = test["name"]?.GetValue<string>() ?? string.Empty;
+                    if (!string.IsNullOrWhiteSpace(testName))
+                    {
+                        generatedTestsBlueprint[testName] = test;
+                    }
+                }
+            }
+        }
+        
         if (metrics?["scenarios"] is JsonArray scenarioArray)
         {
             scenarios = scenarioArray
                 .Select(static item => item as JsonObject)
                 .Where(static item => item is not null)
-                .Select(static item => new PlaywrightScenarioDto
+                .Select(item => 
                 {
-                    Name = item!["name"]?.GetValue<string>() ?? string.Empty,
-                    Status = item["status"]?.GetValue<string>() ?? string.Empty,
-                    Notes = item["notes"]?.GetValue<string>() ?? string.Empty
+                    var name = item!["name"]?.GetValue<string>() ?? string.Empty;
+                    var status = item["status"]?.GetValue<string>() ?? string.Empty;
+                    var notes = item["notes"]?.GetValue<string>() ?? string.Empty;
+                    
+                    // Try to enrich with blueprint data
+                    string? workflowName = null;
+                    string? targetRoute = null;
+                    var coverage = new List<string>();
+                    var generated = false;
+                    var generatedFrom = new List<string>();
+                    string? provenanceType = null;
+                    double confidence = 0.0;
+                    
+                    if (generatedTestsBlueprint.TryGetValue(name, out var blueprintTest))
+                    {
+                        generated = true;
+                        
+                        if (blueprintTest["coverage"] is JsonArray coverageArray)
+                        {
+                            coverage = coverageArray
+                                .Select(static c => c?.GetValue<string>() ?? string.Empty)
+                                .Where(static c => !string.IsNullOrWhiteSpace(c))
+                                .ToList();
+                        }
+                        
+                        if (blueprintTest["generatedFrom"] is JsonArray generatedFromArray)
+                        {
+                            generatedFrom = generatedFromArray
+                                .Select(static gf => gf?.GetValue<string>() ?? string.Empty)
+                                .Where(static gf => !string.IsNullOrWhiteSpace(gf))
+                                .ToList();
+                            
+                            // Extract target route from generatedFrom
+                            targetRoute = generatedFrom.FirstOrDefault(gf => gf.StartsWith("route:"))?.Replace("route:", "").Trim();
+                        }
+                        
+                        if (blueprintTest["provenance"] is JsonObject provenance)
+                        {
+                            provenanceType = provenance["type"]?.GetValue<string>();
+                            if (provenance["confidence"] is JsonValue confValue)
+                            {
+                                confidence = confValue.TryGetValue(out double conf) ? conf : 0.0;
+                            }
+                        }
+                        
+                        // Extract workflow name from coverage or from name structure
+                        if (coverage.Any())
+                        {
+                            workflowName = coverage.FirstOrDefault();
+                        }
+                    }
+                    
+                    return new PlaywrightScenarioDto
+                    {
+                        Name = name,
+                        Status = status,
+                        Notes = notes,
+                        WorkflowName = workflowName,
+                        TargetRoute = targetRoute,
+                        Coverage = coverage,
+                        Generated = generated,
+                        GeneratedFrom = generatedFrom,
+                        ProvenanceType = provenanceType,
+                        Confidence = confidence
+                    };
                 })
                 .ToList();
         }
@@ -642,48 +1051,69 @@ LIMIT 1;", new { RunFk = runFk }, cancellationToken)).FirstOrDefault();
         var domPath = Path.Combine(artifactRoot, "playwright-browser-verification", "dom-state.json");
         var runtimePath = Path.Combine(artifactRoot, "playwright-browser-verification", "runtime-issues.json");
         var perfPath = Path.Combine(artifactRoot, "playwright-browser-verification", "performance-observations.json");
-        var testApiStatusPath = Path.Combine(artifactRoot, "playwright-browser-verification", "test-api-status.json");
         var screenshotRoot = Path.Combine(artifactRoot, "playwright-browser-verification", "screenshots");
+        var executionLogPath = Path.Combine(artifactRoot, "playwright-browser-verification", "execution-log.txt");
+        var inputOverridesPath = Path.Combine(artifactRoot, "playwright-browser-verification", "user-input-overrides.json");
+        var resultPath = Path.Combine(artifactRoot, "playwright-browser-verification", "result.json");
+
+        string executionCommand = string.Empty;
+        string executionWorkingDirectory = string.Empty;
+        int? executionReturnCode = null;
+        var failureSnippets = new List<string>();
+
+        var resultNode = await ReadJsonObjectFileAsync(resultPath, cancellationToken);
+        if (resultNode is not null && resultNode["trace"] is JsonObject trace)
+        {
+            if (trace["command"] is JsonArray commandArray)
+            {
+                executionCommand = string.Join(' ', commandArray
+                    .Select(static token => token?.GetValue<string>() ?? string.Empty)
+                    .Where(static token => !string.IsNullOrWhiteSpace(token)));
+            }
+
+            executionWorkingDirectory = trace["cwd"]?.GetValue<string>() ?? string.Empty;
+            if (trace["returnCode"] is JsonValue returnCodeNode)
+            {
+                executionReturnCode = returnCodeNode.GetValue<int>();
+            }
+        }
+
+        if (resultNode is not null && resultNode["findings"] is JsonArray findingsArray)
+        {
+            failureSnippets = findingsArray
+                .Select(static item => item as JsonObject)
+                .Where(static item => item is not null)
+                .Select(static item => ToFindingSnippet(item!))
+                .Where(static item => !string.IsNullOrWhiteSpace(item))
+                .Take(5)
+                .ToList();
+        }
 
         var consoleEntries = await ReadStringArrayFileAsync(consolePath, cancellationToken);
         var consoleErrors = consoleEntries.Where(static e => e.Contains("error", StringComparison.OrdinalIgnoreCase) || e.Contains("TypeError", StringComparison.OrdinalIgnoreCase)).ToList();
         var consoleWarnings = consoleEntries.Where(static e => e.Contains("warn", StringComparison.OrdinalIgnoreCase) || e.Contains("warning", StringComparison.OrdinalIgnoreCase)).ToList();
-
-        var testApiEndpoint = string.Empty;
-        var testApiStatus = "unknown";
-        var testApiReason = string.Empty;
-        var testApiSource = string.Empty;
-        var testApiAutoProvisioned = false;
-        if (File.Exists(testApiStatusPath))
-        {
-            try
-            {
-                var apiNode = JsonNode.Parse(await File.ReadAllTextAsync(testApiStatusPath, cancellationToken)) as JsonObject;
-                if (apiNode is not null)
-                {
-                    testApiEndpoint = apiNode["endpoint"]?.GetValue<string>() ?? string.Empty;
-                    testApiStatus = apiNode["status"]?.GetValue<string>() ?? "unknown";
-                    testApiReason = apiNode["reason"]?.GetValue<string>() ?? string.Empty;
-                    testApiSource = apiNode["source"]?.GetValue<string>() ?? string.Empty;
-                    testApiAutoProvisioned = apiNode["autoProvisioned"]?.GetValue<bool>() ?? false;
-                }
-            }
-            catch
-            {
-                testApiStatus = "unknown";
-                testApiReason = "test-api-status-read-failed";
-            }
-        }
+        var inputOverridesJson = File.Exists(inputOverridesPath)
+            ? await File.ReadAllTextAsync(inputOverridesPath, cancellationToken)
+            : string.Empty;
+        var needInputKeywords = new[] { "login", "invalid", "valid", "form", "dropdown", "select", "checklist", "report", "submit" };
+        var inputOverridesRecommended = string.IsNullOrWhiteSpace(inputOverridesJson)
+            && scenarios.Any(s => needInputKeywords.Any(k => s.Name.Contains(k, StringComparison.OrdinalIgnoreCase)));
 
         return new PlaywrightEvidenceDto
         {
             Status = row.GetString("status"),
             Summary = row.GetString("summary"),
-            TestApiEndpoint = testApiEndpoint,
-            TestApiStatus = testApiStatus,
-            TestApiReason = testApiReason,
-            TestApiSource = testApiSource,
-            TestApiAutoProvisioned = testApiAutoProvisioned,
+            ExecutionCommand = executionCommand,
+            ExecutionWorkingDirectory = executionWorkingDirectory,
+            ExecutionReturnCode = executionReturnCode,
+            ExecutionLogPath = File.Exists(executionLogPath) ? executionLogPath : string.Empty,
+            GeneratedTestsArtifact = generatedTestsArtifact,
+            GeneratedExecutableTest = generatedExecutableTest,
+            GeneratedExecutableArtifact = generatedExecutableArtifact,
+            InputOverridesPath = File.Exists(inputOverridesPath) ? inputOverridesPath : string.Empty,
+            InputOverridesJson = inputOverridesJson,
+            InputOverridesRecommended = inputOverridesRecommended,
+            FailureSnippets = failureSnippets,
             Scenarios = scenarios,
             ConsoleErrors = consoleErrors,
             ConsoleWarnings = consoleWarnings,
@@ -695,7 +1125,80 @@ LIMIT 1;", new { RunFk = runFk }, cancellationToken)).FirstOrDefault();
                 ? Directory.GetFiles(screenshotRoot).OrderBy(static p => p, StringComparer.OrdinalIgnoreCase).ToList()
                 : [],
             ArtifactLinks = ParseStringArray(row.GetString("artifacts_json"))
+                .Select(path => NormalizeArtifactPath(artifactRoot, path))
+                .Where(static path => !string.IsNullOrWhiteSpace(path))
+                .ToList()
         };
+    }
+
+    private static string NormalizeArtifactPath(string artifactRoot, string maybePath)
+    {
+        if (string.IsNullOrWhiteSpace(maybePath))
+        {
+            return string.Empty;
+        }
+
+        try
+        {
+            if (Path.IsPathRooted(maybePath))
+            {
+                return Path.GetFullPath(maybePath);
+            }
+
+            var combined = Path.GetFullPath(Path.Combine(artifactRoot, maybePath));
+            if (File.Exists(combined) || Directory.Exists(combined))
+            {
+                return combined;
+            }
+
+            var rootCombined = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), maybePath));
+            return rootCombined;
+        }
+        catch
+        {
+            return maybePath;
+        }
+    }
+
+    private static string ToFindingSnippet(JsonObject finding)
+    {
+        var findingType = finding["type"]?.GetValue<string>() ?? string.Empty;
+        var message = finding["message"]?.GetValue<string>() ?? string.Empty;
+        var evidence = finding["evidence"]?.GetValue<string>() ?? string.Empty;
+
+        var parts = new List<string>();
+        if (!string.IsNullOrWhiteSpace(findingType))
+        {
+            parts.Add($"[{findingType}]");
+        }
+        if (!string.IsNullOrWhiteSpace(message))
+        {
+            parts.Add(message.Trim());
+        }
+        if (!string.IsNullOrWhiteSpace(evidence))
+        {
+            parts.Add($"evidence: {evidence.Trim()}");
+        }
+
+        return string.Join(" ", parts).Trim();
+    }
+
+    private static async Task<JsonObject?> ReadJsonObjectFileAsync(string path, CancellationToken cancellationToken)
+    {
+        if (!File.Exists(path))
+        {
+            return null;
+        }
+
+        try
+        {
+            var text = await File.ReadAllTextAsync(path, cancellationToken);
+            return JsonNode.Parse(text) as JsonObject;
+        }
+        catch
+        {
+            return null;
+        }
     }
 
     private async Task<FindingsStageDto> BuildFindingsStageAsync(IDbConnection connection, long runFk, string moduleName, string runId, CancellationToken cancellationToken)
@@ -757,6 +1260,7 @@ ORDER BY id DESC;", new { RunFk = runFk }, cancellationToken);
     private async Task<ParityStageDto> BuildParityStageAsync(string artifactRoot, CancellationToken cancellationToken)
     {
         var path = Path.Combine(artifactRoot, "parity-verification", "parity-diff.json");
+        var workflowPath = Path.Combine(artifactRoot, "parity-verification", "workflow-parity-summary.json");
         if (!File.Exists(path))
         {
             return new ParityStageDto { SourceArtifactPath = path };
@@ -770,6 +1274,7 @@ ORDER BY id DESC;", new { RunFk = runFk }, cancellationToken);
 
         var checks = ParseParityChecks(node["checks"]);
         var failed = checks.Count(static c => !string.Equals(c.Status, "passed", StringComparison.OrdinalIgnoreCase));
+        var workflowParity = await ParseWorkflowParityAsync(workflowPath, cancellationToken);
 
         return new ParityStageDto
         {
@@ -780,10 +1285,53 @@ ORDER BY id DESC;", new { RunFk = runFk }, cancellationToken);
             Confidence = ParseDouble(node["confidence"], 0),
             Checks = checks,
             SqlParity = ParseSqlParity(node["sqlParity"]),
+            WorkflowParity = workflowParity,
             DependencyParity = ParseDependencyParity(node["dependencyParity"]),
             Gaps = ParseStringArray(node["gaps"]?.ToJsonString() ?? "[]"),
             SourceArtifactPath = path
         };
+    }
+
+    private static async Task<List<WorkflowParityDto>> ParseWorkflowParityAsync(string path, CancellationToken cancellationToken)
+    {
+        if (!File.Exists(path))
+        {
+            return [];
+        }
+
+        try
+        {
+            var node = JsonNode.Parse(await File.ReadAllTextAsync(path, cancellationToken)) as JsonObject;
+            if (node?["workflows"] is not JsonArray workflows)
+            {
+                return [];
+            }
+
+            return workflows
+                .Select(static w => w as JsonObject)
+                .Where(static w => w is not null)
+                .Select(static w =>
+                {
+                    var provenance = ParseProvenance(w!["provenance"]);
+                    return new WorkflowParityDto
+                    {
+                        WorkflowName = w["workflowName"]?.GetValue<string>() ?? string.Empty,
+                        Status = w["status"]?.GetValue<string>() ?? "unknown",
+                        PreservationScore = ParseDouble(w["preservationScore"], 0),
+                        CsharpEntryPoint = (w["csharp"] as JsonObject)?["entryPoint"]?.GetValue<string>() ?? string.Empty,
+                        JavaWorkflowName = (w["java"] as JsonObject)?["workflowName"]?.GetValue<string>() ?? string.Empty,
+                        JavaEntryPoint = (w["java"] as JsonObject)?["entryPoint"]?.GetValue<string>() ?? string.Empty,
+                        ProvenanceType = provenance.Type,
+                        Confidence = provenance.Confidence
+                    };
+                })
+                .Where(static w => !string.IsNullOrWhiteSpace(w.WorkflowName))
+                .ToList();
+        }
+        catch
+        {
+            return [];
+        }
     }
 
     private async Task<KeyLearningsDto> BuildKeyLearningsAsync(string artifactRoot, CancellationToken cancellationToken)
@@ -918,46 +1466,69 @@ LIMIT 1;", new { ModuleName = moduleName, RunId = runId }, cancellationToken);
     {
         var baseUrl = NormalizeBaseUrlForRunInput((draft.BaseUrl ?? string.Empty).Trim());
         var normalizedBaseUrl = baseUrl.TrimEnd('/');
-        var testApiEndpoint = string.IsNullOrWhiteSpace(normalizedBaseUrl)
-            ? string.Empty
-            : $"{normalizedBaseUrl}/api/test";
-        var targetUrl = ResolveTargetUrl((draft.TargetUrl ?? string.Empty).Trim(), normalizedBaseUrl);
-        var knownUrls = ResolveKnownUrls(ParseMultiline(draft.KnownUrlsText), normalizedBaseUrl);
+        var workflowNames = ParseMultilineOrCsv(draft.WorkflowNamesText);
+        var convertedRoots = ParseMultilineOrCsv(draft.ConvertedRootsText);
+        var legacyBackendRoots = ParseMultilineOrCsv(draft.LegacyBackendRootsText);
+        var legacyFrontendRoots = ParseMultilineOrCsv(draft.LegacyFrontendRootsText);
+
+        if (convertedRoots.Count == 0 && !string.IsNullOrWhiteSpace(draft.ConvertedSourceRoot))
+        {
+            convertedRoots.Add(draft.ConvertedSourceRoot.Trim());
+        }
+
+        if (legacyBackendRoots.Count == 0)
+        {
+            var backendFallback = string.IsNullOrWhiteSpace(draft.LegacyBackendRoot)
+                ? draft.LegacySourceRoot
+                : draft.LegacyBackendRoot;
+
+            if (!string.IsNullOrWhiteSpace(backendFallback))
+            {
+                legacyBackendRoots.Add(backendFallback.Trim());
+            }
+        }
+
+        if (legacyFrontendRoots.Count == 0 && !string.IsNullOrWhiteSpace(draft.LegacyFrontendRoot))
+        {
+            legacyFrontendRoots.Add(draft.LegacyFrontendRoot.Trim());
+        }
+
+        var startUrl = ResolveTargetUrl((draft.ModuleStartUrl ?? string.Empty).Trim(), normalizedBaseUrl);
+        var dotnetTestTarget = string.IsNullOrWhiteSpace(draft.DotnetTestTarget)
+            ? draft.ConvertedModuleRoot.Trim()
+            : draft.DotnetTestTarget.Trim();
 
         var payload = new
         {
             runId = string.IsNullOrWhiteSpace(draft.RunId) ? "run-001" : draft.RunId.Trim(),
             moduleName = draft.ModuleName.Trim(),
-            legacySourceRoot = draft.LegacySourceRoot.Trim(),
-            convertedSourceRoot = draft.ConvertedSourceRoot.Trim(),
+            workflowNames,
+            convertedRoots,
+            legacyBackendRoots,
+            legacyFrontendRoots,
             baseUrl,
-            testApiEndpoint,
-            targetUrl,
+            startUrl,
+            dotnetTestTarget,
             strictModuleOnly = draft.StrictModuleOnly,
-            allowedCrossModules = ParseMultiline(draft.AllowedCrossModulesText),
-            architecturePolicy = NormalizeArchitecturePolicy((draft.ArchitecturePolicy ?? string.Empty).Trim()),
-            generateModuleClaudeMd = draft.GenerateModuleClaudeMd,
-            brsPath = draft.BrsPath.Trim(),
-            moduleHints = new
-            {
-                relatedFolders = ParseMultiline(draft.RelatedFoldersText),
-                knownUrls,
-                keywords = ParseMultiline(draft.KeywordsText),
-                scopeHint = NormalizeScopeHint((draft.ModuleScopeHint ?? string.Empty).Trim())
-            },
-            testCommands = new
-            {
-                unit = draft.UnitCommand.Trim(),
-                integration = draft.IntegrationCommand.Trim(),
-                api = draft.ApiCommand.Trim(),
-                e2e = draft.E2eCommand.Trim(),
-                edgeCase = draft.EdgeCaseCommand.Trim(),
-                playwright = draft.PlaywrightCommand.Trim()
-            },
-            selectedSkills = (draft.SelectedSkills ?? []).Distinct(StringComparer.OrdinalIgnoreCase).OrderBy(static s => s).ToList()
+            strictAIGeneration = draft.StrictAIGeneration,
+            enableUserInputPrompting = draft.EnableUserInputPrompting,
+            keywords = ParseMultilineOrCsv(draft.KeywordsText),
+            controllerHints = ParseMultilineOrCsv(draft.ControllerActionHintsText),
+            viewHints = ParseMultilineOrCsv(draft.JspFolderHintsText),
+            expectedEndUrls = ResolveKnownUrls(ParseMultilineOrCsv(draft.ExpectedTerminalUrlsText), normalizedBaseUrl)
         };
 
         return JsonSerializer.Serialize(payload, new JsonSerializerOptions { WriteIndented = true });
+    }
+
+    private static List<string> ParseMultilineOrCsv(string? input)
+    {
+        return (input ?? string.Empty)
+            .Split(new[] { "\r\n", "\n", "\r", "," }, StringSplitOptions.RemoveEmptyEntries)
+            .Select(static value => value.Trim())
+            .Where(static value => !string.IsNullOrWhiteSpace(value))
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .ToList();
     }
 
     private static async Task<List<JsonObject>> QueryRowsAsync(IDbConnection connection, string sql, object? parameters, CancellationToken cancellationToken)
@@ -1417,7 +1988,7 @@ LIMIT 1;", new { ModuleName = moduleName, RunId = runId }, cancellationToken);
 
         return new ScopeContextDto
         {
-            StrictModuleOnly = obj["strictModuleOnly"]?.GetValue<bool>() ?? false,
+            StrictModuleOnly = obj["strictModuleOnly"]?.GetValue<bool>() ?? true,
             ScopeHint = obj["scopeHint"]?.GetValue<string>() ?? string.Empty,
             TargetUrlPath = obj["targetUrlPath"]?.GetValue<string>() ?? string.Empty,
             AllowedCrossModules = ParseStringArray(obj["allowedCrossModules"]?.ToJsonString() ?? "[]"),

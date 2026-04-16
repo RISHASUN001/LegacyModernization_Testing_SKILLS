@@ -1,55 +1,55 @@
 {
-  "stage": "logic-understanding",
-  "stageTitle": "Logic Understanding",
+  "stage": "csharp-logic",
+  "stageTitle": "C# Logic Understanding",
   "stageIndex": 2,
-  "status": "passed",
+  "status": "failed",
   "skillCount": 2,
-  "skillsPassed": 2,
-  "skillsFailed": 0,
+  "skillsPassed": 1,
+  "skillsFailed": 1,
   "skills": [
     {
-      "skill": "legacy-logic-extraction",
-      "stage": "logic-understanding",
+      "skill": "clean-architecture-assessment",
+      "stage": "csharp-logic",
       "status": "passed",
-      "startedAt": "2026-04-14T02:40:45.502541Z",
-      "endedAt": "2026-04-14T02:40:45.605582Z",
-      "durationSeconds": 0.103,
-      "summary": "Logic extraction completed for Login: workflows=2, rules=2, unknowns=1.",
+      "startedAt": "2026-04-14T16:31:45.517568Z",
+      "endedAt": "2026-04-14T16:31:45.584615Z",
+      "durationSeconds": 0.067,
+      "summary": "Architecture assessment for Login found 2 issue(s).",
       "returnCode": 0,
-      "stdout": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/legacy-logic-extraction/result.json\n",
+      "stdout": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/clean-architecture-assessment/result.json\n",
       "stderr": "",
       "command": [
         "python3",
-        "/Users/risha/Documents/Buildathon/skills/legacy-logic-extraction/run.py",
+        "/Users/risha/Documents/Buildathon/skills/clean-architecture-assessment/run.py",
         "--input",
         "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/module-run-input.json",
         "--artifacts-root",
         "/Users/risha/Documents/Buildathon/artifacts"
       ],
-      "resultPath": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/legacy-logic-extraction/result.json"
+      "resultPath": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/clean-architecture-assessment/result.json"
     },
     {
-      "skill": "module-documentation",
-      "stage": "logic-understanding",
-      "status": "passed",
-      "startedAt": "2026-04-14T02:40:45.605606Z",
-      "endedAt": "2026-04-14T02:40:45.710731Z",
-      "durationSeconds": 0.105,
-      "summary": "Module documentation generated for Login with flows=2, rules=2, unknowns=1.",
+      "skill": "csharp-logic-understanding",
+      "stage": "csharp-logic",
+      "status": "degraded",
+      "startedAt": "2026-04-14T16:31:45.584629Z",
+      "endedAt": "2026-04-14T16:31:45.646455Z",
+      "durationSeconds": 0.062,
+      "summary": "C# logic understanding produced 0 workflow summaries.",
       "returnCode": 0,
-      "stdout": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/module-documentation/result.json\n",
+      "stdout": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/csharp-logic-understanding/result.json\n",
       "stderr": "",
       "command": [
         "python3",
-        "/Users/risha/Documents/Buildathon/skills/module-documentation/run.py",
+        "/Users/risha/Documents/Buildathon/skills/csharp-logic-understanding/run.py",
         "--input",
         "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/module-run-input.json",
         "--artifacts-root",
         "/Users/risha/Documents/Buildathon/artifacts"
       ],
-      "resultPath": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/module-documentation/result.json"
+      "resultPath": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/csharp-logic-understanding/result.json"
     }
   ],
-  "startedAt": "2026-04-14T02:40:45.502541Z",
-  "endedAt": "2026-04-14T02:40:45.710731Z"
+  "startedAt": "2026-04-14T16:31:45.517568Z",
+  "endedAt": "2026-04-14T16:31:45.646455Z"
 }

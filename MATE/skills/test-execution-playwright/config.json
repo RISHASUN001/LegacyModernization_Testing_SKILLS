@@ -1,0 +1,23 @@
+{
+  "name": "test-execution-playwright",
+  "stage": "test-execution",
+  "schemaVersion": "2.2",
+  "aiDriven": false,
+  "inputs": [
+    "moduleName",
+    "runId",
+    "baseUrl",
+    "startUrl"
+  ],
+  "outputs": [
+    "playwright.log",
+    "console-messages.json",
+    "network-requests.json",
+    "playwright-results.json",
+    "playwright-execution-manifest.json",
+    "result.json"
+  ],
+  "dependencies": [
+    "playwright-test-generation"
+  ]
+}

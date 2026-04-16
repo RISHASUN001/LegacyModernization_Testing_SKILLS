@@ -1,0 +1,9 @@
+{
+  "name": "unit-test-generation",
+  "stage": "ai-test-generation",
+  "schemaVersion": "2.0",
+  "aiDriven": true,
+  "inputs": ["moduleName", "runId", "strictAIGeneration"],
+  "outputs": ["unit-tests.generated.json", "result.json"],
+  "dependencies": ["csharp-logic-understanding", "parity-analysis"]
+}

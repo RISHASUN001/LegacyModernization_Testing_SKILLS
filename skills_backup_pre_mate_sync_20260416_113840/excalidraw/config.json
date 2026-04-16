@@ -1,0 +1,60 @@
+{
+  "name": "excalidraw-diagram",
+  "stage": "java-logic",
+  "category": "workflow-diagramming",
+  "purpose": "Generate consolidated Excalidraw workflow diagrams from discovered Java and C# logic flows. Generates Mermaid, Excalidraw JSON, and PNG previews.",
+  "scriptEntry": "run.py",
+  "requiredInputs": [
+    "moduleName"
+  ],
+  "optionalInputs": [
+    "renderPNG",
+    "colorScheme"
+  ],
+  "outputFiles": [
+    "diagram-index.json",
+    "csharp-workflow-unified.mmd",
+    "csharp-workflow-unified.excalidraw.json",
+    "previews/csharp-workflow-unified.png",
+    "java-workflow-unified.mmd",
+    "java-workflow-unified.excalidraw.json",
+    "previews/java-workflow-unified.png",
+    "result.json"
+  ],
+  "artifactFolders": [
+    "artifacts/{module}/{runId}/excalidraw-diagram/"
+  ],
+  "dependencies": [
+    "csharp-logic-understanding",
+    "java-logic-understanding"
+  ],
+  "summaryOutputType": "excalidraw-diagram-summary",
+  "resultContractVersion": "1.0",
+  "consolidationRule": {
+    "enabled": true,
+    "maxDiagramsPerModule": 2,
+    "languages": [
+      "java",
+      "csharp"
+    ],
+    "description": "Maximum 2 consolidated diagrams per module: ONE unified diagram for all Java workflows and ONE for all C# workflows. Shows all branches, pivots, and outcomes in single diagram per language."
+  },
+  "features": {
+    "multiLanguageConsolidation": {
+      "enabled": true,
+      "description": "Automatically consolidates all workflows of the same language into unified Excalidraw diagram showing all branches (VALID/INVALID paths)"
+    },
+    "allBranchesVisible": {
+      "enabled": true,
+      "description": "Diagram shows decision branches, error paths, alternative actions all in one view per language"
+    },
+    "pngRendering": {
+      "enabled": true,
+      "description": "Generates PNG previews for dashboard visualization"
+    },
+    "mermaidExport": {
+      "enabled": true,
+      "description": "Exports Mermaid flowchart source alongside Excalidraw JSON"
+    }
+  }
+}

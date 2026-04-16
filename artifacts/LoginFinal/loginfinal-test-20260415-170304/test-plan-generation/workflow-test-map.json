@@ -1,0 +1,48 @@
+{
+  "moduleName": "LoginFinal",
+  "runId": "loginfinal-test-20260415-170304",
+  "workflows": [
+    {
+      "workflowName": "Successful Login",
+      "entryRoute": "/Auth/login",
+      "categories": [
+        "Unit",
+        "Integration",
+        "Route/Form Tests",
+        "E2E",
+        "Edge Case",
+        "Playwright / E2E Browser",
+        "DevTools Diagnostics"
+      ],
+      "provenance": {
+        "type": "flow-derived",
+        "sources": [
+          "artifact:csharp-logic-understanding/csharp-logic-summary.json"
+        ],
+        "confidence": 0.78,
+        "unknowns": []
+      }
+    },
+    {
+      "workflowName": "Invalid Login",
+      "entryRoute": "/Auth/dashboard",
+      "categories": [
+        "Unit",
+        "Integration",
+        "Route/Form Tests",
+        "E2E",
+        "Edge Case",
+        "Playwright / E2E Browser",
+        "DevTools Diagnostics"
+      ],
+      "provenance": {
+        "type": "flow-derived",
+        "sources": [
+          "artifact:csharp-logic-understanding/csharp-logic-summary.json"
+        ],
+        "confidence": 0.78,
+        "unknowns": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "stage": "diagram-generation",
+  "stageIndex": 5,
+  "stageTitle": "5. Diagram Generation",
+  "stageObjective": "Generate Mermaid + Excalidraw + preview image artifacts for C# and Java workflows.",
+  "status": "failed",
+  "skills": [
+    {
+      "skill": "diagram-generation",
+      "stage": "diagram-generation",
+      "returnCode": 1,
+      "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/diagram-generation/result.json",
+      "stderr": "",
+      "status": "failed",
+      "reused": false,
+      "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/diagram-generation/result.json",
+      "summary": "Input validation failed for diagram generation.",
+      "artifacts": [],
+      "metrics": {},
+      "findings": [
+        {
+          "type": "InputValidation",
+          "message": "Path does not exist in legacyBackendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/src; Path does not exist in legacyFrontendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/web"
+        }
+      ]
+    }
+  ],
+  "skillCount": 1,
+  "skillsFailed": 1,
+  "reusedSkills": 0,
+  "contextFile": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/orchestration/stage-05-context.json",
+  "requiredEvidence": [
+    {
+      "path": "diagram-generation/diagram-index.json",
+      "exists": false
+    },
+    {
+      "path": "diagram-generation/csharp-workflow.excalidraw.json",
+      "exists": false
+    },
+    {
+      "path": "diagram-generation/legacy-workflow.excalidraw.json",
+      "exists": false
+    }
+  ]
+}

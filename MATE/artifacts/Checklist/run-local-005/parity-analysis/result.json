@@ -1,0 +1,21 @@
+{
+  "skillName": "parity-analysis",
+  "status": "passed",
+  "startedAt": "2026-04-15T20:15:47.662282Z",
+  "endedAt": "2026-04-15T20:15:47.662287Z",
+  "summary": "Functional parity analysis completed with score 0%.",
+  "metrics": {
+    "provider": "deterministic-fallback",
+    "overallParityScore": 0,
+    "workflowCount": 0
+  },
+  "artifacts": [
+    "MATE/artifacts/Checklist/run-local-005/parity-analysis/parity-diff.json",
+    "MATE/artifacts/Checklist/run-local-005/parity-analysis/workflow-parity-summary.json",
+    "MATE/artifacts/Checklist/run-local-005/parity-analysis/sql-table-parity.json",
+    "MATE/artifacts/Checklist/run-local-005/parity-analysis/preservation-score.json"
+  ],
+  "findings": [],
+  "recommendations": [],
+  "resultContractVersion": "1.0"
+}

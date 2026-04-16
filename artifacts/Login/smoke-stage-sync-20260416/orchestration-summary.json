@@ -1,0 +1,99 @@
+{
+  "runId": "smoke-stage-sync-20260416",
+  "moduleName": "Login",
+  "status": "passed",
+  "startedAt": "2026-04-16T03:51:54.075969Z",
+  "endedAt": "2026-04-16T03:51:54.076311Z",
+  "selectedSkills": [
+    "csharp-module-discovery",
+    "csharp-logic-understanding",
+    "legacy-module-discovery",
+    "legacy-logic-understanding",
+    "diagram-generation",
+    "parity-analysis",
+    "edge-test-generation",
+    "integration-test-generation",
+    "playwright-test-generation",
+    "unit-test-generation",
+    "test-execution-integration",
+    "test-execution-playwright",
+    "test-execution-unit",
+    "clean-architecture-assessment",
+    "findings-synthesis",
+    "vanity-check"
+  ],
+  "stages": [
+    {
+      "stage": "csharp-discovery",
+      "stageTitle": "1. C# Discovery",
+      "stageIndex": 1,
+      "status": "skipped",
+      "skills": []
+    },
+    {
+      "stage": "csharp-logic-understanding",
+      "stageTitle": "2. C# Logic Understanding",
+      "stageIndex": 2,
+      "status": "skipped",
+      "skills": []
+    },
+    {
+      "stage": "java-discovery",
+      "stageTitle": "3. Java Discovery",
+      "stageIndex": 3,
+      "status": "skipped",
+      "skills": []
+    },
+    {
+      "stage": "legacy-logic-understanding",
+      "stageTitle": "4. Legacy Logic Understanding",
+      "stageIndex": 4,
+      "status": "skipped",
+      "skills": []
+    },
+    {
+      "stage": "diagram-generation",
+      "stageTitle": "5. Diagram Generation",
+      "stageIndex": 5,
+      "status": "skipped",
+      "skills": []
+    },
+    {
+      "stage": "functional-parity-and-sql-table-comparison",
+      "stageTitle": "6. Functional Parity",
+      "stageIndex": 6,
+      "status": "skipped",
+      "skills": []
+    },
+    {
+      "stage": "ai-test-generation",
+      "stageTitle": "7. AI Test Generation",
+      "stageIndex": 7,
+      "status": "skipped",
+      "skills": []
+    },
+    {
+      "stage": "test-execution",
+      "stageTitle": "8. Test Execution",
+      "stageIndex": 8,
+      "status": "skipped",
+      "skills": []
+    },
+    {
+      "stage": "clean-architecture-and-findings",
+      "stageTitle": "9. Clean Architecture and Findings",
+      "stageIndex": 9,
+      "status": "skipped",
+      "skills": []
+    },
+    {
+      "stage": "pipeline-vanity-check",
+      "stageTitle": "10. Pipeline Vanity Check",
+      "stageIndex": 10,
+      "status": "skipped",
+      "skills": []
+    }
+  ],
+  "failedSkills": [],
+  "artifactsRoot": "/Users/risha/Documents/Buildathon/artifacts/Login/smoke-stage-sync-20260416"
+}

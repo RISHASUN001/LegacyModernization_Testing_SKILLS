@@ -1,11 +1,11 @@
 {
   "skillName": "legacy-logic-extraction",
-  "stage": "logic-understanding",
+  "stage": "java-logic",
   "moduleName": "Login",
   "runId": "login-test-20260414-005637",
   "status": "passed",
-  "startedAt": "2026-04-14T02:40:45.561804Z",
-  "endedAt": "2026-04-14T02:40:45.596573Z",
+  "startedAt": "2026-04-14T16:31:46.244082Z",
+  "endedAt": "2026-04-14T16:31:46.321425Z",
   "summary": "Logic extraction completed for Login: workflows=2, rules=2, unknowns=1.",
   "metrics": {
     "flows": 2,

@@ -1,0 +1,31 @@
+{
+  "skillName": "excalidraw-diagram",
+  "stage": "java-logic",
+  "moduleName": "Login",
+  "runId": "Login-001",
+  "status": "degraded",
+  "startedAt": "2026-04-16T01:03:33.658880Z",
+  "endedAt": "2026-04-16T01:03:33.660155Z",
+  "summary": "Generated 0 consolidated workflow diagrams (Mermaid + Excalidraw + preview PNG).",
+  "metrics": {
+    "diagramBundles": 0,
+    "csharpWorkflows": 0,
+    "javaWorkflows": 0,
+    "mermaidFiles": 0,
+    "excalidrawFiles": 0,
+    "previewPNGs": 0
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/Login/Login-001/excalidraw-diagram/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/Login-001/excalidraw-diagram/diagram-index.json"
+  ],
+  "findings": [],
+  "recommendations": [],
+  "resultContractVersion": "2.0",
+  "provenanceSummary": {
+    "scenarioSources": [
+      "excalidraw-generated"
+    ],
+    "confidence": 0.4
+  }
+}

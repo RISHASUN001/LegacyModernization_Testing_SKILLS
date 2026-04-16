@@ -1,0 +1,26 @@
+{
+  "skillName": "test-execution-integration",
+  "status": "failed",
+  "startedAt": "2026-04-15T20:15:47.940346Z",
+  "endedAt": "2026-04-15T20:15:47.940361Z",
+  "summary": "Integration test execution completed with exit code 1.",
+  "metrics": {
+    "total": 0,
+    "testsCopied": 0,
+    "exitCode": 1
+  },
+  "artifacts": [
+    "MATE/artifacts/Checklist/run-local-005/test-execution-integration/integration-test.log",
+    "MATE/artifacts/Checklist/run-local-005/test-execution-integration/integration-test-results.json",
+    "MATE/artifacts/Checklist/run-local-005/test-execution-integration/integration-test-execution-manifest.json"
+  ],
+  "findings": [
+    {
+      "type": "IntegrationExecutionFailure",
+      "message": "dotnet test returned non-zero exit code.",
+      "evidence": "MATE/artifacts/Checklist/run-local-005/test-execution-integration/integration-test.log"
+    }
+  ],
+  "recommendations": [],
+  "resultContractVersion": "1.0"
+}

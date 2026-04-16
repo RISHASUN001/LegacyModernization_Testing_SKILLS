@@ -1,0 +1,9 @@
+{
+  "moduleName": "LoginFinal",
+  "recommendation": "hold",
+  "summary": "Critical pipeline artifacts are missing.",
+  "missingRequiredCount": 2,
+  "executionFailureCount": 0,
+  "failedAreasCount": 0,
+  "keyFindingsCount": 0
+}

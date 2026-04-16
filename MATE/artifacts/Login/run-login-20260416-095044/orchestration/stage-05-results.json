@@ -1,0 +1,46 @@
+{
+  "stage": "diagram-generation",
+  "stageIndex": 5,
+  "stageTitle": "5. Diagram Generation",
+  "stageObjective": "Generate Mermaid + Excalidraw + preview image artifacts for C# and Java workflows.",
+  "status": "passed",
+  "skills": [
+    {
+      "skill": "diagram-generation",
+      "stage": "diagram-generation",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/diagram-generation/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": true,
+      "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/diagram-generation/result.json",
+      "summary": "strictAIGeneration=true and provider mode is copilot, but MATE_COPILOT_CLAUDE_COMMAND is not configured.",
+      "artifacts": [],
+      "metrics": {},
+      "findings": [
+        {
+          "type": "StrictAIUnavailable",
+          "message": "strictAIGeneration=true and provider mode is copilot, but MATE_COPILOT_CLAUDE_COMMAND is not configured."
+        }
+      ]
+    }
+  ],
+  "skillCount": 1,
+  "skillsFailed": 0,
+  "reusedSkills": 1,
+  "contextFile": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/orchestration/stage-05-context.json",
+  "requiredEvidence": [
+    {
+      "path": "diagram-generation/diagram-index.json",
+      "exists": false
+    },
+    {
+      "path": "diagram-generation/csharp-workflow.excalidraw.json",
+      "exists": false
+    },
+    {
+      "path": "diagram-generation/legacy-workflow.excalidraw.json",
+      "exists": false
+    }
+  ]
+}

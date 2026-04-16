@@ -1,7 +1,7 @@
 command: python3 -m pytest -m playwright
 returnCode: 5
 timedOut: False
-durationSeconds: 0.652
+durationSeconds: 0.385
 
 --- stdout ---
 ============================= test session starts ==============================
@@ -10,7 +10,7 @@ rootdir: /Users/risha/Documents/Buildathon/samples/legacy-java-app
 plugins: playwright-0.7.2, anyio-4.10.0, langsmith-0.4.20, base-url-2.1.0
 collected 0 items
 
-============================ no tests ran in 0.02s =============================
+============================ no tests ran in 0.01s =============================
 
 
 --- stderr ---

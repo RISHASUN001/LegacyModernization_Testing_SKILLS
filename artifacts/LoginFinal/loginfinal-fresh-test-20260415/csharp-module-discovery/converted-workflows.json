@@ -1,0 +1,41 @@
+{
+  "moduleName": "LoginFinal",
+  "workflows": [
+    {
+      "workflowId": "csharp-workflow-01",
+      "name": "Successful Login",
+      "entryRoute": "/Auth/login",
+      "menuPathHint": "Login=>Dashboard",
+      "controllerCandidates": [
+        "AuthController",
+        "AuthController"
+      ],
+      "provenance": {
+        "type": "flow-derived",
+        "sources": [
+          "controller-route-map.json"
+        ],
+        "confidence": 0.72,
+        "unknowns": []
+      }
+    },
+    {
+      "workflowId": "csharp-workflow-02",
+      "name": "Invalid Login",
+      "entryRoute": "/Auth/dashboard",
+      "menuPathHint": "",
+      "controllerCandidates": [
+        "AuthController",
+        "AuthController"
+      ],
+      "provenance": {
+        "type": "flow-derived",
+        "sources": [
+          "controller-route-map.json"
+        ],
+        "confidence": 0.72,
+        "unknowns": []
+      }
+    }
+  ]
+}

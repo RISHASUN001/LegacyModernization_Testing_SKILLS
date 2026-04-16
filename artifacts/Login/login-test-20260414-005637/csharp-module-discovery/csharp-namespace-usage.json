@@ -1,0 +1,19 @@
+{
+  "moduleName": "Login",
+  "namespaces": [
+    {
+      "namespace": "LegacyModernization.Converted.Services",
+      "occurrences": 1
+    }
+  ],
+  "usingReferences": [
+    {
+      "using": "System",
+      "occurrences": 1
+    },
+    {
+      "using": "System.Collections.Generic",
+      "occurrences": 1
+    }
+  ]
+}

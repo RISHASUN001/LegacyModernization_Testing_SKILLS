@@ -1,9 +1,0 @@
-{
-  "endpoint": "http://127.0.0.1:5000/api/test",
-  "healthUrl": "http://127.0.0.1:5000/api/test/health",
-  "status": "fallback-attached",
-  "reason": "missing-or-unreachable",
-  "source": "dashboard-fallback",
-  "autoProvisioned": true,
-  "payload": {}
-}

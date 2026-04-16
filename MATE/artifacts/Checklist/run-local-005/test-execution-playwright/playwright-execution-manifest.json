@@ -1,0 +1,14 @@
+{
+  "moduleName": "Checklist",
+  "category": "playwright",
+  "status": "failed",
+  "testsDiscovered": 0,
+  "testsCopied": 0,
+  "command": [
+    "pytest",
+    "Tests/Playwright/Checklist"
+  ],
+  "baseUrl": "http://localhost:5276",
+  "startUrl": "/",
+  "items": []
+}

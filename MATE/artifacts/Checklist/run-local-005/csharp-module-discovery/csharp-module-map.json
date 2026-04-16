@@ -1,0 +1,109 @@
+{
+  "moduleName": "Checklist",
+  "workflowNames": [
+    "Perform Checklist",
+    "Checklist Reports"
+  ],
+  "convertedRoots": [
+    "/Users/risha/Documents/Buildathon/src"
+  ],
+  "controllers": [
+    "DashboardController.cs",
+    "TestApiController.cs"
+  ],
+  "views": [
+    "Findings.cshtml",
+    "HelpGuide.cshtml",
+    "Index.cshtml",
+    "IterationComparison.cshtml",
+    "ModuleRuns.cshtml",
+    "Pipeline.cshtml",
+    "RunInputBuilder.cshtml",
+    "SkillLibrary.cshtml",
+    "Error.cshtml",
+    "_Layout.cshtml",
+    "_ValidationScriptsPartial.cshtml",
+    "_ViewImports.cshtml",
+    "_ViewStart.cshtml"
+  ],
+  "services": [
+    "IDashboardQueryService.cs",
+    "IMetadataSyncService.cs",
+    "DashboardQueryService.cs",
+    "MetadataSyncService.cs"
+  ],
+  "repositories": [],
+  "includedFiles": [
+    "/Users/risha/Documents/Buildathon/src/LegacyModernization.Application/Contracts/IDashboardQueryService.cs",
+    "/Users/risha/Documents/Buildathon/src/LegacyModernization.Application/Contracts/IMetadataSyncService.cs",
+    "/Users/risha/Documents/Buildathon/src/LegacyModernization.Application/DTOs/DashboardDtos.cs",
+    "/Users/risha/Documents/Buildathon/src/LegacyModernization.Dashboard.Web/Controllers/DashboardController.cs",
+    "/Users/risha/Documents/Buildathon/src/LegacyModernization.Dashboard.Web/Controllers/TestApiController.cs",
+    "/Users/risha/Documents/Buildathon/src/LegacyModernization.Dashboard.Web/Views/Dashboard/Findings.cshtml",
+    "/Users/risha/Documents/Buildathon/src/LegacyModernization.Dashboard.Web/Views/Dashboard/HelpGuide.cshtml",
+    "/Users/risha/Documents/Buildathon/src/LegacyModernization.Dashboard.Web/Views/Dashboard/Index.cshtml",
+    "/Users/risha/Documents/Buildathon/src/LegacyModernization.Dashboard.Web/Views/Dashboard/IterationComparison.cshtml",
+    "/Users/risha/Documents/Buildathon/src/LegacyModernization.Dashboard.Web/Views/Dashboard/ModuleRuns.cshtml",
+    "/Users/risha/Documents/Buildathon/src/LegacyModernization.Dashboard.Web/Views/Dashboard/Pipeline.cshtml",
+    "/Users/risha/Documents/Buildathon/src/LegacyModernization.Dashboard.Web/Views/Dashboard/RunInputBuilder.cshtml",
+    "/Users/risha/Documents/Buildathon/src/LegacyModernization.Dashboard.Web/Views/Dashboard/SkillLibrary.cshtml",
+    "/Users/risha/Documents/Buildathon/src/LegacyModernization.Dashboard.Web/Views/Shared/Error.cshtml",
+    "/Users/risha/Documents/Buildathon/src/LegacyModernization.Dashboard.Web/Views/Shared/_Layout.cshtml",
+    "/Users/risha/Documents/Buildathon/src/LegacyModernization.Dashboard.Web/Views/Shared/_ValidationScriptsPartial.cshtml",
+    "/Users/risha/Documents/Buildathon/src/LegacyModernization.Dashboard.Web/Views/_ViewImports.cshtml",
+    "/Users/risha/Documents/Buildathon/src/LegacyModernization.Dashboard.Web/Views/_ViewStart.cshtml",
+    "/Users/risha/Documents/Buildathon/src/LegacyModernization.Infrastructure/Services/DashboardQueryService.cs",
+    "/Users/risha/Documents/Buildathon/src/LegacyModernization.Infrastructure/Services/MetadataSyncService.cs"
+  ],
+  "workflows": [
+    {
+      "workflowName": "Perform Checklist",
+      "entryRoutes": [],
+      "relatedFiles": [],
+      "controllers": [
+        "DashboardController.cs",
+        "TestApiController.cs"
+      ],
+      "views": [
+        "Findings.cshtml",
+        "HelpGuide.cshtml",
+        "Index.cshtml",
+        "IterationComparison.cshtml",
+        "ModuleRuns.cshtml",
+        "Pipeline.cshtml",
+        "RunInputBuilder.cshtml",
+        "SkillLibrary.cshtml",
+        "Error.cshtml",
+        "_Layout.cshtml",
+        "_ValidationScriptsPartial.cshtml",
+        "_ViewImports.cshtml",
+        "_ViewStart.cshtml"
+      ]
+    },
+    {
+      "workflowName": "Checklist Reports",
+      "entryRoutes": [],
+      "relatedFiles": [],
+      "controllers": [
+        "DashboardController.cs",
+        "TestApiController.cs"
+      ],
+      "views": [
+        "Findings.cshtml",
+        "HelpGuide.cshtml",
+        "Index.cshtml",
+        "IterationComparison.cshtml",
+        "ModuleRuns.cshtml",
+        "Pipeline.cshtml",
+        "RunInputBuilder.cshtml",
+        "SkillLibrary.cshtml",
+        "Error.cshtml",
+        "_Layout.cshtml",
+        "_ValidationScriptsPartial.cshtml",
+        "_ViewImports.cshtml",
+        "_ViewStart.cshtml"
+      ]
+    }
+  ],
+  "strictModuleOnly": true
+}

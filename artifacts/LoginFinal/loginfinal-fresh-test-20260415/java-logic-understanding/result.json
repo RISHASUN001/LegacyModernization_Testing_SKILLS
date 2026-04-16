@@ -1,0 +1,29 @@
+{
+  "skillName": "java-logic-understanding",
+  "stage": "java-logic",
+  "moduleName": "LoginFinal",
+  "runId": "loginfinal-fresh-test-20260415",
+  "status": "passed",
+  "startedAt": "2026-04-15T08:49:28.482228Z",
+  "endedAt": "2026-04-15T08:49:28.511978Z",
+  "summary": "Java logic understanding produced 2 workflow summaries.",
+  "metrics": {
+    "workflowCount": 2,
+    "sqlSignatureCount": 0,
+    "importLinkedFiles": 0
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-fresh-test-20260415/java-logic-understanding/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-fresh-test-20260415/java-logic-understanding/java-logic-summary.json"
+  ],
+  "findings": [],
+  "recommendations": [],
+  "resultContractVersion": "2.0",
+  "provenanceSummary": {
+    "scenarioSources": [
+      "flow-derived",
+      "code-evidence"
+    ],
+    "confidence": 0.74
+  }
+}

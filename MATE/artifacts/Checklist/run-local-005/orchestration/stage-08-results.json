@@ -1,0 +1,114 @@
+{
+  "stage": "test-execution",
+  "stageIndex": 8,
+  "stageTitle": "8. Test Execution",
+  "stageObjective": "Execute generated tests and capture logs, failures, console, network, and screenshots.",
+  "status": "passed",
+  "skills": [
+    {
+      "skill": "test-execution-integration",
+      "stage": "test-execution",
+      "returnCode": 0,
+      "stdout": "MATE/artifacts/Checklist/run-local-005/test-execution-integration/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": true,
+      "resultPath": "MATE/artifacts/Checklist/run-local-005/test-execution-integration/result.json",
+      "summary": "Integration test execution completed with exit code 1.",
+      "artifacts": [
+        "MATE/artifacts/Checklist/run-local-005/test-execution-integration/integration-test.log",
+        "MATE/artifacts/Checklist/run-local-005/test-execution-integration/integration-test-results.json",
+        "MATE/artifacts/Checklist/run-local-005/test-execution-integration/integration-test-execution-manifest.json"
+      ],
+      "metrics": {
+        "total": 0,
+        "testsCopied": 0,
+        "exitCode": 1
+      },
+      "findings": [
+        {
+          "type": "IntegrationExecutionFailure",
+          "message": "dotnet test returned non-zero exit code.",
+          "evidence": "MATE/artifacts/Checklist/run-local-005/test-execution-integration/integration-test.log"
+        }
+      ]
+    },
+    {
+      "skill": "test-execution-playwright",
+      "stage": "test-execution",
+      "returnCode": 0,
+      "stdout": "MATE/artifacts/Checklist/run-local-005/test-execution-playwright/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": true,
+      "resultPath": "MATE/artifacts/Checklist/run-local-005/test-execution-playwright/result.json",
+      "summary": "Playwright pytest execution completed with exit code 5.",
+      "artifacts": [
+        "MATE/artifacts/Checklist/run-local-005/test-execution-playwright/playwright.log",
+        "MATE/artifacts/Checklist/run-local-005/test-execution-playwright/console-messages.json",
+        "MATE/artifacts/Checklist/run-local-005/test-execution-playwright/network-requests.json",
+        "MATE/artifacts/Checklist/run-local-005/test-execution-playwright/playwright-results.json",
+        "MATE/artifacts/Checklist/run-local-005/test-execution-playwright/playwright-execution-manifest.json"
+      ],
+      "metrics": {
+        "total": 0,
+        "testsCopied": 0,
+        "exitCode": 5,
+        "screenshots": 0
+      },
+      "findings": [
+        {
+          "type": "PlaywrightExecutionFailure",
+          "message": "pytest returned non-zero exit code.",
+          "evidence": "MATE/artifacts/Checklist/run-local-005/test-execution-playwright/playwright.log"
+        }
+      ]
+    },
+    {
+      "skill": "test-execution-unit",
+      "stage": "test-execution",
+      "returnCode": 0,
+      "stdout": "MATE/artifacts/Checklist/run-local-005/test-execution-unit/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": true,
+      "resultPath": "MATE/artifacts/Checklist/run-local-005/test-execution-unit/result.json",
+      "summary": "Unit test execution completed with exit code 1.",
+      "artifacts": [
+        "MATE/artifacts/Checklist/run-local-005/test-execution-unit/unit-test.log",
+        "MATE/artifacts/Checklist/run-local-005/test-execution-unit/unit-test-results.json",
+        "MATE/artifacts/Checklist/run-local-005/test-execution-unit/unit-test-execution-manifest.json"
+      ],
+      "metrics": {
+        "total": 0,
+        "testsCopied": 0,
+        "exitCode": 1
+      },
+      "findings": [
+        {
+          "type": "UnitExecutionFailure",
+          "message": "dotnet test returned non-zero exit code.",
+          "evidence": "MATE/artifacts/Checklist/run-local-005/test-execution-unit/unit-test.log"
+        }
+      ]
+    }
+  ],
+  "skillCount": 3,
+  "skillsFailed": 0,
+  "reusedSkills": 3,
+  "contextFile": "MATE/artifacts/Checklist/run-local-005/orchestration/stage-08-context.json",
+  "requiredEvidence": [
+    {
+      "path": "test-execution-unit/unit-test-results.json",
+      "exists": true
+    },
+    {
+      "path": "test-execution-integration/integration-test-results.json",
+      "exists": true
+    },
+    {
+      "path": "test-execution-playwright/playwright-results.json",
+      "exists": true
+    }
+  ]
+}

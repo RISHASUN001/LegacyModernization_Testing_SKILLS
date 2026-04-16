@@ -1,0 +1,102 @@
+{
+  "moduleName": "LoginFinal",
+  "totalChecks": 15,
+  "presentChecks": 13,
+  "missingRequired": [
+    "unit-tests-generated",
+    "integration-tests-generated"
+  ],
+  "executionFailures": [],
+  "checks": [
+    {
+      "name": "csharp-discovery",
+      "required": true,
+      "exists": true,
+      "path": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/csharp-module-discovery/csharp-module-map.json"
+    },
+    {
+      "name": "csharp-logic",
+      "required": true,
+      "exists": true,
+      "path": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/csharp-logic-understanding/csharp-logic-summary.json"
+    },
+    {
+      "name": "legacy-discovery",
+      "required": true,
+      "exists": true,
+      "path": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/legacy-module-discovery/legacy-module-map.json"
+    },
+    {
+      "name": "legacy-logic",
+      "required": true,
+      "exists": true,
+      "path": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/legacy-logic-understanding/legacy-logic-summary.json"
+    },
+    {
+      "name": "diagram-index",
+      "required": true,
+      "exists": true,
+      "path": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/diagram-generation/diagram-index.json"
+    },
+    {
+      "name": "parity-diff",
+      "required": true,
+      "exists": true,
+      "path": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/parity-analysis/parity-diff.json"
+    },
+    {
+      "name": "preservation-score",
+      "required": true,
+      "exists": true,
+      "path": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/parity-analysis/preservation-score.json"
+    },
+    {
+      "name": "unit-tests-generated",
+      "required": true,
+      "exists": false,
+      "path": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/unit-test-generation/unit-tests.generated.json"
+    },
+    {
+      "name": "integration-tests-generated",
+      "required": true,
+      "exists": false,
+      "path": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/integration-test-generation/integration-tests.generated.json"
+    },
+    {
+      "name": "playwright-tests-generated",
+      "required": true,
+      "exists": true,
+      "path": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/playwright-test-generation/playwright-tests.generated.json"
+    },
+    {
+      "name": "unit-execution-results",
+      "required": true,
+      "exists": true,
+      "path": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/test-execution-unit/unit-test-results.json"
+    },
+    {
+      "name": "integration-execution-results",
+      "required": true,
+      "exists": true,
+      "path": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/test-execution-integration/integration-test-results.json"
+    },
+    {
+      "name": "playwright-execution-results",
+      "required": true,
+      "exists": true,
+      "path": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/test-execution-playwright/playwright-results.json"
+    },
+    {
+      "name": "clean-architecture-report",
+      "required": true,
+      "exists": true,
+      "path": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/clean-architecture-assessment/clean-architecture-report.json"
+    },
+    {
+      "name": "findings-synthesis",
+      "required": true,
+      "exists": true,
+      "path": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/findings-synthesis/findings-synthesis.json"
+    }
+  ]
+}

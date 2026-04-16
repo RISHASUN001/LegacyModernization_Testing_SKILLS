@@ -1,34 +1,55 @@
 {
-  "stage": "architecture-review",
-  "stageTitle": "Architecture Review",
+  "stage": "java-discovery",
+  "stageTitle": "Java Discovery",
   "stageIndex": 3,
   "status": "passed",
-  "skillCount": 1,
-  "skillsPassed": 1,
+  "skillCount": 2,
+  "skillsPassed": 2,
   "skillsFailed": 0,
   "skills": [
     {
-      "skill": "clean-architecture-assessment",
-      "stage": "architecture-review",
+      "skill": "java-counterpart-discovery",
+      "stage": "java-discovery",
       "status": "passed",
-      "startedAt": "2026-04-14T02:40:45.711205Z",
-      "endedAt": "2026-04-14T02:40:45.816377Z",
-      "durationSeconds": 0.105,
-      "summary": "Architecture assessment for Login found 2 issue(s).",
+      "startedAt": "2026-04-14T16:31:45.646761Z",
+      "endedAt": "2026-04-14T16:31:45.713357Z",
+      "durationSeconds": 0.066,
+      "summary": "Java counterpart discovery selected 0 files and mapped 0 legacy workflows.",
       "returnCode": 0,
-      "stdout": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/clean-architecture-assessment/result.json\n",
+      "stdout": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/java-counterpart-discovery/result.json\n",
       "stderr": "",
       "command": [
         "python3",
-        "/Users/risha/Documents/Buildathon/skills/clean-architecture-assessment/run.py",
+        "/Users/risha/Documents/Buildathon/skills/java-counterpart-discovery/run.py",
         "--input",
         "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/module-run-input.json",
         "--artifacts-root",
         "/Users/risha/Documents/Buildathon/artifacts"
       ],
-      "resultPath": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/clean-architecture-assessment/result.json"
+      "resultPath": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/java-counterpart-discovery/result.json"
+    },
+    {
+      "skill": "module-discovery",
+      "stage": "java-discovery",
+      "status": "passed",
+      "startedAt": "2026-04-14T16:31:45.713379Z",
+      "endedAt": "2026-04-14T16:31:45.787397Z",
+      "durationSeconds": 0.074,
+      "summary": "Discovery completed for Login: assets=24, routes=2, dbTouchpoints=0.",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/module-discovery/result.json\n",
+      "stderr": "",
+      "command": [
+        "python3",
+        "/Users/risha/Documents/Buildathon/skills/module-discovery/run.py",
+        "--input",
+        "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/module-run-input.json",
+        "--artifacts-root",
+        "/Users/risha/Documents/Buildathon/artifacts"
+      ],
+      "resultPath": "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/module-discovery/result.json"
     }
   ],
-  "startedAt": "2026-04-14T02:40:45.711205Z",
-  "endedAt": "2026-04-14T02:40:45.816377Z"
+  "startedAt": "2026-04-14T16:31:45.646761Z",
+  "endedAt": "2026-04-14T16:31:45.787397Z"
 }

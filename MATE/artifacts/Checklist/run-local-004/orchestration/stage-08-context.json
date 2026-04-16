@@ -1,0 +1,73 @@
+{
+  "runId": "run-local-004",
+  "moduleName": "Checklist",
+  "stage": "test-execution",
+  "stageIndex": 8,
+  "title": "8. Test Execution",
+  "objective": "Execute generated tests and capture logs, failures, console, network, and screenshots.",
+  "disclosure": {
+    "now": {
+      "inputType": "generated tests + runtime environment",
+      "outputType": "execution logs + result summaries + evidence artifacts",
+      "skills": [
+        "test-execution-integration",
+        "test-execution-playwright",
+        "test-execution-unit"
+      ]
+    },
+    "next": {
+      "stage": "clean-architecture-and-findings",
+      "title": "9. Clean Architecture + Findings",
+      "expectedInputType": "csharp artifacts + execution outcomes"
+    }
+  },
+  "contracts": [
+    {
+      "skill": "test-execution-integration",
+      "inputs": [
+        "moduleName"
+      ],
+      "outputs": [
+        "integration-test.log",
+        "integration-test-results.json",
+        "result.json"
+      ],
+      "dependencies": [
+        "integration-test-generation"
+      ]
+    },
+    {
+      "skill": "test-execution-playwright",
+      "inputs": [
+        "moduleName",
+        "baseUrl",
+        "startUrl"
+      ],
+      "outputs": [
+        "playwright.log",
+        "console-messages.json",
+        "network-requests.json",
+        "home.png",
+        "playwright-results.json",
+        "result.json"
+      ],
+      "dependencies": [
+        "playwright-test-generation"
+      ]
+    },
+    {
+      "skill": "test-execution-unit",
+      "inputs": [
+        "moduleName"
+      ],
+      "outputs": [
+        "unit-test.log",
+        "unit-test-results.json",
+        "result.json"
+      ],
+      "dependencies": [
+        "unit-test-generation"
+      ]
+    }
+  ]
+}

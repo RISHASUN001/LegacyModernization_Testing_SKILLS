@@ -1,0 +1,35 @@
+{
+  "runId": "run-local-003",
+  "moduleName": "Checklist",
+  "stage": "csharp-logic-understanding",
+  "stageIndex": 2,
+  "title": "2. C# Logic Understanding",
+  "objective": "Use AI to explain workflow branches, validations, and DB touchpoints in converted C# module.",
+  "disclosure": {
+    "now": {
+      "inputType": "csharp discovery artifacts",
+      "outputType": "csharp logic summary + workflow narratives",
+      "skills": [
+        "csharp-logic-understanding"
+      ]
+    },
+    "next": {
+      "stage": "java-discovery",
+      "title": "3. Java Discovery",
+      "expectedInputType": "csharp discovery anchors + legacy roots"
+    }
+  },
+  "contracts": [
+    {
+      "skill": "csharp-logic-understanding",
+      "inputs": [
+        "moduleName",
+        "runId"
+      ],
+      "outputs": [
+        "result.json"
+      ],
+      "dependencies": []
+    }
+  ]
+}

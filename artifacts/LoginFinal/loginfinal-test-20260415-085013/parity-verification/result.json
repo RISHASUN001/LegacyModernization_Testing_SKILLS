@@ -1,0 +1,49 @@
+{
+  "skillName": "parity-verification",
+  "stage": "functional-parity",
+  "moduleName": "LoginFinal",
+  "runId": "loginfinal-test-20260415-085013",
+  "status": "passed",
+  "startedAt": "2026-04-15T08:42:25.694706Z",
+  "endedAt": "2026-04-15T08:42:25.728220Z",
+  "summary": "Parity verification for LoginFinal: score=100, failedChecks=0.",
+  "metrics": {
+    "total": 7,
+    "passed": 7,
+    "failed": 0,
+    "warnings": 1,
+    "newTestsAdded": 0,
+    "parityScore": 100,
+    "matchedQueries": 0,
+    "legacyQueries": 0,
+    "modulePreservationScore": 100
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-085013/parity-verification/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-085013/parity-verification/parity-diff.json",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-085013/parity-verification/functional-parity-map.json",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-085013/parity-verification/workflow-parity-summary.json",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-085013/parity-verification/sql-parity-map.json",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-085013/parity-verification/table-parity-map.json",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-085013/parity-verification/preservation-score.json"
+  ],
+  "findings": [],
+  "recommendations": [
+    {
+      "message": "Close failed parity checks by aligning execution failures to must-preserve behavior requirements.",
+      "priority": "medium",
+      "evidence": "parityScore=100; failedChecks=0"
+    }
+  ],
+  "resultContractVersion": "2.0",
+  "provenanceSummary": {
+    "scenarioSources": [
+      "code-evidence",
+      "fallback"
+    ],
+    "confidence": 0.81,
+    "unknowns": [
+      "No DB touchpoint evidence; persistence parity validation confidence reduced."
+    ]
+  }
+}

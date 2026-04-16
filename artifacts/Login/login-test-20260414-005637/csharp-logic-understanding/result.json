@@ -1,0 +1,30 @@
+{
+  "skillName": "csharp-logic-understanding",
+  "stage": "csharp-logic",
+  "moduleName": "Login",
+  "runId": "login-test-20260414-005637",
+  "status": "degraded",
+  "startedAt": "2026-04-14T16:31:45.617843Z",
+  "endedAt": "2026-04-14T16:31:45.641259Z",
+  "summary": "C# logic understanding produced 0 workflow summaries.",
+  "metrics": {
+    "workflowCount": 0,
+    "controllerCount": 0,
+    "sqlSignatureCount": 0,
+    "importLinkedFiles": 0
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/csharp-logic-understanding/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/csharp-logic-understanding/csharp-logic-summary.json"
+  ],
+  "findings": [],
+  "recommendations": [],
+  "resultContractVersion": "2.0",
+  "provenanceSummary": {
+    "scenarioSources": [
+      "flow-derived",
+      "code-evidence"
+    ],
+    "confidence": 0.43
+  }
+}

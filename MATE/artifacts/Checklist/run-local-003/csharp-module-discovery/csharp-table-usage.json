@@ -1,0 +1,12 @@
+{
+  "tables": [
+    "finding_records",
+    "iteration_deltas",
+    "modules",
+    "recommendation_records",
+    "runs",
+    "skill_executions",
+    "skills",
+    "test_category_results"
+  ]
+}

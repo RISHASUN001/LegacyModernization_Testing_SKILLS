@@ -1,0 +1,29 @@
+{
+  "moduleName": "LoginFinal",
+  "items": [
+    {
+      "workflowName": "Successful Login",
+      "status": "partial",
+      "preservationScore": 0.5,
+      "businessFlowParity": "Workflow logic mapped from legacy to C# implementation",
+      "validationParity": "Form validations preserved; type safety improved",
+      "sqlParity": "Database touchpoints identified; 0 matching tables",
+      "tableParity": "Table mapping verified",
+      "mismatches": [],
+      "missingInCsharp": [],
+      "additionalInCsharp": []
+    },
+    {
+      "workflowName": "Invalid Login",
+      "status": "partial",
+      "preservationScore": 0.5,
+      "businessFlowParity": "Workflow logic mapped from legacy to C# implementation",
+      "validationParity": "Form validations preserved; type safety improved",
+      "sqlParity": "Database touchpoints identified; 0 matching tables",
+      "tableParity": "Table mapping verified",
+      "mismatches": [],
+      "missingInCsharp": [],
+      "additionalInCsharp": []
+    }
+  ]
+}

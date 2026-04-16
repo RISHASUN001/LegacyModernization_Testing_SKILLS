@@ -1,0 +1,18 @@
+{
+  "category": "DevTools Diagnostics",
+  "baseUrl": {
+    "required": true,
+    "provided": "http://localhost:5001",
+    "normalized": "http://localhost:5001",
+    "ok": true,
+    "reason": "ok"
+  },
+  "reachability": {
+    "required": true,
+    "url": "http://localhost:5001",
+    "ok": true,
+    "statusCode": 200,
+    "reason": "reachable"
+  },
+  "strictMode": false
+}

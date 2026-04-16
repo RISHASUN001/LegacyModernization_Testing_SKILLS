@@ -1,4 +1,37 @@
-# Orchestrator Guide: Complete Automated Workflow
+# Orchestrator Guide: Complete Module-First Workflow
+
+## Input Field Reference (Run Input Builder)
+
+Use these fields with module-first intent:
+
+- `Module Name`: Logical module identifier used in artifact paths and stage summaries.
+- `Base URL`: Running converted app URL (for route reachability, Playwright, and DevTools probes).
+- `Converted Source Root`: Root of ASP.NET Core converted code.
+- `Converted Module Root` (recommended): Exact C# module folder to bound discovery.
+- `Entry Controller Name` (optional): Preferred entry controller hint (for naming/trace clarity).
+- `Home/Index URL` (optional): UI home/menu path context.
+- `Module Start URL` (required boundary): Primary route boundary used to derive module workflows.
+- `Menu Path Hints` (optional): Human hints for workflow labels (does not override missing code evidence).
+- `Expected Workflow Names` (optional): Desired workflow labels mapped to real discovered routes when possible.
+- `Controller/Action Hints` (optional): Additional routing hints.
+- `Legacy Source Root`: Legacy monolith root.
+- `Legacy Backend Root` (recommended): Java backend scope (for example `src/edcs`).
+- `Legacy Frontend Root` (recommended): JSP scope (for example `src/jsp`).
+- `Java Package Hints` / `JSP Folder Hints` / `Keywords`: Evidence hints for counterpart matching.
+- `Expected Terminal URLs` (optional): Route outcomes used for flow checks and diagnostics probes.
+- `Strict Module Only`: Keep enabled for bounded evidence-only discovery.
+
+## Current Pipeline (9 Stages)
+
+1. C# Discovery
+2. C# Logic Understanding
+3. Java Discovery
+4. Java Logic Understanding
+5. Functional Parity
+6. Test Plan
+7. Execution
+8. Findings
+9. Iteration Comparison
 
 ## The Recommended Workflow (End-to-End)
 

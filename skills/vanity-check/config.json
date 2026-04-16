@@ -1,0 +1,31 @@
+{
+  "name": "vanity-check",
+  "stage": "pipeline-vanity-check",
+  "schemaVersion": "2.0",
+  "aiDriven": false,
+  "inputs": [
+    "moduleName",
+    "runId"
+  ],
+  "outputs": [
+    "vanity-gate.json",
+    "pipeline-completeness-report.json",
+    "result.json"
+  ],
+  "dependencies": [
+    "csharp-module-discovery",
+    "csharp-logic-understanding",
+    "legacy-module-discovery",
+    "legacy-logic-understanding",
+    "diagram-generation",
+    "parity-analysis",
+    "unit-test-generation",
+    "integration-test-generation",
+    "playwright-test-generation",
+    "test-execution-unit",
+    "test-execution-integration",
+    "test-execution-playwright",
+    "clean-architecture-assessment",
+    "findings-synthesis"
+  ]
+}

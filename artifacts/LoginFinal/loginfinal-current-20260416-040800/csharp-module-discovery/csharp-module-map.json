@@ -1,0 +1,56 @@
+{
+  "moduleName": "LoginFinal",
+  "workflowNames": [
+    "Successful Login",
+    "Invalid Login"
+  ],
+  "convertedRoots": [
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app"
+  ],
+  "controllers": [
+    "AuthController.cs"
+  ],
+  "views": [
+    "Dashboard.cshtml",
+    "Index.cshtml"
+  ],
+  "services": [
+    "LoginService.cs"
+  ],
+  "repositories": [],
+  "includedFiles": [
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Controllers/AuthController.cs",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Program.cs",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Services/LoginService.cs",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Views/Auth/Dashboard.cshtml",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Views/Auth/Index.cshtml",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/obj/Debug/net8.0/LegacyModernization.Converted.GlobalUsings.g.cs"
+  ],
+  "workflows": [
+    {
+      "workflowName": "Successful Login",
+      "entryRoutes": [],
+      "relatedFiles": [],
+      "controllers": [
+        "AuthController.cs"
+      ],
+      "views": [
+        "Dashboard.cshtml",
+        "Index.cshtml"
+      ]
+    },
+    {
+      "workflowName": "Invalid Login",
+      "entryRoutes": [],
+      "relatedFiles": [],
+      "controllers": [
+        "AuthController.cs"
+      ],
+      "views": [
+        "Dashboard.cshtml",
+        "Index.cshtml"
+      ]
+    }
+  ],
+  "strictModuleOnly": false
+}

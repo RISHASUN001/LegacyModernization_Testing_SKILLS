@@ -1,0 +1,103 @@
+{
+  "moduleName": "LoginFinal",
+  "runId": "loginfinal-fresh-test-20260415",
+  "previousRunId": "",
+  "testsAdded": 4,
+  "testsFixed": 0,
+  "failuresReduced": 0,
+  "newFindingsIntroduced": 3,
+  "resolvedFindings": 0,
+  "progressionTrend": "baseline",
+  "categoryDelta": {
+    "browser-testing-with-devtools": {
+      "previousFailed": 0,
+      "currentFailed": 0,
+      "failuresReduced": 0
+    },
+    "clean-architecture-assessment": {
+      "previousFailed": 0,
+      "currentFailed": 0,
+      "failuresReduced": 0
+    },
+    "csharp-logic-understanding": {
+      "previousFailed": 0,
+      "currentFailed": 0,
+      "failuresReduced": 0
+    },
+    "csharp-module-discovery": {
+      "previousFailed": 0,
+      "currentFailed": 0,
+      "failuresReduced": 0
+    },
+    "e2e-test-execution": {
+      "previousFailed": 0,
+      "currentFailed": 0,
+      "failuresReduced": 0
+    },
+    "edge-case-testing": {
+      "previousFailed": 0,
+      "currentFailed": 0,
+      "failuresReduced": 0
+    },
+    "failure-diagnosis": {
+      "previousFailed": 0,
+      "currentFailed": 0,
+      "failuresReduced": 0
+    },
+    "integration-test-execution": {
+      "previousFailed": 0,
+      "currentFailed": 0,
+      "failuresReduced": 0
+    },
+    "java-counterpart-discovery": {
+      "previousFailed": 0,
+      "currentFailed": 0,
+      "failuresReduced": 0
+    },
+    "java-logic-understanding": {
+      "previousFailed": 0,
+      "currentFailed": 0,
+      "failuresReduced": 0
+    },
+    "legacy-logic-extraction": {
+      "previousFailed": 0,
+      "currentFailed": 0,
+      "failuresReduced": 0
+    },
+    "lessons-learned": {
+      "previousFailed": 0,
+      "currentFailed": 0,
+      "failuresReduced": 0
+    },
+    "module-discovery": {
+      "previousFailed": 0,
+      "currentFailed": 0,
+      "failuresReduced": 0
+    },
+    "module-documentation": {
+      "previousFailed": 0,
+      "currentFailed": 0,
+      "failuresReduced": 0
+    },
+    "parity-verification": {
+      "previousFailed": 0,
+      "currentFailed": 0,
+      "failuresReduced": 0
+    },
+    "playwright-browser-verification": {
+      "previousFailed": 0,
+      "currentFailed": 0,
+      "failuresReduced": 0
+    },
+    "test-plan-generation": {
+      "previousFailed": 0,
+      "currentFailed": 0,
+      "failuresReduced": 0
+    },
+    "unit-test-execution": {
+      "previousFailed": 0,
+      "currentFailed": 0,
+      "failuresReduced": 0
+    }
+  }
+}

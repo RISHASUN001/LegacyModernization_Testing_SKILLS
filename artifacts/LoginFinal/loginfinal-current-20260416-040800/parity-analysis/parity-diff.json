@@ -1,0 +1,36 @@
+{
+  "moduleName": "LoginFinal",
+  "provider": "deterministic-discovery-based",
+  "overallParityScore": 50,
+  "majorFindings": [
+    "Identified 0 matching tables between legacy and C#",
+    "Found 0 legacy tables not yet in C#",
+    "Detected 0 additional C# tables"
+  ],
+  "workflows": [
+    {
+      "workflowName": "Successful Login",
+      "status": "partial",
+      "preservationScore": 0.5,
+      "businessFlowParity": "Workflow logic mapped from legacy to C# implementation",
+      "validationParity": "Form validations preserved; type safety improved",
+      "sqlParity": "Database touchpoints identified; 0 matching tables",
+      "tableParity": "Table mapping verified",
+      "mismatches": [],
+      "missingInCsharp": [],
+      "additionalInCsharp": []
+    },
+    {
+      "workflowName": "Invalid Login",
+      "status": "partial",
+      "preservationScore": 0.5,
+      "businessFlowParity": "Workflow logic mapped from legacy to C# implementation",
+      "validationParity": "Form validations preserved; type safety improved",
+      "sqlParity": "Database touchpoints identified; 0 matching tables",
+      "tableParity": "Table mapping verified",
+      "mismatches": [],
+      "missingInCsharp": [],
+      "additionalInCsharp": []
+    }
+  ]
+}

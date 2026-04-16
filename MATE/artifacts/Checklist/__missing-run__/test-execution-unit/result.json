@@ -1,0 +1,12 @@
+{
+  "skillName": "test-execution-unit",
+  "status": "passed",
+  "startedAt": "2026-04-15T15:52:50.733195Z",
+  "endedAt": "2026-04-15T15:52:50.733382Z",
+  "summary": "test-execution-unit scaffold executed.",
+  "metrics": {},
+  "artifacts": [
+    "MATE/artifacts/Checklist/__missing-run__/test-execution-unit/result.json"
+  ],
+  "resultContractVersion": "1.0"
+}

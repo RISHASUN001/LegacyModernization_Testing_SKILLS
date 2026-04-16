@@ -1,0 +1,14 @@
+{
+  "moduleName": "Login",
+  "category": "playwright",
+  "status": "failed",
+  "testsDiscovered": 0,
+  "testsCopied": 0,
+  "command": [
+    "pytest",
+    "Tests/Playwright/Login"
+  ],
+  "baseUrl": "http://localhost:5001",
+  "startUrl": "/",
+  "items": []
+}

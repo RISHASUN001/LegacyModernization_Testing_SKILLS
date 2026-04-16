@@ -4,8 +4,8 @@
   "moduleName": "Login",
   "runId": "login-test-20260414-005637",
   "status": "passed",
-  "startedAt": "2026-04-14T02:40:45.880038Z",
-  "endedAt": "2026-04-14T02:40:45.914199Z",
+  "startedAt": "2026-04-14T16:31:46.595309Z",
+  "endedAt": "2026-04-14T16:31:46.622010Z",
   "summary": "Test plan generated for Login with categories=7 and suggestedTests=6.",
   "metrics": {
     "existingTests": 0,
@@ -15,7 +15,10 @@
   },
   "artifacts": [
     "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/test-plan-generation/result.json",
-    "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/test-plan-generation/test-plan.json"
+    "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/test-plan-generation/test-plan.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/test-plan-generation/generated-test-plan.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/test-plan-generation/workflow-test-map.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/_registry/persistent-test-registry.json"
   ],
   "findings": [],
   "recommendations": [

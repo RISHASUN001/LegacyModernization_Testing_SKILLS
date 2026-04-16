@@ -1,0 +1,22 @@
+{
+  "skillName": "diagram-generation",
+  "status": "passed",
+  "startedAt": "2026-04-15T20:15:47.620346Z",
+  "endedAt": "2026-04-15T20:15:47.620379Z",
+  "summary": "Generated Mermaid + Excalidraw + PNG workflow diagrams for C# and legacy business flows.",
+  "metrics": {
+    "diagramBundles": 2
+  },
+  "artifacts": [
+    "MATE/artifacts/Checklist/run-local-005/diagram-generation/csharp-workflow.mmd",
+    "MATE/artifacts/Checklist/run-local-005/diagram-generation/legacy-workflow.mmd",
+    "MATE/artifacts/Checklist/run-local-005/diagram-generation/csharp-workflow.excalidraw.json",
+    "MATE/artifacts/Checklist/run-local-005/diagram-generation/legacy-workflow.excalidraw.json",
+    "MATE/artifacts/Checklist/run-local-005/diagram-generation/previews/csharp-workflow.png",
+    "MATE/artifacts/Checklist/run-local-005/diagram-generation/previews/legacy-workflow.png",
+    "MATE/artifacts/Checklist/run-local-005/diagram-generation/diagram-index.json"
+  ],
+  "findings": [],
+  "recommendations": [],
+  "resultContractVersion": "1.0"
+}

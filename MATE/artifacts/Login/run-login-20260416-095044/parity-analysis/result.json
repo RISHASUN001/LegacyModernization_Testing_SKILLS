@@ -1,0 +1,17 @@
+{
+  "skillName": "parity-analysis",
+  "status": "failed",
+  "startedAt": "2026-04-16T02:14:19.453235Z",
+  "endedAt": "2026-04-16T02:14:19.453243Z",
+  "summary": "strictAIGeneration=true and provider mode is copilot, but MATE_COPILOT_CLAUDE_COMMAND is not configured.",
+  "metrics": {},
+  "artifacts": [],
+  "findings": [
+    {
+      "type": "StrictAIUnavailable",
+      "message": "strictAIGeneration=true and provider mode is copilot, but MATE_COPILOT_CLAUDE_COMMAND is not configured."
+    }
+  ],
+  "recommendations": [],
+  "resultContractVersion": "1.0"
+}

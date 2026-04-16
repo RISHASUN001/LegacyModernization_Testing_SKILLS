@@ -1,0 +1,38 @@
+{
+  "stage": "java-logic-understanding",
+  "stageIndex": 4,
+  "stageTitle": "4. Java Logic Understanding",
+  "stageObjective": "Use AI to explain expected legacy behavior and business workflow outcomes.",
+  "status": "failed",
+  "skills": [
+    {
+      "skill": "legacy-logic-understanding",
+      "stage": "java-logic-understanding",
+      "returnCode": 1,
+      "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/legacy-logic-understanding/result.json",
+      "stderr": "",
+      "status": "failed",
+      "reused": false,
+      "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/legacy-logic-understanding/result.json",
+      "summary": "Input validation failed for legacy logic understanding.",
+      "artifacts": [],
+      "metrics": {},
+      "findings": [
+        {
+          "type": "InputValidation",
+          "message": "Path does not exist in legacyBackendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/src; Path does not exist in legacyFrontendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/web"
+        }
+      ]
+    }
+  ],
+  "skillCount": 1,
+  "skillsFailed": 1,
+  "reusedSkills": 0,
+  "contextFile": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/orchestration/stage-04-context.json",
+  "requiredEvidence": [
+    {
+      "path": "legacy-logic-understanding/legacy-logic-summary.json",
+      "exists": false
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "skillName": "integration-test-generation",
+  "status": "passed",
+  "startedAt": "2026-04-15T16:34:33.706121Z",
+  "endedAt": "2026-04-15T16:34:33.706131Z",
+  "summary": "Generated 0 integration test draft(s).",
+  "metrics": {
+    "generatedCount": 0,
+    "aiUsed": false
+  },
+  "artifacts": [
+    "MATE/artifacts/Checklist/run-local-003/integration-test-generation/integration-tests.generated.json"
+  ],
+  "findings": [],
+  "recommendations": [],
+  "resultContractVersion": "1.0"
+}

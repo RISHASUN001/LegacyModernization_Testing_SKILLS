@@ -1,0 +1,35 @@
+{
+  "moduleName": "LoginFinal",
+  "category": "playwright",
+  "status": "passed",
+  "testsDiscovered": 2,
+  "testsCopied": 2,
+  "command": [
+    "pytest",
+    "Tests/Playwright/LoginFinal"
+  ],
+  "baseUrl": "http://localhost:5001",
+  "startUrl": "http://localhost:5001",
+  "items": [
+    {
+      "testName": "test_successful_login",
+      "workflow": "Successful Login",
+      "purpose": "Playwright test for Successful Login workflow",
+      "codeFile": "Tests/Playwright/LoginFinal/test_test_successful_login.py",
+      "status": "unknown",
+      "requiresInput": false,
+      "logPath": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/test-execution-playwright/playwright.log",
+      "screenshotPaths": []
+    },
+    {
+      "testName": "test_invalid_login",
+      "workflow": "Invalid Login",
+      "purpose": "Playwright test for Invalid Login workflow",
+      "codeFile": "Tests/Playwright/LoginFinal/test_test_invalid_login.py",
+      "status": "unknown",
+      "requiresInput": false,
+      "logPath": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/test-execution-playwright/playwright.log",
+      "screenshotPaths": []
+    }
+  ]
+}

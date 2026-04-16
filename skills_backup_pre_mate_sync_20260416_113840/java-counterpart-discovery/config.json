@@ -1,0 +1,35 @@
+{
+  "name": "java-counterpart-discovery",
+  "stage": "java-discovery",
+  "category": "analysis",
+  "purpose": "Discover Java backend and JSP frontend counterparts for C# workflows using evidence-based inclusion.",
+  "scriptEntry": "run.py",
+  "requiredInputs": [
+    "moduleName",
+    "legacySourceRoot",
+    "convertedSourceRoot"
+  ],
+  "optionalInputs": [
+    "legacyBackendRoot",
+    "legacyFrontendRoot",
+    "moduleHints.keywords"
+  ],
+  "outputFiles": [
+    "result.json",
+    "legacy-module-map.json",
+    "legacy-workflows.json",
+    "java-sql-map.json",
+    "java-table-usage.json",
+    "java-related-files.json",
+    "java-exclusions.json"
+  ],
+  "artifactFolders": [
+    "artifacts/{module}/{runId}/java-counterpart-discovery/"
+  ],
+  "dependencies": [
+    "csharp-logic-understanding"
+  ],
+  "summaryOutputType": "java-counterpart-summary",
+  "resultContractVersion": "2.0",
+  "externalDependencies": []
+}

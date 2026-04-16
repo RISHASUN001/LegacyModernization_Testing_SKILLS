@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "mate.run-input.schema.json",
+  "title": "MATE Run Input",
+  "type": "object",
+  "required": [
+    "moduleName",
+    "workflowNames",
+    "convertedRoots",
+    "legacyBackendRoots",
+    "legacyFrontendRoots",
+    "baseUrl",
+    "startUrl"
+  ],
+  "properties": {
+    "moduleName": { "type": "string", "minLength": 1 },
+    "workflowNames": { "type": "array", "items": { "type": "string", "minLength": 1 }, "minItems": 1 },
+    "convertedRoots": { "type": "array", "items": { "type": "string", "minLength": 1 }, "minItems": 1 },
+    "legacyBackendRoots": { "type": "array", "items": { "type": "string", "minLength": 1 }, "minItems": 1 },
+    "legacyFrontendRoots": { "type": "array", "items": { "type": "string", "minLength": 1 }, "minItems": 1 },
+    "baseUrl": { "type": "string", "minLength": 1 },
+    "startUrl": { "type": "string", "minLength": 1 },
+    "expectedEndUrls": { "type": "array", "items": { "type": "string" } },
+    "controllerHints": { "type": "array", "items": { "type": "string" } },
+    "viewHints": { "type": "array", "items": { "type": "string" } },
+    "keywords": { "type": "array", "items": { "type": "string" } },
+    "strictModuleOnly": { "type": "boolean", "default": true },
+    "strictAIGeneration": { "type": "boolean", "default": true },
+    "enableUserInputPrompting": { "type": "boolean", "default": true }
+  },
+  "additionalProperties": true
+}

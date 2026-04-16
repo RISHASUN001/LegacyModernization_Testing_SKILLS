@@ -1,0 +1,59 @@
+{
+  "moduleName": "LoginFinal",
+  "updatedAt": "2026-04-15T09:27:12.205005Z",
+  "latestRunId": "loginfinal-test-20260415-172444",
+  "recurringSignatures": [
+    "ArchitectureIssuesDetected::Clean architecture review::Detected 1 architecture issue(s), including 1 high-severity issue(s).",
+    "BrowserEvidenceUnavailable::Playwright evidence collection::Playwright execution did not emit runtime/network issue signatures in execution logs.",
+    "NoTestsCollected::E2E::No runnable E2E tests were collected in this run; treated as non-blocking baseline.",
+    "NamespaceFolderMismatch",
+    "DIRegistrationMissing"
+  ],
+  "knownPitfalls": [
+    "DIRegistrationMissing",
+    "DapperCaseSensitivity",
+    "NamespaceFolderMismatch",
+    "OracleMappingIssue",
+    "RelativeUrlFailure",
+    "RouteAssumptionMismatch",
+    "SessionHandlingPitfall"
+  ],
+  "history": [
+    {
+      "runId": "loginfinal-test-20260415-154340",
+      "resolvedCount": 0,
+      "recurringCount": 0,
+      "newCount": 3
+    },
+    {
+      "runId": "loginfinal-test-20260415-085013",
+      "resolvedCount": 0,
+      "recurringCount": 0,
+      "newCount": 3
+    },
+    {
+      "runId": "loginfinal-fresh-test-20260415",
+      "resolvedCount": 0,
+      "recurringCount": 0,
+      "newCount": 3
+    },
+    {
+      "runId": "loginfinal-test-20260415-165746",
+      "resolvedCount": 0,
+      "recurringCount": 0,
+      "newCount": 5
+    },
+    {
+      "runId": "loginfinal-test-20260415-170304",
+      "resolvedCount": 1,
+      "recurringCount": 4,
+      "newCount": 1
+    },
+    {
+      "runId": "loginfinal-test-20260415-172444",
+      "resolvedCount": 2,
+      "recurringCount": 3,
+      "newCount": 0
+    }
+  ]
+}

@@ -1,1 +1,8 @@
-{}
+{
+  "status": "route-probe-only",
+  "probed": [
+    "http://localhost:5001/",
+    "http://localhost:5001",
+    "http://localhost:5001/dashboard"
+  ]
+}

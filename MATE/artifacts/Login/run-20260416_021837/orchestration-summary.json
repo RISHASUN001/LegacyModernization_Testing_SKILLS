@@ -1,0 +1,909 @@
+{
+  "schemaVersion": "2.1",
+  "runId": "run-20260416_021837",
+  "moduleName": "Login",
+  "effectiveRoots": {
+    "inputPath": "/Users/risha/Documents/Buildathon/MATE/run-inputs/run-input.Login.20260416_021837.json",
+    "skillsRoot": "/Users/risha/Documents/Buildathon/MATE/skills",
+    "artifactsRoot": "/Users/risha/Documents/Buildathon/MATE/artifacts"
+  },
+  "startedAt": "2026-04-16T02:18:37.635642Z",
+  "endedAt": "2026-04-16T02:18:38.690686Z",
+  "status": "failed",
+  "summary": "MATE orchestration completed with stage contracts, evidence tracking, and rerun support.",
+  "stages": [
+    {
+      "stage": "csharp-discovery",
+      "stageIndex": 1,
+      "stageTitle": "1. C# Discovery",
+      "stageObjective": "Discover converted module controllers, routes, views, services, repositories, SQL, and tables.",
+      "status": "passed",
+      "skills": [
+        {
+          "skill": "csharp-module-discovery",
+          "stage": "csharp-discovery",
+          "returnCode": 0,
+          "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/csharp-module-discovery/result.json",
+          "stderr": "",
+          "status": "passed",
+          "reused": false,
+          "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/csharp-module-discovery/result.json",
+          "summary": "Scoped 19 C# files for module 'Login' and mapped routes, SQL, and tables.",
+          "artifacts": [
+            "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/csharp-module-discovery/csharp-module-map.json",
+            "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/csharp-module-discovery/controller-route-map.json",
+            "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/csharp-module-discovery/csharp-sql-map.json",
+            "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/csharp-module-discovery/csharp-table-usage.json",
+            "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/csharp-module-discovery/scoped-file-relevance.json"
+          ],
+          "metrics": {
+            "candidateFiles": 41,
+            "includedFiles": 19,
+            "controllers": 2,
+            "views": 13,
+            "services": 4,
+            "repositories": 0,
+            "routeFiles": 4,
+            "sqlFiles": 2,
+            "tables": 15,
+            "workflowCount": 1
+          },
+          "findings": []
+        }
+      ],
+      "skillCount": 1,
+      "skillsFailed": 0,
+      "reusedSkills": 0,
+      "contextFile": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/orchestration/stage-01-context.json",
+      "requiredEvidence": [
+        {
+          "path": "csharp-module-discovery/csharp-module-map.json",
+          "exists": true
+        },
+        {
+          "path": "csharp-module-discovery/controller-route-map.json",
+          "exists": true
+        },
+        {
+          "path": "csharp-module-discovery/csharp-sql-map.json",
+          "exists": true
+        },
+        {
+          "path": "csharp-module-discovery/csharp-table-usage.json",
+          "exists": true
+        }
+      ]
+    },
+    {
+      "stage": "csharp-logic-understanding",
+      "stageIndex": 2,
+      "stageTitle": "2. C# Logic Understanding",
+      "stageObjective": "Use AI to explain workflow branches, validations, and DB touchpoints in the converted C# module.",
+      "status": "passed",
+      "skills": [
+        {
+          "skill": "csharp-logic-understanding",
+          "stage": "csharp-logic-understanding",
+          "returnCode": 0,
+          "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/csharp-logic-understanding/result.json",
+          "stderr": "",
+          "status": "passed",
+          "reused": false,
+          "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/csharp-logic-understanding/result.json",
+          "summary": "Built C# logic understanding for 1 workflows.",
+          "artifacts": [
+            "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/csharp-logic-understanding/csharp-logic-summary.json"
+          ],
+          "metrics": {
+            "workflowCount": 1,
+            "routesAnalyzed": 4,
+            "sqlFilesAnalyzed": 2,
+            "tablesFound": 15
+          },
+          "findings": []
+        }
+      ],
+      "skillCount": 1,
+      "skillsFailed": 0,
+      "reusedSkills": 0,
+      "contextFile": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/orchestration/stage-02-context.json",
+      "requiredEvidence": [
+        {
+          "path": "csharp-logic-understanding/csharp-logic-summary.json",
+          "exists": true
+        }
+      ]
+    },
+    {
+      "stage": "java-discovery",
+      "stageIndex": 3,
+      "stageTitle": "3. Java Discovery",
+      "stageObjective": "Locate legacy Java/JSP module files strictly anchored to C# discovery evidence.",
+      "status": "failed",
+      "skills": [
+        {
+          "skill": "legacy-module-discovery",
+          "stage": "java-discovery",
+          "returnCode": 1,
+          "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/legacy-module-discovery/result.json",
+          "stderr": "",
+          "status": "failed",
+          "reused": false,
+          "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/legacy-module-discovery/result.json",
+          "summary": "Input validation failed for legacy discovery.",
+          "artifacts": [],
+          "metrics": {
+            "validationErrors": 2
+          },
+          "findings": [
+            {
+              "type": "InputValidation",
+              "message": "Path does not exist in legacyBackendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/src; Path does not exist in legacyFrontendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/web"
+            }
+          ]
+        }
+      ],
+      "skillCount": 1,
+      "skillsFailed": 1,
+      "reusedSkills": 0,
+      "contextFile": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/orchestration/stage-03-context.json",
+      "requiredEvidence": [
+        {
+          "path": "legacy-module-discovery/legacy-module-map.json",
+          "exists": false
+        },
+        {
+          "path": "legacy-module-discovery/java-sql-map.json",
+          "exists": false
+        },
+        {
+          "path": "legacy-module-discovery/java-table-usage.json",
+          "exists": false
+        }
+      ]
+    },
+    {
+      "stage": "java-logic-understanding",
+      "stageIndex": 4,
+      "stageTitle": "4. Java Logic Understanding",
+      "stageObjective": "Use AI to explain expected legacy behavior and business workflow outcomes.",
+      "status": "failed",
+      "skills": [
+        {
+          "skill": "legacy-logic-understanding",
+          "stage": "java-logic-understanding",
+          "returnCode": 1,
+          "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/legacy-logic-understanding/result.json",
+          "stderr": "",
+          "status": "failed",
+          "reused": false,
+          "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/legacy-logic-understanding/result.json",
+          "summary": "Input validation failed for legacy logic understanding.",
+          "artifacts": [],
+          "metrics": {},
+          "findings": [
+            {
+              "type": "InputValidation",
+              "message": "Path does not exist in legacyBackendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/src; Path does not exist in legacyFrontendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/web"
+            }
+          ]
+        }
+      ],
+      "skillCount": 1,
+      "skillsFailed": 1,
+      "reusedSkills": 0,
+      "contextFile": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/orchestration/stage-04-context.json",
+      "requiredEvidence": [
+        {
+          "path": "legacy-logic-understanding/legacy-logic-summary.json",
+          "exists": false
+        }
+      ]
+    },
+    {
+      "stage": "diagram-generation",
+      "stageIndex": 5,
+      "stageTitle": "5. Diagram Generation",
+      "stageObjective": "Generate Mermaid + Excalidraw + preview image artifacts for C# and Java workflows.",
+      "status": "failed",
+      "skills": [
+        {
+          "skill": "diagram-generation",
+          "stage": "diagram-generation",
+          "returnCode": 1,
+          "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/diagram-generation/result.json",
+          "stderr": "",
+          "status": "failed",
+          "reused": false,
+          "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/diagram-generation/result.json",
+          "summary": "Input validation failed for diagram generation.",
+          "artifacts": [],
+          "metrics": {},
+          "findings": [
+            {
+              "type": "InputValidation",
+              "message": "Path does not exist in legacyBackendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/src; Path does not exist in legacyFrontendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/web"
+            }
+          ]
+        }
+      ],
+      "skillCount": 1,
+      "skillsFailed": 1,
+      "reusedSkills": 0,
+      "contextFile": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/orchestration/stage-05-context.json",
+      "requiredEvidence": [
+        {
+          "path": "diagram-generation/diagram-index.json",
+          "exists": false
+        },
+        {
+          "path": "diagram-generation/csharp-workflow.excalidraw.json",
+          "exists": false
+        },
+        {
+          "path": "diagram-generation/legacy-workflow.excalidraw.json",
+          "exists": false
+        }
+      ]
+    },
+    {
+      "stage": "functional-parity-and-sql-table-comparison",
+      "stageIndex": 6,
+      "stageTitle": "6. Functional Parity + SQL/Table",
+      "stageObjective": "Compare logic and data usage between legacy and converted modules and flag behavior drift.",
+      "status": "failed",
+      "skills": [
+        {
+          "skill": "parity-analysis",
+          "stage": "functional-parity-and-sql-table-comparison",
+          "returnCode": 1,
+          "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/parity-analysis/result.json",
+          "stderr": "",
+          "status": "failed",
+          "reused": false,
+          "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/parity-analysis/result.json",
+          "summary": "Input validation failed for parity analysis.",
+          "artifacts": [],
+          "metrics": {},
+          "findings": [
+            {
+              "type": "InputValidation",
+              "message": "Path does not exist in legacyBackendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/src; Path does not exist in legacyFrontendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/web"
+            }
+          ]
+        }
+      ],
+      "skillCount": 1,
+      "skillsFailed": 1,
+      "reusedSkills": 0,
+      "contextFile": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/orchestration/stage-06-context.json",
+      "requiredEvidence": [
+        {
+          "path": "parity-analysis/parity-diff.json",
+          "exists": false
+        },
+        {
+          "path": "parity-analysis/preservation-score.json",
+          "exists": false
+        }
+      ]
+    },
+    {
+      "stage": "ai-test-generation",
+      "stageIndex": 7,
+      "stageTitle": "7. AI Test Generation",
+      "stageObjective": "Generate workflow-specific unit, integration, playwright, and edge tests.",
+      "status": "failed",
+      "skills": [
+        {
+          "skill": "edge-test-generation",
+          "stage": "ai-test-generation",
+          "returnCode": 0,
+          "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/edge-test-generation/result.json",
+          "stderr": "",
+          "status": "passed",
+          "reused": false,
+          "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/edge-test-generation/result.json",
+          "summary": "edge-test-generation scaffold executed.",
+          "artifacts": [
+            "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/edge-test-generation/result.json"
+          ],
+          "metrics": {},
+          "findings": []
+        },
+        {
+          "skill": "integration-test-generation",
+          "stage": "ai-test-generation",
+          "returnCode": 0,
+          "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/integration-test-generation/result.json",
+          "stderr": "",
+          "status": "passed",
+          "reused": false,
+          "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/integration-test-generation/result.json",
+          "summary": "integration-test-generation scaffold executed.",
+          "artifacts": [
+            "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/integration-test-generation/result.json"
+          ],
+          "metrics": {},
+          "findings": []
+        },
+        {
+          "skill": "playwright-test-generation",
+          "stage": "ai-test-generation",
+          "returnCode": 1,
+          "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/playwright-test-generation/result.json",
+          "stderr": "",
+          "status": "failed",
+          "reused": false,
+          "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/playwright-test-generation/result.json",
+          "summary": "Input validation failed.",
+          "artifacts": [],
+          "metrics": {},
+          "findings": [
+            {
+              "type": "InputValidation",
+              "message": "Path does not exist in legacyBackendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/src; Path does not exist in legacyFrontendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/web"
+            }
+          ]
+        },
+        {
+          "skill": "unit-test-generation",
+          "stage": "ai-test-generation",
+          "returnCode": 0,
+          "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/unit-test-generation/result.json",
+          "stderr": "",
+          "status": "passed",
+          "reused": false,
+          "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/unit-test-generation/result.json",
+          "summary": "unit-test-generation scaffold executed.",
+          "artifacts": [
+            "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/unit-test-generation/result.json"
+          ],
+          "metrics": {},
+          "findings": []
+        }
+      ],
+      "skillCount": 4,
+      "skillsFailed": 1,
+      "reusedSkills": 0,
+      "contextFile": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/orchestration/stage-07-context.json",
+      "requiredEvidence": [
+        {
+          "path": "unit-test-generation/unit-tests.generated.json",
+          "exists": false
+        },
+        {
+          "path": "integration-test-generation/integration-tests.generated.json",
+          "exists": false
+        },
+        {
+          "path": "playwright-test-generation/playwright-tests.generated.json",
+          "exists": false
+        },
+        {
+          "path": "edge-test-generation/edge-tests.generated.json",
+          "exists": false
+        }
+      ]
+    },
+    {
+      "stage": "test-execution",
+      "stageIndex": 8,
+      "stageTitle": "8. Test Execution",
+      "stageObjective": "Execute generated tests and capture logs, failures, console, network, and screenshots.",
+      "status": "failed",
+      "skills": [
+        {
+          "skill": "test-execution-integration",
+          "stage": "test-execution",
+          "returnCode": 1,
+          "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/test-execution-integration/result.json",
+          "stderr": "",
+          "status": "failed",
+          "reused": false,
+          "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/test-execution-integration/result.json",
+          "summary": "Input validation failed.",
+          "artifacts": [],
+          "metrics": {},
+          "findings": [
+            {
+              "type": "InputValidation",
+              "message": "Path does not exist in legacyBackendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/src; Path does not exist in legacyFrontendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/web"
+            }
+          ]
+        },
+        {
+          "skill": "test-execution-playwright",
+          "stage": "test-execution",
+          "returnCode": 1,
+          "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/test-execution-playwright/result.json",
+          "stderr": "",
+          "status": "failed",
+          "reused": false,
+          "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/test-execution-playwright/result.json",
+          "summary": "Input validation failed.",
+          "artifacts": [],
+          "metrics": {},
+          "findings": [
+            {
+              "type": "InputValidation",
+              "message": "Path does not exist in legacyBackendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/src; Path does not exist in legacyFrontendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/web"
+            }
+          ]
+        },
+        {
+          "skill": "test-execution-unit",
+          "stage": "test-execution",
+          "returnCode": 1,
+          "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/test-execution-unit/result.json",
+          "stderr": "",
+          "status": "failed",
+          "reused": false,
+          "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/test-execution-unit/result.json",
+          "summary": "Input validation failed.",
+          "artifacts": [],
+          "metrics": {},
+          "findings": [
+            {
+              "type": "InputValidation",
+              "message": "Path does not exist in legacyBackendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/src; Path does not exist in legacyFrontendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/web"
+            }
+          ]
+        }
+      ],
+      "skillCount": 3,
+      "skillsFailed": 3,
+      "reusedSkills": 0,
+      "contextFile": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/orchestration/stage-08-context.json",
+      "requiredEvidence": [
+        {
+          "path": "test-execution-unit/unit-test-results.json",
+          "exists": false
+        },
+        {
+          "path": "test-execution-integration/integration-test-results.json",
+          "exists": false
+        },
+        {
+          "path": "test-execution-playwright/playwright-results.json",
+          "exists": false
+        }
+      ]
+    },
+    {
+      "stage": "clean-architecture-and-findings",
+      "stageIndex": 9,
+      "stageTitle": "9. Clean Architecture + Findings",
+      "stageObjective": "Assess C# architecture and synthesize findings/recommendations across the full run.",
+      "status": "failed",
+      "skills": [
+        {
+          "skill": "clean-architecture-assessment",
+          "stage": "clean-architecture-and-findings",
+          "returnCode": 1,
+          "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/clean-architecture-assessment/result.json",
+          "stderr": "",
+          "status": "failed",
+          "reused": false,
+          "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/clean-architecture-assessment/result.json",
+          "summary": "Input validation failed.",
+          "artifacts": [],
+          "metrics": {},
+          "findings": [
+            {
+              "type": "InputValidation",
+              "message": "Path does not exist in legacyBackendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/src; Path does not exist in legacyFrontendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/web"
+            }
+          ]
+        },
+        {
+          "skill": "findings-synthesis",
+          "stage": "clean-architecture-and-findings",
+          "returnCode": 1,
+          "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/findings-synthesis/result.json",
+          "stderr": "",
+          "status": "failed",
+          "reused": false,
+          "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/findings-synthesis/result.json",
+          "summary": "Input validation failed.",
+          "artifacts": [],
+          "metrics": {},
+          "findings": [
+            {
+              "type": "InputValidation",
+              "message": "Path does not exist in legacyBackendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/src; Path does not exist in legacyFrontendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/web"
+            }
+          ]
+        }
+      ],
+      "skillCount": 2,
+      "skillsFailed": 2,
+      "reusedSkills": 0,
+      "contextFile": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/orchestration/stage-09-context.json",
+      "requiredEvidence": [
+        {
+          "path": "clean-architecture-assessment/clean-architecture-report.json",
+          "exists": false
+        },
+        {
+          "path": "findings-synthesis/findings-synthesis.json",
+          "exists": false
+        }
+      ]
+    },
+    {
+      "stage": "pipeline-vanity-check",
+      "stageIndex": 10,
+      "stageTitle": "10. Pipeline Vanity Check",
+      "stageObjective": "Verify stage completeness, required evidence presence, and final recommendation.",
+      "status": "failed",
+      "skills": [
+        {
+          "skill": "vanity-check",
+          "stage": "pipeline-vanity-check",
+          "returnCode": 1,
+          "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/vanity-check/result.json",
+          "stderr": "",
+          "status": "failed",
+          "reused": false,
+          "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/vanity-check/result.json",
+          "summary": "Input validation failed.",
+          "artifacts": [],
+          "metrics": {},
+          "findings": [
+            {
+              "type": "InputValidation",
+              "message": "Path does not exist in legacyBackendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/src; Path does not exist in legacyFrontendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/web"
+            }
+          ]
+        }
+      ],
+      "skillCount": 1,
+      "skillsFailed": 1,
+      "reusedSkills": 0,
+      "contextFile": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/orchestration/stage-10-context.json",
+      "requiredEvidence": [
+        {
+          "path": "vanity-check/vanity-gate.json",
+          "exists": false
+        },
+        {
+          "path": "vanity-check/pipeline-completeness-report.json",
+          "exists": false
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "skill": "csharp-module-discovery",
+      "stage": "csharp-discovery",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/csharp-module-discovery/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": false,
+      "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/csharp-module-discovery/result.json",
+      "summary": "Scoped 19 C# files for module 'Login' and mapped routes, SQL, and tables.",
+      "artifacts": [
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/csharp-module-discovery/csharp-module-map.json",
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/csharp-module-discovery/controller-route-map.json",
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/csharp-module-discovery/csharp-sql-map.json",
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/csharp-module-discovery/csharp-table-usage.json",
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/csharp-module-discovery/scoped-file-relevance.json"
+      ],
+      "metrics": {
+        "candidateFiles": 41,
+        "includedFiles": 19,
+        "controllers": 2,
+        "views": 13,
+        "services": 4,
+        "repositories": 0,
+        "routeFiles": 4,
+        "sqlFiles": 2,
+        "tables": 15,
+        "workflowCount": 1
+      },
+      "findings": []
+    },
+    {
+      "skill": "csharp-logic-understanding",
+      "stage": "csharp-logic-understanding",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/csharp-logic-understanding/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": false,
+      "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/csharp-logic-understanding/result.json",
+      "summary": "Built C# logic understanding for 1 workflows.",
+      "artifacts": [
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/csharp-logic-understanding/csharp-logic-summary.json"
+      ],
+      "metrics": {
+        "workflowCount": 1,
+        "routesAnalyzed": 4,
+        "sqlFilesAnalyzed": 2,
+        "tablesFound": 15
+      },
+      "findings": []
+    },
+    {
+      "skill": "legacy-module-discovery",
+      "stage": "java-discovery",
+      "returnCode": 1,
+      "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/legacy-module-discovery/result.json",
+      "stderr": "",
+      "status": "failed",
+      "reused": false,
+      "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/legacy-module-discovery/result.json",
+      "summary": "Input validation failed for legacy discovery.",
+      "artifacts": [],
+      "metrics": {
+        "validationErrors": 2
+      },
+      "findings": [
+        {
+          "type": "InputValidation",
+          "message": "Path does not exist in legacyBackendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/src; Path does not exist in legacyFrontendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/web"
+        }
+      ]
+    },
+    {
+      "skill": "legacy-logic-understanding",
+      "stage": "java-logic-understanding",
+      "returnCode": 1,
+      "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/legacy-logic-understanding/result.json",
+      "stderr": "",
+      "status": "failed",
+      "reused": false,
+      "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/legacy-logic-understanding/result.json",
+      "summary": "Input validation failed for legacy logic understanding.",
+      "artifacts": [],
+      "metrics": {},
+      "findings": [
+        {
+          "type": "InputValidation",
+          "message": "Path does not exist in legacyBackendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/src; Path does not exist in legacyFrontendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/web"
+        }
+      ]
+    },
+    {
+      "skill": "diagram-generation",
+      "stage": "diagram-generation",
+      "returnCode": 1,
+      "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/diagram-generation/result.json",
+      "stderr": "",
+      "status": "failed",
+      "reused": false,
+      "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/diagram-generation/result.json",
+      "summary": "Input validation failed for diagram generation.",
+      "artifacts": [],
+      "metrics": {},
+      "findings": [
+        {
+          "type": "InputValidation",
+          "message": "Path does not exist in legacyBackendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/src; Path does not exist in legacyFrontendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/web"
+        }
+      ]
+    },
+    {
+      "skill": "parity-analysis",
+      "stage": "functional-parity-and-sql-table-comparison",
+      "returnCode": 1,
+      "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/parity-analysis/result.json",
+      "stderr": "",
+      "status": "failed",
+      "reused": false,
+      "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/parity-analysis/result.json",
+      "summary": "Input validation failed for parity analysis.",
+      "artifacts": [],
+      "metrics": {},
+      "findings": [
+        {
+          "type": "InputValidation",
+          "message": "Path does not exist in legacyBackendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/src; Path does not exist in legacyFrontendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/web"
+        }
+      ]
+    },
+    {
+      "skill": "edge-test-generation",
+      "stage": "ai-test-generation",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/edge-test-generation/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": false,
+      "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/edge-test-generation/result.json",
+      "summary": "edge-test-generation scaffold executed.",
+      "artifacts": [
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/edge-test-generation/result.json"
+      ],
+      "metrics": {},
+      "findings": []
+    },
+    {
+      "skill": "integration-test-generation",
+      "stage": "ai-test-generation",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/integration-test-generation/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": false,
+      "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/integration-test-generation/result.json",
+      "summary": "integration-test-generation scaffold executed.",
+      "artifacts": [
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/integration-test-generation/result.json"
+      ],
+      "metrics": {},
+      "findings": []
+    },
+    {
+      "skill": "playwright-test-generation",
+      "stage": "ai-test-generation",
+      "returnCode": 1,
+      "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/playwright-test-generation/result.json",
+      "stderr": "",
+      "status": "failed",
+      "reused": false,
+      "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/playwright-test-generation/result.json",
+      "summary": "Input validation failed.",
+      "artifacts": [],
+      "metrics": {},
+      "findings": [
+        {
+          "type": "InputValidation",
+          "message": "Path does not exist in legacyBackendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/src; Path does not exist in legacyFrontendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/web"
+        }
+      ]
+    },
+    {
+      "skill": "unit-test-generation",
+      "stage": "ai-test-generation",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/unit-test-generation/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": false,
+      "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/unit-test-generation/result.json",
+      "summary": "unit-test-generation scaffold executed.",
+      "artifacts": [
+        "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/unit-test-generation/result.json"
+      ],
+      "metrics": {},
+      "findings": []
+    },
+    {
+      "skill": "test-execution-integration",
+      "stage": "test-execution",
+      "returnCode": 1,
+      "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/test-execution-integration/result.json",
+      "stderr": "",
+      "status": "failed",
+      "reused": false,
+      "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/test-execution-integration/result.json",
+      "summary": "Input validation failed.",
+      "artifacts": [],
+      "metrics": {},
+      "findings": [
+        {
+          "type": "InputValidation",
+          "message": "Path does not exist in legacyBackendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/src; Path does not exist in legacyFrontendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/web"
+        }
+      ]
+    },
+    {
+      "skill": "test-execution-playwright",
+      "stage": "test-execution",
+      "returnCode": 1,
+      "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/test-execution-playwright/result.json",
+      "stderr": "",
+      "status": "failed",
+      "reused": false,
+      "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/test-execution-playwright/result.json",
+      "summary": "Input validation failed.",
+      "artifacts": [],
+      "metrics": {},
+      "findings": [
+        {
+          "type": "InputValidation",
+          "message": "Path does not exist in legacyBackendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/src; Path does not exist in legacyFrontendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/web"
+        }
+      ]
+    },
+    {
+      "skill": "test-execution-unit",
+      "stage": "test-execution",
+      "returnCode": 1,
+      "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/test-execution-unit/result.json",
+      "stderr": "",
+      "status": "failed",
+      "reused": false,
+      "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/test-execution-unit/result.json",
+      "summary": "Input validation failed.",
+      "artifacts": [],
+      "metrics": {},
+      "findings": [
+        {
+          "type": "InputValidation",
+          "message": "Path does not exist in legacyBackendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/src; Path does not exist in legacyFrontendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/web"
+        }
+      ]
+    },
+    {
+      "skill": "clean-architecture-assessment",
+      "stage": "clean-architecture-and-findings",
+      "returnCode": 1,
+      "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/clean-architecture-assessment/result.json",
+      "stderr": "",
+      "status": "failed",
+      "reused": false,
+      "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/clean-architecture-assessment/result.json",
+      "summary": "Input validation failed.",
+      "artifacts": [],
+      "metrics": {},
+      "findings": [
+        {
+          "type": "InputValidation",
+          "message": "Path does not exist in legacyBackendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/src; Path does not exist in legacyFrontendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/web"
+        }
+      ]
+    },
+    {
+      "skill": "findings-synthesis",
+      "stage": "clean-architecture-and-findings",
+      "returnCode": 1,
+      "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/findings-synthesis/result.json",
+      "stderr": "",
+      "status": "failed",
+      "reused": false,
+      "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/findings-synthesis/result.json",
+      "summary": "Input validation failed.",
+      "artifacts": [],
+      "metrics": {},
+      "findings": [
+        {
+          "type": "InputValidation",
+          "message": "Path does not exist in legacyBackendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/src; Path does not exist in legacyFrontendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/web"
+        }
+      ]
+    },
+    {
+      "skill": "vanity-check",
+      "stage": "pipeline-vanity-check",
+      "returnCode": 1,
+      "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/vanity-check/result.json",
+      "stderr": "",
+      "status": "failed",
+      "reused": false,
+      "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-20260416_021837/vanity-check/result.json",
+      "summary": "Input validation failed.",
+      "artifacts": [],
+      "metrics": {},
+      "findings": [
+        {
+          "type": "InputValidation",
+          "message": "Path does not exist in legacyBackendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/src; Path does not exist in legacyFrontendRoots: /Users/risha/Documents/Buildathon/samples/legacy-java-app/web"
+        }
+      ]
+    }
+  ],
+  "stageEvidenceIndex": {
+    "csharp-discovery": [
+      "csharp-module-discovery/csharp-module-map.json",
+      "csharp-module-discovery/controller-route-map.json",
+      "csharp-module-discovery/csharp-sql-map.json",
+      "csharp-module-discovery/csharp-table-usage.json"
+    ],
+    "csharp-logic-understanding": [
+      "csharp-logic-understanding/csharp-logic-summary.json"
+    ],
+    "java-discovery": [],
+    "java-logic-understanding": [],
+    "diagram-generation": [],
+    "functional-parity-and-sql-table-comparison": [],
+    "ai-test-generation": [],
+    "test-execution": [],
+    "clean-architecture-and-findings": [],
+    "pipeline-vanity-check": []
+  }
+}

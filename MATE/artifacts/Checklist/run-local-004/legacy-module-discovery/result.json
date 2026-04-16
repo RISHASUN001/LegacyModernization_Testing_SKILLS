@@ -1,0 +1,22 @@
+{
+  "skillName": "legacy-module-discovery",
+  "status": "passed",
+  "startedAt": "2026-04-15T16:37:38.272045Z",
+  "endedAt": "2026-04-15T16:37:38.272058Z",
+  "summary": "Legacy discovery selected 0 anchored files from 0 candidates.",
+  "metrics": {
+    "legacyCandidates": 0,
+    "selectedLegacyFiles": 0,
+    "sqlFiles": 0,
+    "tables": 0,
+    "anchorTokens": 285
+  },
+  "artifacts": [
+    "MATE/artifacts/Checklist/run-local-004/legacy-module-discovery/legacy-module-map.json",
+    "MATE/artifacts/Checklist/run-local-004/legacy-module-discovery/java-sql-map.json",
+    "MATE/artifacts/Checklist/run-local-004/legacy-module-discovery/java-table-usage.json"
+  ],
+  "findings": [],
+  "recommendations": [],
+  "resultContractVersion": "1.0"
+}

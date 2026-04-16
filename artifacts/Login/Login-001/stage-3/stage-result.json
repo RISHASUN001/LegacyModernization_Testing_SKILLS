@@ -1,0 +1,55 @@
+{
+  "stage": "java-discovery",
+  "stageTitle": "Java Discovery",
+  "stageIndex": 3,
+  "status": "passed",
+  "skillCount": 2,
+  "skillsPassed": 2,
+  "skillsFailed": 0,
+  "skills": [
+    {
+      "skill": "java-counterpart-discovery",
+      "stage": "java-discovery",
+      "status": "passed",
+      "startedAt": "2026-04-16T01:03:33.321020Z",
+      "endedAt": "2026-04-16T01:03:33.455698Z",
+      "durationSeconds": 0.134,
+      "summary": "Java counterpart discovery selected 0 files and mapped 0 legacy workflows.",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/artifacts/Login/Login-001/java-counterpart-discovery/result.json\n",
+      "stderr": "",
+      "command": [
+        "python3",
+        "/Users/risha/Documents/Buildathon/skills/java-counterpart-discovery/run.py",
+        "--input",
+        "/Users/risha/Documents/Buildathon/artifacts/Login/Login-001/module-run-input.json",
+        "--artifacts-root",
+        "/Users/risha/Documents/Buildathon/artifacts"
+      ],
+      "resultPath": "/Users/risha/Documents/Buildathon/artifacts/Login/Login-001/java-counterpart-discovery/result.json"
+    },
+    {
+      "skill": "module-discovery",
+      "stage": "java-discovery",
+      "status": "passed",
+      "startedAt": "2026-04-16T01:03:33.455724Z",
+      "endedAt": "2026-04-16T01:03:33.594207Z",
+      "durationSeconds": 0.138,
+      "summary": "Discovery completed for Login: assets=34, routes=1, dbTouchpoints=0.",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/artifacts/Login/Login-001/module-discovery/result.json\n",
+      "stderr": "",
+      "command": [
+        "python3",
+        "/Users/risha/Documents/Buildathon/skills/module-discovery/run.py",
+        "--input",
+        "/Users/risha/Documents/Buildathon/artifacts/Login/Login-001/module-run-input.json",
+        "--artifacts-root",
+        "/Users/risha/Documents/Buildathon/artifacts"
+      ],
+      "resultPath": "/Users/risha/Documents/Buildathon/artifacts/Login/Login-001/module-discovery/result.json"
+    }
+  ],
+  "startedAt": "2026-04-16T01:03:33.321020Z",
+  "endedAt": "2026-04-16T01:03:33.594207Z"
+}

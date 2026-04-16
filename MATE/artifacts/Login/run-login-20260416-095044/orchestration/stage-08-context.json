@@ -1,0 +1,80 @@
+{
+  "runId": "run-login-20260416-095044",
+  "moduleName": "Login",
+  "stage": "test-execution",
+  "stageIndex": 8,
+  "title": "8. Test Execution",
+  "objective": "Execute generated tests and capture logs, failures, console, network, and screenshots.",
+  "disclosure": {
+    "now": {
+      "inputType": "generated tests + runtime environment",
+      "outputType": "execution logs + result summaries + evidence artifacts",
+      "skills": [
+        "test-execution-integration",
+        "test-execution-playwright",
+        "test-execution-unit"
+      ]
+    },
+    "next": {
+      "stage": "clean-architecture-and-findings",
+      "title": "9. Clean Architecture + Findings",
+      "expectedInputType": "csharp artifacts + execution outcomes + parity"
+    }
+  },
+  "contracts": [
+    {
+      "skill": "test-execution-integration",
+      "inputs": [
+        "moduleName",
+        "runId",
+        "dotnetTestTarget"
+      ],
+      "outputs": [
+        "integration-test.log",
+        "integration-test-results.json",
+        "integration-test-execution-manifest.json",
+        "result.json"
+      ],
+      "dependencies": [
+        "integration-test-generation"
+      ]
+    },
+    {
+      "skill": "test-execution-playwright",
+      "inputs": [
+        "moduleName",
+        "runId",
+        "baseUrl",
+        "startUrl"
+      ],
+      "outputs": [
+        "playwright.log",
+        "console-messages.json",
+        "network-requests.json",
+        "playwright-results.json",
+        "playwright-execution-manifest.json",
+        "result.json"
+      ],
+      "dependencies": [
+        "playwright-test-generation"
+      ]
+    },
+    {
+      "skill": "test-execution-unit",
+      "inputs": [
+        "moduleName",
+        "runId",
+        "dotnetTestTarget"
+      ],
+      "outputs": [
+        "unit-test.log",
+        "unit-test-results.json",
+        "unit-test-execution-manifest.json",
+        "result.json"
+      ],
+      "dependencies": [
+        "unit-test-generation"
+      ]
+    }
+  ]
+}

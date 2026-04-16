@@ -1,0 +1,28 @@
+{
+  "skillName": "logic-flow-visualization",
+  "stage": "java-logic",
+  "moduleName": "Login",
+  "runId": "login-test-20260414-005637",
+  "status": "degraded",
+  "startedAt": "2026-04-14T16:31:46.390538Z",
+  "endedAt": "2026-04-14T16:31:46.391160Z",
+  "summary": "Generated 0 workflow diagram bundles (Mermaid + Excalidraw + preview).",
+  "metrics": {
+    "diagramBundles": 0,
+    "csharpWorkflows": 0,
+    "javaWorkflows": 0
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/logic-flow-visualization/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/logic-flow-visualization/diagram-index.json"
+  ],
+  "findings": [],
+  "recommendations": [],
+  "resultContractVersion": "2.0",
+  "provenanceSummary": {
+    "scenarioSources": [
+      "flow-derived"
+    ],
+    "confidence": 0.4
+  }
+}

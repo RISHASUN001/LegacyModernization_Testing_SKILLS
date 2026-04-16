@@ -1,0 +1,18 @@
+{
+  "moduleName": "Checklist",
+  "workflowNames": [
+    "Perform Checklist",
+    "Checklist Reports"
+  ],
+  "strictModuleOnly": true,
+  "anchorTokenCount": 374,
+  "legacyBackendRoots": [
+    "/Users/risha/Documents/Buildathon/src"
+  ],
+  "legacyFrontendRoots": [
+    "/Users/risha/Documents/Buildathon/src"
+  ],
+  "backendFiles": [],
+  "frontendFiles": [],
+  "selectedFiles": []
+}

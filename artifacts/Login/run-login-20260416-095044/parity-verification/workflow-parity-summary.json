@@ -1,0 +1,149 @@
+{
+  "moduleName": "Login",
+  "workflows": [
+    {
+      "workflowName": "Login flow via /Auth",
+      "status": "preserved",
+      "preservationScore": 0.8,
+      "csharp": {
+        "entryPoint": "/Auth",
+        "dependencies": [
+          {
+            "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Services/LoginService.cs",
+            "source": "using-or-type-reference"
+          }
+        ]
+      },
+      "java": {
+        "workflowName": "Login legacy flow via /Auth",
+        "entryPoint": "/Auth",
+        "dependencies": []
+      },
+      "provenance": {
+        "type": "flow-derived",
+        "sources": [
+          "csharp-logic-summary.json",
+          "java-logic-summary.json"
+        ],
+        "confidence": 0.74,
+        "unknowns": []
+      }
+    },
+    {
+      "workflowName": "Login flow via /Auth/dashboard",
+      "status": "preserved",
+      "preservationScore": 0.833,
+      "csharp": {
+        "entryPoint": "/Auth/dashboard",
+        "dependencies": [
+          {
+            "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Services/LoginService.cs",
+            "source": "using-or-type-reference"
+          }
+        ]
+      },
+      "java": {
+        "workflowName": "Login legacy flow via /Auth/dashboard",
+        "entryPoint": "/Auth/dashboard",
+        "dependencies": [
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp"
+        ]
+      },
+      "provenance": {
+        "type": "flow-derived",
+        "sources": [
+          "csharp-logic-summary.json",
+          "java-logic-summary.json"
+        ],
+        "confidence": 0.74,
+        "unknowns": []
+      }
+    },
+    {
+      "workflowName": "Login flow via /Auth/index",
+      "status": "preserved",
+      "preservationScore": 0.833,
+      "csharp": {
+        "entryPoint": "/Auth/index",
+        "dependencies": [
+          {
+            "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Services/LoginService.cs",
+            "source": "using-or-type-reference"
+          }
+        ]
+      },
+      "java": {
+        "workflowName": "Login legacy flow via /Auth/index",
+        "entryPoint": "/Auth/index",
+        "dependencies": [
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp"
+        ]
+      },
+      "provenance": {
+        "type": "flow-derived",
+        "sources": [
+          "csharp-logic-summary.json",
+          "java-logic-summary.json"
+        ],
+        "confidence": 0.74,
+        "unknowns": []
+      }
+    },
+    {
+      "workflowName": "Login flow via /Auth/login",
+      "status": "preserved",
+      "preservationScore": 0.8,
+      "csharp": {
+        "entryPoint": "/Auth/login",
+        "dependencies": [
+          {
+            "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Services/LoginService.cs",
+            "source": "using-or-type-reference"
+          }
+        ]
+      },
+      "java": {
+        "workflowName": "Login legacy flow via /Auth",
+        "entryPoint": "/Auth",
+        "dependencies": []
+      },
+      "provenance": {
+        "type": "flow-derived",
+        "sources": [
+          "csharp-logic-summary.json",
+          "java-logic-summary.json"
+        ],
+        "confidence": 0.74,
+        "unknowns": []
+      }
+    },
+    {
+      "workflowName": "Login flow via /Auth/logout",
+      "status": "preserved",
+      "preservationScore": 0.833,
+      "csharp": {
+        "entryPoint": "/Auth/logout",
+        "dependencies": [
+          {
+            "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Services/LoginService.cs",
+            "source": "using-or-type-reference"
+          }
+        ]
+      },
+      "java": {
+        "workflowName": "Login legacy flow via /Auth/logout",
+        "entryPoint": "/Auth/logout",
+        "dependencies": []
+      },
+      "provenance": {
+        "type": "flow-derived",
+        "sources": [
+          "csharp-logic-summary.json",
+          "java-logic-summary.json"
+        ],
+        "confidence": 0.74,
+        "unknowns": []
+      }
+    }
+  ]
+}

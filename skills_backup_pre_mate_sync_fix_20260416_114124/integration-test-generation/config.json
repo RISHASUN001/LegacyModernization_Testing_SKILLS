@@ -1,0 +1,9 @@
+{
+  "name": "integration-test-generation",
+  "stage": "ai-test-generation",
+  "schemaVersion": "2.0",
+  "aiDriven": true,
+  "inputs": ["moduleName", "runId"],
+  "outputs": ["integration-tests.generated.json", "result.json"],
+  "dependencies": ["csharp-module-discovery", "csharp-logic-understanding"]
+}

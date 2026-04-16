@@ -1,0 +1,17 @@
+{
+  "skillName": "playwright-test-generation",
+  "status": "passed",
+  "startedAt": "2026-04-15T16:20:45.241880Z",
+  "endedAt": "2026-04-15T16:20:45.241889Z",
+  "summary": "Playwright verification test draft created.",
+  "metrics": {
+    "generatedCount": 1
+  },
+  "artifacts": [
+    "MATE/artifacts/Checklist/run-local-001/playwright-test-generation/browser-verification.spec.ts",
+    "MATE/artifacts/Checklist/run-local-001/playwright-test-generation/playwright-tests.generated.json"
+  ],
+  "findings": [],
+  "recommendations": [],
+  "resultContractVersion": "1.0"
+}

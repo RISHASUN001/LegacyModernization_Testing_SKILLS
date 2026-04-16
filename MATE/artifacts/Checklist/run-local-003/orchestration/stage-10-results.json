@@ -1,0 +1,44 @@
+{
+  "stage": "pipeline-vanity-check",
+  "stageIndex": 10,
+  "stageTitle": "10. Pipeline Vanity Check",
+  "stageObjective": "Verify stage completeness, required evidence presence, and final recommendation.",
+  "status": "passed",
+  "skills": [
+    {
+      "skill": "vanity-check",
+      "stage": "pipeline-vanity-check",
+      "returnCode": 0,
+      "stdout": "MATE/artifacts/Checklist/run-local-003/vanity-check/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": false,
+      "resultPath": "MATE/artifacts/Checklist/run-local-003/vanity-check/result.json",
+      "summary": "Vanity gate completed. Recommendation: ship-with-confidence.",
+      "artifacts": [
+        "MATE/artifacts/Checklist/run-local-003/vanity-check/vanity-gate.json"
+      ],
+      "metrics": {
+        "findings": 0,
+        "blockers": 0
+      },
+      "findings": [
+        {
+          "type": "VanityGate",
+          "message": "Recommendation is ship-with-confidence.",
+          "severity": "low"
+        }
+      ]
+    }
+  ],
+  "skillCount": 1,
+  "skillsFailed": 0,
+  "reusedSkills": 0,
+  "contextFile": "MATE/artifacts/Checklist/run-local-003/orchestration/stage-10-context.json",
+  "requiredEvidence": [
+    {
+      "path": "vanity-check/vanity-gate.json",
+      "exists": true
+    }
+  ]
+}

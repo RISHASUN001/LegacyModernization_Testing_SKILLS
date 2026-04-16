@@ -1,0 +1,155 @@
+[
+  {
+    "name": "Journey parity: LoginFinal flow via /Auth",
+    "status": "passed",
+    "notes": "Validate full critical journeys from browser entrypoint to backend persistence.",
+    "coverage": [
+      "critical-path",
+      "ui-api-db"
+    ],
+    "generated": false,
+    "generatedFrom": [],
+    "provenance": {
+      "type": "flow-derived",
+      "sources": [
+        "artifact:module-documentation/module-analysis.json"
+      ],
+      "confidence": 0.73,
+      "unknowns": []
+    }
+  },
+  {
+    "name": "Journey parity: LoginFinal flow via /Auth/dashboard",
+    "status": "passed",
+    "notes": "Validate full critical journeys from browser entrypoint to backend persistence.",
+    "coverage": [
+      "critical-path",
+      "ui-api-db"
+    ],
+    "generated": false,
+    "generatedFrom": [],
+    "provenance": {
+      "type": "flow-derived",
+      "sources": [
+        "artifact:module-documentation/module-analysis.json"
+      ],
+      "confidence": 0.73,
+      "unknowns": []
+    }
+  },
+  {
+    "name": "Journey parity: LoginFinal flow via /Auth/index",
+    "status": "passed",
+    "notes": "Validate full critical journeys from browser entrypoint to backend persistence.",
+    "coverage": [
+      "critical-path",
+      "ui-api-db"
+    ],
+    "generated": false,
+    "generatedFrom": [],
+    "provenance": {
+      "type": "flow-derived",
+      "sources": [
+        "artifact:module-documentation/module-analysis.json"
+      ],
+      "confidence": 0.73,
+      "unknowns": []
+    }
+  },
+  {
+    "name": "E2E robust path: Open login page",
+    "status": "passed",
+    "notes": "Validate full critical journeys from browser entrypoint to backend persistence.",
+    "coverage": [
+      "ui-api-db",
+      "critical-path"
+    ],
+    "generated": true,
+    "generatedFrom": [
+      "flow:Open login page"
+    ],
+    "provenance": {
+      "type": "inferred",
+      "sources": [
+        "artifact:test-plan-generation/test-plan.json",
+        "artifact:module-discovery/discovery-map.json",
+        "artifact:legacy-logic-extraction/logic-summary.json",
+        "artifact:module-documentation/module-analysis.json"
+      ],
+      "confidence": 0.77,
+      "unknowns": []
+    }
+  },
+  {
+    "name": "E2E robust path: Session timeout returns to login",
+    "status": "passed",
+    "notes": "Validate full critical journeys from browser entrypoint to backend persistence.",
+    "coverage": [
+      "ui-api-db",
+      "critical-path"
+    ],
+    "generated": true,
+    "generatedFrom": [
+      "flow:Session timeout returns to login"
+    ],
+    "provenance": {
+      "type": "inferred",
+      "sources": [
+        "artifact:test-plan-generation/test-plan.json",
+        "artifact:module-discovery/discovery-map.json",
+        "artifact:legacy-logic-extraction/logic-summary.json",
+        "artifact:module-documentation/module-analysis.json"
+      ],
+      "confidence": 0.77,
+      "unknowns": []
+    }
+  },
+  {
+    "name": "E2E route resilience: /login",
+    "status": "passed",
+    "notes": "Validate full critical journeys from browser entrypoint to backend persistence.",
+    "coverage": [
+      "navigation",
+      "session"
+    ],
+    "generated": true,
+    "generatedFrom": [
+      "route:/login"
+    ],
+    "provenance": {
+      "type": "inferred",
+      "sources": [
+        "artifact:test-plan-generation/test-plan.json",
+        "artifact:module-discovery/discovery-map.json",
+        "artifact:legacy-logic-extraction/logic-summary.json",
+        "artifact:module-documentation/module-analysis.json"
+      ],
+      "confidence": 0.77,
+      "unknowns": []
+    }
+  },
+  {
+    "name": "E2E robustness generated case 1 for LoginFinal",
+    "status": "passed",
+    "notes": "Validate full critical journeys from browser entrypoint to backend persistence.",
+    "coverage": [
+      "robustness",
+      "fallback"
+    ],
+    "generated": true,
+    "generatedFrom": [
+      "fallback:insufficient-discovery-evidence"
+    ],
+    "provenance": {
+      "type": "inferred",
+      "sources": [
+        "artifact:test-plan-generation/test-plan.json",
+        "artifact:module-discovery/discovery-map.json",
+        "artifact:legacy-logic-extraction/logic-summary.json",
+        "artifact:module-documentation/module-analysis.json"
+      ],
+      "confidence": 0.77,
+      "unknowns": []
+    }
+  }
+]

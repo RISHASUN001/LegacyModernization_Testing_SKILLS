@@ -1,0 +1,61 @@
+{
+  "stage": "clean-architecture-and-findings",
+  "stageIndex": 9,
+  "stageTitle": "9. Clean Architecture + Findings",
+  "stageObjective": "Assess C# architecture and synthesize findings/recommendations across the full run.",
+  "status": "failed",
+  "skills": [
+    {
+      "skill": "clean-architecture-assessment",
+      "stage": "clean-architecture-and-findings",
+      "returnCode": 1,
+      "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/clean-architecture-assessment/result.json",
+      "stderr": "",
+      "status": "failed",
+      "reused": false,
+      "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/clean-architecture-assessment/result.json",
+      "summary": "Clean architecture assessment failed: strictAIGeneration=true and provider mode is copilot, but MATE_COPILOT_CLAUDE_COMMAND is not configured.",
+      "artifacts": [],
+      "metrics": {},
+      "findings": [
+        {
+          "type": "CleanArchitectureAssessmentError",
+          "message": "strictAIGeneration=true and provider mode is copilot, but MATE_COPILOT_CLAUDE_COMMAND is not configured."
+        }
+      ]
+    },
+    {
+      "skill": "findings-synthesis",
+      "stage": "clean-architecture-and-findings",
+      "returnCode": 1,
+      "stdout": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/findings-synthesis/result.json",
+      "stderr": "",
+      "status": "failed",
+      "reused": false,
+      "resultPath": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/findings-synthesis/result.json",
+      "summary": "Findings synthesis failed: strictAIGeneration=true and provider mode is copilot, but MATE_COPILOT_CLAUDE_COMMAND is not configured.",
+      "artifacts": [],
+      "metrics": {},
+      "findings": [
+        {
+          "type": "FindingsSynthesisError",
+          "message": "strictAIGeneration=true and provider mode is copilot, but MATE_COPILOT_CLAUDE_COMMAND is not configured."
+        }
+      ]
+    }
+  ],
+  "skillCount": 2,
+  "skillsFailed": 2,
+  "reusedSkills": 0,
+  "contextFile": "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/orchestration/stage-09-context.json",
+  "requiredEvidence": [
+    {
+      "path": "clean-architecture-assessment/clean-architecture-report.json",
+      "exists": false
+    },
+    {
+      "path": "findings-synthesis/findings-synthesis.json",
+      "exists": false
+    }
+  ]
+}

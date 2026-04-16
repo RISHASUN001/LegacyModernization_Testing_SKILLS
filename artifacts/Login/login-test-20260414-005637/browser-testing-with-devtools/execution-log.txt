@@ -1,7 +1,7 @@
 module=Login
 baseUrl=http://localhost:5001
-testApiEndpoint=http://127.0.0.1:5000/api/test
-degradedMode=True
+probedRoutes=3
+degradedMode=False
 consoleMessages=0
 networkFailures=0
 runtimeIssues=0

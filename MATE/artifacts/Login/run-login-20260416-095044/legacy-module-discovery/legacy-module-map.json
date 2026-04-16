@@ -1,0 +1,18 @@
+{
+  "moduleName": "Login",
+  "workflowNames": [
+    "Login"
+  ],
+  "strictModuleOnly": true,
+  "anchorTokenCount": 71,
+  "legacyBackendRoots": [
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java"
+  ],
+  "legacyFrontendRoots": [
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/index.jsp"
+  ],
+  "backendFiles": [],
+  "frontendFiles": [],
+  "selectedFiles": []
+}

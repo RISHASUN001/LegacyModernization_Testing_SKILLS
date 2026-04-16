@@ -1,0 +1,34 @@
+{
+  "stage": "test-plan",
+  "stageTitle": "Test Plan",
+  "stageIndex": 6,
+  "status": "passed",
+  "skillCount": 1,
+  "skillsPassed": 1,
+  "skillsFailed": 0,
+  "skills": [
+    {
+      "skill": "test-plan-generation",
+      "stage": "test-plan",
+      "status": "passed",
+      "startedAt": "2026-04-15T07:47:47.463167Z",
+      "endedAt": "2026-04-15T07:47:47.560367Z",
+      "durationSeconds": 0.097,
+      "summary": "Test plan generated for LoginFinal with categories=7 and suggestedTests=5.",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-154340/test-plan-generation/result.json\n",
+      "stderr": "",
+      "command": [
+        "python3",
+        "/Users/risha/Documents/Buildathon/skills/test-plan-generation/run.py",
+        "--input",
+        "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-154340/module-run-input.json",
+        "--artifacts-root",
+        "/Users/risha/Documents/Buildathon/artifacts"
+      ],
+      "resultPath": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-154340/test-plan-generation/result.json"
+    }
+  ],
+  "startedAt": "2026-04-15T07:47:47.463167Z",
+  "endedAt": "2026-04-15T07:47:47.560367Z"
+}

@@ -1,0 +1,273 @@
+{
+  "moduleName": "LoginFinal",
+  "discoveredJavaFiles": [
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java"
+  ],
+  "convertedCSharpFiles": [
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Program.cs",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Controllers/AuthController.cs",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Views/Auth/Dashboard.cshtml",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Views/Auth/Index.cshtml",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Services/LoginService.cs",
+    "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Controllers/AuthController.cs"
+  ],
+  "discoveredUrls": [
+    "/dashboard",
+    "/login"
+  ],
+  "discoveredDbTouchpoints": [],
+  "modulePurpose": {
+    "text": "Loginfinal module handles authentication and protected-page access flows. Java files discovered: 2. Key routes: /dashboard, /login",
+    "provenance": {
+      "type": "code-evidence",
+      "sources": [
+        "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java",
+        "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java",
+        "artifact:module-discovery/discovery-map.json"
+      ],
+      "confidence": 0.78,
+      "unknowns": []
+    }
+  },
+  "workflows": [
+    {
+      "id": "loginfinal-open-login-page",
+      "name": "Open login page",
+      "steps": [
+        {
+          "name": "Trigger route/view",
+          "expectedOutcome": "User enters module flow"
+        },
+        {
+          "name": "Validation and rule checks",
+          "expectedOutcome": "Invalid states are rejected"
+        },
+        {
+          "name": "Persistence/service action",
+          "expectedOutcome": "State is persisted consistently"
+        },
+        {
+          "name": "Response/UI transition",
+          "expectedOutcome": "User-visible behavior matches legacy"
+        }
+      ],
+      "preserveCriticality": "high",
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "/dashboard",
+          "/login"
+        ],
+        "confidence": 0.72,
+        "unknowns": []
+      }
+    },
+    {
+      "id": "loginfinal-session-timeout-returns-to-login",
+      "name": "Session timeout returns to login",
+      "steps": [
+        {
+          "name": "Trigger route/view",
+          "expectedOutcome": "User enters module flow"
+        },
+        {
+          "name": "Validation and rule checks",
+          "expectedOutcome": "Invalid states are rejected"
+        },
+        {
+          "name": "Persistence/service action",
+          "expectedOutcome": "State is persisted consistently"
+        },
+        {
+          "name": "Response/UI transition",
+          "expectedOutcome": "User-visible behavior matches legacy"
+        }
+      ],
+      "preserveCriticality": "high",
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "/dashboard",
+          "/login"
+        ],
+        "confidence": 0.72,
+        "unknowns": []
+      }
+    }
+  ],
+  "businessRules": [
+    {
+      "id": "R-001",
+      "rule": "If credentials are invalid, stay on login page and show validation message",
+      "rationale": "Derived from discovered module assets and persistence/client-side signals.",
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "/dashboard",
+          "/login"
+        ],
+        "confidence": 0.74,
+        "unknowns": []
+      }
+    },
+    {
+      "id": "R-002",
+      "rule": "If session is expired, protected routes redirect to login",
+      "rationale": "Derived from discovered module assets and persistence/client-side signals.",
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "/dashboard",
+          "/login"
+        ],
+        "confidence": 0.74,
+        "unknowns": []
+      }
+    }
+  ],
+  "dependencies": [
+    {
+      "name": "Converted web controllers",
+      "provenance": {
+        "type": "code-evidence",
+        "sources": [
+          "file-path-patterns"
+        ],
+        "confidence": 0.68,
+        "unknowns": []
+      }
+    },
+    {
+      "name": "Converted services",
+      "provenance": {
+        "type": "code-evidence",
+        "sources": [
+          "file-path-patterns"
+        ],
+        "confidence": 0.68,
+        "unknowns": []
+      }
+    }
+  ],
+  "mustPreserveBehaviors": [
+    {
+      "behavior": "Route and URL behavior parity for user-visible flows",
+      "criticality": "high",
+      "provenance": {
+        "type": "code-evidence",
+        "sources": [
+          "/dashboard",
+          "/login"
+        ],
+        "confidence": 0.8,
+        "unknowns": []
+      }
+    },
+    {
+      "behavior": "Validation/error message semantics from legacy behavior",
+      "criticality": "high",
+      "provenance": {
+        "type": "code-evidence",
+        "sources": [
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java",
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java"
+        ],
+        "confidence": 0.78,
+        "unknowns": []
+      }
+    },
+    {
+      "behavior": "Data mapping compatibility for persistence operations (Dapper case-sensitivity, ViewModel binding)",
+      "criticality": "high",
+      "provenance": {
+        "type": "code-evidence",
+        "sources": [
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Program.cs",
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Controllers/AuthController.cs",
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Views/Auth/Dashboard.cshtml",
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Views/Auth/Index.cshtml",
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Services/LoginService.cs",
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Controllers/AuthController.cs"
+        ],
+        "confidence": 0.82,
+        "unknowns": []
+      }
+    },
+    {
+      "behavior": "Session/cookie handling and user context preservation across requests",
+      "criticality": "high",
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java",
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java"
+        ],
+        "confidence": 0.75,
+        "unknowns": []
+      }
+    },
+    {
+      "behavior": "Invalid credentials and session expiry handling (error codes, redirect targets)",
+      "criticality": "high",
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "/dashboard",
+          "/login"
+        ],
+        "confidence": 0.79,
+        "unknowns": []
+      }
+    }
+  ],
+  "unknowns": [
+    "No DB touchpoint extracted; persistence parity must be confirmed with runtime logs."
+  ],
+  "confidence": 0.63,
+  "sourceEvidence": {
+    "urls": [
+      "/dashboard",
+      "/login"
+    ],
+    "dbTouchpoints": [],
+    "legacyFiles": [
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java",
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app/LoginServlet.java",
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp",
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app/index.jsp",
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp",
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app/index.jsp"
+    ]
+  },
+  "scopeApplied": {
+    "scopeTerms": [
+      "5001",
+      "dashboard",
+      "http",
+      "localhost",
+      "login"
+    ],
+    "targetUrl": "http://localhost:5001",
+    "scopeHint": ""
+  },
+  "importantFlows": [
+    "Open login page",
+    "Session timeout returns to login"
+  ],
+  "rules": [
+    "If credentials are invalid, stay on login page and show validation message",
+    "If session is expired, protected routes redirect to login"
+  ],
+  "dependenciesText": [
+    "Converted web controllers",
+    "Converted services"
+  ],
+  "mustPreserve": [
+    "Route and URL behavior parity for user-visible flows",
+    "Validation/error message semantics from legacy behavior",
+    "Data mapping compatibility for persistence operations (Dapper case-sensitivity, ViewModel binding)",
+    "Session/cookie handling and user context preservation across requests",
+    "Invalid credentials and session expiry handling (error codes, redirect targets)"
+  ]
+}

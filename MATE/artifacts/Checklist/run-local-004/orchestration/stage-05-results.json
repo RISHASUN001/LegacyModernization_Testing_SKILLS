@@ -1,0 +1,43 @@
+{
+  "stage": "diagram-generation",
+  "stageIndex": 5,
+  "stageTitle": "5. Diagram Generation",
+  "stageObjective": "Generate mermaid + excalidraw + preview image artifacts for C# and Java workflows.",
+  "status": "passed",
+  "skills": [
+    {
+      "skill": "diagram-generation",
+      "stage": "diagram-generation",
+      "returnCode": 0,
+      "stdout": "MATE/artifacts/Checklist/run-local-004/diagram-generation/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": false,
+      "resultPath": "MATE/artifacts/Checklist/run-local-004/diagram-generation/result.json",
+      "summary": "Generated Mermaid + Excalidraw diagram artifacts for C# and legacy flows.",
+      "artifacts": [
+        "MATE/artifacts/Checklist/run-local-004/diagram-generation/csharp-workflow.mmd",
+        "MATE/artifacts/Checklist/run-local-004/diagram-generation/legacy-workflow.mmd",
+        "MATE/artifacts/Checklist/run-local-004/diagram-generation/csharp-workflow.excalidraw.json",
+        "MATE/artifacts/Checklist/run-local-004/diagram-generation/legacy-workflow.excalidraw.json",
+        "MATE/artifacts/Checklist/run-local-004/diagram-generation/previews/csharp-workflow.png",
+        "MATE/artifacts/Checklist/run-local-004/diagram-generation/previews/legacy-workflow.png",
+        "MATE/artifacts/Checklist/run-local-004/diagram-generation/diagram-index.json"
+      ],
+      "metrics": {
+        "diagramBundles": 2
+      },
+      "findings": []
+    }
+  ],
+  "skillCount": 1,
+  "skillsFailed": 0,
+  "reusedSkills": 0,
+  "contextFile": "MATE/artifacts/Checklist/run-local-004/orchestration/stage-05-context.json",
+  "requiredEvidence": [
+    {
+      "path": "diagram-generation/diagram-index.json",
+      "exists": true
+    }
+  ]
+}

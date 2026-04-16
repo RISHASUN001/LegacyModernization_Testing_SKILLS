@@ -1,0 +1,15 @@
+{
+  "skillName": "csharp-logic-understanding",
+  "status": "passed",
+  "summary": "Built C# logic understanding for 1 workflows.",
+  "metrics": {
+    "workflowCount": 1,
+    "routesAnalyzed": 1,
+    "sqlFilesAnalyzed": 0,
+    "tablesFound": 0
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/MATE/artifacts/Login/run-login-20260416-095044/csharp-logic-understanding/csharp-logic-summary.json"
+  ],
+  "findings": []
+}

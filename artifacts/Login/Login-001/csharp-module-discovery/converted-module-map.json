@@ -1,0 +1,40 @@
+{
+  "moduleName": "Login",
+  "convertedSourceRoot": "/Users/risha/Documents/Buildathon/samples/legacy-java-app",
+  "convertedModuleRoot": "/Users/risha/Documents/Buildathon/samples/legacy-java-app",
+  "entryControllerName": "",
+  "startUrl": "",
+  "menuPathHints": [],
+  "expectedWorkflowNames": [],
+  "files": {
+    "csharp": [
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Services/LoginService.cs",
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Services/LoginService.cs"
+    ],
+    "controllers": [],
+    "services": [
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Services/LoginService.cs"
+    ],
+    "repositories": [],
+    "dtosModels": [],
+    "views": []
+  },
+  "namespaceEvidence": {
+    "namespaces": [
+      "LegacyModernization.Converted.Services"
+    ],
+    "usingReferences": [
+      "System",
+      "System.Collections.Generic"
+    ]
+  },
+  "provenance": {
+    "type": "code-evidence",
+    "sources": [
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Services/LoginService.cs",
+      "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Services/LoginService.cs"
+    ],
+    "confidence": 0.81,
+    "unknowns": []
+  }
+}

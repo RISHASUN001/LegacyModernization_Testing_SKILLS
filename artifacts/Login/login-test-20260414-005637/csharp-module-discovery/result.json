@@ -1,0 +1,50 @@
+{
+  "skillName": "csharp-module-discovery",
+  "stage": "csharp-discovery",
+  "moduleName": "Login",
+  "runId": "login-test-20260414-005637",
+  "status": "passed",
+  "startedAt": "2026-04-14T16:31:45.469300Z",
+  "endedAt": "2026-04-14T16:31:45.511750Z",
+  "summary": "C# module discovery produced 0 controllers, 0 evidence-based workflows, and 0 SQL signatures.",
+  "metrics": {
+    "controllers": 0,
+    "workflows": 0,
+    "services": 1,
+    "repositories": 0,
+    "sqlSignatures": 0,
+    "tables": 0,
+    "namespaces": 1
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/csharp-module-discovery/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/csharp-module-discovery/converted-module-map.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/csharp-module-discovery/converted-workflows.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/csharp-module-discovery/controller-route-map.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/csharp-module-discovery/csharp-sql-map.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/csharp-module-discovery/csharp-table-usage.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/csharp-module-discovery/csharp-namespace-usage.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/csharp-module-discovery/csharp-clean-architecture-scan.json"
+  ],
+  "findings": [
+    {
+      "type": "MissingControllerEvidence",
+      "scenario": "C# module discovery",
+      "message": "No controllers were discovered in scoped C# files.",
+      "likelyCause": "convertedModuleRoot is too narrow or module naming hints are missing.",
+      "evidence": "controller-route-map has zero controllers",
+      "severity": "high",
+      "status": "open",
+      "confidence": 0.91
+    }
+  ],
+  "recommendations": [],
+  "resultContractVersion": "2.0",
+  "provenanceSummary": {
+    "scenarioSources": [
+      "code-evidence",
+      "flow-derived"
+    ],
+    "confidence": 0.46
+  }
+}

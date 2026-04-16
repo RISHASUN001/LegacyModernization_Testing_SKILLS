@@ -1,0 +1,15 @@
+{
+  "moduleName": "Login",
+  "policy": "module-first",
+  "layers": {
+    "controllers": 0,
+    "services": 1,
+    "repositories": 0,
+    "dtos_models": 0,
+    "views": 0
+  },
+  "issues": [
+    "Layer coverage is incomplete for this module scope."
+  ],
+  "confidence": 0.42
+}

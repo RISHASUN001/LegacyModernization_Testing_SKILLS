@@ -1,0 +1,20 @@
+{
+  "skillName": "findings-synthesis",
+  "status": "passed",
+  "startedAt": "2026-04-15T20:15:48.839134Z",
+  "endedAt": "2026-04-15T20:15:48.839140Z",
+  "summary": "Synthesized findings for module Checklist.",
+  "metrics": {
+    "preservationScore": 0,
+    "keyFindings": 0,
+    "failedAreas": 0
+  },
+  "artifacts": [
+    "MATE/artifacts/Checklist/run-local-005/findings-synthesis/findings-synthesis.json",
+    "MATE/artifacts/Checklist/run-local-005/findings-synthesis/findings-dashboard.json",
+    "MATE/artifacts/Checklist/run-local-005/findings-synthesis/findings-summary.md"
+  ],
+  "findings": [],
+  "recommendations": [],
+  "resultContractVersion": "1.0"
+}

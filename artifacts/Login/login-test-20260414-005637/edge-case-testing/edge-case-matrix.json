@@ -103,7 +103,7 @@
     }
   },
   {
-    "name": "Recurring risk regression guard: DapperCaseSensitivity",
+    "name": "Recurring risk regression guard: NamespaceFolderMismatch",
     "status": "passed",
     "notes": "Validate boundary conditions, Dapper case-sensitivity, ViewModel binding, retries, and low-frequency high-impact paths.",
     "coverage": [

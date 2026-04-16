@@ -1,0 +1,416 @@
+{
+  "items": [
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Application/Contracts/IDashboardQueryService.cs",
+      "basename": "IDashboardQueryService.cs",
+      "role": "service",
+      "score": 1,
+      "confidence": "low",
+      "included": true,
+      "reasons": [
+        "service-like file"
+      ]
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Application/Contracts/IMetadataSyncService.cs",
+      "basename": "IMetadataSyncService.cs",
+      "role": "service",
+      "score": 1,
+      "confidence": "low",
+      "included": true,
+      "reasons": [
+        "service-like file"
+      ]
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Application/DTOs/DashboardDtos.cs",
+      "basename": "DashboardDtos.cs",
+      "role": "other",
+      "score": 0,
+      "confidence": "exclude",
+      "included": false,
+      "reasons": []
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Application/obj/Debug/net8.0/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs",
+      "basename": ".NETCoreApp,Version=v8.0.AssemblyAttributes.cs",
+      "role": "other",
+      "score": 0,
+      "confidence": "exclude",
+      "included": false,
+      "reasons": []
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Application/obj/Debug/net8.0/LegacyModernization.Application.AssemblyInfo.cs",
+      "basename": "LegacyModernization.Application.AssemblyInfo.cs",
+      "role": "other",
+      "score": 0,
+      "confidence": "exclude",
+      "included": false,
+      "reasons": []
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Application/obj/Debug/net8.0/LegacyModernization.Application.GlobalUsings.g.cs",
+      "basename": "LegacyModernization.Application.GlobalUsings.g.cs",
+      "role": "other",
+      "score": 0,
+      "confidence": "exclude",
+      "included": false,
+      "reasons": []
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Core/Models/DomainModels.cs",
+      "basename": "DomainModels.cs",
+      "role": "other",
+      "score": 0,
+      "confidence": "exclude",
+      "included": false,
+      "reasons": []
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Core/obj/Debug/net8.0/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs",
+      "basename": ".NETCoreApp,Version=v8.0.AssemblyAttributes.cs",
+      "role": "other",
+      "score": 0,
+      "confidence": "exclude",
+      "included": false,
+      "reasons": []
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Core/obj/Debug/net8.0/LegacyModernization.Core.AssemblyInfo.cs",
+      "basename": "LegacyModernization.Core.AssemblyInfo.cs",
+      "role": "other",
+      "score": 0,
+      "confidence": "exclude",
+      "included": false,
+      "reasons": []
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Core/obj/Debug/net8.0/LegacyModernization.Core.GlobalUsings.g.cs",
+      "basename": "LegacyModernization.Core.GlobalUsings.g.cs",
+      "role": "other",
+      "score": 0,
+      "confidence": "exclude",
+      "included": false,
+      "reasons": []
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Dashboard.Web/Controllers/DashboardController.cs",
+      "basename": "DashboardController.cs",
+      "role": "controller",
+      "score": 2,
+      "confidence": "low",
+      "included": true,
+      "reasons": [
+        "controller file"
+      ]
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Dashboard.Web/Controllers/TestApiController.cs",
+      "basename": "TestApiController.cs",
+      "role": "controller",
+      "score": 8,
+      "confidence": "high",
+      "included": true,
+      "reasons": [
+        "content matched token 'login'",
+        "controller file"
+      ]
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Dashboard.Web/Models/ErrorViewModel.cs",
+      "basename": "ErrorViewModel.cs",
+      "role": "other",
+      "score": 0,
+      "confidence": "exclude",
+      "included": false,
+      "reasons": []
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Dashboard.Web/Models/RunInputBuilderFormModel.cs",
+      "basename": "RunInputBuilderFormModel.cs",
+      "role": "other",
+      "score": 0,
+      "confidence": "exclude",
+      "included": false,
+      "reasons": []
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Dashboard.Web/Program.cs",
+      "basename": "Program.cs",
+      "role": "other",
+      "score": 0,
+      "confidence": "exclude",
+      "included": false,
+      "reasons": []
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Dashboard.Web/Views/Dashboard/Findings.cshtml",
+      "basename": "Findings.cshtml",
+      "role": "view",
+      "score": 2,
+      "confidence": "low",
+      "included": true,
+      "reasons": [
+        "view file"
+      ]
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Dashboard.Web/Views/Dashboard/HelpGuide.cshtml",
+      "basename": "HelpGuide.cshtml",
+      "role": "view",
+      "score": 8,
+      "confidence": "high",
+      "included": true,
+      "reasons": [
+        "content matched token 'login'",
+        "view file"
+      ]
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Dashboard.Web/Views/Dashboard/Index.cshtml",
+      "basename": "Index.cshtml",
+      "role": "view",
+      "score": 2,
+      "confidence": "low",
+      "included": true,
+      "reasons": [
+        "view file"
+      ]
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Dashboard.Web/Views/Dashboard/IterationComparison.cshtml",
+      "basename": "IterationComparison.cshtml",
+      "role": "view",
+      "score": 2,
+      "confidence": "low",
+      "included": true,
+      "reasons": [
+        "view file"
+      ]
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Dashboard.Web/Views/Dashboard/ModuleRuns.cshtml",
+      "basename": "ModuleRuns.cshtml",
+      "role": "view",
+      "score": 2,
+      "confidence": "low",
+      "included": true,
+      "reasons": [
+        "view file"
+      ]
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Dashboard.Web/Views/Dashboard/Pipeline.cshtml",
+      "basename": "Pipeline.cshtml",
+      "role": "view",
+      "score": 8,
+      "confidence": "high",
+      "included": true,
+      "reasons": [
+        "content matched token 'login'",
+        "view file"
+      ]
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Dashboard.Web/Views/Dashboard/RunInputBuilder.cshtml",
+      "basename": "RunInputBuilder.cshtml",
+      "role": "view",
+      "score": 2,
+      "confidence": "low",
+      "included": true,
+      "reasons": [
+        "view file"
+      ]
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Dashboard.Web/Views/Dashboard/SkillLibrary.cshtml",
+      "basename": "SkillLibrary.cshtml",
+      "role": "view",
+      "score": 2,
+      "confidence": "low",
+      "included": true,
+      "reasons": [
+        "view file"
+      ]
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Dashboard.Web/Views/Shared/Error.cshtml",
+      "basename": "Error.cshtml",
+      "role": "view",
+      "score": 2,
+      "confidence": "low",
+      "included": true,
+      "reasons": [
+        "view file"
+      ]
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Dashboard.Web/Views/Shared/_Layout.cshtml",
+      "basename": "_Layout.cshtml",
+      "role": "view",
+      "score": 2,
+      "confidence": "low",
+      "included": true,
+      "reasons": [
+        "view file"
+      ]
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Dashboard.Web/Views/Shared/_ValidationScriptsPartial.cshtml",
+      "basename": "_ValidationScriptsPartial.cshtml",
+      "role": "view",
+      "score": 2,
+      "confidence": "low",
+      "included": true,
+      "reasons": [
+        "view file"
+      ]
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Dashboard.Web/Views/_ViewImports.cshtml",
+      "basename": "_ViewImports.cshtml",
+      "role": "view",
+      "score": 2,
+      "confidence": "low",
+      "included": true,
+      "reasons": [
+        "view file"
+      ]
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Dashboard.Web/Views/_ViewStart.cshtml",
+      "basename": "_ViewStart.cshtml",
+      "role": "view",
+      "score": 2,
+      "confidence": "low",
+      "included": true,
+      "reasons": [
+        "view file"
+      ]
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Dashboard.Web/obj/Debug/net8.0/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs",
+      "basename": ".NETCoreApp,Version=v8.0.AssemblyAttributes.cs",
+      "role": "other",
+      "score": 0,
+      "confidence": "exclude",
+      "included": false,
+      "reasons": []
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Dashboard.Web/obj/Debug/net8.0/LegacyModernization.Dashboard.Web.AssemblyInfo.cs",
+      "basename": "LegacyModernization.Dashboard.Web.AssemblyInfo.cs",
+      "role": "other",
+      "score": 0,
+      "confidence": "exclude",
+      "included": false,
+      "reasons": []
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Dashboard.Web/obj/Debug/net8.0/LegacyModernization.Dashboard.Web.GlobalUsings.g.cs",
+      "basename": "LegacyModernization.Dashboard.Web.GlobalUsings.g.cs",
+      "role": "other",
+      "score": 0,
+      "confidence": "exclude",
+      "included": false,
+      "reasons": []
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Dashboard.Web/obj/Debug/net8.0/LegacyModernization.Dashboard.Web.RazorAssemblyInfo.cs",
+      "basename": "LegacyModernization.Dashboard.Web.RazorAssemblyInfo.cs",
+      "role": "other",
+      "score": 0,
+      "confidence": "exclude",
+      "included": false,
+      "reasons": []
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Infrastructure/Abstractions/ISqliteConnectionFactory.cs",
+      "basename": "ISqliteConnectionFactory.cs",
+      "role": "other",
+      "score": 0,
+      "confidence": "exclude",
+      "included": false,
+      "reasons": []
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Infrastructure/DependencyInjection.cs",
+      "basename": "DependencyInjection.cs",
+      "role": "other",
+      "score": 0,
+      "confidence": "exclude",
+      "included": false,
+      "reasons": []
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Infrastructure/Factories/SqliteConnectionFactory.cs",
+      "basename": "SqliteConnectionFactory.cs",
+      "role": "other",
+      "score": 0,
+      "confidence": "exclude",
+      "included": false,
+      "reasons": []
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Infrastructure/Options/PlatformPathsOptions.cs",
+      "basename": "PlatformPathsOptions.cs",
+      "role": "other",
+      "score": 0,
+      "confidence": "exclude",
+      "included": false,
+      "reasons": []
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Infrastructure/Services/DashboardQueryService.cs",
+      "basename": "DashboardQueryService.cs",
+      "role": "service",
+      "score": 7,
+      "confidence": "medium",
+      "included": true,
+      "reasons": [
+        "content matched token 'login'",
+        "service-like file"
+      ]
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Infrastructure/Services/MetadataSyncService.cs",
+      "basename": "MetadataSyncService.cs",
+      "role": "service",
+      "score": 7,
+      "confidence": "medium",
+      "included": true,
+      "reasons": [
+        "content matched token 'login'",
+        "service-like file"
+      ]
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Infrastructure/obj/Debug/net8.0/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs",
+      "basename": ".NETCoreApp,Version=v8.0.AssemblyAttributes.cs",
+      "role": "other",
+      "score": 0,
+      "confidence": "exclude",
+      "included": false,
+      "reasons": []
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Infrastructure/obj/Debug/net8.0/LegacyModernization.Infrastructure.AssemblyInfo.cs",
+      "basename": "LegacyModernization.Infrastructure.AssemblyInfo.cs",
+      "role": "other",
+      "score": 0,
+      "confidence": "exclude",
+      "included": false,
+      "reasons": []
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/src/LegacyModernization.Infrastructure/obj/Debug/net8.0/LegacyModernization.Infrastructure.GlobalUsings.g.cs",
+      "basename": "LegacyModernization.Infrastructure.GlobalUsings.g.cs",
+      "role": "other",
+      "score": 0,
+      "confidence": "exclude",
+      "included": false,
+      "reasons": []
+    }
+  ]
+}

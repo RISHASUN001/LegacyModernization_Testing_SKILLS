@@ -1,0 +1,229 @@
+@model MATE.Dashboard.Web.Models.Pipeline.MateRunInputModel
+@{
+    ViewData["Title"] = "Create MATE Run Input";
+    var generatedJson = ViewData["GeneratedJson"] as string ?? "{}";
+}
+
+<div class="mb-4">
+    <h2 class="mb-1">Run Input Builder</h2>
+    <p class="text-muted mb-0">Build a compatible orchestrator payload, refresh preview, then save and trigger the pipeline.</p>
+</div>
+
+@if (TempData["SavedRunInput"] is string path)
+{
+    <div class="alert alert-success">
+        <strong>Saved.</strong> Run input written to <code>@path</code>
+    </div>
+}
+
+<div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+<form method="post" id="runInputForm" class="panel-card p-3 mb-3">
+    @Html.AntiForgeryToken()
+
+    <div class="row g-3 mb-3">
+        <div class="col-12 col-lg-4">
+            <label class="form-label" asp-for="RunId">runId</label>
+            <div class="input-group">
+                <input class="form-control" asp-for="RunId" placeholder="run-20260416-235959" id="runIdInput" />
+                <button class="btn btn-outline-secondary" type="button" id="regenRunIdBtn">Unique</button>
+            </div>
+        </div>
+        <div class="col-12 col-lg-4">
+            <label class="form-label" asp-for="ModuleName">moduleName</label>
+            <input class="form-control" asp-for="ModuleName" placeholder="Checklist" id="moduleNameInput" />
+            <span asp-validation-for="ModuleName" class="text-danger small"></span>
+        </div>
+        <div class="col-12 col-lg-4">
+            <label class="form-label" for="workflowNames_input">workflowNames[]</label>
+            <input id="workflowNames_input" class="form-control" value="@string.Join(", ", Model.WorkflowNames)" placeholder="Create, Edit" />
+            <span asp-validation-for="WorkflowNames" class="text-danger small"></span>
+        </div>
+    </div>
+
+    <div class="row g-3 mb-3">
+        <div class="col-12">
+            <label class="form-label" for="convertedRoots_input">convertedRoots[]</label>
+            <textarea id="convertedRoots_input" class="form-control" rows="2" placeholder="/Users/risha/Documents/Buildathon/src/LegacyModernization.Application">@string.Join(Environment.NewLine, Model.ConvertedRoots)</textarea>
+            <span asp-validation-for="ConvertedRoots" class="text-danger small"></span>
+        </div>
+        <div class="col-12 col-lg-6">
+            <label class="form-label" for="legacyBackendRoots_input">legacyBackendRoots[]</label>
+            <textarea id="legacyBackendRoots_input" class="form-control" rows="2" placeholder="/Users/risha/Documents/Buildathon/samples/legacy-java-app/src">@string.Join(Environment.NewLine, Model.LegacyBackendRoots)</textarea>
+            <span asp-validation-for="LegacyBackendRoots" class="text-danger small"></span>
+        </div>
+        <div class="col-12 col-lg-6">
+            <label class="form-label" for="legacyFrontendRoots_input">legacyFrontendRoots[]</label>
+            <textarea id="legacyFrontendRoots_input" class="form-control" rows="2" placeholder="/Users/risha/Documents/Buildathon/samples/legacy-java-app/web">@string.Join(Environment.NewLine, Model.LegacyFrontendRoots)</textarea>
+            <span asp-validation-for="LegacyFrontendRoots" class="text-danger small"></span>
+        </div>
+    </div>
+
+    <div class="row g-3 mb-3">
+        <div class="col-12 col-lg-4">
+            <label class="form-label" asp-for="BaseUrl">baseUrl</label>
+            <input class="form-control" asp-for="BaseUrl" placeholder="http://localhost:5276" />
+            <span asp-validation-for="BaseUrl" class="text-danger small"></span>
+        </div>
+        <div class="col-12 col-lg-4">
+            <label class="form-label" asp-for="StartUrl">startUrl</label>
+            <input class="form-control" asp-for="StartUrl" placeholder="/checklist" />
+            <span asp-validation-for="StartUrl" class="text-danger small"></span>
+        </div>
+        <div class="col-12 col-lg-4">
+            <label class="form-label" asp-for="DotnetTestTarget">dotnetTestTarget</label>
+            <input class="form-control" asp-for="DotnetTestTarget" placeholder="/Users/risha/Documents/Buildathon/LegacyModernization.slnx" />
+            <span asp-validation-for="DotnetTestTarget" class="text-danger small"></span>
+        </div>
+    </div>
+
+    <div class="row g-3 mb-3">
+        <div class="col-12 col-lg-4">
+            <label class="form-label" for="relatedFolders_input">relatedFolders[]</label>
+            <textarea id="relatedFolders_input" class="form-control" rows="4" placeholder="/Users/risha/Documents/Buildathon/samples/legacy-java-app">@string.Join(Environment.NewLine, Model.RelatedFolders)</textarea>
+        </div>
+        <div class="col-12 col-lg-4">
+            <label class="form-label" for="knownUrls_input">knownUrls[]</label>
+            <textarea id="knownUrls_input" class="form-control" rows="4" placeholder="/dashboard&#10;/checklist/list">@string.Join(Environment.NewLine, Model.KnownUrls)</textarea>
+        </div>
+        <div class="col-12 col-lg-4">
+            <label class="form-label" for="keywords_input">keywords[]</label>
+            <textarea id="keywords_input" class="form-control" rows="4" placeholder="checklist&#10;validation">@string.Join(Environment.NewLine, Model.Keywords)</textarea>
+        </div>
+        <div class="col-12 col-lg-6">
+            <label class="form-label" for="controllerHints_input">controllerHints[]</label>
+            <textarea id="controllerHints_input" class="form-control" rows="2" placeholder="ChecklistController">@string.Join(Environment.NewLine, Model.ControllerHints)</textarea>
+        </div>
+        <div class="col-12 col-lg-6">
+            <label class="form-label" for="viewHints_input">viewHints[]</label>
+            <textarea id="viewHints_input" class="form-control" rows="2" placeholder="Index&#10;Edit">@string.Join(Environment.NewLine, Model.ViewHints)</textarea>
+        </div>
+        <div class="col-12">
+            <label class="form-label" for="expectedEndUrls_input">expectedEndUrls[]</label>
+            <textarea id="expectedEndUrls_input" class="form-control" rows="2" placeholder="/checklist/history">@string.Join(Environment.NewLine, Model.ExpectedEndUrls)</textarea>
+        </div>
+    </div>
+
+    <div class="row g-3 mb-4">
+        <div class="col-12 col-lg-4">
+            <div class="form-check">
+                <input class="form-check-input" asp-for="StrictModuleOnly" />
+                <label class="form-check-label" asp-for="StrictModuleOnly">strictModuleOnly</label>
+            </div>
+        </div>
+        <div class="col-12 col-lg-4">
+            <div class="form-check">
+                <input class="form-check-input" asp-for="StrictAIGeneration" />
+                <label class="form-check-label" asp-for="StrictAIGeneration">strictAIGeneration</label>
+            </div>
+        </div>
+        <div class="col-12 col-lg-4">
+            <div class="form-check">
+                <input class="form-check-input" asp-for="EnableUserInputPrompting" />
+                <label class="form-check-label" asp-for="EnableUserInputPrompting">enableUserInputPrompting</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex flex-wrap gap-2">
+        <button class="btn btn-primary" type="submit" name="submitAction" value="preview">Refresh Preview</button>
+        <button class="btn btn-outline-success" type="submit" name="submitAction" value="save">Save & Run Orchestrator</button>
+        <button class="btn btn-outline-secondary" type="button" id="copyJsonBtn">Copy JSON</button>
+        <a class="btn btn-outline-secondary" asp-controller="Pipeline" asp-action="Index">Cancel</a>
+    </div>
+</form>
+
+<div class="panel-card p-3">
+    <h3 class="h6">Generated JSON (orchestrator-compatible)</h3>
+    <pre class="json-preview" id="jsonPreview">@generatedJson</pre>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        (() => {
+            const form = document.getElementById('runInputForm');
+            if (!form) return;
+
+            const fields = [
+                { inputId: 'workflowNames_input', hiddenName: 'WorkflowNames' },
+                { inputId: 'convertedRoots_input', hiddenName: 'ConvertedRoots' },
+                { inputId: 'legacyBackendRoots_input', hiddenName: 'LegacyBackendRoots' },
+                { inputId: 'legacyFrontendRoots_input', hiddenName: 'LegacyFrontendRoots' },
+                { inputId: 'relatedFolders_input', hiddenName: 'RelatedFolders' },
+                { inputId: 'knownUrls_input', hiddenName: 'KnownUrls' },
+                { inputId: 'controllerHints_input', hiddenName: 'ControllerHints' },
+                { inputId: 'viewHints_input', hiddenName: 'ViewHints' },
+                { inputId: 'keywords_input', hiddenName: 'Keywords' },
+                { inputId: 'expectedEndUrls_input', hiddenName: 'ExpectedEndUrls' }
+            ];
+
+            const splitValues = (raw) => (raw || '')
+                .split(/[,\n]/g)
+                .map(v => v.trim())
+                .filter(v => v.length > 0);
+
+            const appendArrayValues = (inputId, hiddenName) => {
+                const textInput = document.getElementById(inputId);
+                if (!textInput) return;
+
+                form.querySelectorAll(`input[data-array-source="${hiddenName}"]`).forEach(node => node.remove());
+
+                splitValues(textInput.value).forEach(value => {
+                    const hidden = document.createElement('input');
+                    hidden.type = 'hidden';
+                    hidden.name = hiddenName;
+                    hidden.value = value;
+                    hidden.setAttribute('data-array-source', hiddenName);
+                    form.appendChild(hidden);
+                });
+            };
+
+            form.addEventListener('submit', () => {
+                fields.forEach(field => appendArrayValues(field.inputId, field.hiddenName));
+            });
+
+            const moduleNameInput = document.getElementById('moduleNameInput');
+            const runIdInput = document.getElementById('runIdInput');
+            const regenRunIdBtn = document.getElementById('regenRunIdBtn');
+
+            const toSafeSlug = (value) => (value || '')
+                .toLowerCase()
+                .replace(/[^a-z0-9]+/g, '-')
+                .replace(/(^-|-$)/g, '') || 'module';
+
+            const makeUniqueRunId = () => {
+                const moduleSlug = toSafeSlug(moduleNameInput?.value);
+                const now = new Date();
+                const y = now.getFullYear();
+                const m = String(now.getMonth() + 1).padStart(2, '0');
+                const d = String(now.getDate()).padStart(2, '0');
+                const hh = String(now.getHours()).padStart(2, '0');
+                const mm = String(now.getMinutes()).padStart(2, '0');
+                const ss = String(now.getSeconds()).padStart(2, '0');
+                return `run-${moduleSlug}-${y}${m}${d}-${hh}${mm}${ss}`;
+            };
+
+            const ensureRunId = (force = false) => {
+                if (!runIdInput) return;
+                const current = (runIdInput.value || '').trim();
+                if (!force && current && !/^run-001$/i.test(current)) {
+                    return;
+                }
+                runIdInput.value = makeUniqueRunId();
+            };
+
+            regenRunIdBtn?.addEventListener('click', () => ensureRunId(true));
+            moduleNameInput?.addEventListener('change', () => ensureRunId(true));
+            ensureRunId();
+
+            const preview = document.getElementById('jsonPreview');
+            const copy = document.getElementById('copyJsonBtn');
+            copy?.addEventListener('click', async () => {
+                await navigator.clipboard.writeText(preview?.textContent || '');
+                copy.textContent = 'Copied';
+                setTimeout(() => copy.textContent = 'Copy JSON', 1000);
+            });
+        })();
+    </script>
+}

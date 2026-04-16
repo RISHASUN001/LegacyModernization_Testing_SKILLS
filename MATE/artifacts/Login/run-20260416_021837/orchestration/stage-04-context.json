@@ -1,0 +1,41 @@
+{
+  "runId": "run-20260416_021837",
+  "moduleName": "Login",
+  "stage": "java-logic-understanding",
+  "stageIndex": 4,
+  "title": "4. Java Logic Understanding",
+  "objective": "Use AI to explain expected legacy behavior and business workflow outcomes.",
+  "disclosure": {
+    "now": {
+      "inputType": "legacy discovery artifacts",
+      "outputType": "legacy logic summary",
+      "skills": [
+        "legacy-logic-understanding"
+      ]
+    },
+    "next": {
+      "stage": "diagram-generation",
+      "title": "5. Diagram Generation",
+      "expectedInputType": "csharp and java logic summaries"
+    }
+  },
+  "contracts": [
+    {
+      "skill": "legacy-logic-understanding",
+      "inputs": [
+        "moduleName",
+        "runId",
+        "workflowNames",
+        "startUrl",
+        "strictAIGeneration"
+      ],
+      "outputs": [
+        "legacy-logic-summary.json",
+        "result.json"
+      ],
+      "dependencies": [
+        "legacy-module-discovery"
+      ]
+    }
+  ]
+}

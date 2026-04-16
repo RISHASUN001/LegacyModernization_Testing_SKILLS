@@ -1,0 +1,83 @@
+{
+  "runId": "run-local-003",
+  "moduleName": "Checklist",
+  "stage": "ai-test-generation",
+  "stageIndex": 7,
+  "title": "7. AI Test Generation",
+  "objective": "Generate workflow-specific unit, integration, E2E, playwright, and edge tests.",
+  "disclosure": {
+    "now": {
+      "inputType": "discovery + logic + parity context",
+      "outputType": "generated test code and indexes",
+      "skills": [
+        "e2e-test-generation",
+        "edge-test-generation",
+        "integration-test-generation",
+        "playwright-test-generation",
+        "unit-test-generation"
+      ]
+    },
+    "next": {
+      "stage": "test-execution",
+      "title": "8. Test Execution",
+      "expectedInputType": "generated tests + runtime environment"
+    }
+  },
+  "contracts": [
+    {
+      "skill": "e2e-test-generation",
+      "inputs": [
+        "moduleName",
+        "runId"
+      ],
+      "outputs": [
+        "result.json"
+      ],
+      "dependencies": []
+    },
+    {
+      "skill": "edge-test-generation",
+      "inputs": [
+        "moduleName",
+        "runId"
+      ],
+      "outputs": [
+        "result.json"
+      ],
+      "dependencies": []
+    },
+    {
+      "skill": "integration-test-generation",
+      "inputs": [
+        "moduleName",
+        "runId"
+      ],
+      "outputs": [
+        "result.json"
+      ],
+      "dependencies": []
+    },
+    {
+      "skill": "playwright-test-generation",
+      "inputs": [
+        "moduleName",
+        "runId"
+      ],
+      "outputs": [
+        "result.json"
+      ],
+      "dependencies": []
+    },
+    {
+      "skill": "unit-test-generation",
+      "inputs": [
+        "moduleName",
+        "runId"
+      ],
+      "outputs": [
+        "result.json"
+      ],
+      "dependencies": []
+    }
+  ]
+}

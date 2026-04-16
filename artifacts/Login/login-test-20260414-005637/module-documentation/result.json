@@ -1,11 +1,11 @@
 {
   "skillName": "module-documentation",
-  "stage": "logic-understanding",
+  "stage": "java-logic",
   "moduleName": "Login",
   "runId": "login-test-20260414-005637",
   "status": "passed",
-  "startedAt": "2026-04-14T02:40:45.665416Z",
-  "endedAt": "2026-04-14T02:40:45.702205Z",
+  "startedAt": "2026-04-14T16:31:46.439823Z",
+  "endedAt": "2026-04-14T16:31:46.470271Z",
   "summary": "Module documentation generated for Login with flows=2, rules=2, unknowns=1.",
   "metrics": {
     "sections": 9,

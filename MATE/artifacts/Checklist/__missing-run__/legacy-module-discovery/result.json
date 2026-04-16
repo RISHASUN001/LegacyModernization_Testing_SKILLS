@@ -1,0 +1,12 @@
+{
+  "skillName": "legacy-module-discovery",
+  "status": "passed",
+  "startedAt": "2026-04-15T15:52:50.163865Z",
+  "endedAt": "2026-04-15T15:52:50.164060Z",
+  "summary": "legacy-module-discovery scaffold executed.",
+  "metrics": {},
+  "artifacts": [
+    "MATE/artifacts/Checklist/__missing-run__/legacy-module-discovery/result.json"
+  ],
+  "resultContractVersion": "1.0"
+}

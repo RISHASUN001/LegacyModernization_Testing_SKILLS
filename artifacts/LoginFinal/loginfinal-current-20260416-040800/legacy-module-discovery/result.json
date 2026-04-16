@@ -1,0 +1,26 @@
+{
+  "skillName": "legacy-module-discovery",
+  "status": "passed",
+  "startedAt": "2026-04-16T04:13:02.052853Z",
+  "endedAt": "2026-04-16T04:13:02.052863Z",
+  "summary": "Legacy discovery selected 3 anchored files from 3 candidates for workflow-scoped analysis.",
+  "metrics": {
+    "legacyCandidates": 3,
+    "selectedLegacyFiles": 3,
+    "sqlFiles": 1,
+    "tables": 0,
+    "anchorTokens": 78,
+    "workflowCount": 2,
+    "backendFiles": 1,
+    "frontendFiles": 2
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/legacy-module-discovery/legacy-module-map.json",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/legacy-module-discovery/java-sql-map.json",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/legacy-module-discovery/java-table-usage.json",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-current-20260416-040800/legacy-module-discovery/legacy-scoped-file-relevance.json"
+  ],
+  "findings": [],
+  "recommendations": [],
+  "resultContractVersion": "1.0"
+}

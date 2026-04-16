@@ -1,0 +1,36 @@
+{
+  "name": "unit-test-execution",
+  "stage": "execution",
+  "category": "testing",
+  "purpose": "Execute unit tests and persist category-specific results with purpose/scenario context.",
+  "scriptEntry": "run.py",
+  "requiredInputs": [
+    "moduleName",
+    "convertedSourceRoot"
+  ],
+  "optionalInputs": [
+    "testFilter"
+  ],
+  "outputFiles": [
+    "result.json",
+    "preflight.json",
+    "execution-log.txt"
+  ],
+  "artifactFolders": [
+    "artifacts/{module}/{runId}/unit-test-execution/"
+  ],
+  "dependencies": [
+    "test-plan-generation"
+  ],
+  "summaryOutputType": "test-category-result",
+  "resultContractVersion": "2.0",
+  "externalDependencies": [],
+  "execution": {
+    "primaryCommand": "python run.py --input <module-run-input.json> --artifacts-root <artifacts-root>",
+    "timeoutNotes": "Real-first graceful execution. Writes result.json even on degraded/failure paths.",
+    "realCommandHints": [
+      "dotnet test <UnitTests.csproj>",
+      "testCommands.unit from run input"
+    ]
+  }
+}

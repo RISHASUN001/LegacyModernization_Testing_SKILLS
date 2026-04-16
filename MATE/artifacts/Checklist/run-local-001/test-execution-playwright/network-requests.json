@@ -1,0 +1,14 @@
+{
+  "requests": [
+    {
+      "method": "GET",
+      "url": "/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "url": "/api/health",
+      "status": 200
+    }
+  ]
+}

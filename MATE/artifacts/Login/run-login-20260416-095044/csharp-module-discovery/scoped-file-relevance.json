@@ -1,0 +1,105 @@
+{
+  "items": [
+    {
+      "file": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Controllers/AuthController.cs",
+      "basename": "AuthController.cs",
+      "role": "controller",
+      "score": 10,
+      "confidence": "high",
+      "included": true,
+      "reasons": [
+        "content matched token 'login'",
+        "content matched token 'password'",
+        "controller file"
+      ]
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Program.cs",
+      "basename": "Program.cs",
+      "role": "other",
+      "score": 8,
+      "confidence": "high",
+      "included": true,
+      "reasons": [
+        "content matched token 'login'",
+        "content matched token 'password'"
+      ]
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Services/LoginService.cs",
+      "basename": "LoginService.cs",
+      "role": "service",
+      "score": 18,
+      "confidence": "high",
+      "included": true,
+      "reasons": [
+        "name matched token 'login'",
+        "content matched token 'login'",
+        "content matched token 'password'",
+        "service-like file"
+      ]
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Views/Auth/Dashboard.cshtml",
+      "basename": "Dashboard.cshtml",
+      "role": "view",
+      "score": 10,
+      "confidence": "high",
+      "included": true,
+      "reasons": [
+        "content matched token 'login'",
+        "content matched token 'password'",
+        "view file"
+      ]
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Views/Auth/Index.cshtml",
+      "basename": "Index.cshtml",
+      "role": "view",
+      "score": 10,
+      "confidence": "high",
+      "included": true,
+      "reasons": [
+        "content matched token 'login'",
+        "content matched token 'password'",
+        "view file"
+      ]
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/obj/Debug/net8.0/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs",
+      "basename": ".NETCoreApp,Version=v8.0.AssemblyAttributes.cs",
+      "role": "other",
+      "score": 0,
+      "confidence": "exclude",
+      "included": false,
+      "reasons": []
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/obj/Debug/net8.0/LegacyModernization.Converted.AssemblyInfo.cs",
+      "basename": "LegacyModernization.Converted.AssemblyInfo.cs",
+      "role": "other",
+      "score": 0,
+      "confidence": "exclude",
+      "included": false,
+      "reasons": []
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/obj/Debug/net8.0/LegacyModernization.Converted.GlobalUsings.g.cs",
+      "basename": "LegacyModernization.Converted.GlobalUsings.g.cs",
+      "role": "other",
+      "score": 0,
+      "confidence": "exclude",
+      "included": false,
+      "reasons": []
+    },
+    {
+      "file": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/obj/Debug/net8.0/LegacyModernization.Converted.RazorAssemblyInfo.cs",
+      "basename": "LegacyModernization.Converted.RazorAssemblyInfo.cs",
+      "role": "other",
+      "score": 0,
+      "confidence": "exclude",
+      "included": false,
+      "reasons": []
+    }
+  ]
+}

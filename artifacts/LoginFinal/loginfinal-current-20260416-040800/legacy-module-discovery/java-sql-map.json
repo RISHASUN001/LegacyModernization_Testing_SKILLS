@@ -1,0 +1,15 @@
+{
+  "items": [
+    {
+      "file": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/index.jsp",
+      "queries": [
+        "select {",
+        "select:focus {",
+        "<label for=\"module\">Select Module</label>",
+        "<select id=\"module\" name=\"module\" required>",
+        "</select>"
+      ],
+      "tables": []
+    }
+  ]
+}

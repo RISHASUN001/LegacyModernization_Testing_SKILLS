@@ -1,7 +1,0 @@
-module=Login4
-baseUrl=http://localhost:5001
-testApiEndpoint=http://127.0.0.1:5000/api/test
-degradedMode=True
-consoleMessages=0
-networkFailures=0
-runtimeIssues=0

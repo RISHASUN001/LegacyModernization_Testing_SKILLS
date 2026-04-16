@@ -1,0 +1,10 @@
+{
+  "moduleName": "Checklist",
+  "source": "legacy",
+  "provider": "deterministic-fallback",
+  "payload": {
+    "note": "non-strict deterministic fallback",
+    "task": "Generate legacy Java/JSP workflow and expected behavior understanding from legacy discovery.",
+    "summary": "Generated without Claude due to unavailable provider."
+  }
+}

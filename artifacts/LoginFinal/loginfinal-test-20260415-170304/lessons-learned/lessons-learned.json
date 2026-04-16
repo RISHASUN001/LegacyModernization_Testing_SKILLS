@@ -1,0 +1,26 @@
+{
+  "moduleName": "LoginFinal",
+  "runId": "loginfinal-test-20260415-170304",
+  "previousRunId": "loginfinal-test-20260415-165746",
+  "resolvedIssues": [
+    "SkillExecutionError::Skill callback execution::'SkillContext' object has no attribute 'finished_at'"
+  ],
+  "recurringIssues": [
+    "ArchitectureIssuesDetected::Clean architecture review::Detected 1 architecture issue(s), including 1 high-severity issue(s).",
+    "BrowserEvidenceUnavailable::Playwright evidence collection::Playwright execution did not emit runtime/network issue signatures in execution logs.",
+    "NoTestsCollected::E2E::No runnable E2E tests were collected in this run; treated as non-blocking baseline.",
+    "ScenarioFailure::excalidraw-diagram::excalidraw-diagram failed in skill excalidraw-diagram."
+  ],
+  "newIssues": [
+    "SkillExecutionError::Skill callback execution::name 'now_iso' is not defined"
+  ],
+  "knowledgeUpdates": [
+    {
+      "signature": "SkillExecutionError::Skill callback execution::name 'now_iso' is not defined",
+      "stage": "java-logic",
+      "skill": "excalidraw-diagram",
+      "message": "name 'now_iso' is not defined",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    }
+  ]
+}

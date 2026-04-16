@@ -1,0 +1,179 @@
+{
+  "moduleName": "Login",
+  "runId": "run-login-20260416-095044",
+  "previousRunId": "",
+  "resolvedIssues": [],
+  "recurringIssues": [],
+  "newIssues": [
+    "ArchitectureIssuesDetected::Clean architecture review::Detected 2 architecture issue(s), including 1 high-severity issue(s).",
+    "BrowserEvidenceUnavailable::Playwright evidence collection::Playwright execution did not emit runtime/network issue signatures in execution logs.",
+    "ExecutionEnvironmentMissing::Edge Case preflight::No runnable command could be resolved for this category.",
+    "ScenarioFailure::Dapper case-sensitivity and column mapping edge cases::Dapper case-sensitivity and column mapping edge cases failed in skill edge-case-testing.",
+    "ScenarioFailure::E2E robust path: Open login page::E2E robust path: Open login page failed in skill e2e-test-execution.",
+    "ScenarioFailure::E2E robust path: Session timeout returns to login::E2E robust path: Session timeout returns to login failed in skill e2e-test-execution.",
+    "ScenarioFailure::E2E robustness generated case 1 for Login::E2E robustness generated case 1 for Login failed in skill e2e-test-execution.",
+    "ScenarioFailure::E2E route resilience: /login::E2E route resilience: /login failed in skill e2e-test-execution.",
+    "ScenarioFailure::Edge Case robustness generated case 1 for Login::Edge Case robustness generated case 1 for Login failed in skill edge-case-testing.",
+    "ScenarioFailure::Edge resilience: Session/cookie handling and user context preservation across requests::Edge resilience: Session/cookie handling and user context preservation across requests failed in skill edge-case-testing.",
+    "ScenarioFailure::Edge retry/timeout behavior: Open login page::Edge retry/timeout behavior: Open login page failed in skill edge-case-testing.",
+    "ScenarioFailure::Edge retry/timeout behavior: Session timeout returns to login::Edge retry/timeout behavior: Session timeout returns to login failed in skill edge-case-testing.",
+    "ScenarioFailure::Journey parity: Login flow via /Auth/dashboard::Journey parity: Login flow via /Auth/dashboard failed in skill e2e-test-execution.",
+    "ScenarioFailure::Journey parity: Login flow via /Auth/index::Journey parity: Login flow via /Auth/index failed in skill e2e-test-execution.",
+    "ScenarioFailure::Journey parity: Login flow via /Auth::Journey parity: Login flow via /Auth failed in skill e2e-test-execution.",
+    "ScenarioFailure::Must-preserve edge behavior: Data mapping compatibility for persistence operations (Dapper case-sensitivity, ViewModel binding)::Must-preserve edge behavior: Data mapping compatibility for persistence operations (Dapper case-sensitivity, ViewModel binding) failed in skill edge-case-testing.",
+    "ScenarioFailure::Must-preserve edge behavior: Route and URL behavior parity for user-visible flows::Must-preserve edge behavior: Route and URL behavior parity for user-visible flows failed in skill edge-case-testing.",
+    "ScenarioFailure::Must-preserve edge behavior: Validation/error message semantics from legacy behavior::Must-preserve edge behavior: Validation/error message semantics from legacy behavior failed in skill edge-case-testing.",
+    "ScenarioFailure::Recurring risk regression guard: DIRegistrationMissing::Recurring risk regression guard: DIRegistrationMissing failed in skill edge-case-testing.",
+    "ScenarioFailure::ViewModel binding and property mapping validation::ViewModel binding and property mapping validation failed in skill edge-case-testing.",
+    "TestCategoryFailure::E2E::E2E test command returned non-zero exit code or failing test counts."
+  ],
+  "knowledgeUpdates": [
+    {
+      "signature": "ArchitectureIssuesDetected::Clean architecture review::Detected 2 architecture issue(s), including 1 high-severity issue(s).",
+      "stage": "csharp-logic",
+      "skill": "clean-architecture-assessment",
+      "message": "Detected 2 architecture issue(s), including 1 high-severity issue(s).",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "BrowserEvidenceUnavailable::Playwright evidence collection::Playwright execution did not emit runtime/network issue signatures in execution logs.",
+      "stage": "execution",
+      "skill": "playwright-browser-verification",
+      "message": "Playwright execution did not emit runtime/network issue signatures in execution logs.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "ExecutionEnvironmentMissing::Edge Case preflight::No runnable command could be resolved for this category.",
+      "stage": "execution",
+      "skill": "edge-case-testing",
+      "message": "No runnable command could be resolved for this category.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "ScenarioFailure::Dapper case-sensitivity and column mapping edge cases::Dapper case-sensitivity and column mapping edge cases failed in skill edge-case-testing.",
+      "stage": "findings",
+      "skill": "failure-diagnosis",
+      "message": "Dapper case-sensitivity and column mapping edge cases failed in skill edge-case-testing.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "ScenarioFailure::E2E robust path: Open login page::E2E robust path: Open login page failed in skill e2e-test-execution.",
+      "stage": "findings",
+      "skill": "failure-diagnosis",
+      "message": "E2E robust path: Open login page failed in skill e2e-test-execution.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "ScenarioFailure::E2E robust path: Session timeout returns to login::E2E robust path: Session timeout returns to login failed in skill e2e-test-execution.",
+      "stage": "findings",
+      "skill": "failure-diagnosis",
+      "message": "E2E robust path: Session timeout returns to login failed in skill e2e-test-execution.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "ScenarioFailure::E2E robustness generated case 1 for Login::E2E robustness generated case 1 for Login failed in skill e2e-test-execution.",
+      "stage": "findings",
+      "skill": "failure-diagnosis",
+      "message": "E2E robustness generated case 1 for Login failed in skill e2e-test-execution.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "ScenarioFailure::E2E route resilience: /login::E2E route resilience: /login failed in skill e2e-test-execution.",
+      "stage": "findings",
+      "skill": "failure-diagnosis",
+      "message": "E2E route resilience: /login failed in skill e2e-test-execution.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "ScenarioFailure::Edge Case robustness generated case 1 for Login::Edge Case robustness generated case 1 for Login failed in skill edge-case-testing.",
+      "stage": "findings",
+      "skill": "failure-diagnosis",
+      "message": "Edge Case robustness generated case 1 for Login failed in skill edge-case-testing.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "ScenarioFailure::Edge resilience: Session/cookie handling and user context preservation across requests::Edge resilience: Session/cookie handling and user context preservation across requests failed in skill edge-case-testing.",
+      "stage": "findings",
+      "skill": "failure-diagnosis",
+      "message": "Edge resilience: Session/cookie handling and user context preservation across requests failed in skill edge-case-testing.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "ScenarioFailure::Edge retry/timeout behavior: Open login page::Edge retry/timeout behavior: Open login page failed in skill edge-case-testing.",
+      "stage": "findings",
+      "skill": "failure-diagnosis",
+      "message": "Edge retry/timeout behavior: Open login page failed in skill edge-case-testing.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "ScenarioFailure::Edge retry/timeout behavior: Session timeout returns to login::Edge retry/timeout behavior: Session timeout returns to login failed in skill edge-case-testing.",
+      "stage": "findings",
+      "skill": "failure-diagnosis",
+      "message": "Edge retry/timeout behavior: Session timeout returns to login failed in skill edge-case-testing.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "ScenarioFailure::Journey parity: Login flow via /Auth/dashboard::Journey parity: Login flow via /Auth/dashboard failed in skill e2e-test-execution.",
+      "stage": "findings",
+      "skill": "failure-diagnosis",
+      "message": "Journey parity: Login flow via /Auth/dashboard failed in skill e2e-test-execution.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "ScenarioFailure::Journey parity: Login flow via /Auth/index::Journey parity: Login flow via /Auth/index failed in skill e2e-test-execution.",
+      "stage": "findings",
+      "skill": "failure-diagnosis",
+      "message": "Journey parity: Login flow via /Auth/index failed in skill e2e-test-execution.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "ScenarioFailure::Journey parity: Login flow via /Auth::Journey parity: Login flow via /Auth failed in skill e2e-test-execution.",
+      "stage": "findings",
+      "skill": "failure-diagnosis",
+      "message": "Journey parity: Login flow via /Auth failed in skill e2e-test-execution.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "ScenarioFailure::Must-preserve edge behavior: Data mapping compatibility for persistence operations (Dapper case-sensitivity, ViewModel binding)::Must-preserve edge behavior: Data mapping compatibility for persistence operations (Dapper case-sensitivity, ViewModel binding) failed in skill edge-case-testing.",
+      "stage": "findings",
+      "skill": "failure-diagnosis",
+      "message": "Must-preserve edge behavior: Data mapping compatibility for persistence operations (Dapper case-sensitivity, ViewModel binding) failed in skill edge-case-testing.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "ScenarioFailure::Must-preserve edge behavior: Route and URL behavior parity for user-visible flows::Must-preserve edge behavior: Route and URL behavior parity for user-visible flows failed in skill edge-case-testing.",
+      "stage": "findings",
+      "skill": "failure-diagnosis",
+      "message": "Must-preserve edge behavior: Route and URL behavior parity for user-visible flows failed in skill edge-case-testing.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "ScenarioFailure::Must-preserve edge behavior: Validation/error message semantics from legacy behavior::Must-preserve edge behavior: Validation/error message semantics from legacy behavior failed in skill edge-case-testing.",
+      "stage": "findings",
+      "skill": "failure-diagnosis",
+      "message": "Must-preserve edge behavior: Validation/error message semantics from legacy behavior failed in skill edge-case-testing.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "ScenarioFailure::Recurring risk regression guard: DIRegistrationMissing::Recurring risk regression guard: DIRegistrationMissing failed in skill edge-case-testing.",
+      "stage": "findings",
+      "skill": "failure-diagnosis",
+      "message": "Recurring risk regression guard: DIRegistrationMissing failed in skill edge-case-testing.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "ScenarioFailure::ViewModel binding and property mapping validation::ViewModel binding and property mapping validation failed in skill edge-case-testing.",
+      "stage": "findings",
+      "skill": "failure-diagnosis",
+      "message": "ViewModel binding and property mapping validation failed in skill edge-case-testing.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    },
+    {
+      "signature": "TestCategoryFailure::E2E::E2E test command returned non-zero exit code or failing test counts.",
+      "stage": "execution",
+      "skill": "e2e-test-execution",
+      "message": "E2E test command returned non-zero exit code or failing test counts.",
+      "recommendedGuard": "Add targeted regression scenario in next test plan."
+    }
+  ]
+}

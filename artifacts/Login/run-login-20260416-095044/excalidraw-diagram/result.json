@@ -1,0 +1,40 @@
+{
+  "skillName": "excalidraw-diagram",
+  "stage": "java-logic",
+  "moduleName": "Login",
+  "runId": "run-login-20260416-095044",
+  "status": "passed",
+  "startedAt": "2026-04-16T01:55:32.187287Z",
+  "endedAt": "2026-04-16T01:55:36.822358Z",
+  "summary": "Generated 2 consolidated workflow diagrams (Mermaid + Excalidraw + preview PNG).",
+  "metrics": {
+    "diagramBundles": 2,
+    "csharpWorkflows": 5,
+    "javaWorkflows": 5,
+    "mermaidFiles": 2,
+    "excalidrawFiles": 2,
+    "previewPNGs": 2
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/excalidraw-diagram/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/excalidraw-diagram/csharp-workflow-unified.mmd",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/excalidraw-diagram/csharp-workflow-unified.excalidraw.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/excalidraw-diagram/previews/csharp-workflow-unified.png",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/excalidraw-diagram/java-workflow-unified.mmd",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/excalidraw-diagram/java-workflow-unified.excalidraw.json",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/excalidraw-diagram/previews/java-workflow-unified.png",
+    "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/excalidraw-diagram/diagram-index.json"
+  ],
+  "findings": [],
+  "recommendations": [
+    "Diagrams show all conditional branches and pivots in single consolidated view per language",
+    "Use Excalidraw JSON for editing or PNG for readonly dashboard viewing"
+  ],
+  "resultContractVersion": "2.0",
+  "provenanceSummary": {
+    "scenarioSources": [
+      "excalidraw-generated"
+    ],
+    "confidence": 0.7
+  }
+}

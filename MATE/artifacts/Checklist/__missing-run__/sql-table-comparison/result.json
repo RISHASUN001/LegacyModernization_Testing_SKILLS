@@ -1,0 +1,12 @@
+{
+  "skillName": "sql-table-comparison",
+  "status": "passed",
+  "startedAt": "2026-04-15T15:52:50.357173Z",
+  "endedAt": "2026-04-15T15:52:50.357363Z",
+  "summary": "sql-table-comparison scaffold executed.",
+  "metrics": {},
+  "artifacts": [
+    "MATE/artifacts/Checklist/__missing-run__/sql-table-comparison/result.json"
+  ],
+  "resultContractVersion": "1.0"
+}

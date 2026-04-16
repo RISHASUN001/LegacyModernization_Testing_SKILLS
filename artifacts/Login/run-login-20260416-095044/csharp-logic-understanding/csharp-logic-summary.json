@@ -1,0 +1,316 @@
+{
+  "moduleName": "Login",
+  "scopeApplied": {
+    "targetUrl": "",
+    "scopeHint": "",
+    "strictModuleOnly": false
+  },
+  "modulePurpose": "C# functional understanding for module Login.",
+  "workflows": [
+    {
+      "workflowId": "csharp-workflow-01",
+      "name": "Login flow via /Auth",
+      "purpose": "Execute Login workflow from route /Auth.",
+      "entryPoint": "/Auth",
+      "controllerPath": [
+        "AuthController"
+      ],
+      "actionSequence": [
+        "Controller receives request",
+        "Service validates input",
+        "Repository executes data access",
+        "View/model response is returned"
+      ],
+      "validations": [
+        "Model state validation",
+        "Module-specific guard checks"
+      ],
+      "decisionBranches": [
+        "Valid request -> continue",
+        "Invalid request -> return validation errors"
+      ],
+      "sideEffects": [
+        "Database read/write path may execute",
+        "UI model state is updated"
+      ],
+      "dbTouchpoints": [],
+      "expectedOutputs": [
+        "Expected route/view response",
+        "Consistent data contract"
+      ],
+      "dependencies": [
+        {
+          "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Services/LoginService.cs",
+          "source": "using-or-type-reference"
+        }
+      ],
+      "importEvidence": {
+        "seedFiles": [
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Controllers/AuthController.cs"
+        ],
+        "usingReferences": [
+          "LegacyModernization.Converted.Services",
+          "Microsoft.AspNetCore.Mvc"
+        ],
+        "typeHints": [
+          "LoginService"
+        ]
+      },
+      "provenance": {
+        "type": "flow-derived",
+        "sources": [
+          "converted-workflows.json"
+        ],
+        "confidence": 0.74,
+        "unknowns": []
+      }
+    },
+    {
+      "workflowId": "csharp-workflow-02",
+      "name": "Login flow via /Auth/dashboard",
+      "purpose": "Execute Login workflow from route /Auth/dashboard.",
+      "entryPoint": "/Auth/dashboard",
+      "controllerPath": [
+        "AuthController"
+      ],
+      "actionSequence": [
+        "Controller receives request",
+        "Service validates input",
+        "Repository executes data access",
+        "View/model response is returned"
+      ],
+      "validations": [
+        "Model state validation",
+        "Module-specific guard checks"
+      ],
+      "decisionBranches": [
+        "Valid request -> continue",
+        "Invalid request -> return validation errors"
+      ],
+      "sideEffects": [
+        "Database read/write path may execute",
+        "UI model state is updated"
+      ],
+      "dbTouchpoints": [],
+      "expectedOutputs": [
+        "Expected route/view response",
+        "Consistent data contract"
+      ],
+      "dependencies": [
+        {
+          "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Services/LoginService.cs",
+          "source": "using-or-type-reference"
+        }
+      ],
+      "importEvidence": {
+        "seedFiles": [
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Controllers/AuthController.cs"
+        ],
+        "usingReferences": [
+          "LegacyModernization.Converted.Services",
+          "Microsoft.AspNetCore.Mvc"
+        ],
+        "typeHints": [
+          "LoginService"
+        ]
+      },
+      "provenance": {
+        "type": "flow-derived",
+        "sources": [
+          "converted-workflows.json"
+        ],
+        "confidence": 0.74,
+        "unknowns": []
+      }
+    },
+    {
+      "workflowId": "csharp-workflow-03",
+      "name": "Login flow via /Auth/index",
+      "purpose": "Execute Login workflow from route /Auth/index.",
+      "entryPoint": "/Auth/index",
+      "controllerPath": [
+        "AuthController"
+      ],
+      "actionSequence": [
+        "Controller receives request",
+        "Service validates input",
+        "Repository executes data access",
+        "View/model response is returned"
+      ],
+      "validations": [
+        "Model state validation",
+        "Module-specific guard checks"
+      ],
+      "decisionBranches": [
+        "Valid request -> continue",
+        "Invalid request -> return validation errors"
+      ],
+      "sideEffects": [
+        "Database read/write path may execute",
+        "UI model state is updated"
+      ],
+      "dbTouchpoints": [],
+      "expectedOutputs": [
+        "Expected route/view response",
+        "Consistent data contract"
+      ],
+      "dependencies": [
+        {
+          "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Services/LoginService.cs",
+          "source": "using-or-type-reference"
+        }
+      ],
+      "importEvidence": {
+        "seedFiles": [
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Controllers/AuthController.cs"
+        ],
+        "usingReferences": [
+          "LegacyModernization.Converted.Services",
+          "Microsoft.AspNetCore.Mvc"
+        ],
+        "typeHints": [
+          "LoginService"
+        ]
+      },
+      "provenance": {
+        "type": "flow-derived",
+        "sources": [
+          "converted-workflows.json"
+        ],
+        "confidence": 0.74,
+        "unknowns": []
+      }
+    },
+    {
+      "workflowId": "csharp-workflow-04",
+      "name": "Login flow via /Auth/login",
+      "purpose": "Execute Login workflow from route /Auth/login.",
+      "entryPoint": "/Auth/login",
+      "controllerPath": [
+        "AuthController"
+      ],
+      "actionSequence": [
+        "Controller receives request",
+        "Service validates input",
+        "Repository executes data access",
+        "View/model response is returned"
+      ],
+      "validations": [
+        "Model state validation",
+        "Module-specific guard checks"
+      ],
+      "decisionBranches": [
+        "Valid request -> continue",
+        "Invalid request -> return validation errors"
+      ],
+      "sideEffects": [
+        "Database read/write path may execute",
+        "UI model state is updated"
+      ],
+      "dbTouchpoints": [],
+      "expectedOutputs": [
+        "Expected route/view response",
+        "Consistent data contract"
+      ],
+      "dependencies": [
+        {
+          "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Services/LoginService.cs",
+          "source": "using-or-type-reference"
+        }
+      ],
+      "importEvidence": {
+        "seedFiles": [
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Controllers/AuthController.cs"
+        ],
+        "usingReferences": [
+          "LegacyModernization.Converted.Services",
+          "Microsoft.AspNetCore.Mvc"
+        ],
+        "typeHints": [
+          "LoginService"
+        ]
+      },
+      "provenance": {
+        "type": "flow-derived",
+        "sources": [
+          "converted-workflows.json"
+        ],
+        "confidence": 0.74,
+        "unknowns": []
+      }
+    },
+    {
+      "workflowId": "csharp-workflow-05",
+      "name": "Login flow via /Auth/logout",
+      "purpose": "Execute Login workflow from route /Auth/logout.",
+      "entryPoint": "/Auth/logout",
+      "controllerPath": [
+        "AuthController"
+      ],
+      "actionSequence": [
+        "Controller receives request",
+        "Service validates input",
+        "Repository executes data access",
+        "View/model response is returned"
+      ],
+      "validations": [
+        "Model state validation",
+        "Module-specific guard checks"
+      ],
+      "decisionBranches": [
+        "Valid request -> continue",
+        "Invalid request -> return validation errors"
+      ],
+      "sideEffects": [
+        "Database read/write path may execute",
+        "UI model state is updated"
+      ],
+      "dbTouchpoints": [],
+      "expectedOutputs": [
+        "Expected route/view response",
+        "Consistent data contract"
+      ],
+      "dependencies": [
+        {
+          "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Services/LoginService.cs",
+          "source": "using-or-type-reference"
+        }
+      ],
+      "importEvidence": {
+        "seedFiles": [
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Controllers/AuthController.cs"
+        ],
+        "usingReferences": [
+          "LegacyModernization.Converted.Services",
+          "Microsoft.AspNetCore.Mvc"
+        ],
+        "typeHints": [
+          "LoginService"
+        ]
+      },
+      "provenance": {
+        "type": "flow-derived",
+        "sources": [
+          "converted-workflows.json"
+        ],
+        "confidence": 0.74,
+        "unknowns": []
+      }
+    }
+  ],
+  "businessRules": [
+    {
+      "rule": "Preserve workflow behavior from C# route to response.",
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "controller-route-map.json"
+        ],
+        "confidence": 0.66,
+        "unknowns": []
+      }
+    }
+  ],
+  "unknowns": [],
+  "confidence": 0.78
+}

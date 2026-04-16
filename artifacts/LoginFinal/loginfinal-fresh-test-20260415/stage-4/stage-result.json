@@ -1,0 +1,76 @@
+{
+  "stage": "java-logic",
+  "stageTitle": "Java Logic Understanding",
+  "stageIndex": 4,
+  "status": "passed",
+  "skillCount": 3,
+  "skillsPassed": 3,
+  "skillsFailed": 0,
+  "skills": [
+    {
+      "skill": "java-logic-understanding",
+      "stage": "java-logic",
+      "status": "passed",
+      "startedAt": "2026-04-15T08:49:28.418270Z",
+      "endedAt": "2026-04-15T08:49:28.522166Z",
+      "durationSeconds": 0.104,
+      "summary": "Java logic understanding produced 2 workflow summaries.",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-fresh-test-20260415/java-logic-understanding/result.json\n",
+      "stderr": "",
+      "command": [
+        "python3",
+        "/Users/risha/Documents/Buildathon/skills/java-logic-understanding/run.py",
+        "--input",
+        "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-fresh-test-20260415/module-run-input.json",
+        "--artifacts-root",
+        "/Users/risha/Documents/Buildathon/artifacts"
+      ],
+      "resultPath": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-fresh-test-20260415/java-logic-understanding/result.json"
+    },
+    {
+      "skill": "legacy-logic-extraction",
+      "stage": "java-logic",
+      "status": "passed",
+      "startedAt": "2026-04-15T08:49:28.522196Z",
+      "endedAt": "2026-04-15T08:49:28.630627Z",
+      "durationSeconds": 0.108,
+      "summary": "Logic extraction completed for LoginFinal: workflows=2, rules=2, unknowns=1.",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-fresh-test-20260415/legacy-logic-extraction/result.json\n",
+      "stderr": "",
+      "command": [
+        "python3",
+        "/Users/risha/Documents/Buildathon/skills/legacy-logic-extraction/run.py",
+        "--input",
+        "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-fresh-test-20260415/module-run-input.json",
+        "--artifacts-root",
+        "/Users/risha/Documents/Buildathon/artifacts"
+      ],
+      "resultPath": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-fresh-test-20260415/legacy-logic-extraction/result.json"
+    },
+    {
+      "skill": "module-documentation",
+      "stage": "java-logic",
+      "status": "passed",
+      "startedAt": "2026-04-15T08:49:28.630652Z",
+      "endedAt": "2026-04-15T08:49:28.728393Z",
+      "durationSeconds": 0.097,
+      "summary": "Module documentation generated for LoginFinal with flows=2, rules=2, unknowns=1.",
+      "returnCode": 0,
+      "stdout": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-fresh-test-20260415/module-documentation/result.json\n",
+      "stderr": "",
+      "command": [
+        "python3",
+        "/Users/risha/Documents/Buildathon/skills/module-documentation/run.py",
+        "--input",
+        "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-fresh-test-20260415/module-run-input.json",
+        "--artifacts-root",
+        "/Users/risha/Documents/Buildathon/artifacts"
+      ],
+      "resultPath": "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-fresh-test-20260415/module-documentation/result.json"
+    }
+  ],
+  "startedAt": "2026-04-15T08:49:28.418270Z",
+  "endedAt": "2026-04-15T08:49:28.728393Z"
+}

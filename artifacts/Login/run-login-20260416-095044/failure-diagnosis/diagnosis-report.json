@@ -1,0 +1,541 @@
+{
+  "moduleName": "Login",
+  "runId": "run-login-20260416-095044",
+  "totalSkillResults": 17,
+  "failedSkillResults": 2,
+  "clusters": [
+    {
+      "name": "e2e-test-execution failure cluster",
+      "likelyCause": "E2E execution completed with 0 passed and 7 failed scenarios.",
+      "affectedSkills": [
+        "e2e-test-execution"
+      ],
+      "failedScenarios": [
+        "Journey parity: Login flow via /Auth",
+        "Journey parity: Login flow via /Auth/dashboard",
+        "Journey parity: Login flow via /Auth/index",
+        "E2E robust path: Open login page",
+        "E2E robust path: Session timeout returns to login",
+        "E2E route resilience: /login",
+        "E2E robustness generated case 1 for Login"
+      ],
+      "evidenceArtifacts": [
+        "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/execution-log.txt"
+      ]
+    },
+    {
+      "name": "edge-case-testing failure cluster",
+      "likelyCause": "Edge Case execution failed preflight checks and did not run command execution.",
+      "affectedSkills": [
+        "edge-case-testing"
+      ],
+      "failedScenarios": [
+        "Must-preserve edge behavior: Route and URL behavior parity for user-visible flows",
+        "Must-preserve edge behavior: Validation/error message semantics from legacy behavior",
+        "Must-preserve edge behavior: Data mapping compatibility for persistence operations (Dapper case-sensitivity, ViewModel binding)",
+        "Dapper case-sensitivity and column mapping edge cases",
+        "ViewModel binding and property mapping validation",
+        "Recurring risk regression guard: DIRegistrationMissing",
+        "Edge resilience: Session/cookie handling and user context preservation across requests",
+        "Edge retry/timeout behavior: Open login page",
+        "Edge retry/timeout behavior: Session timeout returns to login",
+        "Edge Case robustness generated case 1 for Login"
+      ],
+      "evidenceArtifacts": [
+        "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/execution-log.txt"
+      ]
+    }
+  ],
+  "scenarioFailures": [
+    {
+      "skill": "e2e-test-execution",
+      "scenario": "Journey parity: Login flow via /Auth",
+      "likelyCause": "E2E execution completed with 0 passed and 7 failed scenarios.",
+      "evidence": {
+        "resultSummary": "E2E execution completed with 0 passed and 7 failed scenarios.",
+        "logs": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/execution-log.txt"
+        ],
+        "artifacts": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/result.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/generated-tests/e2e-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/login-4e5a2893bd/run-login-20260416-095044/e2e-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/preflight.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/execution-log.txt",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/e2e-scenarios.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/screenshots/e2e-failure.png"
+        ]
+      },
+      "provenance": {
+        "type": "flow-derived",
+        "sources": [
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.73,
+        "unknowns": []
+      }
+    },
+    {
+      "skill": "e2e-test-execution",
+      "scenario": "Journey parity: Login flow via /Auth/dashboard",
+      "likelyCause": "E2E execution completed with 0 passed and 7 failed scenarios.",
+      "evidence": {
+        "resultSummary": "E2E execution completed with 0 passed and 7 failed scenarios.",
+        "logs": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/execution-log.txt"
+        ],
+        "artifacts": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/result.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/generated-tests/e2e-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/login-4e5a2893bd/run-login-20260416-095044/e2e-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/preflight.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/execution-log.txt",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/e2e-scenarios.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/screenshots/e2e-failure.png"
+        ]
+      },
+      "provenance": {
+        "type": "flow-derived",
+        "sources": [
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.73,
+        "unknowns": []
+      }
+    },
+    {
+      "skill": "e2e-test-execution",
+      "scenario": "Journey parity: Login flow via /Auth/index",
+      "likelyCause": "E2E execution completed with 0 passed and 7 failed scenarios.",
+      "evidence": {
+        "resultSummary": "E2E execution completed with 0 passed and 7 failed scenarios.",
+        "logs": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/execution-log.txt"
+        ],
+        "artifacts": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/result.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/generated-tests/e2e-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/login-4e5a2893bd/run-login-20260416-095044/e2e-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/preflight.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/execution-log.txt",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/e2e-scenarios.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/screenshots/e2e-failure.png"
+        ]
+      },
+      "provenance": {
+        "type": "flow-derived",
+        "sources": [
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.73,
+        "unknowns": []
+      }
+    },
+    {
+      "skill": "e2e-test-execution",
+      "scenario": "E2E robust path: Open login page",
+      "likelyCause": "E2E execution completed with 0 passed and 7 failed scenarios.",
+      "evidence": {
+        "resultSummary": "E2E execution completed with 0 passed and 7 failed scenarios.",
+        "logs": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/execution-log.txt"
+        ],
+        "artifacts": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/result.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/generated-tests/e2e-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/login-4e5a2893bd/run-login-20260416-095044/e2e-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/preflight.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/execution-log.txt",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/e2e-scenarios.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/screenshots/e2e-failure.png"
+        ]
+      },
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "skill": "e2e-test-execution",
+      "scenario": "E2E robust path: Session timeout returns to login",
+      "likelyCause": "E2E execution completed with 0 passed and 7 failed scenarios.",
+      "evidence": {
+        "resultSummary": "E2E execution completed with 0 passed and 7 failed scenarios.",
+        "logs": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/execution-log.txt"
+        ],
+        "artifacts": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/result.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/generated-tests/e2e-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/login-4e5a2893bd/run-login-20260416-095044/e2e-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/preflight.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/execution-log.txt",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/e2e-scenarios.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/screenshots/e2e-failure.png"
+        ]
+      },
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "skill": "e2e-test-execution",
+      "scenario": "E2E route resilience: /login",
+      "likelyCause": "E2E execution completed with 0 passed and 7 failed scenarios.",
+      "evidence": {
+        "resultSummary": "E2E execution completed with 0 passed and 7 failed scenarios.",
+        "logs": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/execution-log.txt"
+        ],
+        "artifacts": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/result.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/generated-tests/e2e-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/login-4e5a2893bd/run-login-20260416-095044/e2e-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/preflight.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/execution-log.txt",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/e2e-scenarios.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/screenshots/e2e-failure.png"
+        ]
+      },
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "skill": "e2e-test-execution",
+      "scenario": "E2E robustness generated case 1 for Login",
+      "likelyCause": "E2E execution completed with 0 passed and 7 failed scenarios.",
+      "evidence": {
+        "resultSummary": "E2E execution completed with 0 passed and 7 failed scenarios.",
+        "logs": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/execution-log.txt"
+        ],
+        "artifacts": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/result.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/generated-tests/e2e-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/login-4e5a2893bd/run-login-20260416-095044/e2e-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/preflight.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/execution-log.txt",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/e2e-scenarios.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/e2e-test-execution/screenshots/e2e-failure.png"
+        ]
+      },
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "skill": "edge-case-testing",
+      "scenario": "Must-preserve edge behavior: Route and URL behavior parity for user-visible flows",
+      "likelyCause": "Edge Case execution failed preflight checks and did not run command execution.",
+      "evidence": {
+        "resultSummary": "Edge Case execution failed preflight checks and did not run command execution.",
+        "logs": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/execution-log.txt"
+        ],
+        "artifacts": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/result.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/generated-tests/edge-case-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/login-4e5a2893bd/run-login-20260416-095044/edge-case-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/preflight.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/execution-log.txt",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/edge-case-matrix.json"
+        ]
+      },
+      "provenance": {
+        "type": "risk-derived",
+        "sources": [
+          "artifact:legacy-logic-extraction/logic-summary.json"
+        ],
+        "confidence": 0.76,
+        "unknowns": []
+      }
+    },
+    {
+      "skill": "edge-case-testing",
+      "scenario": "Must-preserve edge behavior: Validation/error message semantics from legacy behavior",
+      "likelyCause": "Edge Case execution failed preflight checks and did not run command execution.",
+      "evidence": {
+        "resultSummary": "Edge Case execution failed preflight checks and did not run command execution.",
+        "logs": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/execution-log.txt"
+        ],
+        "artifacts": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/result.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/generated-tests/edge-case-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/login-4e5a2893bd/run-login-20260416-095044/edge-case-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/preflight.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/execution-log.txt",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/edge-case-matrix.json"
+        ]
+      },
+      "provenance": {
+        "type": "risk-derived",
+        "sources": [
+          "artifact:legacy-logic-extraction/logic-summary.json"
+        ],
+        "confidence": 0.76,
+        "unknowns": []
+      }
+    },
+    {
+      "skill": "edge-case-testing",
+      "scenario": "Must-preserve edge behavior: Data mapping compatibility for persistence operations (Dapper case-sensitivity, ViewModel binding)",
+      "likelyCause": "Edge Case execution failed preflight checks and did not run command execution.",
+      "evidence": {
+        "resultSummary": "Edge Case execution failed preflight checks and did not run command execution.",
+        "logs": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/execution-log.txt"
+        ],
+        "artifacts": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/result.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/generated-tests/edge-case-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/login-4e5a2893bd/run-login-20260416-095044/edge-case-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/preflight.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/execution-log.txt",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/edge-case-matrix.json"
+        ]
+      },
+      "provenance": {
+        "type": "risk-derived",
+        "sources": [
+          "artifact:legacy-logic-extraction/logic-summary.json"
+        ],
+        "confidence": 0.76,
+        "unknowns": []
+      }
+    },
+    {
+      "skill": "edge-case-testing",
+      "scenario": "Dapper case-sensitivity and column mapping edge cases",
+      "likelyCause": "Edge Case execution failed preflight checks and did not run command execution.",
+      "evidence": {
+        "resultSummary": "Edge Case execution failed preflight checks and did not run command execution.",
+        "logs": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/execution-log.txt"
+        ],
+        "artifacts": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/result.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/generated-tests/edge-case-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/login-4e5a2893bd/run-login-20260416-095044/edge-case-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/preflight.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/execution-log.txt",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/edge-case-matrix.json"
+        ]
+      },
+      "provenance": {
+        "type": "risk-derived",
+        "sources": [
+          "artifact:legacy-logic-extraction/logic-summary.json"
+        ],
+        "confidence": 0.72,
+        "unknowns": []
+      }
+    },
+    {
+      "skill": "edge-case-testing",
+      "scenario": "ViewModel binding and property mapping validation",
+      "likelyCause": "Edge Case execution failed preflight checks and did not run command execution.",
+      "evidence": {
+        "resultSummary": "Edge Case execution failed preflight checks and did not run command execution.",
+        "logs": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/execution-log.txt"
+        ],
+        "artifacts": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/result.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/generated-tests/edge-case-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/login-4e5a2893bd/run-login-20260416-095044/edge-case-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/preflight.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/execution-log.txt",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/edge-case-matrix.json"
+        ]
+      },
+      "provenance": {
+        "type": "risk-derived",
+        "sources": [
+          "artifact:legacy-logic-extraction/logic-summary.json"
+        ],
+        "confidence": 0.7,
+        "unknowns": []
+      }
+    },
+    {
+      "skill": "edge-case-testing",
+      "scenario": "Recurring risk regression guard: DIRegistrationMissing",
+      "likelyCause": "Edge Case execution failed preflight checks and did not run command execution.",
+      "evidence": {
+        "resultSummary": "Edge Case execution failed preflight checks and did not run command execution.",
+        "logs": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/execution-log.txt"
+        ],
+        "artifacts": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/result.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/generated-tests/edge-case-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/login-4e5a2893bd/run-login-20260416-095044/edge-case-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/preflight.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/execution-log.txt",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/edge-case-matrix.json"
+        ]
+      },
+      "provenance": {
+        "type": "lessons-derived",
+        "sources": [
+          "artifact:_knowledge-base/lessons-kb.json"
+        ],
+        "confidence": 0.8,
+        "unknowns": []
+      }
+    },
+    {
+      "skill": "edge-case-testing",
+      "scenario": "Edge resilience: Session/cookie handling and user context preservation across requests",
+      "likelyCause": "Edge Case execution failed preflight checks and did not run command execution.",
+      "evidence": {
+        "resultSummary": "Edge Case execution failed preflight checks and did not run command execution.",
+        "logs": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/execution-log.txt"
+        ],
+        "artifacts": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/result.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/generated-tests/edge-case-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/login-4e5a2893bd/run-login-20260416-095044/edge-case-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/preflight.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/execution-log.txt",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/edge-case-matrix.json"
+        ]
+      },
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "skill": "edge-case-testing",
+      "scenario": "Edge retry/timeout behavior: Open login page",
+      "likelyCause": "Edge Case execution failed preflight checks and did not run command execution.",
+      "evidence": {
+        "resultSummary": "Edge Case execution failed preflight checks and did not run command execution.",
+        "logs": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/execution-log.txt"
+        ],
+        "artifacts": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/result.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/generated-tests/edge-case-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/login-4e5a2893bd/run-login-20260416-095044/edge-case-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/preflight.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/execution-log.txt",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/edge-case-matrix.json"
+        ]
+      },
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "skill": "edge-case-testing",
+      "scenario": "Edge retry/timeout behavior: Session timeout returns to login",
+      "likelyCause": "Edge Case execution failed preflight checks and did not run command execution.",
+      "evidence": {
+        "resultSummary": "Edge Case execution failed preflight checks and did not run command execution.",
+        "logs": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/execution-log.txt"
+        ],
+        "artifacts": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/result.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/generated-tests/edge-case-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/login-4e5a2893bd/run-login-20260416-095044/edge-case-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/preflight.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/execution-log.txt",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/edge-case-matrix.json"
+        ]
+      },
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "skill": "edge-case-testing",
+      "scenario": "Edge Case robustness generated case 1 for Login",
+      "likelyCause": "Edge Case execution failed preflight checks and did not run command execution.",
+      "evidence": {
+        "resultSummary": "Edge Case execution failed preflight checks and did not run command execution.",
+        "logs": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/execution-log.txt"
+        ],
+        "artifacts": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/result.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/generated-tests/edge-case-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/login-4e5a2893bd/run-login-20260416-095044/edge-case-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/preflight.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/execution-log.txt",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/run-login-20260416-095044/edge-case-testing/edge-case-matrix.json"
+        ]
+      },
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    }
+  ]
+}

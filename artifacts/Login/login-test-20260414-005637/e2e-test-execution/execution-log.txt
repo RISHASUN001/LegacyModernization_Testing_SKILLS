@@ -1,7 +1,7 @@
 command: python3 -m pytest -m e2e
 returnCode: 5
 timedOut: False
-durationSeconds: 0.647
+durationSeconds: 0.529
 
 --- stdout ---
 ============================= test session starts ==============================

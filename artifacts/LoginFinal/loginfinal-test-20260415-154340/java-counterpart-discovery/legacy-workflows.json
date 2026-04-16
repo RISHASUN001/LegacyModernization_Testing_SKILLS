@@ -1,0 +1,81 @@
+{
+  "moduleName": "LoginFinal",
+  "workflows": [
+    {
+      "workflowId": "java-workflow-01",
+      "name": "LoginFinal legacy flow via /Auth",
+      "entryHint": "/Auth",
+      "relatedFiles": [],
+      "provenance": {
+        "type": "flow-derived",
+        "sources": [
+          "csharp-logic-summary.json"
+        ],
+        "confidence": 0.68,
+        "unknowns": []
+      }
+    },
+    {
+      "workflowId": "java-workflow-02",
+      "name": "LoginFinal legacy flow via /Auth/dashboard",
+      "entryHint": "/Auth/dashboard",
+      "relatedFiles": [
+        "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp",
+        "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp"
+      ],
+      "provenance": {
+        "type": "flow-derived",
+        "sources": [
+          "csharp-logic-summary.json"
+        ],
+        "confidence": 0.68,
+        "unknowns": []
+      }
+    },
+    {
+      "workflowId": "java-workflow-03",
+      "name": "LoginFinal legacy flow via /Auth/index",
+      "entryHint": "/Auth/index",
+      "relatedFiles": [
+        "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp",
+        "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp"
+      ],
+      "provenance": {
+        "type": "flow-derived",
+        "sources": [
+          "csharp-logic-summary.json"
+        ],
+        "confidence": 0.68,
+        "unknowns": []
+      }
+    },
+    {
+      "workflowId": "java-workflow-04",
+      "name": "LoginFinal legacy flow via /Auth/login",
+      "entryHint": "/Auth/login",
+      "relatedFiles": [],
+      "provenance": {
+        "type": "flow-derived",
+        "sources": [
+          "csharp-logic-summary.json"
+        ],
+        "confidence": 0.68,
+        "unknowns": []
+      }
+    },
+    {
+      "workflowId": "java-workflow-05",
+      "name": "LoginFinal legacy flow via /Auth/logout",
+      "entryHint": "/Auth/logout",
+      "relatedFiles": [],
+      "provenance": {
+        "type": "flow-derived",
+        "sources": [
+          "csharp-logic-summary.json"
+        ],
+        "confidence": 0.68,
+        "unknowns": []
+      }
+    }
+  ]
+}

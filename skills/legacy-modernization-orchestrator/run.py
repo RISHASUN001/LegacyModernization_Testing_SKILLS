@@ -33,24 +33,49 @@ SKILLS_ROOT = PROJECT_ROOT / "skills"
 ARTIFACTS_ROOT = PROJECT_ROOT / "artifacts"
 
 STAGE_ORDER = [
-    "discovery",
-    "logic-understanding",
-    "architecture-review",
-    "test-plan",
-    "execution",
-    "findings",
-    "iteration-comparison",
+    "csharp-discovery",
+    "csharp-logic-understanding",
+    "java-discovery",
+    "legacy-logic-understanding",
+    "diagram-generation",
+    "functional-parity-and-sql-table-comparison",
+    "ai-test-generation",
+    "test-execution",
+    "clean-architecture-and-findings",
+    "pipeline-vanity-check",
 ]
 
 STAGE_LABELS = {
-    "discovery": "Discovery",
-    "logic-understanding": "Logic Understanding",
-    "architecture-review": "Architecture Review",
-    "test-plan": "Test Plan",
-    "execution": "Execution",
-    "findings": "Findings",
-    "iteration-comparison": "Iteration Comparison",
+    "csharp-discovery": "1. C# Discovery",
+    "csharp-logic-understanding": "2. C# Logic Understanding",
+    "java-discovery": "3. Java Discovery",
+    "legacy-logic-understanding": "4. Legacy Logic Understanding",
+    "diagram-generation": "5. Diagram Generation",
+    "functional-parity-and-sql-table-comparison": "6. Functional Parity",
+    "ai-test-generation": "7. AI Test Generation",
+    "test-execution": "8. Test Execution",
+    "clean-architecture-and-findings": "9. Clean Architecture and Findings",
+    "pipeline-vanity-check": "10. Pipeline Vanity Check",
 }
+
+DEFAULT_MATE_SKILLS = [
+    "csharp-module-discovery",
+    "csharp-logic-understanding",
+    "legacy-module-discovery",
+    "legacy-logic-understanding",
+    "diagram-generation",
+    "parity-analysis",
+    "unit-test-generation",
+    "integration-test-generation",
+    "edge-test-generation",
+    "playwright-test-generation",
+    "test-execution-unit",
+    "test-execution-integration",
+    "test-execution-playwright",
+    "clean-architecture-assessment",
+    "findings-synthesis",
+    "vanity-check",
+]
 
 
 @dataclass(frozen=True)
@@ -119,39 +144,64 @@ def normalize_payload(payload: dict[str, Any], args: argparse.Namespace) -> dict
     normalized["moduleName"] = module_name
     normalized["runId"] = run_id
 
-    if "legacySourceRoot" not in normalized and "legacy_source_root" in payload:
-        normalized["legacySourceRoot"] = payload.get("legacy_source_root", "")
-    if "convertedSourceRoot" not in normalized and "converted_source_root" in payload:
-        normalized["convertedSourceRoot"] = payload.get("converted_source_root", "")
+    def normalize_root_path(value: Any) -> str:
+        text = str(value or "").strip()
+        if not text:
+            return ""
+        path = Path(text)
+        if not path.is_absolute():
+            path = (PROJECT_ROOT / path).resolve()
+        else:
+            path = path.resolve()
 
-    if "targetUrl" not in normalized and "target_url" in payload:
-        normalized["targetUrl"] = payload.get("target_url", "")
+        # Accept users passing a solution/project file and normalize to its folder.
+        if path.exists() and path.is_file() and path.suffix.lower() in {".sln", ".slnx", ".csproj", ".vbproj", ".vcxproj"}:
+            return path.parent.as_posix()
+        return path.as_posix()
 
-    if "strictModuleOnly" not in normalized and "strict_module_only" in payload:
-        normalized["strictModuleOnly"] = bool(payload.get("strict_module_only"))
-
-    if "allowedCrossModules" not in normalized and "allowed_cross_modules" in payload:
-        value = payload.get("allowed_cross_modules")
+    def ensure_list(value: Any) -> list[str]:
         if isinstance(value, list):
-            normalized["allowedCrossModules"] = [str(v) for v in value if str(v).strip()]
+            return [str(v).strip() for v in value if str(v).strip()]
+        if isinstance(value, str) and value.strip():
+            return [value.strip()]
+        return []
 
-    if "architecturePolicy" not in normalized and "architecture_policy" in payload:
-        normalized["architecturePolicy"] = str(payload.get("architecture_policy") or "")
+    normalized["workflowNames"] = ensure_list(normalized.get("workflowNames"))
+    normalized["convertedRoots"] = [normalize_root_path(v) for v in ensure_list(normalized.get("convertedRoots"))]
+    normalized["legacyBackendRoots"] = [normalize_root_path(v) for v in ensure_list(normalized.get("legacyBackendRoots"))]
+    normalized["legacyFrontendRoots"] = [normalize_root_path(v) for v in ensure_list(normalized.get("legacyFrontendRoots"))]
 
-    if "generateModuleClaudeMd" not in normalized and "generate_module_claude_md" in payload:
-        normalized["generateModuleClaudeMd"] = bool(payload.get("generate_module_claude_md"))
+    # Backward-compatibility fallbacks from older payload shapes.
+    if not normalized["convertedRoots"]:
+        fallback = normalize_root_path(payload.get("convertedModuleRoot") or payload.get("convertedSourceRoot"))
+        if fallback:
+            normalized["convertedRoots"] = [fallback]
 
-    hints = normalized.get("moduleHints") if isinstance(normalized.get("moduleHints"), dict) else {}
-    if isinstance(hints, dict):
-        if "scopeHint" not in hints and "scope_hint" in hints:
-            hints["scopeHint"] = hints.get("scope_hint")
-        normalized["moduleHints"] = hints
+    if not normalized["legacyBackendRoots"]:
+        fallback = normalize_root_path(payload.get("legacyBackendRoot") or payload.get("legacySourceRoot"))
+        if fallback:
+            normalized["legacyBackendRoots"] = [fallback]
+
+    if not normalized["legacyFrontendRoots"]:
+        fallback = normalize_root_path(payload.get("legacyFrontendRoot"))
+        if fallback:
+            normalized["legacyFrontendRoots"] = [fallback]
+
+    normalized["baseUrl"] = str(normalized.get("baseUrl") or payload.get("baseUrl") or "").strip()
+    normalized["startUrl"] = str(normalized.get("startUrl") or payload.get("moduleStartUrl") or payload.get("targetUrl") or "").strip()
+    normalized["dotnetTestTarget"] = normalize_root_path(
+        normalized.get("dotnetTestTarget") or payload.get("convertedModuleRoot") or payload.get("convertedSourceRoot") or ""
+    )
+
+    normalized["strictModuleOnly"] = bool(normalized.get("strictModuleOnly", payload.get("strict_module_only", True)))
+    normalized["strictAIGeneration"] = bool(normalized.get("strictAIGeneration", payload.get("strict_ai_generation", False)))
+    normalized["enableUserInputPrompting"] = bool(normalized.get("enableUserInputPrompting", True))
+
+    for key in ["keywords", "controllerHints", "viewHints", "expectedEndUrls"]:
+        normalized[key] = ensure_list(normalized.get(key))
 
     selected = payload.get("selectedSkills")
-    if isinstance(selected, list):
-        normalized["selectedSkills"] = [str(s) for s in selected]
-    else:
-        normalized["selectedSkills"] = []
+    normalized["selectedSkills"] = [str(s).strip() for s in selected if str(s).strip()] if isinstance(selected, list) else []
 
     return normalized
 
@@ -168,6 +218,31 @@ def validate_payload(payload: dict[str, Any]) -> list[str]:
         missing.append("moduleName")
     if not run_id or is_placeholder(run_id):
         missing.append("runId")
+
+    required_fields = [
+        "workflowNames",
+        "convertedRoots",
+        "legacyBackendRoots",
+        "legacyFrontendRoots",
+        "baseUrl",
+        "startUrl",
+        "dotnetTestTarget",
+    ]
+
+    for field in required_fields:
+        value = payload.get(field)
+        if isinstance(value, list):
+            if len(value) == 0:
+                missing.append(field)
+        elif not str(value or "").strip():
+            missing.append(field)
+
+    for root_key in ["convertedRoots", "legacyBackendRoots", "legacyFrontendRoots"]:
+        for root in payload.get(root_key, []) if isinstance(payload.get(root_key), list) else []:
+            path = Path(str(root))
+            if not path.exists() or not path.is_dir():
+                missing.append(f"{root_key} (path does not exist: {root})")
+
     return missing
 
 
@@ -187,7 +262,7 @@ def load_skill_definitions() -> dict[str, SkillDefinition]:
         config = json.loads(config_path.read_text(encoding="utf-8"))
         name = config.get("name", skill_dir.name)
 
-        if name == "legacy-modernization-orchestrator":
+        if name in {"legacy-modernization-orchestrator", "mate-orchestrator"}:
             continue
 
         script_entry = config.get("scriptEntry")
@@ -228,13 +303,26 @@ def load_skill_definitions() -> dict[str, SkillDefinition]:
 def resolve_selected_skills(
     normalized_payload: dict[str, Any], skill_defs: dict[str, SkillDefinition]
 ) -> list[str]:
-    requested = [s for s in normalized_payload.get("selectedSkills", []) if isinstance(s, str)]
+    requested = [
+        s for s in normalized_payload.get("selectedSkills", [])
+        if isinstance(s, str)
+    ]
 
+    # Default to MATE-aligned skills when no explicit selection is provided.
     if not requested:
-        requested = sorted(skill_defs.keys())
+        requested = [s for s in DEFAULT_MATE_SKILLS if s in skill_defs]
 
-    # Remove router meta-skill if user accidentally included it.
-    requested = [s for s in requested if s != "legacy-modernization-orchestrator"]
+    # Backward-compatible aliases for renamed skills used in older run inputs.
+    alias_map = {
+        "logic-flow-visualization": "excalidraw-diagram",
+    }
+    requested = [alias_map.get(s, s) for s in requested]
+
+    # Remove router/meta skills if user accidentally included them.
+    requested = [
+        s for s in requested
+        if s not in {"legacy-modernization-orchestrator", "mate-orchestrator", "api-test-execution", "orchestrator"}
+    ]
 
     selected: set[str] = set()
 
@@ -260,7 +348,7 @@ def resolve_selected_skills(
             s,
         ),
     )
-    return ordered
+    return [s for s in ordered if s != "api-test-execution"]
 
 
 def command_for_skill(skill: SkillDefinition, input_path: Path, artifacts_root: Path) -> list[str]:
@@ -389,6 +477,13 @@ def main() -> int:
 
     run_root = Path(args.output_dir).resolve() if args.output_dir else (ARTIFACTS_ROOT / module_name / run_id)
     run_root.mkdir(parents=True, exist_ok=True)
+    # Prevent stale artifacts from previous executions with the same runId from polluting current results.
+    for child in run_root.iterdir():
+        if child.is_dir():
+            shutil.rmtree(child)
+        else:
+            child.unlink(missing_ok=True)
+
     # Skills expect an artifacts-root, then internally write artifacts/<module>/<run>/<skill>.
     # Derive the root so persisted output remains deterministic regardless of run_root override.
     if run_root.name == run_id and run_root.parent.name == module_name:
@@ -420,6 +515,7 @@ def main() -> int:
         grouped[stage].append(skill_defs[skill_name])
 
     any_failed = False
+    total_stages = len(STAGE_ORDER)
     for idx, stage in enumerate(STAGE_ORDER, start=1):
         if idx < args.from_stage:
             stages_summary.append(
@@ -446,7 +542,7 @@ def main() -> int:
             )
             continue
 
-        logger.info("\n[%d/7] Stage: %s", idx, STAGE_LABELS.get(stage, stage))
+        logger.info("\n[%d/%d] Stage: %s", idx, total_stages, STAGE_LABELS.get(stage, stage))
 
         stage_results: list[dict[str, Any]] = []
         for skill in stage_skills:

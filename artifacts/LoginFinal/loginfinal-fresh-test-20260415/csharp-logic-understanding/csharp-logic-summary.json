@@ -1,0 +1,146 @@
+{
+  "moduleName": "LoginFinal",
+  "scopeApplied": {
+    "targetUrl": "http://localhost:5001",
+    "scopeHint": "",
+    "strictModuleOnly": false
+  },
+  "modulePurpose": "C# functional understanding for module LoginFinal.",
+  "workflows": [
+    {
+      "workflowId": "csharp-workflow-01",
+      "name": "Successful Login",
+      "purpose": "Execute LoginFinal workflow from route /Auth/login.",
+      "entryPoint": "/Auth/login",
+      "controllerPath": [
+        "AuthController",
+        "AuthController"
+      ],
+      "actionSequence": [
+        "Controller receives request",
+        "Service validates input",
+        "Repository executes data access",
+        "View/model response is returned"
+      ],
+      "validations": [
+        "Model state validation",
+        "Module-specific guard checks"
+      ],
+      "decisionBranches": [
+        "Valid request -> continue",
+        "Invalid request -> return validation errors"
+      ],
+      "sideEffects": [
+        "Database read/write path may execute",
+        "UI model state is updated"
+      ],
+      "dbTouchpoints": [],
+      "expectedOutputs": [
+        "Expected route/view response",
+        "Consistent data contract"
+      ],
+      "dependencies": [
+        {
+          "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Services/LoginService.cs",
+          "source": "using-or-type-reference"
+        }
+      ],
+      "importEvidence": {
+        "seedFiles": [
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Controllers/AuthController.cs",
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Controllers/AuthController.cs"
+        ],
+        "usingReferences": [
+          "LegacyModernization.Converted.Services",
+          "Microsoft.AspNetCore.Mvc"
+        ],
+        "typeHints": [
+          "LoginService"
+        ]
+      },
+      "provenance": {
+        "type": "flow-derived",
+        "sources": [
+          "converted-workflows.json"
+        ],
+        "confidence": 0.74,
+        "unknowns": []
+      }
+    },
+    {
+      "workflowId": "csharp-workflow-02",
+      "name": "Invalid Login",
+      "purpose": "Execute LoginFinal workflow from route /Auth/dashboard.",
+      "entryPoint": "/Auth/dashboard",
+      "controllerPath": [
+        "AuthController",
+        "AuthController"
+      ],
+      "actionSequence": [
+        "Controller receives request",
+        "Service validates input",
+        "Repository executes data access",
+        "View/model response is returned"
+      ],
+      "validations": [
+        "Model state validation",
+        "Module-specific guard checks"
+      ],
+      "decisionBranches": [
+        "Valid request -> continue",
+        "Invalid request -> return validation errors"
+      ],
+      "sideEffects": [
+        "Database read/write path may execute",
+        "UI model state is updated"
+      ],
+      "dbTouchpoints": [],
+      "expectedOutputs": [
+        "Expected route/view response",
+        "Consistent data contract"
+      ],
+      "dependencies": [
+        {
+          "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Services/LoginService.cs",
+          "source": "using-or-type-reference"
+        }
+      ],
+      "importEvidence": {
+        "seedFiles": [
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Controllers/AuthController.cs",
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Controllers/AuthController.cs"
+        ],
+        "usingReferences": [
+          "LegacyModernization.Converted.Services",
+          "Microsoft.AspNetCore.Mvc"
+        ],
+        "typeHints": [
+          "LoginService"
+        ]
+      },
+      "provenance": {
+        "type": "flow-derived",
+        "sources": [
+          "converted-workflows.json"
+        ],
+        "confidence": 0.74,
+        "unknowns": []
+      }
+    }
+  ],
+  "businessRules": [
+    {
+      "rule": "Preserve workflow behavior from C# route to response.",
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "controller-route-map.json"
+        ],
+        "confidence": 0.66,
+        "unknowns": []
+      }
+    }
+  ],
+  "unknowns": [],
+  "confidence": 0.78
+}

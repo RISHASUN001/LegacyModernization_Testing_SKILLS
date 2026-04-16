@@ -1,0 +1,80 @@
+{
+  "stage": "ai-test-generation",
+  "stageIndex": 7,
+  "stageTitle": "7. AI Test Generation",
+  "stageObjective": "Generate workflow-specific unit, integration, playwright, and edge tests.",
+  "status": "failed",
+  "skills": [
+    {
+      "skill": "edge-test-generation",
+      "stage": "ai-test-generation",
+      "returnCode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/risha/Documents/Buildathon/MATE/skills/edge-test-generation/run.py\", line 6, in <module>\n    from runtime import *\nModuleNotFoundError: No module named 'runtime'",
+      "status": "failed",
+      "reused": false,
+      "resultPath": "MATE/artifacts/Checklist/run-local-005/edge-test-generation/result.json"
+    },
+    {
+      "skill": "integration-test-generation",
+      "stage": "ai-test-generation",
+      "returnCode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/risha/Documents/Buildathon/MATE/skills/integration-test-generation/run.py\", line 6, in <module>\n    from runtime import *\nModuleNotFoundError: No module named 'runtime'",
+      "status": "failed",
+      "reused": false,
+      "resultPath": "MATE/artifacts/Checklist/run-local-005/integration-test-generation/result.json"
+    },
+    {
+      "skill": "playwright-test-generation",
+      "stage": "ai-test-generation",
+      "returnCode": 0,
+      "stdout": "MATE/artifacts/Checklist/run-local-005/playwright-test-generation/result.json",
+      "stderr": "",
+      "status": "passed",
+      "reused": true,
+      "resultPath": "MATE/artifacts/Checklist/run-local-005/playwright-test-generation/result.json",
+      "summary": "Playwright generation failed: AI did not return a JSON array",
+      "artifacts": [],
+      "metrics": {},
+      "findings": [
+        {
+          "type": "PlaywrightGenerationError",
+          "message": "AI did not return a JSON array"
+        }
+      ]
+    },
+    {
+      "skill": "unit-test-generation",
+      "stage": "ai-test-generation",
+      "returnCode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/risha/Documents/Buildathon/MATE/skills/unit-test-generation/run.py\", line 6, in <module>\n    from runtime import *\nModuleNotFoundError: No module named 'runtime'",
+      "status": "failed",
+      "reused": false,
+      "resultPath": "MATE/artifacts/Checklist/run-local-005/unit-test-generation/result.json"
+    }
+  ],
+  "skillCount": 4,
+  "skillsFailed": 3,
+  "reusedSkills": 1,
+  "contextFile": "MATE/artifacts/Checklist/run-local-005/orchestration/stage-07-context.json",
+  "requiredEvidence": [
+    {
+      "path": "unit-test-generation/unit-tests.generated.json",
+      "exists": false
+    },
+    {
+      "path": "integration-test-generation/integration-tests.generated.json",
+      "exists": false
+    },
+    {
+      "path": "playwright-test-generation/playwright-tests.generated.json",
+      "exists": false
+    },
+    {
+      "path": "edge-test-generation/edge-tests.generated.json",
+      "exists": false
+    }
+  ]
+}

@@ -1,25 +1,52 @@
 @model RunPipelinePageDto
 @{
-    ViewData["Title"] = "7-Stage Pipeline";
-    var logicFlowNodes = (Model.LogicUnderstanding.FlowDetails.Any()
-            ? Model.LogicUnderstanding.FlowDetails.Select(static x => x.Value)
-            : Model.LogicUnderstanding.ImportantFlows)
-        .Where(static x => !string.IsNullOrWhiteSpace(x))
-        .Take(6)
-        .ToList();
+    ViewData["Title"] = "10-Stage Pipeline";
     var totalFindings = Model.Findings.Findings.Count;
     var openFindings = Model.Findings.Findings.Count(static x => string.Equals(x.Status, "open", StringComparison.OrdinalIgnoreCase));
     var executionFailures = Model.Execution.TestCategories.Sum(static x => x.Failed);
     var executionTotal = Model.Execution.TestCategories.Sum(static x => x.TotalCount);
     var runWarnings = Model.Execution.TestCategories.Sum(static x => x.Warnings);
-    var missingTestApi = !string.Equals(Model.Execution.Playwright.TestApiStatus, "present", StringComparison.OrdinalIgnoreCase);
-    var fallbackTestApiEndpoint = $"{Context.Request.Scheme}://{Context.Request.Host}/api/test";
     var screenshotArtifacts = Model.Execution.Playwright.Screenshots
         .Where(static x => !string.IsNullOrWhiteSpace(x))
         .Take(8)
         .ToList();
     var dependencyViolations = Model.Parity.DependencyParity.Violations.Count;
     var dependencyCount = Model.Parity.DependencyParity.Dependencies.Count;
+    var executionCategoryIndex = Model.Execution.TestCategories
+        .GroupBy(static x => x.Category, StringComparer.OrdinalIgnoreCase)
+        .ToDictionary(static g => g.Key, static g => g.First(), StringComparer.OrdinalIgnoreCase);
+    var playwrightNeedsInput = Model.Execution.Playwright.InputOverridesRecommended;
+    var diagramBundleCount = Model.ArchitectureReview.DiagramBundles.Count;
+
+    var playwrightExecutionLogPath = Model.Execution.Playwright.ExecutionLogPath;
+    var playwrightGeneratedCodePath = Model.Execution.Playwright.GeneratedExecutableArtifact;
+    var playwrightGeneratedBlueprintPath = Model.Execution.Playwright.GeneratedTestsArtifact;
+    var playwrightResultPath = Model.Execution.Playwright.ArtifactLinks
+        .FirstOrDefault(static x => x.EndsWith("result.json", StringComparison.OrdinalIgnoreCase)) ?? string.Empty;
+    var playwrightConsolePath = Model.Execution.Playwright.ArtifactLinks
+        .FirstOrDefault(static x => x.EndsWith("console-logs.json", StringComparison.OrdinalIgnoreCase)) ?? string.Empty;
+    var playwrightNetworkPath = Model.Execution.Playwright.ArtifactLinks
+        .FirstOrDefault(static x => x.EndsWith("network-failures.json", StringComparison.OrdinalIgnoreCase)) ?? string.Empty;
+    var playwrightDomPath = Model.Execution.Playwright.ArtifactLinks
+        .FirstOrDefault(static x => x.EndsWith("dom-state.json", StringComparison.OrdinalIgnoreCase)) ?? string.Empty;
+    var playwrightRuntimePath = Model.Execution.Playwright.ArtifactLinks
+        .FirstOrDefault(static x => x.EndsWith("runtime-issues.json", StringComparison.OrdinalIgnoreCase)) ?? string.Empty;
+    var playwrightPerfPath = Model.Execution.Playwright.ArtifactLinks
+        .FirstOrDefault(static x => x.EndsWith("performance-observations.json", StringComparison.OrdinalIgnoreCase)) ?? string.Empty;
+    var stageAnchorMap = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+    {
+        ["csharp-discovery"] = "stage-csharp-discovery",
+        ["csharp-logic-understanding"] = "stage-csharp-logic",
+        ["java-discovery"] = "stage-java-discovery",
+        ["legacy-logic-understanding"] = "stage-java-logic",
+        ["java-logic-understanding"] = "stage-java-logic",
+        ["diagram-generation"] = "stage-java-logic",
+        ["functional-parity-and-sql-table-comparison"] = "stage-functional-parity",
+        ["ai-test-generation"] = "stage-test-plan",
+        ["test-execution"] = "stage-execution",
+        ["clean-architecture-and-findings"] = "stage-findings",
+        ["pipeline-vanity-check"] = "stage-iteration-comparison"
+    };
 }
 
 <div class="d-flex flex-wrap align-items-start justify-content-between gap-3 mb-3">
@@ -33,6 +60,11 @@
         <a class="btn btn-outline-primary btn-sm" asp-action="IterationComparison" asp-route-moduleName="@Model.ModuleName">All Iterations</a>
     </div>
 </div>
+
+@if (TempData["PipelineMessage"] is string pipelineMessage && !string.IsNullOrWhiteSpace(pipelineMessage))
+{
+    <div class="alert alert-info py-2" role="alert">@pipelineMessage</div>
+}
 
 <div class="panel-card p-3 mb-4">
     <div class="pipeline-summary-grid mb-3">
@@ -61,12 +93,15 @@
     <div class="d-flex flex-wrap gap-2">
         @foreach (var stage in Model.StageStatuses)
         {
-            <a class="btn btn-sm btn-outline-secondary" href="#stage-@stage.StageId">
+            var stageAnchor = stageAnchorMap.TryGetValue(stage.StageId, out var anchor)
+                ? anchor
+                : $"stage-{stage.StageId}";
+            <a class="btn btn-sm btn-outline-secondary" href="#@stageAnchor">
                 @stage.StageTitle
                 <span class="ms-1 status-pill @stage.Status.ToLowerInvariant()">@stage.Status</span>
             </a>
         }
-        <a class="btn btn-sm btn-outline-secondary" href="#stage-parity">Parity Analysis</a>
+        <a class="btn btn-sm btn-outline-secondary" href="#stage-functional-parity">Functional Parity</a>
     </div>
 </div>
 
@@ -217,10 +252,10 @@
     </div>
 </section>
 
-<section id="stage-discovery" class="stage-section panel-card p-3 mb-3">
+<section id="stage-csharp-discovery" class="stage-section panel-card p-3 mb-3">
     <div class="stage-heading">
-        <h3 class="h5 mb-0">1. Discovery</h3>
-        <span class="stage-pill">related Java/JSP/JS/config/URL/DB touchpoints</span>
+        <h3 class="h5 mb-0">1. C# Discovery Anchor</h3>
+        <span class="stage-pill">bounded module scope, routes, db, and counterpart hints</span>
     </div>
     <div class="row g-3">
         <div class="col-lg-4">
@@ -301,26 +336,90 @@
     }
 </section>
 
-<section id="stage-logic-understanding" class="stage-section panel-card p-3 mb-3">
+<section class="stage-section panel-card p-3 mb-3">
     <div class="stage-heading">
-        <h3 class="h5 mb-0">2. Logic Understanding</h3>
+        <h3 class="h5 mb-0">Converted C# Anchor Snapshot</h3>
+        <span class="stage-pill">module-first converted scope summary</span>
+    </div>
+    <div class="row g-3">
+        <div class="col-md-3"><div class="border rounded p-2"><small class="text-muted">Controllers</small><div class="fw-semibold">@Model.Discovery.ConvertedControllerCount</div></div></div>
+        <div class="col-md-3"><div class="border rounded p-2"><small class="text-muted">Workflows</small><div class="fw-semibold">@Model.Discovery.ConvertedWorkflowCount</div></div></div>
+        <div class="col-md-3"><div class="border rounded p-2"><small class="text-muted">SQL Signatures</small><div class="fw-semibold">@Model.Discovery.ConvertedSqlSignatureCount</div></div></div>
+        <div class="col-md-3"><div class="border rounded p-2"><small class="text-muted">Tables</small><div class="fw-semibold">@Model.Discovery.ConvertedTableCount</div></div></div>
+    </div>
+    @if (Model.Discovery.ConvertedRoutes.Any())
+    {
+        <h4 class="h6 mt-3">Converted Routes</h4>
+        <div>
+            @foreach (var route in Model.Discovery.ConvertedRoutes)
+            {
+                <span class="badge text-bg-light border me-1 mb-1"><code>@route</code></span>
+            }
+        </div>
+    }
+    @if (!string.IsNullOrWhiteSpace(Model.Discovery.ConvertedSourceArtifactPath))
+    {
+        <div class="small text-muted mt-2">Source: <code>@Model.Discovery.ConvertedSourceArtifactPath</code></div>
+    }
+</section>
+
+<section id="stage-csharp-logic" class="stage-section panel-card p-3 mb-3">
+    <div class="stage-heading">
+        <h3 class="h5 mb-0">2. C# Logic Understanding</h3>
         <span class="stage-pill">purpose / flows / rules / preserve list</span>
     </div>
     <p><strong>Module Purpose:</strong> @Model.LogicUnderstanding.ModulePurpose</p>
-    @if (logicFlowNodes.Any())
+    <h4 class="h6">Workflow Diagrams (Mermaid + Excalidraw)</h4>
+    @{
+        var csharpBundles = Model.ArchitectureReview.DiagramBundles
+            .Where(static bundle =>
+                bundle.Group.Contains("csharp", StringComparison.OrdinalIgnoreCase)
+                || bundle.Group.Contains("c#", StringComparison.OrdinalIgnoreCase)
+                || bundle.Group.Contains("dotnet", StringComparison.OrdinalIgnoreCase)
+                || bundle.Group.Contains("converted", StringComparison.OrdinalIgnoreCase))
+            .Take(4)
+            .ToList();
+    }
+    @if (csharpBundles.Any())
     {
-        <h4 class="h6">Logic Flow Diagram</h4>
-        <div class="logic-diagram" role="img" aria-label="Module logic flow represented with arrow links">
-            @for (var i = 0; i < logicFlowNodes.Count; i++)
+        <div class="row g-3 mb-2">
+            @foreach (var item in csharpBundles)
             {
-                <span class="logic-node">@logicFlowNodes[i]</span>
-                @if (i < logicFlowNodes.Count - 1)
-                {
-                    <span class="logic-arrow">→</span>
-                }
+                var previewPath = item.PreviewPath;
+                var mermaidPath = item.MermaidPath;
+                var excalidrawPath = item.ExcalidrawPath;
+                <div class="col-lg-6">
+                    <div class="border rounded p-2 h-100">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <div class="fw-semibold">@item.Workflow</div>
+                            <span class="badge text-bg-light border">@item.Group</span>
+                        </div>
+                        @if (!string.IsNullOrWhiteSpace(previewPath))
+                        {
+                            <img class="img-fluid border rounded mb-2" style="max-height:220px; object-fit:contain;" src="@Url.Action("ArtifactFile", "Dashboard", new { path = previewPath })" alt="C# workflow diagram preview" />
+                        }
+                        <div class="small d-flex flex-wrap gap-2">
+                            @if (!string.IsNullOrWhiteSpace(mermaidPath))
+                            {
+                                <a href="@Url.Action("ArtifactFile", "Dashboard", new { path = mermaidPath })" target="_blank" rel="noopener">Mermaid</a>
+                            }
+                            @if (!string.IsNullOrWhiteSpace(excalidrawPath))
+                            {
+                                <a href="@Url.Action("ArtifactFile", "Dashboard", new { path = excalidrawPath })" target="_blank" rel="noopener">Excalidraw JSON</a>
+                            }
+                            @if (!string.IsNullOrWhiteSpace(previewPath))
+                            {
+                                <a href="@Url.Action("ArtifactFile", "Dashboard", new { path = previewPath })" target="_blank" rel="noopener">Preview PNG</a>
+                            }
+                        </div>
+                    </div>
+                </div>
             }
         </div>
-        <div class="small text-muted mb-2">Use this as the high-level behavior map for scenario tests and parity checks.</div>
+    }
+    else
+    {
+        <div class="small text-muted mb-2">No diagram bundle was generated for this C# logic stage.</div>
     }
     <div class="row g-3">
         <div class="col-lg-6">
@@ -378,9 +477,9 @@
     }
 </section>
 
-<section id="stage-parity" class="stage-section panel-card p-3 mb-3">
+<section id="stage-functional-parity" class="stage-section panel-card p-3 mb-3">
     <div class="stage-heading">
-        <h3 class="h5 mb-0">Parity Analysis</h3>
+        <h3 class="h5 mb-0">5. Functional Parity</h3>
         <span class="stage-pill">legacy Java vs converted C# functional closeness</span>
     </div>
 
@@ -393,98 +492,47 @@
 
     <div class="small text-muted mb-2">Confidence: @Model.Parity.Confidence.ToString("0.00")</div>
 
-    <div class="row g-3 mb-3">
-        <div class="col-lg-4">
-            <h4 class="h6">Allowed Cross Modules</h4>
-            <ul>
-                @foreach (var allowed in Model.Parity.DependencyParity.AllowedCrossModules)
-                {
-                    <li>@allowed</li>
-                }
-            </ul>
-        </div>
-        <div class="col-lg-4">
-            <h4 class="h6">Dependencies</h4>
-            <ul>
-                @if (Model.Parity.DependencyParity.Dependencies.Any())
-                {
-                    @foreach (var dep in Model.Parity.DependencyParity.Dependencies)
-                    {
-                        <li>@dep</li>
-                    }
-                }
-                else
-                {
-                    <li class="text-muted">No dependency evidence captured.</li>
-                }
-            </ul>
-        </div>
-        <div class="col-lg-4">
-            <h4 class="h6">Dependency Violations</h4>
-            <ul>
-                @if (Model.Parity.DependencyParity.Violations.Any())
-                {
-                    @foreach (var violation in Model.Parity.DependencyParity.Violations)
-                    {
-                        <li class="text-danger">@violation</li>
-                    }
-                }
-                else
-                {
-                    <li class="text-success">No dependency policy violations.</li>
-                }
-            </ul>
-        </div>
-    </div>
-
-    <div class="table-responsive mb-2">
-        <table class="table table-sm">
+    <h4 class="h6 mt-3">Workflow Logic Comparison</h4>
+    <div class="table-responsive mb-3">
+        <table class="table table-sm align-middle">
             <thead>
                 <tr>
-                    <th>Parity Check</th>
+                    <th>Workflow</th>
                     <th>Status</th>
-                    <th>Evidence</th>
-                    <th>Confidence</th>
+                    <th>C# Entry</th>
+                    <th>Java Entry</th>
+                    <th>Preservation</th>
+                    <th>Provenance</th>
                 </tr>
             </thead>
             <tbody>
-            @foreach (var check in Model.Parity.Checks)
+            @if (Model.Parity.WorkflowParity.Any())
             {
-                <tr>
-                    <td>@check.Name</td>
-                    <td><span class="status-pill @check.Status.ToLowerInvariant()">@check.Status</span></td>
-                    <td>
-                        @if (check.EvidenceLines.Any())
-                        {
-                            <ul class="mb-0">
-                                @foreach (var line in check.EvidenceLines)
-                                {
-                                    <li>@line</li>
-                                }
-                            </ul>
-                        }
-                        else
-                        {
-                            <span class="text-muted small">No evidence captured.</span>
-                        }
-                    </td>
-                    <td>@check.Confidence.ToString("0.00") <div class="small text-muted">@check.ProvenanceType</div></td>
-                </tr>
+                @foreach (var workflow in Model.Parity.WorkflowParity)
+                {
+                    <tr>
+                        <td>
+                            <div class="fw-semibold">@workflow.WorkflowName</div>
+                            <div class="small text-muted">Java workflow: @workflow.JavaWorkflowName</div>
+                        </td>
+                        <td><span class="status-pill @workflow.Status.ToLowerInvariant()">@workflow.Status</span></td>
+                        <td><code>@workflow.CsharpEntryPoint</code></td>
+                        <td><code>@workflow.JavaEntryPoint</code></td>
+                        <td>@workflow.PreservationScore.ToString("0.00")</td>
+                        <td>
+                            <span class="badge text-bg-light border">@workflow.ProvenanceType</span>
+                            <div class="small text-muted">conf: @workflow.Confidence.ToString("0.00")</div>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr><td colspan="6" class="text-muted">No workflow parity summary generated for this run.</td></tr>
             }
             </tbody>
         </table>
     </div>
-
-    @if (Model.Parity.Gaps.Any())
-    {
-        <h4 class="h6">Parity Gaps</h4>
-        <ul>
-            @foreach (var gap in Model.Parity.Gaps)
-            {
-                <li>@gap</li>
-            }
-        </ul>
-    }
 
     <h4 class="h6 mt-3">SQL and Table Parity (Before vs After)</h4>
     <div class="row g-3 mb-2">
@@ -565,10 +613,10 @@
     </div>
 </section>
 
-<section id="stage-architecture-review" class="stage-section panel-card p-3 mb-3">
+<section id="stage-java-discovery" class="stage-section panel-card p-3 mb-3">
     <div class="stage-heading">
-        <h3 class="h5 mb-0">3. Architecture Review</h3>
-        <span class="stage-pill">clean architecture + DI + coupling</span>
+        <h3 class="h5 mb-0">3-4. Java Discovery and Logic</h3>
+        <span class="stage-pill">counterpart mapping, boundaries, and diagrams</span>
     </div>
     <div class="row g-3">
         <div class="col-lg-12">
@@ -617,13 +665,156 @@
     </div>
     <h4 class="h6 mt-2">Recommended Structure</h4>
     <ul>@foreach (var x in Model.ArchitectureReview.RecommendedStructure) { <li>@x</li> }</ul>
+
+    <h4 class="h6 mt-3">Java Counterpart Mapping</h4>
+    <div class="row g-3 mb-2">
+        <div class="col-md-3"><div class="border rounded p-2"><small class="text-muted">Related Files</small><div class="fw-semibold">@Model.ArchitectureReview.JavaRelatedFileCount</div></div></div>
+        <div class="col-md-3"><div class="border rounded p-2"><small class="text-muted">Excluded Files</small><div class="fw-semibold">@Model.ArchitectureReview.JavaExcludedFileCount</div></div></div>
+        <div class="col-md-3"><div class="border rounded p-2"><small class="text-muted">Legacy Workflows</small><div class="fw-semibold">@Model.ArchitectureReview.JavaWorkflowCount</div></div></div>
+        <div class="col-md-3"><div class="border rounded p-2"><small class="text-muted">Java SQL Signatures</small><div class="fw-semibold">@Model.ArchitectureReview.JavaSqlSignatureCount</div></div></div>
+    </div>
+
+    <div class="row g-3">
+        <div class="col-lg-6">
+            <h5 class="h6">Related Java/JSP Files (Sample)</h5>
+            @if (Model.ArchitectureReview.JavaRelatedFileSamples.Any())
+            {
+                <ul class="mb-0">
+                    @foreach (var item in Model.ArchitectureReview.JavaRelatedFileSamples)
+                    {
+                        <li><code>@item</code></li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <div class="small text-muted">No related-file sample available.</div>
+            }
+        </div>
+        <div class="col-lg-6">
+            <h5 class="h6">Excluded Java/JSP Files (Sample)</h5>
+            @if (Model.ArchitectureReview.JavaExclusionSamples.Any())
+            {
+                <ul class="mb-0">
+                    @foreach (var item in Model.ArchitectureReview.JavaExclusionSamples)
+                    {
+                        <li><code>@item</code></li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <div class="small text-muted">No exclusions captured.</div>
+            }
+        </div>
+    </div>
+
+    <h4 id="stage-java-logic" class="h6 mt-3">4. Legacy Logic Diagrams (Mermaid + Excalidraw)</h4>
+    <div class="artifact-hub mb-3">
+        <div class="artifact-hub-header">
+            <div>
+                <div class="summary-label">Diagram Artifacts</div>
+                <div class="summary-value">@diagramBundleCount bundle(s)</div>
+            </div>
+            <div class="small text-muted">Rendered from consolidated Java/C# workflow evidence</div>
+        </div>
+    </div>
+    @{
+        var javaBundles = Model.ArchitectureReview.DiagramBundles
+            .Where(static bundle =>
+                bundle.Group.Contains("java", StringComparison.OrdinalIgnoreCase)
+                || bundle.Group.Contains("legacy", StringComparison.OrdinalIgnoreCase))
+            .Take(8)
+            .ToList();
+    }
+    @if (javaBundles.Any())
+    {
+        <div class="row g-3">
+            @foreach (var item in javaBundles)
+            {
+                var previewPath = item.PreviewPath;
+                var mermaidPath = item.MermaidPath;
+                var excalidrawPath = item.ExcalidrawPath;
+                <div class="col-lg-6">
+                    <div class="border rounded p-2 h-100 diagram-card">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <div class="fw-semibold">@item.Workflow</div>
+                            <span class="badge text-bg-light border">@item.Group</span>
+                        </div>
+                        @if (!string.IsNullOrWhiteSpace(previewPath))
+                        {
+                            <img class="img-fluid border rounded mb-2" style="max-height:220px; object-fit:contain;" src="@Url.Action("ArtifactFile", "Dashboard", new { path = previewPath })" alt="Workflow diagram preview" />
+                        }
+                        <div class="small d-flex flex-wrap gap-2">
+                            @if (!string.IsNullOrWhiteSpace(mermaidPath))
+                            {
+                                <a href="@Url.Action("ArtifactFile", "Dashboard", new { path = mermaidPath })" target="_blank" rel="noopener">Mermaid</a>
+                            }
+                            @if (!string.IsNullOrWhiteSpace(excalidrawPath))
+                            {
+                                <a href="@Url.Action("ArtifactFile", "Dashboard", new { path = excalidrawPath })" target="_blank" rel="noopener">Excalidraw JSON</a>
+                            }
+                            @if (!string.IsNullOrWhiteSpace(previewPath))
+                            {
+                                <a href="@Url.Action("ArtifactFile", "Dashboard", new { path = previewPath })" target="_blank" rel="noopener">Preview PNG</a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="small text-muted">No Java logic diagram bundles were generated for this run.</div>
+    }
 </section>
 
 <section id="stage-test-plan" class="stage-section panel-card p-3 mb-3">
     <div class="stage-heading">
-        <h3 class="h5 mb-0">4. Test Plan</h3>
+        <h3 class="h5 mb-0">6. Test Plan</h3>
         <span class="stage-pill">existing + suggested + coverage + category purpose</span>
     </div>
+    @if (Model.TestPlan.WorkflowLanes.Any())
+    {
+        <h4 class="h6">Workflow Lanes</h4>
+        <ul class="nav nav-pills pipeline-tabs mb-3" id="workflowLanes" role="tablist">
+            @for (var i = 0; i < Model.TestPlan.WorkflowLanes.Count; i++)
+            {
+                var lane = Model.TestPlan.WorkflowLanes[i];
+                var active = i == 0;
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link @(active ? "active" : string.Empty)" id="lane-tab-@i" data-bs-toggle="pill" data-bs-target="#lane-pane-@i" type="button" role="tab" aria-controls="lane-pane-@i" aria-selected="@(active ? "true" : "false")">@lane.WorkflowName</button>
+                </li>
+            }
+        </ul>
+        <div class="tab-content pipeline-tab-content mb-3">
+            @for (var i = 0; i < Model.TestPlan.WorkflowLanes.Count; i++)
+            {
+                var lane = Model.TestPlan.WorkflowLanes[i];
+                var active = i == 0;
+                <div class="tab-pane fade @(active ? "show active" : string.Empty)" id="lane-pane-@i" role="tabpanel" aria-labelledby="lane-tab-@i" tabindex="0">
+                    <div class="small text-muted mb-2">Entry route: @(string.IsNullOrWhiteSpace(lane.EntryRoute) ? "(inferred)" : lane.EntryRoute)</div>
+                    <div class="d-flex flex-wrap gap-2 mb-2">
+                        @foreach (var category in lane.Categories)
+                        {
+                            if (executionCategoryIndex.TryGetValue(category, out var execCategory))
+                            {
+                                <span class="badge text-bg-light border">
+                                    @category: <span class="text-success">@execCategory.Passed</span>/<span class="text-danger">@execCategory.Failed</span>
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="badge text-bg-light border">@category: planned</span>
+                            }
+                        }
+                    </div>
+                    <div class="small text-muted">provenance: @lane.ProvenanceType, confidence @lane.Confidence.ToString("0.00")</div>
+                </div>
+            }
+        </div>
+    }
     <p><strong>Coverage Summary:</strong> @Model.TestPlan.CoverageSummary</p>
     @if (Model.TestPlan.ScopeApplied.ScopeTerms.Any())
     {
@@ -668,8 +859,8 @@
 
 <section id="stage-execution" class="stage-section panel-card p-3 mb-3">
     <div class="stage-heading">
-        <h3 class="h5 mb-0">5. Execution</h3>
-        <span class="stage-pill">unit / integration / e2e / api / edge / playwright / devtools</span>
+        <h3 class="h5 mb-0">7. Execution</h3>
+        <span class="stage-pill">unit / integration / route-form / edge / playwright / devtools</span>
     </div>
 
     <div class="execution-grid mb-3">
@@ -703,7 +894,11 @@
     @for (var i = 0; i < Model.Execution.TestCategories.Count; i++)
     {
         var c = Model.Execution.TestCategories[i];
+        var isPlaywrightCategory = c.Category.Contains("Playwright", StringComparison.OrdinalIgnoreCase);
         var generatedScenarios = c.ScenarioDetails.Where(s => s.Generated).ToList();
+        var executionLogArtifact = c.Artifacts.FirstOrDefault(static a => a.EndsWith("execution-log.txt", StringComparison.OrdinalIgnoreCase)) ?? string.Empty;
+        var generatedScriptArtifact = c.Artifacts.FirstOrDefault(static a => a.EndsWith("-generated-tests.py", StringComparison.OrdinalIgnoreCase) || a.EndsWith("-generated-tests.spec.ts", StringComparison.OrdinalIgnoreCase)) ?? string.Empty;
+        var generatedJsonArtifact = c.Artifacts.FirstOrDefault(static a => a.EndsWith("-generated-tests.json", StringComparison.OrdinalIgnoreCase)) ?? string.Empty;
         var executionFindings = Model.Findings.Findings
             .Where(f => string.Equals(f.Stage, "execution", StringComparison.OrdinalIgnoreCase)
                         && string.Equals(f.SkillName, c.SourceSkill, StringComparison.OrdinalIgnoreCase))
@@ -730,6 +925,36 @@
                         <h4 class="h6 mb-0">@c.Category Details</h4>
                         <span class="badge text-bg-primary">@c.Passed passed / @c.Failed failed</span>
                     </div>
+                    @if (isPlaywrightCategory && (!string.IsNullOrWhiteSpace(generatedScriptArtifact) || !string.IsNullOrWhiteSpace(executionLogArtifact)))
+                    {
+                        <div class="mb-2 p-2 border rounded bg-light-subtle">
+                            <h5 class="h6 mb-1">Executed Playwright Assets</h5>
+                            @if (!string.IsNullOrWhiteSpace(generatedScriptArtifact))
+                            {
+                                var scriptUrl = Url.Action("ArtifactFile", "Dashboard", new { path = generatedScriptArtifact }) ?? string.Empty;
+                                <div class="small">
+                                    <strong>Generated test code:</strong>
+                                    <a href="@scriptUrl" target="_blank" rel="noopener">@generatedScriptArtifact</a>
+                                </div>
+                            }
+                            @if (!string.IsNullOrWhiteSpace(generatedJsonArtifact))
+                            {
+                                var blueprintUrl = Url.Action("ArtifactFile", "Dashboard", new { path = generatedJsonArtifact }) ?? string.Empty;
+                                <div class="small">
+                                    <strong>Generated blueprint:</strong>
+                                    <a href="@blueprintUrl" target="_blank" rel="noopener">@generatedJsonArtifact</a>
+                                </div>
+                            }
+                            @if (!string.IsNullOrWhiteSpace(executionLogArtifact))
+                            {
+                                var logUrl = Url.Action("ArtifactFile", "Dashboard", new { path = executionLogArtifact }) ?? string.Empty;
+                                <div class="small">
+                                    <strong>Execution log:</strong>
+                                    <a href="@logUrl" target="_blank" rel="noopener">@executionLogArtifact</a>
+                                </div>
+                            }
+                        </div>
+                    }
                     <div class="execution-scope-note mb-2">
                         @if (string.Equals(c.Category, "Integration", StringComparison.OrdinalIgnoreCase))
                         {
@@ -748,7 +973,7 @@
                             <th>Scenario</th>
                             <th>Status</th>
                             <th>Coverage</th>
-                            <th>Generated</th>
+                            <th>Generated / Evidence</th>
                             <th>Provenance</th>
                         </tr>
                     </thead>
@@ -757,6 +982,14 @@
                     {
                         @foreach (var s in c.ScenarioDetails)
                         {
+                            var scenarioLogs = c.Logs
+                                .Where(log => log.Contains(s.Name, StringComparison.OrdinalIgnoreCase))
+                                .Take(2)
+                                .ToList();
+                            var scenarioArtifacts = c.Artifacts
+                                .Where(artifact => artifact.Contains(s.Name, StringComparison.OrdinalIgnoreCase))
+                                .Take(2)
+                                .ToList();
                             <tr>
                                 <td>
                                     <div class="fw-semibold">@s.Name</div>
@@ -787,6 +1020,18 @@
                                     else
                                     {
                                         <span class="badge text-bg-secondary">Existing</span>
+                                    }
+                                    @if (s.GeneratedFrom.Any())
+                                    {
+                                        <div class="small text-muted mt-1">from: @string.Join(", ", s.GeneratedFrom)</div>
+                                    }
+                                    @if (scenarioLogs.Any())
+                                    {
+                                        <div class="small text-muted mt-1">log: @scenarioLogs[0]</div>
+                                    }
+                                    @if (scenarioArtifacts.Any())
+                                    {
+                                        <div class="small text-muted">artifact: @scenarioArtifacts[0]</div>
                                     }
                                 </td>
                                 <td>
@@ -884,7 +1129,22 @@
                     <h5 class="h6">Execution Logs</h5>
                     @if (c.Logs.Any())
                     {
-                        <ul class="mb-0">@foreach (var log in c.Logs) { <li><code>@log</code></li> }</ul>
+                        <ul class="mb-0">
+                            @foreach (var log in c.Logs)
+                            {
+                                var logUrl = Url.Action("ArtifactFile", "Dashboard", new { path = log }) ?? string.Empty;
+                                <li>
+                                    @if (!string.IsNullOrWhiteSpace(logUrl))
+                                    {
+                                        <a href="@logUrl" target="_blank" rel="noopener">@log</a>
+                                    }
+                                    else
+                                    {
+                                        <code>@log</code>
+                                    }
+                                </li>
+                            }
+                        </ul>
                     }
                     else
                     {
@@ -895,7 +1155,22 @@
                     <h5 class="h6">Artifacts</h5>
                     @if (c.Artifacts.Any())
                     {
-                        <ul class="mb-0">@foreach (var artifact in c.Artifacts) { <li><code>@artifact</code></li> }</ul>
+                        <ul class="mb-0">
+                            @foreach (var artifact in c.Artifacts)
+                            {
+                                var artifactUrl = Url.Action("ArtifactFile", "Dashboard", new { path = artifact }) ?? string.Empty;
+                                <li>
+                                    @if (!string.IsNullOrWhiteSpace(artifactUrl))
+                                    {
+                                        <a href="@artifactUrl" target="_blank" rel="noopener">@artifact</a>
+                                    }
+                                    else
+                                    {
+                                        <code>@artifact</code>
+                                    }
+                                </li>
+                            }
+                        </ul>
                     }
                     else
                     {
@@ -915,77 +1190,339 @@
         <span class="ms-2">@Model.Execution.Playwright.Summary</span>
     </div>
 
-    <div class="mb-3">
-        <span class="badge @((string.Equals(Model.Execution.Playwright.TestApiStatus, "present", StringComparison.OrdinalIgnoreCase) || string.Equals(Model.Execution.Playwright.TestApiStatus, "fallback-attached", StringComparison.OrdinalIgnoreCase)) ? "text-bg-success" : "text-bg-danger")">
-            Test API: @(string.Equals(Model.Execution.Playwright.TestApiStatus, "present", StringComparison.OrdinalIgnoreCase)
-                ? "Present"
-                : string.Equals(Model.Execution.Playwright.TestApiStatus, "fallback-attached", StringComparison.OrdinalIgnoreCase)
-                    ? "Fallback Attached"
-                    : "Missing")
-        </span>
-        @if (!string.IsNullOrWhiteSpace(Model.Execution.Playwright.TestApiEndpoint))
-        {
-            <span class="ms-2"><code>@Model.Execution.Playwright.TestApiEndpoint</code></span>
-        }
-        @if (!string.IsNullOrWhiteSpace(Model.Execution.Playwright.TestApiSource))
-        {
-            <span class="badge text-bg-light border ms-2">source: @Model.Execution.Playwright.TestApiSource</span>
-        }
-        @if (!string.IsNullOrWhiteSpace(Model.Execution.Playwright.TestApiReason))
-        {
-            <div class="small text-muted mt-1">Reason: @Model.Execution.Playwright.TestApiReason</div>
-        }
-        @if (Model.Execution.Playwright.TestApiAutoProvisioned)
-        {
-            <div class="small text-muted mt-1">Fallback diagnostics endpoint was auto-attached for this run because module-hosted test API was unavailable.</div>
-        }
-        <div class="small text-muted mt-1">This indicates diagnostics endpoint availability, not whether previous iteration tests exist.</div>
+    <div class="artifact-hub mb-3">
+        <div class="artifact-hub-header">
+            <div>
+                <div class="summary-label">Playwright Artifact Hub</div>
+                <div class="small text-muted">Quick access to generated test code, logs, and diagnostics output</div>
+            </div>
+            <div class="d-flex flex-wrap gap-2">
+                @if (!string.IsNullOrWhiteSpace(playwrightGeneratedCodePath))
+                {
+                    <a class="btn btn-sm btn-outline-primary" href="@Url.Action("ArtifactFile", "Dashboard", new { path = playwrightGeneratedCodePath })" target="_blank" rel="noopener">Generated Code</a>
+                }
+                @if (!string.IsNullOrWhiteSpace(playwrightGeneratedBlueprintPath))
+                {
+                    <a class="btn btn-sm btn-outline-primary" href="@Url.Action("ArtifactFile", "Dashboard", new { path = playwrightGeneratedBlueprintPath })" target="_blank" rel="noopener">Generated Blueprint</a>
+                }
+                @if (!string.IsNullOrWhiteSpace(playwrightExecutionLogPath))
+                {
+                    <a class="btn btn-sm btn-outline-primary" href="@Url.Action("ArtifactFile", "Dashboard", new { path = playwrightExecutionLogPath })" target="_blank" rel="noopener">Execution Log</a>
+                }
+                @if (!string.IsNullOrWhiteSpace(playwrightResultPath))
+                {
+                    <a class="btn btn-sm btn-outline-primary" href="@Url.Action("ArtifactFile", "Dashboard", new { path = playwrightResultPath })" target="_blank" rel="noopener">Result JSON</a>
+                }
+            </div>
+        </div>
+
+        <div class="artifact-link-grid mt-2">
+            @if (!string.IsNullOrWhiteSpace(playwrightConsolePath))
+            {
+                <a class="artifact-link-chip" href="@Url.Action("ArtifactFile", "Dashboard", new { path = playwrightConsolePath })" target="_blank" rel="noopener">Console Logs</a>
+            }
+            @if (!string.IsNullOrWhiteSpace(playwrightNetworkPath))
+            {
+                <a class="artifact-link-chip" href="@Url.Action("ArtifactFile", "Dashboard", new { path = playwrightNetworkPath })" target="_blank" rel="noopener">Network Failures</a>
+            }
+            @if (!string.IsNullOrWhiteSpace(playwrightDomPath))
+            {
+                <a class="artifact-link-chip" href="@Url.Action("ArtifactFile", "Dashboard", new { path = playwrightDomPath })" target="_blank" rel="noopener">DOM State</a>
+            }
+            @if (!string.IsNullOrWhiteSpace(playwrightRuntimePath))
+            {
+                <a class="artifact-link-chip" href="@Url.Action("ArtifactFile", "Dashboard", new { path = playwrightRuntimePath })" target="_blank" rel="noopener">Runtime Issues</a>
+            }
+            @if (!string.IsNullOrWhiteSpace(playwrightPerfPath))
+            {
+                <a class="artifact-link-chip" href="@Url.Action("ArtifactFile", "Dashboard", new { path = playwrightPerfPath })" target="_blank" rel="noopener">Performance Observations</a>
+            }
+        </div>
     </div>
 
-    @if (missingTestApi)
+    <div class="mb-3 d-flex flex-wrap gap-2 align-items-center">
+        <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#playwrightInputModal">
+            Configure Playwright Form Inputs
+        </button>
+        @if (playwrightNeedsInput)
+        {
+            <span class="badge text-bg-warning">Input Needed for Scenario Data</span>
+        }
+        @if (!string.IsNullOrWhiteSpace(Model.Execution.Playwright.InputOverridesPath))
+        {
+            var inputsUrl = Url.Action("ArtifactFile", "Dashboard", new { path = Model.Execution.Playwright.InputOverridesPath }) ?? string.Empty;
+            <a class="btn btn-outline-primary btn-sm" href="@inputsUrl" target="_blank" rel="noopener">View Saved Input JSON</a>
+        }
+    </div>
+
+    <div class="mb-3">
+        <span class="badge text-bg-success">App-Direct Diagnostics Active</span>
+        <div class="small text-muted mt-1">Browser verification runs against the live module routes; diagnostics endpoint support is optional.</div>
+    </div>
+
+    @if (!string.IsNullOrWhiteSpace(Model.Execution.Playwright.GeneratedExecutableTest)
+        || !string.IsNullOrWhiteSpace(Model.Execution.Playwright.GeneratedExecutableArtifact)
+        || !string.IsNullOrWhiteSpace(Model.Execution.Playwright.GeneratedTestsArtifact)
+        || !string.IsNullOrWhiteSpace(Model.Execution.Playwright.ExecutionCommand)
+        || Model.Execution.Playwright.ExecutionReturnCode.HasValue)
     {
-        <div class="alert alert-warning mb-3">
-            <div class="fw-semibold mb-1">Diagnostics endpoint missing for this run input.</div>
-            <div class="small mb-2">The app does not auto-create a diagnostics API in your target module host. Use the dashboard-provided endpoint or expose /api/test in the converted app.</div>
-            <div class="small">
-                Suggested endpoint for next run input:
-                <code>@fallbackTestApiEndpoint</code>
+        <div class="mb-3 p-2 border rounded bg-light-subtle">
+            <h5 class="h6 mb-2">Generated Test Execution Details</h5>
+            
+            @if (!string.IsNullOrWhiteSpace(Model.Execution.Playwright.ExecutionCommand))
+            {
+                <div class="mb-2">
+                    <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#pwExecCommand" aria-expanded="false">
+                        ▶ Execution Command
+                    </button>
+                    <div id="pwExecCommand" class="collapse mt-1">
+                        <div class="bg-dark rounded p-2" style="max-height: 120px; overflow-y: auto;">
+                            <code class="text-success font-monospace small d-block">@Model.Execution.Playwright.ExecutionCommand</code>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            @if (!string.IsNullOrWhiteSpace(Model.Execution.Playwright.ExecutionWorkingDirectory))
+            {
+                <div class="small text-muted mb-2"><strong>Directory:</strong> @Model.Execution.Playwright.ExecutionWorkingDirectory</div>
+            }
+
+            @if (Model.Execution.Playwright.ExecutionReturnCode.HasValue)
+            {
+                <div class="small mb-2">
+                    <strong>Result:</strong> 
+                    @if (Model.Execution.Playwright.ExecutionReturnCode == 0)
+                    {
+                        <span class="badge text-bg-success">Return Code 0 (Passed)</span>
+                    }
+                    else
+                    {
+                        <span class="badge text-bg-danger">Return Code @Model.Execution.Playwright.ExecutionReturnCode (Failed)</span>
+                    }
+                </div>
+            }
+        </div>
+    }
+
+    @if (!string.IsNullOrWhiteSpace(Model.Execution.Playwright.GeneratedExecutableArtifact))
+    {
+        var testCodeUrl = Url.Action("ArtifactFile", "Dashboard", new { path = Model.Execution.Playwright.GeneratedExecutableArtifact }) ?? string.Empty;
+        <div class="mb-3 p-2 border rounded bg-light-subtle">
+            <h5 class="h6 mb-2">Generated Test Code</h5>
+            <button class="btn btn-sm btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#pwTestCode" aria-expanded="false">
+                ▶ View Test Code (Playwright)
+            </button>
+            <div id="pwTestCode" class="collapse mt-2">
+                <div class="bg-dark rounded p-3" style="max-height: 500px; overflow-y: auto;">
+                    <pre class="text-light font-monospace" style="margin: 0; font-size: 12px;" id="testCodeDisplay">Loading test code...</pre>
+                </div>
+                <div class="small text-muted mt-2">
+                    <a href="@testCodeUrl" target="_blank" rel="noopener" class="ms-1">↗ Open full file</a>
+                </div>
             </div>
-            <div class="small mt-1">
-                <a href="@($"{fallbackTestApiEndpoint}/health")" target="_blank" rel="noopener">Check fallback health endpoint</a>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    fetch('@testCodeUrl')
+                        .then(r => r.text())
+                        .then(code => {
+                            var display = document.getElementById('testCodeDisplay');
+                            if (display) {
+                                display.textContent = code.substring(0, 3000);
+                                if (code.length > 3000) {
+                                    display.textContent += '\n\n... [content truncated, see full file via link above] ...';
+                                }
+                            }
+                        })
+                        .catch(e => {
+                            var display = document.getElementById('testCodeDisplay');
+                            if (display) display.textContent = 'Error loading test code: ' + e.message;
+                        });
+                });
+            </script>
+        </div>
+    }
+
+    @if (!string.IsNullOrWhiteSpace(playwrightExecutionLogPath))
+    {
+        var playwrightLogUrl = Url.Action("ArtifactFile", "Dashboard", new { path = playwrightExecutionLogPath }) ?? string.Empty;
+        <div class="mb-3 p-2 border rounded bg-light-subtle">
+            <h5 class="h6 mb-2">Execution Log Preview</h5>
+            <button class="btn btn-sm btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#pwExecutionLog" aria-expanded="false">
+                ▶ View Execution Log
+            </button>
+            <div id="pwExecutionLog" class="collapse mt-2">
+                <div class="bg-dark rounded p-3" style="max-height: 420px; overflow-y: auto;">
+                    <pre class="text-light font-monospace" style="margin: 0; font-size: 12px;" id="pwExecutionLogDisplay">Loading execution log...</pre>
+                </div>
+                <div class="small text-muted mt-2">
+                    <a href="@playwrightLogUrl" target="_blank" rel="noopener" class="ms-1">↗ Open full log file</a>
+                </div>
             </div>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    fetch('@playwrightLogUrl')
+                        .then(r => r.text())
+                        .then(text => {
+                            var display = document.getElementById('pwExecutionLogDisplay');
+                            if (display) {
+                                display.textContent = text.substring(0, 7000);
+                                if (text.length > 7000) {
+                                    display.textContent += '\n\n... [log truncated, open full file above] ...';
+                                }
+                            }
+                        })
+                        .catch(e => {
+                            var display = document.getElementById('pwExecutionLogDisplay');
+                            if (display) display.textContent = 'Error loading execution log: ' + e.message;
+                        });
+                });
+            </script>
+        </div>
+    }
+
+    @if (Model.Execution.Playwright.FailureSnippets.Any())
+    {
+        <div class="mb-3 p-2 border rounded bg-warning-subtle">
+            <h5 class="h6 mb-2">Failure Snippets</h5>
+            <ul class="mb-0">
+                @foreach (var snippet in Model.Execution.Playwright.FailureSnippets)
+                {
+                    <li>@snippet</li>
+                }
+            </ul>
+        </div>
+    }
+
+    @if (executionCategoryIndex.TryGetValue("DevTools", out var devtoolsCategory))
+    {
+        <div class="mb-3 p-2 border rounded bg-light-subtle">
+            <div class="d-flex align-items-center gap-2">
+                <h5 class="h6 mb-0">DevTools Execution</h5>
+                <span class="status-pill @devtoolsCategory.PreflightStatus.ToLowerInvariant()">@devtoolsCategory.PreflightStatus</span>
+            </div>
+            <div class="small text-muted mt-1">@devtoolsCategory.Purpose</div>
+            <div class="small text-muted">scenarios: @devtoolsCategory.TotalCount, passed: @devtoolsCategory.Passed, failed: @devtoolsCategory.Failed</div>
         </div>
     }
 
     <div class="row g-3">
-        <div class="col-lg-6">
-            <h5 class="h6">Scenarios</h5>
-            <ul>
-                @foreach (var s in Model.Execution.Playwright.Scenarios)
-                {
-                    <li><strong>@s.Status</strong> - @s.Name <div class="small text-muted">@s.Notes</div></li>
-                }
-            </ul>
-        </div>
-        <div class="col-lg-6">
-            <h5 class="h6">Console Errors</h5>
-            <ul>@foreach (var x in Model.Execution.Playwright.ConsoleErrors) { <li>@x</li> }</ul>
-            <h5 class="h6">Console Warnings</h5>
-            <ul>@foreach (var x in Model.Execution.Playwright.ConsoleWarnings) { <li>@x</li> }</ul>
-        </div>
-        <div class="col-lg-6">
-            <h5 class="h6">Network Failures</h5>
-            <ul>@foreach (var x in Model.Execution.Playwright.NetworkFailures) { <li>@x</li> }</ul>
-            <h5 class="h6">DOM / State Checks</h5>
-            <ul>@foreach (var x in Model.Execution.Playwright.DomStateChecks) { <li>@x</li> }</ul>
-        </div>
-        <div class="col-lg-6">
-            <h5 class="h6">Runtime Issues</h5>
-            <ul>@foreach (var x in Model.Execution.Playwright.RuntimeIssues) { <li>@x</li> }</ul>
-            <h5 class="h6">Performance Observations</h5>
-            <ul>@foreach (var x in Model.Execution.Playwright.PerformanceObservations) { <li>@x</li> }</ul>
+        <div class="col-lg-12">
+            <h5 class="h6">Test Scenarios</h5>
+            @if (Model.Execution.Playwright.Scenarios.Any())
+            {
+                <div class="list-group small">
+                    @foreach (var s in Model.Execution.Playwright.Scenarios)
+                    {
+                        var scenarioId = $"scenario-{Model.Execution.Playwright.Scenarios.IndexOf(s)}";
+                        <div class="list-group-item">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div class="flex-grow-1">
+                                    <div class="fw-semibold">
+                                        <span class="status-pill @s.Status.ToLowerInvariant()">@s.Status</span>
+                                        @s.Name
+                                        @if (s.Generated)
+                                        {
+                                            <span class="badge text-bg-warning-subtle text-warning-emphasis border ms-1">Generated</span>
+                                        }
+                                    </div>
+                                    @if (!string.IsNullOrWhiteSpace(s.TargetRoute))
+                                    {
+                                        <div class="text-muted" style="font-size: 0.85rem;">Route: <code>@s.TargetRoute</code></div>
+                                    }
+                                </div>
+                                <button class="btn btn-sm btn-outline-secondary ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#@scenarioId">
+                                    More ▼
+                                </button>
+                            </div>
+                            <div id="@scenarioId" class="collapse mt-2">
+                                @if (!string.IsNullOrWhiteSpace(s.WorkflowName))
+                                {
+                                    <div class="small mb-1"><strong>Workflow:</strong> @s.WorkflowName</div>
+                                }
+                                @if (s.Coverage.Any())
+                                {
+                                    <div class="small mb-1"><strong>Coverage:</strong> @foreach (var cov in s.Coverage) { <span class="badge text-bg-light border me-1">@cov</span> }</div>
+                                }
+                                @if (s.GeneratedFrom.Any())
+                                {
+                                    <div class="small mb-1"><strong>Generated from:</strong> @string.Join(", ", s.GeneratedFrom)</div>
+                                }
+                                @if (!string.IsNullOrWhiteSpace(s.ProvenanceType))
+                                {
+                                    <div class="small text-muted">Provenance: @s.ProvenanceType (confidence: @s.Confidence.ToString("0.00"))</div>
+                                }
+                                @if (!string.IsNullOrWhiteSpace(s.Notes))
+                                {
+                                    <div class="small text-muted mt-1">@s.Notes</div>
+                                }
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+            else
+            {
+                <div class="text-muted small">No test scenarios recorded.</div>
+            }
         </div>
     </div>
+
+    @if (Model.Execution.Playwright.ConsoleErrors.Any() 
+        || Model.Execution.Playwright.ConsoleWarnings.Any() 
+        || Model.Execution.Playwright.NetworkFailures.Any() 
+        || Model.Execution.Playwright.DomStateChecks.Any()
+        || Model.Execution.Playwright.RuntimeIssues.Any()
+        || Model.Execution.Playwright.PerformanceObservations.Any())
+    {
+        <div class="row g-3 mt-1">
+            @if (Model.Execution.Playwright.ConsoleErrors.Any() || Model.Execution.Playwright.ConsoleWarnings.Any())
+            {
+                <div class="col-lg-6">
+                    @if (Model.Execution.Playwright.ConsoleErrors.Any())
+                    {
+                        <h5 class="h6">Console Errors</h5>
+                        <ul class="small mb-3">@foreach (var x in Model.Execution.Playwright.ConsoleErrors) { <li>@x</li> }</ul>
+                    }
+                    @if (Model.Execution.Playwright.ConsoleWarnings.Any())
+                    {
+                        <h5 class="h6">Console Warnings</h5>
+                        <ul class="small">@foreach (var x in Model.Execution.Playwright.ConsoleWarnings) { <li>@x</li> }</ul>
+                    }
+                </div>
+            }
+            @if (Model.Execution.Playwright.NetworkFailures.Any() || Model.Execution.Playwright.DomStateChecks.Any())
+            {
+                <div class="col-lg-6">
+                    @if (Model.Execution.Playwright.NetworkFailures.Any())
+                    {
+                        <h5 class="h6">Network Failures</h5>
+                        <ul class="small mb-3">@foreach (var x in Model.Execution.Playwright.NetworkFailures) { <li>@x</li> }</ul>
+                    }
+                    @if (Model.Execution.Playwright.DomStateChecks.Any())
+                    {
+                        <h5 class="h6">DOM / State Checks</h5>
+                        <ul class="small">@foreach (var x in Model.Execution.Playwright.DomStateChecks) { <li>@x</li> }</ul>
+                    }
+                </div>
+            }
+            @if (Model.Execution.Playwright.RuntimeIssues.Any() || Model.Execution.Playwright.PerformanceObservations.Any())
+            {
+                <div class="col-lg-6">
+                    @if (Model.Execution.Playwright.RuntimeIssues.Any())
+                    {
+                        <h5 class="h6">Runtime Issues</h5>
+                        <ul class="small mb-3">@foreach (var x in Model.Execution.Playwright.RuntimeIssues) { <li>@x</li> }</ul>
+                    }
+                    @if (Model.Execution.Playwright.PerformanceObservations.Any())
+                    {
+                        <h5 class="h6">Performance Observations</h5>
+                        <ul class="small">@foreach (var x in Model.Execution.Playwright.PerformanceObservations) { <li>@x</li> }</ul>
+                    }
+                </div>
+            }
+        </div>
+    }
 
     <h5 class="h6 mt-2">Screenshots</h5>
     @if (screenshotArtifacts.Any())
@@ -1007,9 +1544,61 @@
     }
 </section>
 
+<div class="modal fade" id="playwrightInputModal" tabindex="-1" aria-labelledby="playwrightInputModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="playwrightInputModalLabel">Playwright Input Overrides</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="post" asp-action="SavePlaywrightInputs" asp-route-moduleName="@Model.ModuleName" asp-route-runId="@Model.RunId">
+                @Html.AntiForgeryToken()
+                <div class="modal-body">
+                    <p class="small text-muted mb-2">
+                        Provide scenario-specific form data and expected outcomes. This JSON is consumed by generated Playwright tests on the next run.
+                    </p>
+                    @if (Model.Execution.Playwright.Scenarios.Any())
+                    {
+                        <div class="mb-2">
+                            <div class="small fw-semibold">Current Scenarios Detected</div>
+                            <ul class="small mb-2">
+                                @foreach (var scenario in Model.Execution.Playwright.Scenarios)
+                                {
+                                    <li>@scenario.Name</li>
+                                }
+                            </ul>
+                        </div>
+                    }
+                    <textarea class="form-control font-monospace" name="inputOverridesJson" rows="18">@(!string.IsNullOrWhiteSpace(Model.Execution.Playwright.InputOverridesJson)
+? Model.Execution.Playwright.InputOverridesJson
+: "{\n  \"scenarios\": [\n    {\n      \"nameContains\": \"invalid login\",\n      \"route\": \"/login\",\n      \"fields\": [\n        { \"selector\": \"input[name='username']\", \"value\": \"bad.user\" },\n        { \"selector\": \"input[name='password']\", \"value\": \"wrong-pass\" }\n      ],\n      \"submitSelector\": \"button[type='submit']\",\n      \"expectText\": \"invalid\"\n    },\n    {\n      \"nameContains\": \"valid login\",\n      \"route\": \"/login\",\n      \"fields\": [\n        { \"selector\": \"input[name='username']\", \"value\": \"valid.user\" },\n        { \"selector\": \"input[name='password']\", \"value\": \"valid-pass\" }\n      ],\n      \"submitSelector\": \"button[type='submit']\",\n      \"expectUrlContains\": \"/dashboard\"\n    }\n  ]\n}")</textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Input Overrides</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@if (playwrightNeedsInput)
+{
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var el = document.getElementById('playwrightInputModal');
+            if (!el || !window.bootstrap || !bootstrap.Modal) {
+                return;
+            }
+            var modal = new bootstrap.Modal(el);
+            modal.show();
+        });
+    </script>
+}
+
 <section id="stage-findings" class="stage-section panel-card p-3 mb-3">
     <div class="stage-heading">
-        <h3 class="h5 mb-0">6. Findings</h3>
+        <h3 class="h5 mb-0">8. Findings</h3>
         <span class="stage-pill">failed scenarios / likely causes / recommendations</span>
     </div>
 
@@ -1127,7 +1716,7 @@
 
 <section id="stage-iteration-comparison" class="stage-section panel-card p-3 mb-4">
     <div class="stage-heading">
-        <h3 class="h5 mb-0">7. Iteration Comparison and Improvements</h3>
+        <h3 class="h5 mb-0">9. Iteration Comparison and Improvements</h3>
         <span class="stage-pill">previous vs current progression and quality uplift</span>
     </div>
 

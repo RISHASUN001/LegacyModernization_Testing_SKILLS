@@ -1,0 +1,34 @@
+{
+  "skillName": "module-discovery",
+  "stage": "java-discovery",
+  "moduleName": "LoginFinal",
+  "runId": "loginfinal-test-20260415-154340",
+  "status": "passed",
+  "startedAt": "2026-04-15T07:47:47.034992Z",
+  "endedAt": "2026-04-15T07:47:47.058557Z",
+  "summary": "Discovery completed for LoginFinal: assets=22, routes=4, dbTouchpoints=0.",
+  "metrics": {
+    "totalAssets": 22,
+    "javaFiles": 2,
+    "jspFiles": 4,
+    "jsFiles": 0,
+    "configFiles": 0,
+    "urls": 4,
+    "dbTouchpoints": 0,
+    "confidence": 0.92
+  },
+  "artifacts": [
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-154340/module-discovery/result.json",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-154340/module-discovery/discovery-map.json",
+    "/Users/risha/Documents/Buildathon/artifacts/LoginFinal/loginfinal-test-20260415-154340/module-discovery/discovery-evidence.json"
+  ],
+  "findings": [],
+  "recommendations": [],
+  "resultContractVersion": "2.0",
+  "provenanceSummary": {
+    "scenarioSources": [
+      "code-evidence"
+    ],
+    "confidence": 0.92
+  }
+}

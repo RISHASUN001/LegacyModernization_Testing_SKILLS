@@ -1,0 +1,23 @@
+{
+  "moduleName": "Login",
+  "related": [
+    {
+      "path": "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp",
+      "score": 0.157,
+      "matchedTokens": [
+        "dashboard",
+        "index"
+      ],
+      "packageMatches": [],
+      "importMatches": [],
+      "provenance": {
+        "type": "code-evidence",
+        "sources": [
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/dashboard.jsp"
+        ],
+        "confidence": 0.3,
+        "unknowns": []
+      }
+    }
+  ]
+}

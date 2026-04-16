@@ -1,8 +1,521 @@
 {
   "moduleName": "Login",
   "runId": "login-test-20260414-005637",
-  "totalSkillResults": 15,
-  "failedSkillResults": 0,
-  "clusters": [],
-  "scenarioFailures": []
+  "totalSkillResults": 17,
+  "failedSkillResults": 5,
+  "clusters": [
+    {
+      "name": "logic-flow-visualization failure cluster",
+      "likelyCause": "Generated 0 workflow diagram bundles (Mermaid + Excalidraw + preview).",
+      "affectedSkills": [
+        "logic-flow-visualization"
+      ],
+      "failedScenarios": [
+        "logic-flow-visualization"
+      ],
+      "evidenceArtifacts": []
+    },
+    {
+      "name": "e2e-test-execution failure cluster",
+      "likelyCause": "E2E execution completed with 0 passed and 6 failed scenarios.",
+      "affectedSkills": [
+        "e2e-test-execution"
+      ],
+      "failedScenarios": [
+        "Journey parity: Open login page",
+        "Journey parity: Session timeout returns to login",
+        "E2E route resilience: /login",
+        "E2E robustness generated case 1 for Login",
+        "E2E robustness generated case 2 for Login",
+        "E2E robustness generated case 3 for Login"
+      ],
+      "evidenceArtifacts": [
+        "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/execution-log.txt"
+      ]
+    },
+    {
+      "name": "playwright-browser-verification failure cluster",
+      "likelyCause": "Playwright/browser verification for Login: 0 passed, 6 failed, runtimeSignals=0, networkSignals=0.",
+      "affectedSkills": [
+        "playwright-browser-verification"
+      ],
+      "failedScenarios": [
+        "Browser runtime validation for Open login page",
+        "Browser runtime validation for Session timeout returns to login",
+        "Playwright / E2E Browser robustness generated case 1 for Login",
+        "Playwright / E2E Browser robustness generated case 2 for Login",
+        "Playwright / E2E Browser robustness generated case 3 for Login",
+        "Playwright / E2E Browser robustness generated case 4 for Login"
+      ],
+      "evidenceArtifacts": [
+        "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/execution-log.txt",
+        "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/console-logs.json",
+        "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/network-failures.json"
+      ]
+    },
+    {
+      "name": "java-logic-understanding failure cluster",
+      "likelyCause": "Java logic understanding produced 0 workflow summaries.",
+      "affectedSkills": [
+        "java-logic-understanding"
+      ],
+      "failedScenarios": [
+        "java-logic-understanding"
+      ],
+      "evidenceArtifacts": []
+    },
+    {
+      "name": "csharp-logic-understanding failure cluster",
+      "likelyCause": "C# logic understanding produced 0 workflow summaries.",
+      "affectedSkills": [
+        "csharp-logic-understanding"
+      ],
+      "failedScenarios": [
+        "csharp-logic-understanding"
+      ],
+      "evidenceArtifacts": []
+    }
+  ],
+  "scenarioFailures": [
+    {
+      "skill": "logic-flow-visualization",
+      "scenario": "logic-flow-visualization",
+      "likelyCause": "Generated 0 workflow diagram bundles (Mermaid + Excalidraw + preview).",
+      "evidence": {
+        "resultSummary": "Generated 0 workflow diagram bundles (Mermaid + Excalidraw + preview).",
+        "logs": [],
+        "artifacts": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/logic-flow-visualization/result.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/logic-flow-visualization/diagram-index.json"
+        ]
+      },
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:logic-flow-visualization/result.json"
+        ],
+        "confidence": 0.65
+      }
+    },
+    {
+      "skill": "e2e-test-execution",
+      "scenario": "Journey parity: Open login page",
+      "likelyCause": "E2E execution completed with 0 passed and 6 failed scenarios.",
+      "evidence": {
+        "resultSummary": "E2E execution completed with 0 passed and 6 failed scenarios.",
+        "logs": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/execution-log.txt"
+        ],
+        "artifacts": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/result.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/generated-tests/e2e-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login/e2e-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/preflight.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/execution-log.txt",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/e2e-scenarios.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/screenshots/e2e-failure.png"
+        ]
+      },
+      "provenance": {
+        "type": "flow-derived",
+        "sources": [
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.73,
+        "unknowns": []
+      }
+    },
+    {
+      "skill": "e2e-test-execution",
+      "scenario": "Journey parity: Session timeout returns to login",
+      "likelyCause": "E2E execution completed with 0 passed and 6 failed scenarios.",
+      "evidence": {
+        "resultSummary": "E2E execution completed with 0 passed and 6 failed scenarios.",
+        "logs": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/execution-log.txt"
+        ],
+        "artifacts": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/result.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/generated-tests/e2e-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login/e2e-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/preflight.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/execution-log.txt",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/e2e-scenarios.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/screenshots/e2e-failure.png"
+        ]
+      },
+      "provenance": {
+        "type": "flow-derived",
+        "sources": [
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.73,
+        "unknowns": []
+      }
+    },
+    {
+      "skill": "e2e-test-execution",
+      "scenario": "E2E route resilience: /login",
+      "likelyCause": "E2E execution completed with 0 passed and 6 failed scenarios.",
+      "evidence": {
+        "resultSummary": "E2E execution completed with 0 passed and 6 failed scenarios.",
+        "logs": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/execution-log.txt"
+        ],
+        "artifacts": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/result.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/generated-tests/e2e-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login/e2e-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/preflight.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/execution-log.txt",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/e2e-scenarios.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/screenshots/e2e-failure.png"
+        ]
+      },
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "skill": "e2e-test-execution",
+      "scenario": "E2E robustness generated case 1 for Login",
+      "likelyCause": "E2E execution completed with 0 passed and 6 failed scenarios.",
+      "evidence": {
+        "resultSummary": "E2E execution completed with 0 passed and 6 failed scenarios.",
+        "logs": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/execution-log.txt"
+        ],
+        "artifacts": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/result.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/generated-tests/e2e-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login/e2e-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/preflight.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/execution-log.txt",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/e2e-scenarios.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/screenshots/e2e-failure.png"
+        ]
+      },
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "skill": "e2e-test-execution",
+      "scenario": "E2E robustness generated case 2 for Login",
+      "likelyCause": "E2E execution completed with 0 passed and 6 failed scenarios.",
+      "evidence": {
+        "resultSummary": "E2E execution completed with 0 passed and 6 failed scenarios.",
+        "logs": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/execution-log.txt"
+        ],
+        "artifacts": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/result.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/generated-tests/e2e-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login/e2e-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/preflight.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/execution-log.txt",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/e2e-scenarios.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/screenshots/e2e-failure.png"
+        ]
+      },
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "skill": "e2e-test-execution",
+      "scenario": "E2E robustness generated case 3 for Login",
+      "likelyCause": "E2E execution completed with 0 passed and 6 failed scenarios.",
+      "evidence": {
+        "resultSummary": "E2E execution completed with 0 passed and 6 failed scenarios.",
+        "logs": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/execution-log.txt"
+        ],
+        "artifacts": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/result.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/generated-tests/e2e-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login/e2e-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/preflight.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/execution-log.txt",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/e2e-scenarios.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/e2e-test-execution/screenshots/e2e-failure.png"
+        ]
+      },
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "skill": "playwright-browser-verification",
+      "scenario": "Browser runtime validation for Open login page",
+      "likelyCause": "Playwright/browser verification for Login: 0 passed, 6 failed, runtimeSignals=0, networkSignals=0.",
+      "evidence": {
+        "resultSummary": "Playwright/browser verification for Login: 0 passed, 6 failed, runtimeSignals=0, networkSignals=0.",
+        "logs": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/execution-log.txt",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/console-logs.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/network-failures.json"
+        ],
+        "artifacts": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/result.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/generated-tests/playwright-e2e-browser-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login/playwright-e2e-browser-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/preflight.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/execution-log.txt",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/console-logs.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/network-failures.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/dom-state.json"
+        ]
+      },
+      "provenance": {
+        "type": "flow-derived",
+        "sources": [
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-discovery/discovery-map.json"
+        ],
+        "confidence": 0.72,
+        "unknowns": []
+      }
+    },
+    {
+      "skill": "playwright-browser-verification",
+      "scenario": "Browser runtime validation for Session timeout returns to login",
+      "likelyCause": "Playwright/browser verification for Login: 0 passed, 6 failed, runtimeSignals=0, networkSignals=0.",
+      "evidence": {
+        "resultSummary": "Playwright/browser verification for Login: 0 passed, 6 failed, runtimeSignals=0, networkSignals=0.",
+        "logs": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/execution-log.txt",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/console-logs.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/network-failures.json"
+        ],
+        "artifacts": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/result.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/generated-tests/playwright-e2e-browser-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login/playwright-e2e-browser-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/preflight.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/execution-log.txt",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/console-logs.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/network-failures.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/dom-state.json"
+        ]
+      },
+      "provenance": {
+        "type": "flow-derived",
+        "sources": [
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-discovery/discovery-map.json"
+        ],
+        "confidence": 0.72,
+        "unknowns": []
+      }
+    },
+    {
+      "skill": "playwright-browser-verification",
+      "scenario": "Playwright / E2E Browser robustness generated case 1 for Login",
+      "likelyCause": "Playwright/browser verification for Login: 0 passed, 6 failed, runtimeSignals=0, networkSignals=0.",
+      "evidence": {
+        "resultSummary": "Playwright/browser verification for Login: 0 passed, 6 failed, runtimeSignals=0, networkSignals=0.",
+        "logs": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/execution-log.txt",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/console-logs.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/network-failures.json"
+        ],
+        "artifacts": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/result.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/generated-tests/playwright-e2e-browser-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login/playwright-e2e-browser-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/preflight.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/execution-log.txt",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/console-logs.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/network-failures.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/dom-state.json"
+        ]
+      },
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "skill": "playwright-browser-verification",
+      "scenario": "Playwright / E2E Browser robustness generated case 2 for Login",
+      "likelyCause": "Playwright/browser verification for Login: 0 passed, 6 failed, runtimeSignals=0, networkSignals=0.",
+      "evidence": {
+        "resultSummary": "Playwright/browser verification for Login: 0 passed, 6 failed, runtimeSignals=0, networkSignals=0.",
+        "logs": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/execution-log.txt",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/console-logs.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/network-failures.json"
+        ],
+        "artifacts": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/result.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/generated-tests/playwright-e2e-browser-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login/playwright-e2e-browser-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/preflight.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/execution-log.txt",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/console-logs.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/network-failures.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/dom-state.json"
+        ]
+      },
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "skill": "playwright-browser-verification",
+      "scenario": "Playwright / E2E Browser robustness generated case 3 for Login",
+      "likelyCause": "Playwright/browser verification for Login: 0 passed, 6 failed, runtimeSignals=0, networkSignals=0.",
+      "evidence": {
+        "resultSummary": "Playwright/browser verification for Login: 0 passed, 6 failed, runtimeSignals=0, networkSignals=0.",
+        "logs": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/execution-log.txt",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/console-logs.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/network-failures.json"
+        ],
+        "artifacts": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/result.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/generated-tests/playwright-e2e-browser-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login/playwright-e2e-browser-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/preflight.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/execution-log.txt",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/console-logs.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/network-failures.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/dom-state.json"
+        ]
+      },
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "skill": "playwright-browser-verification",
+      "scenario": "Playwright / E2E Browser robustness generated case 4 for Login",
+      "likelyCause": "Playwright/browser verification for Login: 0 passed, 6 failed, runtimeSignals=0, networkSignals=0.",
+      "evidence": {
+        "resultSummary": "Playwright/browser verification for Login: 0 passed, 6 failed, runtimeSignals=0, networkSignals=0.",
+        "logs": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/execution-log.txt",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/console-logs.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/network-failures.json"
+        ],
+        "artifacts": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/result.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/generated-tests/playwright-e2e-browser-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/samples/legacy-java-app/Tests/Generated/Login/playwright-e2e-browser-generated-tests.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/preflight.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/execution-log.txt",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/console-logs.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/network-failures.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/playwright-browser-verification/dom-state.json"
+        ]
+      },
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:test-plan-generation/test-plan.json",
+          "artifact:module-discovery/discovery-map.json",
+          "artifact:legacy-logic-extraction/logic-summary.json",
+          "artifact:module-documentation/module-analysis.json"
+        ],
+        "confidence": 0.77,
+        "unknowns": []
+      }
+    },
+    {
+      "skill": "java-logic-understanding",
+      "scenario": "java-logic-understanding",
+      "likelyCause": "Java logic understanding produced 0 workflow summaries.",
+      "evidence": {
+        "resultSummary": "Java logic understanding produced 0 workflow summaries.",
+        "logs": [],
+        "artifacts": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/java-logic-understanding/result.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/java-logic-understanding/java-logic-summary.json"
+        ]
+      },
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:java-logic-understanding/result.json"
+        ],
+        "confidence": 0.65
+      }
+    },
+    {
+      "skill": "csharp-logic-understanding",
+      "scenario": "csharp-logic-understanding",
+      "likelyCause": "C# logic understanding produced 0 workflow summaries.",
+      "evidence": {
+        "resultSummary": "C# logic understanding produced 0 workflow summaries.",
+        "logs": [],
+        "artifacts": [
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/csharp-logic-understanding/result.json",
+          "/Users/risha/Documents/Buildathon/artifacts/Login/login-test-20260414-005637/csharp-logic-understanding/csharp-logic-summary.json"
+        ]
+      },
+      "provenance": {
+        "type": "inferred",
+        "sources": [
+          "artifact:csharp-logic-understanding/result.json"
+        ],
+        "confidence": 0.65
+      }
+    }
+  ]
 }
